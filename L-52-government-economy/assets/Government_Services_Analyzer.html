@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Government Services Analyzer - PFL Academy</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background-color: #f9fafb;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+            color: white;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 0.95rem;
+        }
+
+        .content {
+            padding: 24px;
+        }
+
+        .section {
+            margin-bottom: 24px;
+        }
+
+        .section-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #4f46e5;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e5e7eb;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 6px;
+            color: #374151;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #6366f1;
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+        }
+
+        .form-group textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        @media (max-width: 600px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .service-item {
+            background: #f3f4f6;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .service-item:hover {
+            border-color: #6366f1;
+            background: #eef2ff;
+        }
+
+        .service-item.selected {
+            border-color: #6366f1;
+            background: #eef2ff;
+        }
+
+        .service-item label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .service-item .checkmark {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #d1d5db;
+            border-radius: 4px;
+            margin-right: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            flex-shrink: 0;
+        }
+
+        .service-item.selected .checkmark {
+            background: #6366f1;
+            border-color: #6366f1;
+        }
+
+        .service-item.selected .checkmark::after {
+            content: "\2713";
+            color: white;
+            font-size: 12px;
+        }
+
+        .value-input {
+            margin-top: 8px;
+        }
+
+        .value-input input {
+            width: 100%;
+            padding: 6px 8px;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+            font-size: 0.85rem;
+        }
+
+        .results-box {
+            background: linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%);
+            border: 2px solid #6366f1;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .results-box h3 {
+            color: #4f46e5;
+            margin-bottom: 16px;
+            font-size: 1.125rem;
+        }
+
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(99, 102, 241, 0.2);
+        }
+
+        .result-item:last-child {
+            border-bottom: none;
+        }
+
+        .result-item.total {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: #4f46e5;
+            padding-top: 12px;
+            border-top: 2px solid #6366f1;
+            margin-top: 8px;
+        }
+
+        .analysis-section {
+            background: #f9fafb;
+            border-radius: 8px;
+            padding: 16px;
+            margin-top: 16px;
+        }
+
+        .analysis-section h4 {
+            color: #374151;
+            margin-bottom: 12px;
+        }
+
+        .ratio-display {
+            text-align: center;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            margin: 16px 0;
+        }
+
+        .ratio-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #6366f1;
+        }
+
+        .ratio-label {
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+
+        .status-indicator {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-top: 8px;
+        }
+
+        .status-positive {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .status-negative {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .status-neutral {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background: #6366f1;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #4f46e5;
+        }
+
+        .btn-secondary {
+            background: #e5e7eb;
+            color: #374151;
+        }
+
+        .btn-secondary:hover {
+            background: #d1d5db;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .info-box {
+            background: #eff6ff;
+            border-left: 4px solid #3b82f6;
+            padding: 12px 16px;
+            margin-bottom: 16px;
+            font-size: 0.9rem;
+            color: #1e40af;
+        }
+
+        .cost-benefit-summary {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 16px;
+        }
+
+        @media (max-width: 500px) {
+            .cost-benefit-summary {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .summary-card {
+            background: white;
+            border-radius: 8px;
+            padding: 16px;
+            text-align: center;
+        }
+
+        .summary-card.taxes {
+            border: 2px solid #ef4444;
+        }
+
+        .summary-card.services {
+            border: 2px solid #10b981;
+        }
+
+        .summary-card h4 {
+            font-size: 0.9rem;
+            color: #6b7280;
+            margin-bottom: 8px;
+        }
+
+        .summary-card .value {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .summary-card.taxes .value {
+            color: #ef4444;
+        }
+
+        .summary-card.services .value {
+            color: #10b981;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 10px;
+                font-size: 12px;
+            }
+
+            .container {
+                box-shadow: none;
+            }
+
+            .btn {
+                display: none;
+            }
+
+            .service-item {
+                break-inside: avoid;
+            }
+
+            .header {
+                padding: 16px;
+            }
+
+            .content {
+                padding: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Government Services Analyzer</h1>
+            <p>Analyze government services value and personal tax burden with cost-benefit framework</p>
+        </div>
+
+        <div class="content">
+            <!-- Personal Information Section -->
+            <div class="section">
+                <h2 class="section-title">Your Information</h2>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="state">State</label>
+                        <input type="text" id="state" placeholder="{{STATE_NAME}}" value="">
+                    </div>
+                    <div class="form-group">
+                        <label for="income">Annual Income ($)</label>
+                        <input type="number" id="income" placeholder="40000" value="40000">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tax Burden Section -->
+            <div class="section">
+                <h2 class="section-title">Your Tax Burden</h2>
+                <div class="info-box">
+                    Enter your estimated taxes below. Default values are based on $40,000 annual income.
+                </div>
+
+                <h4 style="margin: 16px 0 12px; color: #374151;">Federal Taxes</h4>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="federalIncome">Federal Income Tax ($)</label>
+                        <input type="number" id="federalIncome" value="3000">
+                    </div>
+                    <div class="form-group">
+                        <label for="socialSecurity">Social Security (6.2%)</label>
+                        <input type="number" id="socialSecurity" value="2480">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="medicare">Medicare (1.45%)</label>
+                    <input type="number" id="medicare" value="580">
+                </div>
+
+                <h4 style="margin: 16px 0 12px; color: #374151;">State & Local Taxes</h4>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="stateIncome">State Income Tax ($)</label>
+                        <input type="number" id="stateIncome" placeholder="Varies by state" value="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="salesTax">Sales Tax (annual estimate)</label>
+                        <input type="number" id="salesTax" placeholder="Based on spending" value="0">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="propertyTax">Property Tax ($)</label>
+                        <input type="number" id="propertyTax" placeholder="If applicable" value="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="gasTax">Gas Tax (annual estimate)</label>
+                        <input type="number" id="gasTax" placeholder="Based on driving" value="0">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="otherTaxes">Other Taxes ($)</label>
+                    <input type="number" id="otherTaxes" value="0">
+                </div>
+            </div>
+
+            <!-- Government Services Section -->
+            <div class="section">
+                <h2 class="section-title">Government Services You Use</h2>
+                <div class="info-box">
+                    Select services you use and estimate their value if you had to pay privately.
+                </div>
+
+                <div class="service-grid" id="servicesContainer">
+                    <div class="service-item" onclick="toggleService(this)">
+                        <label>
+                            <span class="checkmark"></span>
+                            Public Schools (K-12)
+                        </label>
+                        <div class="value-input">
+                            <input type="number" placeholder="Annual value $" data-service="schools" value="12000" onclick="event.stopPropagation()">
+                        </div>
+                    </div>
+                    <div class="service-item" onclick="toggleService(this)">
+                        <label>
+                            <span class="checkmark"></span>
+                            Police Protection
+                        </label>
+                        <div class="value-input">
+                            <input type="number" placeholder="Annual value $" data-service="police" value="500" onclick="event.stopPropagation()">
+                        </div>
+                    </div>
+                    <div class="service-item" onclick="toggleService(this)">
+                        <label>
+                            <span class="checkmark"></span>
+                            Fire Protection
+                        </label>
+                        <div class="value-input">
+                            <input type="number" placeholder="Annual value $" data-service="fire" value="300" onclick="event.stopPropagation()">
+                        </div>
+                    </div>
+                    <div class="service-item" onclick="toggleService(this)">
+                        <label>
+                            <span class="checkmark"></span>
+                            Roads & Highways
+                        </label>
+                        <div class="value-input">
+                            <input type="number" placeholder="Annual value $" data-service="roads" value="1000" onclick="event.stopPropagation()">
+                        </div>
+                    </div>
+                    <div class="service-item" onclick="toggleService(this)">
+                        <label>
+                            <span class="checkmark"></span>
+                            Parks & Recreation
+                        </label>
+                        <div class="value-input">
+                            <input type="number" placeholder="Annual value $" data-service="parks" value="200" onclick="event.stopPropagation()">
+                        </div>
+                    </div>
+                    <div class="service-item" onclick="toggleService(this)">
+                        <label>
+                            <span class="checkmark"></span>
+                            Public Libraries
+                        </label>
+                        <div class="value-input">
+                            <input type="number" placeholder="Annual value $" data-service="libraries" value="300" onclick="event.stopPropagation()">
+                        </div>
+                    </div>
+                    <div class="service-item" onclick="toggleService(this)">
+                        <label>
+                            <span class="checkmark"></span>
+                            Public University Subsidy
+                        </label>
+                        <div class="value-input">
+                            <input type="number" placeholder="Annual value $" data-service="university" value="0" onclick="event.stopPropagation()">
+                        </div>
+                    </div>
+                    <div class="service-item" onclick="toggleService(this)">
+                        <label>
+                            <span class="checkmark"></span>
+                            Public Transit
+                        </label>
+                        <div class="value-input">
+                            <input type="number" placeholder="Annual value $" data-service="transit" value="0" onclick="event.stopPropagation()">
+                        </div>
+                    </div>
+                    <div class="service-item" onclick="toggleService(this)">
+                        <label>
+                            <span class="checkmark"></span>
+                            Healthcare Programs
+                        </label>
+                        <div class="value-input">
+                            <input type="number" placeholder="Annual value $" data-service="healthcare" value="0" onclick="event.stopPropagation()">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group" style="margin-top: 16px;">
+                    <label for="otherServices">Other Services (describe and estimate value)</label>
+                    <textarea id="otherServices" placeholder="List any other government services you use and their estimated value..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="otherServicesValue">Other Services Total Value ($)</label>
+                    <input type="number" id="otherServicesValue" value="0">
+                </div>
+            </div>
+
+            <!-- Calculate Button -->
+            <div class="btn-group">
+                <button class="btn btn-primary" onclick="calculateAnalysis()">Calculate Cost-Benefit Analysis</button>
+                <button class="btn btn-secondary" onclick="resetForm()">Reset</button>
+            </div>
+
+            <!-- Results Section -->
+            <div id="resultsSection" style="display: none;">
+                <div class="results-box">
+                    <h3>Cost-Benefit Analysis Results</h3>
+
+                    <div class="cost-benefit-summary">
+                        <div class="summary-card taxes">
+                            <h4>Total Tax Burden</h4>
+                            <div class="value" id="totalTaxes">$0</div>
+                        </div>
+                        <div class="summary-card services">
+                            <h4>Services Value</h4>
+                            <div class="value" id="totalServices">$0</div>
+                        </div>
+                    </div>
+
+                    <div class="ratio-display">
+                        <div class="ratio-value" id="ratioValue">0:1</div>
+                        <div class="ratio-label">Services Value to Tax Ratio</div>
+                        <span class="status-indicator" id="statusIndicator">Calculating...</span>
+                    </div>
+
+                    <div id="taxBreakdown" class="analysis-section">
+                        <h4>Tax Breakdown</h4>
+                    </div>
+
+                    <div id="servicesBreakdown" class="analysis-section">
+                        <h4>Services Breakdown</h4>
+                    </div>
+                </div>
+
+                <!-- Analysis Questions -->
+                <div class="section" style="margin-top: 24px;">
+                    <h2 class="section-title">Your Analysis</h2>
+
+                    <div class="form-group">
+                        <label for="valueAnalysis">Are you getting good value for your taxes? Why or why not?</label>
+                        <textarea id="valueAnalysis" placeholder="Consider whether the benefits you receive exceed the costs you pay..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cutServices">Which programs would you cut or reduce?</label>
+                        <textarea id="cutServices" placeholder="List programs you think are wasteful or less important..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="expandServices">Which programs would you expand?</label>
+                        <textarea id="expandServices" placeholder="List programs you think should receive more funding..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="stateComparison">Would you prefer to live in a high-tax or low-tax state? Why?</label>
+                        <textarea id="stateComparison" placeholder="Consider the trade-offs between taxes paid and services received..."></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Print Button -->
+            <div class="btn-group" style="margin-top: 20px;">
+                <button class="btn btn-secondary" onclick="window.print()">Print Analysis</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleService(element) {
+            element.classList.toggle('selected');
+        }
+
+        function calculateAnalysis() {
+            // Calculate total taxes
+            const federalIncome = parseFloat(document.getElementById('federalIncome').value) || 0;
+            const socialSecurity = parseFloat(document.getElementById('socialSecurity').value) || 0;
+            const medicare = parseFloat(document.getElementById('medicare').value) || 0;
+            const stateIncome = parseFloat(document.getElementById('stateIncome').value) || 0;
+            const salesTax = parseFloat(document.getElementById('salesTax').value) || 0;
+            const propertyTax = parseFloat(document.getElementById('propertyTax').value) || 0;
+            const gasTax = parseFloat(document.getElementById('gasTax').value) || 0;
+            const otherTaxes = parseFloat(document.getElementById('otherTaxes').value) || 0;
+
+            const federalTotal = federalIncome + socialSecurity + medicare;
+            const stateTotal = stateIncome + salesTax + propertyTax + gasTax + otherTaxes;
+            const totalTaxes = federalTotal + stateTotal;
+
+            // Calculate total services value
+            let totalServices = 0;
+            const selectedServices = document.querySelectorAll('.service-item.selected');
+            const servicesBreakdownItems = [];
+
+            selectedServices.forEach(item => {
+                const input = item.querySelector('input[type="number"]');
+                const value = parseFloat(input.value) || 0;
+                const serviceName = item.querySelector('label').textContent.trim();
+                totalServices += value;
+                if (value > 0) {
+                    servicesBreakdownItems.push({ name: serviceName, value: value });
+                }
+            });
+
+            const otherServicesValue = parseFloat(document.getElementById('otherServicesValue').value) || 0;
+            totalServices += otherServicesValue;
+            if (otherServicesValue > 0) {
+                servicesBreakdownItems.push({ name: 'Other Services', value: otherServicesValue });
+            }
+
+            // Update display
+            document.getElementById('totalTaxes').textContent = '$' + totalTaxes.toLocaleString();
+            document.getElementById('totalServices').textContent = '$' + totalServices.toLocaleString();
+
+            // Calculate ratio
+            const ratio = totalTaxes > 0 ? (totalServices / totalTaxes).toFixed(2) : 0;
+            document.getElementById('ratioValue').textContent = ratio + ':1';
+
+            // Update status indicator
+            const statusIndicator = document.getElementById('statusIndicator');
+            if (totalServices > totalTaxes) {
+                statusIndicator.textContent = 'Net Recipient';
+                statusIndicator.className = 'status-indicator status-positive';
+            } else if (totalServices < totalTaxes) {
+                statusIndicator.textContent = 'Net Contributor';
+                statusIndicator.className = 'status-indicator status-negative';
+            } else {
+                statusIndicator.textContent = 'Balanced';
+                statusIndicator.className = 'status-indicator status-neutral';
+            }
+
+            // Tax breakdown
+            const taxBreakdown = document.getElementById('taxBreakdown');
+            taxBreakdown.innerHTML = `
+                <h4>Tax Breakdown</h4>
+                <div class="result-item"><span>Federal Income Tax</span><span>$${federalIncome.toLocaleString()}</span></div>
+                <div class="result-item"><span>Social Security</span><span>$${socialSecurity.toLocaleString()}</span></div>
+                <div class="result-item"><span>Medicare</span><span>$${medicare.toLocaleString()}</span></div>
+                <div class="result-item"><span>State Income Tax</span><span>$${stateIncome.toLocaleString()}</span></div>
+                <div class="result-item"><span>Sales Tax</span><span>$${salesTax.toLocaleString()}</span></div>
+                <div class="result-item"><span>Property Tax</span><span>$${propertyTax.toLocaleString()}</span></div>
+                <div class="result-item"><span>Gas Tax</span><span>$${gasTax.toLocaleString()}</span></div>
+                <div class="result-item"><span>Other Taxes</span><span>$${otherTaxes.toLocaleString()}</span></div>
+                <div class="result-item total"><span>Total Tax Burden</span><span>$${totalTaxes.toLocaleString()}</span></div>
+            `;
+
+            // Services breakdown
+            const servicesBreakdown = document.getElementById('servicesBreakdown');
+            let servicesHTML = '<h4>Services Breakdown</h4>';
+            servicesBreakdownItems.forEach(item => {
+                servicesHTML += `<div class="result-item"><span>${item.name}</span><span>$${item.value.toLocaleString()}</span></div>`;
+            });
+            servicesHTML += `<div class="result-item total"><span>Total Services Value</span><span>$${totalServices.toLocaleString()}</span></div>`;
+            servicesBreakdown.innerHTML = servicesHTML;
+
+            // Show results
+            document.getElementById('resultsSection').style.display = 'block';
+            document.getElementById('resultsSection').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function resetForm() {
+            document.getElementById('federalIncome').value = '3000';
+            document.getElementById('socialSecurity').value = '2480';
+            document.getElementById('medicare').value = '580';
+            document.getElementById('stateIncome').value = '0';
+            document.getElementById('salesTax').value = '0';
+            document.getElementById('propertyTax').value = '0';
+            document.getElementById('gasTax').value = '0';
+            document.getElementById('otherTaxes').value = '0';
+            document.getElementById('otherServicesValue').value = '0';
+            document.querySelectorAll('textarea').forEach(textarea => {
+                textarea.value = '';
+            });
+            document.querySelectorAll('.service-item').forEach(item => {
+                item.classList.remove('selected');
+            });
+            document.getElementById('resultsSection').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fine Print Analyzer Tool</title>
+    <!--
+    PURPOSE: Identify problematic clauses, hidden fees, and red flags in contract fine print
+    USE: Activity 2 - The Fine Print Challenge (15 minutes)
+    -->
+    <style>
+        :root {
+            --primary: #6366f1;
+            --secondary: #8b5cf6;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --text: #1f2937;
+            --surface: #f9fafb;
+        }
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: var(--primary);
+            border-bottom: 3px solid var(--primary);
+            padding-bottom: 10px;
+        }
+        .round-indicator {
+            background: var(--primary);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            display: inline-block;
+            margin: 10px 0;
+        }
+        .clause-card {
+            background: var(--surface);
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .clause-text {
+            font-family: 'Times New Roman', serif;
+            font-size: 0.9rem;
+            background: white;
+            padding: 15px;
+            border: 1px solid #ddd;
+            margin: 10px 0;
+            line-height: 1.4;
+        }
+        .analysis-section {
+            margin: 15px 0;
+        }
+        .analysis-section label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .analysis-section textarea,
+        .analysis-section select {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #e5e7eb;
+            border-radius: 6px;
+            font-family: inherit;
+        }
+        .analysis-section textarea {
+            min-height: 80px;
+        }
+        .severity-options {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .severity-btn {
+            padding: 10px 20px;
+            border: 2px solid #e5e7eb;
+            border-radius: 6px;
+            background: white;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .severity-btn:hover {
+            border-color: var(--primary);
+        }
+        .severity-btn.selected.green {
+            background: #d1fae5;
+            border-color: var(--success);
+        }
+        .severity-btn.selected.yellow {
+            background: #fef3c7;
+            border-color: var(--warning);
+        }
+        .severity-btn.selected.red {
+            background: #fee2e2;
+            border-color: var(--danger);
+        }
+        .hidden-fee {
+            background: #fef3c7;
+            padding: 10px;
+            border-radius: 6px;
+            margin: 10px 0;
+        }
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            cursor: pointer;
+            margin: 5px;
+        }
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+        @media print {
+            body { font-size: 11pt; }
+        }
+    </style>
+</head>
+<body>
+    <h1>🔎 Fine Print Analyzer</h1>
+
+    <p>Examine each contract clause carefully. Identify red flags, hidden fees, and problematic terms. Rate each clause's severity and explain your concerns.</p>
+
+    <!-- Round 1 -->
+    <div class="round-indicator">Round 1: Gym Membership</div>
+
+    <div class="clause-card">
+        <h3>Clause A: Automatic Renewal</h3>
+        <div class="clause-text">
+            "This membership shall automatically renew for successive twelve (12) month terms unless Member provides written notice of cancellation via certified mail to our corporate headquarters no less than sixty (60) days prior to the renewal date. A processing fee of $75 will apply to all cancellation requests."
+        </div>
+
+        <div class="analysis-section">
+            <label>Red Flags Identified:</label>
+            <textarea placeholder="List all red flags you found in this clause..."></textarea>
+        </div>
+
+        <div class="analysis-section">
+            <label>Severity Rating:</label>
+            <div class="severity-options">
+                <button class="severity-btn green" onclick="selectSeverity(this, 'green')">✓ Acceptable</button>
+                <button class="severity-btn yellow" onclick="selectSeverity(this, 'yellow')">⚠ Concerning</button>
+                <button class="severity-btn red" onclick="selectSeverity(this, 'red')">⛔ Unacceptable</button>
+            </div>
+        </div>
+
+        <div class="hidden-fee">
+            <strong>Hidden Fee Alert:</strong> Calculate potential cost if you forget to cancel
+            <br>Annual fee: $_____ + $75 cancellation fee = Total unexpected cost: $_____
+        </div>
+    </div>
+
+    <!-- Round 2 -->
+    <div class="round-indicator">Round 2: Credit Card Agreement</div>
+
+    <div class="clause-card">
+        <h3>Clause B: Universal Default</h3>
+        <div class="clause-text">
+            "We may increase your APR to the Penalty Rate of 29.99% if you fail to make a minimum payment when due, make a payment that is returned, or if we determine at any time that you are unlikely to be able to pay amounts owed under this Agreement. We may also review your credit report and increase your rate based on adverse information from other creditors."
+        </div>
+
+        <div class="analysis-section">
+            <label>Red Flags Identified:</label>
+            <textarea placeholder="List all red flags you found in this clause..."></textarea>
+        </div>
+
+        <div class="analysis-section">
+            <label>Severity Rating:</label>
+            <div class="severity-options">
+                <button class="severity-btn green" onclick="selectSeverity(this, 'green')">✓ Acceptable</button>
+                <button class="severity-btn yellow" onclick="selectSeverity(this, 'yellow')">⚠ Concerning</button>
+                <button class="severity-btn red" onclick="selectSeverity(this, 'red')">⛔ Unacceptable</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Round 3 -->
+    <div class="round-indicator">Round 3: Apartment Lease</div>
+
+    <div class="clause-card">
+        <h3>Clause C: Security Deposit</h3>
+        <div class="clause-text">
+            "Tenant agrees that Landlord may retain any portion of the security deposit necessary to cover: unpaid rent, cleaning fees, carpet replacement, repainting, normal wear and tear repairs, administrative processing, and any other costs Landlord deems necessary to restore the unit. Landlord shall provide an itemized statement within ninety (90) days of lease termination."
+        </div>
+
+        <div class="analysis-section">
+            <label>Red Flags Identified:</label>
+            <textarea placeholder="List all red flags you found in this clause..."></textarea>
+        </div>
+
+        <div class="analysis-section">
+            <label>Severity Rating:</label>
+            <div class="severity-options">
+                <button class="severity-btn green" onclick="selectSeverity(this, 'green')">✓ Acceptable</button>
+                <button class="severity-btn yellow" onclick="selectSeverity(this, 'yellow')">⚠ Concerning</button>
+                <button class="severity-btn red" onclick="selectSeverity(this, 'red')">⛔ Unacceptable</button>
+            </div>
+        </div>
+
+        <div class="analysis-section">
+            <label>How would you negotiate this clause?</label>
+            <textarea placeholder="What changes would you request?"></textarea>
+        </div>
+    </div>
+
+    <script>
+        function selectSeverity(btn, color) {
+            const parent = btn.parentElement;
+            parent.querySelectorAll('.severity-btn').forEach(b => b.classList.remove('selected'));
+            btn.classList.add('selected');
+        }
+    </script>
+</body>
+</html>

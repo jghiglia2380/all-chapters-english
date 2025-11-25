@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Tax Strategy Planner</title>
+    <style>
+        :root { --primary: #6366f1; --secondary: #8b5cf6; --success: #10b981; --warning: #f59e0b; --danger: #ef4444; }
+        body { font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 14px; line-height: 1.5; color: #1f2937; max-width: 900px; margin: 0 auto; padding: 15px; }
+        h1 { color: var(--primary); font-size: 24px; border-bottom: 2px solid var(--primary); padding-bottom: 8px; }
+        h2 { color: var(--secondary); font-size: 18px; margin-top: 20px; }
+        .section { background: #f9fafb; padding: 15px; border-radius: 5px; margin: 15px 0; }
+        .input-group { margin: 10px 0; }
+        .input-group label { display: block; font-weight: bold; margin-bottom: 5px; font-size: 13px; }
+        input, select, textarea { width: 100%; padding: 8px; border: 1px solid #d1d5db; border-radius: 4px; box-sizing: border-box; }
+        textarea { min-height: 60px; }
+        .checkbox-group { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px; margin: 10px 0; }
+        .checkbox-item { display: flex; align-items: center; gap: 8px; font-size: 13px; }
+        .checkbox-item input { width: auto; }
+        .strategy-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 15px 0; }
+        .strategy-card { background: white; padding: 15px; border-radius: 5px; border: 2px solid #d1d5db; }
+        .strategy-card h3 { margin: 0 0 10px 0; color: var(--primary); font-size: 14px; }
+        .priority { display: flex; align-items: center; gap: 5px; margin: 5px 0; }
+        .priority select { width: auto; padding: 4px; font-size: 12px; }
+        .final-plan { background: #d1fae5; padding: 15px; border-radius: 5px; margin: 15px 0; border: 2px solid var(--success); display: none; }
+        .plan-section { background: white; padding: 10px; border-radius: 4px; margin: 10px 0; }
+        .plan-title { font-weight: bold; color: var(--primary); margin-bottom: 5px; }
+        .commitment { background: #fef3c7; padding: 15px; border-radius: 5px; margin: 15px 0; }
+        button { background: var(--primary); color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; margin: 5px; }
+        button:hover { background: var(--secondary); }
+        @media print { body { font-size: 11pt; } button { display: none; } .final-plan { display: block !important; } }
+    </style>
+</head>
+<body>
+    <h1>Personal Tax Strategy Planner</h1>
+    <p>Create your personalized tax-efficient investment strategy</p>
+
+    <div class="section">
+        <h2 style="margin-top: 0;">Step 1: Your Profile</h2>
+        <div class="input-group">
+            <label>Current Tax Bracket</label>
+            <select id="currentBracket">
+                <option value="10">10% - Single: up to $11,600</option>
+                <option value="12">12% - Single: $11,601-$47,150</option>
+                <option value="22" selected>22% - Single: $47,151-$100,525</option>
+                <option value="24">24% - Single: $100,526-$191,950</option>
+                <option value="32">32% - Single: $191,951-$243,725</option>
+                <option value="35">35% - Single: $243,726-$609,350</option>
+                <option value="37">37% - Single: over $609,350</option>
+            </select>
+        </div>
+        <div class="input-group">
+            <label>Expected Retirement Tax Bracket</label>
+            <select id="retireBracket">
+                <option value="10">10% - Lower income in retirement</option>
+                <option value="12">12% - Moderate retirement income</option>
+                <option value="22" selected>22% - Similar to now</option>
+                <option value="24">24% - Higher retirement income</option>
+            </select>
+        </div>
+        <div class="input-group">
+            <label>Years Until Retirement</label>
+            <input type="number" id="yearsToRetire" value="30" min="1" max="50">
+        </div>
+    </div>
+
+    <div class="section">
+        <h2 style="margin-top: 0;">Step 2: Account Selection Priority</h2>
+        <p style="font-size: 12px;">Rank your contribution priorities (1 = highest):</p>
+        <div class="strategy-grid">
+            <div class="strategy-card">
+                <h3>401(k) / 403(b)</h3>
+                <div class="priority">
+                    <span>Priority:</span>
+                    <select id="priority401k">
+                        <option value="1">1 - First</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+                </div>
+                <p style="font-size: 11px; color: #6b7280; margin: 5px 0;">Max: $23,000 (2024)</p>
+            </div>
+            <div class="strategy-card">
+                <h3>Roth IRA</h3>
+                <div class="priority">
+                    <span>Priority:</span>
+                    <select id="priorityRoth">
+                        <option value="1">1 - First</option>
+                        <option value="2" selected>2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+                </div>
+                <p style="font-size: 11px; color: #6b7280; margin: 5px 0;">Max: $7,000 (2024)</p>
+            </div>
+            <div class="strategy-card">
+                <h3>HSA (if eligible)</h3>
+                <div class="priority">
+                    <span>Priority:</span>
+                    <select id="priorityHSA">
+                        <option value="1">1 - First</option>
+                        <option value="2">2</option>
+                        <option value="3" selected>3</option>
+                        <option value="4">4</option>
+                    </select>
+                </div>
+                <p style="font-size: 11px; color: #6b7280; margin: 5px 0;">Max: $4,150 individual (2024)</p>
+            </div>
+            <div class="strategy-card">
+                <h3>Taxable Brokerage</h3>
+                <div class="priority">
+                    <span>Priority:</span>
+                    <select id="priorityTaxable">
+                        <option value="1">1 - First</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4" selected>4</option>
+                    </select>
+                </div>
+                <p style="font-size: 11px; color: #6b7280; margin: 5px 0;">No limit, most flexible</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2 style="margin-top: 0;">Step 3: Tax-Efficient Strategies to Implement</h2>
+        <div class="checkbox-group">
+            <div class="checkbox-item"><input type="checkbox" id="stratLocation" checked> Asset Location Optimization</div>
+            <div class="checkbox-item"><input type="checkbox" id="stratHarvest" checked> Tax-Loss Harvesting</div>
+            <div class="checkbox-item"><input type="checkbox" id="stratLongTerm" checked> Long-Term Holding Priority</div>
+            <div class="checkbox-item"><input type="checkbox" id="stratIndex" checked> Low-Turnover Index Funds</div>
+            <div class="checkbox-item"><input type="checkbox" id="stratQualified"> Qualified Dividend Focus</div>
+            <div class="checkbox-item"><input type="checkbox" id="stratMuni"> Municipal Bonds (if high bracket)</div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2 style="margin-top: 0;">Step 4: Your Commitments</h2>
+        <div class="input-group">
+            <label>Annual Review Commitment</label>
+            <textarea id="reviewCommit" placeholder="Example: I will review my tax efficiency annually in December, check for harvesting opportunities quarterly..."></textarea>
+        </div>
+        <div class="input-group">
+            <label>Specific Action Items for This Year</label>
+            <textarea id="actionItems" placeholder="Example: 1) Max out 401(k) by December, 2) Open HSA and contribute max, 3) Review asset location..."></textarea>
+        </div>
+    </div>
+
+    <div style="text-align: center; margin: 20px 0;">
+        <button onclick="generatePlan()">Generate My Tax Strategy Plan</button>
+    </div>
+
+    <div class="final-plan" id="finalPlan">
+        <h2 style="margin-top: 0;">📋 My Personal Tax-Efficient Investment Strategy</h2>
+        <p style="font-size: 12px; color: #6b7280;">Created: <span id="planDate"></span></p>
+
+        <div class="plan-section">
+            <div class="plan-title">Tax Profile</div>
+            <div id="planProfile"></div>
+        </div>
+
+        <div class="plan-section">
+            <div class="plan-title">Account Contribution Order</div>
+            <div id="planAccounts"></div>
+        </div>
+
+        <div class="plan-section">
+            <div class="plan-title">Tax-Efficient Strategies</div>
+            <div id="planStrategies"></div>
+        </div>
+
+        <div class="plan-section">
+            <div class="plan-title">My Commitments</div>
+            <div id="planCommitments"></div>
+        </div>
+
+        <div class="commitment">
+            <strong>Signature Commitment:</strong> I commit to following this tax-efficient investment strategy and reviewing it annually to maximize my after-tax wealth.
+        </div>
+    </div>
+
+    <script>
+        function generatePlan() {
+            const currentBracket = document.getElementById('currentBracket').value;
+            const retireBracket = document.getElementById('retireBracket').value;
+            const yearsToRetire = document.getElementById('yearsToRetire').value;
+
+            // Get priorities
+            const accounts = [
+                { name: '401(k)/403(b)', priority: document.getElementById('priority401k').value },
+                { name: 'Roth IRA', priority: document.getElementById('priorityRoth').value },
+                { name: 'HSA', priority: document.getElementById('priorityHSA').value },
+                { name: 'Taxable Brokerage', priority: document.getElementById('priorityTaxable').value }
+            ];
+            accounts.sort((a, b) => a.priority - b.priority);
+
+            // Get strategies
+            const strategies = [];
+            if (document.getElementById('stratLocation').checked) strategies.push('Asset Location Optimization - Place tax-inefficient assets in tax-advantaged accounts');
+            if (document.getElementById('stratHarvest').checked) strategies.push('Tax-Loss Harvesting - Harvest losses to offset gains annually');
+            if (document.getElementById('stratLongTerm').checked) strategies.push('Long-Term Holding - Hold investments 1+ year for lower rates');
+            if (document.getElementById('stratIndex').checked) strategies.push('Low-Turnover Index Funds - Minimize taxable distributions');
+            if (document.getElementById('stratQualified').checked) strategies.push('Qualified Dividends - Focus on qualified dividend stocks');
+            if (document.getElementById('stratMuni').checked) strategies.push('Municipal Bonds - Tax-free income for high brackets');
+
+            // Build plan
+            document.getElementById('planDate').textContent = new Date().toLocaleDateString();
+
+            let profileHTML = `Current Tax Bracket: ${currentBracket}%<br>`;
+            profileHTML += `Expected Retirement Bracket: ${retireBracket}%<br>`;
+            profileHTML += `Years to Retirement: ${yearsToRetire}<br>`;
+            if (parseInt(retireBracket) < parseInt(currentBracket)) {
+                profileHTML += '<strong style="color: var(--success);">Recommendation: Favor Traditional accounts for immediate tax savings</strong>';
+            } else {
+                profileHTML += '<strong style="color: var(--primary);">Recommendation: Favor Roth accounts for tax-free growth</strong>';
+            }
+            document.getElementById('planProfile').innerHTML = profileHTML;
+
+            document.getElementById('planAccounts').innerHTML = accounts.map((a, i) => `${i+1}. ${a.name}`).join('<br>');
+
+            document.getElementById('planStrategies').innerHTML = strategies.length > 0 ?
+                '<ul style="margin: 5px 0; padding-left: 20px;">' + strategies.map(s => `<li>${s}</li>`).join('') + '</ul>' :
+                'No strategies selected';
+
+            let commitments = '';
+            const review = document.getElementById('reviewCommit').value;
+            const actions = document.getElementById('actionItems').value;
+            if (review) commitments += `<strong>Review Schedule:</strong> ${review}<br><br>`;
+            if (actions) commitments += `<strong>This Year's Actions:</strong> ${actions}`;
+            document.getElementById('planCommitments').innerHTML = commitments || 'No commitments specified';
+
+            document.getElementById('finalPlan').style.display = 'block';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Market Structures Reference Sheet - PFL Academy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.5;
+            color: #1f2937;
+            background-color: #f9fafb;
+            padding: 20px;
+            font-size: 14px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 0.9rem;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+            padding: 10px 8px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        td {
+            padding: 10px 8px;
+            border-bottom: 1px solid #e5e7eb;
+            font-size: 0.85rem;
+        }
+
+        tr:hover {
+            background-color: #f9fafb;
+        }
+
+        .feature-name {
+            font-weight: 600;
+            color: #374151;
+        }
+
+        .section {
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #6366f1;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e5e7eb;
+        }
+
+        .strategy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 12px;
+        }
+
+        .strategy-card {
+            padding: 12px;
+            border-radius: 8px;
+            border: 2px solid;
+        }
+
+        .strategy-card.perfect {
+            background: #d1fae5;
+            border-color: #10b981;
+        }
+
+        .strategy-card.monopolistic {
+            background: #dbeafe;
+            border-color: #3b82f6;
+        }
+
+        .strategy-card.oligopoly {
+            background: #fef3c7;
+            border-color: #f59e0b;
+        }
+
+        .strategy-card.monopoly {
+            background: #fee2e2;
+            border-color: #ef4444;
+        }
+
+        .strategy-card h4 {
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+        }
+
+        .strategy-card.perfect h4 { color: #065f46; }
+        .strategy-card.monopolistic h4 { color: #1e40af; }
+        .strategy-card.oligopoly h4 { color: #92400e; }
+        .strategy-card.monopoly h4 { color: #991b1b; }
+
+        .strategy-card p {
+            font-size: 0.8rem;
+            margin-bottom: 6px;
+        }
+
+        .strategy-card em {
+            font-size: 0.75rem;
+            color: #6b7280;
+        }
+
+        .key-points {
+            background: #f0f9ff;
+            border-left: 4px solid #3b82f6;
+            padding: 16px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .key-points h3 {
+            color: #1d4ed8;
+            margin-bottom: 10px;
+            font-size: 1rem;
+        }
+
+        .key-points ul {
+            margin-left: 16px;
+            font-size: 0.85rem;
+        }
+
+        .key-points li {
+            margin-bottom: 6px;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            background: #6366f1;
+            color: white;
+        }
+
+        .btn:hover {
+            background: #4f46e5;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 12px;
+            background: #f8fafc;
+            color: #6b7280;
+            font-size: 0.8rem;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 10px;
+                font-size: 11px;
+            }
+
+            .container {
+                box-shadow: none;
+            }
+
+            .btn {
+                display: none;
+            }
+
+            th {
+                background: #6366f1 !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            .strategy-card {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            .table-container {
+                overflow: visible;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.3rem;
+            }
+
+            .content {
+                padding: 16px;
+            }
+
+            th, td {
+                padding: 8px 6px;
+                font-size: 0.8rem;
+            }
+
+            .strategy-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Market Structures Reference Sheet</h1>
+            <p>Quick reference for the four market structures and consumer strategies</p>
+        </div>
+
+        <div class="content">
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th>Perfect Competition</th>
+                            <th>Monopolistic Competition</th>
+                            <th>Oligopoly</th>
+                            <th>Monopoly</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="feature-name">Number of Firms</td>
+                            <td>Many</td>
+                            <td>Many</td>
+                            <td>Few (3-5 major)</td>
+                            <td>One</td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">Product Type</td>
+                            <td>Identical</td>
+                            <td>Differentiated</td>
+                            <td>Similar or Differentiated</td>
+                            <td>Unique (no substitutes)</td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">Entry Barriers</td>
+                            <td>None</td>
+                            <td>Low</td>
+                            <td>High</td>
+                            <td>Very High/Impossible</td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">Price Control</td>
+                            <td>None (price taker)</td>
+                            <td>Some</td>
+                            <td>Significant</td>
+                            <td>Complete (price maker)</td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">Consumer Impact</td>
+                            <td>Lowest prices, most choice</td>
+                            <td>Competitive prices, variety</td>
+                            <td>Higher prices, limited choice</td>
+                            <td>Highest prices, no alternatives</td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">Examples</td>
+                            <td>Agricultural commodities, stocks</td>
+                            <td>Restaurants, retail, salons</td>
+                            <td>Airlines, cell carriers, autos</td>
+                            <td>Utilities, patented drugs</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="section">
+                <h3 class="section-title">Consumer Strategies by Market Type</h3>
+                <div class="strategy-grid">
+                    <div class="strategy-card perfect">
+                        <h4>Perfect Competition</h4>
+                        <p><strong>Strategy:</strong> Shop by price alone - products are identical</p>
+                        <em>Example: Gasoline - use GasBuddy to find cheapest station</em>
+                    </div>
+                    <div class="strategy-card monopolistic">
+                        <h4>Monopolistic Competition</h4>
+                        <p><strong>Strategy:</strong> Evaluate if differentiation is worth premium. Try alternatives regularly.</p>
+                        <em>Example: Coffee shops - is Starbucks worth the extra cost?</em>
+                    </div>
+                    <div class="strategy-card oligopoly">
+                        <h4>Oligopoly</h4>
+                        <p><strong>Strategy:</strong> Compare all players. Negotiate at renewal using competitor offers.</p>
+                        <em>Example: Cell plans - threaten to switch for better deal</em>
+                    </div>
+                    <div class="strategy-card monopoly">
+                        <h4>Monopoly</h4>
+                        <p><strong>Strategy:</strong> Minimize consumption. Look for long-term alternatives.</p>
+                        <em>Example: Electricity - LED bulbs, adjust thermostat, consider solar</em>
+                    </div>
+                </div>
+            </div>
+
+            <div class="key-points">
+                <h3>Why Market Structure Matters for Personal Finance</h3>
+                <ul>
+                    <li>Affects the prices you pay for goods and services</li>
+                    <li>Determines your negotiating power as a consumer</li>
+                    <li>Influences product quality and innovation</li>
+                    <li>Impacts your employment opportunities and wages</li>
+                    <li>Helps you identify when you are being overcharged</li>
+                </ul>
+                <p style="margin-top: 12px; font-weight: 600; font-size: 0.85rem;">
+                    Key Insight: Recognizing market structures helps you become a smarter consumer. More competition generally means better prices and more choices. When competition is limited, look for consumer protections and alternative solutions.
+                </p>
+            </div>
+
+            <div class="button-group">
+                <button class="btn" onclick="window.print()">Print Reference Sheet</button>
+            </div>
+        </div>
+
+        <div class="footer">
+            PFL Academy - L-51: Market Structures and Consumer Choice
+        </div>
+    </div>
+</body>
+</html>

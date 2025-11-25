@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Diversification Visualizer</title>
+    <style>
+        :root { --primary: #6366f1; --secondary: #8b5cf6; --success: #10b981; --warning: #f59e0b; --danger: #ef4444; }
+        body { font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 14px; line-height: 1.5; color: #1f2937; max-width: 900px; margin: 0 auto; padding: 15px; }
+        h1 { color: var(--primary); font-size: 24px; border-bottom: 2px solid var(--primary); padding-bottom: 8px; }
+        h2 { color: var(--secondary); font-size: 18px; margin-top: 20px; }
+        .portfolios { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin: 15px 0; }
+        .portfolio-card { background: #f9fafb; padding: 15px; border-radius: 5px; border: 2px solid #d1d5db; }
+        .portfolio-card h3 { margin: 0 0 10px 0; color: var(--primary); font-size: 14px; text-align: center; }
+        .allocation-inputs { margin: 10px 0; }
+        .alloc-row { display: flex; align-items: center; gap: 5px; margin: 5px 0; font-size: 12px; }
+        .alloc-label { width: 80px; }
+        .alloc-input { width: 50px; padding: 4px; border: 1px solid #d1d5db; border-radius: 3px; text-align: center; }
+        .total-row { font-weight: bold; border-top: 1px solid #d1d5db; padding-top: 5px; margin-top: 5px; }
+        .bar-chart { height: 150px; display: flex; align-items: flex-end; justify-content: space-around; padding: 10px 0; background: white; border-radius: 4px; margin: 10px 0; }
+        .bar { width: 40px; border-radius: 4px 4px 0 0; text-align: center; }
+        .bar-value { font-size: 10px; font-weight: bold; padding: 2px; }
+        .comparison { background: #e0e7ff; padding: 15px; border-radius: 5px; margin: 15px 0; }
+        .comparison-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+        .comparison-table th, .comparison-table td { border: 1px solid #d1d5db; padding: 8px; text-align: center; }
+        .comparison-table th { background: var(--primary); color: white; }
+        .best { background: #d1fae5; font-weight: bold; }
+        .worst { background: #fee2e2; }
+        .scenario-test { background: #fef3c7; padding: 15px; border-radius: 5px; margin: 15px 0; }
+        select { padding: 6px; border: 1px solid #d1d5db; border-radius: 4px; }
+        button { background: var(--primary); color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; margin: 5px; }
+        button:hover { background: var(--secondary); }
+        @media print { body { font-size: 10pt; } button { display: none; } .portfolios { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <h1>Portfolio Diversification Visualizer</h1>
+    <p>Create and compare three portfolio strategies for a 22-year-old investor</p>
+
+    <div class="portfolios">
+        <div class="portfolio-card">
+            <h3>Portfolio A: Conservative</h3>
+            <div class="allocation-inputs">
+                <div class="alloc-row"><span class="alloc-label">US Stocks</span><input type="number" class="alloc-input" id="a-stocks" value="50" onchange="updatePortfolio('a')">%</div>
+                <div class="alloc-row"><span class="alloc-label">Int'l Stocks</span><input type="number" class="alloc-input" id="a-intl" value="10" onchange="updatePortfolio('a')">%</div>
+                <div class="alloc-row"><span class="alloc-label">Bonds</span><input type="number" class="alloc-input" id="a-bonds" value="30" onchange="updatePortfolio('a')">%</div>
+                <div class="alloc-row"><span class="alloc-label">REITs</span><input type="number" class="alloc-input" id="a-reits" value="5" onchange="updatePortfolio('a')">%</div>
+                <div class="alloc-row"><span class="alloc-label">Alternatives</span><input type="number" class="alloc-input" id="a-alts" value="5" onchange="updatePortfolio('a')">%</div>
+                <div class="alloc-row total-row"><span class="alloc-label">Total</span><span id="a-total">100%</span></div>
+            </div>
+            <div class="bar-chart" id="chart-a"></div>
+        </div>
+
+        <div class="portfolio-card">
+            <h3>Portfolio B: Moderate</h3>
+            <div class="allocation-inputs">
+                <div class="alloc-row"><span class="alloc-label">US Stocks</span><input type="number" class="alloc-input" id="b-stocks" value="60" onchange="updatePortfolio('b')">%</div>
+                <div class="alloc-row"><span class="alloc-label">Int'l Stocks</span><input type="number" class="alloc-input" id="b-intl" value="15" onchange="updatePortfolio('b')">%</div>
+                <div class="alloc-row"><span class="alloc-label">Bonds</span><input type="number" class="alloc-input" id="b-bonds" value="10" onchange="updatePortfolio('b')">%</div>
+                <div class="alloc-row"><span class="alloc-label">REITs</span><input type="number" class="alloc-input" id="b-reits" value="10" onchange="updatePortfolio('b')">%</div>
+                <div class="alloc-row"><span class="alloc-label">Alternatives</span><input type="number" class="alloc-input" id="b-alts" value="5" onchange="updatePortfolio('b')">%</div>
+                <div class="alloc-row total-row"><span class="alloc-label">Total</span><span id="b-total">100%</span></div>
+            </div>
+            <div class="bar-chart" id="chart-b"></div>
+        </div>
+
+        <div class="portfolio-card">
+            <h3>Portfolio C: Aggressive</h3>
+            <div class="allocation-inputs">
+                <div class="alloc-row"><span class="alloc-label">US Stocks</span><input type="number" class="alloc-input" id="c-stocks" value="70" onchange="updatePortfolio('c')">%</div>
+                <div class="alloc-row"><span class="alloc-label">Int'l Stocks</span><input type="number" class="alloc-input" id="c-intl" value="15" onchange="updatePortfolio('c')">%</div>
+                <div class="alloc-row"><span class="alloc-label">Bonds</span><input type="number" class="alloc-input" id="c-bonds" value="0" onchange="updatePortfolio('c')">%</div>
+                <div class="alloc-row"><span class="alloc-label">REITs</span><input type="number" class="alloc-input" id="c-reits" value="5" onchange="updatePortfolio('c')">%</div>
+                <div class="alloc-row"><span class="alloc-label">Alternatives</span><input type="number" class="alloc-input" id="c-alts" value="10" onchange="updatePortfolio('c')">%</div>
+                <div class="alloc-row total-row"><span class="alloc-label">Total</span><span id="c-total">100%</span></div>
+            </div>
+            <div class="bar-chart" id="chart-c"></div>
+        </div>
+    </div>
+
+    <div style="text-align: center;">
+        <button onclick="calculateComparison()">Compare Portfolios</button>
+    </div>
+
+    <div class="comparison">
+        <h2 style="margin-top: 0;">30-Year Projection ($10,000 initial)</h2>
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>Metric</th>
+                    <th>Portfolio A</th>
+                    <th>Portfolio B</th>
+                    <th>Portfolio C</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Expected Return</td>
+                    <td id="a-return">7.2%</td>
+                    <td id="b-return">8.0%</td>
+                    <td id="c-return">8.8%</td>
+                </tr>
+                <tr>
+                    <td>Expected Volatility</td>
+                    <td id="a-vol">10%</td>
+                    <td id="b-vol">13%</td>
+                    <td id="c-vol">16%</td>
+                </tr>
+                <tr>
+                    <td>30-Year Value</td>
+                    <td id="a-value">$79,000</td>
+                    <td id="b-value">$101,000</td>
+                    <td id="c-value">$127,000</td>
+                </tr>
+                <tr>
+                    <td>Worst Year (est.)</td>
+                    <td id="a-worst">-15%</td>
+                    <td id="b-worst">-22%</td>
+                    <td id="c-worst">-30%</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="scenario-test">
+        <h2 style="margin-top: 0;">Scenario Testing</h2>
+        <p>
+            <label>Test Scenario: </label>
+            <select id="scenario" onchange="runScenario()">
+                <option value="normal">Normal Market (7% avg)</option>
+                <option value="bull">Bull Market (+15% year)</option>
+                <option value="crash">Market Crash (-30% stocks)</option>
+                <option value="inflation">High Inflation (bonds -10%)</option>
+            </select>
+        </p>
+        <div id="scenario-results"></div>
+    </div>
+
+    <script>
+        const colors = {
+            stocks: '#6366f1',
+            intl: '#8b5cf6',
+            bonds: '#10b981',
+            reits: '#f59e0b',
+            alts: '#ef4444'
+        };
+
+        const returns = {
+            stocks: 0.10,
+            intl: 0.085,
+            bonds: 0.05,
+            reits: 0.08,
+            alts: 0.09
+        };
+
+        const vols = {
+            stocks: 0.16,
+            intl: 0.18,
+            bonds: 0.05,
+            reits: 0.15,
+            alts: 0.20
+        };
+
+        function updatePortfolio(id) {
+            const stocks = parseInt(document.getElementById(`${id}-stocks`).value) || 0;
+            const intl = parseInt(document.getElementById(`${id}-intl`).value) || 0;
+            const bonds = parseInt(document.getElementById(`${id}-bonds`).value) || 0;
+            const reits = parseInt(document.getElementById(`${id}-reits`).value) || 0;
+            const alts = parseInt(document.getElementById(`${id}-alts`).value) || 0;
+
+            const total = stocks + intl + bonds + reits + alts;
+            document.getElementById(`${id}-total`).textContent = total + '%';
+            document.getElementById(`${id}-total`).style.color = total === 100 ? 'inherit' : 'var(--danger)';
+
+            // Update bar chart
+            const chart = document.getElementById(`chart-${id}`);
+            chart.innerHTML = `
+                <div class="bar" style="height: ${stocks}px; background: ${colors.stocks};"><div class="bar-value">${stocks}%</div></div>
+                <div class="bar" style="height: ${intl}px; background: ${colors.intl};"><div class="bar-value">${intl}%</div></div>
+                <div class="bar" style="height: ${bonds}px; background: ${colors.bonds};"><div class="bar-value">${bonds}%</div></div>
+                <div class="bar" style="height: ${reits}px; background: ${colors.reits};"><div class="bar-value">${reits}%</div></div>
+                <div class="bar" style="height: ${alts}px; background: ${colors.alts};"><div class="bar-value">${alts}%</div></div>
+            `;
+        }
+
+        function calculateComparison() {
+            ['a', 'b', 'c'].forEach(id => {
+                const stocks = parseInt(document.getElementById(`${id}-stocks`).value) / 100 || 0;
+                const intl = parseInt(document.getElementById(`${id}-intl`).value) / 100 || 0;
+                const bonds = parseInt(document.getElementById(`${id}-bonds`).value) / 100 || 0;
+                const reits = parseInt(document.getElementById(`${id}-reits`).value) / 100 || 0;
+                const alts = parseInt(document.getElementById(`${id}-alts`).value) / 100 || 0;
+
+                const expReturn = stocks * returns.stocks + intl * returns.intl + bonds * returns.bonds + reits * returns.reits + alts * returns.alts;
+                const expVol = Math.sqrt(stocks**2 * vols.stocks**2 + intl**2 * vols.intl**2 + bonds**2 * vols.bonds**2 + reits**2 * vols.reits**2 + alts**2 * vols.alts**2);
+
+                const value30 = 10000 * Math.pow(1 + expReturn, 30);
+                const worstYear = -(expVol * 2);
+
+                document.getElementById(`${id}-return`).textContent = (expReturn * 100).toFixed(1) + '%';
+                document.getElementById(`${id}-vol`).textContent = (expVol * 100).toFixed(0) + '%';
+                document.getElementById(`${id}-value`).textContent = '$' + Math.round(value30).toLocaleString();
+                document.getElementById(`${id}-worst`).textContent = (worstYear * 100).toFixed(0) + '%';
+            });
+
+            // Highlight best/worst
+            highlightBestWorst();
+        }
+
+        function highlightBestWorst() {
+            const values = ['a', 'b', 'c'].map(id => ({
+                id,
+                value: parseInt(document.getElementById(`${id}-value`).textContent.replace(/[^0-9]/g, ''))
+            }));
+            values.sort((x, y) => y.value - x.value);
+
+            document.getElementById(`${values[0].id}-value`).className = 'best';
+            document.getElementById(`${values[2].id}-value`).className = 'worst';
+        }
+
+        function runScenario() {
+            const scenario = document.getElementById('scenario').value;
+            let results = '';
+
+            const portfolios = ['a', 'b', 'c'].map(id => {
+                const stocks = parseInt(document.getElementById(`${id}-stocks`).value) / 100 || 0;
+                const intl = parseInt(document.getElementById(`${id}-intl`).value) / 100 || 0;
+                const bonds = parseInt(document.getElementById(`${id}-bonds`).value) / 100 || 0;
+                const reits = parseInt(document.getElementById(`${id}-reits`).value) / 100 || 0;
+                const alts = parseInt(document.getElementById(`${id}-alts`).value) / 100 || 0;
+
+                let result = 0;
+                if (scenario === 'normal') {
+                    result = stocks * 0.10 + intl * 0.08 + bonds * 0.05 + reits * 0.08 + alts * 0.07;
+                } else if (scenario === 'bull') {
+                    result = stocks * 0.25 + intl * 0.20 + bonds * 0.02 + reits * 0.18 + alts * 0.15;
+                } else if (scenario === 'crash') {
+                    result = stocks * -0.30 + intl * -0.35 + bonds * 0.08 + reits * -0.25 + alts * -0.20;
+                } else if (scenario === 'inflation') {
+                    result = stocks * 0.05 + intl * 0.03 + bonds * -0.10 + reits * 0.12 + alts * 0.08;
+                }
+
+                return { id: id.toUpperCase(), result: result * 100 };
+            });
+
+            results = portfolios.map(p =>
+                `<strong>Portfolio ${p.id}:</strong> ${p.result > 0 ? '+' : ''}${p.result.toFixed(1)}%`
+            ).join(' | ');
+
+            document.getElementById('scenario-results').innerHTML = results;
+        }
+
+        // Initialize
+        ['a', 'b', 'c'].forEach(updatePortfolio);
+        calculateComparison();
+        runScenario();
+    </script>
+</body>
+</html>

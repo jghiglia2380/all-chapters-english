@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real Contract Deep-Dive Analyzer</title>
+    <!--
+    PURPOSE: Analyze three complete real-world contracts using systematic evaluation framework
+    USE: Activity 1 - Real Contract Deep-Dive Analysis (15 minutes)
+    -->
+    <style>
+        :root {
+            --primary: #6366f1;
+            --secondary: #8b5cf6;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --text: #1f2937;
+            --surface: #f9fafb;
+        }
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: var(--primary);
+            border-bottom: 3px solid var(--primary);
+            padding-bottom: 10px;
+        }
+        .contract-tabs {
+            display: flex;
+            gap: 5px;
+            margin: 20px 0;
+        }
+        .tab-btn {
+            padding: 12px 24px;
+            border: 2px solid #e5e7eb;
+            border-bottom: none;
+            border-radius: 8px 8px 0 0;
+            background: var(--surface);
+            cursor: pointer;
+            font-weight: 600;
+        }
+        .tab-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        .contract-content {
+            display: none;
+            border: 2px solid var(--primary);
+            border-radius: 0 8px 8px 8px;
+            padding: 20px;
+        }
+        .contract-content.active {
+            display: block;
+        }
+        .analysis-grid {
+            display: grid;
+            gap: 15px;
+            margin: 15px 0;
+        }
+        .analysis-item {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            padding: 15px;
+        }
+        .analysis-item label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--primary);
+        }
+        .analysis-item input,
+        .analysis-item textarea,
+        .analysis-item select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: inherit;
+        }
+        .analysis-item textarea {
+            min-height: 60px;
+        }
+        .rating-section {
+            margin: 20px 0;
+            padding: 15px;
+            background: var(--surface);
+            border-radius: 8px;
+        }
+        .rating-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 10px 0;
+        }
+        .rating-label {
+            flex: 1;
+            font-weight: 500;
+        }
+        .rating-stars {
+            display: flex;
+            gap: 5px;
+        }
+        .star {
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+            color: #ddd;
+            font-size: 1.2rem;
+        }
+        .star.filled {
+            color: var(--warning);
+        }
+        .overall-score {
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        .score-number {
+            font-size: 3rem;
+            font-weight: bold;
+        }
+        .recommendation {
+            padding: 15px;
+            border-radius: 6px;
+            margin: 15px 0;
+        }
+        .rec-sign {
+            background: #d1fae5;
+            border-left: 4px solid var(--success);
+        }
+        .rec-negotiate {
+            background: #fef3c7;
+            border-left: 4px solid var(--warning);
+        }
+        .rec-avoid {
+            background: #fee2e2;
+            border-left: 4px solid var(--danger);
+        }
+        @media print {
+            .contract-tabs { display: none; }
+            .contract-content { display: block !important; border: 1px solid #ddd; margin: 20px 0; }
+        }
+    </style>
+</head>
+<body>
+    <h1>📋 Real Contract Deep-Dive Analyzer</h1>
+
+    <p>Analyze each contract using the systematic evaluation framework. Identify key terms, red flags, and provide an overall recommendation.</p>
+
+    <div class="contract-tabs">
+        <button class="tab-btn active" onclick="showContract(0)">🏠 Apartment Lease</button>
+        <button class="tab-btn" onclick="showContract(1)">🏋️ Gym Membership</button>
+        <button class="tab-btn" onclick="showContract(2)">📱 Cell Phone</button>
+    </div>
+
+    <!-- Contract 1: Apartment Lease -->
+    <div class="contract-content active" id="contract-0">
+        <h2>Apartment Lease Agreement Analysis</h2>
+
+        <div class="analysis-grid">
+            <div class="analysis-item">
+                <label>Parties Identified</label>
+                <input type="text" placeholder="Landlord name, tenant name(s)...">
+            </div>
+            <div class="analysis-item">
+                <label>Financial Terms</label>
+                <textarea placeholder="Monthly rent, security deposit, late fees, utilities included/excluded..."></textarea>
+            </div>
+            <div class="analysis-item">
+                <label>Duration & Renewal</label>
+                <textarea placeholder="Lease term, auto-renewal clause, notice period for non-renewal..."></textarea>
+            </div>
+            <div class="analysis-item">
+                <label>Termination Conditions</label>
+                <textarea placeholder="Early termination penalties, eviction terms, move-out requirements..."></textarea>
+            </div>
+            <div class="analysis-item">
+                <label>Red Flags Identified</label>
+                <textarea placeholder="List any concerning clauses, vague language, or unfair terms..."></textarea>
+            </div>
+        </div>
+
+        <div class="rating-section">
+            <h3>Contract Rating</h3>
+            <div class="rating-row">
+                <span class="rating-label">Clarity of Terms</span>
+                <div class="rating-stars" data-rating="clarity-0">
+                    <span class="star" onclick="rate(this, 1)">★</span>
+                    <span class="star" onclick="rate(this, 2)">★</span>
+                    <span class="star" onclick="rate(this, 3)">★</span>
+                    <span class="star" onclick="rate(this, 4)">★</span>
+                    <span class="star" onclick="rate(this, 5)">★</span>
+                </div>
+            </div>
+            <div class="rating-row">
+                <span class="rating-label">Fairness to Tenant</span>
+                <div class="rating-stars" data-rating="fairness-0">
+                    <span class="star" onclick="rate(this, 1)">★</span>
+                    <span class="star" onclick="rate(this, 2)">★</span>
+                    <span class="star" onclick="rate(this, 3)">★</span>
+                    <span class="star" onclick="rate(this, 4)">★</span>
+                    <span class="star" onclick="rate(this, 5)">★</span>
+                </div>
+            </div>
+            <div class="rating-row">
+                <span class="rating-label">Exit Options</span>
+                <div class="rating-stars" data-rating="exit-0">
+                    <span class="star" onclick="rate(this, 1)">★</span>
+                    <span class="star" onclick="rate(this, 2)">★</span>
+                    <span class="star" onclick="rate(this, 3)">★</span>
+                    <span class="star" onclick="rate(this, 4)">★</span>
+                    <span class="star" onclick="rate(this, 5)">★</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="analysis-item">
+            <label>Your Recommendation</label>
+            <select>
+                <option value="">Select recommendation...</option>
+                <option value="sign">✅ Sign as-is</option>
+                <option value="negotiate">⚠️ Negotiate specific terms</option>
+                <option value="avoid">❌ Avoid this contract</option>
+            </select>
+        </div>
+
+        <div class="analysis-item">
+            <label>Justification for Recommendation</label>
+            <textarea placeholder="Explain your recommendation based on your analysis..."></textarea>
+        </div>
+    </div>
+
+    <!-- Contract 2: Gym Membership -->
+    <div class="contract-content" id="contract-1">
+        <h2>Gym Membership Agreement Analysis</h2>
+
+        <div class="analysis-grid">
+            <div class="analysis-item">
+                <label>Membership Terms</label>
+                <input type="text" placeholder="Monthly fee, initiation fee, annual maintenance fee...">
+            </div>
+            <div class="analysis-item">
+                <label>Services Included</label>
+                <textarea placeholder="Equipment access, classes, personal training, guest passes..."></textarea>
+            </div>
+            <div class="analysis-item">
+                <label>Cancellation Policy</label>
+                <textarea placeholder="Cancellation process, notice required, fees, freeze options..."></textarea>
+            </div>
+            <div class="analysis-item">
+                <label>Automatic Renewal</label>
+                <textarea placeholder="Auto-renewal terms, how to opt-out, timing requirements..."></textarea>
+            </div>
+            <div class="analysis-item">
+                <label>Red Flags Identified</label>
+                <textarea placeholder="List any concerning clauses, hidden fees, or unfair terms..."></textarea>
+            </div>
+        </div>
+
+        <div class="rating-section">
+            <h3>Contract Rating</h3>
+            <div class="rating-row">
+                <span class="rating-label">Clarity of Terms</span>
+                <div class="rating-stars" data-rating="clarity-1">
+                    <span class="star" onclick="rate(this, 1)">★</span>
+                    <span class="star" onclick="rate(this, 2)">★</span>
+                    <span class="star" onclick="rate(this, 3)">★</span>
+                    <span class="star" onclick="rate(this, 4)">★</span>
+                    <span class="star" onclick="rate(this, 5)">★</span>
+                </div>
+            </div>
+            <div class="rating-row">
+                <span class="rating-label">Value for Money</span>
+                <div class="rating-stars" data-rating="value-1">
+                    <span class="star" onclick="rate(this, 1)">★</span>
+                    <span class="star" onclick="rate(this, 2)">★</span>
+                    <span class="star" onclick="rate(this, 3)">★</span>
+                    <span class="star" onclick="rate(this, 4)">★</span>
+                    <span class="star" onclick="rate(this, 5)">★</span>
+                </div>
+            </div>
+            <div class="rating-row">
+                <span class="rating-label">Exit Options</span>
+                <div class="rating-stars" data-rating="exit-1">
+                    <span class="star" onclick="rate(this, 1)">★</span>
+                    <span class="star" onclick="rate(this, 2)">★</span>
+                    <span class="star" onclick="rate(this, 3)">★</span>
+                    <span class="star" onclick="rate(this, 4)">★</span>
+                    <span class="star" onclick="rate(this, 5)">★</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="analysis-item">
+            <label>Your Recommendation</label>
+            <select>
+                <option value="">Select recommendation...</option>
+                <option value="sign">✅ Sign as-is</option>
+                <option value="negotiate">⚠️ Negotiate specific terms</option>
+                <option value="avoid">❌ Avoid this contract</option>
+            </select>
+        </div>
+
+        <div class="analysis-item">
+            <label>Justification for Recommendation</label>
+            <textarea placeholder="Explain your recommendation based on your analysis..."></textarea>
+        </div>
+    </div>
+
+    <!-- Contract 3: Cell Phone -->
+    <div class="contract-content" id="contract-2">
+        <h2>Cell Phone Service Agreement Analysis</h2>
+
+        <div class="analysis-grid">
+            <div class="analysis-item">
+                <label>Service Terms</label>
+                <input type="text" placeholder="Monthly fee, data limit, contract length...">
+            </div>
+            <div class="analysis-item">
+                <label>Fees & Charges</label>
+                <textarea placeholder="Activation fee, overage charges, roaming, taxes..."></textarea>
+            </div>
+            <div class="analysis-item">
+                <label>Early Termination</label>
+                <textarea placeholder="ETF amount, device payment balance, prorated fees..."></textarea>
+            </div>
+            <div class="analysis-item">
+                <label>Dispute Resolution</label>
+                <textarea placeholder="Arbitration clause, class action waiver, small claims court..."></textarea>
+            </div>
+            <div class="analysis-item">
+                <label>Red Flags Identified</label>
+                <textarea placeholder="List any concerning clauses, hidden fees, or unfair terms..."></textarea>
+            </div>
+        </div>
+
+        <div class="rating-section">
+            <h3>Contract Rating</h3>
+            <div class="rating-row">
+                <span class="rating-label">Clarity of Terms</span>
+                <div class="rating-stars" data-rating="clarity-2">
+                    <span class="star" onclick="rate(this, 1)">★</span>
+                    <span class="star" onclick="rate(this, 2)">★</span>
+                    <span class="star" onclick="rate(this, 3)">★</span>
+                    <span class="star" onclick="rate(this, 4)">★</span>
+                    <span class="star" onclick="rate(this, 5)">★</span>
+                </div>
+            </div>
+            <div class="rating-row">
+                <span class="rating-label">Fairness to Consumer</span>
+                <div class="rating-stars" data-rating="fairness-2">
+                    <span class="star" onclick="rate(this, 1)">★</span>
+                    <span class="star" onclick="rate(this, 2)">★</span>
+                    <span class="star" onclick="rate(this, 3)">★</span>
+                    <span class="star" onclick="rate(this, 4)">★</span>
+                    <span class="star" onclick="rate(this, 5)">★</span>
+                </div>
+            </div>
+            <div class="rating-row">
+                <span class="rating-label">Exit Options</span>
+                <div class="rating-stars" data-rating="exit-2">
+                    <span class="star" onclick="rate(this, 1)">★</span>
+                    <span class="star" onclick="rate(this, 2)">★</span>
+                    <span class="star" onclick="rate(this, 3)">★</span>
+                    <span class="star" onclick="rate(this, 4)">★</span>
+                    <span class="star" onclick="rate(this, 5)">★</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="analysis-item">
+            <label>Your Recommendation</label>
+            <select>
+                <option value="">Select recommendation...</option>
+                <option value="sign">✅ Sign as-is</option>
+                <option value="negotiate">⚠️ Negotiate specific terms</option>
+                <option value="avoid">❌ Avoid this contract</option>
+            </select>
+        </div>
+
+        <div class="analysis-item">
+            <label>Justification for Recommendation</label>
+            <textarea placeholder="Explain your recommendation based on your analysis..."></textarea>
+        </div>
+    </div>
+
+    <script>
+        function showContract(index) {
+            document.querySelectorAll('.tab-btn').forEach((btn, i) => {
+                btn.classList.toggle('active', i === index);
+            });
+            document.querySelectorAll('.contract-content').forEach((content, i) => {
+                content.classList.toggle('active', i === index);
+            });
+        }
+
+        function rate(star, value) {
+            const container = star.parentElement;
+            const stars = container.querySelectorAll('.star');
+            stars.forEach((s, i) => {
+                s.classList.toggle('filled', i < value);
+            });
+        }
+    </script>
+</body>
+</html>

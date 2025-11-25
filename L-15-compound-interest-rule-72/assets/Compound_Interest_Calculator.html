@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Compound Interest Calculator | PFL Academy</title>
+<style>
+:root {
+    --primary: #6366f1;
+    --primary-dark: #4f46e5;
+    --secondary: #8b5cf6;
+    --success: #10b981;
+    --warning: #f59e0b;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #1f2937;
+    background: #f9fafb;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+header {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    text-align: center;
+    padding: 25px 20px;
+}
+
+header h1 {
+    font-size: 1.8rem;
+    margin-bottom: 8px;
+}
+
+.subtitle {
+    opacity: 0.9;
+    font-size: 1rem;
+}
+
+.content {
+    padding: 25px;
+}
+
+.print-btn {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+}
+
+.print-btn:hover {
+    background: var(--primary-dark);
+}
+
+.section {
+    margin-bottom: 25px;
+}
+
+.section-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 15px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #e5e7eb;
+}
+
+/* Calculator Layout */
+.calculator-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    margin-bottom: 25px;
+}
+
+/* Input Section */
+.input-section {
+    background: #f9fafb;
+    border-radius: 8px;
+    padding: 20px;
+    border: 2px solid #e5e7eb;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #374151;
+}
+
+.input-group input,
+.input-group select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 0.9rem;
+}
+
+.input-group input:focus,
+.input-group select:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+}
+
+.input-group small {
+    display: block;
+    color: #6b7280;
+    font-size: 0.75rem;
+    margin-top: 4px;
+}
+
+.calculate-btn {
+    background: var(--success);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.calculate-btn:hover {
+    background: #059669;
+}
+
+/* Results Section */
+.results-section {
+    background: linear-gradient(135deg, #ecfdf5, #d1fae5);
+    border-radius: 8px;
+    padding: 20px;
+    border: 2px solid var(--success);
+}
+
+.result-item {
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.result-item:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.result-label {
+    font-size: 0.85rem;
+    color: #065f46;
+    margin-bottom: 5px;
+}
+
+.result-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #047857;
+}
+
+.result-value.highlight {
+    font-size: 1.8rem;
+    color: var(--primary);
+}
+
+/* Frequency Comparison */
+.frequency-comparison {
+    background: #f0f9ff;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 25px;
+}
+
+.frequency-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+}
+
+.frequency-card {
+    background: white;
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+    border: 2px solid #e5e7eb;
+    transition: all 0.3s ease;
+}
+
+.frequency-card.best {
+    border-color: var(--success);
+    background: #ecfdf5;
+}
+
+.frequency-card h4 {
+    color: var(--primary);
+    font-size: 0.85rem;
+    margin-bottom: 8px;
+}
+
+.frequency-value {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #1f2937;
+    margin-bottom: 5px;
+}
+
+.frequency-card.best .frequency-value {
+    color: var(--success);
+}
+
+.frequency-label {
+    font-size: 0.75rem;
+    color: #6b7280;
+}
+
+/* Rule of 72 Section */
+.rule72-section {
+    background: #fef3c7;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 25px;
+}
+
+.rule72-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    align-items: center;
+}
+
+.rule72-input {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.rule72-input label {
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.rule72-input input {
+    width: 80px;
+    padding: 8px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.rule72-result {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.rule72-result .years {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.rule72-result .label {
+    font-size: 0.85rem;
+    color: #6b7280;
+}
+
+/* Growth Table */
+.growth-table-container {
+    overflow-x: auto;
+}
+
+.growth-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+}
+
+.growth-table th,
+.growth-table td {
+    padding: 10px;
+    text-align: right;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.growth-table th {
+    background: var(--primary);
+    color: white;
+    font-weight: 600;
+    text-align: center;
+}
+
+.growth-table th:first-child,
+.growth-table td:first-child {
+    text-align: center;
+}
+
+.growth-table tr:hover {
+    background: #f9fafb;
+}
+
+.growth-table .highlight-row {
+    background: #ecfdf5;
+    font-weight: 600;
+}
+
+/* Formula Box */
+.formula-box {
+    background: #f3e8ff;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 25px;
+}
+
+.formula-box h3 {
+    color: var(--primary);
+    margin-bottom: 10px;
+    font-size: 1rem;
+}
+
+.formula {
+    font-family: 'Courier New', monospace;
+    font-size: 1.1rem;
+    text-align: center;
+    padding: 15px;
+    background: white;
+    border-radius: 6px;
+    margin-bottom: 15px;
+}
+
+.formula-legend {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    font-size: 0.85rem;
+}
+
+.formula-legend span {
+    padding: 4px 0;
+}
+
+@media print {
+    body {
+        padding: 0;
+        background: white;
+    }
+
+    .container {
+        box-shadow: none;
+    }
+
+    .print-btn,
+    .calculate-btn {
+        display: none;
+    }
+
+    header {
+        background: var(--primary) !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+}
+
+@media (max-width: 768px) {
+    .calculator-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .frequency-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .rule72-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .formula-legend {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>Compound Interest Calculator</h1>
+        <p class="subtitle">See How Your Money Grows Over Time</p>
+    </header>
+
+    <div class="content">
+        <button class="print-btn" onclick="window.print()">Print / Save PDF</button>
+
+        <!-- Main Calculator -->
+        <div class="section">
+            <h2 class="section-title">Calculate Compound Interest</h2>
+            <div class="calculator-grid">
+                <div class="input-section">
+                    <div class="input-group">
+                        <label for="principal">Principal (Initial Amount)</label>
+                        <input type="number" id="principal" value="1000" min="0" step="100">
+                        <small>The starting amount you invest or save</small>
+                    </div>
+                    <div class="input-group">
+                        <label for="rate">Annual Interest Rate (%)</label>
+                        <input type="number" id="rate" value="5" min="0" max="100" step="0.1">
+                        <small>The yearly interest rate (APY)</small>
+                    </div>
+                    <div class="input-group">
+                        <label for="time">Time Period (Years)</label>
+                        <input type="number" id="time" value="10" min="1" max="50">
+                        <small>How long you'll keep the money invested</small>
+                    </div>
+                    <div class="input-group">
+                        <label for="compound">Compounding Frequency</label>
+                        <select id="compound">
+                            <option value="1">Annually (1x/year)</option>
+                            <option value="2">Semi-annually (2x/year)</option>
+                            <option value="4">Quarterly (4x/year)</option>
+                            <option value="12" selected>Monthly (12x/year)</option>
+                            <option value="365">Daily (365x/year)</option>
+                        </select>
+                        <small>How often interest is calculated and added</small>
+                    </div>
+                    <div class="input-group">
+                        <label for="contribution">Monthly Contribution (Optional)</label>
+                        <input type="number" id="contribution" value="0" min="0" step="10">
+                        <small>Additional amount added each month</small>
+                    </div>
+                    <button class="calculate-btn" onclick="calculateCompound()">Calculate Growth</button>
+                </div>
+
+                <div class="results-section">
+                    <h3 style="color: #065f46; margin-bottom: 15px; font-size: 1.1rem;">Your Results</h3>
+                    <div class="result-item">
+                        <div class="result-label">Future Value</div>
+                        <div class="result-value highlight" id="futureValue">$1,628.89</div>
+                    </div>
+                    <div class="result-item">
+                        <div class="result-label">Total Interest Earned</div>
+                        <div class="result-value" id="totalInterest">$628.89</div>
+                    </div>
+                    <div class="result-item">
+                        <div class="result-label">Total Contributions</div>
+                        <div class="result-value" id="totalContributions">$1,000.00</div>
+                    </div>
+                    <div class="result-item">
+                        <div class="result-label">Effective Annual Rate</div>
+                        <div class="result-value" id="effectiveRate">5.12%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Compounding Frequency Comparison -->
+        <div class="section">
+            <h2 class="section-title">Compare Compounding Frequencies</h2>
+            <div class="frequency-comparison">
+                <p style="margin-bottom: 15px; font-size: 0.9rem;">See how different compounding frequencies affect your final balance:</p>
+                <div class="frequency-grid" id="frequencyComparison">
+                    <!-- Populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Rule of 72 Calculator -->
+        <div class="section">
+            <h2 class="section-title">Rule of 72 Quick Calculator</h2>
+            <div class="rule72-section">
+                <p style="margin-bottom: 15px; font-size: 0.9rem;">The Rule of 72 is a quick way to estimate how long it takes for your money to double at a given interest rate.</p>
+                <div class="rule72-grid">
+                    <div class="rule72-input">
+                        <label for="rule72rate">Interest Rate:</label>
+                        <input type="number" id="rule72rate" value="6" min="0.1" max="100" step="0.1" onchange="calculateRule72()">
+                        <span>%</span>
+                    </div>
+                    <div class="rule72-result">
+                        <div class="years" id="rule72years">12</div>
+                        <div class="label">years to double your money</div>
+                    </div>
+                </div>
+                <p style="margin-top: 15px; font-size: 0.85rem; color: #6b7280;"><strong>Formula:</strong> Years to Double = 72 / Interest Rate</p>
+            </div>
+        </div>
+
+        <!-- Growth Table -->
+        <div class="section">
+            <h2 class="section-title">Year-by-Year Growth</h2>
+            <div class="growth-table-container">
+                <table class="growth-table" id="growthTable">
+                    <thead>
+                        <tr>
+                            <th>Year</th>
+                            <th>Starting Balance</th>
+                            <th>Interest Earned</th>
+                            <th>Contributions</th>
+                            <th>Ending Balance</th>
+                        </tr>
+                    </thead>
+                    <tbody id="growthTableBody">
+                        <!-- Populated by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Formula Reference -->
+        <div class="formula-box">
+            <h3>Compound Interest Formula</h3>
+            <div class="formula">
+                A = P(1 + r/n)<sup>nt</sup>
+            </div>
+            <div class="formula-legend">
+                <span><strong>A</strong> = Final amount (future value)</span>
+                <span><strong>P</strong> = Principal (initial investment)</span>
+                <span><strong>r</strong> = Annual interest rate (decimal)</span>
+                <span><strong>n</strong> = Compounding frequency per year</span>
+                <span><strong>t</strong> = Time in years</span>
+                <span><strong>Note:</strong> Add regular contributions separately</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function calculateCompound() {
+    const principal = parseFloat(document.getElementById('principal').value) || 0;
+    const rate = parseFloat(document.getElementById('rate').value) / 100 || 0;
+    const time = parseInt(document.getElementById('time').value) || 0;
+    const n = parseInt(document.getElementById('compound').value) || 12;
+    const monthlyContribution = parseFloat(document.getElementById('contribution').value) || 0;
+
+    // Calculate compound interest with contributions
+    let balance = principal;
+    let totalContributions = principal;
+    const tableBody = document.getElementById('growthTableBody');
+    tableBody.innerHTML = '';
+
+    for (let year = 1; year <= time; year++) {
+        const startBalance = balance;
+        let yearContributions = 0;
+
+        // Calculate for each compounding period within the year
+        for (let period = 0; period < n; period++) {
+            balance *= (1 + rate / n);
+
+            // Add monthly contributions (assuming they're spread across periods)
+            if (monthlyContribution > 0) {
+                const contributionsThisPeriod = monthlyContribution * (12 / n);
+                balance += contributionsThisPeriod;
+                yearContributions += contributionsThisPeriod;
+                totalContributions += contributionsThisPeriod;
+            }
+        }
+
+        const interestEarned = balance - startBalance - yearContributions;
+
+        // Add row to table
+        const isHighlight = year === time || year === Math.ceil(time / 2) || year === 1;
+        tableBody.innerHTML += `
+            <tr class="${isHighlight ? 'highlight-row' : ''}">
+                <td>${year}</td>
+                <td>$${startBalance.toFixed(2)}</td>
+                <td>$${interestEarned.toFixed(2)}</td>
+                <td>$${yearContributions.toFixed(2)}</td>
+                <td>$${balance.toFixed(2)}</td>
+            </tr>
+        `;
+    }
+
+    // Update results
+    const totalInterest = balance - totalContributions;
+    const effectiveRate = (Math.pow(1 + rate / n, n) - 1) * 100;
+
+    document.getElementById('futureValue').textContent = '$' + balance.toFixed(2);
+    document.getElementById('totalInterest').textContent = '$' + totalInterest.toFixed(2);
+    document.getElementById('totalContributions').textContent = '$' + totalContributions.toFixed(2);
+    document.getElementById('effectiveRate').textContent = effectiveRate.toFixed(2) + '%';
+
+    // Update frequency comparison
+    updateFrequencyComparison(principal, rate, time, monthlyContribution);
+}
+
+function updateFrequencyComparison(principal, rate, time, monthlyContribution) {
+    const frequencies = [
+        { name: 'Annually', n: 1 },
+        { name: 'Quarterly', n: 4 },
+        { name: 'Monthly', n: 12 },
+        { name: 'Daily', n: 365 }
+    ];
+
+    const results = frequencies.map(freq => {
+        let balance = principal;
+        let totalContrib = principal;
+
+        for (let year = 0; year < time; year++) {
+            for (let period = 0; period < freq.n; period++) {
+                balance *= (1 + rate / freq.n);
+                if (monthlyContribution > 0) {
+                    const contrib = monthlyContribution * (12 / freq.n);
+                    balance += contrib;
+                    totalContrib += contrib;
+                }
+            }
+        }
+
+        return {
+            name: freq.name,
+            value: balance
+        };
+    });
+
+    const maxValue = Math.max(...results.map(r => r.value));
+
+    let html = '';
+    results.forEach(result => {
+        const isBest = result.value === maxValue;
+        html += `
+            <div class="frequency-card ${isBest ? 'best' : ''}">
+                <h4>${result.name}</h4>
+                <div class="frequency-value">$${result.value.toFixed(2)}</div>
+                <div class="frequency-label">${isBest ? 'Best Option' : 'Final Balance'}</div>
+            </div>
+        `;
+    });
+
+    document.getElementById('frequencyComparison').innerHTML = html;
+}
+
+function calculateRule72() {
+    const rate = parseFloat(document.getElementById('rule72rate').value) || 1;
+    const years = 72 / rate;
+    document.getElementById('rule72years').textContent = years.toFixed(1);
+}
+
+// Initialize on page load
+window.addEventListener('load', function() {
+    calculateCompound();
+    calculateRule72();
+});
+</script>
+</body>
+</html>

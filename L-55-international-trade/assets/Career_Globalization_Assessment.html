@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career Globalization Assessment</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        header { text-align: center; margin-bottom: 30px; }
+        h1 { font-size: 2rem; color: #6366f1; margin-bottom: 10px; }
+        .subtitle { color: #6b7280; }
+        .input-section {
+            background: #f9fafb;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+        }
+        label { display: block; font-weight: 600; margin-bottom: 8px; color: #374151; }
+        select, input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+        select:focus, input:focus { outline: none; border-color: #6366f1; }
+        .assess-btn {
+            width: 100%;
+            padding: 15px;
+            background: #6366f1;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        .assess-btn:hover { background: #4f46e5; }
+        .results { display: none; }
+        .results.active { display: block; }
+        .risk-meter {
+            background: #f3f4f6;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .risk-label { font-weight: 600; margin-bottom: 10px; }
+        .risk-bar {
+            height: 20px;
+            background: #e5e7eb;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+        .risk-fill {
+            height: 100%;
+            border-radius: 10px;
+            transition: width 0.5s;
+        }
+        .risk-low { background: #10b981; }
+        .risk-medium { background: #f59e0b; }
+        .risk-high { background: #ef4444; }
+        .risk-text { font-size: 1.2rem; font-weight: bold; }
+        .section-box {
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+        }
+        .threats-box { background: #fee2e2; border-left: 4px solid #ef4444; }
+        .opportunities-box { background: #d1fae5; border-left: 4px solid #10b981; }
+        .strategies-box { background: #e0e7ff; border-left: 4px solid #6366f1; }
+        .section-box h3 { margin-bottom: 10px; font-size: 1rem; }
+        .section-box ul { margin-left: 20px; }
+        .section-box li { margin-bottom: 8px; }
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #e5e7eb;
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+        @media print {
+            body { background: white; padding: 0; }
+            .container { box-shadow: none; }
+            .assess-btn { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Career Globalization Assessment</h1>
+            <p class="subtitle">Assess your job's vulnerability to globalization</p>
+        </header>
+
+        <div class="input-section">
+            <label>Career Field</label>
+            <select id="career">
+                <option value="">Select your career field...</option>
+                <option value="manufacturing">Manufacturing</option>
+                <option value="tech">Software/Technology</option>
+                <option value="healthcare">Healthcare</option>
+                <option value="finance">Finance/Accounting</option>
+                <option value="education">Education</option>
+                <option value="retail">Retail</option>
+                <option value="construction">Construction/Trades</option>
+                <option value="creative">Creative/Design</option>
+            </select>
+
+            <label>Years of Experience</label>
+            <select id="experience">
+                <option value="0">Entry level (0-2 years)</option>
+                <option value="3">Early career (3-5 years)</option>
+                <option value="6">Mid-career (6-10 years)</option>
+                <option value="11">Senior (11+ years)</option>
+            </select>
+
+            <label>Primary Work Location</label>
+            <select id="location">
+                <option value="office">Office-based</option>
+                <option value="remote">Fully remote</option>
+                <option value="hybrid">Hybrid</option>
+                <option value="onsite">On-site required</option>
+            </select>
+
+            <button class="assess-btn" onclick="assess()">Assess My Career</button>
+        </div>
+
+        <div class="results" id="results">
+            <div class="risk-meter">
+                <div class="risk-label">Globalization Vulnerability</div>
+                <div class="risk-bar">
+                    <div class="risk-fill" id="riskFill" style="width: 0%"></div>
+                </div>
+                <div class="risk-text" id="riskText">Calculating...</div>
+            </div>
+
+            <div class="section-box threats-box">
+                <h3>⚠️ Potential Threats</h3>
+                <ul id="threats"></ul>
+            </div>
+
+            <div class="section-box opportunities-box">
+                <h3>✅ Globalization Opportunities</h3>
+                <ul id="opportunities"></ul>
+            </div>
+
+            <div class="section-box strategies-box">
+                <h3>🎯 Career Protection Strategies</h3>
+                <ul id="strategies"></ul>
+            </div>
+        </div>
+
+        <footer>
+            <p><strong>PFL Academy</strong> | International Trade</p>
+        </footer>
+    </div>
+
+    <script>
+        function assess() {
+            const career = document.getElementById('career').value;
+            if (!career) {
+                alert('Please select a career field.');
+                return;
+            }
+
+            const location = document.getElementById('location').value;
+            let risk = 50, threats = [], opportunities = [], strategies = [];
+
+            if (career === 'manufacturing') {
+                risk = 75;
+                threats = ['Offshore production to lower-cost countries', 'Automation replacing manual tasks', 'Import competition from overseas'];
+                opportunities = ['Advanced manufacturing skills in demand', 'Reshoring trends creating local jobs', 'Export opportunities for high-quality goods'];
+                strategies = ['Develop automation/robotics skills', 'Specialize in high-precision work', 'Learn supply chain management', 'Consider technical certifications'];
+            } else if (career === 'tech') {
+                risk = location === 'remote' ? 65 : 45;
+                threats = ['Offshore development teams', 'Global talent competition', 'Remote work enables hiring anywhere'];
+                opportunities = ['Work for global companies from anywhere', 'Higher salaries in competitive market', 'Access to international projects'];
+                strategies = ['Build specialized/niche expertise', 'Develop communication and leadership skills', 'Create visible portfolio of work', 'Network globally'];
+            } else if (career === 'healthcare') {
+                risk = 25;
+                threats = ['Medical tourism for elective procedures', 'Telehealth from overseas providers', 'Pharmaceutical imports'];
+                opportunities = ['Growing demand from aging population', 'International patient care', 'Medical research collaboration'];
+                strategies = ['Maintain certifications', 'Develop telehealth skills', 'Consider specialization', 'Build patient relationships'];
+            } else if (career === 'finance') {
+                risk = 55;
+                threats = ['Offshore processing centers', 'AI automation of analysis', 'Global competition for clients'];
+                opportunities = ['International finance expertise valued', 'Fintech innovation', 'Cross-border transaction growth'];
+                strategies = ['Learn international regulations', 'Develop data analysis skills', 'Build client relationships', 'Get specialized certifications'];
+            } else if (career === 'education') {
+                risk = 30;
+                threats = ['Online learning competition', 'International student enrollment changes', 'AI tutoring tools'];
+                opportunities = ['International school opportunities', 'Online teaching global reach', 'Curriculum development'];
+                strategies = ['Develop EdTech skills', 'Create online presence', 'Specialize in high-demand subjects', 'Build community connections'];
+            } else if (career === 'retail') {
+                risk = 60;
+                threats = ['E-commerce from anywhere', 'Import competition', 'Global supply chain issues'];
+                opportunities = ['Export of local products', 'International brands hiring', 'E-commerce entrepreneurship'];
+                strategies = ['Develop digital/e-commerce skills', 'Focus on customer experience', 'Specialize in luxury or local goods', 'Build management skills'];
+            } else if (career === 'construction') {
+                risk = 20;
+                threats = ['Prefab construction imports', 'Material cost volatility', 'Temporary visa workers'];
+                opportunities = ['Infrastructure investment', 'Cannot be offshored', 'Green building demand'];
+                strategies = ['Learn sustainable building', 'Get project management certification', 'Develop specialization', 'Network with contractors'];
+            } else if (career === 'creative') {
+                risk = 50;
+                threats = ['Freelance global competition', 'AI creative tools', 'Crowdsourcing platforms'];
+                opportunities = ['Global client base', 'Digital product sales worldwide', 'Remote work flexibility'];
+                strategies = ['Build distinctive personal brand', 'Develop business skills', 'Create passive income streams', 'Specialize in niche markets'];
+            }
+
+            const riskFill = document.getElementById('riskFill');
+            riskFill.style.width = risk + '%';
+            riskFill.className = 'risk-fill ' + (risk < 40 ? 'risk-low' : risk < 60 ? 'risk-medium' : 'risk-high');
+
+            const riskText = risk < 40 ? 'LOW - Well protected' : risk < 60 ? 'MODERATE - Some exposure' : 'HIGH - Significant vulnerability';
+            document.getElementById('riskText').textContent = riskText;
+
+            document.getElementById('threats').innerHTML = threats.map(t => `<li>${t}</li>`).join('');
+            document.getElementById('opportunities').innerHTML = opportunities.map(o => `<li>${o}</li>`).join('');
+            document.getElementById('strategies').innerHTML = strategies.map(s => `<li>${s}</li>`).join('');
+
+            document.getElementById('results').classList.add('active');
+        }
+    </script>
+</body>
+</html>

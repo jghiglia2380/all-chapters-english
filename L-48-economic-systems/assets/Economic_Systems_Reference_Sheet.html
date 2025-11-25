@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Economic Systems Reference Sheet - PFL Academy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            font-size: 12px;
+            line-height: 1.5;
+            color: #1f2937;
+            padding: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 3px solid #6366f1;
+        }
+
+        .header h1 {
+            font-size: 24px;
+            color: #6366f1;
+            margin-bottom: 4px;
+        }
+
+        .header p {
+            color: #6b7280;
+            font-size: 12px;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 11px;
+        }
+
+        .comparison-table th {
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+            color: white;
+            padding: 10px 8px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .comparison-table td {
+            padding: 8px;
+            border-bottom: 1px solid #e5e7eb;
+            vertical-align: top;
+        }
+
+        .comparison-table tr:hover {
+            background-color: #f9fafb;
+        }
+
+        .comparison-table td:first-child {
+            font-weight: 600;
+            background: #f9fafb;
+            width: 20%;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .system-box {
+            background: #f9fafb;
+            padding: 12px;
+            border-radius: 6px;
+            border-left: 4px solid #6366f1;
+        }
+
+        .system-box h3 {
+            font-size: 14px;
+            font-weight: 700;
+            color: #6366f1;
+            margin-bottom: 8px;
+        }
+
+        .system-box ul {
+            margin-left: 16px;
+            margin-bottom: 8px;
+        }
+
+        .system-box li {
+            margin-bottom: 3px;
+        }
+
+        .examples-box {
+            background: #eff6ff;
+            padding: 6px 10px;
+            border-radius: 4px;
+            font-size: 11px;
+        }
+
+        .historical-section {
+            background: #fef3c7;
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 16px;
+        }
+
+        .historical-section h3 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #b45309;
+        }
+
+        .historical-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+        }
+
+        .historical-item {
+            background: white;
+            padding: 8px;
+            border-radius: 4px;
+        }
+
+        .historical-item h4 {
+            font-size: 11px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .historical-item p {
+            font-size: 10px;
+            color: #4b5563;
+        }
+
+        .property-rights-section {
+            background: #ecfdf5;
+            padding: 12px;
+            border-radius: 6px;
+            border-left: 4px solid #10b981;
+            margin-bottom: 16px;
+        }
+
+        .property-rights-section h3 {
+            font-size: 14px;
+            font-weight: 600;
+            color: #059669;
+            margin-bottom: 8px;
+        }
+
+        .impact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+
+        .impact-box {
+            padding: 8px;
+            border-radius: 4px;
+        }
+
+        .impact-box.strong {
+            background: white;
+            border: 1px solid #10b981;
+        }
+
+        .impact-box.weak {
+            background: white;
+            border: 1px solid #ef4444;
+        }
+
+        .impact-box h4 {
+            font-size: 11px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .impact-box.strong h4 { color: #059669; }
+        .impact-box.weak h4 { color: #dc2626; }
+
+        .impact-box ul {
+            margin-left: 12px;
+            font-size: 10px;
+        }
+
+        .pf-implications {
+            background: #f0fdf4;
+            padding: 12px;
+            border-radius: 6px;
+            border-left: 4px solid #10b981;
+            margin-bottom: 16px;
+        }
+
+        .pf-implications h3 {
+            font-size: 14px;
+            font-weight: 600;
+            color: #059669;
+            margin-bottom: 8px;
+        }
+
+        .strategy-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+        }
+
+        .strategy-box {
+            padding: 8px;
+            border-radius: 4px;
+            background: white;
+        }
+
+        .strategy-box h4 {
+            font-size: 11px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .strategy-box ul {
+            margin-left: 12px;
+            font-size: 10px;
+        }
+
+        .key-takeaway {
+            background: #eff6ff;
+            padding: 12px;
+            border-radius: 6px;
+            border-left: 4px solid #3b82f6;
+        }
+
+        .key-takeaway h3 {
+            font-size: 12px;
+            font-weight: 600;
+            color: #3b82f6;
+            margin-bottom: 6px;
+        }
+
+        .key-takeaway p {
+            font-size: 11px;
+        }
+
+        @media print {
+            body {
+                padding: 10px;
+                font-size: 10px;
+            }
+
+            .system-box,
+            .historical-section,
+            .property-rights-section,
+            .pf-implications {
+                page-break-inside: avoid;
+            }
+
+            .comparison-table {
+                font-size: 9px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .two-column,
+            .historical-grid,
+            .impact-grid,
+            .strategy-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Economic Systems Reference Sheet</h1>
+        <p>Quick reference for capitalism, socialism, and mixed economies</p>
+    </div>
+
+    <table class="comparison-table">
+        <thead>
+            <tr>
+                <th>Characteristic</th>
+                <th>Capitalism (Market)</th>
+                <th>Socialism (Command)</th>
+                <th>Mixed Economy</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Resource Ownership</td>
+                <td>85%+ private</td>
+                <td>90%+ government</td>
+                <td>75% private, 25% public</td>
+            </tr>
+            <tr>
+                <td>Price Mechanism</td>
+                <td>Market-determined</td>
+                <td>Government-set</td>
+                <td>Mostly market, some regulation</td>
+            </tr>
+            <tr>
+                <td>Government Role</td>
+                <td>Minimal (protect rights)</td>
+                <td>Extensive (controls economy)</td>
+                <td>Moderate (regulate, provide services)</td>
+            </tr>
+            <tr>
+                <td>Property Rights</td>
+                <td>Very strong</td>
+                <td>Weak (can nationalize)</td>
+                <td>Strong but regulated</td>
+            </tr>
+            <tr>
+                <td>Business Startup</td>
+                <td>$300, 1 day</td>
+                <td>Prohibited most industries</td>
+                <td>$2K-$10K, weeks to months</td>
+            </tr>
+            <tr>
+                <td>Career Freedom</td>
+                <td>Complete</td>
+                <td>Limited (govt assigns)</td>
+                <td>High with protections</td>
+            </tr>
+            <tr>
+                <td>Investment Options</td>
+                <td>Unrestricted</td>
+                <td>None (illegal)</td>
+                <td>Extensive with tax benefits</td>
+            </tr>
+            <tr>
+                <td>GDP Per Capita</td>
+                <td>$65,000</td>
+                <td>$9,500</td>
+                <td>$70,000</td>
+            </tr>
+            <tr>
+                <td>Gini (Inequality)</td>
+                <td>0.46 (higher)</td>
+                <td>0.25 (lower)</td>
+                <td>0.41 (moderate)</td>
+            </tr>
+            <tr>
+                <td>Growth Rate</td>
+                <td>5-8% annually</td>
+                <td>1-2% annually</td>
+                <td>2-3% annually</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="two-column">
+        <div class="system-box">
+            <h3>CAPITALISM (Market Economy)</h3>
+            <ul>
+                <li>Private property rights protected</li>
+                <li>Free enterprise and competition</li>
+                <li>Profit motive drives decisions</li>
+                <li>Supply and demand set prices</li>
+                <li>Innovation rewarded</li>
+            </ul>
+            <div class="examples-box">
+                <strong>Examples:</strong> Singapore, Switzerland, Hong Kong
+            </div>
+        </div>
+
+        <div class="system-box">
+            <h3>SOCIALISM (Command Economy)</h3>
+            <ul>
+                <li>Government owns major industries</li>
+                <li>Central planning determines production</li>
+                <li>Prices set by government</li>
+                <li>Focus on equality over growth</li>
+                <li>Limited private enterprise</li>
+            </ul>
+            <div class="examples-box">
+                <strong>Examples:</strong> Cuba, North Korea, former Soviet Union
+            </div>
+        </div>
+    </div>
+
+    <div class="historical-section">
+        <h3>Historical Comparisons</h3>
+        <div class="historical-grid">
+            <div class="historical-item">
+                <h4>East vs. West Germany</h4>
+                <p>Same culture, divided 1945-1990. West (capitalist): 3x income, 4x productivity vs East (socialist).</p>
+            </div>
+            <div class="historical-item">
+                <h4>North vs. South Korea</h4>
+                <p>Same ethnicity, divided 1950. South: $35,000 GDP. North: $1,800 GDP. 20x difference.</p>
+            </div>
+            <div class="historical-item">
+                <h4>Venezuela vs. Chile</h4>
+                <p>2000-present. Chile (market): +200% GDP. Venezuela (socialist): -75% GDP, 96% poverty.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="property-rights-section">
+        <h3>Property Rights Impact</h3>
+        <div class="impact-grid">
+            <div class="impact-box strong">
+                <h4>Strong Property Rights</h4>
+                <ul>
+                    <li>Encourages investment and entrepreneurship</li>
+                    <li>Enables mortgages and business loans</li>
+                    <li>$60K down payment becomes $540K equity (30 years)</li>
+                    <li>$25K business grows to $200K value (5 years)</li>
+                </ul>
+            </div>
+            <div class="impact-box weak">
+                <h4>Weak Property Rights</h4>
+                <ul>
+                    <li>Discourages investment (risk of loss)</li>
+                    <li>No mortgages (lenders can't foreclose)</li>
+                    <li>Capital stays uninvested, loses to inflation</li>
+                    <li>Explains persistent poverty in failed states</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="pf-implications">
+        <h3>Personal Financial Strategy by System</h3>
+        <div class="strategy-grid">
+            <div class="strategy-box">
+                <h4>Market Economy</h4>
+                <ul>
+                    <li>6-12 month emergency fund</li>
+                    <li>Save 20%+ for retirement</li>
+                    <li>Maximize earning potential</li>
+                    <li>Consider entrepreneurship</li>
+                    <li>Negotiate salary assertively</li>
+                </ul>
+            </div>
+            <div class="strategy-box">
+                <h4>Command Economy</h4>
+                <ul>
+                    <li>Acquire scarce goods</li>
+                    <li>Build political connections</li>
+                    <li>Save in hard assets/foreign currency</li>
+                    <li>Avoid private business</li>
+                    <li>Seek emigration options</li>
+                </ul>
+            </div>
+            <div class="strategy-box">
+                <h4>Mixed Economy (USA)</h4>
+                <ul>
+                    <li>3-6 month emergency fund</li>
+                    <li>Save 10-15% + Social Security</li>
+                    <li>Use tax-advantaged accounts</li>
+                    <li>LLC for business ventures</li>
+                    <li>Stay informed on policy changes</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="key-takeaway">
+        <h3>Key Takeaway</h3>
+        <p>Most successful modern economies are mixed systems combining market allocation (efficiency) with government intervention (public goods and safety nets). No system is perfect - all involve trade-offs between freedom and security, efficiency and equality. Understanding your system helps you make better financial decisions by leveraging its advantages (tax benefits, property rights, market opportunities) while protecting against its risks.</p>
+    </div>
+</body>
+</html>

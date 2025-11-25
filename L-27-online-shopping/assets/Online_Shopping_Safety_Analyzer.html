@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Shopping Safety Analyzer - PFL Academy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background: #f9fafb;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+            color: white;
+            padding: 24px;
+            border-radius: 12px;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 16px;
+        }
+
+        .intro-section {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .intro-section h3 {
+            font-size: 18px;
+            color: #6366f1;
+            margin-bottom: 8px;
+        }
+
+        .intro-section p {
+            color: #4b5563;
+            font-size: 14px;
+        }
+
+        .url-input-section {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .url-input-section h3 {
+            font-size: 18px;
+            color: #6366f1;
+            margin-bottom: 16px;
+        }
+
+        .input-group {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .input-group input {
+            flex: 1;
+            padding: 12px 16px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 14px;
+            font-family: inherit;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: #6366f1;
+        }
+
+        .analyze-btn {
+            background: #6366f1;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            transition: background 0.3s;
+        }
+
+        .analyze-btn:hover {
+            background: #4f46e5;
+        }
+
+        .checklist-section {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .checklist-section h3 {
+            font-size: 18px;
+            color: #6366f1;
+            margin-bottom: 16px;
+        }
+
+        .checklist-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        .checklist-category {
+            background: #f9fafb;
+            border-radius: 8px;
+            padding: 16px;
+        }
+
+        .checklist-category h4 {
+            font-size: 14px;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .category-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 8px 0;
+            font-size: 13px;
+        }
+
+        .checklist-item input[type="checkbox"] {
+            margin-top: 3px;
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+        }
+
+        .checklist-item label {
+            cursor: pointer;
+            color: #4b5563;
+        }
+
+        .checklist-item.checked label {
+            color: #10b981;
+            text-decoration: line-through;
+        }
+
+        .red-flags-section {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .red-flags-section h3 {
+            font-size: 18px;
+            color: #ef4444;
+            margin-bottom: 16px;
+        }
+
+        .red-flag-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .red-flag-item {
+            background: #fef2f2;
+            border-left: 4px solid #ef4444;
+            padding: 12px;
+            border-radius: 0 8px 8px 0;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .red-flag-item input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+        }
+
+        .red-flag-item label {
+            color: #991b1b;
+        }
+
+        .payment-section {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .payment-section h3 {
+            font-size: 18px;
+            color: #6366f1;
+            margin-bottom: 16px;
+        }
+
+        .payment-methods {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        .payment-card {
+            border-radius: 8px;
+            padding: 16px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .payment-card.safest {
+            background: #ecfdf5;
+            border-top: 4px solid #10b981;
+        }
+
+        .payment-card.moderate {
+            background: #fffbeb;
+            border-top: 4px solid #f59e0b;
+        }
+
+        .payment-card.risky {
+            background: #fef2f2;
+            border-top: 4px solid #ef4444;
+        }
+
+        .payment-card.selected {
+            border-color: #6366f1;
+        }
+
+        .payment-card h4 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .payment-card.safest h4 { color: #10b981; }
+        .payment-card.moderate h4 { color: #f59e0b; }
+        .payment-card.risky h4 { color: #ef4444; }
+
+        .payment-card p {
+            font-size: 12px;
+            color: #6b7280;
+        }
+
+        .safety-level {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-top: 8px;
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+
+        .payment-card.safest .safety-level {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .payment-card.moderate .safety-level {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .payment-card.risky .safety-level {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .results-section {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .results-section h3 {
+            font-size: 18px;
+            color: #6366f1;
+            margin-bottom: 16px;
+        }
+
+        .score-display {
+            text-align: center;
+            padding: 24px;
+            background: #f9fafb;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+
+        .score-number {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .score-number.high { color: #10b981; }
+        .score-number.medium { color: #f59e0b; }
+        .score-number.low { color: #ef4444; }
+
+        .score-label {
+            font-size: 14px;
+            color: #6b7280;
+            margin-bottom: 12px;
+        }
+
+        .score-bar {
+            height: 12px;
+            background: #e5e7eb;
+            border-radius: 6px;
+            overflow: hidden;
+            margin: 0 auto;
+            max-width: 300px;
+        }
+
+        .score-fill {
+            height: 100%;
+            border-radius: 6px;
+            transition: width 0.5s ease;
+        }
+
+        .score-fill.high { background: #10b981; }
+        .score-fill.medium { background: #f59e0b; }
+        .score-fill.low { background: #ef4444; }
+
+        .recommendation {
+            padding: 16px;
+            border-radius: 8px;
+            margin-top: 16px;
+        }
+
+        .recommendation.safe {
+            background: #ecfdf5;
+            border-left: 4px solid #10b981;
+        }
+
+        .recommendation.caution {
+            background: #fffbeb;
+            border-left: 4px solid #f59e0b;
+        }
+
+        .recommendation.danger {
+            background: #fef2f2;
+            border-left: 4px solid #ef4444;
+        }
+
+        .recommendation h4 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .recommendation.safe h4 { color: #065f46; }
+        .recommendation.caution h4 { color: #92400e; }
+        .recommendation.danger h4 { color: #991b1b; }
+
+        .recommendation p {
+            font-size: 13px;
+            color: #4b5563;
+        }
+
+        .notes-section {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .notes-section h3 {
+            font-size: 18px;
+            color: #6366f1;
+            margin-bottom: 16px;
+        }
+
+        .notes-section textarea {
+            width: 100%;
+            min-height: 100px;
+            padding: 12px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 14px;
+            resize: vertical;
+        }
+
+        .notes-section textarea:focus {
+            outline: none;
+            border-color: #6366f1;
+        }
+
+        .print-section {
+            text-align: center;
+        }
+
+        .print-btn {
+            background: #6366f1;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .print-btn:hover {
+            background: #4f46e5;
+        }
+
+        @media print {
+            body {
+                padding: 10px;
+                background: white;
+            }
+
+            .print-section {
+                display: none;
+            }
+
+            .container {
+                max-width: 100%;
+            }
+
+            .checklist-grid,
+            .red-flag-grid,
+            .payment-methods {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .checklist-section,
+            .red-flags-section,
+            .payment-section,
+            .results-section,
+            .notes-section {
+                box-shadow: none;
+                page-break-inside: avoid;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .checklist-grid,
+            .red-flag-grid,
+            .payment-methods {
+                grid-template-columns: 1fr;
+            }
+
+            .input-group {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Online Shopping Safety Analyzer</h1>
+            <p>Evaluate online shopping safety and identify potential security risks</p>
+        </div>
+
+        <div class="intro-section">
+            <h3>How to Use This Tool</h3>
+            <p>Use this analyzer to evaluate any online shopping website before making a purchase. Enter the website URL, check off security features you observe, identify any red flags, and receive a safety score with recommendations.</p>
+        </div>
+
+        <div class="url-input-section">
+            <h3>Website to Analyze</h3>
+            <div class="input-group">
+                <input type="text" id="websiteUrl" placeholder="Enter website URL (e.g., www.example-store.com)">
+                <button class="analyze-btn" onclick="startAnalysis()">Analyze Site</button>
+            </div>
+            <p style="font-size: 12px; color: #6b7280;">Enter the shopping website you want to evaluate for safety</p>
+        </div>
+
+        <div class="checklist-section">
+            <h3>Security Checklist</h3>
+            <p style="font-size: 13px; color: #6b7280; margin-bottom: 16px;">Check all security features you can verify on the website:</p>
+
+            <div class="checklist-grid">
+                <div class="checklist-category">
+                    <h4>
+                        <span class="category-icon" style="background: #dbeafe; color: #1d4ed8;">S</span>
+                        Website Security
+                    </h4>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="https" class="security-check" data-points="15">
+                        <label for="https">URL starts with HTTPS (padlock icon visible)</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="ssl" class="security-check" data-points="10">
+                        <label for="ssl">Valid SSL certificate (click padlock to verify)</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="secure-checkout" class="security-check" data-points="10">
+                        <label for="secure-checkout">Secure checkout page (separate HTTPS)</label>
+                    </div>
+                </div>
+
+                <div class="checklist-category">
+                    <h4>
+                        <span class="category-icon" style="background: #fef3c7; color: #92400e;">B</span>
+                        Business Legitimacy
+                    </h4>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="contact" class="security-check" data-points="10">
+                        <label for="contact">Physical address and phone number listed</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="about" class="security-check" data-points="5">
+                        <label for="about">About Us page with company information</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="policies" class="security-check" data-points="10">
+                        <label for="policies">Clear return/refund policies</label>
+                    </div>
+                </div>
+
+                <div class="checklist-category">
+                    <h4>
+                        <span class="category-icon" style="background: #d1fae5; color: #065f46;">R</span>
+                        Reviews & Reputation
+                    </h4>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="reviews" class="security-check" data-points="10">
+                        <label for="reviews">Customer reviews available on site</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="external-reviews" class="security-check" data-points="10">
+                        <label for="external-reviews">Positive reviews on BBB, Trustpilot, etc.</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="social" class="security-check" data-points="5">
+                        <label for="social">Active social media presence</label>
+                    </div>
+                </div>
+
+                <div class="checklist-category">
+                    <h4>
+                        <span class="category-icon" style="background: #ede9fe; color: #5b21b6;">P</span>
+                        Payment Security
+                    </h4>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="payment-options" class="security-check" data-points="10">
+                        <label for="payment-options">Multiple payment options (credit card, PayPal)</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="payment-badges" class="security-check" data-points="5">
+                        <label for="payment-badges">Security badges (Norton, McAfee, etc.)</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="privacy" class="security-check" data-points="5">
+                        <label for="privacy">Privacy policy for personal data</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="red-flags-section">
+            <h3>Red Flag Identifier</h3>
+            <p style="font-size: 13px; color: #991b1b; margin-bottom: 16px;">Check any warning signs you notice (each reduces safety score):</p>
+
+            <div class="red-flag-grid">
+                <div class="red-flag-item">
+                    <input type="checkbox" id="no-https" class="red-flag" data-penalty="20">
+                    <label for="no-https">No HTTPS / Missing padlock icon</label>
+                </div>
+                <div class="red-flag-item">
+                    <input type="checkbox" id="too-good" class="red-flag" data-penalty="15">
+                    <label for="too-good">Prices too good to be true (80%+ off)</label>
+                </div>
+                <div class="red-flag-item">
+                    <input type="checkbox" id="pressure" class="red-flag" data-penalty="10">
+                    <label for="pressure">High-pressure tactics (limited time!)</label>
+                </div>
+                <div class="red-flag-item">
+                    <input type="checkbox" id="poor-grammar" class="red-flag" data-penalty="15">
+                    <label for="poor-grammar">Poor grammar and spelling errors</label>
+                </div>
+                <div class="red-flag-item">
+                    <input type="checkbox" id="no-contact" class="red-flag" data-penalty="20">
+                    <label for="no-contact">No contact information or fake address</label>
+                </div>
+                <div class="red-flag-item">
+                    <input type="checkbox" id="wire-only" class="red-flag" data-penalty="25">
+                    <label for="wire-only">Only accepts wire transfer or gift cards</label>
+                </div>
+                <div class="red-flag-item">
+                    <input type="checkbox" id="popup" class="red-flag" data-penalty="10">
+                    <label for="popup">Excessive pop-ups or redirects</label>
+                </div>
+                <div class="red-flag-item">
+                    <input type="checkbox" id="new-domain" class="red-flag" data-penalty="10">
+                    <label for="new-domain">Very new domain / recently created website</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="payment-section">
+            <h3>Safe Payment Method Comparison</h3>
+            <p style="font-size: 13px; color: #6b7280; margin-bottom: 16px;">Select the payment method you plan to use:</p>
+
+            <div class="payment-methods">
+                <div class="payment-card safest" onclick="selectPayment(this, 'credit')">
+                    <h4>Credit Card</h4>
+                    <p>Best fraud protection, easy to dispute charges, $50 max liability</p>
+                    <div class="safety-level">Safest Option</div>
+                </div>
+                <div class="payment-card safest" onclick="selectPayment(this, 'paypal')">
+                    <h4>PayPal / Digital Wallet</h4>
+                    <p>Buyer protection, doesn't share card info with seller</p>
+                    <div class="safety-level">Safest Option</div>
+                </div>
+                <div class="payment-card moderate" onclick="selectPayment(this, 'debit')">
+                    <h4>Debit Card</h4>
+                    <p>Some protection but money leaves account immediately</p>
+                    <div class="safety-level">Use With Caution</div>
+                </div>
+                <div class="payment-card moderate" onclick="selectPayment(this, 'prepaid')">
+                    <h4>Prepaid Card</h4>
+                    <p>Limits exposure but may have less fraud protection</p>
+                    <div class="safety-level">Use With Caution</div>
+                </div>
+                <div class="payment-card risky" onclick="selectPayment(this, 'wire')">
+                    <h4>Wire Transfer</h4>
+                    <p>No protection, impossible to reverse, often used in scams</p>
+                    <div class="safety-level">Avoid</div>
+                </div>
+                <div class="payment-card risky" onclick="selectPayment(this, 'gift')">
+                    <h4>Gift Cards</h4>
+                    <p>No protection, untraceable, primary tool of scammers</p>
+                    <div class="safety-level">Avoid</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="results-section">
+            <h3>Safety Analysis Results</h3>
+            <div class="score-display">
+                <div class="score-number" id="scoreNumber">--</div>
+                <div class="score-label">Safety Score (out of 100)</div>
+                <div class="score-bar">
+                    <div class="score-fill" id="scoreFill" style="width: 0%"></div>
+                </div>
+            </div>
+            <div class="recommendation" id="recommendation" style="display: none;">
+                <h4 id="recTitle">Recommendation</h4>
+                <p id="recText">Complete the checklist above to receive your safety analysis.</p>
+            </div>
+        </div>
+
+        <div class="notes-section">
+            <h3>Additional Notes</h3>
+            <textarea id="notes" placeholder="Add any additional observations about the website, concerns you have, or reasons for your assessment..."></textarea>
+        </div>
+
+        <div class="print-section">
+            <button class="print-btn" onclick="window.print()">Print / Save as PDF</button>
+        </div>
+    </div>
+
+    <script>
+        let selectedPayment = null;
+
+        function startAnalysis() {
+            const url = document.getElementById('websiteUrl').value;
+            if (!url) {
+                alert('Please enter a website URL to analyze.');
+                return;
+            }
+            // Reset and enable checkboxes for fresh analysis
+            document.querySelectorAll('.security-check, .red-flag').forEach(cb => {
+                cb.checked = false;
+            });
+            calculateScore();
+        }
+
+        function selectPayment(card, method) {
+            document.querySelectorAll('.payment-card').forEach(c => {
+                c.classList.remove('selected');
+            });
+            card.classList.add('selected');
+            selectedPayment = method;
+            calculateScore();
+        }
+
+        function calculateScore() {
+            let score = 0;
+            let maxScore = 0;
+
+            // Calculate security points
+            document.querySelectorAll('.security-check').forEach(checkbox => {
+                const points = parseInt(checkbox.dataset.points);
+                maxScore += points;
+                if (checkbox.checked) {
+                    score += points;
+                    checkbox.parentElement.classList.add('checked');
+                } else {
+                    checkbox.parentElement.classList.remove('checked');
+                }
+            });
+
+            // Apply red flag penalties
+            let penalties = 0;
+            document.querySelectorAll('.red-flag').forEach(checkbox => {
+                if (checkbox.checked) {
+                    penalties += parseInt(checkbox.dataset.penalty);
+                }
+            });
+
+            // Calculate percentage and apply penalties
+            let percentage = maxScore > 0 ? Math.round((score / maxScore) * 100) : 0;
+            percentage = Math.max(0, percentage - penalties);
+
+            // Update display
+            const scoreNumber = document.getElementById('scoreNumber');
+            const scoreFill = document.getElementById('scoreFill');
+            const recommendation = document.getElementById('recommendation');
+            const recTitle = document.getElementById('recTitle');
+            const recText = document.getElementById('recText');
+
+            scoreNumber.textContent = percentage;
+            scoreFill.style.width = percentage + '%';
+
+            // Remove previous classes
+            scoreNumber.classList.remove('high', 'medium', 'low');
+            scoreFill.classList.remove('high', 'medium', 'low');
+            recommendation.classList.remove('safe', 'caution', 'danger');
+
+            // Set recommendation based on score
+            if (percentage >= 70) {
+                scoreNumber.classList.add('high');
+                scoreFill.classList.add('high');
+                recommendation.classList.add('safe');
+                recTitle.textContent = 'Likely Safe to Shop';
+                recText.textContent = 'This website shows good security indicators. Proceed with your purchase using a credit card or PayPal for maximum protection. Always save order confirmations and monitor your statement.';
+            } else if (percentage >= 40) {
+                scoreNumber.classList.add('medium');
+                scoreFill.classList.add('medium');
+                recommendation.classList.add('caution');
+                recTitle.textContent = 'Proceed with Caution';
+                recText.textContent = 'This website has some security concerns. Research the company further before purchasing. If you proceed, use a credit card with strong fraud protection and keep all documentation.';
+            } else {
+                scoreNumber.classList.add('low');
+                scoreFill.classList.add('low');
+                recommendation.classList.add('danger');
+                recTitle.textContent = 'High Risk - Not Recommended';
+                recText.textContent = 'This website shows multiple warning signs of a potential scam. Do not make a purchase. Look for the same product on a well-known, established retailer instead.';
+            }
+
+            recommendation.style.display = 'block';
+        }
+
+        // Add event listeners to all checkboxes
+        document.querySelectorAll('.security-check, .red-flag').forEach(checkbox => {
+            checkbox.addEventListener('change', calculateScore);
+        });
+    </script>
+</body>
+</html>

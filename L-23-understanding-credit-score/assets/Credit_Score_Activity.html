@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credit Score Simulator - PFL Academy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background: #f9fafb;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+            color: white;
+            padding: 24px;
+            border-radius: 12px;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 16px;
+        }
+
+        .score-display {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .score-gauge {
+            position: relative;
+            width: 200px;
+            height: 100px;
+            margin: 0 auto 16px;
+        }
+
+        .score-number {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .score-number.excellent { color: #10b981; }
+        .score-number.good { color: #3b82f6; }
+        .score-number.fair { color: #f59e0b; }
+        .score-number.poor { color: #ef4444; }
+
+        .score-label {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .score-range {
+            font-size: 14px;
+            color: #6b7280;
+        }
+
+        .score-bar {
+            height: 12px;
+            background: linear-gradient(to right, #ef4444 0%, #f59e0b 40%, #3b82f6 70%, #10b981 100%);
+            border-radius: 6px;
+            margin-top: 16px;
+            position: relative;
+        }
+
+        .score-indicator {
+            position: absolute;
+            top: -4px;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border: 3px solid #1f2937;
+            border-radius: 50%;
+            transform: translateX(-50%);
+            transition: left 0.5s ease;
+        }
+
+        .factors-section {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .factors-section h3 {
+            font-size: 18px;
+            color: #6366f1;
+            margin-bottom: 16px;
+        }
+
+        .factor-bars {
+            display: grid;
+            gap: 16px;
+        }
+
+        .factor-item {
+            display: grid;
+            grid-template-columns: 180px 1fr 60px;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .factor-name {
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .factor-bar-container {
+            height: 24px;
+            background: #f3f4f6;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .factor-bar {
+            height: 100%;
+            border-radius: 12px;
+            transition: width 0.3s ease;
+        }
+
+        .factor-bar.payment { background: linear-gradient(90deg, #10b981, #059669); }
+        .factor-bar.utilization { background: linear-gradient(90deg, #3b82f6, #2563eb); }
+        .factor-bar.history { background: linear-gradient(90deg, #8b5cf6, #7c3aed); }
+        .factor-bar.mix { background: linear-gradient(90deg, #f59e0b, #d97706); }
+        .factor-bar.new-credit { background: linear-gradient(90deg, #ec4899, #db2777); }
+
+        .factor-weight {
+            font-size: 12px;
+            font-weight: 600;
+            color: #6b7280;
+        }
+
+        .actions-section {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .actions-section h3 {
+            font-size: 18px;
+            color: #6366f1;
+            margin-bottom: 16px;
+        }
+
+        .actions-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .action-btn {
+            padding: 12px 16px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            background: white;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+
+        .action-btn:hover {
+            border-color: #6366f1;
+            background: #f5f3ff;
+        }
+
+        .action-btn.positive {
+            border-left: 4px solid #10b981;
+        }
+
+        .action-btn.negative {
+            border-left: 4px solid #ef4444;
+        }
+
+        .action-btn.neutral {
+            border-left: 4px solid #f59e0b;
+        }
+
+        .action-title {
+            font-weight: 600;
+            font-size: 13px;
+            margin-bottom: 4px;
+        }
+
+        .action-desc {
+            font-size: 11px;
+            color: #6b7280;
+        }
+
+        .history-section {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .history-section h3 {
+            font-size: 18px;
+            color: #6366f1;
+            margin-bottom: 16px;
+        }
+
+        .history-list {
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .history-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #f3f4f6;
+            font-size: 13px;
+        }
+
+        .history-item:last-child {
+            border-bottom: none;
+        }
+
+        .history-action {
+            flex: 1;
+        }
+
+        .history-impact {
+            font-weight: 600;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+
+        .history-impact.positive {
+            background: #d1fae5;
+            color: #059669;
+        }
+
+        .history-impact.negative {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+
+        .analysis-section {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .analysis-section h3 {
+            font-size: 18px;
+            color: #6366f1;
+            margin-bottom: 16px;
+        }
+
+        .question-box {
+            background: #f9fafb;
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 16px;
+        }
+
+        .question-box:last-child {
+            margin-bottom: 0;
+        }
+
+        .question-box label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .question-box textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 14px;
+            min-height: 80px;
+            resize: vertical;
+        }
+
+        .impact-explanation {
+            background: #eff6ff;
+            border-left: 4px solid #3b82f6;
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 24px;
+        }
+
+        .impact-explanation h4 {
+            font-size: 14px;
+            color: #1e40af;
+            margin-bottom: 8px;
+        }
+
+        .impact-explanation p {
+            font-size: 13px;
+            color: #1e3a8a;
+        }
+
+        .btn-container {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background: #6366f1;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #4f46e5;
+        }
+
+        .btn-secondary {
+            background: #e5e7eb;
+            color: #374151;
+        }
+
+        .btn-secondary:hover {
+            background: #d1d5db;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #6b7280;
+            font-size: 12px;
+        }
+
+        .tooltip {
+            position: relative;
+            cursor: help;
+        }
+
+        .tooltip:hover::after {
+            content: attr(data-tip);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1f2937;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 11px;
+            white-space: nowrap;
+            z-index: 10;
+        }
+
+        @media print {
+            body {
+                padding: 10px;
+                background: white;
+            }
+
+            .btn-container,
+            .actions-section {
+                display: none;
+            }
+
+            .score-display,
+            .factors-section,
+            .history-section {
+                box-shadow: none;
+                page-break-inside: avoid;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .actions-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .factor-item {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Credit Score Simulator</h1>
+            <p>Learn how your financial actions impact your credit score</p>
+        </div>
+
+        <div class="score-display">
+            <div class="score-number" id="creditScore">680</div>
+            <div class="score-label" id="scoreLabel">Good</div>
+            <div class="score-range">Score Range: 300 - 850</div>
+            <div class="score-bar">
+                <div class="score-indicator" id="scoreIndicator" style="left: 69%;"></div>
+            </div>
+        </div>
+
+        <div class="factors-section">
+            <h3>Credit Score Factors</h3>
+            <div class="factor-bars">
+                <div class="factor-item">
+                    <span class="factor-name tooltip" data-tip="Your record of on-time payments">Payment History</span>
+                    <div class="factor-bar-container">
+                        <div class="factor-bar payment" id="paymentBar" style="width: 75%;"></div>
+                    </div>
+                    <span class="factor-weight">35%</span>
+                </div>
+                <div class="factor-item">
+                    <span class="factor-name tooltip" data-tip="Percentage of available credit you're using">Credit Utilization</span>
+                    <div class="factor-bar-container">
+                        <div class="factor-bar utilization" id="utilizationBar" style="width: 60%;"></div>
+                    </div>
+                    <span class="factor-weight">30%</span>
+                </div>
+                <div class="factor-item">
+                    <span class="factor-name tooltip" data-tip="How long you've had credit accounts">Length of History</span>
+                    <div class="factor-bar-container">
+                        <div class="factor-bar history" id="historyBar" style="width: 50%;"></div>
+                    </div>
+                    <span class="factor-weight">15%</span>
+                </div>
+                <div class="factor-item">
+                    <span class="factor-name tooltip" data-tip="Variety of credit types you have">Credit Mix</span>
+                    <div class="factor-bar-container">
+                        <div class="factor-bar mix" id="mixBar" style="width: 40%;"></div>
+                    </div>
+                    <span class="factor-weight">10%</span>
+                </div>
+                <div class="factor-item">
+                    <span class="factor-name tooltip" data-tip="Recent credit applications">New Credit</span>
+                    <div class="factor-bar-container">
+                        <div class="factor-bar new-credit" id="newCreditBar" style="width: 70%;"></div>
+                    </div>
+                    <span class="factor-weight">10%</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="actions-section">
+            <h3>Simulate Financial Actions</h3>
+            <p style="font-size: 13px; color: #6b7280; margin-bottom: 16px;">Click on actions below to see how they affect your credit score:</p>
+            <div class="actions-grid">
+                <button class="action-btn positive" onclick="applyAction('payOnTime')">
+                    <div class="action-title">Pay Bills On Time</div>
+                    <div class="action-desc">Make all payments by their due dates</div>
+                </button>
+                <button class="action-btn negative" onclick="applyAction('missPayment')">
+                    <div class="action-title">Miss a Payment</div>
+                    <div class="action-desc">Payment is 30+ days late</div>
+                </button>
+                <button class="action-btn positive" onclick="applyAction('payDownDebt')">
+                    <div class="action-title">Pay Down Credit Card</div>
+                    <div class="action-desc">Reduce balance to lower utilization</div>
+                </button>
+                <button class="action-btn negative" onclick="applyAction('maxOutCard')">
+                    <div class="action-title">Max Out Credit Card</div>
+                    <div class="action-desc">Use 90%+ of available credit</div>
+                </button>
+                <button class="action-btn neutral" onclick="applyAction('applyNewCredit')">
+                    <div class="action-title">Apply for New Credit</div>
+                    <div class="action-desc">Hard inquiry on your report</div>
+                </button>
+                <button class="action-btn negative" onclick="applyAction('closeOldAccount')">
+                    <div class="action-title">Close Oldest Account</div>
+                    <div class="action-desc">Reduces credit history length</div>
+                </button>
+                <button class="action-btn positive" onclick="applyAction('becomeAuthorizedUser')">
+                    <div class="action-title">Become Authorized User</div>
+                    <div class="action-desc">Added to parent's good credit card</div>
+                </button>
+                <button class="action-btn negative" onclick="applyAction('collection')">
+                    <div class="action-title">Account Sent to Collections</div>
+                    <div class="action-desc">Unpaid debt sold to collector</div>
+                </button>
+            </div>
+        </div>
+
+        <div class="history-section">
+            <h3>Action History</h3>
+            <div class="history-list" id="historyList">
+                <div class="history-item" style="color: #6b7280; font-style: italic;">
+                    No actions taken yet. Click on actions above to see their impact.
+                </div>
+            </div>
+        </div>
+
+        <div id="impactExplanation" class="impact-explanation" style="display: none;">
+            <h4 id="explanationTitle">Impact Explanation</h4>
+            <p id="explanationText"></p>
+        </div>
+
+        <div class="analysis-section">
+            <h3>Reflection Questions</h3>
+
+            <div class="question-box">
+                <label>1. Based on your simulation, which factor has the biggest impact on credit scores? Why do you think this is?</label>
+                <textarea placeholder="Payment history has the biggest impact because..."></textarea>
+            </div>
+
+            <div class="question-box">
+                <label>2. Jason applied for three credit cards in one month, thinking he could compare offers. What happened to his score and why?</label>
+                <textarea placeholder="Jason's score dropped because..."></textarea>
+            </div>
+
+            <div class="question-box">
+                <label>3. Sophia closed her oldest credit card to simplify her finances. How did this affect her score?</label>
+                <textarea placeholder="Closing the oldest account affected her score by..."></textarea>
+            </div>
+
+            <div class="question-box">
+                <label>4. What three actions would you take to build or improve your credit score? Why did you choose these?</label>
+                <textarea placeholder="I would: 1) ... 2) ... 3) ... because..."></textarea>
+            </div>
+        </div>
+
+        <div class="btn-container">
+            <button class="btn btn-primary" onclick="resetSimulation()">Reset Simulation</button>
+            <button class="btn btn-secondary" onclick="window.print()">Print Results</button>
+        </div>
+
+        <div class="footer">
+            <p>PFL Academy - Chapter 23: Understanding Credit Scores</p>
+        </div>
+    </div>
+
+    <script>
+        let currentScore = 680;
+        let actionHistory = [];
+
+        const factorScores = {
+            payment: 75,
+            utilization: 60,
+            history: 50,
+            mix: 40,
+            newCredit: 70
+        };
+
+        const actions = {
+            payOnTime: {
+                name: 'Paid bills on time',
+                impact: 15,
+                type: 'positive',
+                factor: 'payment',
+                factorChange: 10,
+                explanation: 'Payment history is 35% of your score - the largest factor. On-time payments demonstrate reliability to lenders. Just one on-time payment helps, but consistent on-time payments over months and years have the strongest positive effect.'
+            },
+            missPayment: {
+                name: 'Missed a payment',
+                impact: -50,
+                type: 'negative',
+                factor: 'payment',
+                factorChange: -25,
+                explanation: 'A late payment (30+ days) can drop your score by 50-100 points! Late payments stay on your credit report for 7 years. The more recent the late payment, the more it hurts. Multiple late payments are even more damaging.'
+            },
+            payDownDebt: {
+                name: 'Paid down credit card',
+                impact: 20,
+                type: 'positive',
+                factor: 'utilization',
+                factorChange: 15,
+                explanation: 'Credit utilization (30% of score) measures how much of your available credit you use. Keeping utilization below 30% is good; below 10% is excellent. Paying down balances is one of the fastest ways to improve your score.'
+            },
+            maxOutCard: {
+                name: 'Maxed out credit card',
+                impact: -40,
+                type: 'negative',
+                factor: 'utilization',
+                factorChange: -30,
+                explanation: 'High utilization (90%+) signals financial stress to lenders. Even if you pay in full each month, a high balance when reported looks bad. Request a higher credit limit or pay before the statement date to lower utilization.'
+            },
+            applyNewCredit: {
+                name: 'Applied for new credit',
+                impact: -10,
+                type: 'negative',
+                factor: 'newCredit',
+                factorChange: -15,
+                explanation: 'Each credit application creates a "hard inquiry" that can lower your score by 5-10 points. Multiple applications in a short time look risky. However, rate shopping for mortgages or auto loans within 14-45 days counts as one inquiry.'
+            },
+            closeOldAccount: {
+                name: 'Closed oldest account',
+                impact: -30,
+                type: 'negative',
+                factor: 'history',
+                factorChange: -20,
+                explanation: 'Closing your oldest account shortens your credit history (15% of score) and increases your utilization ratio (less available credit). Keep old accounts open, even if you rarely use them. Use them occasionally to prevent closure.'
+            },
+            becomeAuthorizedUser: {
+                name: 'Became authorized user',
+                impact: 25,
+                type: 'positive',
+                factor: 'history',
+                factorChange: 15,
+                explanation: 'Being added to someone\'s credit card as an authorized user can add their positive payment history to your report. This is a great way for young people to start building credit. Choose someone with excellent credit habits!'
+            },
+            collection: {
+                name: 'Account sent to collections',
+                impact: -100,
+                type: 'negative',
+                factor: 'payment',
+                factorChange: -40,
+                explanation: 'Collections are extremely damaging and can drop your score by 100+ points. They stay on your report for 7 years. Even paid collections hurt your score (though some newer scoring models ignore paid collections). Avoid this at all costs!'
+            }
+        };
+
+        function applyAction(actionKey) {
+            const action = actions[actionKey];
+
+            // Update score
+            currentScore = Math.max(300, Math.min(850, currentScore + action.impact));
+
+            // Update factor
+            factorScores[action.factor] = Math.max(0, Math.min(100,
+                factorScores[action.factor] + action.factorChange));
+
+            // Add to history
+            actionHistory.unshift({
+                name: action.name,
+                impact: action.impact,
+                type: action.type
+            });
+
+            // Update displays
+            updateScoreDisplay();
+            updateFactorBars();
+            updateHistory();
+            showExplanation(action);
+        }
+
+        function updateScoreDisplay() {
+            const scoreElement = document.getElementById('creditScore');
+            const labelElement = document.getElementById('scoreLabel');
+            const indicatorElement = document.getElementById('scoreIndicator');
+
+            scoreElement.textContent = currentScore;
+
+            // Update label and color
+            let label, colorClass;
+            if (currentScore >= 750) {
+                label = 'Excellent';
+                colorClass = 'excellent';
+            } else if (currentScore >= 700) {
+                label = 'Good';
+                colorClass = 'good';
+            } else if (currentScore >= 650) {
+                label = 'Fair';
+                colorClass = 'fair';
+            } else {
+                label = 'Poor';
+                colorClass = 'poor';
+            }
+
+            labelElement.textContent = label;
+            scoreElement.className = 'score-number ' + colorClass;
+
+            // Update indicator position (300-850 range)
+            const percentage = ((currentScore - 300) / 550) * 100;
+            indicatorElement.style.left = percentage + '%';
+        }
+
+        function updateFactorBars() {
+            document.getElementById('paymentBar').style.width = factorScores.payment + '%';
+            document.getElementById('utilizationBar').style.width = factorScores.utilization + '%';
+            document.getElementById('historyBar').style.width = factorScores.history + '%';
+            document.getElementById('mixBar').style.width = factorScores.mix + '%';
+            document.getElementById('newCreditBar').style.width = factorScores.newCredit + '%';
+        }
+
+        function updateHistory() {
+            const historyList = document.getElementById('historyList');
+
+            if (actionHistory.length === 0) {
+                historyList.innerHTML = '<div class="history-item" style="color: #6b7280; font-style: italic;">No actions taken yet.</div>';
+                return;
+            }
+
+            historyList.innerHTML = actionHistory.map(item => `
+                <div class="history-item">
+                    <span class="history-action">${item.name}</span>
+                    <span class="history-impact ${item.type}">
+                        ${item.impact > 0 ? '+' : ''}${item.impact} points
+                    </span>
+                </div>
+            `).join('');
+        }
+
+        function showExplanation(action) {
+            const explanationDiv = document.getElementById('impactExplanation');
+            const titleElement = document.getElementById('explanationTitle');
+            const textElement = document.getElementById('explanationText');
+
+            titleElement.textContent = action.name + ' - Impact: ' + (action.impact > 0 ? '+' : '') + action.impact + ' points';
+            textElement.textContent = action.explanation;
+            explanationDiv.style.display = 'block';
+            explanationDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        function resetSimulation() {
+            currentScore = 680;
+            actionHistory = [];
+            factorScores.payment = 75;
+            factorScores.utilization = 60;
+            factorScores.history = 50;
+            factorScores.mix = 40;
+            factorScores.newCredit = 70;
+
+            updateScoreDisplay();
+            updateFactorBars();
+            updateHistory();
+            document.getElementById('impactExplanation').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

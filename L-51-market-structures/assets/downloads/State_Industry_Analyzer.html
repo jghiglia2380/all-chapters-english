@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>State Industry Analyzer - PFL Academy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background-color: #f9fafb;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+            color: white;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 0.95rem;
+        }
+
+        .content {
+            padding: 24px;
+        }
+
+        .instructions {
+            background-color: #eef2ff;
+            border-left: 4px solid #6366f1;
+            padding: 16px;
+            margin-bottom: 24px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .instructions h2 {
+            color: #4f46e5;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        .section {
+            margin-bottom: 32px;
+        }
+
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e5e7eb;
+        }
+
+        .table-container {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+
+        th {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+            padding: 12px 10px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 12px 10px;
+            border-bottom: 1px solid #e5e7eb;
+            vertical-align: top;
+        }
+
+        tr:hover {
+            background-color: #f9fafb;
+        }
+
+        .industry-name {
+            font-weight: 600;
+            color: #374151;
+        }
+
+        input[type="text"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            background: white;
+        }
+
+        textarea {
+            min-height: 50px;
+            resize: vertical;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #6366f1;
+        }
+
+        .guiding-questions {
+            background: #f0f9ff;
+            border-left: 4px solid #3b82f6;
+            padding: 16px;
+            margin: 16px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .guiding-questions h4 {
+            color: #1d4ed8;
+            margin-bottom: 8px;
+        }
+
+        .guiding-questions ul {
+            margin-left: 20px;
+            font-size: 0.9rem;
+        }
+
+        .guiding-questions li {
+            margin-bottom: 4px;
+        }
+
+        .regulation-section {
+            margin-top: 32px;
+        }
+
+        .discussion-box {
+            background: #fff7ed;
+            border: 2px solid #fed7aa;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 24px;
+        }
+
+        .discussion-box h3 {
+            color: #ea580c;
+            margin-bottom: 16px;
+        }
+
+        .discussion-question {
+            margin-bottom: 16px;
+        }
+
+        .discussion-question label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #374151;
+        }
+
+        .discussion-question p {
+            font-size: 0.85rem;
+            color: #6b7280;
+            margin-bottom: 8px;
+        }
+
+        .example-row {
+            background-color: #f0fdf4;
+        }
+
+        .example-row td {
+            font-size: 0.8rem;
+            color: #166534;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 12px;
+            margin-top: 24px;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-primary {
+            background: #6366f1;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #4f46e5;
+        }
+
+        .btn-secondary {
+            background: #10b981;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #059669;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 16px;
+            background: #f8fafc;
+            color: #6b7280;
+            font-size: 0.85rem;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 10px;
+                font-size: 10px;
+            }
+
+            .container {
+                box-shadow: none;
+            }
+
+            .btn {
+                display: none;
+            }
+
+            th {
+                background: #6366f1 !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            .table-container {
+                overflow: visible;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.5rem;
+            }
+
+            .content {
+                padding: 16px;
+            }
+
+            th, td {
+                padding: 8px 6px;
+                font-size: 0.8rem;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>{{STATE_NAME}} Industry Analyzer</h1>
+            <p>Classify major industries by market structure and analyze government regulation impact</p>
+        </div>
+
+        <div class="content">
+            <div class="instructions">
+                <h2>Instructions</h2>
+                <p>Analyze major {{STATE_NAME}} industries to understand their market structures and how this affects you as a consumer. Consider local conditions when classifying - market structures may vary by region.</p>
+            </div>
+
+            <!-- Part A: Industry Classification -->
+            <div class="section">
+                <h3 class="section-title">Part A: Industry Classification (5 minutes)</h3>
+
+                <div class="guiding-questions">
+                    <h4>Guiding Questions:</h4>
+                    <ul>
+                        <li>How many major players operate in {{STATE_NAME}}?</li>
+                        <li>Can new competitors easily enter the market?</li>
+                        <li>How much do prices vary between providers?</li>
+                        <li>Do consumers have real choices?</li>
+                    </ul>
+                </div>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Industry</th>
+                                <th>Market Structure</th>
+                                <th>Evidence</th>
+                                <th>Consumer Impact</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="industry-name">Utilities (electric, gas, water)</td>
+                                <td>
+                                    <select>
+                                        <option value="">Select...</option>
+                                        <option>Perfect Competition</option>
+                                        <option>Monopolistic Competition</option>
+                                        <option>Oligopoly</option>
+                                        <option>Monopoly</option>
+                                    </select>
+                                </td>
+                                <td><input type="text" placeholder="Why this classification?"></td>
+                                <td><input type="text" placeholder="How does this affect you?"></td>
+                            </tr>
+                            <tr>
+                                <td class="industry-name">Telecommunications</td>
+                                <td>
+                                    <select>
+                                        <option value="">Select...</option>
+                                        <option>Perfect Competition</option>
+                                        <option>Monopolistic Competition</option>
+                                        <option>Oligopoly</option>
+                                        <option>Monopoly</option>
+                                    </select>
+                                </td>
+                                <td><input type="text" placeholder="Why this classification?"></td>
+                                <td><input type="text" placeholder="How does this affect you?"></td>
+                            </tr>
+                            <tr>
+                                <td class="industry-name">Healthcare (hospitals)</td>
+                                <td>
+                                    <select>
+                                        <option value="">Select...</option>
+                                        <option>Perfect Competition</option>
+                                        <option>Monopolistic Competition</option>
+                                        <option>Oligopoly</option>
+                                        <option>Monopoly</option>
+                                    </select>
+                                </td>
+                                <td><input type="text" placeholder="Why this classification?"></td>
+                                <td><input type="text" placeholder="How does this affect you?"></td>
+                            </tr>
+                            <tr>
+                                <td class="industry-name">Banking</td>
+                                <td>
+                                    <select>
+                                        <option value="">Select...</option>
+                                        <option>Perfect Competition</option>
+                                        <option>Monopolistic Competition</option>
+                                        <option>Oligopoly</option>
+                                        <option>Monopoly</option>
+                                    </select>
+                                </td>
+                                <td><input type="text" placeholder="Why this classification?"></td>
+                                <td><input type="text" placeholder="How does this affect you?"></td>
+                            </tr>
+                            <tr>
+                                <td class="industry-name">Retail (groceries, clothing)</td>
+                                <td>
+                                    <select>
+                                        <option value="">Select...</option>
+                                        <option>Perfect Competition</option>
+                                        <option>Monopolistic Competition</option>
+                                        <option>Oligopoly</option>
+                                        <option>Monopoly</option>
+                                    </select>
+                                </td>
+                                <td><input type="text" placeholder="Why this classification?"></td>
+                                <td><input type="text" placeholder="How does this affect you?"></td>
+                            </tr>
+                            <tr>
+                                <td class="industry-name">Restaurants</td>
+                                <td>
+                                    <select>
+                                        <option value="">Select...</option>
+                                        <option>Perfect Competition</option>
+                                        <option>Monopolistic Competition</option>
+                                        <option>Oligopoly</option>
+                                        <option>Monopoly</option>
+                                    </select>
+                                </td>
+                                <td><input type="text" placeholder="Why this classification?"></td>
+                                <td><input type="text" placeholder="How does this affect you?"></td>
+                            </tr>
+                            <tr>
+                                <td class="industry-name">Insurance (auto, health, home)</td>
+                                <td>
+                                    <select>
+                                        <option value="">Select...</option>
+                                        <option>Perfect Competition</option>
+                                        <option>Monopolistic Competition</option>
+                                        <option>Oligopoly</option>
+                                        <option>Monopoly</option>
+                                    </select>
+                                </td>
+                                <td><input type="text" placeholder="Why this classification?"></td>
+                                <td><input type="text" placeholder="How does this affect you?"></td>
+                            </tr>
+                            <tr>
+                                <td class="industry-name">Higher education</td>
+                                <td>
+                                    <select>
+                                        <option value="">Select...</option>
+                                        <option>Perfect Competition</option>
+                                        <option>Monopolistic Competition</option>
+                                        <option>Oligopoly</option>
+                                        <option>Monopoly</option>
+                                    </select>
+                                </td>
+                                <td><input type="text" placeholder="Why this classification?"></td>
+                                <td><input type="text" placeholder="How does this affect you?"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Part B: Government Intervention Analysis -->
+            <div class="section regulation-section">
+                <h3 class="section-title">Part B: Government Intervention Analysis (5 minutes)</h3>
+
+                <p style="margin-bottom: 16px; color: #6b7280;">Which {{STATE_NAME}} industries are regulated? Why?</p>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Industry</th>
+                                <th>Regulated?</th>
+                                <th>Type of Regulation</th>
+                                <th>Justification</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="example-row">
+                                <td class="industry-name">Electricity</td>
+                                <td>Yes</td>
+                                <td>Price regulation by Public Utility Commission</td>
+                                <td>Natural monopoly</td>
+                            </tr>
+                            <tr class="example-row">
+                                <td class="industry-name">Cell phones</td>
+                                <td>Partially</td>
+                                <td>FCC licensing, antitrust</td>
+                                <td>Limited spectrum, oligopoly</td>
+                            </tr>
+                            <tr class="example-row">
+                                <td class="industry-name">Healthcare</td>
+                                <td>Heavily</td>
+                                <td>Licensing, insurance regulation, safety</td>
+                                <td>Quality/safety, information asymmetry</td>
+                            </tr>
+                            <tr class="example-row">
+                                <td class="industry-name">Restaurants</td>
+                                <td>Moderately</td>
+                                <td>Health inspections, labor laws</td>
+                                <td>Public safety</td>
+                            </tr>
+                            <tr>
+                                <td class="industry-name"><input type="text" placeholder="Add industry"></td>
+                                <td>
+                                    <select>
+                                        <option value="">Select...</option>
+                                        <option>Yes</option>
+                                        <option>Partially</option>
+                                        <option>No</option>
+                                    </select>
+                                </td>
+                                <td><input type="text" placeholder="Type of regulation"></td>
+                                <td><input type="text" placeholder="Why regulated?"></td>
+                            </tr>
+                            <tr>
+                                <td class="industry-name"><input type="text" placeholder="Add industry"></td>
+                                <td>
+                                    <select>
+                                        <option value="">Select...</option>
+                                        <option>Yes</option>
+                                        <option>Partially</option>
+                                        <option>No</option>
+                                    </select>
+                                </td>
+                                <td><input type="text" placeholder="Type of regulation"></td>
+                                <td><input type="text" placeholder="Why regulated?"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Discussion Questions -->
+            <div class="discussion-box">
+                <h3>Discussion Questions</h3>
+
+                <div class="discussion-question">
+                    <label>1. Should {{STATE_NAME}} regulate more industries or fewer?</label>
+                    <p>More regulation when: Natural monopoly, market failure, public safety<br>
+                    Less regulation when: Competitive markets work well, regulation creates inefficiency</p>
+                    <textarea placeholder="Your answer..."></textarea>
+                </div>
+
+                <div class="discussion-question">
+                    <label>2. Has regulation helped or hurt you as a consumer?</label>
+                    <p>Helped: Safe electricity, clean water, inspected food<br>
+                    Hurt: Higher costs in some cases, less choice</p>
+                    <textarea placeholder="Your answer..."></textarea>
+                </div>
+
+                <div class="discussion-question">
+                    <label>3. Where does {{STATE_NAME}} have too much regulation? Too little?</label>
+                    <p>Debate: Housing (zoning restrictions limit supply, raise prices)<br>
+                    Debate: Telecom (limited competition, high prices)</p>
+                    <textarea placeholder="Your opinion..."></textarea>
+                </div>
+            </div>
+
+            <div class="button-group">
+                <button class="btn btn-primary" onclick="window.print()">Print Analysis</button>
+                <button class="btn btn-secondary" onclick="clearForm()">Clear Form</button>
+            </div>
+        </div>
+
+        <div class="footer">
+            PFL Academy - L-51: Market Structures and Consumer Choice
+        </div>
+    </div>
+
+    <script>
+        function clearForm() {
+            if (confirm('Are you sure you want to clear all entries?')) {
+                document.querySelectorAll('input[type="text"], textarea').forEach(input => {
+                    input.value = '';
+                });
+                document.querySelectorAll('select').forEach(select => {
+                    select.selectedIndex = 0;
+                });
+            }
+        }
+    </script>
+</body>
+</html>

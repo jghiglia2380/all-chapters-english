@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Red Flag Identifier Tool</title>
+    <!--
+    PURPOSE: Review and classify contract excerpt red flags across three rounds
+    USE: Activity 3 - Red Flag Identification Challenge (10 minutes)
+    -->
+    <style>
+        :root {
+            --primary: #6366f1;
+            --secondary: #8b5cf6;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --text: #1f2937;
+            --surface: #f9fafb;
+        }
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: var(--primary);
+            border-bottom: 3px solid var(--primary);
+            padding-bottom: 10px;
+        }
+        .score-bar {
+            background: var(--surface);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        .score-display {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+        .round-indicator {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            display: inline-block;
+            margin: 20px 0;
+        }
+        .clause-box {
+            background: white;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+        .clause-text {
+            font-family: 'Times New Roman', serif;
+            font-size: 0.95rem;
+            background: #fffbeb;
+            padding: 15px;
+            border: 1px solid #fcd34d;
+            border-radius: 6px;
+            margin: 10px 0;
+            line-height: 1.5;
+        }
+        .classification-btns {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin: 15px 0;
+        }
+        .classify-btn {
+            padding: 12px 24px;
+            border: 2px solid #e5e7eb;
+            border-radius: 6px;
+            background: white;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        .classify-btn:hover {
+            transform: translateY(-2px);
+        }
+        .classify-btn.acceptable:hover,
+        .classify-btn.acceptable.selected {
+            background: #d1fae5;
+            border-color: var(--success);
+            color: var(--success);
+        }
+        .classify-btn.concerning:hover,
+        .classify-btn.concerning.selected {
+            background: #fef3c7;
+            border-color: var(--warning);
+            color: #b45309;
+        }
+        .classify-btn.unacceptable:hover,
+        .classify-btn.unacceptable.selected {
+            background: #fee2e2;
+            border-color: var(--danger);
+            color: var(--danger);
+        }
+        .reason-input {
+            margin: 15px 0;
+        }
+        .reason-input label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .reason-input textarea {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #e5e7eb;
+            border-radius: 6px;
+            min-height: 60px;
+            font-family: inherit;
+        }
+        .feedback-box {
+            padding: 15px;
+            border-radius: 6px;
+            margin: 15px 0;
+            display: none;
+        }
+        .feedback-box.correct {
+            background: #d1fae5;
+            border-left: 4px solid var(--success);
+        }
+        .feedback-box.incorrect {
+            background: #fee2e2;
+            border-left: 4px solid var(--danger);
+        }
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            cursor: pointer;
+            margin: 5px;
+        }
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+        .btn-primary:hover {
+            background: #4f46e5;
+        }
+        .tips-box {
+            background: #f0f7ff;
+            border-left: 4px solid var(--primary);
+            padding: 15px;
+            margin: 20px 0;
+        }
+        @media print {
+            .classification-btns, .btn { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <h1>🚩 Red Flag Identifier Challenge</h1>
+
+    <div class="score-bar">
+        <div>Your Score</div>
+        <div class="score-display"><span id="score">0</span> / 9</div>
+    </div>
+
+    <div class="tips-box">
+        <strong>💡 Look for these red flags:</strong> Vague language, automatic renewals, excessive fees, one-sided terms, mandatory arbitration, short cancellation windows, and waived rights.
+    </div>
+
+    <!-- Round 1 -->
+    <div class="round-indicator">Round 1: Subscription Services</div>
+
+    <div class="clause-box" id="clause-1">
+        <h3>Clause 1: Auto-Renewal</h3>
+        <div class="clause-text">
+            "Your subscription will automatically renew at the then-current rate unless you cancel. To cancel, submit a written request to our processing center at least 45 days before renewal. A convenience fee of $50 applies to all cancellation requests."
+        </div>
+        <div class="classification-btns">
+            <button class="classify-btn acceptable" onclick="classify(1, 'acceptable')">✓ Acceptable</button>
+            <button class="classify-btn concerning" onclick="classify(1, 'concerning')">⚠ Concerning</button>
+            <button class="classify-btn unacceptable" onclick="classify(1, 'unacceptable')">⛔ Unacceptable</button>
+        </div>
+        <div class="reason-input">
+            <label>Why did you choose this classification?</label>
+            <textarea placeholder="Explain the red flags you identified..."></textarea>
+        </div>
+        <div class="feedback-box" id="feedback-1"></div>
+    </div>
+
+    <div class="clause-box" id="clause-2">
+        <h3>Clause 2: Price Changes</h3>
+        <div class="clause-text">
+            "We reserve the right to modify pricing at any time. Continued use of the service after a price change constitutes acceptance of the new pricing."
+        </div>
+        <div class="classification-btns">
+            <button class="classify-btn acceptable" onclick="classify(2, 'acceptable')">✓ Acceptable</button>
+            <button class="classify-btn concerning" onclick="classify(2, 'concerning')">⚠ Concerning</button>
+            <button class="classify-btn unacceptable" onclick="classify(2, 'unacceptable')">⛔ Unacceptable</button>
+        </div>
+        <div class="reason-input">
+            <label>Why did you choose this classification?</label>
+            <textarea placeholder="Explain the red flags you identified..."></textarea>
+        </div>
+        <div class="feedback-box" id="feedback-2"></div>
+    </div>
+
+    <div class="clause-box" id="clause-3">
+        <h3>Clause 3: Dispute Resolution</h3>
+        <div class="clause-text">
+            "If you have concerns about charges, please contact our customer service within 30 days. We will investigate and respond within 10 business days."
+        </div>
+        <div class="classification-btns">
+            <button class="classify-btn acceptable" onclick="classify(3, 'acceptable')">✓ Acceptable</button>
+            <button class="classify-btn concerning" onclick="classify(3, 'concerning')">⚠ Concerning</button>
+            <button class="classify-btn unacceptable" onclick="classify(3, 'unacceptable')">⛔ Unacceptable</button>
+        </div>
+        <div class="reason-input">
+            <label>Why did you choose this classification?</label>
+            <textarea placeholder="Explain the red flags you identified..."></textarea>
+        </div>
+        <div class="feedback-box" id="feedback-3"></div>
+    </div>
+
+    <!-- Round 2 -->
+    <div class="round-indicator">Round 2: Rental Agreements</div>
+
+    <div class="clause-box" id="clause-4">
+        <h3>Clause 4: Security Deposit</h3>
+        <div class="clause-text">
+            "Landlord may deduct from security deposit for any reason deemed necessary including, but not limited to, cleaning, repairs, painting, and administrative costs. Deposit return within 90 days."
+        </div>
+        <div class="classification-btns">
+            <button class="classify-btn acceptable" onclick="classify(4, 'acceptable')">✓ Acceptable</button>
+            <button class="classify-btn concerning" onclick="classify(4, 'concerning')">⚠ Concerning</button>
+            <button class="classify-btn unacceptable" onclick="classify(4, 'unacceptable')">⛔ Unacceptable</button>
+        </div>
+        <div class="reason-input">
+            <label>Why did you choose this classification?</label>
+            <textarea placeholder="Explain the red flags you identified..."></textarea>
+        </div>
+        <div class="feedback-box" id="feedback-4"></div>
+    </div>
+
+    <div class="clause-box" id="clause-5">
+        <h3>Clause 5: Maintenance</h3>
+        <div class="clause-text">
+            "Landlord will respond to maintenance requests within 48 hours for emergencies and 7 days for non-emergencies. Tenant responsible for first $75 of each repair."
+        </div>
+        <div class="classification-btns">
+            <button class="classify-btn acceptable" onclick="classify(5, 'acceptable')">✓ Acceptable</button>
+            <button class="classify-btn concerning" onclick="classify(5, 'concerning')">⚠ Concerning</button>
+            <button class="classify-btn unacceptable" onclick="classify(5, 'unacceptable')">⛔ Unacceptable</button>
+        </div>
+        <div class="reason-input">
+            <label>Why did you choose this classification?</label>
+            <textarea placeholder="Explain the red flags you identified..."></textarea>
+        </div>
+        <div class="feedback-box" id="feedback-5"></div>
+    </div>
+
+    <div class="clause-box" id="clause-6">
+        <h3>Clause 6: Entry Rights</h3>
+        <div class="clause-text">
+            "Landlord may enter the premises at any time without notice for inspection, repairs, or showing to prospective tenants."
+        </div>
+        <div class="classification-btns">
+            <button class="classify-btn acceptable" onclick="classify(6, 'acceptable')">✓ Acceptable</button>
+            <button class="classify-btn concerning" onclick="classify(6, 'concerning')">⚠ Concerning</button>
+            <button class="classify-btn unacceptable" onclick="classify(6, 'unacceptable')">⛔ Unacceptable</button>
+        </div>
+        <div class="reason-input">
+            <label>Why did you choose this classification?</label>
+            <textarea placeholder="Explain the red flags you identified..."></textarea>
+        </div>
+        <div class="feedback-box" id="feedback-6"></div>
+    </div>
+
+    <!-- Round 3 -->
+    <div class="round-indicator">Round 3: Financial Services</div>
+
+    <div class="clause-box" id="clause-7">
+        <h3>Clause 7: Interest Rate</h3>
+        <div class="clause-text">
+            "APR may be increased to 29.99% if you miss a payment, your credit score decreases, or at our discretion based on market conditions."
+        </div>
+        <div class="classification-btns">
+            <button class="classify-btn acceptable" onclick="classify(7, 'acceptable')">✓ Acceptable</button>
+            <button class="classify-btn concerning" onclick="classify(7, 'concerning')">⚠ Concerning</button>
+            <button class="classify-btn unacceptable" onclick="classify(7, 'unacceptable')">⛔ Unacceptable</button>
+        </div>
+        <div class="reason-input">
+            <label>Why did you choose this classification?</label>
+            <textarea placeholder="Explain the red flags you identified..."></textarea>
+        </div>
+        <div class="feedback-box" id="feedback-7"></div>
+    </div>
+
+    <div class="clause-box" id="clause-8">
+        <h3>Clause 8: Arbitration</h3>
+        <div class="clause-text">
+            "All disputes must be resolved through binding arbitration. You waive your right to participate in class actions. However, you may opt-out within 30 days of account opening by written notice."
+        </div>
+        <div class="classification-btns">
+            <button class="classify-btn acceptable" onclick="classify(8, 'acceptable')">✓ Acceptable</button>
+            <button class="classify-btn concerning" onclick="classify(8, 'concerning')">⚠ Concerning</button>
+            <button class="classify-btn unacceptable" onclick="classify(8, 'unacceptable')">⛔ Unacceptable</button>
+        </div>
+        <div class="reason-input">
+            <label>Why did you choose this classification?</label>
+            <textarea placeholder="Explain the red flags you identified..."></textarea>
+        </div>
+        <div class="feedback-box" id="feedback-8"></div>
+    </div>
+
+    <div class="clause-box" id="clause-9">
+        <h3>Clause 9: Fee Disclosure</h3>
+        <div class="clause-text">
+            "Annual fee: $95. Late payment fee: $29. Returned payment fee: $29. Balance transfer fee: 3% or $5, whichever is greater. Foreign transaction fee: 3%."
+        </div>
+        <div class="classification-btns">
+            <button class="classify-btn acceptable" onclick="classify(9, 'acceptable')">✓ Acceptable</button>
+            <button class="classify-btn concerning" onclick="classify(9, 'concerning')">⚠ Concerning</button>
+            <button class="classify-btn unacceptable" onclick="classify(9, 'unacceptable')">⛔ Unacceptable</button>
+        </div>
+        <div class="reason-input">
+            <label>Why did you choose this classification?</label>
+            <textarea placeholder="Explain the red flags you identified..."></textarea>
+        </div>
+        <div class="feedback-box" id="feedback-9"></div>
+    </div>
+
+    <button class="btn btn-primary" onclick="checkAnswers()">Check My Answers</button>
+
+    <script>
+        const answers = {
+            1: 'unacceptable', // 45 days notice + $50 fee
+            2: 'unacceptable', // No notice of price changes
+            3: 'acceptable',   // Clear process and timeline
+            4: 'unacceptable', // Vague "any reason" + 90 days
+            5: 'concerning',   // $75 repair fee is borderline
+            6: 'unacceptable', // No notice requirement
+            7: 'unacceptable', // "at our discretion"
+            8: 'concerning',   // Arbitration but has opt-out
+            9: 'acceptable'    // Clear fee disclosure
+        };
+
+        let score = 0;
+        let selections = {};
+
+        function classify(clauseNum, classification) {
+            const box = document.getElementById(`clause-${clauseNum}`);
+            box.querySelectorAll('.classify-btn').forEach(btn => btn.classList.remove('selected'));
+            box.querySelector(`.classify-btn.${classification}`).classList.add('selected');
+            selections[clauseNum] = classification;
+        }
+
+        function checkAnswers() {
+            score = 0;
+            for (let i = 1; i <= 9; i++) {
+                const feedback = document.getElementById(`feedback-${i}`);
+                if (selections[i] === answers[i]) {
+                    score++;
+                    feedback.className = 'feedback-box correct';
+                    feedback.innerHTML = '✓ Correct! You identified this properly.';
+                } else if (selections[i]) {
+                    feedback.className = 'feedback-box incorrect';
+                    feedback.innerHTML = `✗ The best answer was: ${answers[i].toUpperCase()}`;
+                }
+                feedback.style.display = selections[i] ? 'block' : 'none';
+            }
+            document.getElementById('score').textContent = score;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Trading Strategy Builder</title>
+    <style>
+        :root { --primary: #6366f1; --secondary: #8b5cf6; --success: #10b981; --warning: #f59e0b; --danger: #ef4444; }
+        body { font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 14px; line-height: 1.5; color: #1f2937; max-width: 900px; margin: 0 auto; padding: 15px; }
+        h1 { color: var(--primary); font-size: 24px; border-bottom: 2px solid var(--primary); padding-bottom: 8px; }
+        h2 { color: var(--secondary); font-size: 18px; margin-top: 20px; }
+        .section { background: #f9fafb; padding: 15px; border-radius: 5px; margin: 15px 0; }
+        .input-group { margin: 10px 0; }
+        .input-group label { display: block; font-weight: bold; margin-bottom: 5px; }
+        select, input { width: 100%; padding: 8px; border: 1px solid #d1d5db; border-radius: 4px; box-sizing: border-box; }
+        textarea { width: 100%; padding: 8px; border: 1px solid #d1d5db; border-radius: 4px; min-height: 60px; box-sizing: border-box; }
+        .options-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin: 10px 0; }
+        .option-card { background: white; padding: 10px; border: 2px solid #d1d5db; border-radius: 5px; cursor: pointer; }
+        .option-card:hover { border-color: var(--primary); }
+        .option-card.selected { border-color: var(--primary); background: #e0e7ff; }
+        .option-title { font-weight: bold; font-size: 13px; }
+        .option-desc { font-size: 11px; color: #6b7280; }
+        .strategy-summary { background: #e0e7ff; padding: 15px; border-radius: 5px; margin: 15px 0; }
+        .summary-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+        .summary-item { background: white; padding: 10px; border-radius: 4px; }
+        .summary-label { font-size: 11px; color: #6b7280; }
+        .summary-value { font-weight: bold; color: var(--primary); }
+        .rules-list { background: #fef3c7; padding: 15px; border-radius: 5px; margin: 15px 0; }
+        button { background: var(--primary); color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; margin: 5px; }
+        button:hover { background: var(--secondary); }
+        @media print { body { font-size: 11pt; } button { display: none; } }
+    </style>
+</head>
+<body>
+    <h1>Personal Trading Strategy Builder</h1>
+    <p>Define your investment approach and create personal trading rules</p>
+
+    <div class="section">
+        <h2 style="margin-top: 0;">Step 1: Investment Profile</h2>
+        <div class="input-group">
+            <label>Time Horizon</label>
+            <select id="timeHorizon" onchange="updateStrategy()">
+                <option value="">Select...</option>
+                <option value="short">Short-term (1-3 years)</option>
+                <option value="medium">Medium-term (3-10 years)</option>
+                <option value="long">Long-term (10+ years)</option>
+            </select>
+        </div>
+        <div class="input-group">
+            <label>Risk Tolerance</label>
+            <select id="riskTolerance" onchange="updateStrategy()">
+                <option value="">Select...</option>
+                <option value="conservative">Conservative - Preserve capital</option>
+                <option value="moderate">Moderate - Balance growth and safety</option>
+                <option value="aggressive">Aggressive - Maximize growth</option>
+            </select>
+        </div>
+        <div class="input-group">
+            <label>Investment Amount per Month ($)</label>
+            <input type="number" id="monthlyAmount" value="200" onchange="updateStrategy()">
+        </div>
+    </div>
+
+    <div class="section">
+        <h2 style="margin-top: 0;">Step 2: Investment Style</h2>
+        <div class="options-grid" id="styleOptions">
+            <div class="option-card" onclick="selectStyle('passive', this)">
+                <div class="option-title">Passive Index Investing</div>
+                <div class="option-desc">Buy and hold index funds; minimal trading; lowest costs</div>
+            </div>
+            <div class="option-card" onclick="selectStyle('dividend', this)">
+                <div class="option-title">Dividend Growth</div>
+                <div class="option-desc">Focus on dividend-paying stocks; reinvest dividends</div>
+            </div>
+            <div class="option-card" onclick="selectStyle('value', this)">
+                <div class="option-title">Value Investing</div>
+                <div class="option-desc">Buy undervalued stocks; patience required</div>
+            </div>
+            <div class="option-card" onclick="selectStyle('growth', this)">
+                <div class="option-title">Growth Investing</div>
+                <div class="option-desc">Focus on high-growth companies; higher volatility</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2 style="margin-top: 0;">Step 3: Order Type Preferences</h2>
+        <div class="input-group">
+            <label>Primary Order Type for Buying</label>
+            <select id="buyOrder">
+                <option value="market">Market Order - Execute immediately</option>
+                <option value="limit">Limit Order - Only at my price or better</option>
+            </select>
+        </div>
+        <div class="input-group">
+            <label>Will you use stop-loss orders for protection?</label>
+            <select id="stopLoss">
+                <option value="no">No - I'll hold through volatility</option>
+                <option value="yes">Yes - Set at specific % below purchase</option>
+            </select>
+        </div>
+        <div class="input-group">
+            <label>Trading Frequency</label>
+            <select id="frequency">
+                <option value="monthly">Monthly contributions</option>
+                <option value="biweekly">Every paycheck</option>
+                <option value="quarterly">Quarterly rebalancing</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2 style="margin-top: 0;">Step 4: Personal Rules</h2>
+        <div class="input-group">
+            <label>My #1 Rule (e.g., "Never invest money I need within 5 years")</label>
+            <textarea id="rule1" placeholder="Write your most important investing rule..."></textarea>
+        </div>
+        <div class="input-group">
+            <label>My Sell Criteria (When will I sell?)</label>
+            <textarea id="rule2" placeholder="I will sell when..."></textarea>
+        </div>
+        <div class="input-group">
+            <label>My Emotional Control Rule</label>
+            <textarea id="rule3" placeholder="When markets drop, I will..."></textarea>
+        </div>
+    </div>
+
+    <div style="text-align: center;">
+        <button onclick="generateStrategy()">Generate My Strategy Summary</button>
+    </div>
+
+    <div class="strategy-summary" id="summary" style="display: none;">
+        <h2 style="margin-top: 0;">📋 Your Trading Strategy Summary</h2>
+        <div class="summary-grid">
+            <div class="summary-item">
+                <div class="summary-label">Time Horizon</div>
+                <div class="summary-value" id="sumHorizon">-</div>
+            </div>
+            <div class="summary-item">
+                <div class="summary-label">Risk Level</div>
+                <div class="summary-value" id="sumRisk">-</div>
+            </div>
+            <div class="summary-item">
+                <div class="summary-label">Investment Style</div>
+                <div class="summary-value" id="sumStyle">-</div>
+            </div>
+            <div class="summary-item">
+                <div class="summary-label">Monthly Investment</div>
+                <div class="summary-value" id="sumAmount">-</div>
+            </div>
+            <div class="summary-item">
+                <div class="summary-label">Buy Order Type</div>
+                <div class="summary-value" id="sumBuy">-</div>
+            </div>
+            <div class="summary-item">
+                <div class="summary-label">Trading Frequency</div>
+                <div class="summary-value" id="sumFreq">-</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="rules-list" id="rulesList" style="display: none;">
+        <h2 style="margin-top: 0;">📜 Your Personal Trading Rules</h2>
+        <ol id="rulesContent"></ol>
+        <p style="margin-top: 15px; font-size: 12px;"><strong>Tip:</strong> Print this and review it before making any investment decisions!</p>
+    </div>
+
+    <script>
+        let selectedStyle = '';
+
+        function selectStyle(style, element) {
+            selectedStyle = style;
+            document.querySelectorAll('#styleOptions .option-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            element.classList.add('selected');
+        }
+
+        function updateStrategy() {
+            // Called when inputs change - can add real-time updates here
+        }
+
+        function generateStrategy() {
+            const horizon = document.getElementById('timeHorizon').value;
+            const risk = document.getElementById('riskTolerance').value;
+            const amount = document.getElementById('monthlyAmount').value;
+            const buyOrder = document.getElementById('buyOrder').value;
+            const frequency = document.getElementById('frequency').value;
+
+            if (!horizon || !risk || !selectedStyle) {
+                alert('Please complete all selections in Steps 1 and 2');
+                return;
+            }
+
+            // Update summary
+            const horizonText = { short: 'Short-term (1-3 yrs)', medium: 'Medium-term (3-10 yrs)', long: 'Long-term (10+ yrs)' };
+            const riskText = { conservative: 'Conservative', moderate: 'Moderate', aggressive: 'Aggressive' };
+            const styleText = { passive: 'Passive Index', dividend: 'Dividend Growth', value: 'Value Investing', growth: 'Growth Investing' };
+            const freqText = { monthly: 'Monthly', biweekly: 'Bi-weekly', quarterly: 'Quarterly' };
+
+            document.getElementById('sumHorizon').textContent = horizonText[horizon];
+            document.getElementById('sumRisk').textContent = riskText[risk];
+            document.getElementById('sumStyle').textContent = styleText[selectedStyle];
+            document.getElementById('sumAmount').textContent = '$' + amount;
+            document.getElementById('sumBuy').textContent = buyOrder === 'market' ? 'Market' : 'Limit';
+            document.getElementById('sumFreq').textContent = freqText[frequency];
+
+            // Generate rules
+            let rules = [];
+
+            // Add user rules
+            const rule1 = document.getElementById('rule1').value;
+            const rule2 = document.getElementById('rule2').value;
+            const rule3 = document.getElementById('rule3').value;
+
+            if (rule1) rules.push(rule1);
+            if (rule2) rules.push('Sell Criteria: ' + rule2);
+            if (rule3) rules.push('Emotional Control: ' + rule3);
+
+            // Add system-generated rules based on selections
+            rules.push(`Invest $${amount} ${freqText[frequency].toLowerCase()} using ${buyOrder} orders`);
+
+            if (selectedStyle === 'passive') {
+                rules.push('Focus on low-cost index funds (expense ratio < 0.20%)');
+                rules.push('Rebalance annually to maintain target allocation');
+            } else if (selectedStyle === 'dividend') {
+                rules.push('Reinvest all dividends automatically (DRIP)');
+                rules.push('Focus on companies with 5+ years of dividend growth');
+            } else if (selectedStyle === 'value') {
+                rules.push('Only buy stocks trading below intrinsic value');
+                rules.push('Be patient - hold until value is realized');
+            } else if (selectedStyle === 'growth') {
+                rules.push('Focus on companies with strong revenue growth');
+                rules.push('Accept higher volatility for higher potential returns');
+            }
+
+            if (document.getElementById('stopLoss').value === 'yes') {
+                rules.push('Set stop-loss orders at 10-15% below purchase price');
+            }
+
+            // Display rules
+            document.getElementById('rulesContent').innerHTML = rules.map(rule => `<li>${rule}</li>`).join('');
+
+            document.getElementById('summary').style.display = 'block';
+            document.getElementById('rulesList').style.display = 'block';
+        }
+    </script>
+</body>
+</html>

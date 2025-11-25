@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-World Scenario Resolver</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        header { text-align: center; margin-bottom: 30px; }
+        h1 { font-size: 2rem; color: #6366f1; margin-bottom: 10px; }
+        .subtitle { color: #6b7280; }
+        .scenario-selector {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        .scenario-btn {
+            padding: 15px;
+            background: #f9fafb;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        .scenario-btn:hover { border-color: #6366f1; }
+        .scenario-btn.selected { border-color: #6366f1; background: #eef2ff; }
+        .scenario-icon { font-size: 1.5rem; margin-bottom: 5px; }
+        .scenario-name { font-weight: 600; font-size: 0.9rem; }
+        .scenario-display { display: none; }
+        .scenario-display.active { display: block; }
+        .problem-box {
+            background: #fef3c7;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            border-left: 4px solid #f59e0b;
+        }
+        .problem-box h3 { color: #92400e; margin-bottom: 10px; }
+        .solution-section { margin-bottom: 20px; }
+        .section-title { font-size: 1rem; font-weight: bold; margin-bottom: 10px; color: #374151; }
+        .step-list {
+            background: #f9fafb;
+            padding: 15px;
+            border-radius: 10px;
+        }
+        .step-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+        .step-number {
+            width: 24px;
+            height: 24px;
+            background: #6366f1;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+        .step-text { font-size: 0.95rem; color: #4b5563; }
+        .tip-box {
+            background: #d1fae5;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 15px;
+        }
+        .tip-box strong { color: #065f46; }
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #e5e7eb;
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+        @media (max-width: 768px) {
+            .scenario-selector { grid-template-columns: 1fr; }
+        }
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .container {
+                box-shadow: none;
+                padding: 20px;
+            }
+            .no-print {
+                display: none !important;
+            }
+            .scenario-display {
+                display: block !important;
+            }
+            .problem-box,
+            .step-list,
+            .tip-box {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Real-World Scenario Resolver</h1>
+            <p class="subtitle">Apply record-keeping skills to common financial challenges</p>
+        </header>
+
+        <div class="scenario-selector">
+            <div class="scenario-btn" onclick="showScenario('overdraft')">
+                <div class="scenario-icon">💳</div>
+                <div class="scenario-name">Overdraft Crisis</div>
+            </div>
+            <div class="scenario-btn" onclick="showScenario('dispute')">
+                <div class="scenario-icon">❓</div>
+                <div class="scenario-name">Disputed Charge</div>
+            </div>
+            <div class="scenario-btn" onclick="showScenario('taxes')">
+                <div class="scenario-icon">📋</div>
+                <div class="scenario-name">Tax Preparation</div>
+            </div>
+        </div>
+
+        <div class="scenario-display" id="overdraft">
+            <div class="problem-box">
+                <h3>The Problem</h3>
+                <p>You receive an alert that your account is -$45. You thought you had $200. Two more pending charges of $30 each could trigger additional overdraft fees of $35 each.</p>
+            </div>
+            <div class="solution-section">
+                <div class="section-title">Resolution Steps</div>
+                <div class="step-list">
+                    <div class="step-item">
+                        <div class="step-number">1</div>
+                        <div class="step-text"><strong>Transfer funds immediately</strong> from savings or another account to cover the negative balance and pending charges.</div>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number">2</div>
+                        <div class="step-text"><strong>Review recent transactions</strong> to find what caused the discrepancy. Check for forgotten automatic payments or duplicate charges.</div>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number">3</div>
+                        <div class="step-text"><strong>Call your bank</strong> to request overdraft fee reversal. First-time requests are often granted as a courtesy.</div>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number">4</div>
+                        <div class="step-text"><strong>Set up low balance alerts</strong> at $100 and $50 to prevent future surprises.</div>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number">5</div>
+                        <div class="step-text"><strong>Consider overdraft protection</strong> linked to savings account (usually lower fee than overdraft charges).</div>
+                    </div>
+                </div>
+                <div class="tip-box">
+                    <strong>Prevention Tip:</strong> Keep a $100+ buffer in checking and reconcile your account weekly to catch issues before they become expensive.
+                </div>
+            </div>
+        </div>
+
+        <div class="scenario-display" id="dispute">
+            <div class="problem-box">
+                <h3>The Problem</h3>
+                <p>You notice a $127.50 charge from "AMZN MKTPLACE" that you don't recognize. You shop on Amazon occasionally but don't remember this purchase.</p>
+            </div>
+            <div class="solution-section">
+                <div class="section-title">Resolution Steps</div>
+                <div class="step-list">
+                    <div class="step-item">
+                        <div class="step-number">1</div>
+                        <div class="step-text"><strong>Check your Amazon order history</strong> first - many people forget small orders or subscription renewals.</div>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number">2</div>
+                        <div class="step-text"><strong>Check if family members</strong> have access to your Amazon account or payment method.</div>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number">3</div>
+                        <div class="step-text"><strong>Look for email confirmation</strong> from Amazon for this amount and date.</div>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number">4</div>
+                        <div class="step-text"><strong>If unrecognized, contact Amazon</strong> first - they can often identify or refund the charge faster than your bank.</div>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number">5</div>
+                        <div class="step-text"><strong>File a dispute with your bank</strong> if Amazon can't resolve it. You have 60 days for most disputes.</div>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number">6</div>
+                        <div class="step-text"><strong>Change your Amazon password</strong> and enable 2-factor authentication if fraud is confirmed.</div>
+                    </div>
+                </div>
+                <div class="tip-box">
+                    <strong>Prevention Tip:</strong> Set up purchase notifications so you're alerted immediately when charges occur. Review statements within a week of receiving them.
+                </div>
+            </div>
+        </div>
+
+        <div class="scenario-display" id="taxes">
+            <div class="problem-box">
+                <h3>The Problem</h3>
+                <p>It's tax season and you need to find documentation for charitable donations, business expenses, and medical costs from last year. You didn't organize as you went.</p>
+            </div>
+            <div class="solution-section">
+                <div class="section-title">Resolution Steps</div>
+                <div class="step-list">
+                    <div class="step-item">
+                        <div class="step-number">1</div>
+                        <div class="step-text"><strong>Download all bank and credit card statements</strong> for the tax year. Most are available online for 12-24 months.</div>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number">2</div>
+                        <div class="step-text"><strong>Search email for receipts</strong> using keywords like "receipt," "donation," "order confirmation."</div>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number">3</div>
+                        <div class="step-text"><strong>Contact charities</strong> for donation acknowledgment letters - they're required to provide them.</div>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number">4</div>
+                        <div class="step-text"><strong>Request year-end summaries</strong> from healthcare providers, pharmacies, and medical insurance.</div>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number">5</div>
+                        <div class="step-text"><strong>Create categories</strong> in a spreadsheet and enter each deductible expense with date, amount, and source.</div>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number">6</div>
+                        <div class="step-text"><strong>Set up a system for next year</strong> - folder for receipts, regular data entry, or use an expense tracking app.</div>
+                    </div>
+                </div>
+                <div class="tip-box">
+                    <strong>Prevention Tip:</strong> Create a "Tax Documents" folder at the start of each year. Drop in receipts immediately. Spend 10 minutes monthly organizing - it saves hours at tax time.
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p><strong>PFL Academy</strong> | Financial Record Keeping</p>
+        </footer>
+    </div>
+
+    <script>
+        function showScenario(id) {
+            document.querySelectorAll('.scenario-btn').forEach(btn => btn.classList.remove('selected'));
+            event.currentTarget.classList.add('selected');
+
+            document.querySelectorAll('.scenario-display').forEach(s => s.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+        }
+    </script>
+</body>
+</html>

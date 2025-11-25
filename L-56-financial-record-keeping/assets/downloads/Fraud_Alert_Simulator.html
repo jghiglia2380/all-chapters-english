@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fraud Alert Simulator</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        header { text-align: center; margin-bottom: 30px; }
+        h1 { font-size: 2rem; color: #6366f1; margin-bottom: 10px; }
+        .subtitle { color: #6b7280; }
+        .alert-box {
+            background: #fee2e2;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            border: 2px solid #ef4444;
+        }
+        .alert-box h3 { color: #dc2626; margin-bottom: 10px; font-size: 1.2rem; }
+        .transaction-details {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px 0;
+        }
+        .detail-label { color: #6b7280; }
+        .detail-value { font-weight: 600; }
+        .suspicious { color: #dc2626; }
+        .section-title { font-size: 1.1rem; font-weight: bold; margin-bottom: 15px; color: #1f2937; }
+        .action-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .action-btn {
+            padding: 15px;
+            background: #f9fafb;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.3s;
+        }
+        .action-btn:hover { border-color: #6366f1; background: #f0f9ff; }
+        .action-btn.selected { border-color: #6366f1; background: #eef2ff; }
+        .action-icon { font-size: 1.5rem; margin-bottom: 8px; }
+        .action-name { font-weight: 600; color: #1f2937; }
+        .action-desc { font-size: 0.85rem; color: #6b7280; }
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: #dc2626;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        .submit-btn:hover { background: #b91c1c; }
+        .response { display: none; margin-top: 20px; padding: 20px; border-radius: 12px; }
+        .response.show { display: block; }
+        .response.good { background: #d1fae5; border: 2px solid #10b981; }
+        .response.bad { background: #fee2e2; border: 2px solid #ef4444; }
+        .response h3 { margin-bottom: 10px; }
+        .response ul { margin-left: 20px; margin-top: 10px; }
+        .response li { margin-bottom: 5px; }
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #e5e7eb;
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+        @media (max-width: 768px) {
+            .action-grid { grid-template-columns: 1fr; }
+        }
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .container {
+                box-shadow: none;
+                padding: 20px;
+            }
+            .submit-btn,
+            .no-print {
+                display: none !important;
+            }
+            .alert-box,
+            .action-btn,
+            .response {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Fraud Alert Simulator</h1>
+            <p class="subtitle">Practice identifying and responding to unauthorized transactions</p>
+        </header>
+
+        <div class="alert-box">
+            <h3>🚨 Suspicious Transaction Detected</h3>
+            <div class="transaction-details">
+                <div class="detail-row">
+                    <span class="detail-label">Date</span>
+                    <span class="detail-value">Today, 3:47 AM</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Merchant</span>
+                    <span class="detail-value suspicious">OVERSEAS ELECTRONICS LTD</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Location</span>
+                    <span class="detail-value suspicious">Lagos, Nigeria</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Amount</span>
+                    <span class="detail-value suspicious">$847.99</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Card</span>
+                    <span class="detail-value">Debit ****4521</span>
+                </div>
+            </div>
+            <p style="font-size: 0.9rem; color: #991b1b;"><strong>Red flags:</strong> Unusual location, odd time, large amount, unfamiliar merchant</p>
+        </div>
+
+        <div class="section-title">Select Your Immediate Actions</div>
+        <p style="margin-bottom: 15px; color: #6b7280;">Click all actions you would take (select multiple)</p>
+
+        <div class="action-grid">
+            <div class="action-btn" onclick="toggleAction(this, 'call')">
+                <div class="action-icon">📞</div>
+                <div class="action-name">Call Bank Immediately</div>
+                <div class="action-desc">Report fraud and freeze card</div>
+            </div>
+            <div class="action-btn" onclick="toggleAction(this, 'wait')">
+                <div class="action-icon">⏰</div>
+                <div class="action-name">Wait and Monitor</div>
+                <div class="action-desc">See if more charges appear</div>
+            </div>
+            <div class="action-btn" onclick="toggleAction(this, 'lock')">
+                <div class="action-icon">🔒</div>
+                <div class="action-name">Lock Card in App</div>
+                <div class="action-desc">Use mobile banking to freeze</div>
+            </div>
+            <div class="action-btn" onclick="toggleAction(this, 'document')">
+                <div class="action-icon">📝</div>
+                <div class="action-name">Document Everything</div>
+                <div class="action-desc">Screenshot and write details</div>
+            </div>
+            <div class="action-btn" onclick="toggleAction(this, 'password')">
+                <div class="action-icon">🔐</div>
+                <div class="action-name">Change Passwords</div>
+                <div class="action-desc">Update online banking credentials</div>
+            </div>
+            <div class="action-btn" onclick="toggleAction(this, 'police')">
+                <div class="action-icon">🚔</div>
+                <div class="action-name">File Police Report</div>
+                <div class="action-desc">Create official fraud record</div>
+            </div>
+        </div>
+
+        <button class="submit-btn" onclick="submitActions()">Submit My Response</button>
+
+        <div class="response" id="response">
+            <h3 id="responseTitle"></h3>
+            <p id="responseText"></p>
+            <ul id="responseList"></ul>
+        </div>
+
+        <footer>
+            <p><strong>PFL Academy</strong> | Financial Record Keeping</p>
+        </footer>
+    </div>
+
+    <script>
+        let selectedActions = new Set();
+
+        function toggleAction(btn, action) {
+            btn.classList.toggle('selected');
+            if (selectedActions.has(action)) {
+                selectedActions.delete(action);
+            } else {
+                selectedActions.add(action);
+            }
+        }
+
+        function submitActions() {
+            const response = document.getElementById('response');
+            const title = document.getElementById('responseTitle');
+            const text = document.getElementById('responseText');
+            const list = document.getElementById('responseList');
+
+            const goodActions = ['call', 'lock', 'document', 'password'];
+            const badActions = ['wait'];
+            const okActions = ['police'];
+
+            let score = 0;
+            let feedback = [];
+
+            if (selectedActions.has('call') || selectedActions.has('lock')) {
+                score += 3;
+                feedback.push('✓ Excellent: Immediately stopping the card prevents further fraud');
+            } else {
+                feedback.push('✗ Critical: You must freeze your card immediately to prevent more charges');
+            }
+
+            if (selectedActions.has('document')) {
+                score += 2;
+                feedback.push('✓ Good: Documentation helps with dispute resolution');
+            }
+
+            if (selectedActions.has('password')) {
+                score += 2;
+                feedback.push('✓ Good: Changing passwords protects against further access');
+            }
+
+            if (selectedActions.has('wait')) {
+                score -= 3;
+                feedback.push('✗ Bad: Never wait - fraudsters can drain your account in minutes');
+            }
+
+            if (selectedActions.has('police')) {
+                score += 1;
+                feedback.push('○ Optional: Police reports help for identity theft but aren\'t always required for card fraud');
+            }
+
+            if (score >= 5) {
+                response.className = 'response show good';
+                title.textContent = '✅ Excellent Response!';
+                text.textContent = 'You took the right immediate actions to protect yourself.';
+            } else if (score >= 2) {
+                response.className = 'response show good';
+                title.textContent = '⚠️ Partial Response';
+                text.textContent = 'Good start, but some critical steps were missed.';
+            } else {
+                response.className = 'response show bad';
+                title.textContent = '❌ Risky Response';
+                text.textContent = 'Your response leaves you vulnerable to additional fraud.';
+            }
+
+            list.innerHTML = feedback.map(f => `<li>${f}</li>`).join('');
+        }
+    </script>
+</body>
+</html>

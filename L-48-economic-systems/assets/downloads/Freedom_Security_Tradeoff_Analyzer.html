@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Freedom vs. Security Trade-off Analyzer - PFL Academy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background: #f9fafb;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+            color: white;
+            padding: 24px;
+            border-radius: 12px;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 16px;
+        }
+
+        .scenario-intro {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .scenario-intro h3 {
+            font-size: 18px;
+            color: #6366f1;
+            margin-bottom: 8px;
+        }
+
+        .scenario-intro p {
+            color: #4b5563;
+            font-size: 14px;
+        }
+
+        .system-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 24px;
+        }
+
+        .system-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 3px solid transparent;
+        }
+
+        .system-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .system-card.selected {
+            border-color: #6366f1;
+        }
+
+        .system-card.high-freedom {
+            border-top: 4px solid #10b981;
+        }
+
+        .system-card.low-freedom {
+            border-top: 4px solid #ef4444;
+        }
+
+        .system-card.moderate {
+            border-top: 4px solid #3b82f6;
+        }
+
+        .system-card h3 {
+            font-size: 16px;
+            margin-bottom: 12px;
+        }
+
+        .system-card.high-freedom h3 { color: #10b981; }
+        .system-card.low-freedom h3 { color: #ef4444; }
+        .system-card.moderate h3 { color: #3b82f6; }
+
+        .system-details {
+            font-size: 13px;
+        }
+
+        .detail-item {
+            padding: 8px 0;
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        .detail-item:last-child {
+            border-bottom: none;
+        }
+
+        .detail-label {
+            font-weight: 600;
+            color: #6b7280;
+            font-size: 11px;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .detail-value {
+            color: #1f2937;
+        }
+
+        .projections-section {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            margin-bottom: 24px;
+        }
+
+        .projections-section h3 {
+            font-size: 18px;
+            color: #6366f1;
+            margin-bottom: 16px;
+        }
+
+        .projection-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        .projection-card {
+            padding: 16px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .projection-card.high-freedom { background: #ecfdf5; }
+        .projection-card.low-freedom { background: #fef2f2; }
+        .projection-card.moderate { background: #eff6ff; }
+
+        .projection-card h4 {
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+        }
+
+        .projection-card.high-freedom h4 { color: #10b981; }
+        .projection-card.low-freedom h4 { color: #ef4444; }
+        .projection-card.moderate h4 { color: #3b82f6; }
+
+        .outcome-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 6px 0;
+            font-size: 12px;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .outcome-row:last-child {
+            border-bottom: none;
+        }
+
+        .outcome-label {
+            color: #6b7280;
+        }
+
+        .outcome-value {
+            font-weight: 600;
+            color: #1f2937;
+        }
+
+        .analysis-section {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            margin-bottom: 24px;
+        }
+
+        .analysis-section h3 {
+            font-size: 18px;
+            color: #6366f1;
+            margin-bottom: 16px;
+        }
+
+        .question-box {
+            background: #f9fafb;
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 16px;
+        }
+
+        .question-box:last-child {
+            margin-bottom: 0;
+        }
+
+        .question-box label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .question-box select,
+        .question-box textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 14px;
+        }
+
+        .question-box textarea {
+            min-height: 60px;
+            resize: vertical;
+        }
+
+        .tradeoff-slider {
+            background: #fffbeb;
+            border-left: 4px solid #f59e0b;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 24px;
+        }
+
+        .tradeoff-slider h3 {
+            font-size: 16px;
+            color: #b45309;
+            margin-bottom: 16px;
+        }
+
+        .slider-container {
+            margin-bottom: 16px;
+        }
+
+        .slider-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: #6b7280;
+            margin-bottom: 8px;
+        }
+
+        input[type="range"] {
+            width: 100%;
+            height: 8px;
+            border-radius: 4px;
+            background: linear-gradient(to right, #10b981, #f59e0b, #ef4444);
+            -webkit-appearance: none;
+            outline: none;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #6366f1;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .slider-value {
+            text-align: center;
+            font-weight: 600;
+            color: #6366f1;
+            font-size: 14px;
+        }
+
+        .print-section {
+            text-align: center;
+        }
+
+        .print-btn {
+            background: #6366f1;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .print-btn:hover {
+            background: #4f46e5;
+        }
+
+        @media print {
+            body {
+                padding: 10px;
+                background: white;
+            }
+
+            .print-section {
+                display: none;
+            }
+
+            .system-cards {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .system-card {
+                box-shadow: none;
+                page-break-inside: avoid;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .system-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .projection-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Freedom vs. Security Trade-off Analyzer</h1>
+            <p>Analyze trade-offs between economic freedom and security in different systems</p>
+        </div>
+
+        <div class="scenario-intro">
+            <h3>Scenario: Career and Financial Planning</h3>
+            <p>You're 25 years old with a college degree in marketing. Compare your career options, income potential, safety nets, and retirement projections in different economic systems.</p>
+        </div>
+
+        <div class="system-cards">
+            <div class="system-card high-freedom" onclick="selectSystem('high')">
+                <h3>High Freedom, Low Security</h3>
+                <div class="system-details">
+                    <div class="detail-item">
+                        <div class="detail-label">Career</div>
+                        <div class="detail-value">12 companies hiring, salary $45K-$75K, negotiate up to $72K</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Advancement</div>
+                        <div class="detail-value">Performance-based, top 20% earn $150K+ in 10 years</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Entrepreneurship</div>
+                        <div class="detail-value">$10K startup, potential $200K+ earnings</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Safety Net</div>
+                        <div class="detail-value">6 months unemployment only, must self-insure</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Healthcare</div>
+                        <div class="detail-value">$6,000-$15,000 annually (self-pay)</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="system-card low-freedom" onclick="selectSystem('low')">
+                <h3>Low Freedom, High Security</h3>
+                <div class="system-details">
+                    <div class="detail-item">
+                        <div class="detail-label">Career</div>
+                        <div class="detail-value">Assigned to state bureau, $800/month fixed</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Advancement</div>
+                        <div class="detail-value">Seniority-based, max $1,200/month after 30 years</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Entrepreneurship</div>
+                        <div class="detail-value">Illegal - private agencies prohibited</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Safety Net</div>
+                        <div class="detail-value">Comprehensive - guaranteed employment, housing, food</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Healthcare</div>
+                        <div class="detail-value">Free (low quality, long waits)</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="system-card moderate selected" onclick="selectSystem('moderate')">
+                <h3>Moderate Freedom & Security</h3>
+                <div class="system-details">
+                    <div class="detail-item">
+                        <div class="detail-label">Career</div>
+                        <div class="detail-value">7 companies hiring, salary $50K-$85K, negotiate to $68K</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Advancement</div>
+                        <div class="detail-value">Performance + protections, top 20% earn $120K+ in 10 years</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Entrepreneurship</div>
+                        <div class="detail-value">$5K-$20K startup, LLC protection</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Safety Net</div>
+                        <div class="detail-value">6-12 months unemployment, Medicaid, Social Security</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Healthcare</div>
+                        <div class="detail-value">$3,000-$12,000 (employer/individual/Medicaid)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="projections-section">
+            <h3>Financial Projections (Age 25-65)</h3>
+            <div class="projection-grid">
+                <div class="projection-card high-freedom">
+                    <h4>High Freedom</h4>
+                    <div class="outcome-row">
+                        <span class="outcome-label">If Average:</span>
+                        <span class="outcome-value">$800K savings</span>
+                    </div>
+                    <div class="outcome-row">
+                        <span class="outcome-label">If Top Performer:</span>
+                        <span class="outcome-value">$2.5M+ savings</span>
+                    </div>
+                    <div class="outcome-row">
+                        <span class="outcome-label">If Struggle:</span>
+                        <span class="outcome-value">$100K savings</span>
+                    </div>
+                    <div class="outcome-row">
+                        <span class="outcome-label">Std Deviation:</span>
+                        <span class="outcome-value">HIGH</span>
+                    </div>
+                </div>
+
+                <div class="projection-card low-freedom">
+                    <h4>Low Freedom</h4>
+                    <div class="outcome-row">
+                        <span class="outcome-label">Everyone:</span>
+                        <span class="outcome-value">$600/mo pension</span>
+                    </div>
+                    <div class="outcome-row">
+                        <span class="outcome-label">If Top Performer:</span>
+                        <span class="outcome-value">$600/mo pension</span>
+                    </div>
+                    <div class="outcome-row">
+                        <span class="outcome-label">If Struggle:</span>
+                        <span class="outcome-value">$600/mo pension</span>
+                    </div>
+                    <div class="outcome-row">
+                        <span class="outcome-label">Std Deviation:</span>
+                        <span class="outcome-value">VERY LOW</span>
+                    </div>
+                </div>
+
+                <div class="projection-card moderate">
+                    <h4>Moderate (USA)</h4>
+                    <div class="outcome-row">
+                        <span class="outcome-label">If Average:</span>
+                        <span class="outcome-value">$500K + $1.8K/mo SS</span>
+                    </div>
+                    <div class="outcome-row">
+                        <span class="outcome-label">If Top Performer:</span>
+                        <span class="outcome-value">$1.5M + $2.5K/mo SS</span>
+                    </div>
+                    <div class="outcome-row">
+                        <span class="outcome-label">If Struggle:</span>
+                        <span class="outcome-value">Min savings + $1.5K/mo SS</span>
+                    </div>
+                    <div class="outcome-row">
+                        <span class="outcome-label">Std Deviation:</span>
+                        <span class="outcome-value">MODERATE</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tradeoff-slider">
+            <h3>Your Personal Trade-off Preference</h3>
+            <div class="slider-container">
+                <div class="slider-labels">
+                    <span>Maximum Freedom</span>
+                    <span>Maximum Security</span>
+                </div>
+                <input type="range" id="tradeoffSlider" min="0" max="100" value="50" oninput="updateSliderValue()">
+                <div class="slider-value" id="sliderValue">50% Freedom / 50% Security</div>
+            </div>
+        </div>
+
+        <div class="analysis-section">
+            <h3>Analysis Questions</h3>
+
+            <div class="question-box">
+                <label>1. Which system would you choose at age 25? At age 55?</label>
+                <textarea placeholder="At 25, I would choose... At 55, I would prefer..."></textarea>
+            </div>
+
+            <div class="question-box">
+                <label>2. If you're confident in your abilities, which system rewards you most?</label>
+                <select>
+                    <option value="">Select your answer...</option>
+                    <option value="high">High Freedom - Rewards top performers significantly more</option>
+                    <option value="moderate">Moderate - Good rewards with some protection</option>
+                    <option value="low">Low Freedom - Equal outcomes regardless of ability</option>
+                </select>
+            </div>
+
+            <div class="question-box">
+                <label>3. If you're risk-averse or have health issues, which system protects you best?</label>
+                <select>
+                    <option value="">Select your answer...</option>
+                    <option value="low">Low Freedom - Comprehensive but low quality protections</option>
+                    <option value="moderate">Moderate - Balance of protection and opportunity</option>
+                    <option value="high">High Freedom - Must self-insure but higher income potential</option>
+                </select>
+            </div>
+
+            <div class="question-box">
+                <label>4. How do personality, skills, and life circumstances affect this trade-off?</label>
+                <textarea placeholder="Consider factors like risk tolerance, health conditions, family responsibilities, career confidence..."></textarea>
+            </div>
+        </div>
+
+        <div class="print-section">
+            <button class="print-btn" onclick="window.print()">Print Analysis</button>
+        </div>
+    </div>
+
+    <script>
+        function selectSystem(system) {
+            document.querySelectorAll('.system-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+
+            const systems = {
+                'high': 'high-freedom',
+                'low': 'low-freedom',
+                'moderate': 'moderate'
+            };
+
+            document.querySelector('.system-card.' + systems[system]).classList.add('selected');
+        }
+
+        function updateSliderValue() {
+            const value = document.getElementById('tradeoffSlider').value;
+            const freedom = 100 - value;
+            const security = value;
+            document.getElementById('sliderValue').textContent =
+                freedom + '% Freedom / ' + security + '% Security';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Managing Your Income Reference Sheet - PFL Academy</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-size: 12px;
+            line-height: 1.5;
+            color: #1f2937;
+            padding: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 3px solid #6366f1;
+        }
+        .header h1 { font-size: 24px; color: #6366f1; margin-bottom: 4px; }
+        .header p { color: #6b7280; font-size: 12px; }
+        .main-table { width: 100%; border-collapse: collapse; margin-bottom: 16px; font-size: 11px; }
+        .main-table th {
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+            color: white;
+            padding: 10px 8px;
+            text-align: left;
+            font-weight: 600;
+        }
+        .main-table td { padding: 8px; border-bottom: 1px solid #e5e7eb; vertical-align: top; }
+        .main-table tr:hover { background-color: #f9fafb; }
+        .two-column { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+        .section-box {
+            background: #f9fafb;
+            padding: 12px;
+            border-radius: 6px;
+            border-left: 4px solid #6366f1;
+        }
+        .section-box h3 { font-size: 14px; font-weight: 700; color: #6366f1; margin-bottom: 8px; }
+        .section-box ul { margin-left: 16px; }
+        .section-box li { margin-bottom: 3px; }
+        .budget-section {
+            background: #eff6ff;
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 16px;
+        }
+        .budget-section h3 { font-size: 14px; font-weight: 600; color: #3b82f6; margin-bottom: 8px; }
+        .budget-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+        .budget-item { background: white; padding: 10px; border-radius: 4px; text-align: center; }
+        .budget-item h4 { font-size: 20px; font-weight: 700; margin-bottom: 4px; }
+        .budget-item.needs h4 { color: #3b82f6; }
+        .budget-item.wants h4 { color: #8b5cf6; }
+        .budget-item.savings h4 { color: #10b981; }
+        .budget-item p { font-size: 10px; color: #6b7280; }
+        .paycheck-section {
+            background: #fef3c7;
+            padding: 12px;
+            border-radius: 6px;
+            border-left: 4px solid #f59e0b;
+            margin-bottom: 16px;
+        }
+        .paycheck-section h3 { font-size: 14px; font-weight: 600; color: #b45309; margin-bottom: 8px; }
+        .deduction-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+        .deduction-item { background: white; padding: 8px; border-radius: 4px; }
+        .deduction-item h4 { font-size: 11px; font-weight: 600; margin-bottom: 4px; }
+        .deduction-item ul { margin-left: 12px; font-size: 10px; }
+        .automation-section {
+            background: #ecfdf5;
+            padding: 12px;
+            border-radius: 6px;
+            border-left: 4px solid #10b981;
+            margin-bottom: 16px;
+        }
+        .automation-section h3 { font-size: 14px; font-weight: 600; color: #059669; margin-bottom: 8px; }
+        .key-takeaway {
+            background: #f0fdf4;
+            padding: 12px;
+            border-radius: 6px;
+            border-left: 4px solid #10b981;
+        }
+        .key-takeaway h3 { font-size: 12px; font-weight: 600; color: #059669; margin-bottom: 6px; }
+        @media print { body { padding: 10px; font-size: 10px; } }
+        @media (max-width: 768px) { .two-column, .budget-grid, .deduction-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Managing Your Income Reference Sheet</h1>
+        <p>Essential strategies for effective income management and budgeting</p>
+    </div>
+
+    <div class="budget-section">
+        <h3>The 50/30/20 Budget Rule</h3>
+        <div class="budget-grid">
+            <div class="budget-item needs">
+                <h4>50%</h4>
+                <p><strong>NEEDS</strong><br>Housing, utilities, food, transportation, insurance, minimum debt payments</p>
+            </div>
+            <div class="budget-item wants">
+                <h4>30%</h4>
+                <p><strong>WANTS</strong><br>Entertainment, dining out, hobbies, subscriptions, shopping, travel</p>
+            </div>
+            <div class="budget-item savings">
+                <h4>20%</h4>
+                <p><strong>SAVINGS/DEBT</strong><br>Emergency fund, retirement, investments, extra debt payments</p>
+            </div>
+        </div>
+    </div>
+
+    <table class="main-table">
+        <thead>
+            <tr>
+                <th>Budgeting Method</th>
+                <th>How It Works</th>
+                <th>Best For</th>
+                <th>Pros/Cons</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>50/30/20</strong></td>
+                <td>Divide income into three categories by percentage</td>
+                <td>Beginners, steady income</td>
+                <td>+ Simple | - Less detailed</td>
+            </tr>
+            <tr>
+                <td><strong>Zero-Based</strong></td>
+                <td>Every dollar assigned a job; income - expenses = 0</td>
+                <td>Detail-oriented, variable income</td>
+                <td>+ Complete control | - Time-consuming</td>
+            </tr>
+            <tr>
+                <td><strong>Envelope System</strong></td>
+                <td>Cash in physical/digital envelopes for each category</td>
+                <td>Overspenders, visual learners</td>
+                <td>+ Prevents overspending | - Less flexible</td>
+            </tr>
+            <tr>
+                <td><strong>Pay Yourself First</strong></td>
+                <td>Save fixed amount immediately, spend remainder</td>
+                <td>Savings-focused individuals</td>
+                <td>+ Prioritizes savings | - May ignore debt</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="paycheck-section">
+        <h3>Understanding Your Paycheck</h3>
+        <div class="deduction-grid">
+            <div class="deduction-item">
+                <h4>Mandatory Deductions</h4>
+                <ul>
+                    <li><strong>Federal Income Tax:</strong> Based on W-4 and income</li>
+                    <li><strong>State Income Tax:</strong> Varies by state (0-13%)</li>
+                    <li><strong>Social Security:</strong> 6.2% up to $168,600</li>
+                    <li><strong>Medicare:</strong> 1.45% (no limit)</li>
+                </ul>
+            </div>
+            <div class="deduction-item">
+                <h4>Voluntary Deductions</h4>
+                <ul>
+                    <li><strong>401(k)/403(b):</strong> Pre-tax retirement savings</li>
+                    <li><strong>Health Insurance:</strong> Often pre-tax</li>
+                    <li><strong>HSA/FSA:</strong> Pre-tax health savings</li>
+                    <li><strong>Life/Disability Insurance:</strong> Optional coverage</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="two-column">
+        <div class="section-box">
+            <h3>Gross vs. Net Income</h3>
+            <ul>
+                <li><strong>Gross Income:</strong> Total earnings before any deductions</li>
+                <li><strong>Net Income:</strong> Take-home pay after all deductions</li>
+                <li><strong>Typical difference:</strong> 25-35% less than gross</li>
+                <li><strong>Always budget from net income</strong></li>
+            </ul>
+            <p style="margin-top: 8px; font-size: 10px; color: #6b7280;">
+                Example: $50,000 gross ≈ $38,000 net = $3,167/month take-home
+            </p>
+        </div>
+
+        <div class="section-box">
+            <h3>Emergency Fund Priorities</h3>
+            <ul>
+                <li><strong>Starter:</strong> $500-$1,000 (immediate goal)</li>
+                <li><strong>Basic:</strong> 1 month expenses</li>
+                <li><strong>Standard:</strong> 3 months expenses</li>
+                <li><strong>Full:</strong> 6 months expenses</li>
+                <li><strong>Keep in:</strong> High-yield savings account</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="automation-section">
+        <h3>Automation Strategies ("Pay Yourself First")</h3>
+        <ul>
+            <li><strong>Direct deposit split:</strong> Automatically divide paycheck into multiple accounts</li>
+            <li><strong>Automatic transfers:</strong> Set up recurring transfers on payday to savings</li>
+            <li><strong>401(k) contributions:</strong> Pre-tax automatic deductions</li>
+            <li><strong>Bill autopay:</strong> Never miss due dates, avoid late fees</li>
+            <li><strong>Round-up savings:</strong> Apps that round purchases and save the difference</li>
+        </ul>
+    </div>
+
+    <div class="key-takeaway">
+        <h3>Key Formulas & Benchmarks</h3>
+        <p>
+            <strong>Savings Rate:</strong> (Monthly Savings ÷ Gross Income) × 100 | Target: 15-20%<br>
+            <strong>Housing Cost:</strong> ≤ 28% of gross income (or ≤ 30% of net)<br>
+            <strong>Debt-to-Income:</strong> Total debt payments ÷ gross income | Target: < 36%<br>
+            <strong>Net Worth:</strong> Assets - Liabilities | Track monthly/quarterly<br>
+            <strong>Rule of 72:</strong> 72 ÷ interest rate = years to double money
+        </p>
+    </div>
+</body>
+</html>

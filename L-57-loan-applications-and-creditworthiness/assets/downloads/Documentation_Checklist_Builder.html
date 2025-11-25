@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation Checklist Builder</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        header { text-align: center; margin-bottom: 30px; }
+        h1 { font-size: 2rem; color: #6366f1; margin-bottom: 10px; }
+        .subtitle { color: #6b7280; }
+        .loan-selector {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        .loan-btn {
+            padding: 20px;
+            background: #f9fafb;
+            border: 3px solid #e5e7eb;
+            border-radius: 12px;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        .loan-btn:hover { border-color: #6366f1; }
+        .loan-btn.selected { border-color: #6366f1; background: #eef2ff; }
+        .loan-icon { font-size: 2rem; margin-bottom: 8px; }
+        .loan-name { font-weight: bold; }
+        .checklist { display: none; }
+        .checklist.active { display: block; }
+        .section-title { font-size: 1.1rem; font-weight: bold; margin: 20px 0 10px; color: #374151; }
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            padding: 12px;
+            background: #f9fafb;
+            border-radius: 8px;
+            margin-bottom: 8px;
+        }
+        .checklist-item input { margin-right: 12px; width: 20px; height: 20px; }
+        .checklist-item label { flex: 1; cursor: pointer; }
+        .checklist-item .note { font-size: 0.85rem; color: #6b7280; margin-top: 3px; }
+        .progress-bar {
+            background: #e5e7eb;
+            border-radius: 10px;
+            height: 20px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+        .progress-fill {
+            background: #6366f1;
+            height: 100%;
+            border-radius: 10px;
+            transition: width 0.3s;
+        }
+        .progress-text { text-align: center; font-weight: 600; color: #6366f1; }
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #e5e7eb;
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+        @media print {
+            body { background: white; padding: 0; }
+            .container { box-shadow: none; }
+            .loan-selector { display: none; }
+        }
+        @media (max-width: 768px) {
+            .loan-selector { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Documentation Checklist Builder</h1>
+            <p class="subtitle">Gather all required documents for your loan application</p>
+        </header>
+
+        <div class="loan-selector">
+            <div class="loan-btn" onclick="showChecklist('auto')">
+                <div class="loan-icon">🚗</div>
+                <div class="loan-name">Auto Loan</div>
+            </div>
+            <div class="loan-btn" onclick="showChecklist('personal')">
+                <div class="loan-icon">💵</div>
+                <div class="loan-name">Personal Loan</div>
+            </div>
+            <div class="loan-btn" onclick="showChecklist('mortgage')">
+                <div class="loan-icon">🏠</div>
+                <div class="loan-name">Mortgage</div>
+            </div>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+        </div>
+        <div class="progress-text" id="progressText">Select a loan type to see required documents</div>
+
+        <div class="checklist" id="auto">
+            <div class="section-title">Identity & Residence</div>
+            <div class="checklist-item">
+                <input type="checkbox" id="a1" onchange="updateProgress('auto')">
+                <label for="a1">Driver's license or state ID<div class="note">Current and valid</div></label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="a2" onchange="updateProgress('auto')">
+                <label for="a2">Proof of residence<div class="note">Utility bill or bank statement (last 30 days)</div></label>
+            </div>
+            <div class="section-title">Income Verification</div>
+            <div class="checklist-item">
+                <input type="checkbox" id="a3" onchange="updateProgress('auto')">
+                <label for="a3">Recent pay stubs<div class="note">Last 2-3 pay periods</div></label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="a4" onchange="updateProgress('auto')">
+                <label for="a4">Employment verification letter<div class="note">Or employer contact info</div></label>
+            </div>
+            <div class="section-title">Vehicle & Insurance</div>
+            <div class="checklist-item">
+                <input type="checkbox" id="a5" onchange="updateProgress('auto')">
+                <label for="a5">Vehicle information<div class="note">VIN, make, model, year, mileage</div></label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="a6" onchange="updateProgress('auto')">
+                <label for="a6">Proof of insurance<div class="note">Or insurance quote</div></label>
+            </div>
+        </div>
+
+        <div class="checklist" id="personal">
+            <div class="section-title">Identity Verification</div>
+            <div class="checklist-item">
+                <input type="checkbox" id="p1" onchange="updateProgress('personal')">
+                <label for="p1">Government-issued ID<div class="note">Driver's license, passport, or state ID</div></label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="p2" onchange="updateProgress('personal')">
+                <label for="p2">Social Security number<div class="note">For credit check</div></label>
+            </div>
+            <div class="section-title">Income & Employment</div>
+            <div class="checklist-item">
+                <input type="checkbox" id="p3" onchange="updateProgress('personal')">
+                <label for="p3">Pay stubs<div class="note">Last 30 days</div></label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="p4" onchange="updateProgress('personal')">
+                <label for="p4">Bank statements<div class="note">Last 2-3 months</div></label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="p5" onchange="updateProgress('personal')">
+                <label for="p5">Tax returns (if self-employed)<div class="note">Last 2 years</div></label>
+            </div>
+        </div>
+
+        <div class="checklist" id="mortgage">
+            <div class="section-title">Identity & Personal</div>
+            <div class="checklist-item">
+                <input type="checkbox" id="m1" onchange="updateProgress('mortgage')">
+                <label for="m1">Government-issued ID<div class="note">For all borrowers</div></label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="m2" onchange="updateProgress('mortgage')">
+                <label for="m2">Social Security card<div class="note">Or proof of SSN</div></label>
+            </div>
+            <div class="section-title">Income Verification</div>
+            <div class="checklist-item">
+                <input type="checkbox" id="m3" onchange="updateProgress('mortgage')">
+                <label for="m3">W-2 forms<div class="note">Last 2 years</div></label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="m4" onchange="updateProgress('mortgage')">
+                <label for="m4">Tax returns<div class="note">Last 2 years with all schedules</div></label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="m5" onchange="updateProgress('mortgage')">
+                <label for="m5">Pay stubs<div class="note">Last 30 days</div></label>
+            </div>
+            <div class="section-title">Assets & Debts</div>
+            <div class="checklist-item">
+                <input type="checkbox" id="m6" onchange="updateProgress('mortgage')">
+                <label for="m6">Bank statements<div class="note">All accounts, last 2 months</div></label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="m7" onchange="updateProgress('mortgage')">
+                <label for="m7">Investment account statements<div class="note">401(k), IRA, stocks</div></label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="m8" onchange="updateProgress('mortgage')">
+                <label for="m8">Gift letter (if applicable)<div class="note">For down payment gifts</div></label>
+            </div>
+        </div>
+
+        <footer>
+            <p><strong>PFL Academy</strong> | Loan Applications</p>
+        </footer>
+    </div>
+
+    <script>
+        let currentLoan = null;
+
+        function showChecklist(type) {
+            currentLoan = type;
+            document.querySelectorAll('.loan-btn').forEach(btn => btn.classList.remove('selected'));
+            event.currentTarget.classList.add('selected');
+            document.querySelectorAll('.checklist').forEach(c => c.classList.remove('active'));
+            document.getElementById(type).classList.add('active');
+            updateProgress(type);
+        }
+
+        function updateProgress(type) {
+            const checklist = document.getElementById(type);
+            const checkboxes = checklist.querySelectorAll('input[type="checkbox"]');
+            const checked = checklist.querySelectorAll('input[type="checkbox"]:checked').length;
+            const total = checkboxes.length;
+            const percent = total > 0 ? (checked / total) * 100 : 0;
+
+            document.getElementById('progressFill').style.width = percent + '%';
+            document.getElementById('progressText').textContent = `${checked} of ${total} documents ready (${Math.round(percent)}%)`;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Education Financing Calculator - PFL Academy</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background: #f9fafb;
+            padding: 20px;
+        }
+        .container { max-width: 1100px; margin: 0 auto; }
+        .header {
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+            color: white;
+            padding: 24px;
+            border-radius: 12px;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+        .header h1 { font-size: 28px; font-weight: 700; margin-bottom: 8px; }
+        .header p { opacity: 0.9; font-size: 16px; }
+        .main-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px; }
+        .panel {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        .panel h3 { font-size: 18px; color: #6366f1; margin-bottom: 16px; }
+        .input-group { margin-bottom: 16px; }
+        .input-group label { display: block; font-weight: 600; font-size: 14px; margin-bottom: 8px; }
+        .input-group input, .input-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+        .results-panel {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            margin-bottom: 24px;
+        }
+        .results-panel h3 { font-size: 18px; color: #6366f1; margin-bottom: 16px; }
+        .result-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 20px; }
+        .result-item { background: #f9fafb; padding: 12px; border-radius: 8px; text-align: center; }
+        .result-value { font-size: 20px; font-weight: 700; color: #6366f1; margin-bottom: 4px; }
+        .result-label { font-size: 11px; color: #6b7280; }
+        .funding-breakdown {
+            background: #eff6ff;
+            border-left: 4px solid #3b82f6;
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .funding-breakdown h4 { color: #3b82f6; font-size: 14px; margin-bottom: 12px; }
+        .funding-row {
+            display: grid;
+            grid-template-columns: 1fr 100px 80px;
+            gap: 8px;
+            padding: 8px 0;
+            border-bottom: 1px solid #e5e7eb;
+            font-size: 13px;
+        }
+        .funding-row:last-child { border-bottom: none; }
+        .funding-bar { background: #e5e7eb; border-radius: 4px; overflow: hidden; height: 8px; margin-top: 4px; }
+        .funding-fill { height: 100%; transition: width 0.3s; }
+        .fill-scholarship { background: #10b981; }
+        .fill-grants { background: #3b82f6; }
+        .fill-savings { background: #8b5cf6; }
+        .fill-workstudy { background: #f59e0b; }
+        .fill-loans { background: #ef4444; }
+        .loan-section {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .loan-section h4 { color: #b45309; font-size: 14px; margin-bottom: 8px; }
+        .loan-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+        .loan-item { text-align: center; }
+        .loan-item .label { font-size: 11px; color: #6b7280; }
+        .loan-item .value { font-size: 18px; font-weight: 700; color: #b45309; }
+        .roi-section {
+            background: #ecfdf5;
+            border-left: 4px solid #10b981;
+            padding: 16px;
+            border-radius: 8px;
+        }
+        .roi-section h4 { color: #059669; font-size: 14px; margin-bottom: 8px; }
+        .action-buttons { text-align: center; }
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            margin: 0 8px;
+        }
+        .btn-primary { background: #6366f1; color: white; }
+        @media print { .action-buttons { display: none; } body { background: white; } }
+        @media (max-width: 768px) { .main-grid, .result-grid, .loan-grid { grid-template-columns: 1fr; } .funding-row { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Education Financing Calculator</h1>
+            <p>Plan your education funding strategy and understand total costs</p>
+        </div>
+
+        <div class="main-grid">
+            <div class="panel">
+                <h3>Education Costs</h3>
+                <div class="input-group">
+                    <label>Institution Type</label>
+                    <select id="institutionType" onchange="updateDefaults(); calculate();">
+                        <option value="community">Community College (2-year)</option>
+                        <option value="public4">Public University (4-year, in-state)</option>
+                        <option value="publicOut">Public University (out-of-state)</option>
+                        <option value="private">Private University</option>
+                        <option value="trade">Trade/Technical School</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>Annual Tuition & Fees ($)</label>
+                    <input type="number" id="tuition" value="10000" step="500" oninput="calculate()">
+                </div>
+                <div class="input-group">
+                    <label>Room & Board (Annual, $)</label>
+                    <input type="number" id="roomBoard" value="12000" step="500" oninput="calculate()">
+                </div>
+                <div class="input-group">
+                    <label>Books & Supplies (Annual, $)</label>
+                    <input type="number" id="books" value="1200" step="100" oninput="calculate()">
+                </div>
+                <div class="input-group">
+                    <label>Program Length (Years)</label>
+                    <input type="number" id="years" value="4" min="1" max="6" oninput="calculate()">
+                </div>
+            </div>
+
+            <div class="panel">
+                <h3>Your Funding Sources</h3>
+                <div class="input-group">
+                    <label>Scholarships (Annual, $)</label>
+                    <input type="number" id="scholarships" value="2000" step="500" oninput="calculate()">
+                </div>
+                <div class="input-group">
+                    <label>Grants (Pell, State, etc. Annual, $)</label>
+                    <input type="number" id="grants" value="3000" step="500" oninput="calculate()">
+                </div>
+                <div class="input-group">
+                    <label>Family/Personal Savings ($)</label>
+                    <input type="number" id="savings" value="5000" step="1000" oninput="calculate()">
+                </div>
+                <div class="input-group">
+                    <label>Work-Study (Annual, $)</label>
+                    <input type="number" id="workStudy" value="2500" step="500" oninput="calculate()">
+                </div>
+                <div class="input-group">
+                    <label>Expected Starting Salary ($)</label>
+                    <input type="number" id="salary" value="50000" step="5000" oninput="calculate()">
+                </div>
+            </div>
+        </div>
+
+        <div class="results-panel">
+            <h3>Financing Summary</h3>
+            <div class="result-grid">
+                <div class="result-item">
+                    <div class="result-value" id="totalCost">$92,800</div>
+                    <div class="result-label">Total Cost</div>
+                </div>
+                <div class="result-item">
+                    <div class="result-value" id="totalFunding">$35,000</div>
+                    <div class="result-label">Total Funding</div>
+                </div>
+                <div class="result-item">
+                    <div class="result-value" id="gap">$57,800</div>
+                    <div class="result-label">Funding Gap (Loans)</div>
+                </div>
+                <div class="result-item">
+                    <div class="result-value" id="gapPercent">62%</div>
+                    <div class="result-label">Loan Percentage</div>
+                </div>
+            </div>
+
+            <div class="funding-breakdown">
+                <h4>Funding Source Breakdown</h4>
+                <div class="funding-row">
+                    <div>
+                        <span>Scholarships</span>
+                        <div class="funding-bar"><div class="funding-fill fill-scholarship" id="scholarshipBar"></div></div>
+                    </div>
+                    <div id="scholarshipTotal" style="text-align: right;">$8,000</div>
+                    <div id="scholarshipPct" style="text-align: right;">9%</div>
+                </div>
+                <div class="funding-row">
+                    <div>
+                        <span>Grants</span>
+                        <div class="funding-bar"><div class="funding-fill fill-grants" id="grantBar"></div></div>
+                    </div>
+                    <div id="grantTotal" style="text-align: right;">$12,000</div>
+                    <div id="grantPct" style="text-align: right;">13%</div>
+                </div>
+                <div class="funding-row">
+                    <div>
+                        <span>Personal Savings</span>
+                        <div class="funding-bar"><div class="funding-fill fill-savings" id="savingsBar"></div></div>
+                    </div>
+                    <div id="savingsTotal" style="text-align: right;">$5,000</div>
+                    <div id="savingsPct" style="text-align: right;">5%</div>
+                </div>
+                <div class="funding-row">
+                    <div>
+                        <span>Work-Study</span>
+                        <div class="funding-bar"><div class="funding-fill fill-workstudy" id="workStudyBar"></div></div>
+                    </div>
+                    <div id="workStudyTotal" style="text-align: right;">$10,000</div>
+                    <div id="workStudyPct" style="text-align: right;">11%</div>
+                </div>
+                <div class="funding-row">
+                    <div>
+                        <span>Student Loans</span>
+                        <div class="funding-bar"><div class="funding-fill fill-loans" id="loanBar"></div></div>
+                    </div>
+                    <div id="loanTotal" style="text-align: right;">$57,800</div>
+                    <div id="loanPct" style="text-align: right;">62%</div>
+                </div>
+            </div>
+
+            <div class="loan-section">
+                <h4>Loan Repayment Estimates (10-Year Standard Plan)</h4>
+                <div class="loan-grid">
+                    <div class="loan-item">
+                        <div class="label">Monthly Payment</div>
+                        <div class="value" id="monthlyPayment">$612</div>
+                    </div>
+                    <div class="loan-item">
+                        <div class="label">Total Interest</div>
+                        <div class="value" id="totalInterest">$15,640</div>
+                    </div>
+                    <div class="loan-item">
+                        <div class="label">Total Repaid</div>
+                        <div class="value" id="totalRepaid">$73,440</div>
+                    </div>
+                </div>
+                <p style="font-size: 11px; color: #6b7280; margin-top: 12px; text-align: center;">
+                    Based on 6.5% average federal student loan interest rate
+                </p>
+            </div>
+
+            <div class="roi-section">
+                <h4>Return on Investment Analysis</h4>
+                <p style="font-size: 13px; margin-bottom: 8px;">
+                    <strong>Debt-to-Income Ratio:</strong> <span id="dti">116%</span>
+                    <span id="dtiStatus" style="margin-left: 8px;"></span>
+                </p>
+                <p style="font-size: 13px; margin-bottom: 8px;">
+                    <strong>Monthly Payment as % of Income:</strong> <span id="paymentPercent">14.7%</span>
+                    <span id="paymentStatus" style="margin-left: 8px;"></span>
+                </p>
+                <p style="font-size: 13px;">
+                    <strong>Years to Pay Off (if using 10% of salary):</strong> <span id="yearsToPayoff">13.9</span>
+                </p>
+                <p style="font-size: 11px; color: #6b7280; margin-top: 8px;">
+                    Recommendation: Keep total debt below your expected first-year salary and monthly payments under 10% of gross income.
+                </p>
+            </div>
+        </div>
+
+        <div class="action-buttons">
+            <button class="btn btn-primary" onclick="calculate()">Recalculate</button>
+            <button class="btn" style="background: #e5e7eb; color: #374151;" onclick="window.print()">Print Results</button>
+        </div>
+    </div>
+
+    <script>
+        const institutionDefaults = {
+            community: { tuition: 3800, roomBoard: 9000, books: 1400, years: 2 },
+            public4: { tuition: 10000, roomBoard: 12000, books: 1200, years: 4 },
+            publicOut: { tuition: 23000, roomBoard: 12000, books: 1200, years: 4 },
+            private: { tuition: 40000, roomBoard: 14000, books: 1200, years: 4 },
+            trade: { tuition: 15000, roomBoard: 0, books: 2000, years: 2 }
+        };
+
+        function updateDefaults() {
+            const type = document.getElementById('institutionType').value;
+            const defaults = institutionDefaults[type];
+            document.getElementById('tuition').value = defaults.tuition;
+            document.getElementById('roomBoard').value = defaults.roomBoard;
+            document.getElementById('books').value = defaults.books;
+            document.getElementById('years').value = defaults.years;
+        }
+
+        function calculate() {
+            const tuition = parseFloat(document.getElementById('tuition').value) || 0;
+            const roomBoard = parseFloat(document.getElementById('roomBoard').value) || 0;
+            const books = parseFloat(document.getElementById('books').value) || 0;
+            const years = parseInt(document.getElementById('years').value) || 4;
+            const scholarships = parseFloat(document.getElementById('scholarships').value) || 0;
+            const grants = parseFloat(document.getElementById('grants').value) || 0;
+            const savings = parseFloat(document.getElementById('savings').value) || 0;
+            const workStudy = parseFloat(document.getElementById('workStudy').value) || 0;
+            const salary = parseFloat(document.getElementById('salary').value) || 50000;
+
+            // Calculate totals
+            const annualCost = tuition + roomBoard + books;
+            const totalCost = annualCost * years;
+
+            const totalScholarships = scholarships * years;
+            const totalGrants = grants * years;
+            const totalWorkStudy = workStudy * years;
+            const totalFunding = totalScholarships + totalGrants + savings + totalWorkStudy;
+
+            const loanAmount = Math.max(0, totalCost - totalFunding);
+
+            // Loan calculations (6.5% interest, 10-year term)
+            const interestRate = 0.065 / 12;
+            const numPayments = 120;
+            let monthlyPayment = 0;
+            let totalInterest = 0;
+            let totalRepaid = 0;
+
+            if (loanAmount > 0 && interestRate > 0) {
+                monthlyPayment = loanAmount * (interestRate * Math.pow(1 + interestRate, numPayments)) / (Math.pow(1 + interestRate, numPayments) - 1);
+                totalRepaid = monthlyPayment * numPayments;
+                totalInterest = totalRepaid - loanAmount;
+            }
+
+            // ROI calculations
+            const dti = salary > 0 ? (loanAmount / salary * 100) : 0;
+            const monthlyIncome = salary / 12;
+            const paymentPercent = monthlyIncome > 0 ? (monthlyPayment / monthlyIncome * 100) : 0;
+            const yearsToPayoff = salary > 0 ? (totalRepaid / (salary * 0.10)) : 0;
+
+            // Update display
+            document.getElementById('totalCost').textContent = '$' + totalCost.toLocaleString();
+            document.getElementById('totalFunding').textContent = '$' + totalFunding.toLocaleString();
+            document.getElementById('gap').textContent = '$' + loanAmount.toLocaleString();
+            document.getElementById('gapPercent').textContent = totalCost > 0 ? Math.round(loanAmount / totalCost * 100) + '%' : '0%';
+
+            // Update funding breakdown
+            updateFundingBar('scholarship', totalScholarships, totalCost);
+            updateFundingBar('grant', totalGrants, totalCost);
+            updateFundingBar('savings', savings, totalCost);
+            updateFundingBar('workStudy', totalWorkStudy, totalCost);
+            updateFundingBar('loan', loanAmount, totalCost);
+
+            // Update loan section
+            document.getElementById('monthlyPayment').textContent = '$' + Math.round(monthlyPayment).toLocaleString();
+            document.getElementById('totalInterest').textContent = '$' + Math.round(totalInterest).toLocaleString();
+            document.getElementById('totalRepaid').textContent = '$' + Math.round(totalRepaid).toLocaleString();
+
+            // Update ROI section
+            document.getElementById('dti').textContent = dti.toFixed(0) + '%';
+            document.getElementById('paymentPercent').textContent = paymentPercent.toFixed(1) + '%';
+            document.getElementById('yearsToPayoff').textContent = yearsToPayoff.toFixed(1);
+
+            // Status indicators
+            const dtiStatus = document.getElementById('dtiStatus');
+            if (dti <= 100) {
+                dtiStatus.textContent = '✓ Good';
+                dtiStatus.style.color = '#10b981';
+            } else if (dti <= 150) {
+                dtiStatus.textContent = '⚠ Caution';
+                dtiStatus.style.color = '#f59e0b';
+            } else {
+                dtiStatus.textContent = '✗ High Risk';
+                dtiStatus.style.color = '#ef4444';
+            }
+
+            const paymentStatus = document.getElementById('paymentStatus');
+            if (paymentPercent <= 10) {
+                paymentStatus.textContent = '✓ Manageable';
+                paymentStatus.style.color = '#10b981';
+            } else if (paymentPercent <= 15) {
+                paymentStatus.textContent = '⚠ Stretch';
+                paymentStatus.style.color = '#f59e0b';
+            } else {
+                paymentStatus.textContent = '✗ Burdensome';
+                paymentStatus.style.color = '#ef4444';
+            }
+        }
+
+        function updateFundingBar(type, amount, total) {
+            const pct = total > 0 ? (amount / total * 100) : 0;
+            document.getElementById(type + 'Bar').style.width = pct + '%';
+            document.getElementById(type + 'Total').textContent = '$' + amount.toLocaleString();
+            document.getElementById(type + 'Pct').textContent = Math.round(pct) + '%';
+        }
+
+        // Initialize
+        calculate();
+    </script>
+</body>
+</html>

@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tax Strategy Planner | PFL Academy</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        header { text-align: center; margin-bottom: 30px; }
+        h1 { font-size: 2rem; color: #6366f1; margin-bottom: 10px; }
+        .subtitle { color: #6b7280; }
+        .section {
+            background: #f9fafb;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #1f2937;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .comparison-card {
+            padding: 15px;
+            border-radius: 10px;
+            border: 2px solid #e5e7eb;
+        }
+        .deduction-card {
+            background: #dbeafe;
+            border-color: #3b82f6;
+        }
+        .credit-card {
+            background: #d1fae5;
+            border-color: #10b981;
+        }
+        .card-title {
+            font-weight: bold;
+            font-size: 1rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .card-content { font-size: 0.9rem; }
+        .card-content ul { margin-left: 15px; margin-top: 8px; }
+        .card-content li { margin-bottom: 5px; }
+        .income-selector {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .income-btn {
+            padding: 15px 10px;
+            background: white;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        .income-btn:hover { border-color: #6366f1; }
+        .income-btn.selected { border-color: #6366f1; background: #eef2ff; }
+        .income-range { font-weight: bold; font-size: 0.95rem; }
+        .income-bracket { font-size: 0.8rem; color: #6b7280; margin-top: 3px; }
+        .tracker-section {
+            background: #f0f9ff;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+        .tracker-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            background: white;
+            border-radius: 8px;
+            margin-bottom: 8px;
+        }
+        .tracker-item input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: #6366f1;
+        }
+        .tracker-label { flex: 1; font-size: 0.9rem; }
+        .tracker-value {
+            width: 100px;
+            padding: 5px 8px;
+            border: 1px solid #d1d5db;
+            border-radius: 5px;
+            font-size: 0.9rem;
+        }
+        .credit-checker {
+            background: #fef3c7;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+        .credit-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            background: white;
+            border-radius: 8px;
+            margin-bottom: 8px;
+        }
+        .credit-item input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: #10b981;
+        }
+        .credit-label { flex: 1; }
+        .credit-name { font-size: 0.9rem; font-weight: 500; }
+        .credit-desc { font-size: 0.75rem; color: #6b7280; }
+        .generate-btn {
+            width: 100%;
+            padding: 15px;
+            background: #6366f1;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 15px;
+        }
+        .generate-btn:hover { background: #4f46e5; }
+        .print-btn {
+            width: 100%;
+            padding: 12px;
+            background: white;
+            color: #6366f1;
+            border: 2px solid #6366f1;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        .print-btn:hover { background: #eef2ff; }
+        .results { display: none; margin-top: 25px; }
+        .results.active { display: block; }
+        .summary-card {
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+        }
+        .savings-card { background: #d1fae5; border-left: 4px solid #10b981; }
+        .strategy-card { background: #dbeafe; border-left: 4px solid #3b82f6; }
+        .action-card { background: #fef3c7; border-left: 4px solid #f59e0b; }
+        .summary-card h4 { margin-bottom: 10px; color: #1f2937; }
+        .summary-card ul { margin-left: 20px; }
+        .summary-card li { margin-bottom: 8px; font-size: 0.9rem; }
+        .total-savings {
+            text-align: center;
+            padding: 20px;
+            background: #f0fdf4;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+        .savings-value { font-size: 2.5rem; font-weight: bold; color: #10b981; }
+        .savings-label { color: #6b7280; font-size: 0.9rem; }
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #e5e7eb;
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+        @media (max-width: 768px) {
+            .comparison-grid { grid-template-columns: 1fr; }
+            .income-selector { grid-template-columns: 1fr; }
+        }
+        @media print {
+            body { background: white; padding: 0; }
+            .container { box-shadow: none; max-width: 100%; }
+            .generate-btn, .print-btn { display: none; }
+            .results { display: block !important; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Tax Strategy Planner</h1>
+            <p class="subtitle">Create personalized tax strategies based on your income and eligible benefits</p>
+        </header>
+
+        <!-- Deduction vs Credit Comparison -->
+        <div class="section">
+            <div class="section-title">Understanding Deductions vs. Credits</div>
+            <div class="comparison-grid">
+                <div class="comparison-card deduction-card">
+                    <div class="card-title">Tax Deductions</div>
+                    <div class="card-content">
+                        <strong>Reduces taxable income</strong>
+                        <ul>
+                            <li>Savings = Deduction x Tax Rate</li>
+                            <li>$1,000 deduction in 22% bracket = $220 saved</li>
+                            <li>Standard vs. Itemized choice</li>
+                            <li>More valuable at higher tax brackets</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="comparison-card credit-card">
+                    <div class="card-title">Tax Credits</div>
+                    <div class="card-content">
+                        <strong>Reduces tax owed directly</strong>
+                        <ul>
+                            <li>Dollar-for-dollar reduction</li>
+                            <li>$1,000 credit = $1,000 saved</li>
+                            <li>Refundable vs. Non-refundable</li>
+                            <li>Equal value at all tax brackets</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Income Level Selector -->
+        <div class="section">
+            <div class="section-title">Select Your Income Level</div>
+            <div class="income-selector">
+                <button class="income-btn" onclick="selectIncome('low')" id="income-low">
+                    <div class="income-range">Under $44,725</div>
+                    <div class="income-bracket">10-12% Bracket</div>
+                </button>
+                <button class="income-btn" onclick="selectIncome('medium')" id="income-medium">
+                    <div class="income-range">$44,725 - $95,375</div>
+                    <div class="income-bracket">22% Bracket</div>
+                </button>
+                <button class="income-btn" onclick="selectIncome('high')" id="income-high">
+                    <div class="income-range">Over $95,375</div>
+                    <div class="income-bracket">24%+ Bracket</div>
+                </button>
+            </div>
+        </div>
+
+        <!-- Personal Deduction Tracker -->
+        <div class="tracker-section">
+            <div class="section-title">Personal Deduction Tracker</div>
+            <p style="font-size: 0.85rem; color: #6b7280; margin-bottom: 15px;">Check applicable deductions and enter estimated amounts</p>
+
+            <div class="tracker-item">
+                <input type="checkbox" id="ded-student-loan" onchange="updateCalculations()">
+                <label class="tracker-label" for="ded-student-loan">Student Loan Interest (up to $2,500)</label>
+                <input type="number" class="tracker-value" id="val-student-loan" placeholder="$0" onchange="updateCalculations()">
+            </div>
+            <div class="tracker-item">
+                <input type="checkbox" id="ded-ira" onchange="updateCalculations()">
+                <label class="tracker-label" for="ded-ira">Traditional IRA Contributions (up to $6,500)</label>
+                <input type="number" class="tracker-value" id="val-ira" placeholder="$0" onchange="updateCalculations()">
+            </div>
+            <div class="tracker-item">
+                <input type="checkbox" id="ded-hsa" onchange="updateCalculations()">
+                <label class="tracker-label" for="ded-hsa">HSA Contributions (up to $3,850 individual)</label>
+                <input type="number" class="tracker-value" id="val-hsa" placeholder="$0" onchange="updateCalculations()">
+            </div>
+            <div class="tracker-item">
+                <input type="checkbox" id="ded-educator" onchange="updateCalculations()">
+                <label class="tracker-label" for="ded-educator">Educator Expenses (up to $300)</label>
+                <input type="number" class="tracker-value" id="val-educator" placeholder="$0" onchange="updateCalculations()">
+            </div>
+            <div class="tracker-item">
+                <input type="checkbox" id="ded-charity" onchange="updateCalculations()">
+                <label class="tracker-label" for="ded-charity">Charitable Contributions</label>
+                <input type="number" class="tracker-value" id="val-charity" placeholder="$0" onchange="updateCalculations()">
+            </div>
+            <div class="tracker-item">
+                <input type="checkbox" id="ded-mortgage" onchange="updateCalculations()">
+                <label class="tracker-label" for="ded-mortgage">Mortgage Interest</label>
+                <input type="number" class="tracker-value" id="val-mortgage" placeholder="$0" onchange="updateCalculations()">
+            </div>
+        </div>
+
+        <!-- Credit Eligibility Checker -->
+        <div class="credit-checker">
+            <div class="section-title">Credit Eligibility Checker</div>
+            <p style="font-size: 0.85rem; color: #6b7280; margin-bottom: 15px;">Check credits you may qualify for</p>
+
+            <div class="credit-item">
+                <input type="checkbox" id="credit-aotc" onchange="updateCalculations()">
+                <label class="credit-label" for="credit-aotc">
+                    <div class="credit-name">American Opportunity Credit (up to $2,500)</div>
+                    <div class="credit-desc">First 4 years of higher education, partially refundable</div>
+                </label>
+            </div>
+            <div class="credit-item">
+                <input type="checkbox" id="credit-llc" onchange="updateCalculations()">
+                <label class="credit-label" for="credit-llc">
+                    <div class="credit-name">Lifetime Learning Credit (up to $2,000)</div>
+                    <div class="credit-desc">Any post-secondary education or courses, non-refundable</div>
+                </label>
+            </div>
+            <div class="credit-item">
+                <input type="checkbox" id="credit-saver" onchange="updateCalculations()">
+                <label class="credit-label" for="credit-saver">
+                    <div class="credit-name">Saver's Credit (up to $1,000)</div>
+                    <div class="credit-desc">Retirement contributions for lower-income taxpayers</div>
+                </label>
+            </div>
+            <div class="credit-item">
+                <input type="checkbox" id="credit-eitc" onchange="updateCalculations()">
+                <label class="credit-label" for="credit-eitc">
+                    <div class="credit-name">Earned Income Tax Credit</div>
+                    <div class="credit-desc">For low to moderate-income workers, refundable</div>
+                </label>
+            </div>
+            <div class="credit-item">
+                <input type="checkbox" id="credit-child" onchange="updateCalculations()">
+                <label class="credit-label" for="credit-child">
+                    <div class="credit-name">Child Tax Credit (up to $2,000/child)</div>
+                    <div class="credit-desc">For qualifying children under 17</div>
+                </label>
+            </div>
+        </div>
+
+        <button class="generate-btn" onclick="generateStrategy()">Generate My Tax Strategy</button>
+        <button class="print-btn" onclick="window.print()">Print / Save PDF</button>
+
+        <div class="results" id="results">
+            <div class="total-savings">
+                <div class="savings-value" id="totalSavings">$0</div>
+                <div class="savings-label">Estimated Total Tax Savings</div>
+            </div>
+
+            <div class="summary-card savings-card">
+                <h4>Deduction Summary</h4>
+                <ul id="deductionSummary"></ul>
+            </div>
+
+            <div class="summary-card strategy-card">
+                <h4>Credit Summary</h4>
+                <ul id="creditSummary"></ul>
+            </div>
+
+            <div class="summary-card action-card">
+                <h4>Recommended Actions</h4>
+                <ul id="actionItems"></ul>
+            </div>
+        </div>
+
+        <footer>
+            <p><strong>PFL Academy</strong> | Chapter 2.4: Understanding Tax Deductions and Credits</p>
+            <p style="margin-top: 5px; font-size: 0.8rem;">Tax laws vary by state. Consult a tax professional for personalized advice.</p>
+        </footer>
+    </div>
+
+    <script>
+        let selectedIncome = null;
+
+        function selectIncome(level) {
+            selectedIncome = level;
+            document.querySelectorAll('.income-btn').forEach(btn => {
+                btn.classList.remove('selected');
+            });
+            document.getElementById('income-' + level).classList.add('selected');
+        }
+
+        function updateCalculations() {
+            // Placeholder for real-time calculations if needed
+        }
+
+        function generateStrategy() {
+            if (!selectedIncome) {
+                alert('Please select your income level first.');
+                return;
+            }
+
+            // Get tax rate based on income level
+            let taxRate = 0;
+            switch(selectedIncome) {
+                case 'low': taxRate = 0.12; break;
+                case 'medium': taxRate = 0.22; break;
+                case 'high': taxRate = 0.24; break;
+            }
+
+            // Calculate deductions
+            let totalDeductions = 0;
+            let deductionItems = [];
+
+            if (document.getElementById('ded-student-loan').checked) {
+                const val = parseFloat(document.getElementById('val-student-loan').value) || 0;
+                const maxVal = Math.min(val, 2500);
+                totalDeductions += maxVal;
+                deductionItems.push(`Student Loan Interest: $${maxVal.toLocaleString()} (saves $${Math.round(maxVal * taxRate).toLocaleString()})`);
+            }
+            if (document.getElementById('ded-ira').checked) {
+                const val = parseFloat(document.getElementById('val-ira').value) || 0;
+                const maxVal = Math.min(val, 6500);
+                totalDeductions += maxVal;
+                deductionItems.push(`Traditional IRA: $${maxVal.toLocaleString()} (saves $${Math.round(maxVal * taxRate).toLocaleString()})`);
+            }
+            if (document.getElementById('ded-hsa').checked) {
+                const val = parseFloat(document.getElementById('val-hsa').value) || 0;
+                const maxVal = Math.min(val, 3850);
+                totalDeductions += maxVal;
+                deductionItems.push(`HSA Contributions: $${maxVal.toLocaleString()} (saves $${Math.round(maxVal * taxRate).toLocaleString()})`);
+            }
+            if (document.getElementById('ded-educator').checked) {
+                const val = parseFloat(document.getElementById('val-educator').value) || 0;
+                const maxVal = Math.min(val, 300);
+                totalDeductions += maxVal;
+                deductionItems.push(`Educator Expenses: $${maxVal.toLocaleString()} (saves $${Math.round(maxVal * taxRate).toLocaleString()})`);
+            }
+            if (document.getElementById('ded-charity').checked) {
+                const val = parseFloat(document.getElementById('val-charity').value) || 0;
+                totalDeductions += val;
+                deductionItems.push(`Charitable Contributions: $${val.toLocaleString()} (saves $${Math.round(val * taxRate).toLocaleString()})`);
+            }
+            if (document.getElementById('ded-mortgage').checked) {
+                const val = parseFloat(document.getElementById('val-mortgage').value) || 0;
+                totalDeductions += val;
+                deductionItems.push(`Mortgage Interest: $${val.toLocaleString()} (saves $${Math.round(val * taxRate).toLocaleString()})`);
+            }
+
+            // Calculate credits
+            let totalCredits = 0;
+            let creditItems = [];
+
+            if (document.getElementById('credit-aotc').checked) {
+                totalCredits += 2500;
+                creditItems.push('American Opportunity Credit: up to $2,500 (40% refundable)');
+            }
+            if (document.getElementById('credit-llc').checked) {
+                totalCredits += 2000;
+                creditItems.push('Lifetime Learning Credit: up to $2,000');
+            }
+            if (document.getElementById('credit-saver').checked) {
+                totalCredits += 1000;
+                creditItems.push('Saver\'s Credit: up to $1,000');
+            }
+            if (document.getElementById('credit-eitc').checked) {
+                let eitcAmount = selectedIncome === 'low' ? 1500 : 500;
+                totalCredits += eitcAmount;
+                creditItems.push(`Earned Income Tax Credit: estimated $${eitcAmount.toLocaleString()}`);
+            }
+            if (document.getElementById('credit-child').checked) {
+                totalCredits += 2000;
+                creditItems.push('Child Tax Credit: $2,000 per child');
+            }
+
+            // Calculate total savings
+            const deductionSavings = Math.round(totalDeductions * taxRate);
+            const totalSavings = deductionSavings + totalCredits;
+
+            // Generate action items based on income level and selections
+            let actionItems = [];
+
+            // Standard deduction comparison
+            const standardDeduction = 13850;
+            if (totalDeductions < standardDeduction) {
+                actionItems.push(`Your itemized deductions ($${totalDeductions.toLocaleString()}) are below the standard deduction ($${standardDeduction.toLocaleString()}). Consider taking the standard deduction unless you can increase itemized deductions.`);
+            } else {
+                actionItems.push(`Your itemized deductions ($${totalDeductions.toLocaleString()}) exceed the standard deduction. Itemizing may be beneficial.`);
+            }
+
+            // Income-specific recommendations
+            if (selectedIncome === 'low') {
+                actionItems.push('Prioritize refundable credits like EITC and American Opportunity Credit - they can result in a refund even if you owe no tax.');
+                actionItems.push('Consider contributing to a Roth IRA instead of Traditional IRA for tax-free growth.');
+            } else if (selectedIncome === 'medium') {
+                actionItems.push('Maximize above-the-line deductions (IRA, HSA, student loan interest) to reduce AGI.');
+                actionItems.push('Consider "bunching" charitable donations in alternate years to exceed the standard deduction.');
+            } else {
+                actionItems.push('At higher tax brackets, each deduction dollar saves more. Maximize all available deductions.');
+                actionItems.push('Consider tax-loss harvesting on investments to offset capital gains.');
+                actionItems.push('Explore contributing to employer 401(k) to reduce taxable income.');
+            }
+
+            // Credit optimization
+            if (document.getElementById('credit-aotc').checked && document.getElementById('credit-llc').checked) {
+                actionItems.push('Note: You cannot claim both American Opportunity Credit and Lifetime Learning Credit for the same student in the same year.');
+            }
+
+            // Display results
+            if (deductionItems.length === 0) {
+                deductionItems.push('No deductions selected. Review available deductions above.');
+            }
+            if (creditItems.length === 0) {
+                creditItems.push('No credits selected. Review available credits above.');
+            }
+
+            document.getElementById('totalSavings').textContent = '$' + totalSavings.toLocaleString();
+            document.getElementById('deductionSummary').innerHTML = deductionItems.map(item => `<li>${item}</li>`).join('');
+            document.getElementById('creditSummary').innerHTML = creditItems.map(item => `<li>${item}</li>`).join('');
+            document.getElementById('actionItems').innerHTML = actionItems.map(item => `<li>${item}</li>`).join('');
+
+            document.getElementById('results').classList.add('active');
+            document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

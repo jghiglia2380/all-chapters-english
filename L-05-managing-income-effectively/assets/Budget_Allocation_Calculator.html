@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budget Allocation Calculator - PFL Academy</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background: #f9fafb;
+            padding: 20px;
+        }
+        .container { max-width: 1100px; margin: 0 auto; }
+        .header {
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+            color: white;
+            padding: 24px;
+            border-radius: 12px;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+        .header h1 { font-size: 28px; font-weight: 700; margin-bottom: 8px; }
+        .header p { opacity: 0.9; font-size: 16px; }
+        .main-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px; }
+        .panel {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        .panel h3 { font-size: 18px; color: #6366f1; margin-bottom: 16px; }
+        .input-group { margin-bottom: 16px; }
+        .input-group label { display: block; font-weight: 600; font-size: 14px; margin-bottom: 8px; }
+        .input-group input, .input-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+        .budget-method {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+        .method-btn {
+            flex: 1;
+            padding: 10px;
+            border: 2px solid #e5e7eb;
+            border-radius: 6px;
+            background: white;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        .method-btn.active {
+            border-color: #6366f1;
+            background: #eff6ff;
+            color: #6366f1;
+        }
+        .results-panel {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            margin-bottom: 24px;
+        }
+        .results-panel h3 { font-size: 18px; color: #6366f1; margin-bottom: 16px; }
+        .result-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 20px; }
+        .result-item { background: #f9fafb; padding: 16px; border-radius: 8px; text-align: center; }
+        .result-value { font-size: 24px; font-weight: 700; margin-bottom: 4px; }
+        .result-value.needs { color: #3b82f6; }
+        .result-value.wants { color: #8b5cf6; }
+        .result-value.savings { color: #10b981; }
+        .result-label { font-size: 12px; color: #6b7280; }
+        .allocation-section {
+            background: #f9fafb;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 20px;
+        }
+        .allocation-section h4 { font-size: 14px; font-weight: 600; margin-bottom: 12px; }
+        .allocation-row {
+            display: grid;
+            grid-template-columns: 1fr 80px 100px;
+            gap: 8px;
+            padding: 8px 0;
+            border-bottom: 1px solid #e5e7eb;
+            font-size: 13px;
+            align-items: center;
+        }
+        .allocation-row:last-child { border-bottom: none; }
+        .allocation-bar { background: #e5e7eb; border-radius: 4px; overflow: hidden; height: 8px; }
+        .allocation-fill { height: 100%; }
+        .fill-needs { background: #3b82f6; }
+        .fill-wants { background: #8b5cf6; }
+        .fill-savings { background: #10b981; }
+        .comparison-section {
+            background: #eff6ff;
+            border-left: 4px solid #3b82f6;
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .comparison-section h4 { color: #3b82f6; font-size: 14px; margin-bottom: 12px; }
+        .comparison-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+        .comparison-item { background: white; padding: 12px; border-radius: 6px; }
+        .comparison-item h5 { font-size: 12px; font-weight: 600; margin-bottom: 8px; }
+        .comparison-item ul { margin-left: 16px; font-size: 11px; }
+        .action-buttons { text-align: center; }
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            margin: 0 8px;
+        }
+        .btn-primary { background: #6366f1; color: white; }
+        @media print { .action-buttons { display: none; } body { background: white; } }
+        @media (max-width: 768px) { .main-grid, .result-grid, .comparison-grid { grid-template-columns: 1fr; } .allocation-row { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Budget Allocation Calculator</h1>
+            <p>Apply the 50/30/20 rule to manage your income effectively</p>
+        </div>
+
+        <div class="main-grid">
+            <div class="panel">
+                <h3>Your Income</h3>
+                <div class="input-group">
+                    <label>Monthly Net Income ($)</label>
+                    <input type="number" id="income" value="3500" step="100" oninput="calculate()">
+                </div>
+                <div class="input-group">
+                    <label>Budgeting Method</label>
+                    <div class="budget-method">
+                        <button class="method-btn active" onclick="setMethod('503020')" id="btn503020">50/30/20</button>
+                        <button class="method-btn" onclick="setMethod('702010')" id="btn702010">70/20/10</button>
+                        <button class="method-btn" onclick="setMethod('custom')" id="btnCustom">Custom</button>
+                    </div>
+                </div>
+                <div id="customInputs" style="display: none;">
+                    <div class="input-group">
+                        <label>Needs %</label>
+                        <input type="number" id="customNeeds" value="50" min="0" max="100" oninput="calculate()">
+                    </div>
+                    <div class="input-group">
+                        <label>Wants %</label>
+                        <input type="number" id="customWants" value="30" min="0" max="100" oninput="calculate()">
+                    </div>
+                    <div class="input-group">
+                        <label>Savings %</label>
+                        <input type="number" id="customSavings" value="20" min="0" max="100" oninput="calculate()">
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel">
+                <h3>Your Allocation</h3>
+                <div class="result-grid">
+                    <div class="result-item">
+                        <div class="result-value needs" id="needsAmount">$1,750</div>
+                        <div class="result-label">Needs (50%)</div>
+                    </div>
+                    <div class="result-item">
+                        <div class="result-value wants" id="wantsAmount">$1,050</div>
+                        <div class="result-label">Wants (30%)</div>
+                    </div>
+                    <div class="result-item">
+                        <div class="result-value savings" id="savingsAmount">$700</div>
+                        <div class="result-label">Savings (20%)</div>
+                    </div>
+                </div>
+                <div style="text-align: center; font-size: 12px; color: #6b7280;">
+                    <p>Annual Savings: <strong id="annualSavings">$8,400</strong></p>
+                    <p>5-Year Savings (with 5% return): <strong id="fiveYearSavings">$46,700</strong></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="results-panel">
+            <h3>Detailed Budget Breakdown</h3>
+            
+            <div class="allocation-section" style="border-left: 4px solid #3b82f6;">
+                <h4 style="color: #3b82f6;">Needs (Essential Expenses)</h4>
+                <div class="allocation-row">
+                    <div>
+                        <span>Housing (rent/mortgage)</span>
+                        <div class="allocation-bar"><div class="allocation-fill fill-needs" style="width: 50%;"></div></div>
+                    </div>
+                    <div style="text-align: right;" id="housing">$875</div>
+                    <div style="text-align: right; color: #6b7280;">25% of income</div>
+                </div>
+                <div class="allocation-row">
+                    <div>
+                        <span>Utilities</span>
+                        <div class="allocation-bar"><div class="allocation-fill fill-needs" style="width: 10%;"></div></div>
+                    </div>
+                    <div style="text-align: right;" id="utilities">$175</div>
+                    <div style="text-align: right; color: #6b7280;">5% of income</div>
+                </div>
+                <div class="allocation-row">
+                    <div>
+                        <span>Groceries</span>
+                        <div class="allocation-bar"><div class="allocation-fill fill-needs" style="width: 20%;"></div></div>
+                    </div>
+                    <div style="text-align: right;" id="groceries">$350</div>
+                    <div style="text-align: right; color: #6b7280;">10% of income</div>
+                </div>
+                <div class="allocation-row">
+                    <div>
+                        <span>Transportation</span>
+                        <div class="allocation-bar"><div class="allocation-fill fill-needs" style="width: 10%;"></div></div>
+                    </div>
+                    <div style="text-align: right;" id="transportation">$175</div>
+                    <div style="text-align: right; color: #6b7280;">5% of income</div>
+                </div>
+                <div class="allocation-row">
+                    <div>
+                        <span>Insurance & Healthcare</span>
+                        <div class="allocation-bar"><div class="allocation-fill fill-needs" style="width: 10%;"></div></div>
+                    </div>
+                    <div style="text-align: right;" id="insurance">$175</div>
+                    <div style="text-align: right; color: #6b7280;">5% of income</div>
+                </div>
+            </div>
+
+            <div class="allocation-section" style="border-left: 4px solid #8b5cf6;">
+                <h4 style="color: #8b5cf6;">Wants (Discretionary Spending)</h4>
+                <div class="allocation-row">
+                    <div>
+                        <span>Entertainment & Dining</span>
+                        <div class="allocation-bar"><div class="allocation-fill fill-wants" style="width: 50%;"></div></div>
+                    </div>
+                    <div style="text-align: right;" id="entertainment">$525</div>
+                    <div style="text-align: right; color: #6b7280;">15% of income</div>
+                </div>
+                <div class="allocation-row">
+                    <div>
+                        <span>Shopping & Subscriptions</span>
+                        <div class="allocation-bar"><div class="allocation-fill fill-wants" style="width: 30%;"></div></div>
+                    </div>
+                    <div style="text-align: right;" id="shopping">$350</div>
+                    <div style="text-align: right; color: #6b7280;">10% of income</div>
+                </div>
+                <div class="allocation-row">
+                    <div>
+                        <span>Hobbies & Personal</span>
+                        <div class="allocation-bar"><div class="allocation-fill fill-wants" style="width: 20%;"></div></div>
+                    </div>
+                    <div style="text-align: right;" id="hobbies">$175</div>
+                    <div style="text-align: right; color: #6b7280;">5% of income</div>
+                </div>
+            </div>
+
+            <div class="allocation-section" style="border-left: 4px solid #10b981;">
+                <h4 style="color: #10b981;">Savings & Debt Repayment</h4>
+                <div class="allocation-row">
+                    <div>
+                        <span>Emergency Fund</span>
+                        <div class="allocation-bar"><div class="allocation-fill fill-savings" style="width: 30%;"></div></div>
+                    </div>
+                    <div style="text-align: right;" id="emergency">$210</div>
+                    <div style="text-align: right; color: #6b7280;">6% of income</div>
+                </div>
+                <div class="allocation-row">
+                    <div>
+                        <span>Retirement (401k/IRA)</span>
+                        <div class="allocation-bar"><div class="allocation-fill fill-savings" style="width: 50%;"></div></div>
+                    </div>
+                    <div style="text-align: right;" id="retirement">$350</div>
+                    <div style="text-align: right; color: #6b7280;">10% of income</div>
+                </div>
+                <div class="allocation-row">
+                    <div>
+                        <span>Extra Debt Payment/Goals</span>
+                        <div class="allocation-bar"><div class="allocation-fill fill-savings" style="width: 20%;"></div></div>
+                    </div>
+                    <div style="text-align: right;" id="debtGoals">$140</div>
+                    <div style="text-align: right; color: #6b7280;">4% of income</div>
+                </div>
+            </div>
+
+            <div class="comparison-section">
+                <h4>Budget Method Comparison</h4>
+                <div class="comparison-grid">
+                    <div class="comparison-item">
+                        <h5>50/30/20 Rule</h5>
+                        <ul>
+                            <li>Best for beginners</li>
+                            <li>Balanced approach</li>
+                            <li>Good savings rate</li>
+                            <li>Flexible for lifestyle</li>
+                        </ul>
+                    </div>
+                    <div class="comparison-item">
+                        <h5>70/20/10 Rule</h5>
+                        <ul>
+                            <li>More for daily expenses</li>
+                            <li>Lower savings rate</li>
+                            <li>Good for high-cost areas</li>
+                            <li>Easier to start</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="action-buttons">
+            <button class="btn btn-primary" onclick="calculate()">Recalculate</button>
+            <button class="btn" style="background: #e5e7eb; color: #374151;" onclick="window.print()">Print Budget</button>
+        </div>
+    </div>
+
+    <script>
+        let currentMethod = '503020';
+        const methods = {
+            '503020': { needs: 50, wants: 30, savings: 20 },
+            '702010': { needs: 70, wants: 20, savings: 10 }
+        };
+
+        function setMethod(method) {
+            currentMethod = method;
+            document.querySelectorAll('.method-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById('btn' + method.charAt(0).toUpperCase() + method.slice(1).replace(/\//g, '')).classList.add('active');
+            
+            if (method === 'custom') {
+                document.getElementById('customInputs').style.display = 'block';
+            } else {
+                document.getElementById('customInputs').style.display = 'none';
+            }
+            calculate();
+        }
+
+        function calculate() {
+            const income = parseFloat(document.getElementById('income').value) || 0;
+            
+            let needsPct, wantsPct, savingsPct;
+            
+            if (currentMethod === 'custom') {
+                needsPct = parseFloat(document.getElementById('customNeeds').value) || 0;
+                wantsPct = parseFloat(document.getElementById('customWants').value) || 0;
+                savingsPct = parseFloat(document.getElementById('customSavings').value) || 0;
+            } else {
+                needsPct = methods[currentMethod].needs;
+                wantsPct = methods[currentMethod].wants;
+                savingsPct = methods[currentMethod].savings;
+            }
+
+            const needs = income * (needsPct / 100);
+            const wants = income * (wantsPct / 100);
+            const savings = income * (savingsPct / 100);
+
+            // Update main display
+            document.getElementById('needsAmount').textContent = '$' + needs.toLocaleString();
+            document.getElementById('wantsAmount').textContent = '$' + wants.toLocaleString();
+            document.getElementById('savingsAmount').textContent = '$' + savings.toLocaleString();
+
+            // Update labels
+            document.querySelector('.result-item:nth-child(1) .result-label').textContent = `Needs (${needsPct}%)`;
+            document.querySelector('.result-item:nth-child(2) .result-label').textContent = `Wants (${wantsPct}%)`;
+            document.querySelector('.result-item:nth-child(3) .result-label').textContent = `Savings (${savingsPct}%)`;
+
+            // Calculate projections
+            const annualSavings = savings * 12;
+            const fiveYearSavings = calculateFV(savings, 0.05/12, 60);
+            
+            document.getElementById('annualSavings').textContent = '$' + Math.round(annualSavings).toLocaleString();
+            document.getElementById('fiveYearSavings').textContent = '$' + Math.round(fiveYearSavings).toLocaleString();
+
+            // Update detailed breakdown
+            document.getElementById('housing').textContent = '$' + Math.round(income * 0.25).toLocaleString();
+            document.getElementById('utilities').textContent = '$' + Math.round(income * 0.05).toLocaleString();
+            document.getElementById('groceries').textContent = '$' + Math.round(income * 0.10).toLocaleString();
+            document.getElementById('transportation').textContent = '$' + Math.round(income * 0.05).toLocaleString();
+            document.getElementById('insurance').textContent = '$' + Math.round(income * 0.05).toLocaleString();
+            
+            document.getElementById('entertainment').textContent = '$' + Math.round(income * 0.15).toLocaleString();
+            document.getElementById('shopping').textContent = '$' + Math.round(income * 0.10).toLocaleString();
+            document.getElementById('hobbies').textContent = '$' + Math.round(income * 0.05).toLocaleString();
+            
+            document.getElementById('emergency').textContent = '$' + Math.round(income * 0.06).toLocaleString();
+            document.getElementById('retirement').textContent = '$' + Math.round(income * 0.10).toLocaleString();
+            document.getElementById('debtGoals').textContent = '$' + Math.round(income * 0.04).toLocaleString();
+        }
+
+        function calculateFV(pmt, rate, periods) {
+            if (rate === 0) return pmt * periods;
+            return pmt * ((Math.pow(1 + rate, periods) - 1) / rate);
+        }
+
+        // Initialize
+        calculate();
+    </script>
+</body>
+</html>

@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contract Negotiation Scenario Cards</title>
+    <!--
+    PURPOSE: Role-play cards with contract negotiation scenarios and strategies
+    USE: Activity 4 - Contract Negotiation Simulation (10 minutes)
+    -->
+    <style>
+        :root {
+            --primary: #6366f1;
+            --secondary: #8b5cf6;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --text: #1f2937;
+            --surface: #f9fafb;
+        }
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: var(--primary);
+            border-bottom: 3px solid var(--primary);
+            padding-bottom: 10px;
+        }
+        .instructions {
+            background: #f0f7ff;
+            border-left: 4px solid var(--primary);
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .scenario-grid {
+            display: grid;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .scenario-card {
+            background: var(--surface);
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 20px;
+            page-break-inside: avoid;
+        }
+        .scenario-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .scenario-title {
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: var(--primary);
+        }
+        .difficulty {
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        .difficulty.easy {
+            background: #d1fae5;
+            color: var(--success);
+        }
+        .difficulty.medium {
+            background: #fef3c7;
+            color: var(--warning);
+        }
+        .difficulty.hard {
+            background: #fee2e2;
+            color: var(--danger);
+        }
+        .role-box {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 15px 0;
+        }
+        .role {
+            padding: 15px;
+            border-radius: 6px;
+        }
+        .role-consumer {
+            background: #eef2ff;
+            border-left: 4px solid var(--primary);
+        }
+        .role-business {
+            background: #fef3c7;
+            border-left: 4px solid var(--warning);
+        }
+        .role h4 {
+            margin: 0 0 10px 0;
+            font-size: 0.9rem;
+        }
+        .role ul {
+            margin: 0;
+            padding-left: 20px;
+            font-size: 0.85rem;
+        }
+        .negotiation-notes {
+            margin: 15px 0;
+        }
+        .negotiation-notes label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .negotiation-notes textarea {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #e5e7eb;
+            border-radius: 6px;
+            min-height: 60px;
+            font-family: inherit;
+        }
+        .outcome-section {
+            background: white;
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 15px;
+        }
+        .outcome-options {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+        .outcome-btn {
+            padding: 8px 16px;
+            border: 2px solid #e5e7eb;
+            border-radius: 6px;
+            background: white;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .outcome-btn:hover {
+            border-color: var(--primary);
+        }
+        .outcome-btn.selected {
+            background: #eef2ff;
+            border-color: var(--primary);
+        }
+        .tips-box {
+            background: #f0fdf4;
+            border: 1px solid var(--success);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .tips-box h3 {
+            color: var(--success);
+            margin-top: 0;
+        }
+        @media print {
+            .scenario-card {
+                break-inside: avoid;
+            }
+            body {
+                font-size: 11pt;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>🎭 Contract Negotiation Scenario Cards</h1>
+
+    <div class="instructions">
+        <strong>Instructions:</strong> Work with a partner. One person plays the Consumer, the other plays the Business Representative. Use the talking points to negotiate. Record your strategy and outcome.
+    </div>
+
+    <div class="tips-box">
+        <h3>💡 Negotiation Tips</h3>
+        <ul>
+            <li><strong>Be prepared:</strong> Know what terms you want changed before starting</li>
+            <li><strong>Stay calm:</strong> Emotional reactions weaken your position</li>
+            <li><strong>Ask questions:</strong> "Is this term negotiable?" or "What alternatives can you offer?"</li>
+            <li><strong>Get it in writing:</strong> Any agreed changes must be documented</li>
+            <li><strong>Be willing to walk away:</strong> Having alternatives gives you power</li>
+        </ul>
+    </div>
+
+    <div class="scenario-grid">
+        <!-- Scenario 1 -->
+        <div class="scenario-card">
+            <div class="scenario-header">
+                <span class="scenario-title">📱 Cell Phone Contract</span>
+                <span class="difficulty easy">Easy</span>
+            </div>
+
+            <p><strong>Situation:</strong> You want to sign up for a new phone plan, but the contract includes a $350 early termination fee and mandatory 2-year commitment.</p>
+
+            <div class="role-box">
+                <div class="role role-consumer">
+                    <h4>🙋 Consumer Goals</h4>
+                    <ul>
+                        <li>Reduce early termination fee</li>
+                        <li>Shorten commitment to 1 year</li>
+                        <li>Get waived activation fee</li>
+                    </ul>
+                </div>
+                <div class="role role-business">
+                    <h4>🏢 Business Position</h4>
+                    <ul>
+                        <li>ETF covers phone subsidy cost</li>
+                        <li>2-year ensures customer retention</li>
+                        <li>Can offer reduced ETF for loyalty</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="negotiation-notes">
+                <label>Your Negotiation Strategy:</label>
+                <textarea placeholder="What arguments will you make? What compromises are you willing to accept?"></textarea>
+            </div>
+
+            <div class="outcome-section">
+                <strong>Negotiation Outcome:</strong>
+                <div class="outcome-options">
+                    <button class="outcome-btn" onclick="selectOutcome(this)">Consumer Win</button>
+                    <button class="outcome-btn" onclick="selectOutcome(this)">Compromise</button>
+                    <button class="outcome-btn" onclick="selectOutcome(this)">No Deal</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scenario 2 -->
+        <div class="scenario-card">
+            <div class="scenario-header">
+                <span class="scenario-title">🏠 Apartment Lease</span>
+                <span class="difficulty medium">Medium</span>
+            </div>
+
+            <p><strong>Situation:</strong> You found an apartment you like, but the lease prohibits any pets and requires 60-day notice to vacate with a 2-month penalty for early termination.</p>
+
+            <div class="role-box">
+                <div class="role role-consumer">
+                    <h4>🙋 Consumer Goals</h4>
+                    <ul>
+                        <li>Allow small pet with deposit</li>
+                        <li>Reduce notice to 30 days</li>
+                        <li>Lower early termination penalty</li>
+                    </ul>
+                </div>
+                <div class="role role-business">
+                    <h4>🏢 Business Position</h4>
+                    <ul>
+                        <li>Pets cause property damage</li>
+                        <li>60 days needed to find new tenant</li>
+                        <li>Penalty covers lost rent</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="negotiation-notes">
+                <label>Your Negotiation Strategy:</label>
+                <textarea placeholder="What arguments will you make? What compromises are you willing to accept?"></textarea>
+            </div>
+
+            <div class="outcome-section">
+                <strong>Negotiation Outcome:</strong>
+                <div class="outcome-options">
+                    <button class="outcome-btn" onclick="selectOutcome(this)">Consumer Win</button>
+                    <button class="outcome-btn" onclick="selectOutcome(this)">Compromise</button>
+                    <button class="outcome-btn" onclick="selectOutcome(this)">No Deal</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scenario 3 -->
+        <div class="scenario-card">
+            <div class="scenario-header">
+                <span class="scenario-title">🚗 Auto Purchase</span>
+                <span class="difficulty hard">Hard</span>
+            </div>
+
+            <p><strong>Situation:</strong> You're buying a used car and the dealer wants you to sign an "as-is" agreement with mandatory arbitration and a $500 documentation fee.</p>
+
+            <div class="role-box">
+                <div class="role role-consumer">
+                    <h4>🙋 Consumer Goals</h4>
+                    <ul>
+                        <li>Get 30-day warranty instead of as-is</li>
+                        <li>Remove arbitration clause</li>
+                        <li>Reduce or eliminate doc fee</li>
+                        <li>Include inspection contingency</li>
+                    </ul>
+                </div>
+                <div class="role role-business">
+                    <h4>🏢 Business Position</h4>
+                    <ul>
+                        <li>As-is protects from unknown issues</li>
+                        <li>Arbitration reduces legal costs</li>
+                        <li>Doc fee covers paperwork processing</li>
+                        <li>Car already inspected</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="negotiation-notes">
+                <label>Your Negotiation Strategy:</label>
+                <textarea placeholder="What arguments will you make? What compromises are you willing to accept?"></textarea>
+            </div>
+
+            <div class="outcome-section">
+                <strong>Negotiation Outcome:</strong>
+                <div class="outcome-options">
+                    <button class="outcome-btn" onclick="selectOutcome(this)">Consumer Win</button>
+                    <button class="outcome-btn" onclick="selectOutcome(this)">Compromise</button>
+                    <button class="outcome-btn" onclick="selectOutcome(this)">No Deal</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function selectOutcome(btn) {
+            const parent = btn.parentElement;
+            parent.querySelectorAll('.outcome-btn').forEach(b => b.classList.remove('selected'));
+            btn.classList.add('selected');
+        }
+    </script>
+</body>
+</html>

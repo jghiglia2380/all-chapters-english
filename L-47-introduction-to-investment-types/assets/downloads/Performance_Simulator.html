@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock vs. Bond Performance Simulator - PFL Academy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background: #f9fafb;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+            color: white;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 0.9rem;
+        }
+
+        .content {
+            padding: 24px;
+        }
+
+        .section {
+            margin-bottom: 32px;
+        }
+
+        .section h2 {
+            font-size: 1.15rem;
+            margin-bottom: 16px;
+            color: #1f2937;
+        }
+
+        .scenario-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+        }
+
+        .scenario-card {
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 16px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .scenario-card:hover {
+            border-color: #6366f1;
+        }
+
+        .scenario-card.active {
+            border-color: #6366f1;
+            background: #f5f3ff;
+        }
+
+        .scenario-card h3 {
+            font-size: 0.95rem;
+            margin-bottom: 8px;
+        }
+
+        .scenario-card p {
+            font-size: 0.8rem;
+            color: #6b7280;
+        }
+
+        .prediction-section {
+            background: #f9fafb;
+            border-radius: 8px;
+            padding: 16px;
+            margin-top: 16px;
+        }
+
+        .prediction-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+        }
+
+        .prediction-label {
+            font-weight: 500;
+            font-size: 0.9rem;
+            min-width: 120px;
+        }
+
+        .prediction-buttons {
+            display: flex;
+            gap: 8px;
+        }
+
+        .pred-btn {
+            padding: 8px 16px;
+            border: 2px solid #d1d5db;
+            border-radius: 6px;
+            background: white;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+        }
+
+        .pred-btn:hover {
+            border-color: #6366f1;
+        }
+
+        .pred-btn.selected {
+            background: #6366f1;
+            border-color: #6366f1;
+            color: white;
+        }
+
+        .result-display {
+            background: #f0fdf4;
+            border: 1px solid #86efac;
+            border-radius: 8px;
+            padding: 16px;
+            margin-top: 16px;
+            display: none;
+        }
+
+        .result-display.show {
+            display: block;
+        }
+
+        .result-display h4 {
+            color: #166534;
+            margin-bottom: 8px;
+        }
+
+        .result-display p {
+            font-size: 0.85rem;
+            margin-bottom: 6px;
+        }
+
+        .input-field {
+            margin-top: 12px;
+        }
+
+        .input-field label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 6px;
+        }
+
+        .input-field textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-family: inherit;
+            resize: vertical;
+            min-height: 60px;
+        }
+
+        .input-field textarea:focus {
+            outline: none;
+            border-color: #6366f1;
+        }
+
+        .long-term-section {
+            margin-top: 32px;
+            padding-top: 24px;
+            border-top: 2px solid #e5e7eb;
+        }
+
+        .portfolio-comparison {
+            background: #f9fafb;
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        .portfolio-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .portfolio-item {
+            text-align: center;
+        }
+
+        .portfolio-item h4 {
+            font-size: 0.85rem;
+            margin-bottom: 8px;
+            color: #6b7280;
+        }
+
+        .portfolio-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #6366f1;
+        }
+
+        .portfolio-bar {
+            height: 120px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .bar {
+            width: 60px;
+            border-radius: 4px 4px 0 0;
+            position: relative;
+            transition: height 0.5s ease;
+        }
+
+        .bar-stocks { background: #6366f1; }
+        .bar-bonds { background: #10b981; }
+        .bar-balanced { background: #f59e0b; }
+
+        .bar-label {
+            position: absolute;
+            bottom: -24px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.7rem;
+            white-space: nowrap;
+        }
+
+        .record-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+            margin-top: 16px;
+        }
+
+        .record-table th,
+        .record-table td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #e5e7eb;
+        }
+
+        .record-table th {
+            background: #f3f4f6;
+            font-weight: 600;
+        }
+
+        .record-table input {
+            width: 100%;
+            padding: 6px;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+            font-size: 0.85rem;
+        }
+
+        .record-table input:focus {
+            outline: none;
+            border-color: #6366f1;
+        }
+
+        .reflection-box {
+            background: #fef3c7;
+            border-radius: 8px;
+            padding: 16px;
+            margin-top: 20px;
+        }
+
+        .reflection-box h4 {
+            color: #92400e;
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+            font-size: 0.9rem;
+        }
+
+        .btn-primary {
+            background: #6366f1;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #4f46e5;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+
+            .container {
+                box-shadow: none;
+            }
+
+            .btn {
+                display: none;
+            }
+
+            .scenario-card {
+                page-break-inside: avoid;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .portfolio-row {
+                grid-template-columns: 1fr;
+            }
+
+            .prediction-row {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Stock vs. Bond Performance Simulator</h1>
+            <p>Activity 2: Understand how investments perform under different economic conditions</p>
+        </div>
+
+        <div class="content">
+            <div class="section">
+                <h2>Part A: Economic Scenario Analysis</h2>
+                <p style="margin-bottom: 16px; color: #6b7280; font-size: 0.9rem;">Click each scenario to make your prediction, then reveal the historical data.</p>
+
+                <div class="scenario-grid">
+                    <div class="scenario-card" onclick="selectScenario(this, 1)">
+                        <h3>Scenario 1: Strong Economic Growth</h3>
+                        <p>GDP growth of +4%, strong employment, rising consumer spending</p>
+                    </div>
+                    <div class="scenario-card" onclick="selectScenario(this, 2)">
+                        <h3>Scenario 2: Recession</h3>
+                        <p>GDP decline of -2%, rising unemployment, reduced spending</p>
+                    </div>
+                    <div class="scenario-card" onclick="selectScenario(this, 3)">
+                        <h3>Scenario 3: High Inflation</h3>
+                        <p>Annual inflation rate of 5%, rising prices across economy</p>
+                    </div>
+                    <div class="scenario-card" onclick="selectScenario(this, 4)">
+                        <h3>Scenario 4: Rising Interest Rates</h3>
+                        <p>Federal Reserve raises rates by 2% to combat inflation</p>
+                    </div>
+                </div>
+
+                <div class="prediction-section" id="prediction-area" style="display: none;">
+                    <div class="prediction-row">
+                        <span class="prediction-label" id="scenario-label">Your Prediction:</span>
+                        <div class="prediction-buttons">
+                            <button class="pred-btn" onclick="makePrediction('stocks')">Stocks</button>
+                            <button class="pred-btn" onclick="makePrediction('bonds')">Bonds</button>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" onclick="revealResult()">Reveal Historical Data</button>
+
+                    <div class="result-display" id="result-display">
+                        <h4 id="result-title">Historical Result</h4>
+                        <p id="result-text"></p>
+                    </div>
+
+                    <div class="input-field">
+                        <label>Explanation (Why did this happen?):</label>
+                        <textarea placeholder="Write your explanation..."></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="long-term-section">
+                <h2>Part B: Long-Term Perspective (30-Year Comparison)</h2>
+                <p style="margin-bottom: 16px; color: #6b7280; font-size: 0.9rem;">$10,000 invested in 1993 through 2023</p>
+
+                <div class="portfolio-comparison">
+                    <div class="portfolio-bar">
+                        <div class="bar bar-stocks" style="height: 100%;">
+                            <span class="bar-label">Stocks</span>
+                        </div>
+                        <div class="bar bar-bonds" style="height: 35%;">
+                            <span class="bar-label">Bonds</span>
+                        </div>
+                        <div class="bar bar-balanced" style="height: 65%;">
+                            <span class="bar-label">60/40</span>
+                        </div>
+                    </div>
+
+                    <div class="portfolio-row">
+                        <div class="portfolio-item">
+                            <h4>100% Stocks (S&P 500)</h4>
+                            <div class="portfolio-value">$178,000</div>
+                        </div>
+                        <div class="portfolio-item">
+                            <h4>100% Bonds (Treasury)</h4>
+                            <div class="portfolio-value">$42,000</div>
+                        </div>
+                        <div class="portfolio-item">
+                            <h4>60/40 Balanced</h4>
+                            <div class="portfolio-value">$98,000</div>
+                        </div>
+                    </div>
+                </div>
+
+                <table class="record-table">
+                    <thead>
+                        <tr>
+                            <th>Portfolio</th>
+                            <th>Ending Value (30 yrs)</th>
+                            <th>Worst Year Loss</th>
+                            <th>Year</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>All-Stock Portfolio</td>
+                            <td><input type="text" placeholder="$"></td>
+                            <td><input type="text" placeholder="%"></td>
+                            <td><input type="text" placeholder="Year"></td>
+                        </tr>
+                        <tr>
+                            <td>All-Bond Portfolio</td>
+                            <td><input type="text" placeholder="$"></td>
+                            <td><input type="text" placeholder="%"></td>
+                            <td><input type="text" placeholder="Year"></td>
+                        </tr>
+                        <tr>
+                            <td>Balanced Portfolio</td>
+                            <td><input type="text" placeholder="$"></td>
+                            <td><input type="text" placeholder="%"></td>
+                            <td><input type="text" placeholder="Year"></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="reflection-box">
+                    <h4>Reflection</h4>
+                    <p style="font-size: 0.85rem; margin-bottom: 12px;">Would you have been able to stay invested through the worst year's losses? How does this inform your risk tolerance?</p>
+                    <textarea style="width: 100%; padding: 10px; border: 1px solid #d1d5db; border-radius: 6px; min-height: 80px; font-size: 0.85rem; font-family: inherit;" placeholder="Your reflection..."></textarea>
+                </div>
+
+                <button class="btn btn-primary" onclick="window.print()" style="margin-top: 16px;">Print Worksheet</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentScenario = null;
+        let currentPrediction = null;
+
+        const scenarioData = {
+            1: {
+                label: 'Strong Growth (+4% GDP)',
+                winner: 'stocks',
+                stockReturn: '+18% average',
+                bondReturn: '+4% average',
+                explanation: 'During strong economic growth, company profits increase, driving stock prices higher. Corporate earnings grow as consumers spend more. Bonds provide modest returns as they offer fixed payments.'
+            },
+            2: {
+                label: 'Recession (-2% GDP)',
+                winner: 'bonds',
+                stockReturn: '-25% average',
+                bondReturn: '+8% average',
+                explanation: 'During recessions, investors flee to the safety of bonds, driving up bond prices. Stock prices fall as company profits decline. Treasury bonds are seen as safe havens during market turmoil.'
+            },
+            3: {
+                label: 'High Inflation (5%)',
+                winner: 'stocks',
+                stockReturn: '+3% real return',
+                bondReturn: '-2% real return',
+                explanation: 'Stocks can adjust to inflation as companies raise prices. Bonds lose value because their fixed payments buy less with inflated dollars. Stocks provide a partial inflation hedge.'
+            },
+            4: {
+                label: 'Rising Rates (+2%)',
+                winner: 'stocks',
+                stockReturn: '+6% average',
+                bondReturn: '-12% average',
+                explanation: 'When interest rates rise, existing bond prices fall (inverse relationship). Stocks may struggle initially but often recover. New bonds become more attractive than existing ones.'
+            }
+        };
+
+        function selectScenario(card, num) {
+            document.querySelectorAll('.scenario-card').forEach(c => c.classList.remove('active'));
+            card.classList.add('active');
+            currentScenario = num;
+            currentPrediction = null;
+
+            document.getElementById('prediction-area').style.display = 'block';
+            document.getElementById('scenario-label').textContent = `Scenario ${num} - Your Prediction:`;
+            document.getElementById('result-display').classList.remove('show');
+            document.querySelectorAll('.pred-btn').forEach(b => b.classList.remove('selected'));
+        }
+
+        function makePrediction(choice) {
+            currentPrediction = choice;
+            document.querySelectorAll('.pred-btn').forEach(b => b.classList.remove('selected'));
+            event.target.classList.add('selected');
+        }
+
+        function revealResult() {
+            if (!currentScenario) return;
+
+            const data = scenarioData[currentScenario];
+            const resultDiv = document.getElementById('result-display');
+
+            let resultText = `<strong>Stocks:</strong> ${data.stockReturn}<br>`;
+            resultText += `<strong>Bonds:</strong> ${data.bondReturn}<br><br>`;
+            resultText += `<strong>Winner:</strong> ${data.winner.charAt(0).toUpperCase() + data.winner.slice(1)}<br><br>`;
+            resultText += `<strong>Why:</strong> ${data.explanation}`;
+
+            if (currentPrediction) {
+                if (currentPrediction === data.winner) {
+                    resultText = `<span style="color: #059669; font-weight: bold;">Correct!</span><br><br>` + resultText;
+                } else {
+                    resultText = `<span style="color: #dc2626; font-weight: bold;">Not quite - ${data.winner} performed better</span><br><br>` + resultText;
+                }
+            }
+
+            document.getElementById('result-title').textContent = `Historical Result: ${data.label}`;
+            document.getElementById('result-text').innerHTML = resultText;
+            resultDiv.classList.add('show');
+        }
+    </script>
+</body>
+</html>

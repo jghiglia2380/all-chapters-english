@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gambling Probability Calculator - PFL Academy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background: #f9fafb;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+            color: white;
+            padding: 24px;
+            border-radius: 12px;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 16px;
+        }
+
+        .calculator-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+
+        .calculator-card {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .calculator-card h2 {
+            font-size: 18px;
+            color: #6366f1;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e5e7eb;
+        }
+
+        .input-group {
+            margin-bottom: 16px;
+        }
+
+        .input-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 6px;
+            font-size: 14px;
+        }
+
+        .input-group input,
+        .input-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        .input-group input:focus,
+        .input-group select:focus {
+            outline: none;
+            border-color: #6366f1;
+        }
+
+        .input-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .calculate-btn {
+            background: #6366f1;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            width: 100%;
+            margin-top: 8px;
+        }
+
+        .calculate-btn:hover {
+            background: #4f46e5;
+        }
+
+        .result-box {
+            background: #f0fdf4;
+            border: 2px solid #10b981;
+            border-radius: 8px;
+            padding: 16px;
+            margin-top: 16px;
+        }
+
+        .result-box.negative {
+            background: #fef2f2;
+            border-color: #ef4444;
+        }
+
+        .result-label {
+            font-size: 12px;
+            color: #6b7280;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .result-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: #059669;
+        }
+
+        .result-box.negative .result-value {
+            color: #dc2626;
+        }
+
+        .result-details {
+            font-size: 13px;
+            color: #4b5563;
+            margin-top: 8px;
+        }
+
+        .explanation {
+            background: #eff6ff;
+            border-left: 4px solid #3b82f6;
+            padding: 12px 16px;
+            border-radius: 4px;
+            margin-top: 16px;
+            font-size: 13px;
+        }
+
+        .explanation strong {
+            color: #3b82f6;
+        }
+
+        .full-width {
+            grid-column: 1 / -1;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 16px;
+            font-size: 13px;
+        }
+
+        .comparison-table th {
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .comparison-table td {
+            padding: 10px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .comparison-table tr:hover {
+            background-color: #f9fafb;
+        }
+
+        .warning-box {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 12px 16px;
+            border-radius: 4px;
+            margin-top: 16px;
+            font-size: 13px;
+        }
+
+        .warning-box strong {
+            color: #b45309;
+        }
+
+        .probability-visual {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .probability-bar {
+            flex: 1;
+            height: 24px;
+            background: #e5e7eb;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .probability-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #10b981, #3b82f6);
+            border-radius: 12px;
+            transition: width 0.3s ease;
+        }
+
+        .probability-label {
+            font-weight: 600;
+            min-width: 60px;
+            text-align: right;
+        }
+
+        .print-section {
+            text-align: center;
+            margin-top: 24px;
+        }
+
+        .print-btn {
+            background: #6366f1;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .print-btn:hover {
+            background: #4f46e5;
+        }
+
+        @media print {
+            body {
+                padding: 10px;
+                background: white;
+            }
+
+            .print-section,
+            .calculate-btn {
+                display: none;
+            }
+
+            .calculator-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .calculator-card {
+                box-shadow: none;
+                page-break-inside: avoid;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .calculator-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .input-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Gambling Probability Calculator</h1>
+            <p>Calculate expected value and understand the mathematics of gambling</p>
+        </div>
+
+        <div class="calculator-grid">
+            <!-- Basic Probability Calculator -->
+            <div class="calculator-card">
+                <h2>Basic Probability Calculator</h2>
+                <div class="input-group">
+                    <label>Number of Favorable Outcomes</label>
+                    <input type="number" id="favorable" placeholder="e.g., 1" min="0">
+                </div>
+                <div class="input-group">
+                    <label>Total Possible Outcomes</label>
+                    <input type="number" id="total" placeholder="e.g., 6" min="1">
+                </div>
+                <button class="calculate-btn" onclick="calculateProbability()">Calculate Probability</button>
+
+                <div class="result-box" id="probResult" style="display: none;">
+                    <div class="result-label">Probability</div>
+                    <div class="result-value" id="probValue">0%</div>
+                    <div class="probability-visual">
+                        <div class="probability-bar">
+                            <div class="probability-fill" id="probBar" style="width: 0%"></div>
+                        </div>
+                        <span class="probability-label" id="probOdds">1:1</span>
+                    </div>
+                </div>
+
+                <div class="explanation">
+                    <strong>Formula:</strong> Probability = Favorable Outcomes / Total Outcomes
+                </div>
+            </div>
+
+            <!-- Expected Value Calculator -->
+            <div class="calculator-card">
+                <h2>Expected Value Calculator</h2>
+                <div class="input-row">
+                    <div class="input-group">
+                        <label>Win Probability (%)</label>
+                        <input type="number" id="winProb" placeholder="e.g., 47.4" min="0" max="100" step="0.1">
+                    </div>
+                    <div class="input-group">
+                        <label>Win Amount ($)</label>
+                        <input type="number" id="winAmount" placeholder="e.g., 10" min="0" step="0.01">
+                    </div>
+                </div>
+                <div class="input-row">
+                    <div class="input-group">
+                        <label>Loss Probability (%)</label>
+                        <input type="number" id="loseProb" placeholder="e.g., 52.6" min="0" max="100" step="0.1">
+                    </div>
+                    <div class="input-group">
+                        <label>Loss Amount ($)</label>
+                        <input type="number" id="loseAmount" placeholder="e.g., 10" min="0" step="0.01">
+                    </div>
+                </div>
+                <button class="calculate-btn" onclick="calculateEV()">Calculate Expected Value</button>
+
+                <div class="result-box" id="evResult" style="display: none;">
+                    <div class="result-label">Expected Value per Bet</div>
+                    <div class="result-value" id="evValue">$0.00</div>
+                    <div class="result-details" id="evDetails"></div>
+                </div>
+
+                <div class="explanation">
+                    <strong>Formula:</strong> EV = (Win Prob x Win Amount) - (Loss Prob x Loss Amount)
+                </div>
+            </div>
+
+            <!-- Long-Term Loss Calculator -->
+            <div class="calculator-card">
+                <h2>Long-Term Loss Calculator</h2>
+                <div class="input-group">
+                    <label>Bet Amount ($)</label>
+                    <input type="number" id="betAmount" placeholder="e.g., 10" min="0" step="0.01">
+                </div>
+                <div class="input-group">
+                    <label>House Edge (%)</label>
+                    <input type="number" id="houseEdge" placeholder="e.g., 5.26" min="0" max="100" step="0.01">
+                </div>
+                <div class="input-group">
+                    <label>Number of Bets</label>
+                    <input type="number" id="numBets" placeholder="e.g., 100" min="1">
+                </div>
+                <button class="calculate-btn" onclick="calculateLongTerm()">Calculate Expected Loss</button>
+
+                <div class="result-box negative" id="lossResult" style="display: none;">
+                    <div class="result-label">Expected Total Loss</div>
+                    <div class="result-value" id="lossValue">$0.00</div>
+                    <div class="result-details" id="lossDetails"></div>
+                </div>
+
+                <div class="warning-box">
+                    <strong>Remember:</strong> The more you gamble, the closer your results will get to the expected loss due to the house edge.
+                </div>
+            </div>
+
+            <!-- Lottery Expected Value -->
+            <div class="calculator-card">
+                <h2>Lottery Expected Value</h2>
+                <div class="input-row">
+                    <div class="input-group">
+                        <label>Ticket Cost ($)</label>
+                        <input type="number" id="ticketCost" placeholder="e.g., 2" min="0" step="0.01">
+                    </div>
+                    <div class="input-group">
+                        <label>Jackpot Amount ($)</label>
+                        <input type="number" id="jackpot" placeholder="e.g., 100000000" min="0">
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label>Odds of Winning (1 in X)</label>
+                    <input type="number" id="lotteryOdds" placeholder="e.g., 300000000" min="1">
+                </div>
+                <button class="calculate-btn" onclick="calculateLottery()">Calculate Expected Value</button>
+
+                <div class="result-box negative" id="lotteryResult" style="display: none;">
+                    <div class="result-label">Expected Value per Ticket</div>
+                    <div class="result-value" id="lotteryValue">$0.00</div>
+                    <div class="result-details" id="lotteryDetails"></div>
+                </div>
+            </div>
+
+            <!-- House Edge Reference Table -->
+            <div class="calculator-card full-width">
+                <h2>Common Gambling Games - House Edge Reference</h2>
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Game</th>
+                            <th>House Edge</th>
+                            <th>Expected Loss per $100 Wagered</th>
+                            <th>Win Probability</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Blackjack (basic strategy)</td>
+                            <td>0.5%</td>
+                            <td>$0.50</td>
+                            <td>~49%</td>
+                        </tr>
+                        <tr>
+                            <td>Craps (pass line)</td>
+                            <td>1.4%</td>
+                            <td>$1.40</td>
+                            <td>~49%</td>
+                        </tr>
+                        <tr>
+                            <td>Baccarat</td>
+                            <td>1.06%</td>
+                            <td>$1.06</td>
+                            <td>~49%</td>
+                        </tr>
+                        <tr>
+                            <td>European Roulette</td>
+                            <td>2.7%</td>
+                            <td>$2.70</td>
+                            <td>~48.6%</td>
+                        </tr>
+                        <tr>
+                            <td>American Roulette</td>
+                            <td>5.26%</td>
+                            <td>$5.26</td>
+                            <td>~47.4%</td>
+                        </tr>
+                        <tr>
+                            <td>Slot Machines</td>
+                            <td>2-15%</td>
+                            <td>$2-$15</td>
+                            <td>Varies</td>
+                        </tr>
+                        <tr>
+                            <td>Keno</td>
+                            <td>25-30%</td>
+                            <td>$25-$30</td>
+                            <td>Very Low</td>
+                        </tr>
+                        <tr>
+                            <td>Lottery</td>
+                            <td>40-50%</td>
+                            <td>$40-$50</td>
+                            <td>Extremely Low</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="explanation">
+                    <strong>Key Insight:</strong> The lower the house edge, the better your odds. However, ALL gambling games favor the house in the long run.
+                </div>
+            </div>
+
+            <!-- Multiple Bet Calculator -->
+            <div class="calculator-card full-width">
+                <h2>Multiple Independent Events Calculator</h2>
+                <p style="font-size: 14px; color: #6b7280; margin-bottom: 16px;">Calculate the probability of winning multiple times in a row (e.g., coin flips, roulette spins).</p>
+
+                <div class="input-row">
+                    <div class="input-group">
+                        <label>Single Event Win Probability (%)</label>
+                        <input type="number" id="singleProb" placeholder="e.g., 50" min="0" max="100" step="0.1">
+                    </div>
+                    <div class="input-group">
+                        <label>Number of Consecutive Wins Needed</label>
+                        <input type="number" id="consecWins" placeholder="e.g., 5" min="1">
+                    </div>
+                </div>
+                <button class="calculate-btn" onclick="calculateConsecutive()">Calculate Probability</button>
+
+                <div class="result-box" id="consecResult" style="display: none;">
+                    <div class="result-label">Probability of Consecutive Wins</div>
+                    <div class="result-value" id="consecValue">0%</div>
+                    <div class="result-details" id="consecDetails"></div>
+                </div>
+
+                <div class="warning-box">
+                    <strong>Gambler's Fallacy Warning:</strong> Each independent event (like a coin flip) is NOT affected by previous results. If you've lost 10 times in a row, your next bet still has the same probability of winning.
+                </div>
+            </div>
+        </div>
+
+        <div class="print-section">
+            <button class="print-btn" onclick="window.print()">Print Calculator Results</button>
+        </div>
+    </div>
+
+    <script>
+        function calculateProbability() {
+            const favorable = parseFloat(document.getElementById('favorable').value) || 0;
+            const total = parseFloat(document.getElementById('total').value) || 1;
+
+            const probability = favorable / total;
+            const percentage = (probability * 100).toFixed(2);
+            const unfavorable = total - favorable;
+
+            document.getElementById('probResult').style.display = 'block';
+            document.getElementById('probValue').textContent = percentage + '%';
+            document.getElementById('probBar').style.width = percentage + '%';
+            document.getElementById('probOdds').textContent = favorable + ':' + unfavorable;
+        }
+
+        function calculateEV() {
+            const winProb = parseFloat(document.getElementById('winProb').value) / 100 || 0;
+            const winAmount = parseFloat(document.getElementById('winAmount').value) || 0;
+            const loseProb = parseFloat(document.getElementById('loseProb').value) / 100 || 0;
+            const loseAmount = parseFloat(document.getElementById('loseAmount').value) || 0;
+
+            const ev = (winProb * winAmount) - (loseProb * loseAmount);
+
+            const resultBox = document.getElementById('evResult');
+            resultBox.style.display = 'block';
+            resultBox.className = ev >= 0 ? 'result-box' : 'result-box negative';
+
+            document.getElementById('evValue').textContent = (ev >= 0 ? '+$' : '-$') + Math.abs(ev).toFixed(2);
+            document.getElementById('evDetails').textContent =
+                `You can expect to ${ev >= 0 ? 'win' : 'lose'} $${Math.abs(ev).toFixed(2)} on average per bet.`;
+        }
+
+        function calculateLongTerm() {
+            const betAmount = parseFloat(document.getElementById('betAmount').value) || 0;
+            const houseEdge = parseFloat(document.getElementById('houseEdge').value) / 100 || 0;
+            const numBets = parseFloat(document.getElementById('numBets').value) || 0;
+
+            const totalWagered = betAmount * numBets;
+            const expectedLoss = totalWagered * houseEdge;
+
+            document.getElementById('lossResult').style.display = 'block';
+            document.getElementById('lossValue').textContent = '-$' + expectedLoss.toFixed(2);
+            document.getElementById('lossDetails').textContent =
+                `Total wagered: $${totalWagered.toFixed(2)}. The house keeps ${(houseEdge * 100).toFixed(2)}% over time.`;
+        }
+
+        function calculateLottery() {
+            const ticketCost = parseFloat(document.getElementById('ticketCost').value) || 0;
+            const jackpot = parseFloat(document.getElementById('jackpot').value) || 0;
+            const odds = parseFloat(document.getElementById('lotteryOdds').value) || 1;
+
+            const winProb = 1 / odds;
+            const loseProb = 1 - winProb;
+            const ev = (winProb * jackpot) - (loseProb * ticketCost);
+
+            document.getElementById('lotteryResult').style.display = 'block';
+            document.getElementById('lotteryResult').className = ev >= 0 ? 'result-box' : 'result-box negative';
+            document.getElementById('lotteryValue').textContent = (ev >= 0 ? '+$' : '-$') + Math.abs(ev).toFixed(2);
+            document.getElementById('lotteryDetails').textContent =
+                `Win probability: ${(winProb * 100).toFixed(10)}%. For every ticket purchased, you can expect to lose about $${Math.abs(ev).toFixed(2)} on average.`;
+        }
+
+        function calculateConsecutive() {
+            const singleProb = parseFloat(document.getElementById('singleProb').value) / 100 || 0;
+            const consecWins = parseFloat(document.getElementById('consecWins').value) || 1;
+
+            const probability = Math.pow(singleProb, consecWins);
+            const percentage = (probability * 100).toFixed(4);
+            const ratio = Math.round(1 / probability);
+
+            document.getElementById('consecResult').style.display = 'block';
+            document.getElementById('consecValue').textContent = percentage + '%';
+            document.getElementById('consecDetails').textContent =
+                `Odds: 1 in ${ratio.toLocaleString()}. This means you would need to try approximately ${ratio.toLocaleString()} times to expect one success.`;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retirement Planning Reference Sheet - PFL Academy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            font-size: 12px;
+            line-height: 1.5;
+            color: #1f2937;
+            padding: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 3px solid #6366f1;
+        }
+
+        .header h1 {
+            font-size: 24px;
+            color: #6366f1;
+            margin-bottom: 4px;
+        }
+
+        .header p {
+            color: #6b7280;
+            font-size: 12px;
+        }
+
+        .accounts-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 10px;
+        }
+
+        .accounts-table th {
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+            color: white;
+            padding: 10px 6px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .accounts-table td {
+            padding: 8px 6px;
+            border-bottom: 1px solid #e5e7eb;
+            vertical-align: top;
+        }
+
+        .accounts-table tr:hover {
+            background-color: #f9fafb;
+        }
+
+        .accounts-table td:first-child {
+            font-weight: 600;
+            background: #f9fafb;
+            width: 15%;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .three-column {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .concept-box {
+            background: #f9fafb;
+            padding: 12px;
+            border-radius: 6px;
+            border-left: 4px solid #6366f1;
+        }
+
+        .concept-box h3 {
+            font-size: 14px;
+            font-weight: 700;
+            color: #6366f1;
+            margin-bottom: 8px;
+        }
+
+        .concept-box ul {
+            margin-left: 16px;
+            margin-bottom: 8px;
+        }
+
+        .concept-box li {
+            margin-bottom: 3px;
+        }
+
+        .compound-section {
+            background: #ecfdf5;
+            padding: 12px;
+            border-radius: 6px;
+            border-left: 4px solid #10b981;
+            margin-bottom: 16px;
+        }
+
+        .compound-section h3 {
+            font-size: 14px;
+            font-weight: 600;
+            color: #059669;
+            margin-bottom: 8px;
+        }
+
+        .compound-example {
+            background: white;
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 8px;
+        }
+
+        .compound-example h4 {
+            font-size: 12px;
+            font-weight: 600;
+            color: #059669;
+            margin-bottom: 6px;
+        }
+
+        .compound-table {
+            width: 100%;
+            font-size: 10px;
+            border-collapse: collapse;
+        }
+
+        .compound-table th {
+            background: #d1fae5;
+            padding: 6px;
+            text-align: right;
+            font-weight: 600;
+        }
+
+        .compound-table th:first-child {
+            text-align: left;
+        }
+
+        .compound-table td {
+            padding: 6px;
+            text-align: right;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .compound-table td:first-child {
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .contribution-limits {
+            background: #eff6ff;
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 16px;
+        }
+
+        .contribution-limits h3 {
+            font-size: 14px;
+            font-weight: 600;
+            color: #3b82f6;
+            margin-bottom: 8px;
+        }
+
+        .limits-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+        }
+
+        .limit-item {
+            background: white;
+            padding: 8px;
+            border-radius: 4px;
+        }
+
+        .limit-item h4 {
+            font-size: 11px;
+            font-weight: 600;
+            color: #3b82f6;
+            margin-bottom: 4px;
+        }
+
+        .limit-item p {
+            font-size: 10px;
+            color: #4b5563;
+        }
+
+        .limit-amount {
+            font-size: 14px;
+            font-weight: 700;
+            color: #1f2937;
+        }
+
+        .timeline-section {
+            background: #fffbeb;
+            padding: 12px;
+            border-radius: 6px;
+            border-left: 4px solid #f59e0b;
+            margin-bottom: 16px;
+        }
+
+        .timeline-section h3 {
+            font-size: 14px;
+            font-weight: 600;
+            color: #b45309;
+            margin-bottom: 8px;
+        }
+
+        .timeline-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+        }
+
+        .timeline-item {
+            background: white;
+            padding: 8px;
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        .timeline-item h4 {
+            font-size: 10px;
+            font-weight: 600;
+            color: #b45309;
+            margin-bottom: 4px;
+        }
+
+        .timeline-item p {
+            font-size: 9px;
+            color: #4b5563;
+        }
+
+        .social-security {
+            background: #f3e8ff;
+            padding: 12px;
+            border-radius: 6px;
+            border-left: 4px solid #8b5cf6;
+            margin-bottom: 16px;
+        }
+
+        .social-security h3 {
+            font-size: 14px;
+            font-weight: 600;
+            color: #7c3aed;
+            margin-bottom: 8px;
+        }
+
+        .ss-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+        }
+
+        .ss-item {
+            background: white;
+            padding: 8px;
+            border-radius: 4px;
+        }
+
+        .ss-item h4 {
+            font-size: 11px;
+            font-weight: 600;
+            color: #7c3aed;
+            margin-bottom: 4px;
+        }
+
+        .ss-item p {
+            font-size: 10px;
+            color: #4b5563;
+        }
+
+        .formulas-section {
+            background: #fef2f2;
+            padding: 12px;
+            border-radius: 6px;
+            border-left: 4px solid #ef4444;
+            margin-bottom: 16px;
+        }
+
+        .formulas-section h3 {
+            font-size: 14px;
+            font-weight: 600;
+            color: #dc2626;
+            margin-bottom: 8px;
+        }
+
+        .formula-item {
+            background: white;
+            padding: 8px;
+            border-radius: 4px;
+            margin-bottom: 8px;
+        }
+
+        .formula-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .formula-item h4 {
+            font-size: 11px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .formula-item code {
+            font-family: monospace;
+            background: #fee2e2;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 10px;
+        }
+
+        .formula-item p {
+            font-size: 10px;
+            color: #4b5563;
+            margin-top: 4px;
+        }
+
+        .strategies-section {
+            margin-bottom: 16px;
+        }
+
+        .strategy-card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            padding: 12px;
+            margin-bottom: 8px;
+        }
+
+        .strategy-card h4 {
+            font-size: 12px;
+            font-weight: 600;
+            color: #6366f1;
+            margin-bottom: 6px;
+        }
+
+        .strategy-card p {
+            font-size: 10px;
+            color: #4b5563;
+        }
+
+        .key-takeaway {
+            background: #eff6ff;
+            padding: 12px;
+            border-radius: 6px;
+            border-left: 4px solid #3b82f6;
+        }
+
+        .key-takeaway h3 {
+            font-size: 12px;
+            font-weight: 600;
+            color: #3b82f6;
+            margin-bottom: 6px;
+        }
+
+        .key-takeaway p {
+            font-size: 11px;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 12px;
+            border-top: 1px solid #e5e7eb;
+            color: #6b7280;
+            font-size: 10px;
+        }
+
+        .highlight {
+            background: #fef3c7;
+            padding: 2px 4px;
+            border-radius: 2px;
+            font-weight: 600;
+        }
+
+        @media print {
+            body {
+                padding: 10px;
+                font-size: 10px;
+            }
+
+            .concept-box,
+            .compound-section,
+            .contribution-limits,
+            .timeline-section,
+            .social-security,
+            .formulas-section {
+                page-break-inside: avoid;
+            }
+
+            .accounts-table {
+                font-size: 8px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .two-column,
+            .three-column,
+            .limits-grid,
+            .timeline-grid,
+            .ss-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Retirement Planning Reference Sheet</h1>
+        <p>Quick reference for retirement accounts, compound growth, and planning strategies</p>
+    </div>
+
+    <!-- Retirement Accounts Comparison -->
+    <table class="accounts-table">
+        <thead>
+            <tr>
+                <th>Account Type</th>
+                <th>Tax Treatment</th>
+                <th>2024 Limits</th>
+                <th>Employer Match</th>
+                <th>Withdrawal Rules</th>
+                <th>Best For</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Traditional 401(k)</td>
+                <td>Pre-tax contributions; taxed on withdrawal</td>
+                <td>$23,000 ($30,500 if 50+)</td>
+                <td>Yes - often 3-6%</td>
+                <td>10% penalty before 59.5; RMDs at 73</td>
+                <td>High earners expecting lower tax bracket in retirement</td>
+            </tr>
+            <tr>
+                <td>Roth 401(k)</td>
+                <td>After-tax contributions; tax-free withdrawal</td>
+                <td>$23,000 ($30,500 if 50+)</td>
+                <td>Yes (match goes to traditional)</td>
+                <td>Tax-free after 59.5 & 5 years; RMDs at 73</td>
+                <td>Those expecting higher tax bracket in retirement</td>
+            </tr>
+            <tr>
+                <td>Traditional IRA</td>
+                <td>Tax-deductible (income limits); taxed on withdrawal</td>
+                <td>$7,000 ($8,000 if 50+)</td>
+                <td>No</td>
+                <td>10% penalty before 59.5; RMDs at 73</td>
+                <td>No employer plan; want tax deduction now</td>
+            </tr>
+            <tr>
+                <td>Roth IRA</td>
+                <td>After-tax contributions; tax-free withdrawal</td>
+                <td>$7,000 ($8,000 if 50+)</td>
+                <td>No</td>
+                <td>Contributions anytime; earnings after 59.5 & 5 years; no RMDs</td>
+                <td>Young workers; want flexibility; expect higher taxes</td>
+            </tr>
+            <tr>
+                <td>SEP IRA</td>
+                <td>Pre-tax contributions; taxed on withdrawal</td>
+                <td>25% of income up to $69,000</td>
+                <td>N/A (self-employed)</td>
+                <td>10% penalty before 59.5; RMDs at 73</td>
+                <td>Self-employed, high income</td>
+            </tr>
+            <tr>
+                <td>403(b)</td>
+                <td>Pre-tax or Roth options; like 401(k)</td>
+                <td>$23,000 ($30,500 if 50+)</td>
+                <td>Yes</td>
+                <td>Same as 401(k)</td>
+                <td>Teachers, nonprofits, government employees</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Contribution Limits 2024 -->
+    <div class="contribution-limits">
+        <h3>2024 Contribution Limits</h3>
+        <div class="limits-grid">
+            <div class="limit-item">
+                <h4>401(k) / 403(b) / 457</h4>
+                <p class="limit-amount">$23,000</p>
+                <p>Catch-up (50+): +$7,500</p>
+            </div>
+            <div class="limit-item">
+                <h4>IRA (Traditional/Roth)</h4>
+                <p class="limit-amount">$7,000</p>
+                <p>Catch-up (50+): +$1,000</p>
+            </div>
+            <div class="limit-item">
+                <h4>SEP IRA</h4>
+                <p class="limit-amount">$69,000</p>
+                <p>Or 25% of compensation</p>
+            </div>
+            <div class="limit-item">
+                <h4>SIMPLE IRA</h4>
+                <p class="limit-amount">$16,000</p>
+                <p>Catch-up (50+): +$3,500</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Power of Compound Growth -->
+    <div class="compound-section">
+        <h3>The Power of Compound Growth</h3>
+        <div class="compound-example">
+            <h4>Starting Early vs. Starting Late (7% annual return)</h4>
+            <table class="compound-table">
+                <thead>
+                    <tr>
+                        <th>Scenario</th>
+                        <th>Monthly</th>
+                        <th>Years</th>
+                        <th>Total Contributed</th>
+                        <th>Value at 65</th>
+                        <th>Growth</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Start at 22</td>
+                        <td>$200</td>
+                        <td>43</td>
+                        <td>$103,200</td>
+                        <td class="highlight">$620,000</td>
+                        <td>$516,800</td>
+                    </tr>
+                    <tr>
+                        <td>Start at 32</td>
+                        <td>$200</td>
+                        <td>33</td>
+                        <td>$79,200</td>
+                        <td>$280,000</td>
+                        <td>$200,800</td>
+                    </tr>
+                    <tr>
+                        <td>Start at 42</td>
+                        <td>$200</td>
+                        <td>23</td>
+                        <td>$55,200</td>
+                        <td>$120,000</td>
+                        <td>$64,800</td>
+                    </tr>
+                    <tr>
+                        <td>Start at 42 (catch-up)</td>
+                        <td>$500</td>
+                        <td>23</td>
+                        <td>$138,000</td>
+                        <td>$300,000</td>
+                        <td>$162,000</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p style="font-size: 10px; color: #059669; margin-top: 8px; text-align: center;"><strong>Key insight:</strong> Starting 10 years earlier with $200/month beats starting late with $500/month!</p>
+        </div>
+    </div>
+
+    <!-- Two Column: Saving vs Investing and Risk by Time Horizon -->
+    <div class="two-column">
+        <div class="concept-box">
+            <h3>Saving vs. Investing</h3>
+            <ul>
+                <li><strong>Saving:</strong> Short-term (1-3 years), low risk, lower returns, capital preservation</li>
+                <li><strong>Investing:</strong> Long-term (3+ years), higher risk, higher potential returns, wealth building</li>
+                <li>Retirement planning primarily involves <strong>investing</strong> due to long time horizons</li>
+                <li>Keep emergency fund (3-6 months) in savings separate from retirement investments</li>
+            </ul>
+        </div>
+        <div class="concept-box">
+            <h3>Asset Allocation by Age</h3>
+            <ul>
+                <li><strong>Rule of 110:</strong> 110 - Age = % in stocks</li>
+                <li><strong>Age 25:</strong> 85% stocks, 15% bonds</li>
+                <li><strong>Age 40:</strong> 70% stocks, 30% bonds</li>
+                <li><strong>Age 55:</strong> 55% stocks, 45% bonds</li>
+                <li><strong>Age 65:</strong> 45% stocks, 55% bonds</li>
+                <li>Gradually shift to more conservative as you approach retirement</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Key Age Milestones -->
+    <div class="timeline-section">
+        <h3>Key Age Milestones</h3>
+        <div class="timeline-grid">
+            <div class="timeline-item">
+                <h4>Age 50</h4>
+                <p>Catch-up contributions allowed (+$7,500 for 401k, +$1,000 for IRA)</p>
+            </div>
+            <div class="timeline-item">
+                <h4>Age 59.5</h4>
+                <p>Can withdraw from retirement accounts without 10% early penalty</p>
+            </div>
+            <div class="timeline-item">
+                <h4>Age 62-70</h4>
+                <p>Social Security eligibility (62 reduced, 67 full, 70 max)</p>
+            </div>
+            <div class="timeline-item">
+                <h4>Age 73</h4>
+                <p>Required Minimum Distributions (RMDs) begin from traditional accounts</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Social Security Basics -->
+    <div class="social-security">
+        <h3>Social Security Basics</h3>
+        <div class="ss-grid">
+            <div class="ss-item">
+                <h4>Early (Age 62)</h4>
+                <p>Permanently reduced benefits (about 30% less than full retirement age)</p>
+            </div>
+            <div class="ss-item">
+                <h4>Full Retirement (Age 67)</h4>
+                <p>100% of calculated benefit (for those born 1960+)</p>
+            </div>
+            <div class="ss-item">
+                <h4>Delayed (Age 70)</h4>
+                <p>Maximum benefit - 8% increase per year delayed after 67 (up to 124%)</p>
+            </div>
+        </div>
+        <p style="font-size: 10px; margin-top: 8px; color: #7c3aed;">
+            <strong>Note:</strong> Average Social Security benefit in 2024 is ~$1,900/month. It's designed to replace only about 40% of pre-retirement income. Personal savings are essential.
+        </p>
+    </div>
+
+    <!-- Key Formulas -->
+    <div class="formulas-section">
+        <h3>Key Formulas and Rules</h3>
+        <div class="formula-item">
+            <h4>50/30/20 Budget Rule</h4>
+            <code>50% Needs / 30% Wants / 20% Savings & Debt</code>
+            <p>Allocate at least 20% to savings, including retirement contributions</p>
+        </div>
+        <div class="formula-item">
+            <h4>Retirement Savings Goal</h4>
+            <code>Target = Annual Expenses x 25 (4% withdrawal rule)</code>
+            <p>Example: $50,000/year expenses = $1.25 million needed</p>
+        </div>
+        <div class="formula-item">
+            <h4>Employer Match Value</h4>
+            <code>Free Money = Salary x Match % x Your Contribution %</code>
+            <p>Example: $50,000 salary x 3% match = $1,500/year free money (if you contribute at least 3%)</p>
+        </div>
+        <div class="formula-item">
+            <h4>Maximum 401(k) + IRA Contributions</h4>
+            <code>Required Income = (401k + IRA) / 20%</code>
+            <p>Example: ($23,000 + $7,000) / 0.20 = $150,000 needed to max out at 20% savings rate</p>
+        </div>
+    </div>
+
+    <!-- Three Column Strategies -->
+    <div class="three-column">
+        <div class="concept-box">
+            <h3>Maximize Growth</h3>
+            <ul>
+                <li>Start contributing ASAP</li>
+                <li>Always get full employer match</li>
+                <li>Increase contributions with raises</li>
+                <li>Use tax-advantaged accounts first</li>
+                <li>Keep investment fees low</li>
+            </ul>
+        </div>
+        <div class="concept-box">
+            <h3>Tax Optimization</h3>
+            <ul>
+                <li>Traditional: Deduct now, pay later</li>
+                <li>Roth: Pay now, tax-free later</li>
+                <li>Consider tax diversification (both)</li>
+                <li>Roth conversions in low-income years</li>
+                <li>HSA as stealth retirement account</li>
+            </ul>
+        </div>
+        <div class="concept-box">
+            <h3>Common Mistakes</h3>
+            <ul>
+                <li>Not starting early enough</li>
+                <li>Missing employer match</li>
+                <li>Cashing out when changing jobs</li>
+                <li>Taking early withdrawals</li>
+                <li>Being too conservative when young</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Quick Action Steps -->
+    <div class="strategies-section">
+        <div class="strategy-card">
+            <h4>If You're Just Starting (Ages 18-25)</h4>
+            <p>Open a Roth IRA or enroll in employer 401(k). Even $50-100/month makes a huge difference with 40+ years of growth. Prioritize getting any employer match - it's free money. Focus on growth-oriented investments since you have time to recover from downturns.</p>
+        </div>
+        <div class="strategy-card">
+            <h4>If You're Building Momentum (Ages 26-40)</h4>
+            <p>Increase contributions with every raise. Work toward maxing out 401(k) and IRA. Consider both traditional and Roth for tax diversification. Automate contributions so they happen before you see the money. Rebalance annually.</p>
+        </div>
+        <div class="strategy-card">
+            <h4>If You're Catching Up (Ages 41-55)</h4>
+            <p>Maximize catch-up contributions when eligible. Reduce expenses to boost savings rate. Consider working a few extra years. Shift gradually toward more conservative allocation. Calculate your retirement number and create a specific plan.</p>
+        </div>
+    </div>
+
+    <!-- Key Takeaway -->
+    <div class="key-takeaway">
+        <h3>Key Takeaway</h3>
+        <p>The most powerful factor in retirement planning is <strong>time</strong>. Starting early - even with small amounts - allows compound growth to do the heavy lifting. A 22-year-old investing $200/month can accumulate more than a 42-year-old investing $500/month. Always capture your full employer match (it's free money), use tax-advantaged accounts to maximize growth, and gradually shift to more conservative investments as retirement approaches. Remember: Social Security is designed to replace only about 40% of income - personal savings are essential for a comfortable retirement. The steps you take today, no matter how small, can have a profound impact on your financial security decades from now.</p>
+    </div>
+
+    <div class="footer">
+        <p>PFL Academy - Chapter 6.1: Planning for Retirement</p>
+        <p>Contribution limits shown are for 2024. This reference sheet is for educational purposes. Consult a financial professional for personalized advice.</p>
+    </div>
+</body>
+</html>

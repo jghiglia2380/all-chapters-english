@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rebalancing Simulator</title>
+    <!--
+    PURPOSE: Experience how rebalancing maintains allocation and potentially improves returns
+    USE: Activity 3 - Rebalancing Simulation (10 minutes)
+    -->
+    <style>
+        :root {
+            --primary: #6366f1;
+            --secondary: #8b5cf6;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --text: #1f2937;
+            --surface: #f9fafb;
+        }
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: var(--primary);
+            border-bottom: 3px solid var(--primary);
+            padding-bottom: 10px;
+        }
+        .simulation-controls {
+            background: var(--surface);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        .control-row {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin: 10px 0;
+        }
+        .control-row label {
+            width: 180px;
+            font-weight: 600;
+        }
+        .control-row select,
+        .control-row input {
+            flex: 1;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            cursor: pointer;
+            background: var(--primary);
+            color: white;
+        }
+        .btn:hover {
+            background: #4f46e5;
+        }
+        .results-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .result-card {
+            background: white;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        .result-card h3 {
+            margin-top: 0;
+            color: var(--primary);
+        }
+        .result-card.winner {
+            border-color: var(--success);
+            background: #f0fdf4;
+        }
+        .final-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary);
+            text-align: center;
+            margin: 15px 0;
+        }
+        .allocation-display {
+            display: flex;
+            height: 30px;
+            border-radius: 6px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+        .alloc-segment {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.7rem;
+            font-weight: bold;
+        }
+        .year-timeline {
+            margin: 15px 0;
+        }
+        .year-row {
+            display: grid;
+            grid-template-columns: 60px 1fr 100px;
+            align-items: center;
+            gap: 10px;
+            padding: 8px;
+            border-bottom: 1px solid #eee;
+        }
+        .year-row:nth-child(even) {
+            background: #f9fafb;
+        }
+        .year-num {
+            font-weight: 600;
+        }
+        .year-bar {
+            height: 20px;
+            background: #e5e7eb;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .year-fill {
+            height: 100%;
+            background: var(--primary);
+        }
+        .analysis-section {
+            background: var(--surface);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        .analysis-section label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .analysis-section textarea {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #e5e7eb;
+            border-radius: 6px;
+            min-height: 80px;
+            font-family: inherit;
+        }
+        .info-box {
+            background: #f0f7ff;
+            border-left: 4px solid var(--primary);
+            padding: 15px;
+            margin: 15px 0;
+        }
+        @media print {
+            body { font-size: 11pt; }
+        }
+    </style>
+</head>
+<body>
+    <h1>⚖️ Rebalancing Simulator</h1>
+
+    <p>Compare portfolio growth with and without annual rebalancing. See how maintaining your target allocation affects long-term returns.</p>
+
+    <div class="info-box">
+        <strong>What is Rebalancing?</strong> Selling assets that have grown above your target allocation and buying assets that have fallen below. This maintains your risk level and implements "buy low, sell high" automatically.
+    </div>
+
+    <div class="simulation-controls">
+        <h3>Simulation Parameters</h3>
+        <div class="control-row">
+            <label>Initial Investment:</label>
+            <input type="number" id="initial" value="10000" min="1000" step="1000">
+        </div>
+        <div class="control-row">
+            <label>Target Stock Allocation:</label>
+            <select id="stockAlloc">
+                <option value="60">60% Stocks / 40% Bonds</option>
+                <option value="70">70% Stocks / 30% Bonds</option>
+                <option value="80" selected>80% Stocks / 20% Bonds</option>
+            </select>
+        </div>
+        <div class="control-row">
+            <label>Time Period:</label>
+            <select id="years">
+                <option value="5">5 Years</option>
+                <option value="10" selected>10 Years</option>
+                <option value="20">20 Years</option>
+            </select>
+        </div>
+        <div class="control-row">
+            <label>Market Scenario:</label>
+            <select id="scenario">
+                <option value="bull">Bull Market (Stocks +12%, Bonds +4%)</option>
+                <option value="normal" selected>Normal Market (Stocks +8%, Bonds +3%)</option>
+                <option value="volatile">Volatile Market (Wide swings)</option>
+            </select>
+        </div>
+        <button class="btn" onclick="runSimulation()">Run Simulation</button>
+    </div>
+
+    <div class="results-grid">
+        <div class="result-card" id="no-rebal-card">
+            <h3>❌ No Rebalancing</h3>
+            <div class="allocation-display" id="no-rebal-alloc">
+                <div class="alloc-segment" style="background: #3b82f6; width: 80%;">80% Stocks</div>
+                <div class="alloc-segment" style="background: #10b981; width: 20%;">20% Bonds</div>
+            </div>
+            <p style="text-align: center; font-size: 0.85rem;">Final Allocation: <span id="no-rebal-final-alloc">TBD</span></p>
+            <div class="final-value" id="no-rebal-value">$___</div>
+            <div class="year-timeline" id="no-rebal-timeline">
+                <!-- Generated by JS -->
+            </div>
+        </div>
+
+        <div class="result-card" id="rebal-card">
+            <h3>✓ Annual Rebalancing</h3>
+            <div class="allocation-display">
+                <div class="alloc-segment" style="background: #3b82f6; width: 80%;">80% Stocks</div>
+                <div class="alloc-segment" style="background: #10b981; width: 20%;">20% Bonds</div>
+            </div>
+            <p style="text-align: center; font-size: 0.85rem;">Allocation maintained at target</p>
+            <div class="final-value" id="rebal-value">$___</div>
+            <div class="year-timeline" id="rebal-timeline">
+                <!-- Generated by JS -->
+            </div>
+        </div>
+    </div>
+
+    <div class="analysis-section">
+        <label>Analysis Question 1: Why does the "no rebalancing" portfolio drift from its target?</label>
+        <textarea placeholder="Consider which asset class typically grows faster over time..."></textarea>
+    </div>
+
+    <div class="analysis-section">
+        <label>Analysis Question 2: In what market conditions does rebalancing help vs. hurt returns?</label>
+        <textarea placeholder="Think about mean reversion, trending markets, and risk control..."></textarea>
+    </div>
+
+    <div class="analysis-section">
+        <label>Analysis Question 3: Besides returns, what other benefit does rebalancing provide?</label>
+        <textarea placeholder="Consider risk management and investment discipline..."></textarea>
+    </div>
+
+    <script>
+        function runSimulation() {
+            const initial = parseInt(document.getElementById('initial').value);
+            const stockTarget = parseInt(document.getElementById('stockAlloc').value) / 100;
+            const bondTarget = 1 - stockTarget;
+            const years = parseInt(document.getElementById('years').value);
+            const scenario = document.getElementById('scenario').value;
+
+            // Define returns based on scenario
+            let stockReturns, bondReturns;
+            if (scenario === 'bull') {
+                stockReturns = Array(years).fill(0.12);
+                bondReturns = Array(years).fill(0.04);
+            } else if (scenario === 'volatile') {
+                stockReturns = [];
+                bondReturns = [];
+                for (let i = 0; i < years; i++) {
+                    stockReturns.push(i % 2 === 0 ? 0.25 : -0.15);
+                    bondReturns.push(i % 2 === 0 ? 0.02 : 0.06);
+                }
+            } else {
+                stockReturns = Array(years).fill(0.08);
+                bondReturns = Array(years).fill(0.03);
+            }
+
+            // No rebalancing simulation
+            let noRebalStocks = initial * stockTarget;
+            let noRebalBonds = initial * bondTarget;
+            const noRebalHistory = [initial];
+
+            for (let i = 0; i < years; i++) {
+                noRebalStocks *= (1 + stockReturns[i]);
+                noRebalBonds *= (1 + bondReturns[i]);
+                noRebalHistory.push(noRebalStocks + noRebalBonds);
+            }
+
+            const noRebalFinal = noRebalStocks + noRebalBonds;
+            const finalStockPct = (noRebalStocks / noRebalFinal * 100).toFixed(0);
+
+            // Rebalancing simulation
+            let rebalStocks = initial * stockTarget;
+            let rebalBonds = initial * bondTarget;
+            const rebalHistory = [initial];
+
+            for (let i = 0; i < years; i++) {
+                rebalStocks *= (1 + stockReturns[i]);
+                rebalBonds *= (1 + bondReturns[i]);
+                const total = rebalStocks + rebalBonds;
+                // Rebalance to target
+                rebalStocks = total * stockTarget;
+                rebalBonds = total * bondTarget;
+                rebalHistory.push(total);
+            }
+
+            const rebalFinal = rebalStocks + rebalBonds;
+
+            // Update display
+            document.getElementById('no-rebal-value').textContent = '$' + noRebalFinal.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+            document.getElementById('rebal-value').textContent = '$' + rebalFinal.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+            document.getElementById('no-rebal-final-alloc').textContent = `${finalStockPct}% Stocks / ${100-finalStockPct}% Bonds`;
+
+            // Update allocation bar
+            document.getElementById('no-rebal-alloc').innerHTML = `
+                <div class="alloc-segment" style="background: #3b82f6; width: ${finalStockPct}%;">${finalStockPct}%</div>
+                <div class="alloc-segment" style="background: #10b981; width: ${100-finalStockPct}%;">${100-finalStockPct}%</div>
+            `;
+
+            // Mark winner
+            const noRebalCard = document.getElementById('no-rebal-card');
+            const rebalCard = document.getElementById('rebal-card');
+            noRebalCard.classList.remove('winner');
+            rebalCard.classList.remove('winner');
+            if (rebalFinal > noRebalFinal) {
+                rebalCard.classList.add('winner');
+            } else {
+                noRebalCard.classList.add('winner');
+            }
+
+            // Generate timelines
+            const maxVal = Math.max(...noRebalHistory, ...rebalHistory);
+            document.getElementById('no-rebal-timeline').innerHTML = generateTimeline(noRebalHistory, maxVal);
+            document.getElementById('rebal-timeline').innerHTML = generateTimeline(rebalHistory, maxVal);
+        }
+
+        function generateTimeline(history, maxVal) {
+            let html = '';
+            for (let i = 0; i < history.length; i++) {
+                const pct = (history[i] / maxVal * 100).toFixed(0);
+                html += `
+                    <div class="year-row">
+                        <span class="year-num">Year ${i}</span>
+                        <div class="year-bar"><div class="year-fill" style="width: ${pct}%;"></div></div>
+                        <span>$${history[i].toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</span>
+                    </div>
+                `;
+            }
+            return html;
+        }
+
+        // Run initial simulation
+        runSimulation();
+    </script>
+</body>
+</html>

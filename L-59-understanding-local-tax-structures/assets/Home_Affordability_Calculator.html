@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Affordability Calculator with Tax Integration</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 950px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        header { text-align: center; margin-bottom: 30px; }
+        h1 { font-size: 2rem; color: #6366f1; margin-bottom: 10px; }
+        .subtitle { color: #6b7280; }
+        .calc-section {
+            background: #f9fafb;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+        .section-title { font-size: 1.1rem; font-weight: bold; margin-bottom: 15px; color: #1f2937; }
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+        .form-group { margin-bottom: 12px; }
+        .form-group label { display: block; font-weight: 600; margin-bottom: 5px; font-size: 0.9rem; }
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+        .calculate-btn {
+            width: 100%;
+            padding: 15px;
+            background: #6366f1;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        .calculate-btn:hover { background: #4f46e5; }
+        .results { display: none; margin-top: 25px; }
+        .results.active { display: block; }
+        .payment-breakdown {
+            background: #f0f9ff;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+        .payment-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .payment-item:last-child { border-bottom: none; }
+        .payment-label { color: #4b5563; }
+        .payment-value { font-weight: 600; }
+        .total-payment {
+            background: #6366f1;
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .total-payment h3 { font-size: 0.9rem; margin-bottom: 5px; }
+        .total-payment .amount { font-size: 2rem; font-weight: bold; }
+        .affordability-meter {
+            background: #f9fafb;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+        .meter-bar {
+            height: 30px;
+            background: #e5e7eb;
+            border-radius: 15px;
+            overflow: hidden;
+            margin: 15px 0;
+        }
+        .meter-fill {
+            height: 100%;
+            border-radius: 15px;
+            transition: width 0.5s;
+        }
+        .affordable { background: linear-gradient(90deg, #10b981, #34d399); }
+        .stretched { background: linear-gradient(90deg, #f59e0b, #fbbf24); }
+        .unaffordable { background: linear-gradient(90deg, #ef4444, #f87171); }
+        .recommendation {
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 15px;
+        }
+        .recommendation.good { background: #d1fae5; border-left: 4px solid #10b981; }
+        .recommendation.caution { background: #fef3c7; border-left: 4px solid #f59e0b; }
+        .recommendation.warning { background: #fee2e2; border-left: 4px solid #ef4444; }
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #e5e7eb;
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+        @media (max-width: 768px) {
+            .form-grid { grid-template-columns: 1fr; }
+        }
+        @media print {
+            body { background: white; padding: 0; }
+            .container { box-shadow: none; }
+            .calculate-btn { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Home Affordability Calculator</h1>
+            <p class="subtitle">Calculate complete housing costs including property taxes</p>
+        </header>
+
+        <div class="calc-section">
+            <div class="section-title">Home & Loan Details</div>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>Home Price ($)</label>
+                    <input type="number" id="homePrice" value="350000">
+                </div>
+                <div class="form-group">
+                    <label>Down Payment (%)</label>
+                    <input type="number" id="downPayment" value="10" min="0" max="100">
+                </div>
+                <div class="form-group">
+                    <label>Interest Rate (%)</label>
+                    <input type="number" id="interestRate" value="7.0" step="0.125">
+                </div>
+                <div class="form-group">
+                    <label>Loan Term (years)</label>
+                    <select id="loanTerm">
+                        <option value="30">30 years</option>
+                        <option value="20">20 years</option>
+                        <option value="15">15 years</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="calc-section">
+            <div class="section-title">Property Tax & Insurance</div>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>Property Tax Rate (mills)</label>
+                    <input type="number" id="propertyTaxRate" value="65" step="0.1">
+                </div>
+                <div class="form-group">
+                    <label>Assessment Ratio (%)</label>
+                    <input type="number" id="assessmentRatio" value="100" min="0" max="100">
+                </div>
+                <div class="form-group">
+                    <label>Annual Home Insurance ($)</label>
+                    <input type="number" id="homeInsurance" value="1800">
+                </div>
+                <div class="form-group">
+                    <label>Monthly HOA Fees ($)</label>
+                    <input type="number" id="hoaFees" value="0">
+                </div>
+            </div>
+        </div>
+
+        <div class="calc-section">
+            <div class="section-title">Your Income</div>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>Gross Monthly Income ($)</label>
+                    <input type="number" id="monthlyIncome" value="7500">
+                </div>
+                <div class="form-group">
+                    <label>Monthly Debt Payments ($)</label>
+                    <input type="number" id="monthlyDebt" value="500">
+                </div>
+            </div>
+        </div>
+
+        <button class="calculate-btn" onclick="calculate()">Calculate Affordability</button>
+
+        <div class="results" id="results">
+            <div class="total-payment">
+                <h3>Total Monthly Payment (PITI + HOA)</h3>
+                <div class="amount" id="totalMonthly">$0</div>
+            </div>
+
+            <div class="payment-breakdown">
+                <div class="section-title">Monthly Payment Breakdown</div>
+                <div class="payment-item">
+                    <span class="payment-label">Principal & Interest</span>
+                    <span class="payment-value" id="piPayment">$0</span>
+                </div>
+                <div class="payment-item">
+                    <span class="payment-label">Property Taxes</span>
+                    <span class="payment-value" id="taxPayment">$0</span>
+                </div>
+                <div class="payment-item">
+                    <span class="payment-label">Home Insurance</span>
+                    <span class="payment-value" id="insurancePayment">$0</span>
+                </div>
+                <div class="payment-item">
+                    <span class="payment-label">PMI (if applicable)</span>
+                    <span class="payment-value" id="pmiPayment">$0</span>
+                </div>
+                <div class="payment-item">
+                    <span class="payment-label">HOA Fees</span>
+                    <span class="payment-value" id="hoaPayment">$0</span>
+                </div>
+            </div>
+
+            <div class="affordability-meter">
+                <div class="section-title">Debt-to-Income Ratio</div>
+                <div class="meter-bar">
+                    <div class="meter-fill" id="dtiMeter" style="width: 0%"></div>
+                </div>
+                <div style="display: flex; justify-content: space-between; font-size: 0.8rem; color: #6b7280;">
+                    <span>0%</span>
+                    <span>28% (Target)</span>
+                    <span>36% (Max)</span>
+                    <span>50%+</span>
+                </div>
+                <p style="text-align: center; margin-top: 10px; font-weight: bold;" id="dtiValue">DTI: 0%</p>
+            </div>
+
+            <div class="recommendation" id="recommendation">
+                <strong>Recommendation:</strong>
+                <p id="recText"></p>
+            </div>
+        </div>
+
+        <footer>
+            <p><strong>PFL Academy</strong> | Understanding Local Tax Structures</p>
+        </footer>
+    </div>
+
+    <script>
+        function calculate() {
+            const homePrice = parseFloat(document.getElementById('homePrice').value) || 0;
+            const downPaymentPct = parseFloat(document.getElementById('downPayment').value) || 0;
+            const interestRate = parseFloat(document.getElementById('interestRate').value) || 0;
+            const loanTerm = parseInt(document.getElementById('loanTerm').value) || 30;
+            const propertyTaxRate = parseFloat(document.getElementById('propertyTaxRate').value) || 0;
+            const assessmentRatio = parseFloat(document.getElementById('assessmentRatio').value) || 100;
+            const homeInsurance = parseFloat(document.getElementById('homeInsurance').value) || 0;
+            const hoaFees = parseFloat(document.getElementById('hoaFees').value) || 0;
+            const monthlyIncome = parseFloat(document.getElementById('monthlyIncome').value) || 1;
+            const monthlyDebt = parseFloat(document.getElementById('monthlyDebt').value) || 0;
+
+            // Calculate loan amount
+            const downPayment = homePrice * (downPaymentPct / 100);
+            const loanAmount = homePrice - downPayment;
+
+            // Calculate P&I payment
+            const monthlyRate = (interestRate / 100) / 12;
+            const numPayments = loanTerm * 12;
+            let piPayment = 0;
+            if (monthlyRate > 0) {
+                piPayment = loanAmount * (monthlyRate * Math.pow(1 + monthlyRate, numPayments)) /
+                           (Math.pow(1 + monthlyRate, numPayments) - 1);
+            } else {
+                piPayment = loanAmount / numPayments;
+            }
+
+            // Calculate property tax
+            const assessedValue = homePrice * (assessmentRatio / 100);
+            const annualPropertyTax = (propertyTaxRate / 1000) * assessedValue;
+            const monthlyPropertyTax = annualPropertyTax / 12;
+
+            // Calculate insurance
+            const monthlyInsurance = homeInsurance / 12;
+
+            // Calculate PMI (if down payment < 20%)
+            let monthlyPMI = 0;
+            if (downPaymentPct < 20) {
+                monthlyPMI = (loanAmount * 0.005) / 12; // 0.5% annual PMI estimate
+            }
+
+            // Total monthly payment
+            const totalMonthly = piPayment + monthlyPropertyTax + monthlyInsurance + monthlyPMI + hoaFees;
+
+            // Calculate DTI
+            const totalDebt = totalMonthly + monthlyDebt;
+            const dti = (totalDebt / monthlyIncome) * 100;
+
+            // Update display
+            document.getElementById('piPayment').textContent = '$' + piPayment.toFixed(2);
+            document.getElementById('taxPayment').textContent = '$' + monthlyPropertyTax.toFixed(2);
+            document.getElementById('insurancePayment').textContent = '$' + monthlyInsurance.toFixed(2);
+            document.getElementById('pmiPayment').textContent = '$' + monthlyPMI.toFixed(2);
+            document.getElementById('hoaPayment').textContent = '$' + hoaFees.toFixed(2);
+            document.getElementById('totalMonthly').textContent = '$' + totalMonthly.toFixed(2);
+
+            // Update DTI meter
+            const meterFill = document.getElementById('dtiMeter');
+            meterFill.style.width = Math.min(dti, 50) * 2 + '%';
+
+            if (dti <= 28) {
+                meterFill.className = 'meter-fill affordable';
+            } else if (dti <= 36) {
+                meterFill.className = 'meter-fill stretched';
+            } else {
+                meterFill.className = 'meter-fill unaffordable';
+            }
+
+            document.getElementById('dtiValue').textContent = `DTI: ${dti.toFixed(1)}%`;
+
+            // Set recommendation
+            const rec = document.getElementById('recommendation');
+            const recText = document.getElementById('recText');
+
+            if (dti <= 28) {
+                rec.className = 'recommendation good';
+                recText.textContent = `This home fits comfortably within your budget. Property taxes add $${monthlyPropertyTax.toFixed(0)}/month to your payment. You have room for unexpected expenses.`;
+            } else if (dti <= 36) {
+                rec.className = 'recommendation caution';
+                recText.textContent = `This home is affordable but leaves less room for savings. Property taxes ($${monthlyPropertyTax.toFixed(0)}/month) are a significant factor. Consider a lower tax jurisdiction or smaller home.`;
+            } else {
+                rec.className = 'recommendation warning';
+                const maxHome = homePrice * (36 / dti);
+                recText.textContent = `This home exceeds recommended affordability limits. Consider a home priced around $${maxHome.toFixed(0)} or look in areas with lower property tax rates.`;
+            }
+
+            document.getElementById('results').classList.add('active');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alternative Investment Decision Framework</title>
+    <!--
+    PURPOSE: Evaluate real alternative investment opportunities using systematic framework
+    USE: Activity 4 - Alternative Investment Decision Framework Application (10 minutes)
+    -->
+    <style>
+        :root {
+            --primary: #6366f1;
+            --secondary: #8b5cf6;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --text: #1f2937;
+            --surface: #f9fafb;
+        }
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: var(--primary);
+            border-bottom: 3px solid var(--primary);
+            padding-bottom: 10px;
+        }
+        .framework-intro {
+            background: #f0f7ff;
+            border-left: 4px solid var(--primary);
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .evaluation-section {
+            background: var(--surface);
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .section-title {
+            background: var(--primary);
+            color: white;
+            padding: 10px 15px;
+            margin: -20px -20px 15px -20px;
+            border-radius: 6px 6px 0 0;
+            font-weight: bold;
+        }
+        .investment-description {
+            background: white;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 10px 0;
+        }
+        .criteria-grid {
+            display: grid;
+            gap: 12px;
+            margin: 15px 0;
+        }
+        .criteria-item {
+            display: grid;
+            grid-template-columns: 200px 1fr auto;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            background: white;
+            border-radius: 6px;
+        }
+        .criteria-item label {
+            font-weight: 600;
+        }
+        .criteria-item select {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .score-display {
+            font-weight: bold;
+            color: var(--primary);
+            width: 40px;
+            text-align: center;
+        }
+        .total-score {
+            text-align: center;
+            padding: 15px;
+            background: white;
+            border-radius: 6px;
+            margin: 15px 0;
+        }
+        .score-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+        .recommendation {
+            padding: 15px;
+            border-radius: 6px;
+            text-align: center;
+            font-weight: 600;
+        }
+        .rec-pass {
+            background: #d1fae5;
+            color: var(--success);
+        }
+        .rec-caution {
+            background: #fef3c7;
+            color: #b45309;
+        }
+        .rec-avoid {
+            background: #fee2e2;
+            color: var(--danger);
+        }
+        .notes-box {
+            margin: 15px 0;
+        }
+        .notes-box label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        .notes-box textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            min-height: 60px;
+            font-family: inherit;
+        }
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            background: var(--primary);
+            color: white;
+            margin: 5px;
+        }
+        .btn:hover {
+            background: #4f46e5;
+        }
+        @media print {
+            body { font-size: 10pt; }
+        }
+    </style>
+</head>
+<body>
+    <h1>🎯 Alternative Investment Decision Framework</h1>
+
+    <div class="framework-intro">
+        <strong>How to Use This Framework:</strong> Rate each criterion from 1 (poor) to 5 (excellent). A total score of 25+ suggests the investment merits consideration. Below 15 indicates significant concerns.
+    </div>
+
+    <!-- Investment 1 -->
+    <div class="evaluation-section">
+        <div class="section-title">Investment 1: Private Real Estate Syndication</div>
+        <div class="investment-description">
+            <strong>Opportunity:</strong> Invest $50,000 minimum in a commercial property syndication. Target 8% annual distribution plus potential 15% appreciation over 5-year hold. Accredited investor required. Illiquid for full term.
+        </div>
+
+        <div class="criteria-grid">
+            <div class="criteria-item">
+                <label>Liquidity</label>
+                <select id="re-liquidity" onchange="calculateScore('re')">
+                    <option value="1">1 - Very illiquid (5+ years)</option>
+                    <option value="2" selected>2 - Illiquid (2-5 years)</option>
+                    <option value="3">3 - Semi-liquid (quarterly)</option>
+                    <option value="4">4 - Liquid (days)</option>
+                    <option value="5">5 - Highly liquid (instant)</option>
+                </select>
+                <span class="score-display">2</span>
+            </div>
+            <div class="criteria-item">
+                <label>Transparency</label>
+                <select id="re-transparency" onchange="calculateScore('re')">
+                    <option value="1">1 - Black box</option>
+                    <option value="2">2 - Limited reporting</option>
+                    <option value="3" selected>3 - Quarterly reports</option>
+                    <option value="4">4 - Detailed reporting</option>
+                    <option value="5">5 - Full transparency</option>
+                </select>
+                <span class="score-display">3</span>
+            </div>
+            <div class="criteria-item">
+                <label>Fee Reasonableness</label>
+                <select id="re-fees" onchange="calculateScore('re')">
+                    <option value="1">1 - Very high (3%+ annual)</option>
+                    <option value="2" selected>2 - High (2-3% annual)</option>
+                    <option value="3">3 - Moderate (1-2%)</option>
+                    <option value="4">4 - Low (&lt;1%)</option>
+                    <option value="5">5 - Very low (&lt;0.5%)</option>
+                </select>
+                <span class="score-display">2</span>
+            </div>
+            <div class="criteria-item">
+                <label>Track Record</label>
+                <select id="re-track" onchange="calculateScore('re')">
+                    <option value="1">1 - None</option>
+                    <option value="2">2 - &lt;3 years</option>
+                    <option value="3" selected>3 - 3-5 years</option>
+                    <option value="4">4 - 5-10 years</option>
+                    <option value="5">5 - 10+ years proven</option>
+                </select>
+                <span class="score-display">3</span>
+            </div>
+            <div class="criteria-item">
+                <label>Diversification Benefit</label>
+                <select id="re-div" onchange="calculateScore('re')">
+                    <option value="1">1 - High correlation</option>
+                    <option value="2">2 - Moderate correlation</option>
+                    <option value="3">3 - Some benefit</option>
+                    <option value="4" selected>4 - Good benefit</option>
+                    <option value="5">5 - Excellent hedge</option>
+                </select>
+                <span class="score-display">4</span>
+            </div>
+            <div class="criteria-item">
+                <label>Risk/Return Profile</label>
+                <select id="re-risk" onchange="calculateScore('re')">
+                    <option value="1">1 - Poor</option>
+                    <option value="2">2 - Below average</option>
+                    <option value="3">3 - Average</option>
+                    <option value="4" selected>4 - Above average</option>
+                    <option value="5">5 - Excellent</option>
+                </select>
+                <span class="score-display">4</span>
+            </div>
+        </div>
+
+        <div class="total-score">
+            <div>Total Score</div>
+            <div class="score-value" id="re-total">18/30</div>
+            <div class="recommendation rec-caution" id="re-rec">⚠️ Proceed with Caution</div>
+        </div>
+
+        <div class="notes-box">
+            <label>Key Concerns or Questions:</label>
+            <textarea placeholder="What would you need to know before investing?"></textarea>
+        </div>
+    </div>
+
+    <!-- Investment 2 -->
+    <div class="evaluation-section">
+        <div class="section-title">Investment 2: Gold ETF (GLD)</div>
+        <div class="investment-description">
+            <strong>Opportunity:</strong> Invest any amount in SPDR Gold Trust ETF. Tracks gold price. No yield/dividends. 0.40% expense ratio. Trades like a stock. Historical inflation hedge but volatile.
+        </div>
+
+        <div class="criteria-grid">
+            <div class="criteria-item">
+                <label>Liquidity</label>
+                <select id="gold-liquidity" onchange="calculateScore('gold')">
+                    <option value="5" selected>5 - Highly liquid (instant)</option>
+                    <option value="4">4 - Liquid (days)</option>
+                    <option value="3">3 - Semi-liquid</option>
+                    <option value="2">2 - Illiquid</option>
+                    <option value="1">1 - Very illiquid</option>
+                </select>
+                <span class="score-display">5</span>
+            </div>
+            <div class="criteria-item">
+                <label>Transparency</label>
+                <select id="gold-transparency" onchange="calculateScore('gold')">
+                    <option value="5" selected>5 - Full transparency</option>
+                    <option value="4">4 - Detailed reporting</option>
+                    <option value="3">3 - Quarterly reports</option>
+                    <option value="2">2 - Limited</option>
+                    <option value="1">1 - Black box</option>
+                </select>
+                <span class="score-display">5</span>
+            </div>
+            <div class="criteria-item">
+                <label>Fee Reasonableness</label>
+                <select id="gold-fees" onchange="calculateScore('gold')">
+                    <option value="4" selected>4 - Low (&lt;1%)</option>
+                    <option value="5">5 - Very low</option>
+                    <option value="3">3 - Moderate</option>
+                    <option value="2">2 - High</option>
+                    <option value="1">1 - Very high</option>
+                </select>
+                <span class="score-display">4</span>
+            </div>
+            <div class="criteria-item">
+                <label>Track Record</label>
+                <select id="gold-track" onchange="calculateScore('gold')">
+                    <option value="5" selected>5 - 10+ years proven</option>
+                    <option value="4">4 - 5-10 years</option>
+                    <option value="3">3 - 3-5 years</option>
+                    <option value="2">2 - &lt;3 years</option>
+                    <option value="1">1 - None</option>
+                </select>
+                <span class="score-display">5</span>
+            </div>
+            <div class="criteria-item">
+                <label>Diversification Benefit</label>
+                <select id="gold-div" onchange="calculateScore('gold')">
+                    <option value="5" selected>5 - Excellent hedge</option>
+                    <option value="4">4 - Good benefit</option>
+                    <option value="3">3 - Some benefit</option>
+                    <option value="2">2 - Moderate correlation</option>
+                    <option value="1">1 - High correlation</option>
+                </select>
+                <span class="score-display">5</span>
+            </div>
+            <div class="criteria-item">
+                <label>Risk/Return Profile</label>
+                <select id="gold-risk" onchange="calculateScore('gold')">
+                    <option value="3" selected>3 - Average</option>
+                    <option value="4">4 - Above average</option>
+                    <option value="5">5 - Excellent</option>
+                    <option value="2">2 - Below average</option>
+                    <option value="1">1 - Poor</option>
+                </select>
+                <span class="score-display">3</span>
+            </div>
+        </div>
+
+        <div class="total-score">
+            <div>Total Score</div>
+            <div class="score-value" id="gold-total">27/30</div>
+            <div class="recommendation rec-pass" id="gold-rec">✓ Merits Consideration</div>
+        </div>
+
+        <div class="notes-box">
+            <label>Key Concerns or Questions:</label>
+            <textarea placeholder="What would you need to know before investing?"></textarea>
+        </div>
+    </div>
+
+    <!-- Investment 3 -->
+    <div class="evaluation-section">
+        <div class="section-title">Investment 3: 3x Leveraged S&P 500 ETF</div>
+        <div class="investment-description">
+            <strong>Opportunity:</strong> Triple daily returns of S&P 500. Can gain (or lose) 15% in a single day. 0.95% expense ratio. Decay over time due to daily rebalancing. Only for short-term trading.
+        </div>
+
+        <div class="criteria-grid">
+            <div class="criteria-item">
+                <label>Liquidity</label>
+                <select id="lev-liquidity" onchange="calculateScore('lev')">
+                    <option value="5" selected>5 - Highly liquid</option>
+                    <option value="4">4 - Liquid</option>
+                    <option value="3">3 - Semi-liquid</option>
+                    <option value="2">2 - Illiquid</option>
+                    <option value="1">1 - Very illiquid</option>
+                </select>
+                <span class="score-display">5</span>
+            </div>
+            <div class="criteria-item">
+                <label>Transparency</label>
+                <select id="lev-transparency" onchange="calculateScore('lev')">
+                    <option value="4" selected>4 - Detailed reporting</option>
+                    <option value="5">5 - Full transparency</option>
+                    <option value="3">3 - Quarterly</option>
+                    <option value="2">2 - Limited</option>
+                    <option value="1">1 - Black box</option>
+                </select>
+                <span class="score-display">4</span>
+            </div>
+            <div class="criteria-item">
+                <label>Fee Reasonableness</label>
+                <select id="lev-fees" onchange="calculateScore('lev')">
+                    <option value="3" selected>3 - Moderate (1-2%)</option>
+                    <option value="4">4 - Low</option>
+                    <option value="5">5 - Very low</option>
+                    <option value="2">2 - High</option>
+                    <option value="1">1 - Very high</option>
+                </select>
+                <span class="score-display">3</span>
+            </div>
+            <div class="criteria-item">
+                <label>Track Record</label>
+                <select id="lev-track" onchange="calculateScore('lev')">
+                    <option value="3" selected>3 - 3-5 years</option>
+                    <option value="4">4 - 5-10 years</option>
+                    <option value="5">5 - 10+ years</option>
+                    <option value="2">2 - &lt;3 years</option>
+                    <option value="1">1 - None</option>
+                </select>
+                <span class="score-display">3</span>
+            </div>
+            <div class="criteria-item">
+                <label>Diversification Benefit</label>
+                <select id="lev-div" onchange="calculateScore('lev')">
+                    <option value="1" selected>1 - High correlation (amplified)</option>
+                    <option value="2">2 - Moderate</option>
+                    <option value="3">3 - Some benefit</option>
+                    <option value="4">4 - Good</option>
+                    <option value="5">5 - Excellent</option>
+                </select>
+                <span class="score-display">1</span>
+            </div>
+            <div class="criteria-item">
+                <label>Risk/Return Profile</label>
+                <select id="lev-risk" onchange="calculateScore('lev')">
+                    <option value="1" selected>1 - Poor (extreme risk)</option>
+                    <option value="2">2 - Below average</option>
+                    <option value="3">3 - Average</option>
+                    <option value="4">4 - Above average</option>
+                    <option value="5">5 - Excellent</option>
+                </select>
+                <span class="score-display">1</span>
+            </div>
+        </div>
+
+        <div class="total-score">
+            <div>Total Score</div>
+            <div class="score-value" id="lev-total">17/30</div>
+            <div class="recommendation rec-caution" id="lev-rec">⚠️ Proceed with Caution</div>
+        </div>
+
+        <div class="notes-box">
+            <label>Key Concerns or Questions:</label>
+            <textarea placeholder="What would you need to know before investing?"></textarea>
+        </div>
+    </div>
+
+    <script>
+        function calculateScore(prefix) {
+            const criteria = ['liquidity', 'transparency', 'fees', 'track', 'div', 'risk'];
+            let total = 0;
+
+            criteria.forEach(criterion => {
+                const select = document.getElementById(`${prefix}-${criterion}`);
+                const score = parseInt(select.value);
+                total += score;
+                select.nextElementSibling.textContent = score;
+            });
+
+            document.getElementById(`${prefix}-total`).textContent = `${total}/30`;
+
+            const recEl = document.getElementById(`${prefix}-rec`);
+            if (total >= 25) {
+                recEl.textContent = '✓ Merits Consideration';
+                recEl.className = 'recommendation rec-pass';
+            } else if (total >= 15) {
+                recEl.textContent = '⚠️ Proceed with Caution';
+                recEl.className = 'recommendation rec-caution';
+            } else {
+                recEl.textContent = '❌ Significant Concerns';
+                recEl.className = 'recommendation rec-avoid';
+            }
+        }
+
+        // Initialize scores
+        calculateScore('re');
+        calculateScore('gold');
+        calculateScore('lev');
+    </script>
+</body>
+</html>

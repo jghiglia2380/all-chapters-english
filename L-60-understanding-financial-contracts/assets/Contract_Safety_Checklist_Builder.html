@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Contract Safety Checklist Builder</title>
+    <!--
+    PURPOSE: Create personalized checklist for evaluating future contracts
+    USE: Activity 5 - Personal Contract Checklist Builder (10 minutes)
+    -->
+    <style>
+        :root {
+            --primary: #6366f1;
+            --secondary: #8b5cf6;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --text: #1f2937;
+            --surface: #f9fafb;
+        }
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: var(--primary);
+            border-bottom: 3px solid var(--primary);
+            padding-bottom: 10px;
+        }
+        .checklist-section {
+            background: var(--surface);
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .section-title {
+            background: var(--primary);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 6px;
+            margin: -20px -20px 15px -20px;
+            font-weight: bold;
+        }
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 10px;
+            background: white;
+            border-radius: 6px;
+            margin: 8px 0;
+        }
+        .checklist-item input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin-top: 2px;
+        }
+        .item-content {
+            flex: 1;
+        }
+        .item-label {
+            font-weight: 600;
+            display: block;
+        }
+        .item-detail {
+            font-size: 0.85rem;
+            color: #6b7280;
+        }
+        .priority-tag {
+            font-size: 0.7rem;
+            padding: 2px 8px;
+            border-radius: 10px;
+            margin-left: 10px;
+        }
+        .priority-high {
+            background: #fee2e2;
+            color: var(--danger);
+        }
+        .priority-medium {
+            background: #fef3c7;
+            color: var(--warning);
+        }
+        .priority-standard {
+            background: #d1fae5;
+            color: var(--success);
+        }
+        .custom-items {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 2px dashed #e5e7eb;
+        }
+        .add-item-row {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .add-item-row input {
+            flex: 1;
+            padding: 8px 12px;
+            border: 2px solid #e5e7eb;
+            border-radius: 6px;
+        }
+        .btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+        .btn-primary:hover {
+            background: #4f46e5;
+        }
+        .btn-print {
+            background: var(--success);
+            color: white;
+            padding: 12px 24px;
+            font-size: 1rem;
+            margin: 20px 0;
+        }
+        .personal-notes {
+            margin: 20px 0;
+        }
+        .personal-notes label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .personal-notes textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e5e7eb;
+            border-radius: 6px;
+            min-height: 100px;
+            font-family: inherit;
+        }
+        .warning-box {
+            background: #fef3c7;
+            border-left: 4px solid var(--warning);
+            padding: 15px;
+            margin: 20px 0;
+        }
+        @media print {
+            .btn, .add-item-row { display: none; }
+            body { font-size: 11pt; }
+            .checklist-section { break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+    <h1>✅ Personal Contract Safety Checklist</h1>
+
+    <p>Build your personalized checklist for reviewing any contract before signing. Check the items you want to include, add your own custom items, and print for future use.</p>
+
+    <!-- Before Signing Section -->
+    <div class="checklist-section">
+        <div class="section-title">📋 Before You Sign</div>
+
+        <div class="checklist-item">
+            <input type="checkbox" checked>
+            <div class="item-content">
+                <span class="item-label">Read the ENTIRE contract <span class="priority-tag priority-high">Critical</span></span>
+                <span class="item-detail">Never sign without reading every word, including footnotes and appendices</span>
+            </div>
+        </div>
+
+        <div class="checklist-item">
+            <input type="checkbox" checked>
+            <div class="item-content">
+                <span class="item-label">Verify all parties are correctly identified <span class="priority-tag priority-high">Critical</span></span>
+                <span class="item-detail">Names, addresses, and contact information must be accurate</span>
+            </div>
+        </div>
+
+        <div class="checklist-item">
+            <input type="checkbox" checked>
+            <div class="item-content">
+                <span class="item-label">Understand all financial terms <span class="priority-tag priority-high">Critical</span></span>
+                <span class="item-detail">Know exact costs: principal, interest rate, fees, penalties, total amount</span>
+            </div>
+        </div>
+
+        <div class="checklist-item">
+            <input type="checkbox" checked>
+            <div class="item-content">
+                <span class="item-label">Check all dates and deadlines <span class="priority-tag priority-medium">Important</span></span>
+                <span class="item-detail">Start date, end date, renewal dates, payment due dates</span>
+            </div>
+        </div>
+
+        <div class="checklist-item">
+            <input type="checkbox">
+            <div class="item-content">
+                <span class="item-label">Take time to think <span class="priority-tag priority-medium">Important</span></span>
+                <span class="item-detail">Never let anyone pressure you to sign immediately</span>
+            </div>
+        </div>
+
+        <div class="custom-items">
+            <strong>Add your own items:</strong>
+            <div class="add-item-row">
+                <input type="text" id="custom1" placeholder="Your custom checklist item...">
+                <button class="btn btn-primary" onclick="addItem('before')">+ Add</button>
+            </div>
+            <div id="before-custom-list"></div>
+        </div>
+    </div>
+
+    <!-- Red Flags Section -->
+    <div class="checklist-section">
+        <div class="section-title">🚩 Red Flags to Watch For</div>
+
+        <div class="checklist-item">
+            <input type="checkbox" checked>
+            <div class="item-content">
+                <span class="item-label">Automatic renewal clauses <span class="priority-tag priority-high">Critical</span></span>
+                <span class="item-detail">Note: Requires cancellation by [date], written notice to [address]</span>
+            </div>
+        </div>
+
+        <div class="checklist-item">
+            <input type="checkbox" checked>
+            <div class="item-content">
+                <span class="item-label">Mandatory arbitration <span class="priority-tag priority-medium">Important</span></span>
+                <span class="item-detail">Limits your legal options; consider if acceptable</span>
+            </div>
+        </div>
+
+        <div class="checklist-item">
+            <input type="checkbox" checked>
+            <div class="item-content">
+                <span class="item-label">Vague language ("reasonable," "as deemed necessary") <span class="priority-tag priority-medium">Important</span></span>
+                <span class="item-detail">Ask for specific definitions in writing</span>
+            </div>
+        </div>
+
+        <div class="checklist-item">
+            <input type="checkbox">
+            <div class="item-content">
+                <span class="item-label">Excessive penalties or fees <span class="priority-tag priority-high">Critical</span></span>
+                <span class="item-detail">Calculate worst-case scenario costs</span>
+            </div>
+        </div>
+
+        <div class="checklist-item">
+            <input type="checkbox">
+            <div class="item-content">
+                <span class="item-label">One-sided modification clauses <span class="priority-tag priority-medium">Important</span></span>
+                <span class="item-detail">"We may change terms at any time" without your consent</span>
+            </div>
+        </div>
+
+        <div class="custom-items">
+            <strong>Add your own red flags:</strong>
+            <div class="add-item-row">
+                <input type="text" id="custom2" placeholder="Your custom red flag...">
+                <button class="btn btn-primary" onclick="addItem('flags')">+ Add</button>
+            </div>
+            <div id="flags-custom-list"></div>
+        </div>
+    </div>
+
+    <!-- Termination Section -->
+    <div class="checklist-section">
+        <div class="section-title">🚪 Termination & Exit Terms</div>
+
+        <div class="checklist-item">
+            <input type="checkbox" checked>
+            <div class="item-content">
+                <span class="item-label">How to cancel <span class="priority-tag priority-high">Critical</span></span>
+                <span class="item-detail">Written notice? Phone? Email? Certified mail only?</span>
+            </div>
+        </div>
+
+        <div class="checklist-item">
+            <input type="checkbox" checked>
+            <div class="item-content">
+                <span class="item-label">Notice period required <span class="priority-tag priority-high">Critical</span></span>
+                <span class="item-detail">30 days? 60 days? 90 days? Mark on calendar!</span>
+            </div>
+        </div>
+
+        <div class="checklist-item">
+            <input type="checkbox" checked>
+            <div class="item-content">
+                <span class="item-label">Early termination penalties <span class="priority-tag priority-high">Critical</span></span>
+                <span class="item-detail">Know exact cost if you need to exit early</span>
+            </div>
+        </div>
+
+        <div class="checklist-item">
+            <input type="checkbox">
+            <div class="item-content">
+                <span class="item-label">Refund policies <span class="priority-tag priority-standard">Standard</span></span>
+                <span class="item-detail">Deposits, prepayments, unused services</span>
+            </div>
+        </div>
+
+        <div class="custom-items">
+            <strong>Add your own exit items:</strong>
+            <div class="add-item-row">
+                <input type="text" id="custom3" placeholder="Your custom exit checklist item...">
+                <button class="btn btn-primary" onclick="addItem('exit')">+ Add</button>
+            </div>
+            <div id="exit-custom-list"></div>
+        </div>
+    </div>
+
+    <!-- Personal Notes -->
+    <div class="personal-notes">
+        <label>📝 Personal Notes & Reminders</label>
+        <textarea placeholder="Add any personal reminders, specific situations to watch for, or lessons learned from past contracts..."></textarea>
+    </div>
+
+    <div class="warning-box">
+        <strong>⚠️ Remember:</strong> If you don't understand something, ASK before signing. If they won't explain it clearly, that's a red flag. Consider having an attorney review major contracts (home purchase, business agreements).
+    </div>
+
+    <button class="btn btn-print" onclick="window.print()">🖨️ Print My Checklist</button>
+
+    <script>
+        function addItem(section) {
+            let inputId, listId;
+            if (section === 'before') {
+                inputId = 'custom1';
+                listId = 'before-custom-list';
+            } else if (section === 'flags') {
+                inputId = 'custom2';
+                listId = 'flags-custom-list';
+            } else {
+                inputId = 'custom3';
+                listId = 'exit-custom-list';
+            }
+
+            const input = document.getElementById(inputId);
+            const list = document.getElementById(listId);
+
+            if (input.value.trim()) {
+                const item = document.createElement('div');
+                item.className = 'checklist-item';
+                item.innerHTML = `
+                    <input type="checkbox" checked>
+                    <div class="item-content">
+                        <span class="item-label">${input.value}</span>
+                    </div>
+                `;
+                list.appendChild(item);
+                input.value = '';
+            }
+        }
+    </script>
+</body>
+</html>

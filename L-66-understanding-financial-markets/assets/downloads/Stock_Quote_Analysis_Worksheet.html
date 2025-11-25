@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Quote Analysis Worksheet</title>
+    <style>
+        :root { --primary: #6366f1; --secondary: #8b5cf6; --success: #10b981; --warning: #f59e0b; }
+        body { font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 14px; line-height: 1.5; color: #1f2937; max-width: 900px; margin: 0 auto; padding: 15px; }
+        h1 { color: var(--primary); font-size: 24px; border-bottom: 2px solid var(--primary); padding-bottom: 8px; }
+        h2 { color: var(--secondary); font-size: 18px; margin-top: 20px; }
+        .quote-card { background: #f9fafb; border: 1px solid #d1d5db; padding: 15px; border-radius: 5px; margin: 15px 0; }
+        .quote-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px; margin: 10px 0; }
+        .quote-item { background: white; padding: 8px; border-radius: 4px; text-align: center; }
+        .quote-label { font-size: 11px; color: #6b7280; }
+        .quote-value { font-size: 16px; font-weight: bold; color: var(--primary); }
+        input { width: 100%; padding: 6px; border: 1px solid #d1d5db; border-radius: 4px; box-sizing: border-box; }
+        .analysis { background: #e0e7ff; padding: 15px; border-radius: 5px; margin: 15px 0; }
+        button { background: var(--primary); color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; margin: 5px; }
+        button:hover { background: var(--secondary); }
+        .calculated { background: #f0f7ff; padding: 10px; border-radius: 4px; margin: 10px 0; }
+        @media print { body { font-size: 11pt; } button { display: none; } }
+    </style>
+</head>
+<body>
+    <h1>Stock Quote Analysis Worksheet</h1>
+    <p>Record and analyze stock quotes for three different securities</p>
+
+    <div class="quote-card">
+        <h2>Security 1: Large-Cap Stock</h2>
+        <p>Symbol: <input type="text" id="sym1" placeholder="e.g., AAPL" style="width: 80px;"></p>
+        <div class="quote-grid">
+            <div class="quote-item"><div class="quote-label">Last Price</div><input type="number" id="price1" step="0.01" placeholder="0.00"></div>
+            <div class="quote-item"><div class="quote-label">Bid</div><input type="number" id="bid1" step="0.01" placeholder="0.00"></div>
+            <div class="quote-item"><div class="quote-label">Ask</div><input type="number" id="ask1" step="0.01" placeholder="0.00"></div>
+            <div class="quote-item"><div class="quote-label">Volume</div><input type="number" id="vol1" placeholder="0"></div>
+            <div class="quote-item"><div class="quote-label">Day High</div><input type="number" id="high1" step="0.01" placeholder="0.00"></div>
+            <div class="quote-item"><div class="quote-label">Day Low</div><input type="number" id="low1" step="0.01" placeholder="0.00"></div>
+        </div>
+        <div class="calculated">
+            <strong>Calculated:</strong> Spread: $<span id="spread1">0.00</span> (<span id="spreadPct1">0.00</span>%) | Day Range: $<span id="range1">0.00</span>
+        </div>
+    </div>
+
+    <div class="quote-card">
+        <h2>Security 2: Small-Cap Stock</h2>
+        <p>Symbol: <input type="text" id="sym2" placeholder="e.g., PLTR" style="width: 80px;"></p>
+        <div class="quote-grid">
+            <div class="quote-item"><div class="quote-label">Last Price</div><input type="number" id="price2" step="0.01" placeholder="0.00"></div>
+            <div class="quote-item"><div class="quote-label">Bid</div><input type="number" id="bid2" step="0.01" placeholder="0.00"></div>
+            <div class="quote-item"><div class="quote-label">Ask</div><input type="number" id="ask2" step="0.01" placeholder="0.00"></div>
+            <div class="quote-item"><div class="quote-label">Volume</div><input type="number" id="vol2" placeholder="0"></div>
+            <div class="quote-item"><div class="quote-label">Day High</div><input type="number" id="high2" step="0.01" placeholder="0.00"></div>
+            <div class="quote-item"><div class="quote-label">Day Low</div><input type="number" id="low2" step="0.01" placeholder="0.00"></div>
+        </div>
+        <div class="calculated">
+            <strong>Calculated:</strong> Spread: $<span id="spread2">0.00</span> (<span id="spreadPct2">0.00</span>%) | Day Range: $<span id="range2">0.00</span>
+        </div>
+    </div>
+
+    <div class="quote-card">
+        <h2>Security 3: ETF</h2>
+        <p>Symbol: <input type="text" id="sym3" placeholder="e.g., SPY" style="width: 80px;"></p>
+        <div class="quote-grid">
+            <div class="quote-item"><div class="quote-label">Last Price</div><input type="number" id="price3" step="0.01" placeholder="0.00"></div>
+            <div class="quote-item"><div class="quote-label">Bid</div><input type="number" id="bid3" step="0.01" placeholder="0.00"></div>
+            <div class="quote-item"><div class="quote-label">Ask</div><input type="number" id="ask3" step="0.01" placeholder="0.00"></div>
+            <div class="quote-item"><div class="quote-label">Volume</div><input type="number" id="vol3" placeholder="0"></div>
+            <div class="quote-item"><div class="quote-label">Day High</div><input type="number" id="high3" step="0.01" placeholder="0.00"></div>
+            <div class="quote-item"><div class="quote-label">Day Low</div><input type="number" id="low3" step="0.01" placeholder="0.00"></div>
+        </div>
+        <div class="calculated">
+            <strong>Calculated:</strong> Spread: $<span id="spread3">0.00</span> (<span id="spreadPct3">0.00</span>%) | Day Range: $<span id="range3">0.00</span>
+        </div>
+    </div>
+
+    <button onclick="calculateAll()">Calculate Spreads & Analysis</button>
+
+    <div class="analysis">
+        <h2 style="margin-top: 0;">Analysis Questions</h2>
+        <p><strong>1. Which security has the tightest (smallest) spread?</strong></p>
+        <input type="text" id="q1" placeholder="Your answer...">
+        <p><strong>2. Why might the small-cap stock have a wider spread than the large-cap?</strong></p>
+        <input type="text" id="q2" placeholder="Your answer...">
+        <p><strong>3. Which security would have the lowest implicit trading cost for a $1,000 trade?</strong></p>
+        <input type="text" id="q3" placeholder="Your answer...">
+        <p><strong>4. How does volume relate to spread? What pattern do you observe?</strong></p>
+        <input type="text" id="q4" placeholder="Your answer...">
+    </div>
+
+    <script>
+        function calculateAll() {
+            for (let i = 1; i <= 3; i++) {
+                const bid = parseFloat(document.getElementById(`bid${i}`).value) || 0;
+                const ask = parseFloat(document.getElementById(`ask${i}`).value) || 0;
+                const high = parseFloat(document.getElementById(`high${i}`).value) || 0;
+                const low = parseFloat(document.getElementById(`low${i}`).value) || 0;
+
+                const spread = ask - bid;
+                const midpoint = (bid + ask) / 2;
+                const spreadPct = midpoint > 0 ? (spread / midpoint * 100) : 0;
+                const range = high - low;
+
+                document.getElementById(`spread${i}`).textContent = spread.toFixed(2);
+                document.getElementById(`spreadPct${i}`).textContent = spreadPct.toFixed(3);
+                document.getElementById(`range${i}`).textContent = range.toFixed(2);
+            }
+        }
+
+        // Auto-calculate on input
+        document.querySelectorAll('input[type="number"]').forEach(input => {
+            input.addEventListener('input', calculateAll);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assessment Challenge Tool</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        header { text-align: center; margin-bottom: 30px; }
+        h1 { font-size: 2rem; color: #6366f1; margin-bottom: 10px; }
+        .subtitle { color: #6b7280; }
+        .input-section {
+            background: #f9fafb;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+        .section-title { font-size: 1.1rem; font-weight: bold; margin-bottom: 15px; color: #1f2937; }
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+        .form-group { margin-bottom: 12px; }
+        .form-group label { display: block; font-weight: 600; margin-bottom: 5px; font-size: 0.9rem; }
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+        .comp-entry {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr auto;
+            gap: 10px;
+            align-items: end;
+            margin-bottom: 10px;
+        }
+        .comp-entry input {
+            padding: 8px;
+            border: 2px solid #d1d5db;
+            border-radius: 6px;
+        }
+        .add-btn, .remove-btn {
+            padding: 8px 12px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        .add-btn { background: #10b981; color: white; margin-top: 10px; }
+        .remove-btn { background: #ef4444; color: white; }
+        .analyze-btn {
+            width: 100%;
+            padding: 15px;
+            background: #6366f1;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        .analyze-btn:hover { background: #4f46e5; }
+        .results { display: none; margin-top: 25px; }
+        .results.active { display: block; }
+        .analysis-card {
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+        }
+        .analysis-card h4 { margin-bottom: 10px; }
+        .comparison-card { background: #dbeafe; border-left: 4px solid #3b82f6; }
+        .verdict-card { border-left: 4px solid; }
+        .verdict-card.overassessed { background: #fee2e2; border-color: #ef4444; }
+        .verdict-card.fair { background: #d1fae5; border-color: #10b981; }
+        .verdict-card.underassessed { background: #fef3c7; border-color: #f59e0b; }
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+        .stat-row:last-child { border-bottom: none; }
+        .appeal-section {
+            background: #f0f9ff;
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 15px;
+        }
+        .appeal-section h4 { color: #1e40af; margin-bottom: 10px; }
+        .appeal-section ul { margin-left: 20px; }
+        .appeal-section li { margin-bottom: 5px; font-size: 0.9rem; }
+        .savings-highlight {
+            background: #d1fae5;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            margin-top: 15px;
+        }
+        .savings-highlight .amount { font-size: 1.5rem; font-weight: bold; color: #059669; }
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #e5e7eb;
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+        @media (max-width: 768px) {
+            .form-grid { grid-template-columns: 1fr; }
+            .comp-entry { grid-template-columns: 1fr; }
+        }
+        @media print {
+            body { background: white; padding: 0; }
+            .container { box-shadow: none; }
+            .analyze-btn, .add-btn, .remove-btn { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Assessment Challenge Tool</h1>
+            <p class="subtitle">Evaluate if your property assessment is fair and build your appeal case</p>
+        </header>
+
+        <div class="input-section">
+            <div class="section-title">Your Property</div>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>Current Assessed Value ($)</label>
+                    <input type="number" id="assessedValue" value="280000">
+                </div>
+                <div class="form-group">
+                    <label>Property Tax Rate (mills)</label>
+                    <input type="number" id="taxRate" value="65" step="0.1">
+                </div>
+                <div class="form-group">
+                    <label>Square Footage</label>
+                    <input type="number" id="sqft" value="1800">
+                </div>
+                <div class="form-group">
+                    <label>Year Built</label>
+                    <input type="number" id="yearBuilt" value="1995">
+                </div>
+            </div>
+        </div>
+
+        <div class="input-section">
+            <div class="section-title">Comparable Sales (Recent Sales in Your Area)</div>
+            <div id="comparables">
+                <div class="comp-entry">
+                    <div>
+                        <label style="font-size: 0.8rem;">Sale Price ($)</label>
+                        <input type="number" class="comp-price" value="265000">
+                    </div>
+                    <div>
+                        <label style="font-size: 0.8rem;">Sq Ft</label>
+                        <input type="number" class="comp-sqft" value="1750">
+                    </div>
+                    <div>
+                        <label style="font-size: 0.8rem;">Year Built</label>
+                        <input type="number" class="comp-year" value="1998">
+                    </div>
+                    <button class="remove-btn" onclick="removeComp(this)">×</button>
+                </div>
+                <div class="comp-entry">
+                    <div>
+                        <label style="font-size: 0.8rem;">Sale Price ($)</label>
+                        <input type="number" class="comp-price" value="258000">
+                    </div>
+                    <div>
+                        <label style="font-size: 0.8rem;">Sq Ft</label>
+                        <input type="number" class="comp-sqft" value="1820">
+                    </div>
+                    <div>
+                        <label style="font-size: 0.8rem;">Year Built</label>
+                        <input type="number" class="comp-year" value="1992">
+                    </div>
+                    <button class="remove-btn" onclick="removeComp(this)">×</button>
+                </div>
+                <div class="comp-entry">
+                    <div>
+                        <label style="font-size: 0.8rem;">Sale Price ($)</label>
+                        <input type="number" class="comp-price" value="272000">
+                    </div>
+                    <div>
+                        <label style="font-size: 0.8rem;">Sq Ft</label>
+                        <input type="number" class="comp-sqft" value="1900">
+                    </div>
+                    <div>
+                        <label style="font-size: 0.8rem;">Year Built</label>
+                        <input type="number" class="comp-year" value="2000">
+                    </div>
+                    <button class="remove-btn" onclick="removeComp(this)">×</button>
+                </div>
+            </div>
+            <button class="add-btn" onclick="addComp()">+ Add Comparable</button>
+        </div>
+
+        <button class="analyze-btn" onclick="analyzeAssessment()">Analyze Assessment</button>
+
+        <div class="results" id="results">
+            <div class="analysis-card comparison-card">
+                <h4>Comparable Sales Analysis</h4>
+                <div class="stat-row">
+                    <span>Average Comp Sale Price</span>
+                    <span id="avgPrice">$0</span>
+                </div>
+                <div class="stat-row">
+                    <span>Average Price per Sq Ft</span>
+                    <span id="avgPriceSqft">$0</span>
+                </div>
+                <div class="stat-row">
+                    <span>Your Property Estimated Value</span>
+                    <span id="estimatedValue">$0</span>
+                </div>
+                <div class="stat-row">
+                    <span>Your Current Assessment</span>
+                    <span id="currentAssessment">$0</span>
+                </div>
+                <div class="stat-row" style="font-weight: bold;">
+                    <span>Difference</span>
+                    <span id="difference">$0</span>
+                </div>
+            </div>
+
+            <div class="analysis-card verdict-card" id="verdictCard">
+                <h4 id="verdictTitle">Assessment Verdict</h4>
+                <p id="verdictText"></p>
+            </div>
+
+            <div class="appeal-section" id="appealSection">
+                <h4>Grounds for Appeal</h4>
+                <ul id="appealGrounds"></ul>
+            </div>
+
+            <div class="savings-highlight" id="savingsBox" style="display: none;">
+                <p>Potential Annual Tax Savings</p>
+                <div class="amount" id="potentialSavings">$0</div>
+            </div>
+        </div>
+
+        <footer>
+            <p><strong>PFL Academy</strong> | Understanding Local Tax Structures</p>
+        </footer>
+    </div>
+
+    <script>
+        function addComp() {
+            const container = document.getElementById('comparables');
+            const entry = document.createElement('div');
+            entry.className = 'comp-entry';
+            entry.innerHTML = `
+                <div>
+                    <label style="font-size: 0.8rem;">Sale Price ($)</label>
+                    <input type="number" class="comp-price" value="">
+                </div>
+                <div>
+                    <label style="font-size: 0.8rem;">Sq Ft</label>
+                    <input type="number" class="comp-sqft" value="">
+                </div>
+                <div>
+                    <label style="font-size: 0.8rem;">Year Built</label>
+                    <input type="number" class="comp-year" value="">
+                </div>
+                <button class="remove-btn" onclick="removeComp(this)">×</button>
+            `;
+            container.appendChild(entry);
+        }
+
+        function removeComp(btn) {
+            const entries = document.querySelectorAll('.comp-entry');
+            if (entries.length > 1) {
+                btn.parentElement.remove();
+            }
+        }
+
+        function analyzeAssessment() {
+            const assessedValue = parseFloat(document.getElementById('assessedValue').value) || 0;
+            const taxRate = parseFloat(document.getElementById('taxRate').value) || 0;
+            const sqft = parseFloat(document.getElementById('sqft').value) || 1;
+            const yearBuilt = parseInt(document.getElementById('yearBuilt').value) || 2000;
+
+            // Gather comparables
+            const prices = document.querySelectorAll('.comp-price');
+            const sqfts = document.querySelectorAll('.comp-sqft');
+            const years = document.querySelectorAll('.comp-year');
+
+            let totalPrice = 0;
+            let totalSqft = 0;
+            let count = 0;
+
+            prices.forEach((p, i) => {
+                const price = parseFloat(p.value) || 0;
+                const sf = parseFloat(sqfts[i].value) || 0;
+                if (price > 0 && sf > 0) {
+                    totalPrice += price;
+                    totalSqft += sf;
+                    count++;
+                }
+            });
+
+            if (count === 0) {
+                alert('Please enter at least one comparable sale.');
+                return;
+            }
+
+            const avgPrice = totalPrice / count;
+            const avgPriceSqft = totalPrice / totalSqft;
+            const estimatedValue = avgPriceSqft * sqft;
+            const difference = assessedValue - estimatedValue;
+            const percentDiff = (difference / estimatedValue) * 100;
+
+            // Update display
+            document.getElementById('avgPrice').textContent = '$' + avgPrice.toLocaleString(undefined, {maximumFractionDigits: 0});
+            document.getElementById('avgPriceSqft').textContent = '$' + avgPriceSqft.toFixed(2);
+            document.getElementById('estimatedValue').textContent = '$' + estimatedValue.toLocaleString(undefined, {maximumFractionDigits: 0});
+            document.getElementById('currentAssessment').textContent = '$' + assessedValue.toLocaleString();
+
+            const diffText = difference >= 0 ? '+$' + difference.toLocaleString(undefined, {maximumFractionDigits: 0}) : '-$' + Math.abs(difference).toLocaleString(undefined, {maximumFractionDigits: 0});
+            document.getElementById('difference').textContent = diffText + ` (${percentDiff.toFixed(1)}%)`;
+
+            // Set verdict
+            const verdictCard = document.getElementById('verdictCard');
+            const verdictTitle = document.getElementById('verdictTitle');
+            const verdictText = document.getElementById('verdictText');
+            const appealGrounds = document.getElementById('appealGrounds');
+            const savingsBox = document.getElementById('savingsBox');
+
+            let grounds = [];
+
+            if (percentDiff > 10) {
+                verdictCard.className = 'analysis-card verdict-card overassessed';
+                verdictTitle.textContent = '⚠️ Potentially Over-Assessed';
+                verdictText.textContent = `Your property appears to be assessed ${percentDiff.toFixed(1)}% above comparable sales. You may have grounds for an appeal.`;
+
+                grounds.push('Assessment exceeds comparable sales average by more than 10%');
+                if (count >= 3) grounds.push(`Strong evidence: ${count} comparable sales support lower value`);
+
+                const currentTax = (taxRate / 1000) * assessedValue;
+                const fairTax = (taxRate / 1000) * estimatedValue;
+                const savings = currentTax - fairTax;
+
+                document.getElementById('potentialSavings').textContent = '$' + savings.toFixed(0);
+                savingsBox.style.display = 'block';
+
+            } else if (percentDiff < -10) {
+                verdictCard.className = 'analysis-card verdict-card underassessed';
+                verdictTitle.textContent = '✓ Favorably Assessed';
+                verdictText.textContent = `Your property is assessed ${Math.abs(percentDiff).toFixed(1)}% below comparable sales. No appeal needed - you're getting a good deal!`;
+                grounds.push('Your assessment is favorable - no action recommended');
+                savingsBox.style.display = 'none';
+
+            } else {
+                verdictCard.className = 'analysis-card verdict-card fair';
+                verdictTitle.textContent = '✓ Fairly Assessed';
+                verdictText.textContent = `Your assessment is within ${Math.abs(percentDiff).toFixed(1)}% of comparable sales. This is generally considered fair.`;
+                grounds.push('Assessment is within acceptable range of market value');
+                grounds.push('Appeals are unlikely to succeed when difference is under 10%');
+                savingsBox.style.display = 'none';
+            }
+
+            appealGrounds.innerHTML = grounds.map(g => `<li>${g}</li>`).join('');
+            document.getElementById('results').classList.add('active');
+        }
+    </script>
+</body>
+</html>

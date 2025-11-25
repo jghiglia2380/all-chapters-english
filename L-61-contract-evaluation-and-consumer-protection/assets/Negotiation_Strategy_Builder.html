@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Negotiation Strategy Builder</title>
+    <!--
+    PURPOSE: Develop negotiation approaches and scripts for problematic contract terms
+    USE: Activity 4 - Negotiation Strategy Workshop (10 minutes)
+    -->
+    <style>
+        :root {
+            --primary: #6366f1;
+            --secondary: #8b5cf6;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --text: #1f2937;
+            --surface: #f9fafb;
+        }
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: var(--primary);
+            border-bottom: 3px solid var(--primary);
+            padding-bottom: 10px;
+        }
+        .strategy-section {
+            background: var(--surface);
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .section-title {
+            background: var(--primary);
+            color: white;
+            padding: 10px 15px;
+            margin: -20px -20px 15px -20px;
+            border-radius: 6px 6px 0 0;
+            font-weight: bold;
+        }
+        .problematic-term {
+            background: #fee2e2;
+            border-left: 4px solid var(--danger);
+            padding: 15px;
+            margin: 15px 0;
+            font-style: italic;
+        }
+        .strategy-builder {
+            display: grid;
+            gap: 15px;
+            margin: 15px 0;
+        }
+        .builder-item {
+            background: white;
+            padding: 15px;
+            border-radius: 6px;
+        }
+        .builder-item label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--primary);
+        }
+        .builder-item input,
+        .builder-item textarea,
+        .builder-item select {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #e5e7eb;
+            border-radius: 6px;
+            font-family: inherit;
+        }
+        .builder-item textarea {
+            min-height: 80px;
+        }
+        .script-template {
+            background: #f0f7ff;
+            border: 1px solid var(--primary);
+            border-radius: 6px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .script-template h4 {
+            color: var(--primary);
+            margin-top: 0;
+        }
+        .script-line {
+            margin: 10px 0;
+            padding: 10px;
+            background: white;
+            border-radius: 4px;
+        }
+        .script-line strong {
+            color: var(--secondary);
+        }
+        .tactics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            margin: 15px 0;
+        }
+        .tactic-card {
+            background: white;
+            padding: 12px;
+            border-radius: 6px;
+            border: 1px solid #e5e7eb;
+        }
+        .tactic-card h5 {
+            margin: 0 0 5px 0;
+            color: var(--success);
+        }
+        .tactic-card p {
+            margin: 0;
+            font-size: 0.85rem;
+        }
+        .checkbox-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 8px;
+            background: white;
+            border-radius: 6px;
+            margin: 5px 0;
+        }
+        .checkbox-item input {
+            width: auto;
+            margin-top: 3px;
+        }
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            cursor: pointer;
+            background: var(--primary);
+            color: white;
+            margin: 10px 5px;
+        }
+        .btn:hover {
+            background: #4f46e5;
+        }
+        @media print {
+            .btn { display: none; }
+            body { font-size: 11pt; }
+        }
+    </style>
+</head>
+<body>
+    <h1>🤝 Negotiation Strategy Builder</h1>
+
+    <p>Develop your negotiation approach for problematic contract terms. Use these strategies to protect your interests while maintaining a professional relationship.</p>
+
+    <!-- Negotiation Tactics Reference -->
+    <div class="strategy-section">
+        <div class="section-title">📚 Key Negotiation Tactics</div>
+        <div class="tactics-grid">
+            <div class="tactic-card">
+                <h5>🎯 BATNA</h5>
+                <p>Know your Best Alternative To a Negotiated Agreement. What's your walk-away option?</p>
+            </div>
+            <div class="tactic-card">
+                <h5>❓ Ask "Why"</h5>
+                <p>Understand the reason behind each term. It may reveal flexibility.</p>
+            </div>
+            <div class="tactic-card">
+                <h5>🔄 Trade-offs</h5>
+                <p>Offer something in exchange for what you want removed or changed.</p>
+            </div>
+            <div class="tactic-card">
+                <h5>📝 Get It in Writing</h5>
+                <p>Any verbal agreement must be documented in the contract.</p>
+            </div>
+            <div class="tactic-card">
+                <h5>⏰ Take Time</h5>
+                <p>"I need to think about this" is always acceptable.</p>
+            </div>
+            <div class="tactic-card">
+                <h5>🚶 Walk Away</h5>
+                <p>Be prepared to decline. Another option usually exists.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Strategy Builder 1 -->
+    <div class="strategy-section">
+        <div class="section-title">Scenario 1: Gym Membership Auto-Renewal</div>
+
+        <div class="problematic-term">
+            "Membership automatically renews for 12 months unless written cancellation is received at corporate headquarters 60 days prior to renewal date. $150 early termination fee applies."
+        </div>
+
+        <div class="strategy-builder">
+            <div class="builder-item">
+                <label>What specifically do you want changed?</label>
+                <textarea placeholder="e.g., Reduce notice period to 30 days, remove or reduce termination fee, allow email cancellation..."></textarea>
+            </div>
+
+            <div class="builder-item">
+                <label>Your BATNA (Alternative Option)</label>
+                <input type="text" placeholder="e.g., Join competitor gym, month-to-month membership elsewhere...">
+            </div>
+
+            <div class="builder-item">
+                <label>What can you offer in exchange?</label>
+                <textarea placeholder="e.g., Longer initial commitment, referral of friends, pre-payment..."></textarea>
+            </div>
+
+            <div class="builder-item">
+                <label>Your Opening Statement</label>
+                <textarea placeholder="Write how you would start this negotiation..."></textarea>
+            </div>
+        </div>
+
+        <div class="script-template">
+            <h4>💬 Sample Script</h4>
+            <div class="script-line">
+                <strong>You:</strong> "I'm interested in joining, but I have concerns about the cancellation terms. Can you help me understand why 60 days notice is required?"
+            </div>
+            <div class="script-line">
+                <strong>Them:</strong> [Listen to their reason]
+            </div>
+            <div class="script-line">
+                <strong>You:</strong> "I understand your position. Would you be willing to reduce that to 30 days if I commit to a 12-month initial term instead of month-to-month?"
+            </div>
+        </div>
+    </div>
+
+    <!-- Strategy Builder 2 -->
+    <div class="strategy-section">
+        <div class="section-title">Scenario 2: Apartment Security Deposit</div>
+
+        <div class="problematic-term">
+            "Landlord may retain any portion of security deposit for cleaning, repairs, painting, carpet replacement, and any other costs deemed necessary. Itemized statement provided within 90 days."
+        </div>
+
+        <div class="strategy-builder">
+            <div class="builder-item">
+                <label>What specifically do you want changed?</label>
+                <textarea placeholder="e.g., Remove 'any other costs,' exclude normal wear and tear, reduce return timeline to 30 days..."></textarea>
+            </div>
+
+            <div class="builder-item">
+                <label>Your BATNA (Alternative Option)</label>
+                <input type="text" placeholder="e.g., Other available apartments, current housing...">
+            </div>
+
+            <div class="builder-item">
+                <label>What can you offer in exchange?</label>
+                <textarea placeholder="e.g., Excellent references, longer lease term, upfront payment..."></textarea>
+            </div>
+
+            <div class="builder-item">
+                <label>Your Opening Statement</label>
+                <textarea placeholder="Write how you would start this negotiation..."></textarea>
+            </div>
+        </div>
+    </div>
+
+    <!-- Strategy Builder 3 -->
+    <div class="strategy-section">
+        <div class="section-title">Scenario 3: Your Own Situation</div>
+
+        <div class="strategy-builder">
+            <div class="builder-item">
+                <label>Contract Type</label>
+                <select>
+                    <option value="">Select type...</option>
+                    <option>Cell phone service</option>
+                    <option>Auto purchase/lease</option>
+                    <option>Apartment lease</option>
+                    <option>Employment contract</option>
+                    <option>Subscription service</option>
+                    <option>Other</option>
+                </select>
+            </div>
+
+            <div class="builder-item">
+                <label>Problematic Term</label>
+                <textarea placeholder="Describe the specific clause or term you want to negotiate..."></textarea>
+            </div>
+
+            <div class="builder-item">
+                <label>What specifically do you want changed?</label>
+                <textarea placeholder="Be specific about your desired outcome..."></textarea>
+            </div>
+
+            <div class="builder-item">
+                <label>Your BATNA</label>
+                <input type="text" placeholder="Your alternative if negotiation fails...">
+            </div>
+
+            <div class="builder-item">
+                <label>Trade-off Offer</label>
+                <textarea placeholder="What can you offer in exchange?"></textarea>
+            </div>
+
+            <div class="builder-item">
+                <label>Your Complete Negotiation Script</label>
+                <textarea placeholder="Write your full approach from opening to close..." style="min-height: 120px;"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pre-Negotiation Checklist -->
+    <div class="strategy-section">
+        <div class="section-title">✅ Pre-Negotiation Checklist</div>
+        <div class="checkbox-item">
+            <input type="checkbox">
+            <span>I've read and understood the entire contract</span>
+        </div>
+        <div class="checkbox-item">
+            <input type="checkbox">
+            <span>I've identified all problematic terms</span>
+        </div>
+        <div class="checkbox-item">
+            <input type="checkbox">
+            <span>I know my BATNA (alternative option)</span>
+        </div>
+        <div class="checkbox-item">
+            <input type="checkbox">
+            <span>I've researched comparable contracts/offers</span>
+        </div>
+        <div class="checkbox-item">
+            <input type="checkbox">
+            <span>I've prepared my opening statement</span>
+        </div>
+        <div class="checkbox-item">
+            <input type="checkbox">
+            <span>I know my "walk away" point</span>
+        </div>
+        <div class="checkbox-item">
+            <input type="checkbox">
+            <span>I have trade-offs to offer</span>
+        </div>
+        <div class="checkbox-item">
+            <input type="checkbox">
+            <span>I'm prepared to get changes in writing</span>
+        </div>
+    </div>
+
+    <button class="btn" onclick="window.print()">🖨️ Print My Strategy</button>
+</body>
+</html>

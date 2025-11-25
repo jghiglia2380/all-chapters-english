@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Goal-Based Portfolio Builder - PFL Academy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background: #f9fafb;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+            color: white;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 0.9rem;
+        }
+
+        .content {
+            padding: 24px;
+        }
+
+        .scenario-section {
+            margin-bottom: 32px;
+            padding-bottom: 24px;
+            border-bottom: 2px solid #e5e7eb;
+        }
+
+        .scenario-section:last-of-type {
+            border-bottom: none;
+        }
+
+        .scenario-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .scenario-number {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: #6366f1;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+
+        .scenario-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .scenario-details {
+            background: #f9fafb;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+
+        .detail-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 12px;
+        }
+
+        .detail-item {
+            font-size: 0.85rem;
+        }
+
+        .detail-label {
+            color: #6b7280;
+            font-size: 0.75rem;
+        }
+
+        .detail-value {
+            font-weight: 600;
+        }
+
+        .allocation-inputs {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .allocation-input {
+            text-align: center;
+        }
+
+        .allocation-input label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 6px;
+        }
+
+        .allocation-input input {
+            width: 80px;
+            padding: 8px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            font-size: 1rem;
+            text-align: center;
+        }
+
+        .allocation-input input:focus {
+            outline: none;
+            border-color: #6366f1;
+        }
+
+        .allocation-bar {
+            height: 30px;
+            border-radius: 6px;
+            overflow: hidden;
+            display: flex;
+            margin-bottom: 12px;
+        }
+
+        .alloc-stocks { background: #6366f1; }
+        .alloc-bonds { background: #10b981; }
+        .alloc-cash { background: #f59e0b; }
+
+        .allocation-segment {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 500;
+            transition: width 0.3s ease;
+        }
+
+        .reasoning-input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-family: inherit;
+            resize: vertical;
+            min-height: 60px;
+        }
+
+        .reasoning-input:focus {
+            outline: none;
+            border-color: #6366f1;
+        }
+
+        .investment-selection {
+            margin-top: 24px;
+            padding-top: 24px;
+            border-top: 2px solid #e5e7eb;
+        }
+
+        .investment-selection h3 {
+            font-size: 1rem;
+            margin-bottom: 16px;
+        }
+
+        .selection-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .selection-box {
+            background: #f9fafb;
+            border-radius: 8px;
+            padding: 16px;
+        }
+
+        .selection-box h4 {
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+            color: #374151;
+        }
+
+        .selection-box input,
+        .selection-box textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-family: inherit;
+        }
+
+        .selection-box textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .total-display {
+            text-align: center;
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+        }
+
+        .total-display.error {
+            color: #dc2626;
+        }
+
+        .total-display.success {
+            color: #059669;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+            font-size: 0.9rem;
+        }
+
+        .btn-primary {
+            background: #6366f1;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #4f46e5;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+
+            .container {
+                box-shadow: none;
+            }
+
+            .btn {
+                display: none;
+            }
+
+            .scenario-section {
+                page-break-inside: avoid;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .allocation-inputs {
+                grid-template-columns: 1fr;
+            }
+
+            .selection-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .detail-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Goal-Based Portfolio Builder</h1>
+            <p>Activity 4: Create appropriate investment allocations for different financial scenarios</p>
+        </div>
+
+        <div class="content">
+            <!-- Scenario 1 -->
+            <div class="scenario-section">
+                <div class="scenario-header">
+                    <div class="scenario-number">1</div>
+                    <div class="scenario-title">Recent Graduate - Building Retirement Wealth</div>
+                </div>
+
+                <div class="scenario-details">
+                    <div class="detail-grid">
+                        <div class="detail-item">
+                            <div class="detail-label">Age</div>
+                            <div class="detail-value">24</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Goal</div>
+                            <div class="detail-value">Retirement at 65</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Time Horizon</div>
+                            <div class="detail-value">41 years</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Monthly</div>
+                            <div class="detail-value">$200</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Risk Tolerance</div>
+                            <div class="detail-value">High (long-term)</div>
+                        </div>
+                    </div>
+                </div>
+
+                <p style="font-size: 0.9rem; font-weight: 500; margin-bottom: 12px;">Your Recommended Allocation:</p>
+
+                <div class="allocation-inputs">
+                    <div class="allocation-input">
+                        <label>Stocks %</label>
+                        <input type="number" id="s1-stocks" value="0" min="0" max="100" oninput="updateAllocation(1)">
+                    </div>
+                    <div class="allocation-input">
+                        <label>Bonds %</label>
+                        <input type="number" id="s1-bonds" value="0" min="0" max="100" oninput="updateAllocation(1)">
+                    </div>
+                    <div class="allocation-input">
+                        <label>Cash %</label>
+                        <input type="number" id="s1-cash" value="0" min="0" max="100" oninput="updateAllocation(1)">
+                    </div>
+                </div>
+
+                <div class="total-display" id="s1-total">Total: 0% (must equal 100%)</div>
+
+                <div class="allocation-bar" id="s1-bar">
+                    <div class="allocation-segment alloc-stocks" style="width: 0%;"></div>
+                    <div class="allocation-segment alloc-bonds" style="width: 0%;"></div>
+                    <div class="allocation-segment alloc-cash" style="width: 0%;"></div>
+                </div>
+
+                <label style="font-size: 0.85rem; font-weight: 500; display: block; margin-bottom: 6px;">Reasoning:</label>
+                <textarea class="reasoning-input" placeholder="Why did you choose this allocation?"></textarea>
+            </div>
+
+            <!-- Scenario 2 -->
+            <div class="scenario-section">
+                <div class="scenario-header">
+                    <div class="scenario-number">2</div>
+                    <div class="scenario-title">Young Professional - Saving for Home Down Payment</div>
+                </div>
+
+                <div class="scenario-details">
+                    <div class="detail-grid">
+                        <div class="detail-item">
+                            <div class="detail-label">Age</div>
+                            <div class="detail-value">28</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Goal</div>
+                            <div class="detail-value">$40,000 down payment</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Time Horizon</div>
+                            <div class="detail-value">5 years</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Current Savings</div>
+                            <div class="detail-value">$8,000</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Monthly</div>
+                            <div class="detail-value">$500</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Risk Tolerance</div>
+                            <div class="detail-value">Moderate</div>
+                        </div>
+                    </div>
+                </div>
+
+                <p style="font-size: 0.9rem; font-weight: 500; margin-bottom: 12px;">Your Recommended Allocation:</p>
+
+                <div class="allocation-inputs">
+                    <div class="allocation-input">
+                        <label>Stocks %</label>
+                        <input type="number" id="s2-stocks" value="0" min="0" max="100" oninput="updateAllocation(2)">
+                    </div>
+                    <div class="allocation-input">
+                        <label>Bonds %</label>
+                        <input type="number" id="s2-bonds" value="0" min="0" max="100" oninput="updateAllocation(2)">
+                    </div>
+                    <div class="allocation-input">
+                        <label>Cash %</label>
+                        <input type="number" id="s2-cash" value="0" min="0" max="100" oninput="updateAllocation(2)">
+                    </div>
+                </div>
+
+                <div class="total-display" id="s2-total">Total: 0% (must equal 100%)</div>
+
+                <div class="allocation-bar" id="s2-bar">
+                    <div class="allocation-segment alloc-stocks" style="width: 0%;"></div>
+                    <div class="allocation-segment alloc-bonds" style="width: 0%;"></div>
+                    <div class="allocation-segment alloc-cash" style="width: 0%;"></div>
+                </div>
+
+                <label style="font-size: 0.85rem; font-weight: 500; display: block; margin-bottom: 6px;">Reasoning:</label>
+                <textarea class="reasoning-input" placeholder="Why did you choose this allocation?"></textarea>
+            </div>
+
+            <!-- Scenario 3 -->
+            <div class="scenario-section">
+                <div class="scenario-header">
+                    <div class="scenario-number">3</div>
+                    <div class="scenario-title">Mid-Career Worker - Balanced Approach</div>
+                </div>
+
+                <div class="scenario-details">
+                    <div class="detail-grid">
+                        <div class="detail-item">
+                            <div class="detail-label">Age</div>
+                            <div class="detail-value">45</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Goal</div>
+                            <div class="detail-value">Retirement at 65</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Time Horizon</div>
+                            <div class="detail-value">20 years</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Monthly</div>
+                            <div class="detail-value">$600</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Risk Tolerance</div>
+                            <div class="detail-value">Moderate</div>
+                        </div>
+                    </div>
+                </div>
+
+                <p style="font-size: 0.9rem; font-weight: 500; margin-bottom: 12px;">Your Recommended Allocation:</p>
+
+                <div class="allocation-inputs">
+                    <div class="allocation-input">
+                        <label>Stocks %</label>
+                        <input type="number" id="s3-stocks" value="0" min="0" max="100" oninput="updateAllocation(3)">
+                    </div>
+                    <div class="allocation-input">
+                        <label>Bonds %</label>
+                        <input type="number" id="s3-bonds" value="0" min="0" max="100" oninput="updateAllocation(3)">
+                    </div>
+                    <div class="allocation-input">
+                        <label>Cash %</label>
+                        <input type="number" id="s3-cash" value="0" min="0" max="100" oninput="updateAllocation(3)">
+                    </div>
+                </div>
+
+                <div class="total-display" id="s3-total">Total: 0% (must equal 100%)</div>
+
+                <div class="allocation-bar" id="s3-bar">
+                    <div class="allocation-segment alloc-stocks" style="width: 0%;"></div>
+                    <div class="allocation-segment alloc-bonds" style="width: 0%;"></div>
+                    <div class="allocation-segment alloc-cash" style="width: 0%;"></div>
+                </div>
+
+                <label style="font-size: 0.85rem; font-weight: 500; display: block; margin-bottom: 6px;">Reasoning:</label>
+                <textarea class="reasoning-input" placeholder="Why did you choose this allocation?"></textarea>
+            </div>
+
+            <!-- Portfolio Construction for Scenario 1 -->
+            <div class="investment-selection">
+                <h3>Portfolio Construction: Scenario 1 (Recent Graduate)</h3>
+                <p style="font-size: 0.85rem; color: #6b7280; margin-bottom: 16px;">Select specific investments for the recent graduate's portfolio:</p>
+
+                <div class="selection-grid">
+                    <div class="selection-box">
+                        <h4>Stock Funds/ETFs (choose 2-3)</h4>
+                        <textarea placeholder="e.g., VTI (Total Stock Market), VXUS (International), QQQ (Tech)"></textarea>
+                    </div>
+                    <div class="selection-box">
+                        <h4>Bond Funds (if any)</h4>
+                        <textarea placeholder="e.g., BND (Total Bond), VGIT (Treasury)"></textarea>
+                    </div>
+                </div>
+
+                <div class="selection-box" style="margin-top: 16px;">
+                    <h4>Explain Your Investment Choices</h4>
+                    <textarea placeholder="Why did you select these specific investments for a 24-year-old saving for retirement?"></textarea>
+                </div>
+            </div>
+
+            <button class="btn btn-primary" onclick="window.print()" style="margin-top: 24px;">Print Worksheet</button>
+        </div>
+    </div>
+
+    <script>
+        function updateAllocation(scenario) {
+            const stocks = parseInt(document.getElementById(`s${scenario}-stocks`).value) || 0;
+            const bonds = parseInt(document.getElementById(`s${scenario}-bonds`).value) || 0;
+            const cash = parseInt(document.getElementById(`s${scenario}-cash`).value) || 0;
+            const total = stocks + bonds + cash;
+
+            const totalDisplay = document.getElementById(`s${scenario}-total`);
+            if (total === 100) {
+                totalDisplay.textContent = 'Total: 100%';
+                totalDisplay.className = 'total-display success';
+            } else {
+                totalDisplay.textContent = `Total: ${total}% (must equal 100%)`;
+                totalDisplay.className = 'total-display error';
+            }
+
+            // Update bar
+            const bar = document.getElementById(`s${scenario}-bar`);
+            const segments = bar.querySelectorAll('.allocation-segment');
+            segments[0].style.width = stocks + '%';
+            segments[0].textContent = stocks > 10 ? stocks + '%' : '';
+            segments[1].style.width = bonds + '%';
+            segments[1].textContent = bonds > 10 ? bonds + '%' : '';
+            segments[2].style.width = cash + '%';
+            segments[2].textContent = cash > 10 ? cash + '%' : '';
+        }
+    </script>
+</body>
+</html>

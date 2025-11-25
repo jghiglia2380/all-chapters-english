@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Comparing Financial Services Reference Sheet | PFL Academy</title>
+<style>
+:root {
+    --primary: #6366f1;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #1f2937;
+    background: #fff;
+    padding: 20px;
+}
+
+.container {
+    max-width: 850px;
+    margin: 0 auto;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 3px solid var(--primary);
+}
+
+h1 {
+    font-size: 1.8rem;
+    color: var(--primary);
+    margin-bottom: 5px;
+}
+
+.subtitle {
+    color: #6b7280;
+    font-size: 0.9rem;
+}
+
+.print-btn {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    margin-bottom: 15px;
+}
+
+.print-btn:hover {
+    background: #4f46e5;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.section {
+    background: #f9fafb;
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 4px solid var(--primary);
+}
+
+.section-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 10px;
+}
+
+.section ul {
+    list-style-position: inside;
+    margin-left: 10px;
+}
+
+.section li {
+    margin-bottom: 6px;
+}
+
+.full-width {
+    grid-column: 1 / -1;
+}
+
+.highlight-box {
+    background: #fef3c7;
+    border-left: 4px solid #f59e0b;
+    padding: 12px;
+    margin: 15px 0;
+    border-radius: 6px;
+}
+
+.key-points {
+    background: #eff6ff;
+    padding: 15px;
+    border-radius: 8px;
+    margin: 15px 0;
+}
+
+.key-points h3 {
+    color: var(--primary);
+    margin-bottom: 10px;
+    font-size: 1rem;
+}
+
+.key-points ul {
+    list-style-position: inside;
+}
+
+.key-points li {
+    margin-bottom: 6px;
+}
+
+/* Fee Types Table */
+.fee-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+    margin-top: 10px;
+}
+
+.fee-table th,
+.fee-table td {
+    padding: 8px;
+    text-align: left;
+    border: 1px solid #e5e7eb;
+}
+
+.fee-table th {
+    background: var(--primary);
+    color: white;
+    font-weight: 600;
+}
+
+.fee-table tr:nth-child(even) {
+    background: #f9fafb;
+}
+
+/* Checklist Styling */
+.checklist {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+}
+
+.checklist-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 0.85rem;
+}
+
+.checkbox {
+    width: 14px;
+    height: 14px;
+    border: 2px solid var(--primary);
+    border-radius: 3px;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+/* Comparison Tips */
+.tips-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.tip-card {
+    background: #f0f9ff;
+    padding: 12px;
+    border-radius: 6px;
+    text-align: center;
+}
+
+.tip-card strong {
+    color: var(--primary);
+    display: block;
+    margin-bottom: 5px;
+    font-size: 0.85rem;
+}
+
+.tip-card span {
+    font-size: 0.8rem;
+}
+
+@media print {
+    body {
+        padding: 10px;
+    }
+
+    .container {
+        max-width: 100%;
+    }
+
+    .print-btn {
+        display: none;
+    }
+
+    .grid {
+        gap: 10px;
+    }
+
+    .section {
+        break-inside: avoid;
+    }
+}
+
+@media (max-width: 768px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .checklist {
+        grid-template-columns: 1fr;
+    }
+
+    .tips-grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>Comparing Financial Services Reference Sheet</h1>
+        <p class="subtitle">Key Criteria for Evaluating and Comparing Financial Service Providers</p>
+    </header>
+
+    <button class="print-btn" onclick="window.print()">Print / Save PDF</button>
+
+    <div class="key-points">
+        <h3>Key Comparison Criteria</h3>
+        <ul>
+            <li><strong>Fees:</strong> Monthly maintenance, ATM, overdraft, wire transfer, and other service fees</li>
+            <li><strong>Interest Rates:</strong> APY on savings, checking, CDs, and rates on loans</li>
+            <li><strong>Accessibility:</strong> Branch locations, ATM network, online/mobile capabilities</li>
+            <li><strong>Services Offered:</strong> Full range of products that meet your current and future needs</li>
+            <li><strong>Customer Service:</strong> Hours of availability, responsiveness, and quality of support</li>
+            <li><strong>Security:</strong> FDIC/NCUA insurance, fraud protection, and digital security features</li>
+        </ul>
+    </div>
+
+    <div class="grid">
+        <div class="section full-width">
+            <div class="section-title">Fee Types Explained</div>
+            <table class="fee-table">
+                <tr>
+                    <th>Fee Type</th>
+                    <th>Description</th>
+                    <th>Typical Range</th>
+                    <th>How to Avoid</th>
+                </tr>
+                <tr>
+                    <td><strong>Monthly Maintenance</strong></td>
+                    <td>Regular fee for account upkeep</td>
+                    <td>$0 - $15/month</td>
+                    <td>Direct deposit, minimum balance, or choose no-fee accounts</td>
+                </tr>
+                <tr>
+                    <td><strong>ATM Fee</strong></td>
+                    <td>Using out-of-network ATMs</td>
+                    <td>$2.50 - $5 per use</td>
+                    <td>Use in-network ATMs or accounts with ATM reimbursement</td>
+                </tr>
+                <tr>
+                    <td><strong>Overdraft Fee</strong></td>
+                    <td>Spending more than available balance</td>
+                    <td>$25 - $35 per occurrence</td>
+                    <td>Link savings account, opt out of overdraft coverage, set alerts</td>
+                </tr>
+                <tr>
+                    <td><strong>Wire Transfer</strong></td>
+                    <td>Sending money electronically</td>
+                    <td>$15 - $50 per transfer</td>
+                    <td>Use free alternatives like Zelle, ACH transfers</td>
+                </tr>
+                <tr>
+                    <td><strong>Foreign Transaction</strong></td>
+                    <td>Purchases in foreign currency</td>
+                    <td>1% - 3% of purchase</td>
+                    <td>Use cards with no foreign transaction fees</td>
+                </tr>
+                <tr>
+                    <td><strong>Paper Statement</strong></td>
+                    <td>Receiving mailed statements</td>
+                    <td>$2 - $5/month</td>
+                    <td>Enroll in paperless/e-statements</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Service Features Checklist</div>
+            <div class="checklist">
+                <div class="checklist-item">
+                    <div class="checkbox"></div>
+                    <span>Mobile check deposit</span>
+                </div>
+                <div class="checklist-item">
+                    <div class="checkbox"></div>
+                    <span>Online bill pay</span>
+                </div>
+                <div class="checklist-item">
+                    <div class="checkbox"></div>
+                    <span>Zelle/P2P transfers</span>
+                </div>
+                <div class="checklist-item">
+                    <div class="checkbox"></div>
+                    <span>Card controls (lock/unlock)</span>
+                </div>
+                <div class="checklist-item">
+                    <div class="checkbox"></div>
+                    <span>Real-time alerts</span>
+                </div>
+                <div class="checklist-item">
+                    <div class="checkbox"></div>
+                    <span>Budgeting tools</span>
+                </div>
+                <div class="checklist-item">
+                    <div class="checkbox"></div>
+                    <span>External transfers</span>
+                </div>
+                <div class="checklist-item">
+                    <div class="checkbox"></div>
+                    <span>Joint account options</span>
+                </div>
+                <div class="checklist-item">
+                    <div class="checkbox"></div>
+                    <span>Savings goals features</span>
+                </div>
+                <div class="checklist-item">
+                    <div class="checkbox"></div>
+                    <span>24/7 customer support</span>
+                </div>
+                <div class="checklist-item">
+                    <div class="checkbox"></div>
+                    <span>Two-factor authentication</span>
+                </div>
+                <div class="checklist-item">
+                    <div class="checkbox"></div>
+                    <span>Debit card rewards</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">APY Comparison Guide</div>
+            <ul>
+                <li><strong>Traditional Banks:</strong> 0.01% - 0.10% APY</li>
+                <li><strong>Credit Unions:</strong> 0.10% - 0.50% APY</li>
+                <li><strong>Online Banks:</strong> 3.00% - 5.00% APY</li>
+            </ul>
+            <p style="margin-top: 10px; font-size: 0.85rem;"><strong>Impact Example:</strong> On $5,000 savings over 1 year:</p>
+            <ul style="font-size: 0.85rem;">
+                <li>At 0.05% = $2.50 earned</li>
+                <li>At 0.25% = $12.50 earned</li>
+                <li>At 4.00% = $200 earned</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <div class="section-title">What to Look For</div>
+            <ul>
+                <li><strong>Total Cost:</strong> Add up ALL fees you'll likely pay</li>
+                <li><strong>Convenience:</strong> Access when/where you need it</li>
+                <li><strong>Growth:</strong> Interest rates that help money grow</li>
+                <li><strong>Flexibility:</strong> Easy to make changes if needed</li>
+                <li><strong>Future Needs:</strong> Products you may need later</li>
+                <li><strong>Reputation:</strong> Reviews and satisfaction ratings</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Red Flags When Comparing</div>
+            <ul>
+                <li>Hidden fees not clearly disclosed</li>
+                <li>Complex requirements to avoid fees</li>
+                <li>Poor mobile app reviews</li>
+                <li>Limited customer service hours</li>
+                <li>Excessive minimum balance requirements</li>
+                <li>Long hold times for transfers</li>
+                <li>Lack of FDIC/NCUA insurance</li>
+                <li>No fraud protection policies</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section full-width" style="margin-bottom: 20px;">
+        <div class="section-title">Smart Comparison Tips</div>
+        <div class="tips-grid">
+            <div class="tip-card">
+                <strong>Calculate True Cost</strong>
+                <span>Don't just compare monthly fees - add ATM usage, overdrafts, and other charges you'll actually incur</span>
+            </div>
+            <div class="tip-card">
+                <strong>Consider Your Habits</strong>
+                <span>A free ATM network matters more if you use cash often; high APY matters more with larger balances</span>
+            </div>
+            <div class="tip-card">
+                <strong>Think Long-Term</strong>
+                <span>Consider future needs like loans, mortgages, or investment services - relationships can provide better rates</span>
+            </div>
+            <div class="tip-card">
+                <strong>Read the Fine Print</strong>
+                <span>Promotional rates may expire; fee waivers may have complex requirements</span>
+            </div>
+            <div class="tip-card">
+                <strong>Test the App</strong>
+                <span>Download and explore the mobile app before committing - you'll use it frequently</span>
+            </div>
+            <div class="tip-card">
+                <strong>Multiple Accounts OK</strong>
+                <span>Using different providers for different needs (checking vs. savings) is a smart strategy</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="highlight-box">
+        <strong>Remember:</strong> The "best" financial service provider is the one that best matches YOUR specific needs, habits, and financial goals. A provider perfect for one person may not be ideal for another. In {{STATE_NAME}}, be sure to compare local credit unions and community banks alongside national options - they often offer competitive rates and personalized service. Take time to research thoroughly before making your decision, and don't hesitate to switch if your needs change.
+    </div>
+</div>
+</body>
+</html>

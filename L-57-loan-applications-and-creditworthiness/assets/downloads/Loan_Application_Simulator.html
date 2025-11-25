@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Application Simulator</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        header { text-align: center; margin-bottom: 30px; }
+        h1 { font-size: 2rem; color: #6366f1; margin-bottom: 10px; }
+        .subtitle { color: #6b7280; }
+        .form-section { margin-bottom: 25px; }
+        .section-title { font-size: 1.1rem; font-weight: bold; margin-bottom: 15px; color: #374151; border-bottom: 2px solid #e5e7eb; padding-bottom: 8px; }
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; font-weight: 600; margin-bottom: 5px; font-size: 0.9rem; color: #374151; }
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+        .form-group input:focus, .form-group select:focus { outline: none; border-color: #6366f1; }
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: #6366f1;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        .submit-btn:hover { background: #4f46e5; }
+        .results { display: none; margin-top: 25px; }
+        .results.active { display: block; }
+        .score-display {
+            text-align: center;
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+        .score-display.strong { background: #d1fae5; }
+        .score-display.moderate { background: #fef3c7; }
+        .score-display.weak { background: #fee2e2; }
+        .score-label { font-size: 1rem; margin-bottom: 5px; }
+        .score-value { font-size: 3rem; font-weight: bold; }
+        .score-rating { font-size: 1.2rem; margin-top: 10px; }
+        .feedback-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+        .feedback-card {
+            padding: 15px;
+            border-radius: 10px;
+            background: #f9fafb;
+        }
+        .feedback-card h4 { font-size: 0.9rem; color: #374151; margin-bottom: 8px; }
+        .feedback-card p { font-size: 0.85rem; color: #6b7280; }
+        .good { border-left: 3px solid #10b981; }
+        .improve { border-left: 3px solid #f59e0b; }
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #e5e7eb;
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+        @media (max-width: 768px) {
+            .form-grid, .feedback-grid { grid-template-columns: 1fr; }
+        }
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .container {
+                box-shadow: none;
+                padding: 20px;
+            }
+            .submit-btn,
+            .no-print {
+                display: none !important;
+            }
+            .results {
+                display: block !important;
+            }
+            .form-section,
+            .feedback-card {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Loan Application Simulator</h1>
+            <p class="subtitle">Complete a practice application and get instant feedback</p>
+        </header>
+
+        <div class="form-section">
+            <div class="section-title">Personal Information</div>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>Annual Income</label>
+                    <input type="number" id="income" placeholder="50000">
+                </div>
+                <div class="form-group">
+                    <label>Employment Length</label>
+                    <select id="employment">
+                        <option value="0">Less than 1 year</option>
+                        <option value="1">1-2 years</option>
+                        <option value="3">3-5 years</option>
+                        <option value="5">5+ years</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <div class="section-title">Credit Profile</div>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>Credit Score</label>
+                    <input type="number" id="credit" placeholder="700" min="300" max="850">
+                </div>
+                <div class="form-group">
+                    <label>Monthly Debt Payments</label>
+                    <input type="number" id="debt" placeholder="500">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <div class="section-title">Loan Details</div>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>Loan Amount Requested</label>
+                    <input type="number" id="amount" placeholder="15000">
+                </div>
+                <div class="form-group">
+                    <label>Down Payment (if applicable)</label>
+                    <input type="number" id="down" placeholder="3000">
+                </div>
+            </div>
+        </div>
+
+        <button class="submit-btn" onclick="evaluateApplication()">Evaluate My Application</button>
+
+        <div class="results" id="results">
+            <div class="score-display" id="scoreDisplay">
+                <div class="score-label">Application Strength Score</div>
+                <div class="score-value" id="scoreValue">0</div>
+                <div class="score-rating" id="scoreRating">Rating</div>
+            </div>
+
+            <div class="feedback-grid" id="feedbackGrid"></div>
+        </div>
+
+        <footer>
+            <p><strong>PFL Academy</strong> | Loan Applications</p>
+        </footer>
+    </div>
+
+    <script>
+        function evaluateApplication() {
+            const income = parseFloat(document.getElementById('income').value) || 0;
+            const employment = parseInt(document.getElementById('employment').value) || 0;
+            const credit = parseInt(document.getElementById('credit').value) || 0;
+            const debt = parseFloat(document.getElementById('debt').value) || 0;
+            const amount = parseFloat(document.getElementById('amount').value) || 0;
+            const down = parseFloat(document.getElementById('down').value) || 0;
+
+            let score = 0;
+            let feedback = [];
+
+            // Credit Score (max 30 points)
+            if (credit >= 750) {
+                score += 30;
+                feedback.push({ type: 'good', title: 'Excellent Credit', text: 'Your credit score qualifies for the best rates.' });
+            } else if (credit >= 700) {
+                score += 25;
+                feedback.push({ type: 'good', title: 'Good Credit', text: 'Solid credit score for favorable terms.' });
+            } else if (credit >= 650) {
+                score += 15;
+                feedback.push({ type: 'improve', title: 'Fair Credit', text: 'Consider improving score for better rates.' });
+            } else {
+                score += 5;
+                feedback.push({ type: 'improve', title: 'Credit Needs Work', text: 'Build credit before applying for better terms.' });
+            }
+
+            // DTI Ratio (max 30 points)
+            const monthlyIncome = income / 12;
+            const newPayment = (amount - down) * 0.02; // Estimate
+            const totalDebt = debt + newPayment;
+            const dti = monthlyIncome > 0 ? (totalDebt / monthlyIncome) * 100 : 100;
+
+            if (dti <= 28) {
+                score += 30;
+                feedback.push({ type: 'good', title: 'Low Debt Ratio', text: `DTI of ${dti.toFixed(0)}% is excellent.` });
+            } else if (dti <= 36) {
+                score += 25;
+                feedback.push({ type: 'good', title: 'Acceptable DTI', text: `DTI of ${dti.toFixed(0)}% is manageable.` });
+            } else if (dti <= 43) {
+                score += 15;
+                feedback.push({ type: 'improve', title: 'High DTI', text: `DTI of ${dti.toFixed(0)}% may limit options.` });
+            } else {
+                score += 5;
+                feedback.push({ type: 'improve', title: 'DTI Too High', text: `Reduce debt or increase income first.` });
+            }
+
+            // Employment (max 20 points)
+            if (employment >= 5) {
+                score += 20;
+                feedback.push({ type: 'good', title: 'Stable Employment', text: 'Long employment history is a plus.' });
+            } else if (employment >= 3) {
+                score += 15;
+                feedback.push({ type: 'good', title: 'Good Employment', text: 'Adequate job stability shown.' });
+            } else {
+                score += 8;
+                feedback.push({ type: 'improve', title: 'Short Employment', text: 'Longer history preferred by lenders.' });
+            }
+
+            // Down Payment (max 20 points)
+            const downPercent = amount > 0 ? (down / amount) * 100 : 0;
+            if (downPercent >= 20) {
+                score += 20;
+                feedback.push({ type: 'good', title: 'Strong Down Payment', text: `${downPercent.toFixed(0)}% down reduces lender risk.` });
+            } else if (downPercent >= 10) {
+                score += 15;
+                feedback.push({ type: 'good', title: 'Decent Down Payment', text: `${downPercent.toFixed(0)}% is reasonable.` });
+            } else {
+                score += 5;
+                feedback.push({ type: 'improve', title: 'Low Down Payment', text: 'Larger down payment improves approval odds.' });
+            }
+
+            // Display results
+            const display = document.getElementById('scoreDisplay');
+            display.className = 'score-display ' + (score >= 80 ? 'strong' : score >= 60 ? 'moderate' : 'weak');
+            document.getElementById('scoreValue').textContent = score;
+
+            let rating = '';
+            if (score >= 80) rating = '✅ Strong - Likely to be approved';
+            else if (score >= 60) rating = '⚠️ Moderate - May need improvements';
+            else rating = '❌ Weak - Focus on improvements first';
+            document.getElementById('scoreRating').textContent = rating;
+
+            const grid = document.getElementById('feedbackGrid');
+            grid.innerHTML = feedback.map(f => `
+                <div class="feedback-card ${f.type}">
+                    <h4>${f.title}</h4>
+                    <p>${f.text}</p>
+                </div>
+            `).join('');
+
+            document.getElementById('results').classList.add('active');
+        }
+    </script>
+</body>
+</html>

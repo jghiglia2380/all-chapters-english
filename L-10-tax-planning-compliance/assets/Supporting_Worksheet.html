@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tax Preparation Supporting Worksheet | PFL Academy</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        header { text-align: center; margin-bottom: 30px; }
+        h1 { font-size: 2rem; color: #6366f1; margin-bottom: 10px; }
+        .subtitle { color: #6b7280; }
+        .print-btn {
+            display: block;
+            width: 200px;
+            margin: 0 auto 20px;
+            padding: 10px;
+            background: #6366f1;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        .print-btn:hover { background: #4f46e5; }
+        .problem-section {
+            background: #f9fafb;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            border-left: 4px solid #6366f1;
+        }
+        .problem-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #6366f1;
+            margin-bottom: 15px;
+        }
+        .problem-text {
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+        .scenario-box {
+            background: #eff6ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+        .scenario-title {
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 8px;
+        }
+        .scenario-details {
+            font-size: 0.9rem;
+            color: #4b5563;
+        }
+        .scenario-details li {
+            margin-bottom: 5px;
+        }
+        .work-area {
+            background: white;
+            border: 2px dashed #d1d5db;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            min-height: 100px;
+        }
+        .work-area-label {
+            font-size: 0.85rem;
+            color: #6b7280;
+            margin-bottom: 8px;
+        }
+        .input-line {
+            border: none;
+            border-bottom: 1px solid #d1d5db;
+            width: 100%;
+            padding: 8px 0;
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+            background: transparent;
+        }
+        .input-line:focus {
+            outline: none;
+            border-bottom-color: #6366f1;
+        }
+        .calculation-grid {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        .calc-label {
+            font-size: 0.9rem;
+            padding: 8px 0;
+        }
+        .calc-input {
+            width: 120px;
+            padding: 8px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            text-align: right;
+            font-size: 0.9rem;
+        }
+        .calc-input:focus {
+            outline: none;
+            border-color: #6366f1;
+        }
+        .total-row {
+            font-weight: 600;
+            border-top: 2px solid #374151;
+            padding-top: 10px;
+            margin-top: 10px;
+        }
+        .multiple-choice {
+            margin: 10px 0;
+        }
+        .choice-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px;
+            margin-bottom: 5px;
+        }
+        .choice-item input[type="radio"] {
+            width: 18px;
+            height: 18px;
+            accent-color: #6366f1;
+        }
+        .choice-label {
+            font-size: 0.9rem;
+        }
+        .answer-box {
+            background: #d1fae5;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            display: none;
+        }
+        .answer-box.show { display: block; }
+        .answer-title {
+            font-weight: 600;
+            color: #065f46;
+            margin-bottom: 8px;
+        }
+        .answer-text {
+            font-size: 0.9rem;
+            color: #047857;
+        }
+        .show-answer-btn {
+            background: #10b981;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .show-answer-btn:hover { background: #059669; }
+        .reflection-area {
+            background: #fef3c7;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+        }
+        .reflection-title {
+            font-weight: 600;
+            color: #92400e;
+            margin-bottom: 10px;
+        }
+        .reflection-prompt {
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+        textarea {
+            width: 100%;
+            min-height: 80px;
+            padding: 10px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 0.9rem;
+            resize: vertical;
+        }
+        textarea:focus {
+            outline: none;
+            border-color: #6366f1;
+        }
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #e5e7eb;
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+        @media print {
+            body { background: white; padding: 0; }
+            .container { box-shadow: none; max-width: 100%; }
+            .print-btn, .show-answer-btn { display: none; }
+            .answer-box { display: block !important; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Tax Preparation Supporting Worksheet</h1>
+            <p class="subtitle">Practice Problems for Tax Planning Concepts</p>
+        </header>
+
+        <button class="print-btn" onclick="window.print()">Print / Save PDF</button>
+
+        <!-- Problem 1: Tax Calculation -->
+        <div class="problem-section">
+            <div class="problem-title">Problem 1: Basic Tax Calculation</div>
+            <div class="problem-text">
+                Calculate the tax liability for the following taxpayer using the 2023 tax brackets.
+            </div>
+            <div class="scenario-box">
+                <div class="scenario-title">Scenario: Taylor's Tax Situation</div>
+                <ul class="scenario-details">
+                    <li>Filing status: Single</li>
+                    <li>Gross income: $55,000</li>
+                    <li>Above-the-line deductions: $3,000 (IRA contribution)</li>
+                    <li>Chooses standard deduction</li>
+                    <li>No tax credits</li>
+                </ul>
+            </div>
+
+            <div class="work-area">
+                <div class="work-area-label">Show your calculations:</div>
+                <div class="calculation-grid">
+                    <div class="calc-label">Gross Income</div>
+                    <input type="text" class="calc-input" placeholder="$55,000">
+                </div>
+                <div class="calculation-grid">
+                    <div class="calc-label">Minus: Above-the-line deductions</div>
+                    <input type="text" class="calc-input" placeholder="$">
+                </div>
+                <div class="calculation-grid">
+                    <div class="calc-label">= Adjusted Gross Income (AGI)</div>
+                    <input type="text" class="calc-input" placeholder="$">
+                </div>
+                <div class="calculation-grid">
+                    <div class="calc-label">Minus: Standard Deduction ($13,850)</div>
+                    <input type="text" class="calc-input" placeholder="$">
+                </div>
+                <div class="calculation-grid total-row">
+                    <div class="calc-label">= Taxable Income</div>
+                    <input type="text" class="calc-input" placeholder="$">
+                </div>
+            </div>
+
+            <div class="work-area">
+                <div class="work-area-label">Calculate tax using brackets (10% on first $11,000, 12% on $11,001-$44,725, 22% on remainder):</div>
+                <div class="calculation-grid">
+                    <div class="calc-label">10% bracket: $11,000 x 0.10 =</div>
+                    <input type="text" class="calc-input" placeholder="$">
+                </div>
+                <div class="calculation-grid">
+                    <div class="calc-label">12% bracket: $33,725 x 0.12 =</div>
+                    <input type="text" class="calc-input" placeholder="$">
+                </div>
+                <div class="calculation-grid">
+                    <div class="calc-label">22% bracket: Remainder x 0.22 =</div>
+                    <input type="text" class="calc-input" placeholder="$">
+                </div>
+                <div class="calculation-grid total-row">
+                    <div class="calc-label">Total Tax Liability</div>
+                    <input type="text" class="calc-input" placeholder="$">
+                </div>
+            </div>
+
+            <button class="show-answer-btn" onclick="toggleAnswer('answer1')">Show Answer</button>
+            <div class="answer-box" id="answer1">
+                <div class="answer-title">Solution:</div>
+                <div class="answer-text">
+                    AGI = $55,000 - $3,000 = $52,000<br>
+                    Taxable Income = $52,000 - $13,850 = $38,150<br><br>
+                    Tax Calculation:<br>
+                    - 10% on $11,000 = $1,100<br>
+                    - 12% on $27,150 ($38,150 - $11,000) = $3,258<br>
+                    - 22% on $0 (income doesn't reach 22% bracket)<br><br>
+                    <strong>Total Tax Liability = $4,358</strong>
+                </div>
+            </div>
+        </div>
+
+        <!-- Problem 2: Deduction vs Credit -->
+        <div class="problem-section">
+            <div class="problem-title">Problem 2: Deduction vs. Credit Comparison</div>
+            <div class="problem-text">
+                Morgan is in the 22% tax bracket and has the option to claim either a $2,000 deduction OR a $400 tax credit. Which provides greater tax savings?
+            </div>
+
+            <div class="work-area">
+                <div class="work-area-label">Calculate the value of each option:</div>
+                <div class="calculation-grid">
+                    <div class="calc-label">$2,000 deduction x 22% tax rate =</div>
+                    <input type="text" class="calc-input" placeholder="$">
+                </div>
+                <div class="calculation-grid">
+                    <div class="calc-label">$400 credit (dollar-for-dollar) =</div>
+                    <input type="text" class="calc-input" placeholder="$">
+                </div>
+            </div>
+
+            <div class="multiple-choice">
+                <div class="choice-item">
+                    <input type="radio" name="q2" id="q2a">
+                    <label class="choice-label" for="q2a">The $2,000 deduction provides more savings</label>
+                </div>
+                <div class="choice-item">
+                    <input type="radio" name="q2" id="q2b">
+                    <label class="choice-label" for="q2b">The $400 credit provides more savings</label>
+                </div>
+                <div class="choice-item">
+                    <input type="radio" name="q2" id="q2c">
+                    <label class="choice-label" for="q2c">They provide equal savings</label>
+                </div>
+            </div>
+
+            <button class="show-answer-btn" onclick="toggleAnswer('answer2')">Show Answer</button>
+            <div class="answer-box" id="answer2">
+                <div class="answer-title">Solution:</div>
+                <div class="answer-text">
+                    $2,000 deduction x 22% = $440 tax savings<br>
+                    $400 credit = $400 tax savings<br><br>
+                    <strong>The $2,000 deduction provides more savings ($440 vs $400)</strong><br><br>
+                    Note: This is only because Morgan is in the 22% bracket. If Morgan were in the 12% bracket, the deduction would only save $240, making the credit more valuable.
+                </div>
+            </div>
+        </div>
+
+        <!-- Problem 3: Filing Status -->
+        <div class="problem-section">
+            <div class="problem-title">Problem 3: Choosing Filing Status</div>
+            <div class="problem-text">
+                Determine the most advantageous filing status for each situation:
+            </div>
+
+            <div class="scenario-box">
+                <div class="scenario-title">Situation A:</div>
+                <div class="scenario-details">
+                    Alex is married and both spouses work. Together they earn $120,000. Should they file jointly or separately?
+                </div>
+            </div>
+            <div class="work-area">
+                <div class="work-area-label">Your analysis:</div>
+                <textarea placeholder="Consider: Standard deduction differences, tax bracket differences, credit eligibility..."></textarea>
+            </div>
+
+            <div class="scenario-box">
+                <div class="scenario-title">Situation B:</div>
+                <div class="scenario-details">
+                    Jordan is single but provides more than half the support for their elderly parent who lives with them. What filing status should Jordan use?
+                </div>
+            </div>
+            <div class="work-area">
+                <div class="work-area-label">Your answer and reasoning:</div>
+                <textarea placeholder="Which status? Why is it more beneficial?"></textarea>
+            </div>
+
+            <button class="show-answer-btn" onclick="toggleAnswer('answer3')">Show Answer</button>
+            <div class="answer-box" id="answer3">
+                <div class="answer-title">Solutions:</div>
+                <div class="answer-text">
+                    <strong>Situation A:</strong> Married Filing Jointly is usually better because:<br>
+                    - Higher standard deduction ($27,700 vs $13,850 each)<br>
+                    - Lower marginal tax rates at same income levels<br>
+                    - Access to more credits and deductions<br><br>
+                    <strong>Situation B:</strong> Head of Household because:<br>
+                    - Higher standard deduction than Single ($20,800 vs $13,850)<br>
+                    - More favorable tax brackets<br>
+                    - Jordan qualifies since they're unmarried and provide >50% support for a qualifying person
+                </div>
+            </div>
+        </div>
+
+        <!-- Problem 4: Tax Planning Scenario -->
+        <div class="problem-section">
+            <div class="problem-title">Problem 4: Tax Planning Strategy</div>
+            <div class="problem-text">
+                Casey earns $50,000 and has the following potential deductions. Should Casey itemize or take the standard deduction?
+            </div>
+            <div class="scenario-box">
+                <div class="scenario-title">Casey's Potential Itemized Deductions:</div>
+                <ul class="scenario-details">
+                    <li>Mortgage interest: $8,000</li>
+                    <li>State income taxes: $3,500</li>
+                    <li>Property taxes: $2,800</li>
+                    <li>Charitable contributions: $1,200</li>
+                </ul>
+            </div>
+
+            <div class="work-area">
+                <div class="work-area-label">Calculate total itemized deductions:</div>
+                <div class="calculation-grid">
+                    <div class="calc-label">Mortgage interest</div>
+                    <input type="text" class="calc-input" value="$8,000">
+                </div>
+                <div class="calculation-grid">
+                    <div class="calc-label">State income taxes</div>
+                    <input type="text" class="calc-input" value="$3,500">
+                </div>
+                <div class="calculation-grid">
+                    <div class="calc-label">Property taxes</div>
+                    <input type="text" class="calc-input" value="$2,800">
+                </div>
+                <div class="calculation-grid">
+                    <div class="calc-label">Charitable contributions</div>
+                    <input type="text" class="calc-input" value="$1,200">
+                </div>
+                <div class="calculation-grid total-row">
+                    <div class="calc-label">Total Itemized Deductions</div>
+                    <input type="text" class="calc-input" placeholder="$">
+                </div>
+                <div class="calculation-grid">
+                    <div class="calc-label">Standard Deduction (Single)</div>
+                    <input type="text" class="calc-input" value="$13,850">
+                </div>
+            </div>
+
+            <div class="multiple-choice">
+                <div class="choice-item">
+                    <input type="radio" name="q4" id="q4a">
+                    <label class="choice-label" for="q4a">Itemize deductions</label>
+                </div>
+                <div class="choice-item">
+                    <input type="radio" name="q4" id="q4b">
+                    <label class="choice-label" for="q4b">Take standard deduction</label>
+                </div>
+            </div>
+
+            <button class="show-answer-btn" onclick="toggleAnswer('answer4')">Show Answer</button>
+            <div class="answer-box" id="answer4">
+                <div class="answer-title">Solution:</div>
+                <div class="answer-text">
+                    Total Itemized = $8,000 + $3,500 + $2,800 + $1,200 = $15,500<br>
+                    Standard Deduction = $13,850<br><br>
+                    <strong>Casey should itemize</strong> because $15,500 > $13,850<br><br>
+                    Tax Planning Tip: If Casey's itemized deductions were closer to the standard deduction, Casey could consider "bunching" deductions - making two years of charitable contributions in one year to exceed the standard deduction, then taking the standard deduction the following year.
+                </div>
+            </div>
+        </div>
+
+        <!-- Reflection -->
+        <div class="reflection-area">
+            <div class="reflection-title">Reflection Questions</div>
+            <div class="reflection-prompt">
+                1. Based on these problems, what's the most important factor in determining whether a deduction or credit provides more value?
+            </div>
+            <textarea placeholder="Your answer..."></textarea>
+
+            <div class="reflection-prompt" style="margin-top: 15px;">
+                2. How would your tax strategy change as you move through different life stages (student, early career, homeowner, parent)?
+            </div>
+            <textarea placeholder="Your answer..."></textarea>
+
+            <div class="reflection-prompt" style="margin-top: 15px;">
+                3. What's one tax planning action you could take this year to reduce your future tax liability?
+            </div>
+            <textarea placeholder="Your answer..."></textarea>
+        </div>
+
+        <footer>
+            <p><strong>PFL Academy</strong> | Chapter 2.5: Tax Planning and Compliance</p>
+            <p style="margin-top: 5px; font-size: 0.8rem;">Tax rates and deductions based on 2023 figures. Verify current rates at IRS.gov</p>
+        </footer>
+    </div>
+
+    <script>
+        function toggleAnswer(id) {
+            const answer = document.getElementById(id);
+            answer.classList.toggle('show');
+        }
+    </script>
+</body>
+</html>

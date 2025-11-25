@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error Detection Workshop</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        header { text-align: center; margin-bottom: 30px; }
+        h1 { font-size: 2rem; color: #6366f1; margin-bottom: 10px; }
+        .subtitle { color: #6b7280; }
+        .score-display {
+            background: #f0f9ff;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        .score { font-size: 1.5rem; font-weight: bold; color: #6366f1; }
+        .error-card {
+            background: #f9fafb;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            border: 2px solid #e5e7eb;
+        }
+        .error-card h3 {
+            font-size: 1rem;
+            color: #374151;
+            margin-bottom: 15px;
+        }
+        .ledger-preview {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            border: 1px solid #e5e7eb;
+        }
+        .error-options {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+        .error-btn {
+            padding: 12px;
+            background: white;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.3s;
+        }
+        .error-btn:hover { border-color: #6366f1; }
+        .error-btn.correct { background: #d1fae5; border-color: #10b981; }
+        .error-btn.incorrect { background: #fee2e2; border-color: #ef4444; }
+        .feedback {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 8px;
+            display: none;
+        }
+        .feedback.show { display: block; }
+        .feedback.correct { background: #d1fae5; color: #065f46; }
+        .feedback.incorrect { background: #fee2e2; color: #991b1b; }
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #e5e7eb;
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+        @media (max-width: 768px) {
+            .error-options { grid-template-columns: 1fr; }
+        }
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .container {
+                box-shadow: none;
+                padding: 20px;
+            }
+            .no-print {
+                display: none !important;
+            }
+            .error-card {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Error Detection Workshop</h1>
+            <p class="subtitle">Identify common financial record-keeping errors</p>
+        </header>
+
+        <div class="score-display">
+            Score: <span class="score" id="score">0</span> / 4
+        </div>
+
+        <div class="error-card" id="card1">
+            <h3>Error 1: Find the problem</h3>
+            <div class="ledger-preview">
+                Date: 10/15<br>
+                Description: Grocery Store<br>
+                Check #: Debit<br>
+                Amount: $54.83<br>
+                Balance: $1,245.17 → $1,200.34
+            </div>
+            <div class="error-options">
+                <button class="error-btn" onclick="checkError(1, 'math', this)">Math Error</button>
+                <button class="error-btn" onclick="checkError(1, 'missing', this)">Missing Transaction</button>
+                <button class="error-btn" onclick="checkError(1, 'duplicate', this)">Duplicate Entry</button>
+                <button class="error-btn" onclick="checkError(1, 'transposition', this)">Transposition</button>
+            </div>
+            <div class="feedback" id="feedback1"></div>
+        </div>
+
+        <div class="error-card" id="card2">
+            <h3>Error 2: Find the problem</h3>
+            <div class="ledger-preview">
+                10/18 - Electric Bill - $89.00 - Balance: $1,156.17<br>
+                10/18 - Electric Bill - $89.00 - Balance: $1,067.17
+            </div>
+            <div class="error-options">
+                <button class="error-btn" onclick="checkError(2, 'math', this)">Math Error</button>
+                <button class="error-btn" onclick="checkError(2, 'missing', this)">Missing Transaction</button>
+                <button class="error-btn" onclick="checkError(2, 'duplicate', this)">Duplicate Entry</button>
+                <button class="error-btn" onclick="checkError(2, 'transposition', this)">Transposition</button>
+            </div>
+            <div class="feedback" id="feedback2"></div>
+        </div>
+
+        <div class="error-card" id="card3">
+            <h3>Error 3: Find the problem</h3>
+            <div class="ledger-preview">
+                10/20 - Paycheck Deposit - $1,350.00<br>
+                10/21 - Rent - $950.00<br>
+                10/22 - Gas Station - $35.00<br>
+                ---<br>
+                Bank statement shows: 10/21 - ATM Withdrawal - $60.00 (NOT in register)
+            </div>
+            <div class="error-options">
+                <button class="error-btn" onclick="checkError(3, 'math', this)">Math Error</button>
+                <button class="error-btn" onclick="checkError(3, 'missing', this)">Missing Transaction</button>
+                <button class="error-btn" onclick="checkError(3, 'duplicate', this)">Duplicate Entry</button>
+                <button class="error-btn" onclick="checkError(3, 'transposition', this)">Transposition</button>
+            </div>
+            <div class="feedback" id="feedback3"></div>
+        </div>
+
+        <div class="error-card" id="card4">
+            <h3>Error 4: Find the problem</h3>
+            <div class="ledger-preview">
+                Check written for: $156.00<br>
+                Recorded in register as: $165.00<br>
+                (digits swapped)
+            </div>
+            <div class="error-options">
+                <button class="error-btn" onclick="checkError(4, 'math', this)">Math Error</button>
+                <button class="error-btn" onclick="checkError(4, 'missing', this)">Missing Transaction</button>
+                <button class="error-btn" onclick="checkError(4, 'duplicate', this)">Duplicate Entry</button>
+                <button class="error-btn" onclick="checkError(4, 'transposition', this)">Transposition</button>
+            </div>
+            <div class="feedback" id="feedback4"></div>
+        </div>
+
+        <footer>
+            <p><strong>PFL Academy</strong> | Financial Record Keeping</p>
+        </footer>
+    </div>
+
+    <script>
+        let score = 0;
+        const answers = {
+            1: 'math',
+            2: 'duplicate',
+            3: 'missing',
+            4: 'transposition'
+        };
+
+        const explanations = {
+            1: 'Math Error: $1,245.17 - $54.83 = $1,190.34, not $1,200.34. Always double-check your arithmetic!',
+            2: 'Duplicate Entry: The electric bill was recorded twice. This is common when you record a payment and then the bank also shows it.',
+            3: 'Missing Transaction: The ATM withdrawal of $60 appears on the bank statement but wasn\'t recorded in the register.',
+            4: 'Transposition Error: The digits 5 and 6 were swapped ($156 vs $165). This is a common handwriting/data entry error.'
+        };
+
+        function checkError(cardNum, answer, btn) {
+            const feedback = document.getElementById('feedback' + cardNum);
+            const buttons = btn.parentElement.querySelectorAll('.error-btn');
+
+            buttons.forEach(b => {
+                b.disabled = true;
+                b.classList.remove('correct', 'incorrect');
+            });
+
+            if (answer === answers[cardNum]) {
+                btn.classList.add('correct');
+                feedback.className = 'feedback show correct';
+                feedback.textContent = '✓ Correct! ' + explanations[cardNum];
+                score++;
+            } else {
+                btn.classList.add('incorrect');
+                feedback.className = 'feedback show incorrect';
+                feedback.textContent = '✗ Incorrect. ' + explanations[cardNum];
+            }
+
+            document.getElementById('score').textContent = score;
+        }
+    </script>
+</body>
+</html>

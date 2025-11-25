@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Type Comparison Calculator</title>
+    <style>
+        :root { --primary: #6366f1; --secondary: #8b5cf6; --success: #10b981; --warning: #f59e0b; --danger: #ef4444; }
+        body { font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 14px; line-height: 1.5; color: #1f2937; max-width: 900px; margin: 0 auto; padding: 15px; }
+        h1 { color: var(--primary); font-size: 24px; border-bottom: 2px solid var(--primary); padding-bottom: 8px; }
+        h2 { color: var(--secondary); font-size: 18px; margin-top: 20px; }
+        .inputs { background: #e0e7ff; padding: 15px; border-radius: 5px; margin: 15px 0; }
+        .input-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; }
+        .input-group label { display: block; font-weight: bold; margin-bottom: 5px; font-size: 13px; }
+        input, select { width: 100%; padding: 8px; border: 1px solid #d1d5db; border-radius: 4px; box-sizing: border-box; }
+        .results-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin: 15px 0; }
+        .account-card { background: #f9fafb; padding: 15px; border-radius: 5px; border: 2px solid #d1d5db; }
+        .account-card h3 { margin: 0 0 10px 0; color: var(--primary); font-size: 16px; }
+        .metric { display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px solid #e5e7eb; font-size: 12px; }
+        .metric-value { font-weight: bold; }
+        .final-value { text-align: center; padding: 15px; background: white; border-radius: 4px; margin-top: 10px; }
+        .final-value .value { font-size: 24px; font-weight: bold; color: var(--primary); }
+        .best { border-color: var(--success); }
+        .best .final-value { background: #d1fae5; }
+        .comparison-table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        .comparison-table th, .comparison-table td { border: 1px solid #d1d5db; padding: 8px; text-align: center; font-size: 12px; }
+        .comparison-table th { background: var(--primary); color: white; }
+        .insight { background: #fef3c7; padding: 15px; border-radius: 5px; margin: 15px 0; }
+        button { background: var(--primary); color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; margin: 5px; }
+        button:hover { background: var(--secondary); }
+        @media print { body { font-size: 11pt; } button { display: none; } .results-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <h1>Account Type Comparison Calculator</h1>
+    <p>Compare after-tax wealth across different account types over 40 years</p>
+
+    <div class="inputs">
+        <h2 style="margin-top: 0;">Investment Parameters</h2>
+        <div class="input-grid">
+            <div class="input-group">
+                <label>Annual Contribution ($)</label>
+                <input type="number" id="annual" value="6000" step="500">
+            </div>
+            <div class="input-group">
+                <label>Investment Period (Years)</label>
+                <input type="number" id="years" value="40" min="1" max="50">
+            </div>
+            <div class="input-group">
+                <label>Expected Return (%)</label>
+                <input type="number" id="return" value="7" step="0.5">
+            </div>
+            <div class="input-group">
+                <label>Current Tax Bracket (%)</label>
+                <input type="number" id="currentTax" value="22" step="1">
+            </div>
+            <div class="input-group">
+                <label>Retirement Tax Bracket (%)</label>
+                <input type="number" id="retireTax" value="15" step="1">
+            </div>
+            <div class="input-group">
+                <label>Capital Gains Rate (%)</label>
+                <input type="number" id="capGains" value="15" step="1">
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 15px;">
+            <button onclick="calculate()">Calculate Comparison</button>
+        </div>
+    </div>
+
+    <div class="results-grid">
+        <div class="account-card" id="traditionalCard">
+            <h3>Traditional IRA/401(k)</h3>
+            <div class="metric"><span>Tax Benefit</span><span class="metric-value">Deduction Now</span></div>
+            <div class="metric"><span>Annual Tax Savings</span><span class="metric-value" id="tradSavings">$1,320</span></div>
+            <div class="metric"><span>Gross at Retirement</span><span class="metric-value" id="tradGross">$0</span></div>
+            <div class="metric"><span>Taxes Owed</span><span class="metric-value" id="tradTaxes">$0</span></div>
+            <div class="final-value">
+                <div>After-Tax Value</div>
+                <div class="value" id="tradFinal">$0</div>
+            </div>
+        </div>
+
+        <div class="account-card" id="rothCard">
+            <h3>Roth IRA/401(k)</h3>
+            <div class="metric"><span>Tax Benefit</span><span class="metric-value">Tax-Free Growth</span></div>
+            <div class="metric"><span>Actual Annual Contrib</span><span class="metric-value" id="rothContrib">$6,000</span></div>
+            <div class="metric"><span>Gross at Retirement</span><span class="metric-value" id="rothGross">$0</span></div>
+            <div class="metric"><span>Taxes Owed</span><span class="metric-value">$0</span></div>
+            <div class="final-value">
+                <div>After-Tax Value</div>
+                <div class="value" id="rothFinal">$0</div>
+            </div>
+        </div>
+
+        <div class="account-card" id="taxableCard">
+            <h3>Taxable Brokerage</h3>
+            <div class="metric"><span>Tax Benefit</span><span class="metric-value">Capital Gains Rate</span></div>
+            <div class="metric"><span>Annual Tax Drag</span><span class="metric-value" id="taxDrag">$0</span></div>
+            <div class="metric"><span>Gross at Retirement</span><span class="metric-value" id="taxGross">$0</span></div>
+            <div class="metric"><span>Taxes Owed</span><span class="metric-value" id="taxTaxes">$0</span></div>
+            <div class="final-value">
+                <div>After-Tax Value</div>
+                <div class="value" id="taxFinal">$0</div>
+            </div>
+        </div>
+    </div>
+
+    <h2>40-Year Comparison Summary</h2>
+    <table class="comparison-table">
+        <thead>
+            <tr>
+                <th>Account Type</th>
+                <th>Total Contributed</th>
+                <th>Gross Value</th>
+                <th>After-Tax Value</th>
+                <th>Effective Tax Rate</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Traditional</td>
+                <td id="tradContribTable">$0</td>
+                <td id="tradGrossTable">$0</td>
+                <td id="tradFinalTable">$0</td>
+                <td id="tradEffective">0%</td>
+            </tr>
+            <tr>
+                <td>Roth</td>
+                <td id="rothContribTable">$0</td>
+                <td id="rothGrossTable">$0</td>
+                <td id="rothFinalTable">$0</td>
+                <td id="rothEffective">0%</td>
+            </tr>
+            <tr>
+                <td>Taxable</td>
+                <td id="taxContribTable">$0</td>
+                <td id="taxGrossTable">$0</td>
+                <td id="taxFinalTable">$0</td>
+                <td id="taxEffective">0%</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="insight" id="insight">
+        <h2 style="margin-top: 0;">💡 Key Insight</h2>
+        <p id="insightText"></p>
+    </div>
+
+    <script>
+        function calculate() {
+            const annual = parseFloat(document.getElementById('annual').value) || 0;
+            const years = parseInt(document.getElementById('years').value) || 40;
+            const returnRate = parseFloat(document.getElementById('return').value) / 100 || 0.07;
+            const currentTax = parseFloat(document.getElementById('currentTax').value) / 100 || 0.22;
+            const retireTax = parseFloat(document.getElementById('retireTax').value) / 100 || 0.15;
+            const capGains = parseFloat(document.getElementById('capGains').value) / 100 || 0.15;
+
+            const totalContrib = annual * years;
+
+            // Traditional IRA - deductible contributions, taxed at withdrawal
+            let tradGross = 0;
+            for (let i = 0; i < years; i++) {
+                tradGross = (tradGross + annual) * (1 + returnRate);
+            }
+            const tradTaxes = tradGross * retireTax;
+            const tradFinal = tradGross - tradTaxes;
+            const tradSavings = annual * currentTax;
+
+            // Roth IRA - after-tax contributions, tax-free growth
+            let rothGross = 0;
+            for (let i = 0; i < years; i++) {
+                rothGross = (rothGross + annual) * (1 + returnRate);
+            }
+            const rothFinal = rothGross; // No taxes owed
+
+            // Taxable - after-tax contributions, capital gains on withdrawal
+            let taxGross = 0;
+            const taxDragRate = returnRate * 0.15; // Assume 15% of return is taxed annually
+            const afterTaxReturn = returnRate - taxDragRate;
+            for (let i = 0; i < years; i++) {
+                taxGross = (taxGross + annual) * (1 + afterTaxReturn);
+            }
+            const taxGain = taxGross - totalContrib;
+            const taxTaxes = taxGain * capGains;
+            const taxFinal = taxGross - taxTaxes;
+            const taxDrag = annual * taxDragRate;
+
+            // Update cards
+            document.getElementById('tradSavings').textContent = '$' + Math.round(tradSavings).toLocaleString();
+            document.getElementById('tradGross').textContent = '$' + Math.round(tradGross).toLocaleString();
+            document.getElementById('tradTaxes').textContent = '$' + Math.round(tradTaxes).toLocaleString();
+            document.getElementById('tradFinal').textContent = '$' + Math.round(tradFinal).toLocaleString();
+
+            document.getElementById('rothContrib').textContent = '$' + annual.toLocaleString();
+            document.getElementById('rothGross').textContent = '$' + Math.round(rothGross).toLocaleString();
+            document.getElementById('rothFinal').textContent = '$' + Math.round(rothFinal).toLocaleString();
+
+            document.getElementById('taxDrag').textContent = '$' + Math.round(taxDrag).toLocaleString();
+            document.getElementById('taxGross').textContent = '$' + Math.round(taxGross).toLocaleString();
+            document.getElementById('taxTaxes').textContent = '$' + Math.round(taxTaxes).toLocaleString();
+            document.getElementById('taxFinal').textContent = '$' + Math.round(taxFinal).toLocaleString();
+
+            // Update table
+            document.getElementById('tradContribTable').textContent = '$' + totalContrib.toLocaleString();
+            document.getElementById('tradGrossTable').textContent = '$' + Math.round(tradGross).toLocaleString();
+            document.getElementById('tradFinalTable').textContent = '$' + Math.round(tradFinal).toLocaleString();
+            document.getElementById('tradEffective').textContent = (retireTax * 100).toFixed(0) + '%';
+
+            document.getElementById('rothContribTable').textContent = '$' + totalContrib.toLocaleString();
+            document.getElementById('rothGrossTable').textContent = '$' + Math.round(rothGross).toLocaleString();
+            document.getElementById('rothFinalTable').textContent = '$' + Math.round(rothFinal).toLocaleString();
+            document.getElementById('rothEffective').textContent = '0%';
+
+            document.getElementById('taxContribTable').textContent = '$' + totalContrib.toLocaleString();
+            document.getElementById('taxGrossTable').textContent = '$' + Math.round(taxGross).toLocaleString();
+            document.getElementById('taxFinalTable').textContent = '$' + Math.round(taxFinal).toLocaleString();
+            document.getElementById('taxEffective').textContent = ((1 - taxFinal/taxGross) * 100).toFixed(1) + '%';
+
+            // Highlight best
+            document.querySelectorAll('.account-card').forEach(card => card.classList.remove('best'));
+            const best = Math.max(tradFinal, rothFinal, taxFinal);
+            if (best === rothFinal) document.getElementById('rothCard').classList.add('best');
+            else if (best === tradFinal) document.getElementById('traditionalCard').classList.add('best');
+            else document.getElementById('taxableCard').classList.add('best');
+
+            // Generate insight
+            let insight = '';
+            if (rothFinal > tradFinal && rothFinal > taxFinal) {
+                const diff = rothFinal - tradFinal;
+                insight = `The <strong>Roth account</strong> wins with $${Math.round(diff).toLocaleString()} more than traditional! Since your retirement tax rate (${(retireTax*100).toFixed(0)}%) is lower than your current rate (${(currentTax*100).toFixed(0)}%), traditional actually catches up, but Roth's tax-free growth gives it the edge.`;
+            } else if (tradFinal > rothFinal) {
+                const diff = tradFinal - rothFinal;
+                insight = `The <strong>Traditional account</strong> wins by $${Math.round(diff).toLocaleString()}! Your lower retirement tax rate (${(retireTax*100).toFixed(0)}%) makes the traditional deduction more valuable than paying taxes now.`;
+            }
+            document.getElementById('insightText').innerHTML = insight;
+        }
+
+        // Initialize
+        calculate();
+    </script>
+</body>
+</html>

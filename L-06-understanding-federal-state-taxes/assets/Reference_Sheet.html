@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Federal and State Taxes Reference Sheet - PFL Academy</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-size: 12px;
+            line-height: 1.5;
+            color: #1f2937;
+            padding: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 3px solid #6366f1;
+        }
+        .header h1 { font-size: 24px; color: #6366f1; margin-bottom: 4px; }
+        .header p { color: #6b7280; font-size: 12px; }
+        .comparison-table { width: 100%; border-collapse: collapse; margin-bottom: 16px; font-size: 11px; }
+        .comparison-table th {
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+            color: white;
+            padding: 10px 8px;
+            text-align: left;
+            font-weight: 600;
+        }
+        .comparison-table td { padding: 8px; border-bottom: 1px solid #e5e7eb; vertical-align: top; }
+        .comparison-table tr:hover { background-color: #f9fafb; }
+        .comparison-table td:first-child { font-weight: 600; background: #f9fafb; width: 20%; }
+        .two-column { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+        .section-box {
+            background: #f9fafb;
+            padding: 12px;
+            border-radius: 6px;
+            border-left: 4px solid #6366f1;
+        }
+        .section-box h3 { font-size: 14px; font-weight: 700; color: #6366f1; margin-bottom: 8px; }
+        .section-box ul { margin-left: 16px; }
+        .section-box li { margin-bottom: 3px; }
+        .brackets-section {
+            background: #eff6ff;
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 16px;
+        }
+        .brackets-section h3 { font-size: 14px; font-weight: 600; color: #3b82f6; margin-bottom: 8px; }
+        .bracket-table { width: 100%; border-collapse: collapse; font-size: 10px; }
+        .bracket-table th { background: #3b82f6; color: white; padding: 6px; text-align: center; }
+        .bracket-table td { padding: 6px; border: 1px solid #e5e7eb; text-align: center; }
+        .state-section {
+            background: #fef3c7;
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 16px;
+        }
+        .state-section h3 { font-size: 14px; font-weight: 600; color: #b45309; margin-bottom: 8px; }
+        .state-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+        .state-item { background: white; padding: 8px; border-radius: 4px; }
+        .state-item h4 { font-size: 11px; font-weight: 600; margin-bottom: 4px; }
+        .state-item p { font-size: 10px; color: #6b7280; }
+        .deductions-section {
+            background: #ecfdf5;
+            padding: 12px;
+            border-radius: 6px;
+            border-left: 4px solid #10b981;
+            margin-bottom: 16px;
+        }
+        .deductions-section h3 { font-size: 14px; font-weight: 600; color: #059669; margin-bottom: 8px; }
+        .deductions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+        .deduction-box { background: white; padding: 8px; border-radius: 4px; }
+        .deduction-box h4 { font-size: 11px; font-weight: 600; margin-bottom: 4px; }
+        .deduction-box ul { margin-left: 12px; font-size: 10px; }
+        .key-takeaway {
+            background: #f0fdf4;
+            padding: 12px;
+            border-radius: 6px;
+            border-left: 4px solid #10b981;
+        }
+        .key-takeaway h3 { font-size: 12px; font-weight: 600; color: #059669; margin-bottom: 6px; }
+        @media print { body { padding: 10px; font-size: 10px; } }
+        @media (max-width: 768px) { .two-column, .state-grid, .deductions-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Federal and State Taxes Reference Sheet</h1>
+        <p>Understanding how federal and state tax systems work</p>
+    </div>
+
+    <table class="comparison-table">
+        <thead>
+            <tr>
+                <th>Characteristic</th>
+                <th>Federal Taxes</th>
+                <th>State Taxes</th>
+                <th>Local Taxes</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Authority</td>
+                <td>IRS (Internal Revenue Service)</td>
+                <td>State revenue departments</td>
+                <td>City/county governments</td>
+            </tr>
+            <tr>
+                <td>Income Tax</td>
+                <td>Progressive (10-37%)</td>
+                <td>Varies: 0-13.3%</td>
+                <td>Some cities (NYC, Detroit)</td>
+            </tr>
+            <tr>
+                <td>Sales Tax</td>
+                <td>None</td>
+                <td>0-7.25%</td>
+                <td>Additional 0-5%</td>
+            </tr>
+            <tr>
+                <td>Property Tax</td>
+                <td>None</td>
+                <td>Rates set by state</td>
+                <td>Primary collector</td>
+            </tr>
+            <tr>
+                <td>Filing Deadline</td>
+                <td>April 15</td>
+                <td>Usually April 15</td>
+                <td>Varies</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="brackets-section">
+        <h3>2024 Federal Income Tax Brackets (Single Filers)</h3>
+        <table class="bracket-table">
+            <tr>
+                <th>Rate</th>
+                <th>Income Range</th>
+                <th>Tax Calculation</th>
+            </tr>
+            <tr>
+                <td>10%</td>
+                <td>$0 - $11,600</td>
+                <td>10% of taxable income</td>
+            </tr>
+            <tr>
+                <td>12%</td>
+                <td>$11,601 - $47,150</td>
+                <td>$1,160 + 12% over $11,600</td>
+            </tr>
+            <tr>
+                <td>22%</td>
+                <td>$47,151 - $100,525</td>
+                <td>$5,426 + 22% over $47,150</td>
+            </tr>
+            <tr>
+                <td>24%</td>
+                <td>$100,526 - $191,950</td>
+                <td>$17,168 + 24% over $100,525</td>
+            </tr>
+            <tr>
+                <td>32%</td>
+                <td>$191,951 - $243,725</td>
+                <td>$39,110 + 32% over $191,950</td>
+            </tr>
+            <tr>
+                <td>35%</td>
+                <td>$243,726 - $609,350</td>
+                <td>$55,678 + 35% over $243,725</td>
+            </tr>
+            <tr>
+                <td>37%</td>
+                <td>$609,351+</td>
+                <td>$183,647 + 37% over $609,350</td>
+            </tr>
+        </table>
+        <p style="font-size: 10px; color: #6b7280; margin-top: 8px;">Note: These are marginal rates. Only income in each bracket is taxed at that rate.</p>
+    </div>
+
+    <div class="state-section">
+        <h3>State Tax Structures</h3>
+        <div class="state-grid">
+            <div class="state-item">
+                <h4>No Income Tax (9 states)</h4>
+                <p>AK, FL, NV, NH*, SD, TN*, TX, WA, WY<br>*Interest/dividends only</p>
+            </div>
+            <div class="state-item">
+                <h4>Flat Tax (11 states)</h4>
+                <p>CO (4.4%), IL (4.95%), IN (3.15%), KY (4.5%), MA (5%), MI (4.25%), etc.</p>
+            </div>
+            <div class="state-item">
+                <h4>Highest Rates</h4>
+                <p>CA (13.3%), HI (11%), NJ (10.75%), OR (9.9%), MN (9.85%)</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="two-column">
+        <div class="section-box">
+            <h3>Types of Taxes</h3>
+            <ul>
+                <li><strong>Progressive:</strong> Rate increases with income (federal income tax)</li>
+                <li><strong>Regressive:</strong> Same rate for all; impacts low income more (sales tax)</li>
+                <li><strong>Proportional/Flat:</strong> Same percentage for all income levels</li>
+                <li><strong>Payroll:</strong> Social Security (6.2%), Medicare (1.45%)</li>
+                <li><strong>Excise:</strong> Specific goods (gas, tobacco, alcohol)</li>
+            </ul>
+        </div>
+
+        <div class="section-box">
+            <h3>Key Tax Terms</h3>
+            <ul>
+                <li><strong>Taxable Income:</strong> Gross income minus deductions</li>
+                <li><strong>Marginal Rate:</strong> Rate on your last dollar earned</li>
+                <li><strong>Effective Rate:</strong> Total tax ÷ total income</li>
+                <li><strong>Withholding:</strong> Tax taken from each paycheck</li>
+                <li><strong>Tax Liability:</strong> Total amount of tax owed</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="deductions-section">
+        <h3>Deductions and Credits</h3>
+        <div class="deductions-grid">
+            <div class="deduction-box">
+                <h4>Standard Deduction (2024)</h4>
+                <ul>
+                    <li>Single: $14,600</li>
+                    <li>Married Filing Jointly: $29,200</li>
+                    <li>Head of Household: $21,900</li>
+                    <li>65+ or Blind: Additional $1,550-$1,950</li>
+                </ul>
+            </div>
+            <div class="deduction-box">
+                <h4>Common Deductions</h4>
+                <ul>
+                    <li>Mortgage interest</li>
+                    <li>State and local taxes (up to $10,000)</li>
+                    <li>Charitable contributions</li>
+                    <li>Medical expenses (over 7.5% AGI)</li>
+                </ul>
+            </div>
+            <div class="deduction-box">
+                <h4>Tax Credits (Dollar-for-Dollar)</h4>
+                <ul>
+                    <li>Earned Income Tax Credit</li>
+                    <li>Child Tax Credit ($2,000/child)</li>
+                    <li>Education credits (AOTC, LLC)</li>
+                    <li>Retirement Saver's Credit</li>
+                </ul>
+            </div>
+            <div class="deduction-box">
+                <h4>Pre-Tax Contributions</h4>
+                <ul>
+                    <li>401(k): up to $23,000</li>
+                    <li>Traditional IRA: up to $7,000</li>
+                    <li>HSA: $4,150 individual/$8,300 family</li>
+                    <li>FSA: up to $3,200</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="key-takeaway">
+        <h3>Tax Planning Tips</h3>
+        <p>
+            <strong>1. Know your effective rate:</strong> Total tax paid ÷ gross income (usually 15-25% for most workers)<br>
+            <strong>2. Maximize pre-tax contributions:</strong> 401(k), HSA, FSA reduce taxable income immediately<br>
+            <strong>3. Understand your state:</strong> High income tax states may have lower property/sales taxes<br>
+            <strong>4. Track deductible expenses:</strong> Itemize if deductions exceed standard deduction<br>
+            <strong>5. Adjust withholding:</strong> Update W-4 if getting large refunds or owing money
+        </p>
+    </div>
+</body>
+</html>

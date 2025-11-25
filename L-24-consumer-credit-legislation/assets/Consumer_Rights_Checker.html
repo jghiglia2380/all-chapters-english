@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consumer Rights Checker - PFL Academy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background: #f9fafb;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+            color: white;
+            padding: 24px;
+            border-radius: 12px;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 16px;
+        }
+
+        .intro-section {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .intro-section h3 {
+            font-size: 18px;
+            color: #6366f1;
+            margin-bottom: 8px;
+        }
+
+        .intro-section p {
+            color: #4b5563;
+            font-size: 14px;
+        }
+
+        .laws-overview {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .law-card {
+            background: white;
+            border-radius: 12px;
+            padding: 16px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            border-top: 4px solid #6366f1;
+        }
+
+        .law-card h4 {
+            font-size: 14px;
+            font-weight: 700;
+            color: #6366f1;
+            margin-bottom: 8px;
+        }
+
+        .law-card .full-name {
+            font-size: 11px;
+            color: #6b7280;
+            margin-bottom: 8px;
+        }
+
+        .law-card ul {
+            margin-left: 16px;
+            font-size: 12px;
+        }
+
+        .law-card li {
+            margin-bottom: 4px;
+        }
+
+        .scenario-checker {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            margin-bottom: 24px;
+        }
+
+        .scenario-checker h3 {
+            font-size: 18px;
+            color: #6366f1;
+            margin-bottom: 16px;
+        }
+
+        .scenario-selector {
+            margin-bottom: 20px;
+        }
+
+        .scenario-selector label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .scenario-selector select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 14px;
+            background: white;
+        }
+
+        .scenario-selector select:focus {
+            outline: none;
+            border-color: #6366f1;
+        }
+
+        .check-btn {
+            background: #6366f1;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            width: 100%;
+        }
+
+        .check-btn:hover {
+            background: #4f46e5;
+        }
+
+        .result-container {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 8px;
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+        }
+
+        .result-container.error {
+            background: #fef2f2;
+            border-color: #fecaca;
+        }
+
+        .result-container h4 {
+            font-size: 16px;
+            color: #059669;
+            margin-bottom: 12px;
+        }
+
+        .result-container.error h4 {
+            color: #dc2626;
+        }
+
+        .result-law {
+            font-weight: 700;
+            color: #6366f1;
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+
+        .result-rights {
+            margin-bottom: 16px;
+        }
+
+        .result-rights h5 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .result-rights ul {
+            margin-left: 16px;
+            font-size: 13px;
+        }
+
+        .result-rights li {
+            margin-bottom: 4px;
+        }
+
+        .result-remedies {
+            background: #eff6ff;
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 16px;
+        }
+
+        .result-remedies h5 {
+            font-size: 14px;
+            font-weight: 600;
+            color: #3b82f6;
+            margin-bottom: 8px;
+        }
+
+        .result-complaint {
+            background: #fef3c7;
+            padding: 12px;
+            border-radius: 6px;
+        }
+
+        .result-complaint h5 {
+            font-size: 14px;
+            font-weight: 600;
+            color: #b45309;
+            margin-bottom: 8px;
+        }
+
+        .scenarios-practice {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            margin-bottom: 24px;
+        }
+
+        .scenarios-practice h3 {
+            font-size: 18px;
+            color: #6366f1;
+            margin-bottom: 16px;
+        }
+
+        .practice-scenario {
+            background: #f9fafb;
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 16px;
+            border-left: 4px solid #6366f1;
+        }
+
+        .practice-scenario:last-child {
+            margin-bottom: 0;
+        }
+
+        .practice-scenario .scenario-text {
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+
+        .practice-scenario .answer-select {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 8px;
+        }
+
+        .practice-scenario .answer-btn {
+            padding: 8px 16px;
+            border: 2px solid #e5e7eb;
+            border-radius: 6px;
+            background: white;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .practice-scenario .answer-btn:hover {
+            border-color: #6366f1;
+        }
+
+        .practice-scenario .answer-btn.correct {
+            background: #dcfce7;
+            border-color: #10b981;
+            color: #059669;
+        }
+
+        .practice-scenario .answer-btn.incorrect {
+            background: #fee2e2;
+            border-color: #ef4444;
+            color: #dc2626;
+        }
+
+        .practice-scenario .feedback {
+            display: none;
+            font-size: 12px;
+            padding: 8px;
+            border-radius: 4px;
+            margin-top: 8px;
+        }
+
+        .practice-scenario .feedback.correct {
+            display: block;
+            background: #dcfce7;
+            color: #059669;
+        }
+
+        .practice-scenario .feedback.incorrect {
+            display: block;
+            background: #fee2e2;
+            color: #dc2626;
+        }
+
+        .quick-reference {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            margin-bottom: 24px;
+        }
+
+        .quick-reference h3 {
+            font-size: 18px;
+            color: #6366f1;
+            margin-bottom: 16px;
+        }
+
+        .reference-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 12px;
+        }
+
+        .reference-table th {
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+            color: white;
+            padding: 12px 8px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .reference-table td {
+            padding: 10px 8px;
+            border-bottom: 1px solid #e5e7eb;
+            vertical-align: top;
+        }
+
+        .reference-table tr:hover {
+            background: #f9fafb;
+        }
+
+        .print-section {
+            text-align: center;
+            margin-top: 24px;
+        }
+
+        .print-btn {
+            background: #6366f1;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .print-btn:hover {
+            background: #4f46e5;
+        }
+
+        @media print {
+            body {
+                padding: 10px;
+                background: white;
+            }
+
+            .print-section {
+                display: none;
+            }
+
+            .header {
+                background: #6366f1 !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            .law-card,
+            .scenario-checker,
+            .scenarios-practice,
+            .quick-reference {
+                box-shadow: none;
+                page-break-inside: avoid;
+            }
+
+            .check-btn,
+            .answer-btn {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .laws-overview {
+                grid-template-columns: 1fr;
+            }
+
+            .practice-scenario .answer-select {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Consumer Rights Checker</h1>
+            <p>Identify your rights under major consumer credit protection laws</p>
+        </div>
+
+        <div class="intro-section">
+            <h3>Understanding Your Consumer Credit Rights</h3>
+            <p>Federal laws protect consumers from unfair credit practices. This tool helps you identify which law applies to your situation and understand your rights, remedies, and how to file complaints when those rights are violated.</p>
+        </div>
+
+        <div class="laws-overview">
+            <div class="law-card">
+                <h4>FCRA</h4>
+                <div class="full-name">Fair Credit Reporting Act</div>
+                <ul>
+                    <li>Access your credit reports</li>
+                    <li>Dispute inaccurate information</li>
+                    <li>Limit who can view your report</li>
+                    <li>Receive notice of adverse actions</li>
+                </ul>
+            </div>
+
+            <div class="law-card">
+                <h4>FDCPA</h4>
+                <div class="full-name">Fair Debt Collection Practices Act</div>
+                <ul>
+                    <li>Stop harassing phone calls</li>
+                    <li>Require debt validation</li>
+                    <li>Restrict contact times/places</li>
+                    <li>Prevent false representations</li>
+                </ul>
+            </div>
+
+            <div class="law-card">
+                <h4>TILA</h4>
+                <div class="full-name">Truth in Lending Act</div>
+                <ul>
+                    <li>Clear disclosure of loan terms</li>
+                    <li>Know the APR before signing</li>
+                    <li>Right to rescind certain loans</li>
+                    <li>Standardized cost comparisons</li>
+                </ul>
+            </div>
+
+            <div class="law-card">
+                <h4>ECOA</h4>
+                <div class="full-name">Equal Credit Opportunity Act</div>
+                <ul>
+                    <li>Non-discrimination in lending</li>
+                    <li>Know why credit was denied</li>
+                    <li>Use all income sources</li>
+                    <li>Protected characteristics</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="scenario-checker">
+            <h3>Check Your Rights</h3>
+            <div class="scenario-selector">
+                <label for="scenario-select">Select a situation you're experiencing:</label>
+                <select id="scenario-select">
+                    <option value="">-- Choose a scenario --</option>
+                    <optgroup label="Credit Reports (FCRA)">
+                        <option value="fcra-1">There's an error on my credit report</option>
+                        <option value="fcra-2">I was denied credit and want to know why</option>
+                        <option value="fcra-3">Someone accessed my credit report without permission</option>
+                        <option value="fcra-4">I want a free copy of my credit report</option>
+                    </optgroup>
+                    <optgroup label="Debt Collection (FDCPA)">
+                        <option value="fdcpa-1">A debt collector is calling me at work</option>
+                        <option value="fdcpa-2">A collector is threatening to arrest me</option>
+                        <option value="fdcpa-3">I don't recognize this debt they're collecting</option>
+                        <option value="fdcpa-4">Collectors keep calling after I asked them to stop</option>
+                    </optgroup>
+                    <optgroup label="Loan Disclosures (TILA)">
+                        <option value="tila-1">The lender didn't tell me the APR</option>
+                        <option value="tila-2">I want to cancel a home equity loan I just signed</option>
+                        <option value="tila-3">Credit card terms changed without proper notice</option>
+                        <option value="tila-4">I can't understand my loan's total cost</option>
+                    </optgroup>
+                    <optgroup label="Credit Discrimination (ECOA)">
+                        <option value="ecoa-1">I was denied credit because of my race</option>
+                        <option value="ecoa-2">Lender won't count my spouse's income</option>
+                        <option value="ecoa-3">Credit denied but no explanation given</option>
+                        <option value="ecoa-4">Asked about my plans to have children</option>
+                    </optgroup>
+                </select>
+            </div>
+            <button class="check-btn" onclick="checkRights()">Check My Rights</button>
+
+            <div class="result-container" id="result-container">
+                <h4>Your Rights Under Consumer Credit Law</h4>
+                <div id="result-content"></div>
+            </div>
+        </div>
+
+        <div class="scenarios-practice">
+            <h3>Practice: Identify the Applicable Law</h3>
+
+            <div class="practice-scenario" id="practice-1">
+                <div class="scenario-text">
+                    <strong>Scenario 1:</strong> Maria received a call from a debt collector at 11 PM demanding payment for an old medical bill. The collector threatened to tell her employer about the debt.
+                </div>
+                <div class="answer-select">
+                    <button class="answer-btn" onclick="checkAnswer('practice-1', 'FCRA', false)">FCRA</button>
+                    <button class="answer-btn" onclick="checkAnswer('practice-1', 'FDCPA', true)">FDCPA</button>
+                    <button class="answer-btn" onclick="checkAnswer('practice-1', 'TILA', false)">TILA</button>
+                    <button class="answer-btn" onclick="checkAnswer('practice-1', 'ECOA', false)">ECOA</button>
+                </div>
+                <div class="feedback" id="feedback-practice-1"></div>
+            </div>
+
+            <div class="practice-scenario" id="practice-2">
+                <div class="scenario-text">
+                    <strong>Scenario 2:</strong> James applied for a car loan but was denied. The lender said his credit score was too low but wouldn't tell him what score they used or where to get his report.
+                </div>
+                <div class="answer-select">
+                    <button class="answer-btn" onclick="checkAnswer('practice-2', 'FCRA', true)">FCRA</button>
+                    <button class="answer-btn" onclick="checkAnswer('practice-2', 'FDCPA', false)">FDCPA</button>
+                    <button class="answer-btn" onclick="checkAnswer('practice-2', 'TILA', false)">TILA</button>
+                    <button class="answer-btn" onclick="checkAnswer('practice-2', 'ECOA', false)">ECOA</button>
+                </div>
+                <div class="feedback" id="feedback-practice-2"></div>
+            </div>
+
+            <div class="practice-scenario" id="practice-3">
+                <div class="scenario-text">
+                    <strong>Scenario 3:</strong> Lisa signed up for a credit card but the company never disclosed the annual percentage rate (APR) or how finance charges would be calculated.
+                </div>
+                <div class="answer-select">
+                    <button class="answer-btn" onclick="checkAnswer('practice-3', 'FCRA', false)">FCRA</button>
+                    <button class="answer-btn" onclick="checkAnswer('practice-3', 'FDCPA', false)">FDCPA</button>
+                    <button class="answer-btn" onclick="checkAnswer('practice-3', 'TILA', true)">TILA</button>
+                    <button class="answer-btn" onclick="checkAnswer('practice-3', 'ECOA', false)">ECOA</button>
+                </div>
+                <div class="feedback" id="feedback-practice-3"></div>
+            </div>
+
+            <div class="practice-scenario" id="practice-4">
+                <div class="scenario-text">
+                    <strong>Scenario 4:</strong> David applied for a mortgage with his partner but the bank refused to consider her income because she was on maternity leave.
+                </div>
+                <div class="answer-select">
+                    <button class="answer-btn" onclick="checkAnswer('practice-4', 'FCRA', false)">FCRA</button>
+                    <button class="answer-btn" onclick="checkAnswer('practice-4', 'FDCPA', false)">FDCPA</button>
+                    <button class="answer-btn" onclick="checkAnswer('practice-4', 'TILA', false)">TILA</button>
+                    <button class="answer-btn" onclick="checkAnswer('practice-4', 'ECOA', true)">ECOA</button>
+                </div>
+                <div class="feedback" id="feedback-practice-4"></div>
+            </div>
+        </div>
+
+        <div class="quick-reference">
+            <h3>Quick Reference: Filing Complaints</h3>
+            <table class="reference-table">
+                <thead>
+                    <tr>
+                        <th>Law</th>
+                        <th>Primary Enforcer</th>
+                        <th>How to File</th>
+                        <th>Time Limits</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>FCRA</strong></td>
+                        <td>Consumer Financial Protection Bureau (CFPB), FTC</td>
+                        <td>consumerfinance.gov/complaint</td>
+                        <td>2 years from violation discovery</td>
+                    </tr>
+                    <tr>
+                        <td><strong>FDCPA</strong></td>
+                        <td>CFPB, FTC, State Attorney General</td>
+                        <td>consumerfinance.gov/complaint</td>
+                        <td>1 year from violation</td>
+                    </tr>
+                    <tr>
+                        <td><strong>TILA</strong></td>
+                        <td>CFPB</td>
+                        <td>consumerfinance.gov/complaint</td>
+                        <td>1 year for damages, 3 years for rescission</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ECOA</strong></td>
+                        <td>CFPB, DOJ</td>
+                        <td>consumerfinance.gov/complaint</td>
+                        <td>2 years from violation (5 years for DOJ)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="print-section">
+            <button class="print-btn" onclick="window.print()">Print / Save as PDF</button>
+        </div>
+    </div>
+
+    <script>
+        const scenarioData = {
+            'fcra-1': {
+                law: 'FCRA - Fair Credit Reporting Act',
+                rights: [
+                    'Request investigation of disputed information within 30 days',
+                    'Have inaccurate information corrected or removed',
+                    'Receive written results of the investigation',
+                    'Have corrected report sent to recent recipients'
+                ],
+                remedies: 'You can sue for actual damages, statutory damages of $100-$1,000 for willful violations, punitive damages, and attorney fees. Credit bureaus must investigate disputes within 30 days.',
+                complaint: 'File with CFPB at consumerfinance.gov/complaint. Also send a dispute letter directly to the credit bureau via certified mail.'
+            },
+            'fcra-2': {
+                law: 'FCRA - Fair Credit Reporting Act',
+                rights: [
+                    'Receive adverse action notice with specific reasons',
+                    'Get free credit report within 60 days of denial',
+                    'Know which credit bureau provided the report',
+                    'Dispute any inaccurate information'
+                ],
+                remedies: 'If the creditor failed to provide required adverse action notice, you may sue for actual damages and attorney fees.',
+                complaint: 'Request your free report from the bureau listed in the adverse action notice, then file disputes for any errors.'
+            },
+            'fcra-3': {
+                law: 'FCRA - Fair Credit Reporting Act',
+                rights: [
+                    'Credit reports only accessed with permissible purpose',
+                    'Receive disclosure of all inquiries in past year',
+                    'Sue for unauthorized access to your report',
+                    'Place fraud alerts or credit freezes'
+                ],
+                remedies: 'Unauthorized access can result in actual damages, statutory damages of $100-$1,000, and punitive damages. You can also place a security freeze.',
+                complaint: 'File complaint with CFPB and FTC. Request your credit report to see all recent inquiries.'
+            },
+            'fcra-4': {
+                law: 'FCRA - Fair Credit Reporting Act',
+                rights: [
+                    'One free report annually from each major bureau',
+                    'Free report after adverse action',
+                    'Free report if unemployed and job searching',
+                    'Free report if fraud victim'
+                ],
+                remedies: 'Get free reports at AnnualCreditReport.com. You can also get free reports from Equifax, Experian, and TransUnion weekly.',
+                complaint: 'If denied your free report, file with CFPB. Report any site charging for reports that should be free to the FTC.'
+            },
+            'fdcpa-1': {
+                law: 'FDCPA - Fair Debt Collection Practices Act',
+                rights: [
+                    'Collectors cannot call before 8 AM or after 9 PM',
+                    'Collectors cannot contact you at work if you say employer disapproves',
+                    'You can request they stop calling your workplace',
+                    'They must honor your written cease contact request'
+                ],
+                remedies: 'You can sue for actual damages, statutory damages up to $1,000, and attorney fees. Keep records of all calls.',
+                complaint: 'Send written notice that employer prohibits such calls. File complaint with CFPB and your state AG.'
+            },
+            'fdcpa-2': {
+                law: 'FDCPA - Fair Debt Collection Practices Act',
+                rights: [
+                    'Collectors cannot threaten arrest for civil debt',
+                    'No false, deceptive, or misleading representations',
+                    'No threats of actions they cannot legally take',
+                    'No claiming to be attorneys or government officials'
+                ],
+                remedies: 'False threats are serious violations. You can sue for statutory damages up to $1,000 per lawsuit plus actual damages.',
+                complaint: 'Document the threat with date, time, and words used. File with CFPB, FTC, and state AG. Consider consulting an attorney.'
+            },
+            'fdcpa-3': {
+                law: 'FDCPA - Fair Debt Collection Practices Act',
+                rights: [
+                    'Request debt validation within 30 days of first contact',
+                    'Collector must provide name of creditor and amount owed',
+                    'Collection must stop until validation provided',
+                    'You can dispute the debt in writing'
+                ],
+                remedies: 'Send written validation request within 30 days. If they continue collecting without validating, sue for damages.',
+                complaint: 'Send validation request via certified mail. If ignored, file with CFPB and state AG.'
+            },
+            'fdcpa-4': {
+                law: 'FDCPA - Fair Debt Collection Practices Act',
+                rights: [
+                    'Send written cease communication request',
+                    'Collector must stop contact except to confirm no further contact',
+                    'They can only contact to notify of specific actions',
+                    'Violation is actionable per incident'
+                ],
+                remedies: 'Each call after valid cease request is a separate violation. Sue for damages and keep detailed call logs.',
+                complaint: 'Keep log of all calls with dates/times. File with CFPB and consider small claims or consumer attorney.'
+            },
+            'tila-1': {
+                law: 'TILA - Truth in Lending Act',
+                rights: [
+                    'APR must be disclosed before signing',
+                    'Finance charges clearly stated',
+                    'Payment schedule provided',
+                    'Total of payments disclosed'
+                ],
+                remedies: 'Failure to disclose APR can result in statutory damages equal to finance charges (min $100, max $1,000 for individuals).',
+                complaint: 'File with CFPB. You may be able to rescind the loan or recover damages for the disclosure failure.'
+            },
+            'tila-2': {
+                law: 'TILA - Truth in Lending Act',
+                rights: [
+                    'Right to rescind home equity loans within 3 business days',
+                    'Lender must provide two copies of rescission notice',
+                    'Extended rescission right if disclosures were inadequate',
+                    'Full refund of fees and finance charges'
+                ],
+                remedies: 'Send rescission notice by midnight of 3rd business day. Lender has 20 days to return all payments and release security interest.',
+                complaint: 'Send written rescission notice via certified mail. If lender refuses, file with CFPB and consult attorney.'
+            },
+            'tila-3': {
+                law: 'TILA - Truth in Lending Act',
+                rights: [
+                    'Receive 45-day advance notice of significant term changes',
+                    'Right to reject changes and pay off balance at old terms',
+                    'No retroactive rate increases on existing balances (with exceptions)',
+                    'Clear explanation of changes required'
+                ],
+                remedies: 'If proper notice not given, you may be able to retain old terms. File complaint for inadequate notice.',
+                complaint: 'File with CFPB. Document the date you received notice and date changes took effect.'
+            },
+            'tila-4': {
+                law: 'TILA - Truth in Lending Act',
+                rights: [
+                    'Receive standardized disclosure form',
+                    'See total amount financed',
+                    'Know total cost over life of loan',
+                    'Compare offers using same metrics'
+                ],
+                remedies: 'Request proper disclosures in writing. If denied, file complaint with CFPB. May have extended rescission rights.',
+                complaint: 'Request complete TILA disclosures from lender. File with CFPB if they refuse to provide clear cost breakdown.'
+            },
+            'ecoa-1': {
+                law: 'ECOA - Equal Credit Opportunity Act',
+                rights: [
+                    'Cannot be denied credit based on race, color, or national origin',
+                    'Protected from discrimination in any aspect of credit',
+                    'Right to written explanation of denial',
+                    'All creditworthy applicants treated equally'
+                ],
+                remedies: 'Sue for actual damages, punitive damages up to $10,000, and attorney fees. Class actions can recover up to $500,000.',
+                complaint: 'File with CFPB and DOJ Civil Rights Division. Document all interactions and keep copies of applications.'
+            },
+            'ecoa-2': {
+                law: 'ECOA - Equal Credit Opportunity Act',
+                rights: [
+                    'All reliable income must be considered',
+                    'Cannot discount income due to source (alimony, part-time)',
+                    'Spouse income counted regardless of gender',
+                    'Cannot require co-signer if qualified alone'
+                ],
+                remedies: 'Sue for damages if income was illegally excluded. May be entitled to loan approval at proper terms.',
+                complaint: 'Request written explanation why income was excluded. File with CFPB and HUD (for mortgages).'
+            },
+            'ecoa-3': {
+                law: 'ECOA - Equal Credit Opportunity Act',
+                rights: [
+                    'Receive specific reasons for denial within 30 days',
+                    'Or receive notice of right to request reasons',
+                    'Reasons must be specific, not generic',
+                    'Must identify credit bureau used'
+                ],
+                remedies: 'Failure to provide adverse action notice is itself a violation. Request explanation in writing immediately.',
+                complaint: 'Send written request for specific reasons. File with CFPB if denied or given only generic response.'
+            },
+            'ecoa-4': {
+                law: 'ECOA - Equal Credit Opportunity Act',
+                rights: [
+                    'Cannot be asked about childbearing plans',
+                    'Marital status questions limited',
+                    'Cannot be asked about birth control',
+                    'Pregnancy cannot be considered'
+                ],
+                remedies: 'Questions about family plans are illegal. You can refuse to answer and file complaint if denied credit.',
+                complaint: 'File with CFPB and note exact questions asked. Consider consulting civil rights attorney.'
+            }
+        };
+
+        const practiceAnswers = {
+            'practice-1': {
+                correct: 'FDCPA',
+                explanation: 'The FDCPA prohibits debt collectors from calling at unreasonable times (before 8 AM or after 9 PM) and from threatening to contact third parties about your debt. Both violations occurred here.'
+            },
+            'practice-2': {
+                correct: 'FCRA',
+                explanation: 'The FCRA requires that when credit is denied, the creditor must provide an adverse action notice including the credit bureau\'s name and information on how to get your free report.'
+            },
+            'practice-3': {
+                correct: 'TILA',
+                explanation: 'The Truth in Lending Act requires creditors to clearly disclose the APR and how finance charges are calculated before you agree to the credit terms.'
+            },
+            'practice-4': {
+                correct: 'ECOA',
+                explanation: 'The Equal Credit Opportunity Act prohibits discrimination based on sex or marital status. Refusing to count income due to maternity leave is illegal discrimination.'
+            }
+        };
+
+        function checkRights() {
+            const select = document.getElementById('scenario-select');
+            const scenario = select.value;
+            const resultContainer = document.getElementById('result-container');
+            const resultContent = document.getElementById('result-content');
+
+            if (!scenario) {
+                alert('Please select a scenario to check your rights.');
+                return;
+            }
+
+            const data = scenarioData[scenario];
+
+            let rightsHtml = '<ul>';
+            data.rights.forEach(right => {
+                rightsHtml += `<li>${right}</li>`;
+            });
+            rightsHtml += '</ul>';
+
+            resultContent.innerHTML = `
+                <div class="result-law">${data.law}</div>
+                <div class="result-rights">
+                    <h5>Your Rights:</h5>
+                    ${rightsHtml}
+                </div>
+                <div class="result-remedies">
+                    <h5>Available Remedies:</h5>
+                    <p>${data.remedies}</p>
+                </div>
+                <div class="result-complaint">
+                    <h5>How to File a Complaint:</h5>
+                    <p>${data.complaint}</p>
+                </div>
+            `;
+
+            resultContainer.style.display = 'block';
+            resultContainer.classList.remove('error');
+        }
+
+        function checkAnswer(practiceId, selectedAnswer, isCorrect) {
+            const scenario = document.getElementById(practiceId);
+            const buttons = scenario.querySelectorAll('.answer-btn');
+            const feedback = document.getElementById('feedback-' + practiceId);
+            const answerData = practiceAnswers[practiceId];
+
+            // Reset all buttons
+            buttons.forEach(btn => {
+                btn.classList.remove('correct', 'incorrect');
+                btn.disabled = true;
+            });
+
+            // Mark the selected button
+            buttons.forEach(btn => {
+                if (btn.textContent === selectedAnswer) {
+                    btn.classList.add(isCorrect ? 'correct' : 'incorrect');
+                }
+                if (btn.textContent === answerData.correct && !isCorrect) {
+                    btn.classList.add('correct');
+                }
+            });
+
+            // Show feedback
+            feedback.textContent = (isCorrect ? 'Correct! ' : 'Incorrect. The answer is ' + answerData.correct + '. ') + answerData.explanation;
+            feedback.className = 'feedback ' + (isCorrect ? 'correct' : 'incorrect');
+        }
+    </script>
+</body>
+</html>

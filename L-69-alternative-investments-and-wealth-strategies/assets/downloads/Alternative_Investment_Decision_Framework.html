@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alternative Investment Decision Framework</title>
+    <style>
+        :root { --primary: #6366f1; --secondary: #8b5cf6; --success: #10b981; --warning: #f59e0b; --danger: #ef4444; }
+        body { font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 14px; line-height: 1.5; color: #1f2937; max-width: 900px; margin: 0 auto; padding: 15px; }
+        h1 { color: var(--primary); font-size: 24px; border-bottom: 2px solid var(--primary); padding-bottom: 8px; }
+        h2 { color: var(--secondary); font-size: 18px; margin-top: 20px; }
+        .checklist-section { background: #f9fafb; padding: 15px; border-radius: 5px; margin: 15px 0; }
+        .checklist-item { display: flex; align-items: flex-start; gap: 10px; padding: 8px 0; border-bottom: 1px solid #e5e7eb; }
+        .checklist-item:last-child { border-bottom: none; }
+        .checklist-item input { margin-top: 3px; }
+        .checklist-text { flex: 1; }
+        .checklist-label { font-weight: bold; font-size: 13px; }
+        .checklist-desc { font-size: 11px; color: #6b7280; }
+        .personal-rules { background: #e0e7ff; padding: 15px; border-radius: 5px; margin: 15px 0; }
+        .rule-item { margin: 10px 0; }
+        .rule-item label { display: block; font-weight: bold; margin-bottom: 5px; font-size: 13px; }
+        input, textarea { width: 100%; padding: 8px; border: 1px solid #d1d5db; border-radius: 4px; box-sizing: border-box; }
+        textarea { min-height: 60px; }
+        .progress-tracker { background: white; padding: 10px; border-radius: 4px; margin: 10px 0; }
+        .progress-bar { height: 20px; background: #e5e7eb; border-radius: 10px; overflow: hidden; }
+        .progress-fill { height: 100%; background: var(--success); transition: width 0.3s; border-radius: 10px; }
+        .progress-text { text-align: center; font-size: 12px; margin-top: 5px; }
+        .final-framework { background: #d1fae5; padding: 15px; border-radius: 5px; margin: 15px 0; border: 2px solid var(--success); display: none; }
+        .framework-section { background: white; padding: 10px; border-radius: 4px; margin: 10px 0; }
+        .framework-title { font-weight: bold; color: var(--primary); margin-bottom: 5px; }
+        .signature-box { background: #fef3c7; padding: 15px; border-radius: 5px; margin-top: 15px; }
+        button { background: var(--primary); color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; margin: 5px; }
+        button:hover { background: var(--secondary); }
+        @media print { body { font-size: 11pt; } button { display: none; } .final-framework { display: block !important; } }
+    </style>
+</head>
+<body>
+    <h1>Alternative Investment Decision Framework</h1>
+    <p>Establish personal rules for approaching alternative investments</p>
+
+    <div class="progress-tracker">
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill" style="width: 0%;"></div>
+        </div>
+        <div class="progress-text"><span id="progressText">0</span> of 15 items completed</div>
+    </div>
+
+    <div class="checklist-section">
+        <h2 style="margin-top: 0;">Pre-Investment Checklist</h2>
+
+        <div class="checklist-item">
+            <input type="checkbox" id="check1" onchange="updateProgress()">
+            <div class="checklist-text">
+                <div class="checklist-label">1. Core Portfolio First</div>
+                <div class="checklist-desc">I have a solid foundation of low-cost index funds (stocks/bonds) before considering alternatives</div>
+            </div>
+        </div>
+
+        <div class="checklist-item">
+            <input type="checkbox" id="check2" onchange="updateProgress()">
+            <div class="checklist-text">
+                <div class="checklist-label">2. Emergency Fund Complete</div>
+                <div class="checklist-desc">I have 3-6 months of expenses saved in liquid, accessible accounts</div>
+            </div>
+        </div>
+
+        <div class="checklist-item">
+            <input type="checkbox" id="check3" onchange="updateProgress()">
+            <div class="checklist-text">
+                <div class="checklist-label">3. Understand What I'm Buying</div>
+                <div class="checklist-desc">I can explain this investment to someone else in plain language</div>
+            </div>
+        </div>
+
+        <div class="checklist-item">
+            <input type="checkbox" id="check4" onchange="updateProgress()">
+            <div class="checklist-text">
+                <div class="checklist-label">4. Know the Risks</div>
+                <div class="checklist-desc">I understand and accept the specific risks (illiquidity, volatility, total loss potential)</div>
+            </div>
+        </div>
+
+        <div class="checklist-item">
+            <input type="checkbox" id="check5" onchange="updateProgress()">
+            <div class="checklist-text">
+                <div class="checklist-label">5. Fees Are Transparent</div>
+                <div class="checklist-desc">I know all fees including management, performance, and hidden costs</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="checklist-section">
+        <h2 style="margin-top: 0;">Due Diligence Checklist</h2>
+
+        <div class="checklist-item">
+            <input type="checkbox" id="check6" onchange="updateProgress()">
+            <div class="checklist-text">
+                <div class="checklist-label">6. Reviewed Historical Performance</div>
+                <div class="checklist-desc">I've looked at 5+ years of returns and understand they don't guarantee future results</div>
+            </div>
+        </div>
+
+        <div class="checklist-item">
+            <input type="checkbox" id="check7" onchange="updateProgress()">
+            <div class="checklist-text">
+                <div class="checklist-label">7. Checked for Correlation</div>
+                <div class="checklist-desc">This investment adds diversification (low correlation with my existing holdings)</div>
+            </div>
+        </div>
+
+        <div class="checklist-item">
+            <input type="checkbox" id="check8" onchange="updateProgress()">
+            <div class="checklist-text">
+                <div class="checklist-label">8. Verified the Manager/Platform</div>
+                <div class="checklist-desc">I've researched the fund manager or platform's track record and reputation</div>
+            </div>
+        </div>
+
+        <div class="checklist-item">
+            <input type="checkbox" id="check9" onchange="updateProgress()">
+            <div class="checklist-text">
+                <div class="checklist-label">9. Understand Liquidity Terms</div>
+                <div class="checklist-desc">I know when and how I can access my money (lock-up periods, redemption windows)</div>
+            </div>
+        </div>
+
+        <div class="checklist-item">
+            <input type="checkbox" id="check10" onchange="updateProgress()">
+            <div class="checklist-text">
+                <div class="checklist-label">10. Tax Implications Clear</div>
+                <div class="checklist-desc">I understand how this investment will be taxed (K-1s, ordinary income, capital gains)</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="checklist-section">
+        <h2 style="margin-top: 0;">Position Sizing Rules</h2>
+
+        <div class="checklist-item">
+            <input type="checkbox" id="check11" onchange="updateProgress()">
+            <div class="checklist-text">
+                <div class="checklist-label">11. Maximum Allocation Limit</div>
+                <div class="checklist-desc">Total alternatives won't exceed my predetermined percentage of portfolio</div>
+            </div>
+        </div>
+
+        <div class="checklist-item">
+            <input type="checkbox" id="check12" onchange="updateProgress()">
+            <div class="checklist-text">
+                <div class="checklist-label">12. Single Position Limit</div>
+                <div class="checklist-desc">No single alternative investment will exceed 5% of my total portfolio</div>
+            </div>
+        </div>
+
+        <div class="checklist-item">
+            <input type="checkbox" id="check13" onchange="updateProgress()">
+            <div class="checklist-text">
+                <div class="checklist-label">13. "Sleep Test"</div>
+                <div class="checklist-desc">If this investment went to zero, I could still sleep at night</div>
+            </div>
+        </div>
+
+        <div class="checklist-item">
+            <input type="checkbox" id="check14" onchange="updateProgress()">
+            <div class="checklist-text">
+                <div class="checklist-label">14. Time Horizon Match</div>
+                <div class="checklist-desc">My investment timeline matches the illiquidity period of this investment</div>
+            </div>
+        </div>
+
+        <div class="checklist-item">
+            <input type="checkbox" id="check15" onchange="updateProgress()">
+            <div class="checklist-text">
+                <div class="checklist-label">15. No FOMO Decisions</div>
+                <div class="checklist-desc">I'm not investing because others are - I've done my own analysis</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="personal-rules">
+        <h2 style="margin-top: 0;">My Personal Rules</h2>
+
+        <div class="rule-item">
+            <label>Maximum Portfolio Allocation to Alternatives (%)</label>
+            <input type="number" id="maxAlloc" value="10" min="0" max="100">
+        </div>
+
+        <div class="rule-item">
+            <label>Minimum Research Time Before Investing</label>
+            <input type="text" id="researchTime" placeholder="e.g., 2 weeks">
+        </div>
+
+        <div class="rule-item">
+            <label>My "Walk Away" Criteria (When I WON'T invest)</label>
+            <textarea id="walkAway" placeholder="e.g., If I can't explain it in 2 sentences, if fees exceed 2%, if lock-up is longer than 5 years..."></textarea>
+        </div>
+
+        <div class="rule-item">
+            <label>Review Schedule</label>
+            <input type="text" id="reviewSchedule" placeholder="e.g., Quarterly review of all alternative positions">
+        </div>
+    </div>
+
+    <div style="text-align: center; margin: 20px 0;">
+        <button onclick="generateFramework()">Generate My Decision Framework</button>
+    </div>
+
+    <div class="final-framework" id="finalFramework">
+        <h2 style="margin-top: 0;">📋 My Alternative Investment Decision Framework</h2>
+        <p style="font-size: 12px; color: #6b7280;">Created: <span id="frameworkDate"></span></p>
+
+        <div class="framework-section">
+            <div class="framework-title">Completion Status</div>
+            <div id="completionStatus"></div>
+        </div>
+
+        <div class="framework-section">
+            <div class="framework-title">My Allocation Rules</div>
+            <div id="allocationRules"></div>
+        </div>
+
+        <div class="framework-section">
+            <div class="framework-title">My Walk-Away Criteria</div>
+            <div id="walkAwayDisplay"></div>
+        </div>
+
+        <div class="framework-section">
+            <div class="framework-title">Review Commitment</div>
+            <div id="reviewDisplay"></div>
+        </div>
+
+        <div class="signature-box">
+            <strong>Commitment:</strong> I will review this framework before making any alternative investment. I understand these investments carry higher risks and require thorough due diligence.
+            <div style="margin-top: 15px;">
+                <label>Signature: </label>
+                <input type="text" id="signature" placeholder="Type your name" style="width: 200px;">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function updateProgress() {
+            let completed = 0;
+            for (let i = 1; i <= 15; i++) {
+                if (document.getElementById(`check${i}`).checked) {
+                    completed++;
+                }
+            }
+
+            const percentage = (completed / 15) * 100;
+            document.getElementById('progressFill').style.width = percentage + '%';
+            document.getElementById('progressText').textContent = completed;
+        }
+
+        function generateFramework() {
+            let completed = 0;
+            const incomplete = [];
+
+            for (let i = 1; i <= 15; i++) {
+                if (document.getElementById(`check${i}`).checked) {
+                    completed++;
+                } else {
+                    const label = document.querySelector(`label[for="check${i}"]`) ||
+                        document.getElementById(`check${i}`).nextElementSibling.querySelector('.checklist-label');
+                    if (label) incomplete.push(label.textContent);
+                }
+            }
+
+            document.getElementById('frameworkDate').textContent = new Date().toLocaleDateString();
+
+            // Completion status
+            let statusHTML = `<strong>${completed}/15 items completed</strong>`;
+            if (incomplete.length > 0 && incomplete.length <= 5) {
+                statusHTML += `<br><br>Still need to complete:<ul style="margin: 5px 0; padding-left: 20px;">`;
+                incomplete.forEach(item => statusHTML += `<li>${item}</li>`);
+                statusHTML += '</ul>';
+            } else if (incomplete.length > 5) {
+                statusHTML += `<br><span style="color: var(--danger);">⚠️ ${incomplete.length} items incomplete - review checklist before investing</span>`;
+            } else {
+                statusHTML += `<br><span style="color: var(--success);">✓ All prerequisites met!</span>`;
+            }
+            document.getElementById('completionStatus').innerHTML = statusHTML;
+
+            // Allocation rules
+            const maxAlloc = document.getElementById('maxAlloc').value;
+            const researchTime = document.getElementById('researchTime').value;
+            document.getElementById('allocationRules').innerHTML = `
+                <ul style="margin: 5px 0; padding-left: 20px;">
+                    <li>Maximum alternatives allocation: <strong>${maxAlloc}%</strong> of portfolio</li>
+                    <li>Maximum single position: <strong>5%</strong> of portfolio</li>
+                    <li>Minimum research time: <strong>${researchTime || 'Not specified'}</strong></li>
+                </ul>
+            `;
+
+            // Walk away criteria
+            const walkAway = document.getElementById('walkAway').value;
+            document.getElementById('walkAwayDisplay').textContent = walkAway || 'Not specified';
+
+            // Review schedule
+            const review = document.getElementById('reviewSchedule').value;
+            document.getElementById('reviewDisplay').textContent = review || 'Not specified';
+
+            document.getElementById('finalFramework').style.display = 'block';
+        }
+    </script>
+</body>
+</html>

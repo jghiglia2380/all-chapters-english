@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Government Economy Reference Sheet - PFL Academy</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.5;
+            color: #1f2937;
+            background-color: #f9fafb;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 0.85rem;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        @media (max-width: 700px) {
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .section {
+            margin-bottom: 16px;
+        }
+
+        .section-box {
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 16px;
+            height: 100%;
+        }
+
+        .section-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #4f46e5;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #6366f1;
+        }
+
+        .definition-item {
+            margin-bottom: 10px;
+        }
+
+        .definition-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .term {
+            font-weight: 600;
+            color: #1f2937;
+        }
+
+        .definition {
+            font-size: 0.85rem;
+            color: #4b5563;
+            margin-left: 12px;
+        }
+
+        .example {
+            font-size: 0.8rem;
+            color: #6366f1;
+            font-style: italic;
+            margin-left: 12px;
+        }
+
+        .tax-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+        }
+
+        .tax-table th,
+        .tax-table td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .tax-table th {
+            background: #eef2ff;
+            font-weight: 600;
+            color: #4f46e5;
+        }
+
+        .intervention-list {
+            list-style: none;
+        }
+
+        .intervention-list li {
+            padding: 6px 0;
+            border-bottom: 1px solid #e5e7eb;
+            font-size: 0.85rem;
+        }
+
+        .intervention-list li:last-child {
+            border-bottom: none;
+        }
+
+        .intervention-type {
+            font-weight: 600;
+            color: #1f2937;
+        }
+
+        .intervention-desc {
+            color: #6b7280;
+        }
+
+        .key-concept {
+            background: #eef2ff;
+            border-left: 3px solid #6366f1;
+            padding: 12px;
+            margin-bottom: 12px;
+            font-size: 0.85rem;
+        }
+
+        .key-concept:last-child {
+            margin-bottom: 0;
+        }
+
+        .key-concept strong {
+            color: #4f46e5;
+        }
+
+        .formula-box {
+            background: #fef3c7;
+            border: 1px solid #f59e0b;
+            border-radius: 6px;
+            padding: 12px;
+            margin-bottom: 12px;
+            font-size: 0.85rem;
+        }
+
+        .formula-box code {
+            font-family: monospace;
+            background: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        .quick-ref {
+            background: #d1fae5;
+            border-left: 3px solid #10b981;
+            padding: 12px;
+            font-size: 0.85rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            background: #e5e7eb;
+            color: #374151;
+        }
+
+        .btn:hover {
+            background: #d1d5db;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 10px;
+                font-size: 10px;
+            }
+
+            .container {
+                box-shadow: none;
+            }
+
+            .btn {
+                display: none;
+            }
+
+            .header {
+                padding: 12px;
+            }
+
+            .content {
+                padding: 12px;
+            }
+
+            .section-box {
+                break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Government & Economy Reference Sheet</h1>
+            <p>Quick reference for market failures, government intervention types, and tax structures</p>
+        </div>
+
+        <div class="content">
+            <!-- Market Failures Section -->
+            <div class="section">
+                <div class="section-box">
+                    <h2 class="section-title">Market Failures</h2>
+
+                    <div class="definition-item">
+                        <div class="term">1. Public Goods</div>
+                        <div class="definition">Non-excludable and non-rivalrous - one person's use doesn't reduce availability</div>
+                        <div class="example">Examples: National defense, street lights, public parks</div>
+                    </div>
+
+                    <div class="definition-item">
+                        <div class="term">2. Externalities</div>
+                        <div class="definition">Costs or benefits affecting third parties not involved in transaction</div>
+                        <div class="example">Negative: Pollution, noise | Positive: Education, vaccines</div>
+                    </div>
+
+                    <div class="definition-item">
+                        <div class="term">3. Monopoly Power</div>
+                        <div class="definition">Single seller with market power to set prices above competitive level</div>
+                        <div class="example">Examples: Utilities, local cable providers</div>
+                    </div>
+
+                    <div class="definition-item">
+                        <div class="term">4. Information Asymmetry</div>
+                        <div class="definition">One party has more information than another in a transaction</div>
+                        <div class="example">Examples: Used car sales, insurance, healthcare</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Two Column Grid -->
+            <div class="grid-2">
+                <!-- Government Interventions -->
+                <div class="section-box">
+                    <h2 class="section-title">Government Intervention Types</h2>
+                    <ul class="intervention-list">
+                        <li>
+                            <span class="intervention-type">Taxes</span><br>
+                            <span class="intervention-desc">Discourage activity, raise revenue</span>
+                        </li>
+                        <li>
+                            <span class="intervention-type">Subsidies</span><br>
+                            <span class="intervention-desc">Encourage activity, reduce costs</span>
+                        </li>
+                        <li>
+                            <span class="intervention-type">Price Controls</span><br>
+                            <span class="intervention-desc">Set min/max prices (min wage, rent control)</span>
+                        </li>
+                        <li>
+                            <span class="intervention-type">Regulations</span><br>
+                            <span class="intervention-desc">Rules on how to produce/sell</span>
+                        </li>
+                        <li>
+                            <span class="intervention-type">Public Provision</span><br>
+                            <span class="intervention-desc">Government produces goods directly</span>
+                        </li>
+                        <li>
+                            <span class="intervention-type">Redistribution</span><br>
+                            <span class="intervention-desc">Transfer from one group to another</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Tax Structures -->
+                <div class="section-box">
+                    <h2 class="section-title">Tax Structures</h2>
+                    <table class="tax-table">
+                        <tr>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr>
+                            <td><strong>Progressive</strong></td>
+                            <td>Higher income = higher rate (Federal income tax)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Proportional</strong></td>
+                            <td>Same rate for all (Flat tax, Social Security)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Regressive</strong></td>
+                            <td>Lower income = higher effective rate (Sales tax)</td>
+                        </tr>
+                    </table>
+
+                    <div class="formula-box" style="margin-top: 12px;">
+                        <strong>Key Federal Taxes:</strong><br>
+                        <code>Income Tax</code> - Progressive brackets (10-37%)<br>
+                        <code>Social Security</code> - 6.2% up to cap<br>
+                        <code>Medicare</code> - 1.45% on all income
+                    </div>
+                </div>
+            </div>
+
+            <!-- Analysis Framework -->
+            <div class="section" style="margin-top: 16px;">
+                <div class="section-box">
+                    <h2 class="section-title">Policy Analysis Framework</h2>
+                    <div class="grid-2" style="gap: 12px;">
+                        <div>
+                            <div class="key-concept">
+                                <strong>Step 1:</strong> Identify the problem/market failure
+                            </div>
+                            <div class="key-concept">
+                                <strong>Step 2:</strong> List benefits (who gains, how much?)
+                            </div>
+                            <div class="key-concept">
+                                <strong>Step 3:</strong> List costs (who pays, how much?)
+                            </div>
+                        </div>
+                        <div>
+                            <div class="key-concept">
+                                <strong>Step 4:</strong> Consider unintended consequences
+                            </div>
+                            <div class="key-concept">
+                                <strong>Step 5:</strong> Evaluate alternatives
+                            </div>
+                            <div class="key-concept">
+                                <strong>Step 6:</strong> Make recommendation
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Key Formulas -->
+            <div class="section">
+                <div class="section-box">
+                    <h2 class="section-title">Key Calculations</h2>
+                    <div class="grid-2" style="gap: 12px;">
+                        <div class="formula-box">
+                            <strong>Tax Burden %</strong><br>
+                            <code>(Total Taxes / Income) x 100</code>
+                        </div>
+                        <div class="formula-box">
+                            <strong>Net Contributor Status</strong><br>
+                            <code>Services Value - Taxes Paid</code><br>
+                            Positive = Net Recipient<br>
+                            Negative = Net Contributor
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Reference -->
+            <div class="section">
+                <div class="quick-ref">
+                    <strong>Remember:</strong> Government intervention has trade-offs. Consider efficiency (total economic value) vs. equity (fairness of distribution). Most policies involve winners and losers - the key is whether total benefits exceed total costs and if distribution is acceptable.
+                </div>
+            </div>
+
+            <!-- Print Button -->
+            <div class="btn-group">
+                <button class="btn" onclick="window.print()">Print Reference Sheet</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

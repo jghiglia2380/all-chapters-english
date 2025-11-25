@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cryptocurrency Portfolio Simulator</title>
+    <!--
+    PURPOSE: Explore cryptocurrency fundamentals and model allocation scenarios with risk assessment
+    USE: Activity 2 - Cryptocurrency Exploration & Risk Assessment (10 minutes)
+    -->
+    <style>
+        :root {
+            --primary: #6366f1;
+            --secondary: #8b5cf6;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --text: #1f2937;
+            --surface: #f9fafb;
+        }
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: var(--primary);
+            border-bottom: 3px solid var(--primary);
+            padding-bottom: 10px;
+        }
+        .warning-banner {
+            background: #fef3c7;
+            border-left: 4px solid var(--warning);
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .crypto-info {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .crypto-card {
+            background: var(--surface);
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+        }
+        .crypto-symbol {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+        .crypto-name {
+            font-size: 0.85rem;
+            color: #6b7280;
+        }
+        .volatility-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .vol-extreme {
+            background: #fee2e2;
+            color: var(--danger);
+        }
+        .vol-high {
+            background: #fef3c7;
+            color: #b45309;
+        }
+        .simulator-section {
+            background: var(--surface);
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .allocation-slider {
+            margin: 15px 0;
+        }
+        .allocation-slider label {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        .allocation-slider input[type="range"] {
+            width: 100%;
+        }
+        .scenario-results {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .scenario-box {
+            background: white;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+        }
+        .scenario-box h4 {
+            margin: 0 0 10px 0;
+            font-size: 0.9rem;
+        }
+        .scenario-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        .scenario-value.positive {
+            color: var(--success);
+        }
+        .scenario-value.negative {
+            color: var(--danger);
+        }
+        .scenario-box.bull {
+            border-color: var(--success);
+        }
+        .scenario-box.bear {
+            border-color: var(--danger);
+        }
+        .risk-meter {
+            margin: 20px 0;
+            text-align: center;
+        }
+        .meter-bar {
+            height: 20px;
+            background: linear-gradient(to right, var(--success), var(--warning), var(--danger));
+            border-radius: 10px;
+            position: relative;
+            margin: 10px 0;
+        }
+        .meter-indicator {
+            position: absolute;
+            top: -5px;
+            width: 30px;
+            height: 30px;
+            background: white;
+            border: 3px solid var(--primary);
+            border-radius: 50%;
+            transform: translateX(-50%);
+        }
+        .risk-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.75rem;
+        }
+        .assessment-section {
+            margin: 20px 0;
+        }
+        .assessment-section label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .assessment-section textarea {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #e5e7eb;
+            border-radius: 6px;
+            min-height: 70px;
+            font-family: inherit;
+        }
+        .checkbox-grid {
+            display: grid;
+            gap: 8px;
+            margin: 15px 0;
+        }
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px;
+            background: white;
+            border-radius: 4px;
+        }
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            background: var(--primary);
+            color: white;
+        }
+        .btn:hover {
+            background: #4f46e5;
+        }
+        @media print {
+            body { font-size: 11pt; }
+        }
+    </style>
+</head>
+<body>
+    <h1>₿ Cryptocurrency Portfolio Simulator</h1>
+
+    <div class="warning-banner">
+        <strong>⚠️ Educational Simulation Only:</strong> Cryptocurrency is highly speculative and volatile. This tool is for educational exploration, not investment advice. Never invest more than you can afford to lose completely.
+    </div>
+
+    <h3>Understanding Major Cryptocurrencies</h3>
+    <div class="crypto-info">
+        <div class="crypto-card">
+            <div class="crypto-symbol">BTC</div>
+            <div class="crypto-name">Bitcoin</div>
+            <p style="font-size: 0.8rem; margin: 10px 0;">Digital gold, store of value, limited supply (21M)</p>
+            <span class="volatility-badge vol-high">High Volatility</span>
+        </div>
+        <div class="crypto-card">
+            <div class="crypto-symbol">ETH</div>
+            <div class="crypto-name">Ethereum</div>
+            <p style="font-size: 0.8rem; margin: 10px 0;">Smart contracts platform, DeFi ecosystem</p>
+            <span class="volatility-badge vol-extreme">Extreme Volatility</span>
+        </div>
+        <div class="crypto-card">
+            <div class="crypto-symbol">Alts</div>
+            <div class="crypto-name">Altcoins</div>
+            <p style="font-size: 0.8rem; margin: 10px 0;">Thousands of alternatives, most fail</p>
+            <span class="volatility-badge vol-extreme">Extreme Volatility</span>
+        </div>
+    </div>
+
+    <div class="simulator-section">
+        <h3>Portfolio Allocation Simulator</h3>
+        <p>Model different crypto allocation strategies with a $10,000 investment.</p>
+
+        <div class="allocation-slider">
+            <label>
+                <span>Traditional Portfolio (Stocks/Bonds)</span>
+                <span id="trad-pct">90%</span>
+            </label>
+            <input type="range" id="trad-slider" min="0" max="100" value="90" oninput="updateAllocation()">
+        </div>
+
+        <div class="allocation-slider">
+            <label>
+                <span>Cryptocurrency Allocation</span>
+                <span id="crypto-pct">10%</span>
+            </label>
+            <input type="range" id="crypto-slider" min="0" max="100" value="10" oninput="updateAllocation()">
+        </div>
+
+        <button class="btn" onclick="simulate()">Run Simulation</button>
+
+        <h4>One-Year Scenario Results</h4>
+        <div class="scenario-results">
+            <div class="scenario-box bull">
+                <h4>🚀 Bull Case</h4>
+                <p style="font-size: 0.75rem;">Crypto +200%, Traditional +15%</p>
+                <div class="scenario-value positive" id="bull-result">$___</div>
+            </div>
+            <div class="scenario-box">
+                <h4>📊 Base Case</h4>
+                <p style="font-size: 0.75rem;">Crypto +30%, Traditional +8%</p>
+                <div class="scenario-value" id="base-result">$___</div>
+            </div>
+            <div class="scenario-box bear">
+                <h4>📉 Bear Case</h4>
+                <p style="font-size: 0.75rem;">Crypto -80%, Traditional -20%</p>
+                <div class="scenario-value negative" id="bear-result">$___</div>
+            </div>
+        </div>
+
+        <div class="risk-meter">
+            <strong>Portfolio Risk Level</strong>
+            <div class="meter-bar">
+                <div class="meter-indicator" id="risk-indicator" style="left: 20%;"></div>
+            </div>
+            <div class="risk-labels">
+                <span>Conservative</span>
+                <span>Moderate</span>
+                <span>Aggressive</span>
+                <span>Speculative</span>
+            </div>
+        </div>
+    </div>
+
+    <h3>Risk Assessment Checklist</h3>
+    <p>Check only if you can honestly answer "yes" to these questions before investing in cryptocurrency:</p>
+    <div class="checkbox-grid">
+        <label class="checkbox-item">
+            <input type="checkbox">
+            I understand I could lose 100% of my crypto investment
+        </label>
+        <label class="checkbox-item">
+            <input type="checkbox">
+            I have 6+ months emergency fund in safe assets
+        </label>
+        <label class="checkbox-item">
+            <input type="checkbox">
+            I won't need this money for at least 5 years
+        </label>
+        <label class="checkbox-item">
+            <input type="checkbox">
+            I understand how to secure my crypto (wallets, keys)
+        </label>
+        <label class="checkbox-item">
+            <input type="checkbox">
+            I can emotionally handle 50%+ drops without panic selling
+        </label>
+        <label class="checkbox-item">
+            <input type="checkbox">
+            I'm not borrowing money to invest in crypto
+        </label>
+        <label class="checkbox-item">
+            <input type="checkbox">
+            This is less than 10% of my total investment portfolio
+        </label>
+    </div>
+
+    <div class="assessment-section">
+        <label>Based on your risk assessment, what crypto allocation (if any) is appropriate for you?</label>
+        <textarea placeholder="Consider your risk tolerance, financial situation, knowledge level, and time horizon..."></textarea>
+    </div>
+
+    <div class="assessment-section">
+        <label>What are the main risks of cryptocurrency that traditional investments don't have?</label>
+        <textarea placeholder="Think about regulatory risk, security/hacking, no consumer protections, no intrinsic value..."></textarea>
+    </div>
+
+    <script>
+        function updateAllocation() {
+            const tradSlider = document.getElementById('trad-slider');
+            const cryptoSlider = document.getElementById('crypto-slider');
+
+            // Keep them summing to 100
+            const tradVal = parseInt(tradSlider.value);
+            cryptoSlider.value = 100 - tradVal;
+
+            document.getElementById('trad-pct').textContent = tradVal + '%';
+            document.getElementById('crypto-pct').textContent = (100 - tradVal) + '%';
+
+            // Update risk indicator
+            const cryptoPct = 100 - tradVal;
+            let riskPosition;
+            if (cryptoPct <= 5) riskPosition = 10;
+            else if (cryptoPct <= 15) riskPosition = 30;
+            else if (cryptoPct <= 30) riskPosition = 55;
+            else riskPosition = 80;
+
+            document.getElementById('risk-indicator').style.left = riskPosition + '%';
+        }
+
+        function simulate() {
+            const investment = 10000;
+            const cryptoPct = parseInt(document.getElementById('crypto-slider').value) / 100;
+            const tradPct = 1 - cryptoPct;
+
+            const tradAmount = investment * tradPct;
+            const cryptoAmount = investment * cryptoPct;
+
+            // Bull case
+            const bullTrad = tradAmount * 1.15;
+            const bullCrypto = cryptoAmount * 3;
+            const bullTotal = bullTrad + bullCrypto;
+
+            // Base case
+            const baseTrad = tradAmount * 1.08;
+            const baseCrypto = cryptoAmount * 1.30;
+            const baseTotal = baseTrad + baseCrypto;
+
+            // Bear case
+            const bearTrad = tradAmount * 0.80;
+            const bearCrypto = cryptoAmount * 0.20;
+            const bearTotal = bearTrad + bearCrypto;
+
+            document.getElementById('bull-result').textContent = '$' + bullTotal.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+            document.getElementById('base-result').textContent = '$' + baseTotal.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+            document.getElementById('bear-result').textContent = '$' + bearTotal.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+        }
+
+        // Initial simulation
+        simulate();
+    </script>
+</body>
+</html>

@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alternative Asset Diversification Analyzer</title>
+    <!--
+    PURPOSE: Evaluate how adding alternatives affects portfolio characteristics with 30-year projections
+    USE: Activity 3 - Alternative Asset Diversification Analysis (10 minutes)
+    -->
+    <style>
+        :root {
+            --primary: #6366f1;
+            --secondary: #8b5cf6;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --text: #1f2937;
+            --surface: #f9fafb;
+        }
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: var(--primary);
+            border-bottom: 3px solid var(--primary);
+            padding-bottom: 10px;
+        }
+        .portfolio-builder {
+            background: var(--surface);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        .allocation-row {
+            display: grid;
+            grid-template-columns: 180px 1fr 80px;
+            align-items: center;
+            gap: 15px;
+            margin: 10px 0;
+            padding: 10px;
+            background: white;
+            border-radius: 6px;
+        }
+        .allocation-row label {
+            font-weight: 600;
+        }
+        .allocation-row input[type="range"] {
+            width: 100%;
+        }
+        .allocation-row .value {
+            text-align: right;
+            font-weight: bold;
+            color: var(--primary);
+        }
+        .total-row {
+            background: var(--primary);
+            color: white;
+        }
+        .total-row .value {
+            color: white;
+        }
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .portfolio-card {
+            background: white;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        .portfolio-card h3 {
+            margin-top: 0;
+            color: var(--primary);
+        }
+        .portfolio-card.enhanced {
+            border-color: var(--success);
+        }
+        .metrics-table {
+            width: 100%;
+            margin: 15px 0;
+        }
+        .metrics-table td {
+            padding: 8px;
+            border-bottom: 1px solid #eee;
+        }
+        .metrics-table td:first-child {
+            font-weight: 600;
+        }
+        .metrics-table td:last-child {
+            text-align: right;
+            color: var(--primary);
+            font-weight: bold;
+        }
+        .projection-box {
+            background: var(--surface);
+            padding: 15px;
+            border-radius: 6px;
+            text-align: center;
+            margin: 15px 0;
+        }
+        .projection-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+        .correlation-matrix {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.8rem;
+            margin: 20px 0;
+        }
+        .correlation-matrix th,
+        .correlation-matrix td {
+            border: 1px solid #e5e7eb;
+            padding: 8px;
+            text-align: center;
+        }
+        .correlation-matrix th {
+            background: var(--primary);
+            color: white;
+        }
+        .corr-low {
+            background: #d1fae5;
+        }
+        .corr-medium {
+            background: #fef3c7;
+        }
+        .corr-high {
+            background: #fee2e2;
+        }
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            cursor: pointer;
+            background: var(--primary);
+            color: white;
+            margin: 10px 5px;
+        }
+        .btn:hover {
+            background: #4f46e5;
+        }
+        .analysis-box {
+            margin: 20px 0;
+        }
+        .analysis-box label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .analysis-box textarea {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #e5e7eb;
+            border-radius: 6px;
+            min-height: 70px;
+            font-family: inherit;
+        }
+        @media print {
+            body { font-size: 10pt; }
+        }
+    </style>
+</head>
+<body>
+    <h1>📊 Alternative Asset Diversification Analyzer</h1>
+
+    <p>Build a portfolio with alternative assets and compare its characteristics to a traditional stocks/bonds portfolio over 30 years.</p>
+
+    <div class="portfolio-builder">
+        <h3>Build Your Enhanced Portfolio</h3>
+        <p>Allocate your $100,000 investment across asset classes:</p>
+
+        <div class="allocation-row">
+            <label>US Stocks</label>
+            <input type="range" id="stocks" min="0" max="100" value="50" oninput="updateAllocation()">
+            <span class="value" id="stocks-val">50%</span>
+        </div>
+        <div class="allocation-row">
+            <label>Bonds</label>
+            <input type="range" id="bonds" min="0" max="100" value="25" oninput="updateAllocation()">
+            <span class="value" id="bonds-val">25%</span>
+        </div>
+        <div class="allocation-row">
+            <label>REITs</label>
+            <input type="range" id="reits" min="0" max="100" value="10" oninput="updateAllocation()">
+            <span class="value" id="reits-val">10%</span>
+        </div>
+        <div class="allocation-row">
+            <label>Gold</label>
+            <input type="range" id="gold" min="0" max="100" value="10" oninput="updateAllocation()">
+            <span class="value" id="gold-val">10%</span>
+        </div>
+        <div class="allocation-row">
+            <label>Commodities</label>
+            <input type="range" id="commodities" min="0" max="100" value="5" oninput="updateAllocation()">
+            <span class="value" id="commodities-val">5%</span>
+        </div>
+        <div class="allocation-row total-row">
+            <label>Total</label>
+            <span></span>
+            <span class="value" id="total-val">100%</span>
+        </div>
+
+        <button class="btn" onclick="analyze()">Analyze Portfolio</button>
+    </div>
+
+    <div class="comparison-grid">
+        <div class="portfolio-card">
+            <h3>Traditional 60/40 Portfolio</h3>
+            <table class="metrics-table">
+                <tr>
+                    <td>Expected Return</td>
+                    <td id="trad-return">7.0%</td>
+                </tr>
+                <tr>
+                    <td>Expected Volatility</td>
+                    <td id="trad-vol">10.5%</td>
+                </tr>
+                <tr>
+                    <td>Sharpe Ratio</td>
+                    <td id="trad-sharpe">0.48</td>
+                </tr>
+                <tr>
+                    <td>Max Drawdown (2008)</td>
+                    <td id="trad-drawdown">-35%</td>
+                </tr>
+            </table>
+            <div class="projection-box">
+                <div>30-Year Projection</div>
+                <div class="projection-value" id="trad-30yr">$761,226</div>
+            </div>
+        </div>
+
+        <div class="portfolio-card enhanced">
+            <h3>✓ Your Enhanced Portfolio</h3>
+            <table class="metrics-table">
+                <tr>
+                    <td>Expected Return</td>
+                    <td id="enh-return">7.2%</td>
+                </tr>
+                <tr>
+                    <td>Expected Volatility</td>
+                    <td id="enh-vol">9.8%</td>
+                </tr>
+                <tr>
+                    <td>Sharpe Ratio</td>
+                    <td id="enh-sharpe">0.53</td>
+                </tr>
+                <tr>
+                    <td>Max Drawdown (2008)</td>
+                    <td id="enh-drawdown">-30%</td>
+                </tr>
+            </table>
+            <div class="projection-box">
+                <div>30-Year Projection</div>
+                <div class="projection-value" id="enh-30yr">$821,543</div>
+            </div>
+        </div>
+    </div>
+
+    <h3>Correlation Matrix</h3>
+    <p>Lower correlation = better diversification benefit</p>
+    <table class="correlation-matrix">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Stocks</th>
+                <th>Bonds</th>
+                <th>REITs</th>
+                <th>Gold</th>
+                <th>Commodities</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th>Stocks</th>
+                <td>1.00</td>
+                <td class="corr-low">-0.10</td>
+                <td class="corr-high">0.70</td>
+                <td class="corr-low">0.05</td>
+                <td class="corr-medium">0.35</td>
+            </tr>
+            <tr>
+                <th>Bonds</th>
+                <td class="corr-low">-0.10</td>
+                <td>1.00</td>
+                <td class="corr-low">0.15</td>
+                <td class="corr-medium">0.30</td>
+                <td class="corr-low">0.10</td>
+            </tr>
+            <tr>
+                <th>REITs</th>
+                <td class="corr-high">0.70</td>
+                <td class="corr-low">0.15</td>
+                <td>1.00</td>
+                <td class="corr-low">0.10</td>
+                <td class="corr-medium">0.40</td>
+            </tr>
+            <tr>
+                <th>Gold</th>
+                <td class="corr-low">0.05</td>
+                <td class="corr-medium">0.30</td>
+                <td class="corr-low">0.10</td>
+                <td>1.00</td>
+                <td class="corr-medium">0.45</td>
+            </tr>
+            <tr>
+                <th>Commodities</th>
+                <td class="corr-medium">0.35</td>
+                <td class="corr-low">0.10</td>
+                <td class="corr-medium">0.40</td>
+                <td class="corr-medium">0.45</td>
+                <td>1.00</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="analysis-box">
+        <label>How do alternatives improve the portfolio? (Look at volatility, Sharpe ratio, drawdown)</label>
+        <textarea placeholder="Explain the diversification benefits you observe..."></textarea>
+    </div>
+
+    <div class="analysis-box">
+        <label>Why is gold valuable in a portfolio even though its long-term return is lower than stocks?</label>
+        <textarea placeholder="Consider correlation, crisis performance, inflation protection..."></textarea>
+    </div>
+
+    <script>
+        function updateAllocation() {
+            const stocks = parseInt(document.getElementById('stocks').value);
+            const bonds = parseInt(document.getElementById('bonds').value);
+            const reits = parseInt(document.getElementById('reits').value);
+            const gold = parseInt(document.getElementById('gold').value);
+            const commodities = parseInt(document.getElementById('commodities').value);
+
+            document.getElementById('stocks-val').textContent = stocks + '%';
+            document.getElementById('bonds-val').textContent = bonds + '%';
+            document.getElementById('reits-val').textContent = reits + '%';
+            document.getElementById('gold-val').textContent = gold + '%';
+            document.getElementById('commodities-val').textContent = commodities + '%';
+
+            const total = stocks + bonds + reits + gold + commodities;
+            const totalEl = document.getElementById('total-val');
+            totalEl.textContent = total + '%';
+            totalEl.style.color = total === 100 ? 'white' : '#ef4444';
+        }
+
+        function analyze() {
+            const stocks = parseInt(document.getElementById('stocks').value) / 100;
+            const bonds = parseInt(document.getElementById('bonds').value) / 100;
+            const reits = parseInt(document.getElementById('reits').value) / 100;
+            const gold = parseInt(document.getElementById('gold').value) / 100;
+            const commodities = parseInt(document.getElementById('commodities').value) / 100;
+
+            // Expected returns
+            const returns = {
+                stocks: 0.10,
+                bonds: 0.035,
+                reits: 0.09,
+                gold: 0.04,
+                commodities: 0.05
+            };
+
+            // Volatility
+            const vols = {
+                stocks: 0.16,
+                bonds: 0.05,
+                reits: 0.18,
+                gold: 0.15,
+                commodities: 0.20
+            };
+
+            const enhReturn = stocks * returns.stocks + bonds * returns.bonds +
+                             reits * returns.reits + gold * returns.gold +
+                             commodities * returns.commodities;
+
+            // Simplified volatility (would need covariance matrix for accuracy)
+            const enhVol = Math.sqrt(
+                Math.pow(stocks * vols.stocks, 2) +
+                Math.pow(bonds * vols.bonds, 2) +
+                Math.pow(reits * vols.reits, 2) * 0.7 + // Correlation adjustment
+                Math.pow(gold * vols.gold, 2) * 0.5 +
+                Math.pow(commodities * vols.commodities, 2) * 0.6
+            );
+
+            const riskFree = 0.03;
+            const enhSharpe = (enhReturn - riskFree) / enhVol;
+
+            // 2008 drawdown estimate
+            const drawdown2008 = -stocks * 0.50 - bonds * 0.05 - reits * 0.60 - gold * 0.15 - commodities * 0.40;
+
+            // 30-year projection
+            const enh30yr = 100000 * Math.pow(1 + enhReturn, 30);
+
+            document.getElementById('enh-return').textContent = (enhReturn * 100).toFixed(1) + '%';
+            document.getElementById('enh-vol').textContent = (enhVol * 100).toFixed(1) + '%';
+            document.getElementById('enh-sharpe').textContent = enhSharpe.toFixed(2);
+            document.getElementById('enh-drawdown').textContent = (drawdown2008 * 100).toFixed(0) + '%';
+            document.getElementById('enh-30yr').textContent = '$' + enh30yr.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+        }
+
+        // Initial analysis
+        analyze();
+    </script>
+</body>
+</html>

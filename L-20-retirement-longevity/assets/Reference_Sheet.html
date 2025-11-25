@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Longevity and Retirement Planning Reference Sheet - PFL Academy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            font-size: 12px;
+            line-height: 1.5;
+            color: #1f2937;
+            padding: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 3px solid #6366f1;
+        }
+
+        .header h1 {
+            font-size: 24px;
+            color: #6366f1;
+            margin-bottom: 4px;
+        }
+
+        .header p {
+            color: #6b7280;
+            font-size: 12px;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .concept-box {
+            background: #f9fafb;
+            padding: 12px;
+            border-radius: 6px;
+            border-left: 4px solid #6366f1;
+        }
+
+        .concept-box h3 {
+            font-size: 14px;
+            font-weight: 700;
+            color: #6366f1;
+            margin-bottom: 8px;
+        }
+
+        .concept-box ul {
+            margin-left: 16px;
+            margin-bottom: 8px;
+        }
+
+        .concept-box li {
+            margin-bottom: 3px;
+        }
+
+        .formula-section {
+            background: #eff6ff;
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 16px;
+        }
+
+        .formula-section h3 {
+            font-size: 14px;
+            font-weight: 600;
+            color: #3b82f6;
+            margin-bottom: 8px;
+        }
+
+        .formula-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+        }
+
+        .formula-box {
+            background: white;
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #dbeafe;
+        }
+
+        .formula-box h4 {
+            font-size: 11px;
+            font-weight: 600;
+            margin-bottom: 4px;
+            color: #1e40af;
+        }
+
+        .formula-box .formula {
+            font-family: monospace;
+            font-size: 11px;
+            background: #f3f4f6;
+            padding: 4px 6px;
+            border-radius: 3px;
+            margin-bottom: 4px;
+        }
+
+        .formula-box p {
+            font-size: 10px;
+            color: #4b5563;
+        }
+
+        .stats-section {
+            background: #fef3c7;
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 16px;
+        }
+
+        .stats-section h3 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #b45309;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+        }
+
+        .stat-item {
+            background: white;
+            padding: 8px;
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        .stat-item .number {
+            font-size: 18px;
+            font-weight: 700;
+            color: #b45309;
+        }
+
+        .stat-item p {
+            font-size: 10px;
+            color: #4b5563;
+        }
+
+        .strategies-section {
+            background: #ecfdf5;
+            padding: 12px;
+            border-radius: 6px;
+            border-left: 4px solid #10b981;
+            margin-bottom: 16px;
+        }
+
+        .strategies-section h3 {
+            font-size: 14px;
+            font-weight: 600;
+            color: #059669;
+            margin-bottom: 8px;
+        }
+
+        .strategy-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+        }
+
+        .strategy-box {
+            padding: 8px;
+            border-radius: 4px;
+            background: white;
+        }
+
+        .strategy-box h4 {
+            font-size: 11px;
+            font-weight: 600;
+            margin-bottom: 4px;
+            color: #059669;
+        }
+
+        .strategy-box ul {
+            margin-left: 12px;
+            font-size: 10px;
+        }
+
+        .strategy-box li {
+            margin-bottom: 2px;
+        }
+
+        .timeline-section {
+            background: #f5f3ff;
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 16px;
+        }
+
+        .timeline-section h3 {
+            font-size: 14px;
+            font-weight: 600;
+            color: #7c3aed;
+            margin-bottom: 8px;
+        }
+
+        .timeline-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+        }
+
+        .timeline-item {
+            background: white;
+            padding: 8px;
+            border-radius: 4px;
+            border-top: 3px solid #7c3aed;
+        }
+
+        .timeline-item h4 {
+            font-size: 11px;
+            font-weight: 600;
+            margin-bottom: 4px;
+            color: #7c3aed;
+        }
+
+        .timeline-item ul {
+            margin-left: 12px;
+            font-size: 10px;
+        }
+
+        .timeline-item li {
+            margin-bottom: 2px;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 16px;
+            font-size: 11px;
+        }
+
+        .comparison-table th {
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+            color: white;
+            padding: 10px 8px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .comparison-table td {
+            padding: 8px;
+            border-bottom: 1px solid #e5e7eb;
+            vertical-align: top;
+        }
+
+        .comparison-table tr:hover {
+            background-color: #f9fafb;
+        }
+
+        .comparison-table td:first-child {
+            font-weight: 600;
+            background: #f9fafb;
+            width: 25%;
+        }
+
+        .key-takeaway {
+            background: #eff6ff;
+            padding: 12px;
+            border-radius: 6px;
+            border-left: 4px solid #3b82f6;
+        }
+
+        .key-takeaway h3 {
+            font-size: 12px;
+            font-weight: 600;
+            color: #3b82f6;
+            margin-bottom: 6px;
+        }
+
+        .key-takeaway p {
+            font-size: 11px;
+        }
+
+        .footer {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 10px;
+            color: #6b7280;
+            padding-top: 12px;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        @media print {
+            body {
+                padding: 10px;
+                font-size: 10px;
+            }
+
+            .concept-box,
+            .formula-section,
+            .stats-section,
+            .strategies-section,
+            .timeline-section {
+                page-break-inside: avoid;
+            }
+
+            .comparison-table {
+                font-size: 9px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .two-column,
+            .formula-grid,
+            .stats-grid,
+            .strategy-grid,
+            .timeline-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Longevity and Retirement Planning Reference Sheet</h1>
+        <p>Quick reference for life expectancy, retirement planning factors, and strategies</p>
+    </div>
+
+    <div class="two-column">
+        <div class="concept-box">
+            <h3>KEY TERMS</h3>
+            <ul>
+                <li><strong>Life Expectancy:</strong> Statistical average of how long you're expected to live</li>
+                <li><strong>Time Horizon:</strong> Years until retirement savings are needed</li>
+                <li><strong>Compounding:</strong> Reinvesting returns to generate exponential growth</li>
+                <li><strong>Longevity Risk:</strong> Risk of outliving your savings</li>
+                <li><strong>Inflation:</strong> Gradual increase in costs that reduces purchasing power</li>
+            </ul>
+        </div>
+
+        <div class="concept-box">
+            <h3>RETIREMENT ACCOUNTS</h3>
+            <ul>
+                <li><strong>401(k):</strong> Employer-sponsored, pre-tax contributions, employer match</li>
+                <li><strong>Roth IRA:</strong> After-tax contributions, tax-free withdrawals</li>
+                <li><strong>Traditional IRA:</strong> Pre-tax contributions, taxed withdrawals</li>
+                <li><strong>Social Security:</strong> Government benefit, not designed for full support</li>
+                <li><strong>Pension:</strong> Employer-funded retirement income (less common)</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="formula-section">
+        <h3>Essential Formulas and Rules</h3>
+        <div class="formula-grid">
+            <div class="formula-box">
+                <h4>Rule of 72 (Doubling Time)</h4>
+                <div class="formula">72 / Interest Rate = Years to Double</div>
+                <p>Example: 72 / 7% = ~10 years to double investment</p>
+            </div>
+            <div class="formula-box">
+                <h4>Future Value of Investment</h4>
+                <div class="formula">FV = PV x (1 + r)^n</div>
+                <p>PV = Present Value, r = rate, n = years</p>
+            </div>
+            <div class="formula-box">
+                <h4>4% Withdrawal Rule</h4>
+                <div class="formula">Annual Withdrawal = Nest Egg x 0.04</div>
+                <p>$1M savings = $40,000/year withdrawal</p>
+            </div>
+            <div class="formula-box">
+                <h4>Inflation Impact</h4>
+                <div class="formula">Future Cost = Today's Cost x (1.03)^years</div>
+                <p>At 3% inflation: $100 becomes $181 in 20 years</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="stats-section">
+        <h3>Key Statistics to Remember</h3>
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="number">20-30</div>
+                <p>Years of retirement to plan for (age 65-85/95)</p>
+            </div>
+            <div class="stat-item">
+                <div class="number">7%</div>
+                <p>Historical average stock market return</p>
+            </div>
+            <div class="stat-item">
+                <div class="number">3%</div>
+                <p>Average annual inflation rate</p>
+            </div>
+            <div class="stat-item">
+                <div class="number">10-15%</div>
+                <p>Recommended savings rate of income</p>
+            </div>
+            <div class="stat-item">
+                <div class="number">$315,000</div>
+                <p>Estimated healthcare costs in retirement (couple)</p>
+            </div>
+            <div class="stat-item">
+                <div class="number">24</div>
+                <p>Years for money to double at 3% inflation</p>
+            </div>
+        </div>
+    </div>
+
+    <table class="comparison-table">
+        <thead>
+            <tr>
+                <th>Factor</th>
+                <th>Impact on Retirement</th>
+                <th>Planning Strategy</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Longer Life Expectancy</td>
+                <td>Need more savings; 20-30+ year retirement</td>
+                <td>Start early; save more; plan for longevity</td>
+            </tr>
+            <tr>
+                <td>Healthcare Costs</td>
+                <td>Major expense; increases with age</td>
+                <td>HSA accounts; Medicare planning; long-term care insurance</td>
+            </tr>
+            <tr>
+                <td>Inflation</td>
+                <td>Erodes purchasing power over time</td>
+                <td>Growth investments; TIPS; adjust withdrawals</td>
+            </tr>
+            <tr>
+                <td>Social Security</td>
+                <td>Provides base income; not full support</td>
+                <td>Delay benefits to age 70 for higher payout</td>
+            </tr>
+            <tr>
+                <td>Market Volatility</td>
+                <td>Can reduce portfolio value</td>
+                <td>Diversification; age-appropriate asset allocation</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="strategies-section">
+        <h3>Strategies to Address Retirement Income Shortfalls</h3>
+        <div class="strategy-grid">
+            <div class="strategy-box">
+                <h4>Increase Savings</h4>
+                <ul>
+                    <li>Maximize employer 401(k) match</li>
+                    <li>Automate savings contributions</li>
+                    <li>Increase rate by 1% annually</li>
+                    <li>Save windfalls and bonuses</li>
+                </ul>
+            </div>
+            <div class="strategy-box">
+                <h4>Extend Working Years</h4>
+                <ul>
+                    <li>Delay retirement for more saving time</li>
+                    <li>Higher Social Security benefits</li>
+                    <li>Fewer years to fund in retirement</li>
+                    <li>Continued health insurance</li>
+                </ul>
+            </div>
+            <div class="strategy-box">
+                <h4>Adjust Lifestyle</h4>
+                <ul>
+                    <li>Downsize housing</li>
+                    <li>Relocate to lower cost area</li>
+                    <li>Reduce discretionary spending</li>
+                    <li>Part-time work in retirement</li>
+                </ul>
+            </div>
+            <div class="strategy-box">
+                <h4>Smart Investing</h4>
+                <ul>
+                    <li>Maintain growth investments</li>
+                    <li>Diversify across asset classes</li>
+                    <li>Rebalance portfolio annually</li>
+                    <li>Consider annuities for guaranteed income</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="timeline-section">
+        <h3>Retirement Planning by Life Stage</h3>
+        <div class="timeline-grid">
+            <div class="timeline-item">
+                <h4>Ages 20-35: Build Foundation</h4>
+                <ul>
+                    <li>Start saving immediately</li>
+                    <li>Get employer match (free money)</li>
+                    <li>Open Roth IRA</li>
+                    <li>Build emergency fund</li>
+                    <li>Invest aggressively for growth</li>
+                </ul>
+            </div>
+            <div class="timeline-item">
+                <h4>Ages 35-50: Accelerate</h4>
+                <ul>
+                    <li>Increase savings rate</li>
+                    <li>Catch-up on any shortfalls</li>
+                    <li>Pay off high-interest debt</li>
+                    <li>Consider diversification</li>
+                    <li>Review insurance needs</li>
+                </ul>
+            </div>
+            <div class="timeline-item">
+                <h4>Ages 50-65: Final Push</h4>
+                <ul>
+                    <li>Max out catch-up contributions</li>
+                    <li>Shift to more conservative mix</li>
+                    <li>Plan healthcare transition</li>
+                    <li>Determine Social Security strategy</li>
+                    <li>Create withdrawal plan</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="key-takeaway">
+        <h3>Key Takeaway: The Power of Starting Early</h3>
+        <p>The most powerful factor in retirement planning is time. Starting at age 22 and investing $2,000/year for just 9 years ($18,000 total) can grow to approximately $243,000 by age 65. Waiting until age 31 and investing $2,000/year for 35 years ($70,000 total) results in only about $283,000. Starting early with smaller amounts beats starting late with larger amounts because of compounding. Every year you wait costs you significant potential growth.</p>
+    </div>
+
+    <div class="footer">
+        <p>PFL Academy - Chapter 20: Longevity and Retirement Planning</p>
+    </div>
+</body>
+</html>

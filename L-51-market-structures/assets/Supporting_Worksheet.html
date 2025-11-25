@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Market Structures Practice Worksheet - PFL Academy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background-color: #f9fafb;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+            color: white;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 0.95rem;
+        }
+
+        .content {
+            padding: 24px;
+        }
+
+        .section {
+            margin-bottom: 32px;
+            background: #f9fafb;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #6366f1;
+        }
+
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #6366f1;
+            margin-bottom: 16px;
+        }
+
+        .instructions {
+            background: #eef2ff;
+            padding: 12px 16px;
+            border-radius: 6px;
+            margin-bottom: 16px;
+            font-size: 0.9rem;
+        }
+
+        .question {
+            margin-bottom: 20px;
+        }
+
+        .question-text {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #374151;
+        }
+
+        .answer-space {
+            background: white;
+            padding: 12px;
+            border-radius: 6px;
+            border: 2px dashed #d1d5db;
+            min-height: 80px;
+        }
+
+        .answer-space textarea {
+            width: 100%;
+            min-height: 60px;
+            border: none;
+            background: transparent;
+            font-family: inherit;
+            font-size: 0.9rem;
+            resize: vertical;
+            outline: none;
+        }
+
+        .scenario-box {
+            background: white;
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 16px;
+            border: 1px solid #e5e7eb;
+        }
+
+        .scenario-box h4 {
+            color: #4f46e5;
+            margin-bottom: 8px;
+        }
+
+        .sub-questions {
+            margin-left: 16px;
+            margin-top: 12px;
+        }
+
+        .sub-questions label {
+            display: block;
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+            color: #374151;
+        }
+
+        .sub-questions input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+            margin-bottom: 12px;
+            font-size: 0.9rem;
+        }
+
+        .matching-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .matching-column {
+            background: white;
+            padding: 16px;
+            border-radius: 8px;
+        }
+
+        .matching-column h4 {
+            margin-bottom: 12px;
+            color: #374151;
+        }
+
+        .matching-item {
+            padding: 8px 12px;
+            background: #f3f4f6;
+            border-radius: 4px;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+
+        .matching-answer {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .matching-answer input {
+            width: 40px;
+            padding: 6px;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        .negotiation-plan {
+            background: #fff7ed;
+            border: 2px solid #fed7aa;
+            border-radius: 8px;
+            padding: 16px;
+        }
+
+        .negotiation-plan h4 {
+            color: #ea580c;
+            margin-bottom: 12px;
+        }
+
+        .negotiation-plan .input-group {
+            margin-bottom: 12px;
+        }
+
+        .negotiation-plan label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 6px;
+            font-size: 0.9rem;
+        }
+
+        .negotiation-plan input,
+        .negotiation-plan textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 12px;
+            margin-top: 24px;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-primary {
+            background: #6366f1;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #4f46e5;
+        }
+
+        .btn-secondary {
+            background: #10b981;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #059669;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 16px;
+            background: #f8fafc;
+            color: #6b7280;
+            font-size: 0.85rem;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 10px;
+                font-size: 12px;
+            }
+
+            .container {
+                box-shadow: none;
+            }
+
+            .btn {
+                display: none;
+            }
+
+            .section {
+                break-inside: avoid;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.5rem;
+            }
+
+            .content {
+                padding: 16px;
+            }
+
+            .matching-section {
+                grid-template-columns: 1fr;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Market Structures Practice Worksheet</h1>
+            <p>Practice exercises for structure classification, consumer surplus, and negotiation planning</p>
+        </div>
+
+        <div class="content">
+            <!-- Part 1: Identifying Market Structures -->
+            <div class="section">
+                <h3 class="section-title">Part 1: Identifying Market Structures</h3>
+                <div class="instructions">
+                    <strong>Instructions:</strong> For each business/industry, identify the market structure (Perfect Competition, Monopolistic Competition, Oligopoly, or Monopoly) and explain your reasoning.
+                </div>
+
+                <div class="question">
+                    <div class="question-text">1. Local electric utility company</div>
+                    <div class="answer-space"><textarea placeholder="Market structure and reasoning..."></textarea></div>
+                </div>
+
+                <div class="question">
+                    <div class="question-text">2. Fast food restaurants (McDonald's, Burger King, Wendy's, etc.)</div>
+                    <div class="answer-space"><textarea placeholder="Market structure and reasoning..."></textarea></div>
+                </div>
+
+                <div class="question">
+                    <div class="question-text">3. Farmers selling corn at a commodity exchange</div>
+                    <div class="answer-space"><textarea placeholder="Market structure and reasoning..."></textarea></div>
+                </div>
+
+                <div class="question">
+                    <div class="question-text">4. Smartphone manufacturers (Apple, Samsung, Google)</div>
+                    <div class="answer-space"><textarea placeholder="Market structure and reasoning..."></textarea></div>
+                </div>
+
+                <div class="question">
+                    <div class="question-text">5. Coffee shops in your neighborhood</div>
+                    <div class="answer-space"><textarea placeholder="Market structure and reasoning..."></textarea></div>
+                </div>
+            </div>
+
+            <!-- Part 2: Consumer Surplus Scenarios -->
+            <div class="section">
+                <h3 class="section-title">Part 2: Consumer Surplus Scenarios</h3>
+                <div class="instructions">
+                    <strong>Instructions:</strong> For each scenario, analyze the market structure and how it affects your consumer surplus (the difference between what you're willing to pay and what you actually pay).
+                </div>
+
+                <div class="scenario-box">
+                    <h4>Scenario A: Internet Service</h4>
+                    <p>You need internet service for your apartment. There's only one provider in your area charging $80/month. You value internet at $100/month.</p>
+                    <div class="sub-questions">
+                        <label>a) What market structure is this?</label>
+                        <input type="text" placeholder="Your answer...">
+                        <label>b) What is your consumer surplus?</label>
+                        <input type="text" placeholder="Calculate: Value - Price = $...">
+                        <label>c) What consumer protections might help you?</label>
+                        <input type="text" placeholder="Your answer...">
+                        <label>d) What long-term alternatives could you consider?</label>
+                        <input type="text" placeholder="Your answer...">
+                    </div>
+                </div>
+
+                <div class="scenario-box">
+                    <h4>Scenario B: Smartphone Purchase</h4>
+                    <p>You're buying a new smartphone. Three major brands (Apple, Samsung, Google) dominate 90% of the market. You value a good phone at $900, and prices range from $700-$1200.</p>
+                    <div class="sub-questions">
+                        <label>a) What market structure is this?</label>
+                        <input type="text" placeholder="Your answer...">
+                        <label>b) How does this affect your bargaining power?</label>
+                        <input type="text" placeholder="Your answer...">
+                        <label>c) What strategies can you use to maximize your consumer surplus?</label>
+                        <input type="text" placeholder="Your answer...">
+                    </div>
+                </div>
+
+                <div class="scenario-box">
+                    <h4>Scenario C: Generic Medication</h4>
+                    <p>You need ibuprofen for headaches. Store brand costs $4, Advil costs $12. Both contain the exact same active ingredient in the same dosage.</p>
+                    <div class="sub-questions">
+                        <label>a) What market structure is this?</label>
+                        <input type="text" placeholder="Your answer...">
+                        <label>b) Which should you buy and why?</label>
+                        <input type="text" placeholder="Your answer...">
+                        <label>c) Why does the brand name cost more if the product is identical?</label>
+                        <input type="text" placeholder="Your answer...">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Part 3: Matching Exercise -->
+            <div class="section">
+                <h3 class="section-title">Part 3: Match the Strategy to the Market Structure</h3>
+                <div class="instructions">
+                    <strong>Instructions:</strong> Match each consumer strategy (A-D) with the appropriate market structure (1-4).
+                </div>
+
+                <div class="matching-section">
+                    <div class="matching-column">
+                        <h4>Market Structures:</h4>
+                        <div class="matching-item">1. Perfect Competition</div>
+                        <div class="matching-item">2. Monopolistic Competition</div>
+                        <div class="matching-item">3. Oligopoly</div>
+                        <div class="matching-item">4. Monopoly</div>
+                    </div>
+                    <div class="matching-column">
+                        <h4>Consumer Strategies:</h4>
+                        <div class="matching-answer">
+                            <input type="text" placeholder="#">
+                            <span>A. Minimize consumption; look for long-term substitutes</span>
+                        </div>
+                        <div class="matching-answer">
+                            <input type="text" placeholder="#">
+                            <span>B. Shop by price alone; use comparison apps</span>
+                        </div>
+                        <div class="matching-answer">
+                            <input type="text" placeholder="#">
+                            <span>C. Negotiate at renewal; use competitor offers as leverage</span>
+                        </div>
+                        <div class="matching-answer">
+                            <input type="text" placeholder="#">
+                            <span>D. Evaluate if differentiation is worth the premium</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Part 4: Negotiation Planning -->
+            <div class="section">
+                <h3 class="section-title">Part 4: Negotiation Planning</h3>
+                <div class="instructions">
+                    <strong>Instructions:</strong> Choose an oligopoly service you currently use and create a negotiation plan.
+                </div>
+
+                <div class="negotiation-plan">
+                    <h4>Your Negotiation Plan</h4>
+                    <div class="input-group">
+                        <label>Service to negotiate (e.g., cell phone, car insurance, internet):</label>
+                        <input type="text" placeholder="Enter service...">
+                    </div>
+                    <div class="input-group">
+                        <label>Current provider and monthly cost:</label>
+                        <input type="text" placeholder="Provider: $XX/month">
+                    </div>
+                    <div class="input-group">
+                        <label>Competitor offers you've researched:</label>
+                        <textarea placeholder="List at least 2 competitor offers with prices..."></textarea>
+                    </div>
+                    <div class="input-group">
+                        <label>Your negotiation script:</label>
+                        <textarea placeholder="Write what you'll say when you call to negotiate..."></textarea>
+                    </div>
+                    <div class="input-group">
+                        <label>Target savings per month:</label>
+                        <input type="text" placeholder="$">
+                    </div>
+                    <div class="input-group">
+                        <label>When will you make this call?</label>
+                        <input type="text" placeholder="Date/time...">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Part 5: Personal Application -->
+            <div class="section">
+                <h3 class="section-title">Part 5: Personal Application</h3>
+                <div class="question">
+                    <div class="question-text">List 3 monopolistic or oligopolistic markets you interact with regularly. For each, describe how the market structure affects prices and your options:</div>
+                    <div class="answer-space" style="min-height: 150px;">
+                        <textarea placeholder="1. [Market/Service]:
+   Market structure:
+   How it affects me:
+
+2. [Market/Service]:
+   Market structure:
+   How it affects me:
+
+3. [Market/Service]:
+   Market structure:
+   How it affects me:"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="button-group">
+                <button class="btn btn-primary" onclick="window.print()">Print Worksheet</button>
+                <button class="btn btn-secondary" onclick="clearForm()">Clear Form</button>
+            </div>
+        </div>
+
+        <div class="footer">
+            PFL Academy - L-51: Market Structures and Consumer Choice
+        </div>
+    </div>
+
+    <script>
+        function clearForm() {
+            if (confirm('Are you sure you want to clear all entries?')) {
+                document.querySelectorAll('input[type="text"], textarea').forEach(input => {
+                    input.value = '';
+                });
+            }
+        }
+    </script>
+</body>
+</html>

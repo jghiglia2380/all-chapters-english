@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Incentive Design Worksheet - PFL Academy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background-color: #f9fafb;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+            color: white;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 24px;
+        }
+
+        .section {
+            margin-bottom: 24px;
+        }
+
+        .section-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #4f46e5;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e5e7eb;
+        }
+
+        .concept-box {
+            background: #eef2ff;
+            border: 2px solid #6366f1;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 20px;
+        }
+
+        .concept-box h3 {
+            color: #4f46e5;
+            margin-bottom: 8px;
+        }
+
+        .goal-selection {
+            margin-bottom: 24px;
+        }
+
+        .goal-option {
+            display: flex;
+            align-items: center;
+            padding: 12px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .goal-option:hover {
+            border-color: #6366f1;
+            background: #f9fafb;
+        }
+
+        .goal-option input[type="radio"] {
+            margin-right: 12px;
+        }
+
+        .goal-option.selected {
+            border-color: #6366f1;
+            background: #eef2ff;
+        }
+
+        .custom-goal {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .custom-goal input[type="text"] {
+            flex: 1;
+            padding: 8px 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+        }
+
+        .incentive-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        .incentive-table th {
+            background: #f3f4f6;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+            color: #374151;
+            border: 1px solid #e5e7eb;
+            width: 30%;
+        }
+
+        .incentive-table td {
+            padding: 12px;
+            border: 1px solid #e5e7eb;
+            vertical-align: top;
+        }
+
+        .incentive-table input[type="text"],
+        .incentive-table input[type="number"],
+        .incentive-table textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+
+        .incentive-table textarea {
+            resize: vertical;
+            min-height: 60px;
+        }
+
+        .incentive-category {
+            background: #f9fafb;
+            font-weight: 600;
+            color: #4f46e5;
+        }
+
+        .sub-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .sub-item label {
+            min-width: 180px;
+            font-size: 0.9rem;
+        }
+
+        .sub-item input {
+            flex: 1;
+        }
+
+        .example-section {
+            background: #f0fdf4;
+            border: 2px solid #86efac;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 24px;
+        }
+
+        .example-section h3 {
+            color: #166534;
+            margin-bottom: 16px;
+        }
+
+        .example-card {
+            background: white;
+            border: 1px solid #86efac;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+
+        .example-card:last-child {
+            margin-bottom: 0;
+        }
+
+        .example-card h4 {
+            color: #15803d;
+            margin-bottom: 12px;
+        }
+
+        .example-item {
+            display: flex;
+            margin-bottom: 8px;
+        }
+
+        .example-item strong {
+            min-width: 100px;
+            color: #166534;
+        }
+
+        .discussion-section {
+            background: #fef3c7;
+            border: 2px solid #f59e0b;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 24px;
+        }
+
+        .discussion-section h3 {
+            color: #92400e;
+            margin-bottom: 16px;
+        }
+
+        .discussion-question {
+            margin-bottom: 16px;
+        }
+
+        .discussion-question p {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #78350f;
+        }
+
+        .discussion-question textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #fcd34d;
+            border-radius: 4px;
+            resize: vertical;
+            min-height: 60px;
+            font-size: 0.9rem;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 16px;
+            background: #f9fafb;
+            border-top: 1px solid #e5e7eb;
+            font-size: 0.85rem;
+            color: #6b7280;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 10px;
+            }
+
+            .container {
+                box-shadow: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .incentive-table th {
+                width: 40%;
+            }
+
+            .sub-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .sub-item label {
+                min-width: auto;
+                margin-bottom: 4px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Incentive Design Worksheet</h1>
+            <p>Create personalized incentive systems to achieve your financial goals</p>
+        </div>
+
+        <div class="content">
+            <div class="concept-box">
+                <h3>Concept Review</h3>
+                <p><strong>Incentives motivate action.</strong> You can design incentives for yourself to achieve financial goals. There are four types: positive (rewards), negative (consequences), structural (systems), and social (accountability).</p>
+            </div>
+
+            <div class="section">
+                <div class="section-title">Step 1: Choose Your Financial Goal</div>
+
+                <div class="goal-selection">
+                    <label class="goal-option">
+                        <input type="radio" name="goal" value="save2000" onchange="updateGoal()">
+                        Save $2,000 for a specific purpose by a target date
+                    </label>
+                    <label class="goal-option">
+                        <input type="radio" name="goal" value="reduce" onchange="updateGoal()">
+                        Reduce discretionary spending by $100/month
+                    </label>
+                    <label class="goal-option">
+                        <input type="radio" name="goal" value="increase" onchange="updateGoal()">
+                        Increase income by $200/month
+                    </label>
+                    <label class="goal-option">
+                        <input type="radio" name="goal" value="emergency" onchange="updateGoal()">
+                        Build emergency fund to $1,500
+                    </label>
+                    <label class="goal-option">
+                        <input type="radio" name="goal" value="custom" onchange="updateGoal()">
+                        <div class="custom-goal">
+                            Other: <input type="text" id="custom-goal" placeholder="Describe your goal">
+                        </div>
+                    </label>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-title">Step 2: Design Your Incentive System</div>
+
+                <table class="incentive-table">
+                    <tbody>
+                        <tr>
+                            <th>Goal</th>
+                            <td>
+                                <input type="text" id="specific-goal" placeholder="Be specific: amount, purpose, and deadline">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="incentive-category" colspan="2">Positive Incentives (Rewards for Progress)</th>
+                        </tr>
+                        <tr>
+                            <th>Small milestone reward</th>
+                            <td>
+                                <div class="sub-item">
+                                    <label>When I reach</label>
+                                    <input type="text" placeholder="e.g., 25%">
+                                </div>
+                                <div class="sub-item">
+                                    <label>I will reward myself with</label>
+                                    <input type="text" placeholder="e.g., favorite coffee drink">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Medium milestone reward</th>
+                            <td>
+                                <div class="sub-item">
+                                    <label>When I reach</label>
+                                    <input type="text" placeholder="e.g., 50%">
+                                </div>
+                                <div class="sub-item">
+                                    <label>I will reward myself with</label>
+                                    <input type="text" placeholder="e.g., dinner at favorite restaurant">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Goal completion reward</th>
+                            <td>
+                                <div class="sub-item">
+                                    <label>When I complete the goal</label>
+                                    <input type="text" placeholder="e.g., buy that item I've wanted">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="incentive-category" colspan="2">Negative Incentives (Consequences for Falling Short)</th>
+                        </tr>
+                        <tr>
+                            <th>If I don't hit weekly target</th>
+                            <td>
+                                <input type="text" placeholder="e.g., I must skip entertainment that week">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>If I spend outside budget</th>
+                            <td>
+                                <input type="text" placeholder="e.g., I must add double that amount to savings">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Accountability partner</th>
+                            <td>
+                                <input type="text" placeholder="Who will check your progress? How often?">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="incentive-category" colspan="2">Structural Incentives (Make It Easier to Succeed)</th>
+                        </tr>
+                        <tr>
+                            <th>Automate savings</th>
+                            <td>
+                                <div class="sub-item">
+                                    <label>Set up automatic transfer of $</label>
+                                    <input type="number" placeholder="amount">
+                                </div>
+                                <div class="sub-item">
+                                    <label>Frequency</label>
+                                    <input type="text" placeholder="e.g., weekly, bi-weekly">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Remove temptation</th>
+                            <td>
+                                <div class="sub-item">
+                                    <label>I will delete/avoid</label>
+                                    <input type="text" placeholder="e.g., shopping apps, certain stores">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Visual tracking</th>
+                            <td>
+                                <input type="text" placeholder="e.g., spreadsheet, app, chart on wall">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="incentive-category" colspan="2">Social Incentives (Peer Pressure/Support)</th>
+                        </tr>
+                        <tr>
+                            <th>Accountability buddy</th>
+                            <td>
+                                <input type="text" placeholder="Who? How will they hold you accountable?">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Public commitment</th>
+                            <td>
+                                <input type="text" placeholder="Who will you tell about your goal?">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Friendly competition</th>
+                            <td>
+                                <input type="text" placeholder="Who will you challenge to save with you?">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="example-section">
+                <h3>Examples from Other Students</h3>
+
+                <div class="example-card">
+                    <h4>Example 1: Marcus (Saving for Car)</h4>
+                    <div class="example-item">
+                        <strong>Goal:</strong>
+                        <span>Save $3,000 in 6 months</span>
+                    </div>
+                    <div class="example-item">
+                        <strong>Positive:</strong>
+                        <span>Every $500 saved = dinner out at favorite restaurant</span>
+                    </div>
+                    <div class="example-item">
+                        <strong>Negative:</strong>
+                        <span>If he misses weekly goal, he skips his favorite streaming service that week</span>
+                    </div>
+                    <div class="example-item">
+                        <strong>Structural:</strong>
+                        <span>Automatic $115/week transfer to separate savings account, can't access with debit card</span>
+                    </div>
+                    <div class="example-item">
+                        <strong>Social:</strong>
+                        <span>Told his sister his goal; she texts him every Friday to check progress</span>
+                    </div>
+                </div>
+
+                <div class="example-card">
+                    <h4>Example 2: Aisha (Reducing Spending)</h4>
+                    <div class="example-item">
+                        <strong>Goal:</strong>
+                        <span>Cut discretionary spending from $400/month to $250/month</span>
+                    </div>
+                    <div class="example-item">
+                        <strong>Positive:</strong>
+                        <span>Save $150/month x 12 = $1,800/year; reward herself with $300 vacation using savings</span>
+                    </div>
+                    <div class="example-item">
+                        <strong>Negative:</strong>
+                        <span>Uses cash-only system for discretionary spending; when it's gone, it's gone</span>
+                    </div>
+                    <div class="example-item">
+                        <strong>Structural:</strong>
+                        <span>Deleted food delivery apps, unsubscribed from marketing emails</span>
+                    </div>
+                    <div class="example-item">
+                        <strong>Social:</strong>
+                        <span>Joins "No-Spend Challenge" with friends; they support each other</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="discussion-section">
+                <h3>Discussion Questions</h3>
+
+                <div class="discussion-question">
+                    <p>1. Which type of incentive (positive, negative, structural, social) is most powerful for YOU? Why?</p>
+                    <textarea placeholder="Your answer..."></textarea>
+                </div>
+
+                <div class="discussion-question">
+                    <p>2. How do your incentives align with your values and personality?</p>
+                    <textarea placeholder="Your answer..."></textarea>
+                </div>
+
+                <div class="discussion-question">
+                    <p>3. What incentives have you seen work in other areas of life (school, work, sports, etc.)?</p>
+                    <textarea placeholder="Your answer..."></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            PFL Academy - L-49: Scarcity, Opportunity Cost, and Incentives | Activity 3
+        </div>
+    </div>
+
+    <script>
+        function updateGoal() {
+            const goalOptions = document.querySelectorAll('.goal-option');
+            goalOptions.forEach(option => {
+                const radio = option.querySelector('input[type="radio"]');
+                if (radio.checked) {
+                    option.classList.add('selected');
+                } else {
+                    option.classList.remove('selected');
+                }
+            });
+
+            // Update the specific goal field based on selection
+            const selectedGoal = document.querySelector('input[name="goal"]:checked');
+            if (selectedGoal) {
+                const goalField = document.getElementById('specific-goal');
+                switch (selectedGoal.value) {
+                    case 'save2000':
+                        goalField.placeholder = 'e.g., Save $2,000 for a used car by June 2025';
+                        break;
+                    case 'reduce':
+                        goalField.placeholder = 'e.g., Reduce discretionary spending from $300 to $200/month';
+                        break;
+                    case 'increase':
+                        goalField.placeholder = 'e.g., Increase income by $200/month through tutoring';
+                        break;
+                    case 'emergency':
+                        goalField.placeholder = 'e.g., Build emergency fund to $1,500 by December 2025';
+                        break;
+                    default:
+                        goalField.placeholder = 'Be specific: amount, purpose, and deadline';
+                }
+            }
+        }
+    </script>
+</body>
+</html>

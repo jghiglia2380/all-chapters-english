@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real vs. Nominal Value Calculator</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        header { text-align: center; margin-bottom: 30px; }
+        h1 { font-size: 2rem; color: #6366f1; margin-bottom: 10px; }
+        .subtitle { color: #6b7280; }
+        .formula-box {
+            background: #f0f9ff;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            margin-bottom: 25px;
+            border: 2px solid #3b82f6;
+        }
+        .formula {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #1e40af;
+        }
+        .input-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        .input-group { background: #f9fafb; padding: 15px; border-radius: 10px; }
+        label { display: block; font-weight: 600; margin-bottom: 8px; color: #374151; font-size: 0.9rem; }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+        input:focus, select:focus { outline: none; border-color: #6366f1; }
+        .calc-btn {
+            width: 100%;
+            padding: 15px;
+            background: #6366f1;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 25px;
+        }
+        .calc-btn:hover { background: #4f46e5; }
+        .results { display: none; }
+        .results.active { display: block; }
+        .result-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .result-card {
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+        }
+        .result-card h3 { font-size: 0.85rem; margin-bottom: 5px; }
+        .result-value { font-size: 1.8rem; font-weight: bold; }
+        .nominal-card { background: #e0e7ff; color: #3730a3; }
+        .real-card { background: #d1fae5; color: #065f46; }
+        .loss-card { background: #fee2e2; color: #dc2626; }
+        .percent-card { background: #fef3c7; color: #92400e; }
+        .insight-box {
+            background: #f0fdf4;
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid #10b981;
+        }
+        .insight-box h3 { color: #065f46; margin-bottom: 10px; font-size: 1rem; }
+        .insight-box p { color: #064e3b; font-size: 0.95rem; }
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #e5e7eb;
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+        @media print {
+            body { background: white; padding: 0; }
+            .container { box-shadow: none; }
+            .calc-btn { display: none; }
+        }
+        @media (max-width: 768px) {
+            .result-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Real vs. Nominal Value Calculator</h1>
+            <p class="subtitle">Calculate purchasing power erosion over time</p>
+        </header>
+
+        <div class="formula-box">
+            <div class="formula">Real Value = Nominal Value ÷ (1 + Inflation Rate)^Years</div>
+        </div>
+
+        <div class="input-section">
+            <div class="input-group">
+                <label>Current Salary ($)</label>
+                <input type="number" id="salary" value="50000" min="0">
+            </div>
+            <div class="input-group">
+                <label>Annual Raise (%)</label>
+                <input type="number" id="raise" value="2" min="0" max="20" step="0.5">
+            </div>
+            <div class="input-group">
+                <label>Inflation Rate (%)</label>
+                <input type="number" id="inflation" value="3" min="0" max="20" step="0.5">
+            </div>
+            <div class="input-group">
+                <label>Time Period (Years)</label>
+                <input type="number" id="years" value="10" min="1" max="40">
+            </div>
+        </div>
+
+        <button class="calc-btn" onclick="calculate()">Calculate Purchasing Power</button>
+
+        <div class="results" id="results">
+            <div class="result-grid">
+                <div class="result-card nominal-card">
+                    <h3>Future Nominal Salary</h3>
+                    <div class="result-value" id="nominalValue">$0</div>
+                </div>
+                <div class="result-card real-card">
+                    <h3>Real Value (Today's $)</h3>
+                    <div class="result-value" id="realValue">$0</div>
+                </div>
+                <div class="result-card loss-card">
+                    <h3>Purchasing Power Loss</h3>
+                    <div class="result-value" id="lossValue">$0</div>
+                </div>
+                <div class="result-card percent-card">
+                    <h3>Real Raise Needed</h3>
+                    <div class="result-value" id="neededRaise">0%</div>
+                </div>
+            </div>
+
+            <div class="insight-box">
+                <h3>Key Insight</h3>
+                <p id="insightText"></p>
+            </div>
+        </div>
+
+        <footer>
+            <p><strong>PFL Academy</strong> | Inflation and Unemployment</p>
+        </footer>
+    </div>
+
+    <script>
+        function calculate() {
+            const salary = parseFloat(document.getElementById('salary').value);
+            const raise = parseFloat(document.getElementById('raise').value) / 100;
+            const inflation = parseFloat(document.getElementById('inflation').value) / 100;
+            const years = parseInt(document.getElementById('years').value);
+
+            const nominalFuture = salary * Math.pow(1 + raise, years);
+            const realFuture = nominalFuture / Math.pow(1 + inflation, years);
+            const loss = nominalFuture - realFuture;
+            const neededRaise = ((inflation + 0.02) * 100).toFixed(1);
+
+            document.getElementById('nominalValue').textContent = '$' + Math.round(nominalFuture).toLocaleString();
+            document.getElementById('realValue').textContent = '$' + Math.round(realFuture).toLocaleString();
+            document.getElementById('lossValue').textContent = '$' + Math.round(loss).toLocaleString();
+            document.getElementById('neededRaise').textContent = neededRaise + '%';
+
+            let insight = '';
+            if (raise > inflation) {
+                const realGain = ((realFuture / salary - 1) * 100).toFixed(1);
+                insight = `Good news! Your ${(raise * 100).toFixed(1)}% annual raise exceeds ${(inflation * 100).toFixed(1)}% inflation. Your purchasing power increases by ${realGain}% over ${years} years. You're getting ahead!`;
+            } else if (raise < inflation) {
+                const realLoss = ((1 - realFuture / salary) * 100).toFixed(1);
+                insight = `Warning: Your ${(raise * 100).toFixed(1)}% raise is less than ${(inflation * 100).toFixed(1)}% inflation. Your purchasing power decreases by ${realLoss}% over ${years} years. You need to negotiate raises of at least ${neededRaise}% to maintain and grow your standard of living.`;
+            } else {
+                insight = `Your raise matches inflation, so your purchasing power stays roughly the same. To actually improve your standard of living, aim for raises above ${(inflation * 100).toFixed(1)}%.`;
+            }
+
+            document.getElementById('insightText').textContent = insight;
+            document.getElementById('results').classList.add('active');
+        }
+    </script>
+</body>
+</html>

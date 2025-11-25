@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tax Brackets and Rates Worksheet - PFL Academy</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-size: 12px;
+            line-height: 1.6;
+            color: #1f2937;
+            padding: 20px;
+            max-width: 850px;
+            margin: 0 auto;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 3px solid #6366f1;
+        }
+        .header h1 { font-size: 22px; color: #6366f1; margin-bottom: 4px; }
+        .header p { color: #6b7280; }
+        .section { margin-bottom: 24px; }
+        .section h2 {
+            font-size: 16px;
+            color: #6366f1;
+            margin-bottom: 12px;
+            padding-bottom: 6px;
+            border-bottom: 2px solid #e5e7eb;
+        }
+        .question { margin-bottom: 16px; }
+        .question-number {
+            display: inline-block;
+            background: #6366f1;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 24px;
+            font-weight: 600;
+            margin-right: 8px;
+        }
+        .question-text { font-weight: 600; margin-bottom: 8px; }
+        .answer-box {
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            padding: 12px;
+            min-height: 60px;
+            background: #fafafa;
+        }
+        .answer-box.tall { min-height: 100px; }
+        .calculation-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 12px 0;
+        }
+        .calculation-table th, .calculation-table td {
+            border: 1px solid #d1d5db;
+            padding: 8px;
+            text-align: left;
+        }
+        .calculation-table th {
+            background: #f3f4f6;
+            font-weight: 600;
+        }
+        .scenario-box {
+            background: #eff6ff;
+            border-left: 4px solid #3b82f6;
+            padding: 12px;
+            margin: 12px 0;
+            border-radius: 4px;
+        }
+        .scenario-box h3 { font-size: 14px; color: #3b82f6; margin-bottom: 8px; }
+        .fill-in { border-bottom: 1px solid #6366f1; display: inline-block; min-width: 80px; }
+        .multiple-choice { margin: 8px 0 8px 20px; }
+        .multiple-choice label { display: block; margin: 4px 0; }
+        @media print {
+            body { padding: 10px; }
+            .answer-box { min-height: 80px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Tax Brackets and Rates Worksheet</h1>
+        <p>Name: _________________ Date: _________________</p>
+    </div>
+
+    <div class="section">
+        <h2>Part 1: Understanding Tax Brackets</h2>
+
+        <div class="question">
+            <p class="question-text"><span class="question-number">1</span>Explain the difference between marginal tax rate and effective tax rate.</p>
+            <div class="answer-box tall"></div>
+        </div>
+
+        <div class="question">
+            <p class="question-text"><span class="question-number">2</span>Why does the U.S. use a progressive tax system? What are the pros and cons?</p>
+            <div class="answer-box tall"></div>
+        </div>
+
+        <div class="question">
+            <p class="question-text"><span class="question-number">3</span>If someone earns $50,000 and is in the "22% tax bracket," does that mean they pay 22% on all $50,000? Explain.</p>
+            <div class="answer-box"></div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Part 2: Tax Calculations</h2>
+
+        <div class="scenario-box">
+            <h3>Scenario: Jamie's Tax Situation</h3>
+            <p>Jamie is single with a gross income of $55,000. She takes the standard deduction of $14,600 and contributes $3,000 to her 401(k).</p>
+        </div>
+
+        <div class="question">
+            <p class="question-text"><span class="question-number">4</span>Calculate Jamie's taxable income:</p>
+            <table class="calculation-table">
+                <tr>
+                    <td>Gross Income</td>
+                    <td>$55,000</td>
+                </tr>
+                <tr>
+                    <td>Minus: Standard Deduction</td>
+                    <td>- $<span class="fill-in"></span></td>
+                </tr>
+                <tr>
+                    <td>Minus: Pre-tax Contributions</td>
+                    <td>- $<span class="fill-in"></span></td>
+                </tr>
+                <tr>
+                    <td><strong>Taxable Income</strong></td>
+                    <td><strong>= $<span class="fill-in"></span></strong></td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="question">
+            <p class="question-text"><span class="question-number">5</span>Calculate Jamie's federal tax using the 2024 brackets (Single):</p>
+            <table class="calculation-table">
+                <tr>
+                    <th>Bracket</th>
+                    <th>Income Range</th>
+                    <th>Income in Bracket</th>
+                    <th>Tax Rate</th>
+                    <th>Tax Amount</th>
+                </tr>
+                <tr>
+                    <td>10%</td>
+                    <td>$0 - $11,600</td>
+                    <td>$<span class="fill-in"></span></td>
+                    <td>× 10%</td>
+                    <td>= $<span class="fill-in"></span></td>
+                </tr>
+                <tr>
+                    <td>12%</td>
+                    <td>$11,601 - $47,150</td>
+                    <td>$<span class="fill-in"></span></td>
+                    <td>× 12%</td>
+                    <td>= $<span class="fill-in"></span></td>
+                </tr>
+                <tr>
+                    <td>22%</td>
+                    <td>$47,151 - $100,525</td>
+                    <td>$<span class="fill-in"></span></td>
+                    <td>× 22%</td>
+                    <td>= $<span class="fill-in"></span></td>
+                </tr>
+                <tr>
+                    <td colspan="4"><strong>Total Federal Tax</strong></td>
+                    <td><strong>= $<span class="fill-in"></span></strong></td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="question">
+            <p class="question-text"><span class="question-number">6</span>Calculate Jamie's marginal and effective tax rates:</p>
+            <p>Marginal Tax Rate: <span class="fill-in"></span>%</p>
+            <p>Effective Tax Rate: Total Tax ÷ Taxable Income = $_______ ÷ $_______ = <span class="fill-in"></span>%</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Part 3: Tax Planning Strategies</h2>
+
+        <div class="question">
+            <p class="question-text"><span class="question-number">7</span>If Jamie increases her 401(k) contribution from $3,000 to $6,000, how would this affect her:</p>
+            <p>a) Taxable income: $<span class="fill-in"></span></p>
+            <p>b) Tax bracket: <span class="fill-in"></span></p>
+            <p>c) Total tax (estimate): $<span class="fill-in"></span></p>
+            <p>d) Tax savings: $<span class="fill-in"></span></p>
+        </div>
+
+        <div class="question">
+            <p class="question-text"><span class="question-number">8</span>List three legal strategies to reduce taxable income:</p>
+            <div class="answer-box"></div>
+        </div>
+
+        <div class="question">
+            <p class="question-text"><span class="question-number">9</span>What is the difference between tax avoidance and tax evasion?</p>
+            <div class="answer-box"></div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Part 4: Critical Thinking</h2>
+
+        <div class="question">
+            <p class="question-text"><span class="question-number">10</span>A coworker says, "I don't want a raise because it will put me in a higher tax bracket and I'll actually take home less money." Is this statement accurate? Explain your reasoning.</p>
+            <div class="answer-box tall"></div>
+        </div>
+
+        <div class="question">
+            <p class="question-text"><span class="question-number">11</span>Compare a flat tax system (everyone pays 15%) to the progressive system. Which would result in lower taxes for someone earning $40,000? For someone earning $200,000? Show your work.</p>
+            <div class="answer-box tall"></div>
+        </div>
+    </div>
+</body>
+</html>

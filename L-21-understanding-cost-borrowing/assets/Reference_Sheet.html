@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cost of Borrowing Reference Sheet - PFL Academy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            font-size: 12px;
+            line-height: 1.5;
+            color: #1f2937;
+            padding: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 3px solid #6366f1;
+        }
+
+        .header h1 {
+            font-size: 24px;
+            color: #6366f1;
+            margin-bottom: 4px;
+        }
+
+        .header p {
+            color: #6b7280;
+            font-size: 12px;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .concept-box {
+            background: #f9fafb;
+            padding: 12px;
+            border-radius: 6px;
+            border-left: 4px solid #6366f1;
+        }
+
+        .concept-box h3 {
+            font-size: 14px;
+            font-weight: 700;
+            color: #6366f1;
+            margin-bottom: 8px;
+        }
+
+        .concept-box ul {
+            margin-left: 16px;
+            margin-bottom: 8px;
+        }
+
+        .concept-box li {
+            margin-bottom: 3px;
+        }
+
+        .formula-section {
+            background: #eff6ff;
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 16px;
+        }
+
+        .formula-section h3 {
+            font-size: 14px;
+            font-weight: 600;
+            color: #3b82f6;
+            margin-bottom: 8px;
+        }
+
+        .formula-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+        }
+
+        .formula-box {
+            background: white;
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #dbeafe;
+        }
+
+        .formula-box h4 {
+            font-size: 11px;
+            font-weight: 600;
+            margin-bottom: 4px;
+            color: #1e40af;
+        }
+
+        .formula-box .formula {
+            font-family: monospace;
+            font-size: 11px;
+            background: #f3f4f6;
+            padding: 4px 6px;
+            border-radius: 3px;
+            margin-bottom: 4px;
+        }
+
+        .formula-box p {
+            font-size: 10px;
+            color: #4b5563;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 16px;
+            font-size: 11px;
+        }
+
+        .comparison-table th {
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+            color: white;
+            padding: 10px 8px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .comparison-table td {
+            padding: 8px;
+            border-bottom: 1px solid #e5e7eb;
+            vertical-align: top;
+        }
+
+        .comparison-table tr:hover {
+            background-color: #f9fafb;
+        }
+
+        .comparison-table td:first-child {
+            font-weight: 600;
+            background: #f9fafb;
+            width: 20%;
+        }
+
+        .example-section {
+            background: #fef3c7;
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 16px;
+        }
+
+        .example-section h3 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #b45309;
+        }
+
+        .example-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+        }
+
+        .example-item {
+            background: white;
+            padding: 8px;
+            border-radius: 4px;
+        }
+
+        .example-item h4 {
+            font-size: 11px;
+            font-weight: 600;
+            margin-bottom: 4px;
+            color: #b45309;
+        }
+
+        .example-item p {
+            font-size: 10px;
+            color: #4b5563;
+            margin-bottom: 2px;
+        }
+
+        .example-item .highlight {
+            font-weight: 600;
+            color: #dc2626;
+        }
+
+        .warning-section {
+            background: #fef2f2;
+            padding: 12px;
+            border-radius: 6px;
+            border-left: 4px solid #ef4444;
+            margin-bottom: 16px;
+        }
+
+        .warning-section h3 {
+            font-size: 14px;
+            font-weight: 600;
+            color: #dc2626;
+            margin-bottom: 8px;
+        }
+
+        .warning-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+        }
+
+        .warning-box {
+            background: white;
+            padding: 8px;
+            border-radius: 4px;
+        }
+
+        .warning-box h4 {
+            font-size: 11px;
+            font-weight: 600;
+            margin-bottom: 4px;
+            color: #dc2626;
+        }
+
+        .warning-box ul {
+            margin-left: 12px;
+            font-size: 10px;
+        }
+
+        .warning-box li {
+            margin-bottom: 2px;
+        }
+
+        .tips-section {
+            background: #ecfdf5;
+            padding: 12px;
+            border-radius: 6px;
+            border-left: 4px solid #10b981;
+            margin-bottom: 16px;
+        }
+
+        .tips-section h3 {
+            font-size: 14px;
+            font-weight: 600;
+            color: #059669;
+            margin-bottom: 8px;
+        }
+
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+        }
+
+        .tip-box {
+            padding: 8px;
+            border-radius: 4px;
+            background: white;
+        }
+
+        .tip-box h4 {
+            font-size: 11px;
+            font-weight: 600;
+            margin-bottom: 4px;
+            color: #059669;
+        }
+
+        .tip-box ul {
+            margin-left: 12px;
+            font-size: 10px;
+        }
+
+        .tip-box li {
+            margin-bottom: 2px;
+        }
+
+        .decision-section {
+            background: #f5f3ff;
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 16px;
+        }
+
+        .decision-section h3 {
+            font-size: 14px;
+            font-weight: 600;
+            color: #7c3aed;
+            margin-bottom: 8px;
+        }
+
+        .decision-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+
+        .decision-box {
+            padding: 8px;
+            border-radius: 4px;
+            background: white;
+        }
+
+        .decision-box.good {
+            border-top: 3px solid #10b981;
+        }
+
+        .decision-box.bad {
+            border-top: 3px solid #ef4444;
+        }
+
+        .decision-box h4 {
+            font-size: 11px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .decision-box.good h4 {
+            color: #059669;
+        }
+
+        .decision-box.bad h4 {
+            color: #dc2626;
+        }
+
+        .decision-box ul {
+            margin-left: 12px;
+            font-size: 10px;
+        }
+
+        .decision-box li {
+            margin-bottom: 2px;
+        }
+
+        .key-takeaway {
+            background: #eff6ff;
+            padding: 12px;
+            border-radius: 6px;
+            border-left: 4px solid #3b82f6;
+        }
+
+        .key-takeaway h3 {
+            font-size: 12px;
+            font-weight: 600;
+            color: #3b82f6;
+            margin-bottom: 6px;
+        }
+
+        .key-takeaway p {
+            font-size: 11px;
+        }
+
+        .footer {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 10px;
+            color: #6b7280;
+            padding-top: 12px;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        @media print {
+            body {
+                padding: 10px;
+                font-size: 10px;
+            }
+
+            .concept-box,
+            .formula-section,
+            .example-section,
+            .warning-section,
+            .tips-section,
+            .decision-section {
+                page-break-inside: avoid;
+            }
+
+            .comparison-table {
+                font-size: 9px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .two-column,
+            .formula-grid,
+            .example-grid,
+            .warning-grid,
+            .tips-grid,
+            .decision-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Understanding the Cost of Borrowing Reference Sheet</h1>
+        <p>Quick reference for APR, interest rates, fees, and loan comparisons</p>
+    </div>
+
+    <div class="two-column">
+        <div class="concept-box">
+            <h3>KEY TERMS</h3>
+            <ul>
+                <li><strong>Principal:</strong> The original amount of money borrowed</li>
+                <li><strong>Interest Rate:</strong> Percentage charged for borrowing money</li>
+                <li><strong>APR:</strong> Annual Percentage Rate - total yearly cost including fees</li>
+                <li><strong>Collateral:</strong> Asset pledged to secure a loan</li>
+                <li><strong>Default:</strong> Failure to repay according to terms</li>
+                <li><strong>Debt-to-Income Ratio:</strong> Monthly debt / Monthly gross income</li>
+            </ul>
+        </div>
+
+        <div class="concept-box">
+            <h3>TYPES OF CREDIT</h3>
+            <ul>
+                <li><strong>Secured:</strong> Backed by collateral (auto loans, mortgages) - Lower rates</li>
+                <li><strong>Unsecured:</strong> No collateral (credit cards, personal loans) - Higher rates</li>
+                <li><strong>Installment:</strong> Fixed payments over set period (auto, mortgage)</li>
+                <li><strong>Revolving:</strong> Flexible payments, reusable credit (credit cards)</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="formula-section">
+        <h3>Essential Formulas for Calculating Loan Costs</h3>
+        <div class="formula-grid">
+            <div class="formula-box">
+                <h4>Total Interest Paid</h4>
+                <div class="formula">Total Interest = Total Payments - Principal</div>
+                <p>Example: $12,437 - $10,000 = $2,437 interest</p>
+            </div>
+            <div class="formula-box">
+                <h4>Total Cost of Loan</h4>
+                <div class="formula">Total Cost = Principal + Interest + Fees</div>
+                <p>Always compare total cost, not just monthly payment</p>
+            </div>
+            <div class="formula-box">
+                <h4>Debt-to-Income Ratio</h4>
+                <div class="formula">DTI = (Monthly Debt / Gross Income) x 100</div>
+                <p>Aim for under 36%; max usually 43% for mortgages</p>
+            </div>
+            <div class="formula-box">
+                <h4>Simple Interest</h4>
+                <div class="formula">Interest = Principal x Rate x Time</div>
+                <p>Example: $10,000 x 0.05 x 3 years = $1,500</p>
+            </div>
+        </div>
+    </div>
+
+    <table class="comparison-table">
+        <thead>
+            <tr>
+                <th>Loan Type</th>
+                <th>Typical APR</th>
+                <th>Term Length</th>
+                <th>Best For</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Federal Student Loan</td>
+                <td>4.5% - 7%</td>
+                <td>10-25 years</td>
+                <td>Education expenses; flexible repayment options</td>
+            </tr>
+            <tr>
+                <td>Auto Loan (New)</td>
+                <td>5% - 8%</td>
+                <td>3-6 years</td>
+                <td>Purchasing vehicles; secured by car</td>
+            </tr>
+            <tr>
+                <td>Auto Loan (Used)</td>
+                <td>6% - 10%</td>
+                <td>3-5 years</td>
+                <td>Used vehicles; higher rates than new</td>
+            </tr>
+            <tr>
+                <td>Mortgage (30-year)</td>
+                <td>6% - 8%</td>
+                <td>15-30 years</td>
+                <td>Home purchase; lowest rates, longest terms</td>
+            </tr>
+            <tr>
+                <td>Personal Loan</td>
+                <td>8% - 15%</td>
+                <td>2-7 years</td>
+                <td>Debt consolidation; large purchases</td>
+            </tr>
+            <tr>
+                <td>Credit Card</td>
+                <td>16% - 29%</td>
+                <td>Revolving</td>
+                <td>Short-term purchases; pay off monthly</td>
+            </tr>
+            <tr>
+                <td>Payday Loan</td>
+                <td>300% - 500%+</td>
+                <td>2-4 weeks</td>
+                <td>AVOID - predatory lending</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="example-section">
+        <h3>Real Cost Comparisons: Same $10,000 Borrowed</h3>
+        <div class="example-grid">
+            <div class="example-item">
+                <h4>Student Loan (4.5%, 10 years)</h4>
+                <p>Monthly Payment: $103.64</p>
+                <p>Total Interest: $2,437</p>
+                <p><strong>Total Cost: $12,437</strong></p>
+            </div>
+            <div class="example-item">
+                <h4>Credit Card (18%, min payments)</h4>
+                <p>Monthly Payment: ~$200 (decreasing)</p>
+                <p>Time to Pay Off: 28 years</p>
+                <p class="highlight">Total Interest: $15,432</p>
+                <p class="highlight"><strong>Total Cost: $25,432</strong></p>
+            </div>
+            <div class="example-item">
+                <h4>Personal Loan (12%, 5 years)</h4>
+                <p>Monthly Payment: $222.44</p>
+                <p>Total Interest: $3,347</p>
+                <p><strong>Total Cost: $13,347</strong></p>
+            </div>
+            <div class="example-item">
+                <h4>Auto Loan (6%, 5 years)</h4>
+                <p>Monthly Payment: $193.33</p>
+                <p>Total Interest: $1,600</p>
+                <p><strong>Total Cost: $11,600</strong></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="warning-section">
+        <h3>Hidden Costs and Fees to Watch For</h3>
+        <div class="warning-grid">
+            <div class="warning-box">
+                <h4>Common Fees</h4>
+                <ul>
+                    <li>Origination fees (1-8% of loan)</li>
+                    <li>Application fees</li>
+                    <li>Prepayment penalties</li>
+                    <li>Late payment fees</li>
+                    <li>Annual fees (credit cards)</li>
+                </ul>
+            </div>
+            <div class="warning-box">
+                <h4>Red Flags</h4>
+                <ul>
+                    <li>APR significantly higher than interest rate</li>
+                    <li>Balloon payments at end of term</li>
+                    <li>Variable rates that can increase</li>
+                    <li>Mandatory add-ons (insurance, warranties)</li>
+                    <li>No clear disclosure of total cost</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="tips-section">
+        <h3>Smart Borrowing Strategies</h3>
+        <div class="tips-grid">
+            <div class="tip-box">
+                <h4>Before You Borrow</h4>
+                <ul>
+                    <li>Compare at least 3 lenders</li>
+                    <li>Check your credit score first</li>
+                    <li>Calculate total cost, not just monthly payment</li>
+                    <li>Read all terms and conditions</li>
+                    <li>Ask about all fees upfront</li>
+                </ul>
+            </div>
+            <div class="tip-box">
+                <h4>To Reduce Costs</h4>
+                <ul>
+                    <li>Improve credit score before applying</li>
+                    <li>Make larger down payment</li>
+                    <li>Choose shorter loan term</li>
+                    <li>Set up autopay for rate discount</li>
+                    <li>Make extra payments toward principal</li>
+                </ul>
+            </div>
+            <div class="tip-box">
+                <h4>Loan Comparison Checklist</h4>
+                <ul>
+                    <li>APR (not just interest rate)</li>
+                    <li>Total cost over life of loan</li>
+                    <li>Monthly payment amount</li>
+                    <li>All fees included</li>
+                    <li>Prepayment penalties</li>
+                </ul>
+            </div>
+            <div class="tip-box">
+                <h4>Managing Existing Debt</h4>
+                <ul>
+                    <li>Pay more than minimum</li>
+                    <li>Pay highest interest first (avalanche)</li>
+                    <li>Consider refinancing at lower rate</li>
+                    <li>Avoid new debt while paying off</li>
+                    <li>Contact lender if struggling</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="decision-section">
+        <h3>When Should You Borrow?</h3>
+        <div class="decision-grid">
+            <div class="decision-box good">
+                <h4>Good Reasons to Borrow</h4>
+                <ul>
+                    <li>Education that increases earning potential</li>
+                    <li>Home purchase (builds equity)</li>
+                    <li>Reliable transportation for work</li>
+                    <li>Emergency (after emergency fund depleted)</li>
+                    <li>Business investment with solid plan</li>
+                    <li>Consolidating high-interest debt at lower rate</li>
+                </ul>
+            </div>
+            <div class="decision-box bad">
+                <h4>Poor Reasons to Borrow</h4>
+                <ul>
+                    <li>Vacations or entertainment</li>
+                    <li>Everyday expenses (food, utilities)</li>
+                    <li>Impulse purchases</li>
+                    <li>Items that lose value quickly</li>
+                    <li>Paying off debt with more debt (without rate reduction)</li>
+                    <li>Living beyond your means</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="key-takeaway">
+        <h3>Key Takeaway: Always Calculate Total Cost</h3>
+        <p>The true cost of borrowing extends far beyond the monthly payment. A loan with a lower monthly payment but longer term can cost thousands more in interest. Always compare: (1) the APR (includes all fees), (2) the total cost over the life of the loan, and (3) whether the purchase justifies the total cost. For example, the same $10,000 costs $12,437 as a student loan but $25,432 on a credit card with minimum payments. That's a difference of nearly $13,000 - more than the original loan!</p>
+    </div>
+
+    <div class="footer">
+        <p>PFL Academy - Chapter 21: Understanding the Cost of Borrowing</p>
+    </div>
+</body>
+</html>

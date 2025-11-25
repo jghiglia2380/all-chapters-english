@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elasticity Budget Planner</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        header { text-align: center; margin-bottom: 30px; }
+        h1 { font-size: 2rem; color: #6366f1; margin-bottom: 10px; }
+        .subtitle { color: #6b7280; }
+        .goods-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        .good-card {
+            background: #f9fafb;
+            padding: 15px;
+            border-radius: 10px;
+        }
+        .good-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .good-name { font-weight: bold; }
+        .elasticity-badge {
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        .inelastic { background: #fee2e2; color: #dc2626; }
+        .elastic { background: #d1fae5; color: #059669; }
+        .good-info { font-size: 0.85rem; color: #6b7280; margin-bottom: 10px; }
+        .budget-input {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .budget-input label { font-size: 0.85rem; }
+        .budget-input input {
+            width: 80px;
+            padding: 6px;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+        }
+        .analyze-btn {
+            width: 100%;
+            padding: 15px;
+            background: #6366f1;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        .analyze-btn:hover { background: #4f46e5; }
+        .results { display: none; margin-top: 25px; }
+        .results.active { display: block; }
+        .volatility-section {
+            background: #f0f9ff;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+        }
+        .section-title { font-size: 1.1rem; font-weight: bold; margin-bottom: 15px; color: #1f2937; }
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .result-item:last-child { border-bottom: none; }
+        .strategy-box {
+            background: #d1fae5;
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid #10b981;
+        }
+        .strategy-box h4 { color: #065f46; margin-bottom: 8px; }
+        .strategy-box ul { margin-left: 20px; color: #064e3b; font-size: 0.9rem; }
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #e5e7eb;
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+        @media (max-width: 768px) {
+            .goods-grid { grid-template-columns: 1fr; }
+        }
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .container {
+                box-shadow: none;
+                padding: 20px;
+            }
+            .analyze-btn,
+            .no-print {
+                display: none !important;
+            }
+            .results {
+                display: block !important;
+            }
+            .volatility-section,
+            .strategy-box {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Elasticity Budget Planner</h1>
+            <p class="subtitle">Plan for price volatility based on demand elasticity</p>
+        </header>
+
+        <div class="goods-grid">
+            <div class="good-card">
+                <div class="good-header">
+                    <span class="good-name">⛽ Gasoline</span>
+                    <span class="elasticity-badge inelastic">Inelastic</span>
+                </div>
+                <div class="good-info">Necessity - Must buy regardless of price</div>
+                <div class="budget-input">
+                    <label>Monthly $:</label>
+                    <input type="number" id="gas" value="200">
+                </div>
+            </div>
+
+            <div class="good-card">
+                <div class="good-header">
+                    <span class="good-name">🍽️ Dining Out</span>
+                    <span class="elasticity-badge elastic">Elastic</span>
+                </div>
+                <div class="good-info">Luxury - Easy to reduce or substitute</div>
+                <div class="budget-input">
+                    <label>Monthly $:</label>
+                    <input type="number" id="dining" value="300">
+                </div>
+            </div>
+
+            <div class="good-card">
+                <div class="good-header">
+                    <span class="good-name">💊 Medications</span>
+                    <span class="elasticity-badge inelastic">Inelastic</span>
+                </div>
+                <div class="good-info">Necessity - Required for health</div>
+                <div class="budget-input">
+                    <label>Monthly $:</label>
+                    <input type="number" id="meds" value="100">
+                </div>
+            </div>
+
+            <div class="good-card">
+                <div class="good-header">
+                    <span class="good-name">📺 Streaming</span>
+                    <span class="elasticity-badge elastic">Elastic</span>
+                </div>
+                <div class="good-info">Luxury - Many alternatives available</div>
+                <div class="budget-input">
+                    <label>Monthly $:</label>
+                    <input type="number" id="streaming" value="50">
+                </div>
+            </div>
+        </div>
+
+        <button class="analyze-btn" onclick="analyze()">Analyze My Budget Volatility</button>
+
+        <div class="results" id="results">
+            <div class="volatility-section">
+                <div class="section-title">If Prices Increase 20%</div>
+                <div class="result-item">
+                    <span>Gasoline (inelastic)</span>
+                    <span><strong>+$40</strong> - Must absorb cost</span>
+                </div>
+                <div class="result-item">
+                    <span>Dining Out (elastic)</span>
+                    <span><strong>Can reduce</strong> - Substitute with cooking</span>
+                </div>
+                <div class="result-item">
+                    <span>Medications (inelastic)</span>
+                    <span><strong>+$20</strong> - Must absorb cost</span>
+                </div>
+                <div class="result-item">
+                    <span>Streaming (elastic)</span>
+                    <span><strong>Can cancel</strong> - Many alternatives</span>
+                </div>
+                <div class="result-item" style="font-weight: bold; padding-top: 12px;">
+                    <span>Unavoidable Increase</span>
+                    <span id="unavoidable">$60/month</span>
+                </div>
+            </div>
+
+            <div class="strategy-box">
+                <h4>Budget Protection Strategies</h4>
+                <ul>
+                    <li>Build emergency fund for inelastic price spikes</li>
+                    <li>Keep elastic spending flexible - first to cut in crisis</li>
+                    <li>Look for substitutes for inelastic goods (public transit, generics)</li>
+                    <li>Lock in prices when possible (fuel cards, subscription annual plans)</li>
+                </ul>
+            </div>
+        </div>
+
+        <footer>
+            <p><strong>PFL Academy</strong> | Elasticity</p>
+        </footer>
+    </div>
+
+    <script>
+        function analyze() {
+            const gas = parseFloat(document.getElementById('gas').value) || 0;
+            const meds = parseFloat(document.getElementById('meds').value) || 0;
+            const unavoidable = (gas + meds) * 0.2;
+            document.getElementById('unavoidable').textContent = '$' + unavoidable.toFixed(0) + '/month';
+            document.getElementById('results').classList.add('active');
+        }
+    </script>
+</body>
+</html>

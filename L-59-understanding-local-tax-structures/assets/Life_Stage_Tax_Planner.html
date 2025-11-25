@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Life Stage Tax Planner</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        header { text-align: center; margin-bottom: 30px; }
+        h1 { font-size: 2rem; color: #6366f1; margin-bottom: 10px; }
+        .subtitle { color: #6b7280; }
+        .stage-section {
+            background: #f9fafb;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+        .section-title { font-size: 1.1rem; font-weight: bold; margin-bottom: 15px; color: #1f2937; }
+        .stage-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+        .stage-btn {
+            padding: 15px;
+            background: white;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.3s;
+        }
+        .stage-btn:hover { border-color: #6366f1; }
+        .stage-btn.selected { border-color: #6366f1; background: #eef2ff; }
+        .stage-icon { font-size: 1.5rem; margin-bottom: 5px; }
+        .stage-name { font-weight: bold; font-size: 0.95rem; }
+        .stage-desc { font-size: 0.8rem; color: #6b7280; }
+        .priority-section {
+            background: #f0f9ff;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+        .priority-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            background: white;
+            border-radius: 8px;
+            margin-bottom: 8px;
+        }
+        .priority-item input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+        }
+        .priority-label { flex: 1; font-size: 0.9rem; }
+        .plan-btn {
+            width: 100%;
+            padding: 15px;
+            background: #6366f1;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        .plan-btn:hover { background: #4f46e5; }
+        .results { display: none; margin-top: 25px; }
+        .results.active { display: block; }
+        .recommendation-card {
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+        }
+        .location-card { background: #d1fae5; border-left: 4px solid #10b981; }
+        .tax-card { background: #dbeafe; border-left: 4px solid #3b82f6; }
+        .consideration-card { background: #fef3c7; border-left: 4px solid #f59e0b; }
+        .recommendation-card h4 { margin-bottom: 10px; }
+        .recommendation-card ul { margin-left: 20px; }
+        .recommendation-card li { margin-bottom: 8px; font-size: 0.9rem; }
+        .match-score {
+            text-align: center;
+            padding: 20px;
+            background: #f0f9ff;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+        .score-value { font-size: 3rem; font-weight: bold; color: #6366f1; }
+        .score-label { color: #6b7280; }
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #e5e7eb;
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+        @media (max-width: 768px) {
+            .stage-grid { grid-template-columns: 1fr; }
+        }
+        @media print {
+            body { background: white; padding: 0; }
+            .container { box-shadow: none; }
+            .plan-btn { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Life Stage Tax Planner</h1>
+            <p class="subtitle">Match your life stage priorities with optimal location types</p>
+        </header>
+
+        <div class="stage-section">
+            <div class="section-title">Select Your Life Stage</div>
+            <div class="stage-grid">
+                <button class="stage-btn" onclick="selectStage('young-professional')" id="stage-young-professional">
+                    <div class="stage-icon">🎓</div>
+                    <div class="stage-name">Young Professional</div>
+                    <div class="stage-desc">Single, career-focused, building savings</div>
+                </button>
+                <button class="stage-btn" onclick="selectStage('young-family')" id="stage-young-family">
+                    <div class="stage-icon">👨‍👩‍👧</div>
+                    <div class="stage-name">Young Family</div>
+                    <div class="stage-desc">Children at home, education priority</div>
+                </button>
+                <button class="stage-btn" onclick="selectStage('established')" id="stage-established">
+                    <div class="stage-icon">🏠</div>
+                    <div class="stage-name">Established Family</div>
+                    <div class="stage-desc">Teens/college-age kids, peak earning</div>
+                </button>
+                <button class="stage-btn" onclick="selectStage('pre-retirement')" id="stage-pre-retirement">
+                    <div class="stage-icon">📊</div>
+                    <div class="stage-name">Pre-Retirement</div>
+                    <div class="stage-desc">Empty nest, wealth preservation</div>
+                </button>
+                <button class="stage-btn" onclick="selectStage('retired')" id="stage-retired">
+                    <div class="stage-icon">🌴</div>
+                    <div class="stage-name">Retired</div>
+                    <div class="stage-desc">Fixed income, healthcare focus</div>
+                </button>
+                <button class="stage-btn" onclick="selectStage('entrepreneur')" id="stage-entrepreneur">
+                    <div class="stage-icon">💼</div>
+                    <div class="stage-name">Entrepreneur</div>
+                    <div class="stage-desc">Business owner, tax optimization</div>
+                </button>
+            </div>
+        </div>
+
+        <div class="priority-section">
+            <div class="section-title">Your Top Priorities (Select up to 5)</div>
+            <div class="priority-item">
+                <input type="checkbox" id="p-schools" value="schools">
+                <label class="priority-label" for="p-schools">Quality public schools</label>
+            </div>
+            <div class="priority-item">
+                <input type="checkbox" id="p-lowtax" value="lowtax">
+                <label class="priority-label" for="p-lowtax">Low overall tax burden</label>
+            </div>
+            <div class="priority-item">
+                <input type="checkbox" id="p-services" value="services">
+                <label class="priority-label" for="p-services">Strong public services (parks, libraries)</label>
+            </div>
+            <div class="priority-item">
+                <input type="checkbox" id="p-transit" value="transit">
+                <label class="priority-label" for="p-transit">Public transportation access</label>
+            </div>
+            <div class="priority-item">
+                <input type="checkbox" id="p-safety" value="safety">
+                <label class="priority-label" for="p-safety">Low crime / good police/fire</label>
+            </div>
+            <div class="priority-item">
+                <input type="checkbox" id="p-healthcare" value="healthcare">
+                <label class="priority-label" for="p-healthcare">Healthcare accessibility</label>
+            </div>
+            <div class="priority-item">
+                <input type="checkbox" id="p-exemptions" value="exemptions">
+                <label class="priority-label" for="p-exemptions">Property tax exemptions (senior, veteran)</label>
+            </div>
+            <div class="priority-item">
+                <input type="checkbox" id="p-business" value="business">
+                <label class="priority-label" for="p-business">Business-friendly environment</label>
+            </div>
+        </div>
+
+        <button class="plan-btn" onclick="generatePlan()">Generate My Location Recommendation</button>
+
+        <div class="results" id="results">
+            <div class="match-score">
+                <div class="score-value" id="matchScore">0%</div>
+                <div class="score-label">Priority Match Score</div>
+            </div>
+
+            <div class="recommendation-card location-card">
+                <h4>Recommended Location Types</h4>
+                <ul id="locationRecs"></ul>
+            </div>
+
+            <div class="recommendation-card tax-card">
+                <h4>Key Tax Considerations</h4>
+                <ul id="taxRecs"></ul>
+            </div>
+
+            <div class="recommendation-card consideration-card">
+                <h4>Important Trade-offs</h4>
+                <ul id="tradeoffs"></ul>
+            </div>
+        </div>
+
+        <footer>
+            <p><strong>PFL Academy</strong> | Understanding Local Tax Structures</p>
+        </footer>
+    </div>
+
+    <script>
+        let selectedStage = null;
+
+        function selectStage(stage) {
+            selectedStage = stage;
+            document.querySelectorAll('.stage-btn').forEach(btn => {
+                btn.classList.remove('selected');
+            });
+            document.getElementById('stage-' + stage).classList.add('selected');
+        }
+
+        function generatePlan() {
+            if (!selectedStage) {
+                alert('Please select your life stage first.');
+                return;
+            }
+
+            const priorities = [];
+            document.querySelectorAll('.priority-item input:checked').forEach(cb => {
+                priorities.push(cb.value);
+            });
+
+            if (priorities.length === 0) {
+                alert('Please select at least one priority.');
+                return;
+            }
+
+            let locations = [];
+            let taxRecs = [];
+            let tradeoffs = [];
+            let matchScore = 0;
+
+            // Generate recommendations based on life stage
+            switch(selectedStage) {
+                case 'young-professional':
+                    locations = [
+                        'Urban areas with no local income tax',
+                        'Cities with good public transit (reduces need for car)',
+                        'Rental-friendly neighborhoods (avoid property tax directly)'
+                    ];
+                    taxRecs = [
+                        'Prioritize locations with low or no local income tax',
+                        'Sales tax matters more for your consumer spending',
+                        'Consider state income tax as major factor'
+                    ];
+                    tradeoffs = [
+                        'Low-tax areas may have fewer amenities',
+                        'Urban convenience often comes with higher costs',
+                        'Building equity (buying) vs. flexibility (renting)'
+                    ];
+                    break;
+
+                case 'young-family':
+                    locations = [
+                        'Suburbs with highly-rated school districts',
+                        'Areas with strong property tax funding for schools',
+                        'Family-oriented communities with parks and recreation'
+                    ];
+                    taxRecs = [
+                        'Higher property taxes often = better schools',
+                        'Look for homestead exemptions to reduce tax burden',
+                        'Consider total cost: taxes + private school if public is poor'
+                    ];
+                    tradeoffs = [
+                        'Best schools often in highest property tax areas',
+                        'Suburban living may require car expenses',
+                        'Starter home in good district vs. larger home elsewhere'
+                    ];
+                    break;
+
+                case 'established':
+                    locations = [
+                        'Established neighborhoods with stable values',
+                        'Areas with diverse high school programs',
+                        'Communities with teen activities and safety'
+                    ];
+                    taxRecs = [
+                        'Review assessment trends - avoid rapidly rising areas',
+                        'Consider college town proximity for teens',
+                        'Peak income = maximize retirement contributions for tax benefits'
+                    ];
+                    tradeoffs = [
+                        'Staying put vs. downsizing as kids leave',
+                        'Paying premium for schools when kids almost done',
+                        'Property tax increases vs. selling/moving'
+                    ];
+                    break;
+
+                case 'pre-retirement':
+                    locations = [
+                        'States with no income tax on retirement',
+                        'Areas with senior property tax freezes',
+                        'Moderate cost of living communities'
+                    ];
+                    taxRecs = [
+                        'Research state taxation of pensions and Social Security',
+                        'Look ahead to senior exemptions you\'ll qualify for',
+                        'Consider establishing residency before retirement'
+                    ];
+                    tradeoffs = [
+                        'Moving away from family vs. tax savings',
+                        'Lower taxes vs. desired amenities',
+                        'Selling home at peak value vs. staying put'
+                    ];
+                    break;
+
+                case 'retired':
+                    locations = [
+                        'States that don\'t tax Social Security',
+                        'Areas with generous senior property tax exemptions',
+                        'Communities with good healthcare access'
+                    ];
+                    taxRecs = [
+                        'Senior homestead exemptions can save thousands',
+                        'No income tax states for retirement distributions',
+                        'Watch out for high sales tax on fixed income'
+                    ];
+                    tradeoffs = [
+                        'Low tax state vs. proximity to family',
+                        'Rural (low tax) vs. urban (better healthcare)',
+                        'Aging in place vs. senior community'
+                    ];
+                    break;
+
+                case 'entrepreneur':
+                    locations = [
+                        'Business-friendly states with low corporate taxes',
+                        'Areas with economic development incentives',
+                        'Tech hubs with talent pools'
+                    ];
+                    taxRecs = [
+                        'Consider pass-through entity taxation',
+                        'Local business license and gross receipts taxes',
+                        'Property tax on business equipment and inventory'
+                    ];
+                    tradeoffs = [
+                        'Talent availability vs. tax burden',
+                        'Customer proximity vs. operational costs',
+                        'Incentive zones may have location constraints'
+                    ];
+                    break;
+            }
+
+            // Adjust based on priorities
+            if (priorities.includes('schools')) {
+                matchScore += 20;
+                if (!taxRecs.some(t => t.includes('school'))) {
+                    taxRecs.push('Higher school funding areas typically mean higher property taxes');
+                }
+            }
+            if (priorities.includes('lowtax')) {
+                matchScore += 15;
+            }
+            if (priorities.includes('services')) {
+                matchScore += 15;
+                tradeoffs.push('Quality services require adequate tax funding');
+            }
+            if (priorities.includes('healthcare')) {
+                matchScore += 15;
+                locations.push('Proximity to major medical centers');
+            }
+            if (priorities.includes('exemptions')) {
+                matchScore += 15;
+                taxRecs.push('Research all exemptions: homestead, senior, veteran, disability');
+            }
+            if (priorities.includes('business')) {
+                matchScore += 10;
+            }
+            if (priorities.includes('transit')) {
+                matchScore += 5;
+            }
+            if (priorities.includes('safety')) {
+                matchScore += 5;
+            }
+
+            // Cap at 95%
+            matchScore = Math.min(95, matchScore);
+
+            document.getElementById('matchScore').textContent = matchScore + '%';
+            document.getElementById('locationRecs').innerHTML = locations.map(l => `<li>${l}</li>`).join('');
+            document.getElementById('taxRecs').innerHTML = taxRecs.map(t => `<li>${t}</li>`).join('');
+            document.getElementById('tradeoffs').innerHTML = tradeoffs.map(t => `<li>${t}</li>`).join('');
+
+            document.getElementById('results').classList.add('active');
+        }
+    </script>
+</body>
+</html>

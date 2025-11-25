@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Type Practice Simulator</title>
+    <style>
+        :root { --primary: #6366f1; --secondary: #8b5cf6; --success: #10b981; --warning: #f59e0b; --danger: #ef4444; }
+        body { font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 14px; line-height: 1.5; color: #1f2937; max-width: 900px; margin: 0 auto; padding: 15px; }
+        h1 { color: var(--primary); font-size: 24px; border-bottom: 2px solid var(--primary); padding-bottom: 8px; }
+        h2 { color: var(--secondary); font-size: 18px; margin-top: 20px; }
+        .scenario { background: #f9fafb; padding: 15px; border-radius: 5px; margin: 15px 0; border-left: 4px solid var(--primary); }
+        .stock-info { display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 10px; margin: 10px 0; }
+        .info-box { background: white; padding: 10px; border-radius: 4px; text-align: center; }
+        .info-label { font-size: 11px; color: #6b7280; }
+        .info-value { font-size: 18px; font-weight: bold; color: var(--primary); }
+        .order-options { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin: 15px 0; }
+        .order-btn { padding: 15px; background: white; border: 2px solid #d1d5db; border-radius: 5px; cursor: pointer; text-align: left; }
+        .order-btn:hover { border-color: var(--primary); background: #f0f7ff; }
+        .order-btn.selected { border-color: var(--primary); background: #e0e7ff; }
+        .order-btn.correct { border-color: var(--success); background: #d1fae5; }
+        .order-btn.incorrect { border-color: var(--danger); background: #fee2e2; }
+        .order-title { font-weight: bold; margin-bottom: 5px; }
+        .order-desc { font-size: 12px; color: #6b7280; }
+        .feedback { padding: 15px; border-radius: 5px; margin: 15px 0; display: none; }
+        .feedback.correct { background: #d1fae5; border: 1px solid var(--success); }
+        .feedback.incorrect { background: #fee2e2; border: 1px solid var(--danger); }
+        .results { background: #e0e7ff; padding: 15px; border-radius: 5px; margin: 15px 0; }
+        button { background: var(--primary); color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; margin: 5px; }
+        button:hover { background: var(--secondary); }
+        .score { font-size: 24px; font-weight: bold; color: var(--primary); }
+        @media print { body { font-size: 11pt; } button { display: none; } .order-btn { page-break-inside: avoid; } }
+    </style>
+</head>
+<body>
+    <h1>Order Type Practice Simulator</h1>
+    <p>Practice selecting the right order type for different trading scenarios</p>
+
+    <div id="scenarios-container"></div>
+
+    <div style="text-align: center; margin: 20px 0;">
+        <button onclick="startPractice()">Start Practice (5 Scenarios)</button>
+        <button onclick="showResults()">Show Results</button>
+    </div>
+
+    <div class="results" id="results" style="display: none;">
+        <h2 style="margin-top: 0;">Practice Results</h2>
+        <p>Score: <span class="score" id="score">0/5</span></p>
+        <div id="summary"></div>
+    </div>
+
+    <script>
+        const scenarios = [
+            {
+                id: 1,
+                title: "Quick Purchase at Current Price",
+                context: "You've done your research and want to buy AAPL immediately at whatever price is available. The market is stable.",
+                stock: "AAPL",
+                lastPrice: 175.50,
+                bid: 175.48,
+                ask: 175.52,
+                volume: "45M",
+                correct: "market",
+                explanation: "A market order executes immediately at the best available price. Since you want to buy right away and the spread is tight, a market order is appropriate."
+            },
+            {
+                id: 2,
+                title: "Buy Only at a Better Price",
+                context: "You want to buy NVDA but only if it drops to $420 or below. Current price is $445.",
+                stock: "NVDA",
+                lastPrice: 445.00,
+                bid: 444.95,
+                ask: 445.05,
+                volume: "38M",
+                correct: "limit",
+                explanation: "A limit buy order lets you specify the maximum price you're willing to pay. It will only execute at $420 or lower."
+            },
+            {
+                id: 3,
+                title: "Protect Against Losses",
+                context: "You own TSLA at $200 and want to automatically sell if it drops below $180 to limit losses.",
+                stock: "TSLA",
+                lastPrice: 195.00,
+                bid: 194.95,
+                ask: 195.05,
+                volume: "52M",
+                correct: "stop",
+                explanation: "A stop-loss order triggers a sale when the price falls to your stop price, protecting against further losses."
+            },
+            {
+                id: 4,
+                title: "Sell at a Target Price",
+                context: "You own MSFT at $350 and want to take profits when it reaches $400.",
+                stock: "MSFT",
+                lastPrice: 385.00,
+                bid: 384.95,
+                ask: 385.05,
+                volume: "22M",
+                correct: "limit",
+                explanation: "A limit sell order specifies the minimum price you'll accept. It will execute when the price reaches $400 or higher."
+            },
+            {
+                id: 5,
+                title: "Volatile Stock Protection",
+                context: "You own a volatile biotech stock. You want to sell if it drops to $50, but you're worried about slippage in a fast-moving market.",
+                stock: "BIOTECH",
+                lastPrice: 58.00,
+                bid: 57.80,
+                ask: 58.20,
+                volume: "5M",
+                correct: "stop-limit",
+                explanation: "A stop-limit order triggers at your stop price but only executes at your limit price or better, preventing excessive slippage in volatile conditions."
+            }
+        ];
+
+        let answers = {};
+        let currentScenarios = [];
+
+        function startPractice() {
+            currentScenarios = [...scenarios];
+            answers = {};
+            const container = document.getElementById('scenarios-container');
+            container.innerHTML = '';
+            document.getElementById('results').style.display = 'none';
+
+            currentScenarios.forEach((scenario, index) => {
+                const scenarioDiv = document.createElement('div');
+                scenarioDiv.className = 'scenario';
+                scenarioDiv.id = `scenario-${scenario.id}`;
+                scenarioDiv.innerHTML = `
+                    <h2 style="margin-top: 0;">Scenario ${index + 1}: ${scenario.title}</h2>
+                    <p>${scenario.context}</p>
+                    <div class="stock-info">
+                        <div class="info-box"><div class="info-label">Stock</div><div class="info-value">${scenario.stock}</div></div>
+                        <div class="info-box"><div class="info-label">Last Price</div><div class="info-value">$${scenario.lastPrice.toFixed(2)}</div></div>
+                        <div class="info-box"><div class="info-label">Bid</div><div class="info-value">$${scenario.bid.toFixed(2)}</div></div>
+                        <div class="info-box"><div class="info-label">Ask</div><div class="info-value">$${scenario.ask.toFixed(2)}</div></div>
+                        <div class="info-box"><div class="info-label">Volume</div><div class="info-value">${scenario.volume}</div></div>
+                    </div>
+                    <p><strong>Which order type is best for this situation?</strong></p>
+                    <div class="order-options" id="options-${scenario.id}">
+                        <div class="order-btn" onclick="selectOrder(${scenario.id}, 'market', this)">
+                            <div class="order-title">Market Order</div>
+                            <div class="order-desc">Execute immediately at current market price</div>
+                        </div>
+                        <div class="order-btn" onclick="selectOrder(${scenario.id}, 'limit', this)">
+                            <div class="order-title">Limit Order</div>
+                            <div class="order-desc">Execute only at specified price or better</div>
+                        </div>
+                        <div class="order-btn" onclick="selectOrder(${scenario.id}, 'stop', this)">
+                            <div class="order-title">Stop Order</div>
+                            <div class="order-desc">Trigger market order when price reaches stop</div>
+                        </div>
+                        <div class="order-btn" onclick="selectOrder(${scenario.id}, 'stop-limit', this)">
+                            <div class="order-title">Stop-Limit Order</div>
+                            <div class="order-desc">Trigger limit order when price reaches stop</div>
+                        </div>
+                    </div>
+                    <div class="feedback" id="feedback-${scenario.id}"></div>
+                `;
+                container.appendChild(scenarioDiv);
+            });
+        }
+
+        function selectOrder(scenarioId, orderType, element) {
+            answers[scenarioId] = orderType;
+
+            // Update visual selection
+            const options = document.querySelectorAll(`#options-${scenarioId} .order-btn`);
+            options.forEach(btn => btn.classList.remove('selected'));
+            element.classList.add('selected');
+        }
+
+        function showResults() {
+            let correct = 0;
+            let summaryHTML = '';
+
+            currentScenarios.forEach(scenario => {
+                const userAnswer = answers[scenario.id];
+                const isCorrect = userAnswer === scenario.correct;
+                if (isCorrect) correct++;
+
+                // Update button styling
+                const options = document.querySelectorAll(`#options-${scenario.id} .order-btn`);
+                options.forEach(btn => {
+                    btn.classList.remove('selected');
+                    const btnType = btn.querySelector('.order-title').textContent.toLowerCase().replace(' order', '').replace('-', '-');
+                    if (btnType.includes(scenario.correct.replace('-', '-'))) {
+                        btn.classList.add('correct');
+                    } else if (userAnswer && btnType.includes(userAnswer.replace('-', '-'))) {
+                        btn.classList.add('incorrect');
+                    }
+                });
+
+                // Show feedback
+                const feedback = document.getElementById(`feedback-${scenario.id}`);
+                feedback.className = `feedback ${isCorrect ? 'correct' : 'incorrect'}`;
+                feedback.innerHTML = `<strong>${isCorrect ? '✓ Correct!' : '✗ Incorrect'}</strong><br>${scenario.explanation}`;
+                feedback.style.display = 'block';
+
+                summaryHTML += `<p><strong>Scenario ${scenario.id}:</strong> ${isCorrect ? '✓' : '✗'} - Best answer: ${scenario.correct.charAt(0).toUpperCase() + scenario.correct.slice(1)} Order</p>`;
+            });
+
+            document.getElementById('score').textContent = `${correct}/${currentScenarios.length}`;
+            document.getElementById('summary').innerHTML = summaryHTML;
+            document.getElementById('results').style.display = 'block';
+        }
+
+        // Initialize with scenarios
+        startPractice();
+    </script>
+</body>
+</html>

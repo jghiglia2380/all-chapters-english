@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unemployment Navigation Tool</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        header { text-align: center; margin-bottom: 30px; }
+        h1 { font-size: 2rem; color: #6366f1; margin-bottom: 10px; }
+        .subtitle { color: #6b7280; }
+        .type-selector {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        .type-card {
+            background: #f9fafb;
+            padding: 20px;
+            border-radius: 12px;
+            border: 3px solid #e5e7eb;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+        }
+        .type-card:hover { border-color: #6366f1; }
+        .type-card.selected { border-color: #6366f1; background: #eef2ff; }
+        .type-icon { font-size: 2rem; margin-bottom: 10px; }
+        .type-name { font-weight: bold; color: #1f2937; margin-bottom: 5px; }
+        .type-desc { font-size: 0.85rem; color: #6b7280; }
+        .results { display: none; }
+        .results.active { display: block; }
+        .strategy-section {
+            background: #f9fafb;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+        }
+        .strategy-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #1f2937;
+            margin-bottom: 15px;
+        }
+        .strategy-list { margin-left: 20px; }
+        .strategy-list li { margin-bottom: 10px; color: #4b5563; }
+        .timeline-box {
+            background: #fef3c7;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 15px;
+        }
+        .timeline-box strong { color: #92400e; }
+        .action-box {
+            background: #d1fae5;
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid #10b981;
+            margin-top: 20px;
+        }
+        .action-box h3 { color: #065f46; margin-bottom: 10px; }
+        .action-box p { color: #064e3b; }
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #e5e7eb;
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+        @media print {
+            body { background: white; padding: 0; }
+            .container { box-shadow: none; }
+        }
+        @media (max-width: 768px) {
+            .type-selector { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Unemployment Navigation Tool</h1>
+            <p class="subtitle">Get strategies based on your unemployment type</p>
+        </header>
+
+        <div class="type-selector">
+            <div class="type-card" onclick="selectType('frictional')">
+                <div class="type-icon">🔄</div>
+                <div class="type-name">Frictional</div>
+                <div class="type-desc">Between jobs, searching for better fit</div>
+            </div>
+            <div class="type-card" onclick="selectType('structural')">
+                <div class="type-icon">🏭</div>
+                <div class="type-name">Structural</div>
+                <div class="type-desc">Skills mismatch, industry decline</div>
+            </div>
+            <div class="type-card" onclick="selectType('cyclical')">
+                <div class="type-icon">📉</div>
+                <div class="type-name">Cyclical</div>
+                <div class="type-desc">Due to economic recession</div>
+            </div>
+        </div>
+
+        <div class="results" id="results">
+            <div class="strategy-section">
+                <div class="strategy-title" id="strategyTitle">Strategies</div>
+                <ul class="strategy-list" id="strategyList"></ul>
+                <div class="timeline-box" id="timeline"></div>
+            </div>
+
+            <div class="action-box">
+                <h3>Immediate Action Steps</h3>
+                <p id="actionSteps"></p>
+            </div>
+        </div>
+
+        <footer>
+            <p><strong>PFL Academy</strong> | Inflation and Unemployment</p>
+        </footer>
+    </div>
+
+    <script>
+        function selectType(type) {
+            document.querySelectorAll('.type-card').forEach(card => card.classList.remove('selected'));
+            event.currentTarget.classList.add('selected');
+
+            let title = '', strategies = [], timeline = '', actions = '';
+
+            if (type === 'frictional') {
+                title = 'Frictional Unemployment Strategies';
+                strategies = [
+                    'Optimize your resume for ATS (Applicant Tracking Systems)',
+                    'Expand your job search to multiple platforms (LinkedIn, Indeed, industry-specific)',
+                    'Leverage your network - 70% of jobs are found through connections',
+                    'Consider temporary or contract work while searching',
+                    'Prepare for interviews by researching companies thoroughly',
+                    'Be flexible on location if possible',
+                    'Set daily application goals (5-10 applications per day)'
+                ];
+                timeline = '<strong>Expected Duration:</strong> Typically 1-3 months. Frictional unemployment is normal and usually short-term.';
+                actions = '1. Update your LinkedIn profile today. 2. Reach out to 5 former colleagues this week. 3. Set up job alerts on 3 major platforms. 4. Schedule at least 2 informational interviews.';
+            } else if (type === 'structural') {
+                title = 'Structural Unemployment Strategies';
+                strategies = [
+                    'Identify transferable skills from your previous career',
+                    'Research growing industries in your area',
+                    'Enroll in retraining programs (community college, bootcamps, certificates)',
+                    'Consider relocation to areas with more job opportunities',
+                    'Explore government retraining assistance programs',
+                    'Build skills in technology - virtually every industry needs tech skills',
+                    'Network in your target industry before you finish training',
+                    'Consider entry-level positions in new field to gain experience'
+                ];
+                timeline = '<strong>Expected Duration:</strong> 6-18 months depending on retraining needed. This is a significant transition that requires patience and planning.';
+                actions = '1. Research the top 3 growing industries in your region. 2. Identify one certification or training program to start within 30 days. 3. Connect with 3 people working in your target field. 4. Apply for any available retraining assistance.';
+            } else if (type === 'cyclical') {
+                title = 'Cyclical Unemployment Strategies';
+                strategies = [
+                    'File for unemployment benefits immediately',
+                    'Cut non-essential expenses to extend your runway',
+                    'Consider counter-cyclical industries (healthcare, education, government)',
+                    'Take temporary or gig work to maintain income',
+                    'Use downtime to build skills that will be valued in recovery',
+                    'Stay connected with your industry - layoffs often reverse quickly',
+                    'Maintain your professional network actively',
+                    'Consider starting a side business or freelancing'
+                ];
+                timeline = '<strong>Expected Duration:</strong> Depends on economic recovery, typically 6-24 months. The good news is your industry will likely recover.';
+                actions = '1. File for unemployment benefits today. 2. Create a reduced budget for the next 6 months. 3. Identify 3 counter-cyclical industries you could work in. 4. Sign up for one online course to build skills during downtime.';
+            }
+
+            document.getElementById('strategyTitle').textContent = title;
+            document.getElementById('strategyList').innerHTML = strategies.map(s => `<li>${s}</li>`).join('');
+            document.getElementById('timeline').innerHTML = timeline;
+            document.getElementById('actionSteps').textContent = actions;
+            document.getElementById('results').classList.add('active');
+        }
+    </script>
+</body>
+</html>

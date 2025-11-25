@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Building Practice Worksheet | PFL Academy</title>
+    <style>
+        :root {
+            --primary: #6366f1;
+            --secondary: #8b5cf6;
+            --text: #1f2937;
+            --text-light: #6b7280;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text);
+            padding: 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid var(--primary);
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        .subtitle {
+            color: var(--text-light);
+        }
+
+        .section {
+            background-color: #f9fafb;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .scenario {
+            background-color: white;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+        }
+
+        .scenario-number {
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        .question {
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .answer-space {
+            background-color: #f0f9ff;
+            padding: 15px;
+            border-radius: 4px;
+            min-height: 80px;
+            border: 2px dashed #cbd5e1;
+            margin-bottom: 10px;
+        }
+
+        .answer-space textarea {
+            width: 100%;
+            min-height: 60px;
+            border: none;
+            background: transparent;
+            font-family: inherit;
+            font-size: inherit;
+            resize: vertical;
+            outline: none;
+        }
+
+        .hint-box {
+            background-color: #fef3c7;
+            padding: 12px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            margin-top: 8px;
+        }
+
+        .example-box {
+            background-color: #e0f2fe;
+            padding: 12px;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+
+        .before-after {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 10px 0;
+        }
+
+        .before, .after {
+            padding: 12px;
+            border-radius: 4px;
+        }
+
+        .before {
+            background-color: #fee2e2;
+        }
+
+        .after {
+            background-color: #dcfce7;
+        }
+
+        @media print {
+            body {
+                padding: 10px;
+                font-size: 12px;
+            }
+
+            .section {
+                break-inside: avoid;
+            }
+
+            textarea {
+                border: none !important;
+                min-height: 60px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .before-after {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Resume Building Practice Worksheet</h1>
+        <p class="subtitle">Develop strong resume content using action verbs and quantifiable achievements</p>
+    </header>
+
+    <div class="section">
+        <div class="section-title">Part 1: Transforming Weak Bullet Points</div>
+
+        <div class="scenario">
+            <div class="scenario-number">Exercise 1: Using Action Verbs</div>
+            <p>Transform these weak resume bullet points into strong ones using action verbs.</p>
+
+            <div class="before-after">
+                <div class="before">
+                    <strong>Before:</strong><br>
+                    "Was responsible for customer service"
+                </div>
+                <div class="after">
+                    <strong>After:</strong><br>
+                    <textarea style="width: 100%; min-height: 40px; border: none; background: transparent;" placeholder="Rewrite using an action verb..."></textarea>
+                </div>
+            </div>
+
+            <div class="before-after">
+                <div class="before">
+                    <strong>Before:</strong><br>
+                    "Helped with social media"
+                </div>
+                <div class="after">
+                    <strong>After:</strong><br>
+                    <textarea style="width: 100%; min-height: 40px; border: none; background: transparent;" placeholder="Rewrite using an action verb..."></textarea>
+                </div>
+            </div>
+
+            <div class="before-after">
+                <div class="before">
+                    <strong>Before:</strong><br>
+                    "Did data entry work"
+                </div>
+                <div class="after">
+                    <strong>After:</strong><br>
+                    <textarea style="width: 100%; min-height: 40px; border: none; background: transparent;" placeholder="Rewrite using an action verb..."></textarea>
+                </div>
+            </div>
+
+            <div class="hint-box">
+                <strong>Strong Action Verbs:</strong> Managed, Created, Developed, Implemented, Analyzed, Coordinated, Resolved, Trained, Increased, Reduced, Generated, Designed
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Part 2: Adding Quantifiable Achievements</div>
+
+        <div class="scenario">
+            <div class="scenario-number">Exercise 2: Making Achievements Specific</div>
+            <p>Add specific numbers, percentages, or metrics to these bullet points.</p>
+
+            <div class="example-box">
+                <strong>Example:</strong><br>
+                Before: "Increased sales"<br>
+                After: "Increased monthly sales by 25% ($5,000) through targeted upselling techniques"
+            </div>
+
+            <div class="question">a) Transform: "Improved customer satisfaction"</div>
+            <div class="answer-space">
+                <textarea placeholder="Add specific metrics..."></textarea>
+            </div>
+
+            <div class="question">b) Transform: "Managed a team of employees"</div>
+            <div class="answer-space">
+                <textarea placeholder="Add specific numbers..."></textarea>
+            </div>
+
+            <div class="question">c) Transform: "Reduced costs"</div>
+            <div class="answer-space">
+                <textarea placeholder="Add specific amounts or percentages..."></textarea>
+            </div>
+
+            <div class="question">d) Transform: "Handled customer inquiries"</div>
+            <div class="answer-space">
+                <textarea placeholder="Add volume or efficiency metrics..."></textarea>
+            </div>
+
+            <div class="hint-box">
+                <strong>Quantifiable Elements:</strong> Dollar amounts, percentages, time saved, number of people/customers, volume processed, rankings, awards
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Part 3: Writing Your Own Content</div>
+
+        <div class="scenario">
+            <div class="scenario-number">Exercise 3: Your Experience Inventory</div>
+            <p>List your experiences and transform them into strong resume bullet points.</p>
+
+            <div class="question">a) List THREE jobs, volunteer positions, or activities you've participated in:</div>
+            <div class="answer-space">
+                <textarea placeholder="1. _____
+2. _____
+3. _____"></textarea>
+            </div>
+
+            <div class="question">b) For your first experience, write THREE strong bullet points:</div>
+            <div class="answer-space">
+                <textarea placeholder="• [Action verb] + [Task] + [Result/Impact]
+•
+• "></textarea>
+            </div>
+
+            <div class="question">c) For your second experience, write THREE strong bullet points:</div>
+            <div class="answer-space">
+                <textarea placeholder="• [Action verb] + [Task] + [Result/Impact]
+•
+• "></textarea>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Part 4: Professional Summary Development</div>
+
+        <div class="scenario">
+            <div class="scenario-number">Exercise 4: Crafting Your Summary</div>
+            <p>Write a professional summary (2-4 sentences) that highlights your key qualifications.</p>
+
+            <div class="question">a) List your TOP 3 skills or qualifications:</div>
+            <div class="answer-space">
+                <textarea placeholder="1. _____
+2. _____
+3. _____"></textarea>
+            </div>
+
+            <div class="question">b) What type of position or industry are you targeting?</div>
+            <div class="answer-space">
+                <textarea placeholder="Describe your target role..."></textarea>
+            </div>
+
+            <div class="question">c) Write your professional summary:</div>
+            <div class="answer-space">
+                <textarea placeholder="[Descriptive phrase] [field] student/professional with [X] experience in [relevant area]. [Key achievement or skill]. Seeking to leverage [specific skills] in a [target role/industry]."></textarea>
+            </div>
+
+            <div class="example-box">
+                <strong>Example:</strong> "Detail-oriented accounting student with 2 years of experience in accounts receivable and financial reporting. Proficient in Excel, QuickBooks, and data analysis with proven accuracy in processing 200+ transactions weekly. Seeking to leverage analytical skills and attention to detail in a staff accountant position."
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Part 5: Personal Branding</div>
+
+        <div class="scenario">
+            <div class="scenario-number">Exercise 5: Developing Your Brand</div>
+
+            <div class="question">a) What three words best describe your professional self?</div>
+            <div class="answer-space">
+                <textarea placeholder="1. _____ 2. _____ 3. _____"></textarea>
+            </div>
+
+            <div class="question">b) What makes you different from others in your field?</div>
+            <div class="answer-space">
+                <textarea placeholder="Describe your unique value proposition..."></textarea>
+            </div>
+
+            <div class="question">c) Write a personal brand statement (1-2 sentences):</div>
+            <div class="answer-space">
+                <textarea placeholder="Example: 'I help small businesses grow their online presence through data-driven social media strategies and engaging content.'"></textarea>
+            </div>
+
+            <div class="question">d) How will you ensure consistency across your resume, LinkedIn, and other professional materials?</div>
+            <div class="answer-space">
+                <textarea placeholder="Describe your brand consistency strategy..."></textarea>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Part 6: Resume Checklist</div>
+
+        <div class="scenario">
+            <div class="scenario-number">Final Review</div>
+            <p>Use this checklist to review your resume before submitting:</p>
+
+            <ul style="list-style: none; margin-left: 0;">
+                <li style="margin-bottom: 8px;"><input type="checkbox"> Contact information is complete and professional</li>
+                <li style="margin-bottom: 8px;"><input type="checkbox"> Email address is professional (not nickname-based)</li>
+                <li style="margin-bottom: 8px;"><input type="checkbox"> Professional summary is tailored to target position</li>
+                <li style="margin-bottom: 8px;"><input type="checkbox"> All bullet points begin with action verbs</li>
+                <li style="margin-bottom: 8px;"><input type="checkbox"> Achievements include quantifiable results where possible</li>
+                <li style="margin-bottom: 8px;"><input type="checkbox"> Education section includes relevant coursework/honors</li>
+                <li style="margin-bottom: 8px;"><input type="checkbox"> Skills section reflects job requirements</li>
+                <li style="margin-bottom: 8px;"><input type="checkbox"> Formatting is consistent throughout</li>
+                <li style="margin-bottom: 8px;"><input type="checkbox"> No spelling or grammatical errors</li>
+                <li style="margin-bottom: 8px;"><input type="checkbox"> Resume fits on one page (for entry-level)</li>
+                <li style="margin-bottom: 8px;"><input type="checkbox"> File is named professionally (FirstLast_Resume.pdf)</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Reflection Questions</div>
+
+        <div class="scenario">
+            <div class="question">1. What was the most challenging part of writing strong bullet points?</div>
+            <div class="answer-space">
+                <textarea placeholder="Your reflection..."></textarea>
+            </div>
+
+            <div class="question">2. How will you track your achievements going forward to make future resume updates easier?</div>
+            <div class="answer-space">
+                <textarea placeholder="Your answer..."></textarea>
+            </div>
+
+            <div class="question">3. What aspect of your personal brand do you want to develop further?</div>
+            <div class="answer-space">
+                <textarea placeholder="Describe your development plan..."></textarea>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

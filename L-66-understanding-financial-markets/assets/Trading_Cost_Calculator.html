@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trading Cost Calculator</title>
+    <style>
+        :root { --primary: #6366f1; --secondary: #8b5cf6; --success: #10b981; --danger: #ef4444; }
+        body { font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 14px; line-height: 1.5; color: #1f2937; max-width: 900px; margin: 0 auto; padding: 15px; }
+        h1 { color: var(--primary); font-size: 24px; border-bottom: 2px solid var(--primary); padding-bottom: 8px; }
+        h2 { color: var(--secondary); font-size: 18px; margin-top: 20px; }
+        .calculator { background: #f9fafb; padding: 15px; border-radius: 5px; margin: 15px 0; }
+        .input-row { display: flex; align-items: center; margin: 10px 0; gap: 10px; }
+        .input-row label { width: 200px; }
+        .input-row input, .input-row select { padding: 8px; border: 1px solid #d1d5db; border-radius: 4px; width: 150px; }
+        .results { background: #e0e7ff; padding: 15px; border-radius: 5px; margin: 15px 0; }
+        .result-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
+        .result-box { background: white; padding: 10px; border-radius: 4px; text-align: center; }
+        .result-value { font-size: 20px; font-weight: bold; color: var(--primary); }
+        .result-label { font-size: 12px; color: #6b7280; }
+        button { background: var(--primary); color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; margin: 5px; }
+        button:hover { background: var(--secondary); }
+        .comparison { background: #fef3c7; padding: 15px; border-radius: 5px; margin: 15px 0; }
+        table { width: 100%; border-collapse: collapse; margin: 10px 0; }
+        th, td { border: 1px solid #d1d5db; padding: 8px; text-align: center; }
+        th { background: var(--primary); color: white; }
+        @media print { body { font-size: 11pt; } button { display: none; } }
+    </style>
+</head>
+<body>
+    <h1>Trading Cost Calculator</h1>
+    <p>Calculate trading costs and understand their long-term impact</p>
+
+    <div class="calculator">
+        <h2 style="margin-top: 0;">Single Trade Cost Calculator</h2>
+        <div class="input-row">
+            <label>Trade Amount ($):</label>
+            <input type="number" id="tradeAmount" value="1000" step="100">
+        </div>
+        <div class="input-row">
+            <label>Commission per Trade ($):</label>
+            <input type="number" id="commission" value="0" step="0.01">
+        </div>
+        <div class="input-row">
+            <label>Bid-Ask Spread (%):</label>
+            <input type="number" id="spread" value="0.05" step="0.01">
+        </div>
+        <div class="input-row">
+            <label>SEC Fee (per $1M):</label>
+            <input type="number" id="secFee" value="22.90" step="0.01">
+        </div>
+        <button onclick="calculateTrade()">Calculate Trade Costs</button>
+    </div>
+
+    <div class="results" id="tradeResults">
+        <h2 style="margin-top: 0;">Trade Cost Breakdown</h2>
+        <div class="result-grid">
+            <div class="result-box">
+                <div class="result-label">Commission</div>
+                <div class="result-value" id="commCost">$0.00</div>
+            </div>
+            <div class="result-box">
+                <div class="result-label">Spread Cost</div>
+                <div class="result-value" id="spreadCost">$0.50</div>
+            </div>
+            <div class="result-box">
+                <div class="result-label">SEC Fee</div>
+                <div class="result-value" id="secCost">$0.02</div>
+            </div>
+            <div class="result-box">
+                <div class="result-label">Total Cost</div>
+                <div class="result-value" id="totalCost">$0.52</div>
+            </div>
+            <div class="result-box">
+                <div class="result-label">Cost as % of Trade</div>
+                <div class="result-value" id="costPct">0.052%</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="calculator">
+        <h2>Annual Trading Cost Comparison</h2>
+        <div class="input-row">
+            <label>Annual Investment ($):</label>
+            <input type="number" id="annualInvest" value="6000" step="100">
+        </div>
+        <div class="input-row">
+            <label>Trading Frequency:</label>
+            <select id="frequency">
+                <option value="12">Monthly (12 trades/year)</option>
+                <option value="52">Weekly (52 trades/year)</option>
+                <option value="252">Daily (252 trades/year)</option>
+                <option value="4">Quarterly (4 trades/year)</option>
+            </select>
+        </div>
+        <button onclick="calculateAnnual()">Calculate Annual Costs</button>
+    </div>
+
+    <div class="comparison" id="annualResults">
+        <h2 style="margin-top: 0;">Annual Cost Analysis</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Metric</th>
+                    <th>Your Strategy</th>
+                    <th>Low-Cost Alternative</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Number of Trades</td>
+                    <td id="numTrades">12</td>
+                    <td>4</td>
+                </tr>
+                <tr>
+                    <td>Total Trading Costs</td>
+                    <td id="annualCosts">$6.24</td>
+                    <td id="lowCosts">$2.08</td>
+                </tr>
+                <tr>
+                    <td>Cost as % of Invested</td>
+                    <td id="annualPct">0.10%</td>
+                    <td id="lowPct">0.03%</td>
+                </tr>
+                <tr>
+                    <td>30-Year Impact (at 7% return)</td>
+                    <td id="impact30">$573</td>
+                    <td id="lowImpact30">$191</td>
+                </tr>
+            </tbody>
+        </table>
+        <p style="font-size: 12px; margin-top: 10px;"><strong>Key Insight:</strong> Even small differences in trading costs compound significantly over time!</p>
+    </div>
+
+    <script>
+        function calculateTrade() {
+            const amount = parseFloat(document.getElementById('tradeAmount').value) || 0;
+            const commission = parseFloat(document.getElementById('commission').value) || 0;
+            const spread = parseFloat(document.getElementById('spread').value) || 0;
+            const secFeeRate = parseFloat(document.getElementById('secFee').value) || 0;
+
+            const spreadCost = amount * (spread / 100);
+            const secCost = amount * (secFeeRate / 1000000);
+            const totalCost = commission + spreadCost + secCost;
+            const costPct = (totalCost / amount) * 100;
+
+            document.getElementById('commCost').textContent = '$' + commission.toFixed(2);
+            document.getElementById('spreadCost').textContent = '$' + spreadCost.toFixed(2);
+            document.getElementById('secCost').textContent = '$' + secCost.toFixed(2);
+            document.getElementById('totalCost').textContent = '$' + totalCost.toFixed(2);
+            document.getElementById('costPct').textContent = costPct.toFixed(3) + '%';
+        }
+
+        function calculateAnnual() {
+            const annual = parseFloat(document.getElementById('annualInvest').value) || 0;
+            const freq = parseInt(document.getElementById('frequency').value) || 12;
+            const tradeAmount = annual / freq;
+
+            const commission = parseFloat(document.getElementById('commission').value) || 0;
+            const spread = parseFloat(document.getElementById('spread').value) || 0;
+
+            const costPerTrade = commission + (tradeAmount * spread / 100);
+            const annualCost = costPerTrade * freq;
+            const lowCost = costPerTrade * 4; // Quarterly comparison
+
+            const annualPct = (annualCost / annual) * 100;
+            const lowPct = (lowCost / annual) * 100;
+
+            // 30-year compound impact
+            const impact30 = calculateImpact(annualCost, 30, 0.07);
+            const lowImpact30 = calculateImpact(lowCost, 30, 0.07);
+
+            document.getElementById('numTrades').textContent = freq;
+            document.getElementById('annualCosts').textContent = '$' + annualCost.toFixed(2);
+            document.getElementById('lowCosts').textContent = '$' + lowCost.toFixed(2);
+            document.getElementById('annualPct').textContent = annualPct.toFixed(2) + '%';
+            document.getElementById('lowPct').textContent = lowPct.toFixed(2) + '%';
+            document.getElementById('impact30').textContent = '$' + Math.round(impact30).toLocaleString();
+            document.getElementById('lowImpact30').textContent = '$' + Math.round(lowImpact30).toLocaleString();
+        }
+
+        function calculateImpact(annualCost, years, rate) {
+            let impact = 0;
+            for (let i = 0; i < years; i++) {
+                impact = (impact + annualCost) * (1 + rate);
+            }
+            return impact;
+        }
+
+        // Initialize
+        calculateTrade();
+        calculateAnnual();
+    </script>
+</body>
+</html>

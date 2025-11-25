@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Loans Reference Sheet - PFL Academy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            font-size: 12px;
+            line-height: 1.5;
+            color: #1f2937;
+            padding: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 3px solid #6366f1;
+        }
+
+        .header h1 {
+            font-size: 24px;
+            color: #6366f1;
+            margin-bottom: 4px;
+        }
+
+        .header p {
+            color: #6b7280;
+            font-size: 12px;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 11px;
+        }
+
+        .comparison-table th {
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+            color: white;
+            padding: 10px 8px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .comparison-table td {
+            padding: 8px;
+            border-bottom: 1px solid #e5e7eb;
+            vertical-align: top;
+        }
+
+        .comparison-table tr:hover {
+            background-color: #f9fafb;
+        }
+
+        .comparison-table td:first-child {
+            font-weight: 600;
+            background: #f9fafb;
+            width: 22%;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .loan-box {
+            background: #f9fafb;
+            padding: 12px;
+            border-radius: 6px;
+            border-left: 4px solid #6366f1;
+        }
+
+        .loan-box h3 {
+            font-size: 14px;
+            font-weight: 700;
+            color: #6366f1;
+            margin-bottom: 8px;
+        }
+
+        .loan-box ul {
+            margin-left: 16px;
+            margin-bottom: 8px;
+        }
+
+        .loan-box li {
+            margin-bottom: 3px;
+        }
+
+        .highlight-box {
+            background: #eff6ff;
+            padding: 6px 10px;
+            border-radius: 4px;
+            font-size: 11px;
+        }
+
+        .repayment-section {
+            background: #ecfdf5;
+            padding: 12px;
+            border-radius: 6px;
+            border-left: 4px solid #10b981;
+            margin-bottom: 16px;
+        }
+
+        .repayment-section h3 {
+            font-size: 14px;
+            font-weight: 600;
+            color: #059669;
+            margin-bottom: 8px;
+        }
+
+        .repayment-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+        }
+
+        .repayment-item {
+            background: white;
+            padding: 8px;
+            border-radius: 4px;
+        }
+
+        .repayment-item h4 {
+            font-size: 11px;
+            font-weight: 600;
+            margin-bottom: 4px;
+            color: #059669;
+        }
+
+        .repayment-item p {
+            font-size: 10px;
+            color: #4b5563;
+        }
+
+        .forgiveness-section {
+            background: #fef3c7;
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 16px;
+        }
+
+        .forgiveness-section h3 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #b45309;
+        }
+
+        .forgiveness-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+        }
+
+        .forgiveness-item {
+            background: white;
+            padding: 8px;
+            border-radius: 4px;
+        }
+
+        .forgiveness-item h4 {
+            font-size: 11px;
+            font-weight: 600;
+            margin-bottom: 4px;
+            color: #b45309;
+        }
+
+        .forgiveness-item p {
+            font-size: 10px;
+            color: #4b5563;
+        }
+
+        .terms-section {
+            background: #f3e8ff;
+            padding: 12px;
+            border-radius: 6px;
+            border-left: 4px solid #7c3aed;
+            margin-bottom: 16px;
+        }
+
+        .terms-section h3 {
+            font-size: 14px;
+            font-weight: 600;
+            color: #7c3aed;
+            margin-bottom: 8px;
+        }
+
+        .terms-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+        }
+
+        .term-item {
+            background: white;
+            padding: 8px;
+            border-radius: 4px;
+        }
+
+        .term-item h4 {
+            font-size: 11px;
+            font-weight: 600;
+            margin-bottom: 2px;
+            color: #7c3aed;
+        }
+
+        .term-item p {
+            font-size: 10px;
+            color: #4b5563;
+        }
+
+        .timeline-section {
+            background: #eff6ff;
+            padding: 12px;
+            border-radius: 6px;
+            border-left: 4px solid #3b82f6;
+            margin-bottom: 16px;
+        }
+
+        .timeline-section h3 {
+            font-size: 14px;
+            font-weight: 600;
+            color: #3b82f6;
+            margin-bottom: 8px;
+        }
+
+        .timeline-items {
+            display: flex;
+            justify-content: space-between;
+            gap: 8px;
+        }
+
+        .timeline-item {
+            flex: 1;
+            background: white;
+            padding: 8px;
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        .timeline-item h4 {
+            font-size: 10px;
+            font-weight: 600;
+            color: #3b82f6;
+            margin-bottom: 4px;
+        }
+
+        .timeline-item p {
+            font-size: 10px;
+            color: #4b5563;
+        }
+
+        .key-takeaway {
+            background: #eff6ff;
+            padding: 12px;
+            border-radius: 6px;
+            border-left: 4px solid #3b82f6;
+        }
+
+        .key-takeaway h3 {
+            font-size: 12px;
+            font-weight: 600;
+            color: #3b82f6;
+            margin-bottom: 6px;
+        }
+
+        .key-takeaway p {
+            font-size: 11px;
+        }
+
+        .print-section {
+            text-align: center;
+            margin-top: 16px;
+        }
+
+        .print-btn {
+            background: #6366f1;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 12px;
+        }
+
+        .print-btn:hover {
+            background: #4f46e5;
+        }
+
+        @media print {
+            body {
+                padding: 10px;
+                font-size: 10px;
+            }
+
+            .print-section {
+                display: none;
+            }
+
+            .loan-box,
+            .repayment-section,
+            .forgiveness-section,
+            .terms-section,
+            .timeline-section {
+                page-break-inside: avoid;
+            }
+
+            .comparison-table {
+                font-size: 9px;
+            }
+
+            .comparison-table th {
+                background: #6366f1 !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .two-column,
+            .repayment-grid,
+            .forgiveness-grid,
+            .terms-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline-items {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Student Loans Reference Sheet</h1>
+        <p>Quick reference for federal vs private loans, repayment options, and forgiveness programs</p>
+    </div>
+
+    <table class="comparison-table">
+        <thead>
+            <tr>
+                <th>Feature</th>
+                <th>Federal Loans</th>
+                <th>Private Loans</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Interest Rates</td>
+                <td>Fixed rates set by Congress (4.99%-7.54% for 2023-24)</td>
+                <td>Fixed or variable (3%-15%+ depending on credit)</td>
+            </tr>
+            <tr>
+                <td>Credit Check</td>
+                <td>No credit check (except PLUS loans)</td>
+                <td>Credit check required; may need co-signer</td>
+            </tr>
+            <tr>
+                <td>Repayment Plans</td>
+                <td>Multiple options including income-driven plans</td>
+                <td>Limited options set by lender</td>
+            </tr>
+            <tr>
+                <td>Loan Forgiveness</td>
+                <td>PSLF, Teacher, IDR forgiveness available</td>
+                <td>Generally not available</td>
+            </tr>
+            <tr>
+                <td>Deferment/Forbearance</td>
+                <td>Multiple options for hardship</td>
+                <td>Limited or no options</td>
+            </tr>
+            <tr>
+                <td>Grace Period</td>
+                <td>6 months after graduation</td>
+                <td>Varies by lender (0-6 months)</td>
+            </tr>
+            <tr>
+                <td>Borrowing Limits</td>
+                <td>Annual and aggregate limits apply</td>
+                <td>Up to cost of attendance</td>
+            </tr>
+            <tr>
+                <td>Application</td>
+                <td>Complete FAFSA</td>
+                <td>Apply directly with lender</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="two-column">
+        <div class="loan-box">
+            <h3>SUBSIDIZED LOANS</h3>
+            <ul>
+                <li>Government pays interest while in school</li>
+                <li>Available to undergrads with financial need</li>
+                <li>Interest starts after grace period</li>
+                <li>Lower borrowing limits ($3,500-$5,500/yr)</li>
+                <li>Must be enrolled at least half-time</li>
+            </ul>
+            <div class="highlight-box">
+                <strong>Best for:</strong> Students with demonstrated financial need
+            </div>
+        </div>
+
+        <div class="loan-box">
+            <h3>UNSUBSIDIZED LOANS</h3>
+            <ul>
+                <li>Interest accrues from disbursement</li>
+                <li>Available regardless of financial need</li>
+                <li>Available to undergrads and grads</li>
+                <li>Higher limits ($2,000-$20,500/yr additional)</li>
+                <li>Consider paying interest while in school</li>
+            </ul>
+            <div class="highlight-box">
+                <strong>Best for:</strong> Students needing additional funding
+            </div>
+        </div>
+    </div>
+
+    <div class="repayment-section">
+        <h3>Repayment Plan Options (Federal Loans)</h3>
+        <div class="repayment-grid">
+            <div class="repayment-item">
+                <h4>Standard Repayment</h4>
+                <p>Fixed payments over 10 years. Lowest total interest cost. Payment: ~$1,152/mo for $100K at 6%.</p>
+            </div>
+            <div class="repayment-item">
+                <h4>Graduated Repayment</h4>
+                <p>Payments start low, increase every 2 years. 10-year term. Good for expected income growth.</p>
+            </div>
+            <div class="repayment-item">
+                <h4>Extended Repayment</h4>
+                <p>Up to 25 years. Lower monthly payments. Requires $30K+ in loans. More total interest.</p>
+            </div>
+            <div class="repayment-item">
+                <h4>Income-Based (IBR)</h4>
+                <p>10-15% of discretionary income. 20-25 year forgiveness. Must show partial financial hardship.</p>
+            </div>
+            <div class="repayment-item">
+                <h4>Pay As You Earn (PAYE)</h4>
+                <p>10% of discretionary income. 20-year forgiveness. Must be new borrower after 2007.</p>
+            </div>
+            <div class="repayment-item">
+                <h4>SAVE Plan (New)</h4>
+                <p>5-10% of discretionary income. Higher income exemption. Replaces REPAYE. Most generous IDR plan.</p>
+            </div>
+            <div class="repayment-item">
+                <h4>Income-Contingent (ICR)</h4>
+                <p>20% of discretionary income or 12-year fixed. 25-year forgiveness. Only IDR for Parent PLUS.</p>
+            </div>
+            <div class="repayment-item">
+                <h4>Income-Sensitive</h4>
+                <p>FFEL loans only. Percentage of gross monthly income. 10-year term maximum.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="forgiveness-section">
+        <h3>Loan Forgiveness Programs</h3>
+        <div class="forgiveness-grid">
+            <div class="forgiveness-item">
+                <h4>Public Service (PSLF)</h4>
+                <p><strong>Requirements:</strong> 120 qualifying payments while working full-time for government or nonprofit employer.</p>
+                <p><strong>Amount:</strong> Remaining balance forgiven tax-free.</p>
+            </div>
+            <div class="forgiveness-item">
+                <h4>Teacher Loan Forgiveness</h4>
+                <p><strong>Requirements:</strong> 5 consecutive years teaching at low-income school.</p>
+                <p><strong>Amount:</strong> Up to $17,500 for STEM/Special Ed; $5,000 for other subjects.</p>
+            </div>
+            <div class="forgiveness-item">
+                <h4>IDR Forgiveness</h4>
+                <p><strong>Requirements:</strong> 20-25 years of qualifying payments on income-driven plan.</p>
+                <p><strong>Amount:</strong> Remaining balance (may be taxable as income).</p>
+            </div>
+            <div class="forgiveness-item">
+                <h4>Total & Permanent Disability</h4>
+                <p><strong>Requirements:</strong> Documentation from VA, SSA, or physician.</p>
+                <p><strong>Amount:</strong> Complete discharge of federal student loans.</p>
+            </div>
+            <div class="forgiveness-item">
+                <h4>Closed School Discharge</h4>
+                <p><strong>Requirements:</strong> School closed while enrolled or within 180 days of withdrawal.</p>
+                <p><strong>Amount:</strong> Complete discharge of loans for that school.</p>
+            </div>
+            <div class="forgiveness-item">
+                <h4>Borrower Defense</h4>
+                <p><strong>Requirements:</strong> School misled you or engaged in misconduct.</p>
+                <p><strong>Amount:</strong> Partial or full discharge based on claim.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="terms-section">
+        <h3>Key Terms to Know</h3>
+        <div class="terms-grid">
+            <div class="term-item">
+                <h4>Grace Period</h4>
+                <p>6 months after graduation, leaving school, or dropping below half-time before payments begin.</p>
+            </div>
+            <div class="term-item">
+                <h4>Deferment</h4>
+                <p>Temporary postponement of payments. No interest on subsidized loans during deferment.</p>
+            </div>
+            <div class="term-item">
+                <h4>Forbearance</h4>
+                <p>Temporary reduction or suspension of payments. Interest accrues on ALL loans.</p>
+            </div>
+            <div class="term-item">
+                <h4>Capitalization</h4>
+                <p>Adding unpaid interest to principal balance. Increases total loan cost significantly.</p>
+            </div>
+            <div class="term-item">
+                <h4>Consolidation</h4>
+                <p>Combining multiple federal loans into one. Weighted average interest rate. Resets PSLF count.</p>
+            </div>
+            <div class="term-item">
+                <h4>Refinancing</h4>
+                <p>Replacing loans with new private loan. May get lower rate but lose federal protections.</p>
+            </div>
+            <div class="term-item">
+                <h4>Loan Servicer</h4>
+                <p>Company that handles billing and customer service for your federal student loans.</p>
+            </div>
+            <div class="term-item">
+                <h4>Discretionary Income</h4>
+                <p>Income above 150% of poverty line (225% for SAVE). Used to calculate IDR payments.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="timeline-section">
+        <h3>Student Loan Timeline</h3>
+        <div class="timeline-items">
+            <div class="timeline-item">
+                <h4>Before College</h4>
+                <p>Complete FAFSA (opens Oct 1). Compare aid offers. Accept grants/scholarships first.</p>
+            </div>
+            <div class="timeline-item">
+                <h4>During School</h4>
+                <p>Complete entrance counseling. Track total borrowing. Consider paying interest.</p>
+            </div>
+            <div class="timeline-item">
+                <h4>Grace Period</h4>
+                <p>6 months to prepare. Create budget. Research repayment plans. Verify servicer.</p>
+            </div>
+            <div class="timeline-item">
+                <h4>Repayment</h4>
+                <p>Choose plan. Set up autopay (0.25% discount). Recertify income annually for IDR.</p>
+            </div>
+            <div class="timeline-item">
+                <h4>Payoff/Forgiveness</h4>
+                <p>Track qualifying payments. Submit PSLF certification annually. Plan for tax impact.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="key-takeaway">
+        <h3>Key Takeaway</h3>
+        <p>Federal student loans offer more protections and repayment flexibility than private loans. Always exhaust federal options first. Choose a repayment plan based on your income and career goals - standard for lower total cost, income-driven for payment flexibility and potential forgiveness. If pursuing PSLF, certify employment annually and use the PSLF Help Tool. Avoid refinancing federal loans to private unless you have stable income and don't need federal protections or forgiveness options.</p>
+    </div>
+
+    <div class="print-section">
+        <button class="print-btn" onclick="window.print()">Print / Save as PDF</button>
+    </div>
+</body>
+</html>

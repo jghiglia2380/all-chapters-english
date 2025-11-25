@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Behavioral Bias Self-Assessment Quiz</title>
+    <style>
+        :root { --primary: #6366f1; --secondary: #8b5cf6; --success: #10b981; --warning: #f59e0b; --danger: #ef4444; }
+        body { font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 14px; line-height: 1.5; color: #1f2937; max-width: 900px; margin: 0 auto; padding: 15px; }
+        h1 { color: var(--primary); font-size: 24px; border-bottom: 2px solid var(--primary); padding-bottom: 8px; }
+        h2 { color: var(--secondary); font-size: 18px; margin-top: 20px; }
+        .question { background: #f9fafb; padding: 15px; border-radius: 5px; margin: 15px 0; border-left: 4px solid var(--primary); }
+        .question-text { font-weight: bold; margin-bottom: 10px; }
+        .options { display: grid; gap: 8px; }
+        .option { padding: 10px; background: white; border: 2px solid #d1d5db; border-radius: 4px; cursor: pointer; }
+        .option:hover { border-color: var(--primary); background: #f0f7ff; }
+        .option.selected { border-color: var(--primary); background: #e0e7ff; }
+        .results { background: #e0e7ff; padding: 15px; border-radius: 5px; margin: 15px 0; display: none; }
+        .bias-result { background: white; padding: 10px; border-radius: 4px; margin: 10px 0; }
+        .bias-name { font-weight: bold; color: var(--primary); }
+        .bias-score { float: right; }
+        .high { color: var(--danger); }
+        .medium { color: var(--warning); }
+        .low { color: var(--success); }
+        .progress { background: #e5e7eb; border-radius: 4px; height: 8px; margin: 5px 0; }
+        .progress-bar { background: var(--primary); height: 100%; border-radius: 4px; }
+        .recommendation { background: #fef3c7; padding: 15px; border-radius: 5px; margin: 15px 0; }
+        button { background: var(--primary); color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; margin: 5px; }
+        button:hover { background: var(--secondary); }
+        @media print { body { font-size: 11pt; } button { display: none; } }
+    </style>
+</head>
+<body>
+    <h1>Behavioral Bias Self-Assessment Quiz</h1>
+    <p>Identify your susceptibility to common investment biases</p>
+
+    <div id="quiz-container"></div>
+
+    <div style="text-align: center; margin: 20px 0;">
+        <button onclick="showResults()">Calculate My Bias Profile</button>
+    </div>
+
+    <div class="results" id="results">
+        <h2 style="margin-top: 0;">Your Bias Profile</h2>
+        <div id="bias-scores"></div>
+    </div>
+
+    <div class="recommendation" id="recommendations" style="display: none;">
+        <h2 style="margin-top: 0;">📋 Personalized Recommendations</h2>
+        <div id="rec-content"></div>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                id: 1,
+                text: "Your stock drops 20% right after you buy it. What do you do?",
+                bias: "loss_aversion",
+                options: [
+                    { text: "Sell immediately to prevent further losses", score: 3 },
+                    { text: "Hold and wait for it to recover to your purchase price", score: 2 },
+                    { text: "Review the fundamentals and decide based on current outlook", score: 0 }
+                ]
+            },
+            {
+                id: 2,
+                text: "You've made 50% on a stock. Your reaction?",
+                bias: "overconfidence",
+                options: [
+                    { text: "I knew this would happen - I'm good at picking stocks", score: 3 },
+                    { text: "I got lucky with this one", score: 0 },
+                    { text: "The market conditions favored this stock", score: 1 }
+                ]
+            },
+            {
+                id: 3,
+                text: "When researching a stock you own, you tend to:",
+                bias: "confirmation",
+                options: [
+                    { text: "Look for news that confirms your decision was right", score: 3 },
+                    { text: "Actively seek out bearish arguments against it", score: 0 },
+                    { text: "Read both positive and negative analysis equally", score: 1 }
+                ]
+            },
+            {
+                id: 4,
+                text: "A friend tells you about a 'hot' stock that's doubled recently. You:",
+                bias: "herd_mentality",
+                options: [
+                    { text: "Buy immediately before you miss out", score: 3 },
+                    { text: "Research it thoroughly before deciding", score: 0 },
+                    { text: "Buy a small amount to test the waters", score: 2 }
+                ]
+            },
+            {
+                id: 5,
+                text: "You bought a stock at $100. It's now $80. When thinking about it, you:",
+                bias: "anchoring",
+                options: [
+                    { text: "Focus on getting back to $100 before selling", score: 3 },
+                    { text: "Evaluate if it's worth $80 based on current data", score: 0 },
+                    { text: "Consider your original purchase price in your decision", score: 2 }
+                ]
+            },
+            {
+                id: 6,
+                text: "After a market crash, you:",
+                bias: "recency",
+                options: [
+                    { text: "Assume markets will keep falling and sell everything", score: 3 },
+                    { text: "See it as a buying opportunity based on historical patterns", score: 0 },
+                    { text: "Wait to see if the decline continues before deciding", score: 2 }
+                ]
+            },
+            {
+                id: 7,
+                text: "When your investment thesis proves wrong, you:",
+                bias: "loss_aversion",
+                options: [
+                    { text: "Hold the stock hoping to at least break even", score: 3 },
+                    { text: "Sell and reallocate to better opportunities", score: 0 },
+                    { text: "Add more to lower your average cost", score: 2 }
+                ]
+            },
+            {
+                id: 8,
+                text: "You feel most confident about investments when:",
+                bias: "overconfidence",
+                options: [
+                    { text: "You've done your own analysis and picked the stock", score: 3 },
+                    { text: "You're invested in diversified index funds", score: 0 },
+                    { text: "Several experts recommend the same investment", score: 1 }
+                ]
+            }
+        ];
+
+        const biasInfo = {
+            loss_aversion: {
+                name: "Loss Aversion",
+                description: "Tendency to feel losses more strongly than equivalent gains, leading to poor sell decisions."
+            },
+            overconfidence: {
+                name: "Overconfidence",
+                description: "Overestimating your ability to pick stocks or time the market."
+            },
+            confirmation: {
+                name: "Confirmation Bias",
+                description: "Seeking information that confirms your existing beliefs while ignoring contradictory evidence."
+            },
+            herd_mentality: {
+                name: "Herd Mentality",
+                description: "Following the crowd into popular investments without independent analysis."
+            },
+            anchoring: {
+                name: "Anchoring",
+                description: "Fixating on specific numbers (like purchase price) rather than current value."
+            },
+            recency: {
+                name: "Recency Bias",
+                description: "Giving too much weight to recent events when making decisions."
+            }
+        };
+
+        let answers = {};
+
+        function initQuiz() {
+            const container = document.getElementById('quiz-container');
+            container.innerHTML = '';
+
+            questions.forEach((q, index) => {
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'question';
+                questionDiv.innerHTML = `
+                    <div class="question-text">${index + 1}. ${q.text}</div>
+                    <div class="options" id="options-${q.id}">
+                        ${q.options.map((opt, i) => `
+                            <div class="option" onclick="selectOption(${q.id}, ${i}, ${opt.score}, '${q.bias}', this)">
+                                ${opt.text}
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+                container.appendChild(questionDiv);
+            });
+        }
+
+        function selectOption(questionId, optionIndex, score, bias, element) {
+            answers[questionId] = { score, bias };
+
+            // Update visual
+            const options = document.querySelectorAll(`#options-${questionId} .option`);
+            options.forEach(opt => opt.classList.remove('selected'));
+            element.classList.add('selected');
+        }
+
+        function showResults() {
+            if (Object.keys(answers).length < questions.length) {
+                alert('Please answer all questions before seeing your results.');
+                return;
+            }
+
+            // Calculate bias scores
+            const biasScores = {
+                loss_aversion: 0,
+                overconfidence: 0,
+                confirmation: 0,
+                herd_mentality: 0,
+                anchoring: 0,
+                recency: 0
+            };
+
+            Object.values(answers).forEach(answer => {
+                biasScores[answer.bias] += answer.score;
+            });
+
+            // Display results
+            const scoresContainer = document.getElementById('bias-scores');
+            scoresContainer.innerHTML = '';
+
+            let recommendations = [];
+
+            Object.entries(biasScores).forEach(([bias, score]) => {
+                const maxScore = questions.filter(q => q.bias === bias).length * 3;
+                const percentage = (score / maxScore) * 100;
+                let level, levelClass;
+
+                if (percentage >= 66) {
+                    level = 'High';
+                    levelClass = 'high';
+                    recommendations.push(biasInfo[bias]);
+                } else if (percentage >= 33) {
+                    level = 'Medium';
+                    levelClass = 'medium';
+                } else {
+                    level = 'Low';
+                    levelClass = 'low';
+                }
+
+                scoresContainer.innerHTML += `
+                    <div class="bias-result">
+                        <span class="bias-name">${biasInfo[bias].name}</span>
+                        <span class="bias-score ${levelClass}">${level} (${Math.round(percentage)}%)</span>
+                        <div class="progress">
+                            <div class="progress-bar" style="width: ${percentage}%;"></div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            document.getElementById('results').style.display = 'block';
+
+            // Show recommendations
+            if (recommendations.length > 0) {
+                const recContent = document.getElementById('rec-content');
+                recContent.innerHTML = '<p><strong>Focus on these biases:</strong></p><ul>' +
+                    recommendations.map(r => `<li><strong>${r.name}:</strong> ${r.description}</li>`).join('') +
+                    '</ul>';
+                document.getElementById('recommendations').style.display = 'block';
+            }
+        }
+
+        // Initialize
+        initQuiz();
+    </script>
+</body>
+</html>

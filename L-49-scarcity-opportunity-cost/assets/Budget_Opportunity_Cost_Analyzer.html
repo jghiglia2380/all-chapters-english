@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monthly Budget Opportunity Cost Analyzer - PFL Academy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background-color: #f9fafb;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+            color: white;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 24px;
+        }
+
+        .section {
+            margin-bottom: 24px;
+        }
+
+        .section-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #4f46e5;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e5e7eb;
+        }
+
+        .scenario-box {
+            background: #f0f9ff;
+            border: 2px solid #0ea5e9;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 20px;
+        }
+
+        .scenario-box h3 {
+            color: #0369a1;
+            margin-bottom: 12px;
+            font-size: 1.1rem;
+        }
+
+        .income-summary {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .income-item {
+            background: #f9fafb;
+            padding: 12px;
+            border-radius: 6px;
+            text-align: center;
+        }
+
+        .income-item label {
+            display: block;
+            font-size: 0.8rem;
+            color: #6b7280;
+            margin-bottom: 4px;
+        }
+
+        .income-item .value {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #1f2937;
+        }
+
+        .income-item .value.highlight {
+            color: #4f46e5;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 16px;
+            font-size: 0.9rem;
+        }
+
+        th, td {
+            padding: 10px 8px;
+            text-align: left;
+            border: 1px solid #e5e7eb;
+        }
+
+        th {
+            background: #f3f4f6;
+            font-weight: 600;
+            color: #374151;
+        }
+
+        input[type="number"] {
+            width: 80px;
+            padding: 6px 8px;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            text-align: right;
+        }
+
+        input[type="number"]:focus {
+            outline: none;
+            border-color: #6366f1;
+        }
+
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 6px 8px;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 50px;
+        }
+
+        .total-row {
+            background: #eef2ff;
+            font-weight: 600;
+        }
+
+        .total-row td {
+            color: #4f46e5;
+        }
+
+        .remaining-display {
+            text-align: center;
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .remaining-display.positive {
+            background: #dcfce7;
+            border: 2px solid #86efac;
+        }
+
+        .remaining-display.negative {
+            background: #fee2e2;
+            border: 2px solid #fca5a5;
+        }
+
+        .remaining-display.zero {
+            background: #f3f4f6;
+            border: 2px solid #d1d5db;
+        }
+
+        .remaining-display .label {
+            font-size: 0.9rem;
+            color: #6b7280;
+        }
+
+        .remaining-display .amount {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .analysis-section {
+            background: #fef3c7;
+            border: 2px solid #f59e0b;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 24px;
+        }
+
+        .analysis-section h3 {
+            color: #92400e;
+            margin-bottom: 16px;
+        }
+
+        .analysis-question {
+            margin-bottom: 20px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #fcd34d;
+        }
+
+        .analysis-question:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .analysis-question h4 {
+            color: #78350f;
+            margin-bottom: 12px;
+            font-size: 1rem;
+        }
+
+        .calc-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+            flex-wrap: wrap;
+        }
+
+        .calc-row label {
+            min-width: 200px;
+            font-size: 0.9rem;
+        }
+
+        .calc-row input {
+            width: 80px;
+        }
+
+        .calc-row .result {
+            font-weight: 600;
+            color: #166534;
+        }
+
+        .rule-box {
+            background: #eef2ff;
+            border: 2px solid #6366f1;
+            border-radius: 8px;
+            padding: 16px;
+            margin-top: 20px;
+        }
+
+        .rule-box h4 {
+            color: #4f46e5;
+            margin-bottom: 12px;
+        }
+
+        .rule-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .rule-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .reflection-section {
+            background: #f0fdf4;
+            border: 2px solid #86efac;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 24px;
+        }
+
+        .reflection-section h3 {
+            color: #166534;
+            margin-bottom: 16px;
+        }
+
+        .reflection-question {
+            margin-bottom: 12px;
+        }
+
+        .reflection-question p {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #15803d;
+        }
+
+        .btn-calculate {
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 16px;
+            transition: transform 0.2s;
+        }
+
+        .btn-calculate:hover {
+            transform: translateY(-2px);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 16px;
+            background: #f9fafb;
+            border-top: 1px solid #e5e7eb;
+            font-size: 0.85rem;
+            color: #6b7280;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 10px;
+            }
+
+            .container {
+                box-shadow: none;
+            }
+
+            .btn-calculate {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .income-summary {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            table {
+                font-size: 0.8rem;
+            }
+
+            th, td {
+                padding: 6px 4px;
+            }
+
+            .calc-row {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Monthly Budget Opportunity Cost Analyzer</h1>
+            <p>Allocate discretionary income and analyze opportunity costs for each decision</p>
+        </div>
+
+        <div class="content">
+            <div class="scenario-box">
+                <h3>Scenario: You have a part-time job earning $1,200/month</h3>
+                <p>Your required expenses total $330/month, leaving you with $870 in discretionary income. Allocate this money across your goals while analyzing the opportunity cost of each decision.</p>
+            </div>
+
+            <div class="income-summary">
+                <div class="income-item">
+                    <label>Monthly Income</label>
+                    <div class="value">$1,200</div>
+                </div>
+                <div class="income-item">
+                    <label>Required Expenses</label>
+                    <div class="value">$330</div>
+                </div>
+                <div class="income-item">
+                    <label>Discretionary Income</label>
+                    <div class="value highlight">$870</div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-title">Your Goals</div>
+                <ul style="margin-left: 20px; margin-bottom: 16px;">
+                    <li>Save for a car ($8,000 needed, you have $2,000 saved)</li>
+                    <li>Build emergency fund ($1,500 target)</li>
+                    <li>Save for college or training</li>
+                    <li>Enjoy social activities with friends</li>
+                    <li>Buy clothes and entertainment</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <div class="section-title">Budget Allocation Table</div>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Category</th>
+                            <th>Monthly Amount</th>
+                            <th>Annual Total</th>
+                            <th>Opportunity Cost (What You're Giving Up)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Emergency Fund</td>
+                            <td>$<input type="number" id="emergency" value="150" min="0" onchange="updateBudget()"></td>
+                            <td id="emergency-annual">$1,800</td>
+                            <td><input type="text" id="emergency-opp" placeholder="What could this money do instead?"></td>
+                        </tr>
+                        <tr>
+                            <td>Car Savings</td>
+                            <td>$<input type="number" id="car" value="300" min="0" onchange="updateBudget()"></td>
+                            <td id="car-annual">$3,600</td>
+                            <td><input type="text" id="car-opp" placeholder="What could this money do instead?"></td>
+                        </tr>
+                        <tr>
+                            <td>College/Training Savings</td>
+                            <td>$<input type="number" id="college" value="100" min="0" onchange="updateBudget()"></td>
+                            <td id="college-annual">$1,200</td>
+                            <td><input type="text" id="college-opp" placeholder="What could this money do instead?"></td>
+                        </tr>
+                        <tr>
+                            <td>Entertainment/Social</td>
+                            <td>$<input type="number" id="entertainment" value="200" min="0" onchange="updateBudget()"></td>
+                            <td id="entertainment-annual">$2,400</td>
+                            <td><input type="text" id="entertainment-opp" placeholder="What could this money do instead?"></td>
+                        </tr>
+                        <tr>
+                            <td>Clothing/Shopping</td>
+                            <td>$<input type="number" id="clothing" value="120" min="0" onchange="updateBudget()"></td>
+                            <td id="clothing-annual">$1,440</td>
+                            <td><input type="text" id="clothing-opp" placeholder="What could this money do instead?"></td>
+                        </tr>
+                        <tr class="total-row">
+                            <td><strong>TOTAL</strong></td>
+                            <td><strong id="total-monthly">$870</strong></td>
+                            <td><strong id="total-annual">$10,440</strong></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div id="remaining-display" class="remaining-display zero">
+                    <div class="label">Remaining to Allocate</div>
+                    <div class="amount" id="remaining-amount">$0</div>
+                </div>
+
+                <button class="btn-calculate" onclick="updateBudget()">Recalculate</button>
+            </div>
+
+            <div class="analysis-section">
+                <h3>Analysis Questions</h3>
+
+                <div class="analysis-question">
+                    <h4>1. If you allocate $300/month to car savings:</h4>
+                    <div class="calc-row">
+                        <label>Months until you can buy car ($6,000 more needed):</label>
+                        <span class="result" id="car-months">20 months</span>
+                    </div>
+                    <div class="calc-row">
+                        <label>At 5% APY savings interest earned:</label>
+                        <span class="result" id="car-interest">$250</span>
+                    </div>
+                    <p style="margin-top: 8px; font-size: 0.9rem; color: #78350f;">What if you delayed the car purchase by 6 months and invested that money instead?</p>
+                    <textarea placeholder="Your analysis..."></textarea>
+                </div>
+
+                <div class="analysis-question">
+                    <h4>2. If you allocate $200/month to entertainment:</h4>
+                    <div class="calc-row">
+                        <label>Annual total:</label>
+                        <span class="result">$2,400</span>
+                    </div>
+                    <div class="calc-row">
+                        <label>If invested at 8% for 5 years:</label>
+                        <span class="result" id="entertainment-invested">$14,693</span>
+                    </div>
+                    <p style="margin-top: 8px; font-size: 0.9rem; color: #78350f;">Is the enjoyment today worth more than this future value? (There's no right answer - depends on your values)</p>
+                    <textarea placeholder="Your analysis..."></textarea>
+                </div>
+
+                <div class="analysis-question">
+                    <h4>3. Emergency Fund Priority:</h4>
+                    <div class="calc-row">
+                        <label>At $150/month, reach $1,500 goal in:</label>
+                        <span class="result" id="emergency-months">10 months</span>
+                    </div>
+                    <p style="margin-top: 8px; font-size: 0.9rem; color: #78350f;"><strong>Opportunity cost:</strong> During this time, you're not maximizing car savings or investments</p>
+                    <p style="font-size: 0.9rem; color: #78350f;"><strong>Benefit:</strong> Financial security and avoiding high-interest debt in emergencies</p>
+                    <p style="margin-top: 8px; font-size: 0.9rem; color: #78350f;">Is it worth it?</p>
+                    <textarea placeholder="Your analysis..."></textarea>
+                </div>
+            </div>
+
+            <div class="rule-box">
+                <h4>The 50/30/20 Rule Application</h4>
+                <div class="rule-item">
+                    <span>50% to Needs (Required Expenses):</span>
+                    <span>$330 (28% of $1,200)</span>
+                </div>
+                <div class="rule-item">
+                    <span>30% to Wants:</span>
+                    <span>30% of $1,200 = $360</span>
+                </div>
+                <div class="rule-item">
+                    <span>20% to Savings/Debt:</span>
+                    <span>20% of $1,200 = $240</span>
+                </div>
+                <div style="margin-top: 12px;">
+                    <p style="font-weight: 600;">Does your allocation follow this guideline? If not, why did you choose differently?</p>
+                    <textarea id="rule-analysis" placeholder="Your analysis..."></textarea>
+                </div>
+            </div>
+
+            <div class="reflection-section">
+                <h3>Reflection</h3>
+
+                <div class="reflection-question">
+                    <p>Did thinking about opportunity costs change how you allocated money?</p>
+                    <textarea placeholder="Your reflection..."></textarea>
+                </div>
+
+                <div class="reflection-question">
+                    <p>What surprised you about the trade-offs?</p>
+                    <textarea placeholder="Your reflection..."></textarea>
+                </div>
+
+                <div class="reflection-question">
+                    <p>How might you adjust your real budget based on this analysis?</p>
+                    <textarea placeholder="Your reflection..."></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            PFL Academy - L-49: Scarcity, Opportunity Cost, and Incentives | Activity 2
+        </div>
+    </div>
+
+    <script>
+        function updateBudget() {
+            const emergency = parseFloat(document.getElementById('emergency').value) || 0;
+            const car = parseFloat(document.getElementById('car').value) || 0;
+            const college = parseFloat(document.getElementById('college').value) || 0;
+            const entertainment = parseFloat(document.getElementById('entertainment').value) || 0;
+            const clothing = parseFloat(document.getElementById('clothing').value) || 0;
+
+            const total = emergency + car + college + entertainment + clothing;
+            const remaining = 870 - total;
+
+            // Update annual totals
+            document.getElementById('emergency-annual').textContent = formatCurrency(emergency * 12);
+            document.getElementById('car-annual').textContent = formatCurrency(car * 12);
+            document.getElementById('college-annual').textContent = formatCurrency(college * 12);
+            document.getElementById('entertainment-annual').textContent = formatCurrency(entertainment * 12);
+            document.getElementById('clothing-annual').textContent = formatCurrency(clothing * 12);
+
+            document.getElementById('total-monthly').textContent = formatCurrency(total);
+            document.getElementById('total-annual').textContent = formatCurrency(total * 12);
+
+            // Update remaining display
+            const remainingDisplay = document.getElementById('remaining-display');
+            const remainingAmount = document.getElementById('remaining-amount');
+            remainingAmount.textContent = formatCurrency(Math.abs(remaining));
+
+            if (remaining > 0) {
+                remainingDisplay.className = 'remaining-display positive';
+                remainingAmount.textContent = formatCurrency(remaining) + ' remaining';
+            } else if (remaining < 0) {
+                remainingDisplay.className = 'remaining-display negative';
+                remainingAmount.textContent = formatCurrency(Math.abs(remaining)) + ' over budget';
+            } else {
+                remainingDisplay.className = 'remaining-display zero';
+                remainingAmount.textContent = '$0 - Fully allocated!';
+            }
+
+            // Update analysis calculations
+            // Car months calculation
+            const carNeeded = 6000;
+            const carMonths = car > 0 ? Math.ceil(carNeeded / car) : 0;
+            document.getElementById('car-months').textContent = carMonths + ' months';
+
+            // Car interest (simple approximation)
+            const carInterest = car > 0 ? Math.round(car * carMonths * 0.05 / 2) : 0;
+            document.getElementById('car-interest').textContent = formatCurrency(carInterest);
+
+            // Emergency fund months
+            const emergencyMonths = emergency > 0 ? Math.ceil(1500 / emergency) : 0;
+            document.getElementById('emergency-months').textContent = emergencyMonths + ' months';
+
+            // Entertainment future value (monthly contributions for 5 years at 8%)
+            const monthlyRate = 0.08 / 12;
+            const months = 60;
+            const futureValue = entertainment * ((Math.pow(1 + monthlyRate, months) - 1) / monthlyRate);
+            document.getElementById('entertainment-invested').textContent = formatCurrency(Math.round(futureValue));
+        }
+
+        function formatCurrency(amount) {
+            return new Intl.NumberFormat('en-US', {
+                style: 'currency',
+                currency: 'USD',
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0
+            }).format(amount);
+        }
+
+        // Initial calculation
+        updateBudget();
+    </script>
+</body>
+</html>

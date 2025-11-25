@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rebalancing Practice Simulator</title>
+    <style>
+        :root {
+            --primary: #6366f1;
+            --secondary: #8b5cf6;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+        }
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-size: 14px;
+            line-height: 1.5;
+            color: #1f2937;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+        h1 {
+            color: var(--primary);
+            font-size: 24px;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 8px;
+        }
+        h2 { color: var(--secondary); font-size: 18px; margin-top: 20px; }
+        .setup {
+            background: #e0e7ff;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        .year-card {
+            background: #f9fafb;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            border-left: 4px solid var(--primary);
+        }
+        .year-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .returns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin: 10px 0;
+        }
+        .return-box {
+            background: white;
+            padding: 8px;
+            border-radius: 4px;
+            text-align: center;
+        }
+        .allocation-bar {
+            height: 30px;
+            background: #e5e7eb;
+            border-radius: 4px;
+            display: flex;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+        .stock-portion {
+            background: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 12px;
+        }
+        .bond-portion {
+            background: var(--success);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 12px;
+        }
+        .decision-btns {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .decision-btn {
+            flex: 1;
+            padding: 10px;
+            border: 2px solid #d1d5db;
+            border-radius: 5px;
+            background: white;
+            cursor: pointer;
+            text-align: center;
+        }
+        .decision-btn:hover { border-color: var(--primary); }
+        .decision-btn.selected { border-color: var(--primary); background: #e0e7ff; }
+        .results {
+            background: #f0f7ff;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #d1d5db;
+            padding: 8px;
+            text-align: center;
+        }
+        .comparison-table th { background: var(--primary); color: white; }
+        button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover { background: var(--secondary); }
+        .positive { color: var(--success); }
+        .negative { color: var(--danger); }
+        @media print {
+            body { font-size: 11pt; }
+            button { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <h1>Rebalancing Practice Simulator</h1>
+    <p>Manage a portfolio over 10 years with annual rebalancing decisions</p>
+
+    <div class="setup">
+        <strong>Starting Portfolio: $100,000</strong>
+        <div style="margin-top: 10px;">
+            <strong>Target Allocation: 70% Stocks / 30% Bonds</strong>
+        </div>
+        <div class="allocation-bar">
+            <div class="stock-portion" style="width: 70%;">Stocks: $70,000</div>
+            <div class="bond-portion" style="width: 30%;">Bonds: $30,000</div>
+        </div>
+    </div>
+
+    <div id="years-container"></div>
+
+    <div style="text-align: center; margin: 20px 0;">
+        <button onclick="simulateYears()">Start 10-Year Simulation</button>
+        <button onclick="showResults()">Show Final Results</button>
+    </div>
+
+    <div class="results" id="results" style="display: none;">
+        <h2 style="margin-top: 0;">10-Year Comparison</h2>
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>Strategy</th>
+                    <th>Final Value</th>
+                    <th>Max Drawdown</th>
+                    <th>Final Allocation</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Your Decisions</strong></td>
+                    <td id="yourFinal">$185,000</td>
+                    <td id="yourDD">-22%</td>
+                    <td id="yourAlloc">72/28</td>
+                </tr>
+                <tr>
+                    <td>Always Rebalance</td>
+                    <td id="alwaysFinal">$192,000</td>
+                    <td id="alwaysDD">-18%</td>
+                    <td id="alwaysAlloc">70/30</td>
+                </tr>
+                <tr>
+                    <td>Never Rebalance</td>
+                    <td id="neverFinal">$198,000</td>
+                    <td id="neverDD">-28%</td>
+                    <td id="neverAlloc">82/18</td>
+                </tr>
+            </tbody>
+        </table>
+        <div style="background: #fef3c7; padding: 10px; border-radius: 4px; margin-top: 15px;">
+            <strong>Analysis:</strong> <span id="analysis">Regular rebalancing reduced risk while maintaining solid returns. The "never rebalance" portfolio drifted to 82% stocks, taking on more risk than intended.</span>
+        </div>
+    </div>
+
+    <script>
+        const yearData = [
+            { year: 1, stockReturn: 12, bondReturn: 4 },
+            { year: 2, stockReturn: 18, bondReturn: 2 },
+            { year: 3, stockReturn: 22, bondReturn: 3 },
+            { year: 4, stockReturn: -8, bondReturn: 6 },
+            { year: 5, stockReturn: 15, bondReturn: 3 },
+            { year: 6, stockReturn: 10, bondReturn: 4 },
+            { year: 7, stockReturn: -32, bondReturn: 8 },
+            { year: 8, stockReturn: 28, bondReturn: 2 },
+            { year: 9, stockReturn: 16, bondReturn: 3 },
+            { year: 10, stockReturn: 12, bondReturn: 4 }
+        ];
+
+        let decisions = [];
+        let currentYear = 0;
+        let stockValue = 70000;
+        let bondValue = 30000;
+
+        function simulateYears() {
+            const container = document.getElementById('years-container');
+            container.innerHTML = '';
+            decisions = [];
+            currentYear = 0;
+            stockValue = 70000;
+            bondValue = 30000;
+
+            yearData.forEach((data, index) => {
+                // Apply returns
+                const newStockValue = stockValue * (1 + data.stockReturn / 100);
+                const newBondValue = bondValue * (1 + data.bondReturn / 100);
+                const total = newStockValue + newBondValue;
+                const stockPct = Math.round(newStockValue / total * 100);
+                const bondPct = 100 - stockPct;
+                const drift = Math.abs(stockPct - 70);
+
+                const yearCard = document.createElement('div');
+                yearCard.className = 'year-card';
+                yearCard.innerHTML = `
+                    <div class="year-header">
+                        <strong>Year ${data.year}</strong>
+                        <span>Total: $${Math.round(total).toLocaleString()}</span>
+                    </div>
+                    <div class="returns">
+                        <div class="return-box">
+                            <div>Stocks</div>
+                            <div class="${data.stockReturn >= 0 ? 'positive' : 'negative'}">${data.stockReturn >= 0 ? '+' : ''}${data.stockReturn}%</div>
+                        </div>
+                        <div class="return-box">
+                            <div>Bonds</div>
+                            <div class="positive">+${data.bondReturn}%</div>
+                        </div>
+                    </div>
+                    <div style="font-size: 12px; margin: 10px 0;">
+                        Current: <strong>${stockPct}% stocks / ${bondPct}% bonds</strong>
+                        ${drift > 5 ? `<span style="color: var(--warning);"> (${drift}% drift from target!)</span>` : ''}
+                    </div>
+                    <div class="allocation-bar">
+                        <div class="stock-portion" style="width: ${stockPct}%;">${stockPct}%</div>
+                        <div class="bond-portion" style="width: ${bondPct}%;">${bondPct}%</div>
+                    </div>
+                    <div class="decision-btns">
+                        <div class="decision-btn" onclick="selectYearDecision(${index}, 'rebalance', this)">
+                            Rebalance to 70/30
+                        </div>
+                        <div class="decision-btn" onclick="selectYearDecision(${index}, 'hold', this)">
+                            Don't Rebalance
+                        </div>
+                    </div>
+                `;
+                container.appendChild(yearCard);
+
+                // Update for next year
+                stockValue = newStockValue;
+                bondValue = newBondValue;
+            });
+        }
+
+        function selectYearDecision(yearIndex, decision, element) {
+            decisions[yearIndex] = decision;
+
+            // Update visual
+            const btns = element.parentElement.querySelectorAll('.decision-btn');
+            btns.forEach(btn => btn.classList.remove('selected'));
+            element.classList.add('selected');
+        }
+
+        function showResults() {
+            // Calculate results based on decisions
+            let yourStock = 70000, yourBond = 30000;
+            let alwaysStock = 70000, alwaysBond = 30000;
+            let neverStock = 70000, neverBond = 30000;
+
+            let yourMaxDD = 0, alwaysMaxDD = 0, neverMaxDD = 0;
+            let yourPeak = 100000, alwaysPeak = 100000, neverPeak = 100000;
+
+            yearData.forEach((data, index) => {
+                // Apply returns
+                yourStock *= (1 + data.stockReturn / 100);
+                yourBond *= (1 + data.bondReturn / 100);
+                alwaysStock *= (1 + data.stockReturn / 100);
+                alwaysBond *= (1 + data.bondReturn / 100);
+                neverStock *= (1 + data.stockReturn / 100);
+                neverBond *= (1 + data.bondReturn / 100);
+
+                // Track drawdowns
+                const yourTotal = yourStock + yourBond;
+                const alwaysTotal = alwaysStock + alwaysBond;
+                const neverTotal = neverStock + neverBond;
+
+                yourPeak = Math.max(yourPeak, yourTotal);
+                alwaysPeak = Math.max(alwaysPeak, alwaysTotal);
+                neverPeak = Math.max(neverPeak, neverTotal);
+
+                yourMaxDD = Math.min(yourMaxDD, (yourTotal - yourPeak) / yourPeak * 100);
+                alwaysMaxDD = Math.min(alwaysMaxDD, (alwaysTotal - alwaysPeak) / alwaysPeak * 100);
+                neverMaxDD = Math.min(neverMaxDD, (neverTotal - neverPeak) / neverPeak * 100);
+
+                // Rebalancing
+                if (decisions[index] === 'rebalance') {
+                    const total = yourStock + yourBond;
+                    yourStock = total * 0.7;
+                    yourBond = total * 0.3;
+                }
+
+                // Always rebalance
+                const aTotal = alwaysStock + alwaysBond;
+                alwaysStock = aTotal * 0.7;
+                alwaysBond = aTotal * 0.3;
+            });
+
+            const yourTotal = yourStock + yourBond;
+            const alwaysTotal = alwaysStock + alwaysBond;
+            const neverTotal = neverStock + neverBond;
+
+            const yourStockPct = Math.round(yourStock / yourTotal * 100);
+            const neverStockPct = Math.round(neverStock / neverTotal * 100);
+
+            document.getElementById('yourFinal').textContent = '$' + Math.round(yourTotal).toLocaleString();
+            document.getElementById('yourDD').textContent = Math.round(yourMaxDD) + '%';
+            document.getElementById('yourAlloc').textContent = yourStockPct + '/' + (100 - yourStockPct);
+
+            document.getElementById('alwaysFinal').textContent = '$' + Math.round(alwaysTotal).toLocaleString();
+            document.getElementById('alwaysDD').textContent = Math.round(alwaysMaxDD) + '%';
+            document.getElementById('alwaysAlloc').textContent = '70/30';
+
+            document.getElementById('neverFinal').textContent = '$' + Math.round(neverTotal).toLocaleString();
+            document.getElementById('neverDD').textContent = Math.round(neverMaxDD) + '%';
+            document.getElementById('neverAlloc').textContent = neverStockPct + '/' + (100 - neverStockPct);
+
+            document.getElementById('results').style.display = 'block';
+        }
+    </script>
+</body>
+</html>

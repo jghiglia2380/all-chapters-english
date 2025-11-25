@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investment Characteristics Comparison Chart - PFL Academy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background: #f9fafb;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+            color: white;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 0.9rem;
+        }
+
+        .content {
+            padding: 24px;
+        }
+
+        .instructions {
+            background: #eff6ff;
+            border-left: 4px solid #6366f1;
+            padding: 16px;
+            margin-bottom: 24px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .instructions h3 {
+            font-size: 1rem;
+            margin-bottom: 8px;
+            color: #4338ca;
+        }
+
+        .instructions p {
+            font-size: 0.85rem;
+            color: #4b5563;
+        }
+
+        .rating-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 24px;
+        }
+
+        .rating-table th,
+        .rating-table td {
+            padding: 12px 8px;
+            text-align: center;
+            border: 1px solid #e5e7eb;
+            font-size: 0.85rem;
+        }
+
+        .rating-table th {
+            background: #f3f4f6;
+            font-weight: 600;
+        }
+
+        .rating-table th:first-child,
+        .rating-table td:first-child {
+            text-align: left;
+            font-weight: 500;
+            background: #fafafa;
+        }
+
+        .rating-table tr:hover {
+            background: #f9fafb;
+        }
+
+        .rating-buttons {
+            display: flex;
+            gap: 4px;
+            justify-content: center;
+        }
+
+        .rating-btn {
+            width: 28px;
+            height: 28px;
+            border: 2px solid #d1d5db;
+            border-radius: 50%;
+            background: white;
+            cursor: pointer;
+            font-size: 0.75rem;
+            font-weight: 600;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .rating-btn:hover {
+            border-color: #6366f1;
+            color: #6366f1;
+        }
+
+        .rating-btn.selected {
+            background: #6366f1;
+            border-color: #6366f1;
+            color: white;
+        }
+
+        .summary-section {
+            margin-top: 32px;
+            padding-top: 24px;
+            border-top: 2px solid #e5e7eb;
+        }
+
+        .summary-section h3 {
+            font-size: 1.1rem;
+            margin-bottom: 16px;
+        }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+        }
+
+        .summary-card {
+            background: #f9fafb;
+            border-radius: 8px;
+            padding: 16px;
+        }
+
+        .summary-card h4 {
+            font-size: 0.85rem;
+            color: #6b7280;
+            margin-bottom: 8px;
+        }
+
+        .summary-card .highest,
+        .summary-card .lowest {
+            padding: 4px 0;
+            font-size: 0.9rem;
+        }
+
+        .highest {
+            color: #059669;
+        }
+
+        .lowest {
+            color: #dc2626;
+        }
+
+        .real-examples {
+            margin-top: 32px;
+            padding-top: 24px;
+            border-top: 2px solid #e5e7eb;
+        }
+
+        .real-examples h3 {
+            font-size: 1.1rem;
+            margin-bottom: 16px;
+        }
+
+        .example-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+        }
+
+        .example-table th,
+        .example-table td {
+            padding: 10px 12px;
+            text-align: left;
+            border: 1px solid #e5e7eb;
+        }
+
+        .example-table th {
+            background: #f3f4f6;
+            font-weight: 600;
+        }
+
+        .example-table input {
+            width: 100%;
+            padding: 6px;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+            font-size: 0.85rem;
+        }
+
+        .example-table input:focus {
+            outline: none;
+            border-color: #6366f1;
+        }
+
+        .calculation-box {
+            background: #fef3c7;
+            border-radius: 8px;
+            padding: 16px;
+            margin-top: 20px;
+        }
+
+        .calculation-box h4 {
+            color: #92400e;
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+        }
+
+        .calculation-box p {
+            font-size: 0.85rem;
+            margin-bottom: 8px;
+        }
+
+        .calculation-box input {
+            width: 120px;
+            padding: 6px 8px;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+            font-size: 0.85rem;
+        }
+
+        .checkpoint-section {
+            margin-top: 32px;
+            padding-top: 24px;
+            border-top: 2px solid #e5e7eb;
+        }
+
+        .checkpoint-section h3 {
+            font-size: 1.1rem;
+            margin-bottom: 16px;
+        }
+
+        .question {
+            margin-bottom: 16px;
+        }
+
+        .question label {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .question textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-family: inherit;
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .question textarea:focus {
+            outline: none;
+            border-color: #6366f1;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+            font-size: 0.9rem;
+            margin-top: 16px;
+        }
+
+        .btn-primary {
+            background: #6366f1;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #4f46e5;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+
+            .container {
+                box-shadow: none;
+            }
+
+            .rating-btn {
+                border: 1px solid #000;
+            }
+
+            .rating-btn.selected {
+                background: #000;
+                color: white;
+            }
+
+            .btn {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .rating-table {
+                font-size: 0.75rem;
+            }
+
+            .rating-table th,
+            .rating-table td {
+                padding: 8px 4px;
+            }
+
+            .rating-btn {
+                width: 24px;
+                height: 24px;
+                font-size: 0.65rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Investment Characteristics Comparison Chart</h1>
+            <p>Activity 1: Rate and compare investment types across key characteristics</p>
+        </div>
+
+        <div class="content">
+            <div class="instructions">
+                <h3>Instructions</h3>
+                <p>For each investment type, rate the characteristic on a scale of 1-5. Click the number that best represents each investment's characteristic. Use the rating guide: 1 = Very Low, 2 = Low, 3 = Moderate, 4 = High, 5 = Very High.</p>
+            </div>
+
+            <table class="rating-table">
+                <thead>
+                    <tr>
+                        <th>Characteristic</th>
+                        <th>Stocks</th>
+                        <th>Bonds</th>
+                        <th>Mutual Funds</th>
+                        <th>ETFs</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Potential Return<br><small style="color: #6b7280;">(1=low, 5=high)</small></td>
+                        <td><div class="rating-buttons" data-row="return" data-col="stocks"></div></td>
+                        <td><div class="rating-buttons" data-row="return" data-col="bonds"></div></td>
+                        <td><div class="rating-buttons" data-row="return" data-col="mutual"></div></td>
+                        <td><div class="rating-buttons" data-row="return" data-col="etfs"></div></td>
+                    </tr>
+                    <tr>
+                        <td>Risk Level<br><small style="color: #6b7280;">(1=very safe, 5=volatile)</small></td>
+                        <td><div class="rating-buttons" data-row="risk" data-col="stocks"></div></td>
+                        <td><div class="rating-buttons" data-row="risk" data-col="bonds"></div></td>
+                        <td><div class="rating-buttons" data-row="risk" data-col="mutual"></div></td>
+                        <td><div class="rating-buttons" data-row="risk" data-col="etfs"></div></td>
+                    </tr>
+                    <tr>
+                        <td>Liquidity<br><small style="color: #6b7280;">(1=hard to sell, 5=easy)</small></td>
+                        <td><div class="rating-buttons" data-row="liquidity" data-col="stocks"></div></td>
+                        <td><div class="rating-buttons" data-row="liquidity" data-col="bonds"></div></td>
+                        <td><div class="rating-buttons" data-row="liquidity" data-col="mutual"></div></td>
+                        <td><div class="rating-buttons" data-row="liquidity" data-col="etfs"></div></td>
+                    </tr>
+                    <tr>
+                        <td>Complexity<br><small style="color: #6b7280;">(1=simple, 5=complex)</small></td>
+                        <td><div class="rating-buttons" data-row="complexity" data-col="stocks"></div></td>
+                        <td><div class="rating-buttons" data-row="complexity" data-col="bonds"></div></td>
+                        <td><div class="rating-buttons" data-row="complexity" data-col="mutual"></div></td>
+                        <td><div class="rating-buttons" data-row="complexity" data-col="etfs"></div></td>
+                    </tr>
+                    <tr>
+                        <td>Minimum Investment<br><small style="color: #6b7280;">(1=very low, 5=high)</small></td>
+                        <td><div class="rating-buttons" data-row="minimum" data-col="stocks"></div></td>
+                        <td><div class="rating-buttons" data-row="minimum" data-col="bonds"></div></td>
+                        <td><div class="rating-buttons" data-row="minimum" data-col="mutual"></div></td>
+                        <td><div class="rating-buttons" data-row="minimum" data-col="etfs"></div></td>
+                    </tr>
+                    <tr>
+                        <td>Income Generation<br><small style="color: #6b7280;">(1=no income, 5=steady)</small></td>
+                        <td><div class="rating-buttons" data-row="income" data-col="stocks"></div></td>
+                        <td><div class="rating-buttons" data-row="income" data-col="bonds"></div></td>
+                        <td><div class="rating-buttons" data-row="income" data-col="mutual"></div></td>
+                        <td><div class="rating-buttons" data-row="income" data-col="etfs"></div></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="summary-section">
+                <h3>Summary: Highest & Lowest by Category</h3>
+                <div class="summary-grid" id="summary-grid">
+                    <div class="summary-card">
+                        <h4>Potential Return</h4>
+                        <div class="highest" id="return-highest">Highest: --</div>
+                        <div class="lowest" id="return-lowest">Lowest: --</div>
+                    </div>
+                    <div class="summary-card">
+                        <h4>Risk Level</h4>
+                        <div class="highest" id="risk-highest">Highest: --</div>
+                        <div class="lowest" id="risk-lowest">Lowest: --</div>
+                    </div>
+                    <div class="summary-card">
+                        <h4>Liquidity</h4>
+                        <div class="highest" id="liquidity-highest">Highest: --</div>
+                        <div class="lowest" id="liquidity-lowest">Lowest: --</div>
+                    </div>
+                    <div class="summary-card">
+                        <h4>Complexity</h4>
+                        <div class="highest" id="complexity-highest">Highest: --</div>
+                        <div class="lowest" id="complexity-lowest">Lowest: --</div>
+                    </div>
+                    <div class="summary-card">
+                        <h4>Minimum Investment</h4>
+                        <div class="highest" id="minimum-highest">Highest: --</div>
+                        <div class="lowest" id="minimum-lowest">Lowest: --</div>
+                    </div>
+                    <div class="summary-card">
+                        <h4>Income Generation</h4>
+                        <div class="highest" id="income-highest">Highest: --</div>
+                        <div class="lowest" id="income-lowest">Lowest: --</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="real-examples">
+                <h3>Part B: Real Examples Analysis</h3>
+                <table class="example-table">
+                    <thead>
+                        <tr>
+                            <th>Metric</th>
+                            <th>Apple (AAPL)</th>
+                            <th>Vanguard Bond (BND)</th>
+                            <th>S&P 500 ETF (VOO)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Current Price</td>
+                            <td><input type="text" placeholder="$"></td>
+                            <td><input type="text" placeholder="$"></td>
+                            <td><input type="text" placeholder="$"></td>
+                        </tr>
+                        <tr>
+                            <td>1-Year Return %</td>
+                            <td><input type="text" placeholder="%"></td>
+                            <td><input type="text" placeholder="%"></td>
+                            <td><input type="text" placeholder="%"></td>
+                        </tr>
+                        <tr>
+                            <td>Dividend/Yield</td>
+                            <td><input type="text" placeholder="%"></td>
+                            <td><input type="text" placeholder="%"></td>
+                            <td><input type="text" placeholder="%"></td>
+                        </tr>
+                        <tr>
+                            <td>Expense Ratio</td>
+                            <td><input type="text" placeholder="N/A"></td>
+                            <td><input type="text" placeholder="%"></td>
+                            <td><input type="text" placeholder="%"></td>
+                        </tr>
+                        <tr>
+                            <td>YTD Performance</td>
+                            <td><input type="text" placeholder="%"></td>
+                            <td><input type="text" placeholder="%"></td>
+                            <td><input type="text" placeholder="%"></td>
+                        </tr>
+                        <tr>
+                            <td>Risk Rank (1-3)</td>
+                            <td><input type="text" placeholder="1=highest risk"></td>
+                            <td><input type="text" placeholder=""></td>
+                            <td><input type="text" placeholder=""></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="calculation-box">
+                    <h4>Calculate: $1,000 Investment Value After 1 Year</h4>
+                    <p>Apple (AAPL): $<input type="text" id="calc-aapl" placeholder="value"></p>
+                    <p>Vanguard Bond (BND): $<input type="text" id="calc-bnd" placeholder="value"></p>
+                    <p>S&P 500 ETF (VOO): $<input type="text" id="calc-voo" placeholder="value"></p>
+                </div>
+            </div>
+
+            <div class="checkpoint-section">
+                <h3>Checkpoint Questions</h3>
+
+                <div class="question">
+                    <label>1. Which investment showed the highest return over the past year? Which showed the most volatility?</label>
+                    <textarea placeholder="Your answer..."></textarea>
+                </div>
+
+                <div class="question">
+                    <label>2. How much did fees (expense ratios) cost an investor with $10,000 invested for one year in each fund?</label>
+                    <textarea placeholder="Your answer..."></textarea>
+                </div>
+
+                <div class="question">
+                    <label>3. Based on these characteristics, which investment would you choose for a retirement account you won't touch for 30 years? Why?</label>
+                    <textarea placeholder="Your answer..."></textarea>
+                </div>
+
+                <button class="btn btn-primary" onclick="window.print()">Print Worksheet</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const ratings = {};
+        const investmentNames = {
+            stocks: 'Stocks',
+            bonds: 'Bonds',
+            mutual: 'Mutual Funds',
+            etfs: 'ETFs'
+        };
+
+        // Initialize rating buttons
+        document.querySelectorAll('.rating-buttons').forEach(container => {
+            const row = container.dataset.row;
+            const col = container.dataset.col;
+
+            for (let i = 1; i <= 5; i++) {
+                const btn = document.createElement('button');
+                btn.className = 'rating-btn';
+                btn.textContent = i;
+                btn.onclick = () => selectRating(row, col, i, btn);
+                container.appendChild(btn);
+            }
+        });
+
+        function selectRating(row, col, value, btn) {
+            // Clear previous selection
+            btn.parentElement.querySelectorAll('.rating-btn').forEach(b => b.classList.remove('selected'));
+            btn.classList.add('selected');
+
+            // Store rating
+            if (!ratings[row]) ratings[row] = {};
+            ratings[row][col] = value;
+
+            // Update summary
+            updateSummary();
+        }
+
+        function updateSummary() {
+            const rows = ['return', 'risk', 'liquidity', 'complexity', 'minimum', 'income'];
+            const cols = ['stocks', 'bonds', 'mutual', 'etfs'];
+
+            rows.forEach(row => {
+                if (!ratings[row]) return;
+
+                let highest = { name: '--', value: 0 };
+                let lowest = { name: '--', value: 6 };
+
+                cols.forEach(col => {
+                    if (ratings[row][col]) {
+                        if (ratings[row][col] > highest.value) {
+                            highest = { name: investmentNames[col], value: ratings[row][col] };
+                        }
+                        if (ratings[row][col] < lowest.value) {
+                            lowest = { name: investmentNames[col], value: ratings[row][col] };
+                        }
+                    }
+                });
+
+                document.getElementById(`${row}-highest`).textContent = `Highest: ${highest.name}`;
+                document.getElementById(`${row}-lowest`).textContent = `Lowest: ${lowest.name}`;
+            });
+        }
+    </script>
+</body>
+</html>

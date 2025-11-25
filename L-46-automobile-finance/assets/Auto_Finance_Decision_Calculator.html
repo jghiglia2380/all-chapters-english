@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto Finance Decision Calculator | PFL Academy</title>
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #8b5cf6;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --info: #3b82f6;
+            --text: #1f2937;
+            --text-light: #6b7280;
+            --background: #ffffff;
+            --surface: #f9fafb;
+            --border: #e5e7eb;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-size: 14px;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--surface);
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background-color: var(--background);
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 24px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .state-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 4px 16px;
+            border-radius: 20px;
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+
+        .content {
+            padding: 24px;
+        }
+
+        .state-info-box {
+            background: #eff6ff;
+            border-left: 4px solid var(--info);
+            padding: 16px;
+            margin-bottom: 24px;
+            border-radius: 4px;
+        }
+
+        .state-info-box h3 {
+            color: var(--info);
+            font-size: 1rem;
+            margin-bottom: 12px;
+        }
+
+        .state-data-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 12px;
+        }
+
+        .state-data-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .state-data-label {
+            font-size: 0.75rem;
+            color: var(--text-light);
+            text-transform: uppercase;
+        }
+
+        .state-data-value {
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .scenarios-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 24px;
+        }
+
+        .scenario-card {
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            background: white;
+        }
+
+        .scenario-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .scenario-card.buy-new h3 { color: var(--info); border-color: var(--info); }
+        .scenario-card.buy-used h3 { color: var(--success); border-color: var(--success); }
+        .scenario-card.lease h3 { color: var(--warning); border-color: var(--warning); }
+
+        .form-group {
+            margin-bottom: 12px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--text-light);
+            margin-bottom: 4px;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-size: 0.9rem;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+        }
+
+        .results-section {
+            background: var(--surface);
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 24px;
+        }
+
+        .results-section h3 {
+            color: var(--text);
+            margin-bottom: 16px;
+            font-size: 1.1rem;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 10px 8px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .comparison-table th {
+            background: white;
+            font-weight: 600;
+            font-size: 0.8rem;
+        }
+
+        .comparison-table td {
+            background: white;
+        }
+
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .total-row {
+            font-weight: 700;
+            background: #f0fdf4 !important;
+        }
+
+        .total-row td {
+            background: #f0fdf4 !important;
+        }
+
+        .positive { color: var(--success); }
+        .negative { color: var(--danger); }
+
+        .winner-badge {
+            display: inline-block;
+            background: var(--success);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-left: 8px;
+        }
+
+        .recommendation-box {
+            background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+            border: 2px solid var(--success);
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 24px;
+        }
+
+        .recommendation-box h4 {
+            color: #065f46;
+            margin-bottom: 12px;
+        }
+
+        .recommendation-box p {
+            color: #064e3b;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .btn-secondary {
+            background: var(--text-light);
+        }
+
+        .btn-secondary:hover {
+            background: #4b5563;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 24px;
+            flex-wrap: wrap;
+        }
+
+        footer {
+            text-align: center;
+            padding: 16px;
+            background: var(--surface);
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+
+            .container {
+                box-shadow: none;
+            }
+
+            .action-buttons,
+            .no-print {
+                display: none !important;
+            }
+
+            .scenario-card,
+            .results-section {
+                page-break-inside: avoid;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .scenarios-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .comparison-table {
+                font-size: 0.75rem;
+            }
+
+            .comparison-table th,
+            .comparison-table td {
+                padding: 8px 4px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Auto Finance Decision Calculator</h1>
+            <p class="subtitle">Compare Buy vs. Lease Options with Real-Time Analysis</p>
+            <div class="state-badge">Personalized for {{STATE_NAME}}</div>
+        </header>
+
+        <div class="content">
+            <div class="state-info-box">
+                <h3>{{STATE_NAME}} State-Specific Data</h3>
+                <div class="state-data-grid">
+                    <div class="state-data-item">
+                        <span class="state-data-label">Sales Tax</span>
+                        <span class="state-data-value">{{STATE_SALES_TAX}}%</span>
+                    </div>
+                    <div class="state-data-item">
+                        <span class="state-data-label">Initial Registration</span>
+                        <span class="state-data-value">${{STATE_REGISTRATION_INITIAL}}</span>
+                    </div>
+                    <div class="state-data-item">
+                        <span class="state-data-label">Annual Registration</span>
+                        <span class="state-data-value">${{STATE_REGISTRATION_ANNUAL}}</span>
+                    </div>
+                    <div class="state-data-item">
+                        <span class="state-data-label">Teen Insurance Avg</span>
+                        <span class="state-data-value">${{STATE_INSURANCE_AVG_TEEN}}/mo</span>
+                    </div>
+                    <div class="state-data-item">
+                        <span class="state-data-label">Gas Price</span>
+                        <span class="state-data-value">${{STATE_GAS_PRICE_CURRENT}}/gal</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="scenarios-grid">
+                <!-- Scenario 1: Buy New -->
+                <div class="scenario-card buy-new">
+                    <h3>Scenario 1: Buy New</h3>
+                    <div class="form-group">
+                        <label>Purchase Price ($)</label>
+                        <input type="number" id="newPrice" value="28000" oninput="calculate()">
+                    </div>
+                    <div class="form-group">
+                        <label>Down Payment ($)</label>
+                        <input type="number" id="newDown" value="5600" oninput="calculate()">
+                    </div>
+                    <div class="form-group">
+                        <label>Loan Term (months)</label>
+                        <select id="newTerm" onchange="calculate()">
+                            <option value="36">36 months</option>
+                            <option value="48">48 months</option>
+                            <option value="60" selected>60 months</option>
+                            <option value="72">72 months</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Interest Rate (%)</label>
+                        <input type="number" id="newRate" value="6.5" step="0.1" oninput="calculate()">
+                    </div>
+                    <div class="form-group">
+                        <label>Monthly Insurance ($)</label>
+                        <input type="number" id="newInsurance" value="250" oninput="calculate()">
+                    </div>
+                </div>
+
+                <!-- Scenario 2: Buy Used -->
+                <div class="scenario-card buy-used">
+                    <h3>Scenario 2: Buy Used (3 Years Old)</h3>
+                    <div class="form-group">
+                        <label>Purchase Price ($)</label>
+                        <input type="number" id="usedPrice" value="18000" oninput="calculate()">
+                    </div>
+                    <div class="form-group">
+                        <label>Down Payment ($)</label>
+                        <input type="number" id="usedDown" value="2700" oninput="calculate()">
+                    </div>
+                    <div class="form-group">
+                        <label>Loan Term (months)</label>
+                        <select id="usedTerm" onchange="calculate()">
+                            <option value="36">36 months</option>
+                            <option value="48" selected>48 months</option>
+                            <option value="60">60 months</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Interest Rate (%)</label>
+                        <input type="number" id="usedRate" value="7.5" step="0.1" oninput="calculate()">
+                    </div>
+                    <div class="form-group">
+                        <label>Monthly Insurance ($)</label>
+                        <input type="number" id="usedInsurance" value="212" oninput="calculate()">
+                    </div>
+                </div>
+
+                <!-- Scenario 3: Lease -->
+                <div class="scenario-card lease">
+                    <h3>Scenario 3: Lease New</h3>
+                    <div class="form-group">
+                        <label>MSRP ($)</label>
+                        <input type="number" id="leaseMsrp" value="28000" oninput="calculate()">
+                    </div>
+                    <div class="form-group">
+                        <label>Cap Cost Reduction ($)</label>
+                        <input type="number" id="leaseCap" value="2000" oninput="calculate()">
+                    </div>
+                    <div class="form-group">
+                        <label>Monthly Payment ($)</label>
+                        <input type="number" id="leasePayment" value="299" oninput="calculate()">
+                    </div>
+                    <div class="form-group">
+                        <label>Lease Term (months)</label>
+                        <input type="number" id="leaseTerm" value="36" oninput="calculate()">
+                    </div>
+                    <div class="form-group">
+                        <label>Monthly Insurance ($)</label>
+                        <input type="number" id="leaseInsurance" value="275" oninput="calculate()">
+                    </div>
+                    <div class="form-group">
+                        <label>Annual Mileage Allowed</label>
+                        <input type="number" id="leaseMiles" value="12000" oninput="calculate()">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group" style="max-width: 300px;">
+                <label>Your Expected Annual Mileage</label>
+                <input type="number" id="annualMiles" value="12000" oninput="calculate()">
+            </div>
+
+            <div class="results-section">
+                <h3>6-Year Cost Comparison</h3>
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Cost Category</th>
+                            <th>Buy New</th>
+                            <th>Buy Used</th>
+                            <th>Lease (2x 3-yr)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Monthly Payment</td>
+                            <td id="res-new-payment">$0</td>
+                            <td id="res-used-payment">$0</td>
+                            <td id="res-lease-payment">$0</td>
+                        </tr>
+                        <tr>
+                            <td>Down Payment/Cap Reduction</td>
+                            <td id="res-new-down">$0</td>
+                            <td id="res-used-down">$0</td>
+                            <td id="res-lease-down">$0</td>
+                        </tr>
+                        <tr>
+                            <td>Total Payments (6 years)</td>
+                            <td id="res-new-total">$0</td>
+                            <td id="res-used-total">$0</td>
+                            <td id="res-lease-total">$0</td>
+                        </tr>
+                        <tr>
+                            <td>Sales Tax</td>
+                            <td id="res-new-tax">$0</td>
+                            <td id="res-used-tax">$0</td>
+                            <td id="res-lease-tax">$0</td>
+                        </tr>
+                        <tr>
+                            <td>Registration (6 years)</td>
+                            <td id="res-new-reg">$0</td>
+                            <td id="res-used-reg">$0</td>
+                            <td id="res-lease-reg">$0</td>
+                        </tr>
+                        <tr>
+                            <td>Insurance (6 years)</td>
+                            <td id="res-new-ins">$0</td>
+                            <td id="res-used-ins">$0</td>
+                            <td id="res-lease-ins">$0</td>
+                        </tr>
+                        <tr>
+                            <td>Est. Maintenance</td>
+                            <td id="res-new-maint">$0</td>
+                            <td id="res-used-maint">$0</td>
+                            <td id="res-lease-maint">$0</td>
+                        </tr>
+                        <tr>
+                            <td>Mileage Overage Fees</td>
+                            <td>$0</td>
+                            <td>$0</td>
+                            <td id="res-lease-overage">$0</td>
+                        </tr>
+                        <tr>
+                            <td>Vehicle Value at Year 6</td>
+                            <td id="res-new-value" class="positive">$0</td>
+                            <td id="res-used-value" class="positive">$0</td>
+                            <td>$0</td>
+                        </tr>
+                        <tr class="total-row">
+                            <td><strong>NET TOTAL COST</strong></td>
+                            <td id="res-new-net"><strong>$0</strong></td>
+                            <td id="res-used-net"><strong>$0</strong></td>
+                            <td id="res-lease-net"><strong>$0</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Cost Per Mile</td>
+                            <td id="res-new-cpm">$0.00</td>
+                            <td id="res-used-cpm">$0.00</td>
+                            <td id="res-lease-cpm">$0.00</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="recommendation-box" id="recommendation">
+                <h4>Recommendation</h4>
+                <p id="recommendationText">Enter your data to see a personalized recommendation based on your 6-year total cost of ownership.</p>
+            </div>
+
+            <div class="action-buttons no-print">
+                <button class="btn" onclick="window.print()">Print Results</button>
+                <button class="btn btn-secondary" onclick="resetForm()">Reset All</button>
+            </div>
+        </div>
+
+        <footer>
+            <p>PFL Academy | L-46: Automobile Finance - Buying vs. Leasing</p>
+        </footer>
+    </div>
+
+    <script>
+        const STATE_TAX = parseFloat('{{STATE_SALES_TAX}}') || 6.0;
+        const STATE_REG_INITIAL = parseFloat('{{STATE_REGISTRATION_INITIAL}}') || 350;
+        const STATE_REG_ANNUAL = parseFloat('{{STATE_REGISTRATION_ANNUAL}}') || 75;
+
+        function calculateMonthlyPayment(principal, rate, months) {
+            const monthlyRate = rate / 100 / 12;
+            if (monthlyRate === 0) return principal / months;
+            return principal * (monthlyRate * Math.pow(1 + monthlyRate, months)) / (Math.pow(1 + monthlyRate, months) - 1);
+        }
+
+        function formatCurrency(amount) {
+            return '$' + Math.round(amount).toLocaleString();
+        }
+
+        function calculate() {
+            // Get inputs
+            const newPrice = parseFloat(document.getElementById('newPrice').value) || 0;
+            const newDown = parseFloat(document.getElementById('newDown').value) || 0;
+            const newTerm = parseInt(document.getElementById('newTerm').value) || 60;
+            const newRate = parseFloat(document.getElementById('newRate').value) || 0;
+            const newInsurance = parseFloat(document.getElementById('newInsurance').value) || 0;
+
+            const usedPrice = parseFloat(document.getElementById('usedPrice').value) || 0;
+            const usedDown = parseFloat(document.getElementById('usedDown').value) || 0;
+            const usedTerm = parseInt(document.getElementById('usedTerm').value) || 48;
+            const usedRate = parseFloat(document.getElementById('usedRate').value) || 0;
+            const usedInsurance = parseFloat(document.getElementById('usedInsurance').value) || 0;
+
+            const leaseCap = parseFloat(document.getElementById('leaseCap').value) || 0;
+            const leasePayment = parseFloat(document.getElementById('leasePayment').value) || 0;
+            const leaseTerm = parseInt(document.getElementById('leaseTerm').value) || 36;
+            const leaseInsurance = parseFloat(document.getElementById('leaseInsurance').value) || 0;
+            const leaseMilesAllowed = parseInt(document.getElementById('leaseMiles').value) || 12000;
+
+            const annualMiles = parseInt(document.getElementById('annualMiles').value) || 12000;
+            const totalMiles = annualMiles * 6;
+
+            // Buy New Calculations
+            const newLoan = newPrice - newDown;
+            const newMonthly = calculateMonthlyPayment(newLoan, newRate, newTerm);
+            const newTotalPayments = newDown + (newMonthly * newTerm);
+            const newTax = newPrice * (STATE_TAX / 100);
+            const newReg = STATE_REG_INITIAL + (STATE_REG_ANNUAL * 5);
+            const newIns = newInsurance * 12 * 6;
+            const newMaint = 3500;
+            const newValue = newPrice * 0.45;
+            const newNet = newTotalPayments + newTax + newReg + newIns + newMaint - newValue;
+
+            // Buy Used Calculations
+            const usedLoan = usedPrice - usedDown;
+            const usedMonthly = calculateMonthlyPayment(usedLoan, usedRate, usedTerm);
+            const usedTotalPayments = usedDown + (usedMonthly * usedTerm);
+            const usedTax = usedPrice * (STATE_TAX / 100);
+            const usedReg = STATE_REG_INITIAL + (STATE_REG_ANNUAL * 5);
+            const usedIns = usedInsurance * 12 * 6;
+            const usedMaint = 6000;
+            const usedValue = usedPrice * 0.35;
+            const usedNet = usedTotalPayments + usedTax + usedReg + usedIns + usedMaint - usedValue;
+
+            // Lease Calculations (2 consecutive leases)
+            const leaseTotalPayments = (leaseCap * 2) + (leasePayment * leaseTerm * 2);
+            const leaseTax = (leasePayment * leaseTerm * 2) * (STATE_TAX / 100);
+            const leaseReg = (STATE_REG_INITIAL * 2) + (STATE_REG_ANNUAL * 4);
+            const leaseIns = leaseInsurance * 12 * 6;
+            const leaseMaint = 1500;
+            const milesOverage = Math.max(0, (annualMiles - leaseMilesAllowed) * 3 * 2 * 0.25);
+            const leaseNet = leaseTotalPayments + leaseTax + leaseReg + leaseIns + leaseMaint + milesOverage;
+
+            // Update table
+            document.getElementById('res-new-payment').textContent = formatCurrency(newMonthly);
+            document.getElementById('res-used-payment').textContent = formatCurrency(usedMonthly);
+            document.getElementById('res-lease-payment').textContent = formatCurrency(leasePayment);
+
+            document.getElementById('res-new-down').textContent = formatCurrency(newDown);
+            document.getElementById('res-used-down').textContent = formatCurrency(usedDown);
+            document.getElementById('res-lease-down').textContent = formatCurrency(leaseCap * 2);
+
+            document.getElementById('res-new-total').textContent = formatCurrency(newTotalPayments);
+            document.getElementById('res-used-total').textContent = formatCurrency(usedTotalPayments);
+            document.getElementById('res-lease-total').textContent = formatCurrency(leaseTotalPayments);
+
+            document.getElementById('res-new-tax').textContent = formatCurrency(newTax);
+            document.getElementById('res-used-tax').textContent = formatCurrency(usedTax);
+            document.getElementById('res-lease-tax').textContent = formatCurrency(leaseTax);
+
+            document.getElementById('res-new-reg').textContent = formatCurrency(newReg);
+            document.getElementById('res-used-reg').textContent = formatCurrency(usedReg);
+            document.getElementById('res-lease-reg').textContent = formatCurrency(leaseReg);
+
+            document.getElementById('res-new-ins').textContent = formatCurrency(newIns);
+            document.getElementById('res-used-ins').textContent = formatCurrency(usedIns);
+            document.getElementById('res-lease-ins').textContent = formatCurrency(leaseIns);
+
+            document.getElementById('res-new-maint').textContent = formatCurrency(newMaint);
+            document.getElementById('res-used-maint').textContent = formatCurrency(usedMaint);
+            document.getElementById('res-lease-maint').textContent = formatCurrency(leaseMaint);
+
+            document.getElementById('res-lease-overage').textContent = formatCurrency(milesOverage);
+
+            document.getElementById('res-new-value').textContent = formatCurrency(newValue);
+            document.getElementById('res-used-value').textContent = formatCurrency(usedValue);
+
+            document.getElementById('res-new-net').innerHTML = '<strong>' + formatCurrency(newNet) + '</strong>';
+            document.getElementById('res-used-net').innerHTML = '<strong>' + formatCurrency(usedNet) + '</strong>';
+            document.getElementById('res-lease-net').innerHTML = '<strong>' + formatCurrency(leaseNet) + '</strong>';
+
+            document.getElementById('res-new-cpm').textContent = '$' + (newNet / totalMiles).toFixed(2);
+            document.getElementById('res-used-cpm').textContent = '$' + (usedNet / totalMiles).toFixed(2);
+            document.getElementById('res-lease-cpm').textContent = '$' + (leaseNet / totalMiles).toFixed(2);
+
+            // Generate recommendation
+            const costs = [
+                { name: 'Buying New', cost: newNet },
+                { name: 'Buying Used', cost: usedNet },
+                { name: 'Leasing', cost: leaseNet }
+            ];
+            costs.sort((a, b) => a.cost - b.cost);
+
+            let recommendation = `Based on your inputs, <strong>${costs[0].name}</strong> has the lowest 6-year net cost at ${formatCurrency(costs[0].cost)}. `;
+            recommendation += `This saves ${formatCurrency(costs[1].cost - costs[0].cost)} compared to ${costs[1].name} and ${formatCurrency(costs[2].cost - costs[0].cost)} compared to ${costs[2].name}. `;
+
+            if (costs[0].name === 'Buying Used') {
+                recommendation += 'Buying used typically offers the best value, though factor in potential repair costs as the vehicle ages.';
+            } else if (costs[0].name === 'Buying New') {
+                recommendation += 'Buying new provides warranty coverage and typically lower maintenance costs. After paying off the loan, you\'ll have payment-free years with the vehicle.';
+            } else {
+                recommendation += 'Leasing offers lower monthly payments and always driving newer vehicles, but you build no equity and may face mileage restrictions.';
+            }
+
+            document.getElementById('recommendationText').innerHTML = recommendation;
+        }
+
+        function resetForm() {
+            if (confirm('Reset all values to defaults?')) {
+                location.reload();
+            }
+        }
+
+        // Calculate on page load
+        calculate();
+    </script>
+</body>
+</html>

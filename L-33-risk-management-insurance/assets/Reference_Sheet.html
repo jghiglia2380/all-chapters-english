@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insurance Basics Reference | PFL Academy</title>
+    <style>
+        :root {
+            --primary: #6366f1;
+            --text: #1f2937;
+            --text-light: #6b7280;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-size: 14px;
+            line-height: 1.5;
+            color: var(--text);
+            padding: 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid var(--primary);
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        .concept-box {
+            background-color: #f9fafb;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .concept-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        .definition {
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .example-box {
+            background-color: #e0f2fe;
+            padding: 10px;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+
+        .formula-box {
+            background-color: #fef3c7;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .formula {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary);
+            font-family: monospace;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .label {
+            font-weight: 600;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+
+        th, td {
+            border: 1px solid #e5e7eb;
+            padding: 8px;
+            text-align: left;
+            font-size: 0.9rem;
+        }
+
+        th {
+            background-color: #f3f4f6;
+        }
+
+        @media print {
+            body {
+                padding: 10px;
+                font-size: 11px;
+            }
+
+            .concept-box {
+                break-inside: avoid;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Chapter 33: Risk Management & Insurance Basics</h1>
+        <p style="color: var(--text-light);">Understanding risk and how to protect yourself financially</p>
+    </header>
+
+    <div class="concept-box">
+        <div class="concept-title">TYPES OF RISK</div>
+
+        <div class="grid">
+            <div>
+                <div class="label">Personal Risk</div>
+                <div style="font-size: 0.9rem;">Threats to health, life, or income</div>
+                <div style="font-size: 0.85rem; color: var(--text-light);">Examples: Illness, disability, death</div>
+            </div>
+
+            <div>
+                <div class="label">Property Risk</div>
+                <div style="font-size: 0.9rem;">Damage, destruction, or theft of possessions</div>
+                <div style="font-size: 0.85rem; color: var(--text-light);">Examples: Fire, theft, auto accidents</div>
+            </div>
+
+            <div>
+                <div class="label">Liability Risk</div>
+                <div style="font-size: 0.9rem;">Legal responsibility for harm to others</div>
+                <div style="font-size: 0.85rem; color: var(--text-light);">Examples: Car accident injuries, property damage</div>
+            </div>
+
+            <div>
+                <div class="label">Financial Risk</div>
+                <div style="font-size: 0.9rem;">Potential monetary losses</div>
+                <div style="font-size: 0.85rem; color: var(--text-light);">Examples: Investment losses, inflation</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="concept-box">
+        <div class="concept-title">FOUR RISK MANAGEMENT STRATEGIES</div>
+
+        <table>
+            <tr>
+                <th>Strategy</th>
+                <th>Description</th>
+                <th>When to Use</th>
+            </tr>
+            <tr>
+                <td><strong>Avoidance</strong></td>
+                <td>Eliminate risk by avoiding the activity</td>
+                <td>Severe potential loss, no significant benefit</td>
+            </tr>
+            <tr>
+                <td><strong>Reduction</strong></td>
+                <td>Take steps to minimize likelihood or impact</td>
+                <td>Risk can be managed with precautions</td>
+            </tr>
+            <tr>
+                <td><strong>Acceptance</strong></td>
+                <td>Acknowledge risk and prepare to handle losses</td>
+                <td>Small potential loss, cost of protection too high</td>
+            </tr>
+            <tr>
+                <td><strong>Transfer</strong></td>
+                <td>Shift financial responsibility to another party</td>
+                <td>Significant but unlikely losses (insurance)</td>
+            </tr>
+        </table>
+
+        <div class="example-box">
+            <strong>Example - Managing Bike Riding Risk:</strong>
+            <ul style="margin-left: 20px; margin-top: 5px;">
+                <li><strong>Avoidance:</strong> Don't ride in ice storms</li>
+                <li><strong>Reduction:</strong> Wear a helmet, use lights</li>
+                <li><strong>Acceptance:</strong> Accept minor scrapes may happen</li>
+                <li><strong>Transfer:</strong> Buy insurance for major injuries</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="concept-box">
+        <div class="concept-title">KEY INSURANCE TERMS</div>
+
+        <div style="margin-bottom: 10px;">
+            <div class="label">Premium</div>
+            <div>Regular payment to maintain insurance coverage (monthly, quarterly, or annual)</div>
+        </div>
+
+        <div style="margin-bottom: 10px;">
+            <div class="label">Deductible</div>
+            <div>Amount you pay out-of-pocket before insurance coverage begins</div>
+        </div>
+
+        <div style="margin-bottom: 10px;">
+            <div class="label">Coverage Limit</div>
+            <div>Maximum amount the insurance policy will pay for a covered loss</div>
+        </div>
+
+        <div style="margin-bottom: 10px;">
+            <div class="label">Claim</div>
+            <div>Formal request to insurance company for payment of a covered loss</div>
+        </div>
+
+        <div style="margin-bottom: 10px;">
+            <div class="label">Exclusion</div>
+            <div>Specific conditions or circumstances NOT covered by the policy</div>
+        </div>
+
+        <div class="formula-box">
+            <div class="formula">Higher Deductible = Lower Premium</div>
+            <div style="font-size: 0.9rem; margin-top: 5px;">You pay more out-of-pocket if something happens, but less each month</div>
+        </div>
+    </div>
+
+    <div class="concept-box">
+        <div class="concept-title">HOW INSURANCE WORKS</div>
+
+        <ol style="margin-left: 20px;">
+            <li><strong>Risk Pooling:</strong> Many people pay premiums into a shared fund</li>
+            <li><strong>Risk Assessment:</strong> Insurance company evaluates your risk level</li>
+            <li><strong>Premium Calculation:</strong> Your rate is based on likelihood and potential cost of claims</li>
+            <li><strong>Claims Payment:</strong> Fund pays for losses of the few who file claims</li>
+        </ol>
+
+        <div class="example-box">
+            <strong>Example:</strong> 1,000 homeowners each pay $1,000/year in premiums = $1,000,000 pool. If 10 homes have $50,000 in damage, insurance covers it from the pool. Most people pay but don't claim, which funds those who do.
+        </div>
+    </div>
+
+    <div class="grid">
+        <div class="concept-box">
+            <div class="concept-title">When Insurance Makes Sense</div>
+            <ul style="margin-left: 20px;">
+                <li>High-impact, low-probability events</li>
+                <li>Legally required (auto liability)</li>
+                <li>Protecting essential assets</li>
+                <li>Loss would be financially devastating</li>
+                <li>Peace of mind has value</li>
+            </ul>
+        </div>
+
+        <div class="concept-box">
+            <div class="concept-title">When Other Strategies Are Better</div>
+            <ul style="margin-left: 20px;">
+                <li>Small, manageable losses</li>
+                <li>Insurance cost exceeds risk</li>
+                <li>Risk can be effectively reduced</li>
+                <li>Risk can be avoided without hardship</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="concept-box">
+        <div class="concept-title">RISK TOLERANCE</div>
+
+        <div class="definition">Your personal willingness and ability to withstand potential losses</div>
+
+        <div class="label" style="margin-top: 10px;">Factors Affecting Risk Tolerance:</div>
+        <ul style="margin-left: 20px;">
+            <li><strong>Personal temperament:</strong> Natural comfort with uncertainty</li>
+            <li><strong>Financial situation:</strong> Stable income and savings increase tolerance</li>
+            <li><strong>Knowledge:</strong> Familiarity increases comfort with related risks</li>
+            <li><strong>Time horizon:</strong> Longer timelines allow more risk tolerance</li>
+            <li><strong>Potential impact:</strong> Severe consequences lower tolerance</li>
+        </ul>
+
+        <div style="margin-top: 15px; padding: 10px; background-color: #f0fdf4; border-radius: 4px;">
+            <strong>Note:</strong> Your risk tolerance may vary across different areas of life (financial vs. physical risks). Choose risk management strategies that align with your comfort level.
+        </div>
+    </div>
+
+    <div class="concept-box">
+        <div class="concept-title">COMMON INSURANCE TYPES OVERVIEW</div>
+
+        <table>
+            <tr>
+                <th>Type</th>
+                <th>Protects Against</th>
+            </tr>
+            <tr>
+                <td>Health Insurance</td>
+                <td>Medical expenses from illness/injury</td>
+            </tr>
+            <tr>
+                <td>Auto Insurance</td>
+                <td>Vehicle damage, liability from accidents</td>
+            </tr>
+            <tr>
+                <td>Homeowner's/Renter's</td>
+                <td>Property damage/theft, liability</td>
+            </tr>
+            <tr>
+                <td>Life Insurance</td>
+                <td>Financial loss to dependents after death</td>
+            </tr>
+            <tr>
+                <td>Disability Insurance</td>
+                <td>Income loss due to inability to work</td>
+            </tr>
+        </table>
+    </div>
+
+    <div style="margin-top: 20px; padding: 15px; background-color: #f0f9ff; border-radius: 6px; border-left: 4px solid #3b82f6;">
+        <strong>Key Takeaway:</strong> Effective risk management isn't about eliminating all risk - it's about making conscious choices about which risks to take and how to minimize potential negative impacts. Use all four strategies appropriately based on the specific risk and your personal situation.
+    </div>
+</body>
+</html>

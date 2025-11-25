@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consumer Strategy Planner</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        header { text-align: center; margin-bottom: 30px; }
+        h1 { font-size: 2rem; color: #6366f1; margin-bottom: 10px; }
+        .subtitle { color: #6b7280; }
+        .priorities-section {
+            margin-bottom: 25px;
+        }
+        .section-title { font-size: 1.1rem; font-weight: bold; margin-bottom: 15px; color: #1f2937; }
+        .priority-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+        .priority-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            background: #f9fafb;
+            border-radius: 10px;
+        }
+        .priority-label { font-weight: 600; color: #374151; }
+        .priority-slider { width: 120px; }
+        input[type="range"] {
+            width: 100%;
+            height: 6px;
+            border-radius: 3px;
+            background: #e5e7eb;
+            outline: none;
+            -webkit-appearance: none;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #6366f1;
+            cursor: pointer;
+        }
+        .plan-btn {
+            width: 100%;
+            padding: 15px;
+            background: #6366f1;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 25px;
+        }
+        .plan-btn:hover { background: #4f46e5; }
+        .results { display: none; }
+        .results.active { display: block; }
+        .strategy-card {
+            background: #f9fafb;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+        }
+        .strategy-card h3 { color: #6366f1; margin-bottom: 15px; font-size: 1.1rem; }
+        .strategy-list { margin-left: 20px; }
+        .strategy-list li { margin-bottom: 10px; color: #4b5563; }
+        .balance-box {
+            background: #fef3c7;
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid #f59e0b;
+        }
+        .balance-box h3 { color: #92400e; margin-bottom: 10px; }
+        .balance-box p { color: #78350f; }
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #e5e7eb;
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+        @media (max-width: 768px) {
+            .priority-grid { grid-template-columns: 1fr; }
+        }
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .container {
+                box-shadow: none;
+                padding: 20px;
+            }
+            .plan-btn,
+            .priority-slider,
+            .no-print {
+                display: none !important;
+            }
+            .results {
+                display: block !important;
+            }
+            .strategy-card,
+            .balance-box {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Consumer Strategy Planner</h1>
+            <p class="subtitle">Balance price, ethics, and domestic support in your purchases</p>
+        </header>
+
+        <div class="priorities-section">
+            <div class="section-title">Rate Your Priorities (1 = Low, 10 = High)</div>
+            <div class="priority-grid">
+                <div class="priority-item">
+                    <span class="priority-label">💰 Lowest Price</span>
+                    <input type="range" class="priority-slider" id="price" min="1" max="10" value="7">
+                </div>
+                <div class="priority-item">
+                    <span class="priority-label">🇺🇸 Buy American</span>
+                    <input type="range" class="priority-slider" id="domestic" min="1" max="10" value="5">
+                </div>
+                <div class="priority-item">
+                    <span class="priority-label">🌱 Sustainability</span>
+                    <input type="range" class="priority-slider" id="sustainability" min="1" max="10" value="5">
+                </div>
+                <div class="priority-item">
+                    <span class="priority-label">⚖️ Fair Labor</span>
+                    <input type="range" class="priority-slider" id="labor" min="1" max="10" value="5">
+                </div>
+                <div class="priority-item">
+                    <span class="priority-label">✨ Quality</span>
+                    <input type="range" class="priority-slider" id="quality" min="1" max="10" value="6">
+                </div>
+                <div class="priority-item">
+                    <span class="priority-label">🏪 Local Business</span>
+                    <input type="range" class="priority-slider" id="local" min="1" max="10" value="4">
+                </div>
+            </div>
+        </div>
+
+        <button class="plan-btn" onclick="generateStrategy()">Generate My Strategy</button>
+
+        <div class="results" id="results">
+            <div class="strategy-card">
+                <h3>Your Personalized Consumer Strategy</h3>
+                <ul class="strategy-list" id="strategyList"></ul>
+            </div>
+
+            <div class="balance-box">
+                <h3>Balancing Trade-offs</h3>
+                <p id="balanceText"></p>
+            </div>
+        </div>
+
+        <footer>
+            <p><strong>PFL Academy</strong> | International Trade</p>
+        </footer>
+    </div>
+
+    <script>
+        function generateStrategy() {
+            const price = parseInt(document.getElementById('price').value);
+            const domestic = parseInt(document.getElementById('domestic').value);
+            const sustainability = parseInt(document.getElementById('sustainability').value);
+            const labor = parseInt(document.getElementById('labor').value);
+            const quality = parseInt(document.getElementById('quality').value);
+            const local = parseInt(document.getElementById('local').value);
+
+            let strategies = [];
+
+            if (price >= 7) {
+                strategies.push('Compare prices across multiple retailers before purchasing');
+                strategies.push('Look for imports from lower-cost countries for commodities');
+                strategies.push('Use price tracking tools for big purchases');
+            }
+
+            if (domestic >= 7) {
+                strategies.push('Look for "Made in USA" labels on products');
+                strategies.push('Research which brands manufacture domestically');
+                strategies.push('Consider that domestic products may cost 10-30% more');
+            }
+
+            if (sustainability >= 7) {
+                strategies.push('Choose products with environmental certifications');
+                strategies.push('Prioritize companies with transparent supply chains');
+                strategies.push('Consider the carbon footprint of shipping from overseas');
+            }
+
+            if (labor >= 7) {
+                strategies.push('Look for Fair Trade certified products');
+                strategies.push('Research brand labor practices before purchasing');
+                strategies.push('Support companies with supply chain transparency');
+            }
+
+            if (quality >= 7) {
+                strategies.push('Read reviews and compare durability across origins');
+                strategies.push('Consider cost-per-use rather than just purchase price');
+                strategies.push('Invest in quality items that last longer');
+            }
+
+            if (local >= 7) {
+                strategies.push('Shop at local stores rather than national chains');
+                strategies.push('Buy directly from local producers when possible');
+                strategies.push('Attend farmers markets and craft fairs');
+            }
+
+            if (strategies.length === 0) {
+                strategies = ['Your priorities are balanced - consider the specific product and context for each purchase'];
+            }
+
+            document.getElementById('strategyList').innerHTML = strategies.map(s => `<li>${s}</li>`).join('');
+
+            let balance = '';
+            if (price >= 7 && (domestic >= 7 || sustainability >= 7)) {
+                balance = 'You value both low prices and ethical/domestic sourcing. This requires research to find the best balance. Consider: buying domestic for important items and imported for commodities, or looking for ethical imports that cost less than domestic premium products.';
+            } else if (quality >= 7 && price >= 7) {
+                balance = 'You want both quality and low prices. Focus on value - quality items that last longer can actually cost less per use. Compare reviews carefully and consider slightly higher upfront costs for durability.';
+            } else if (domestic >= 7 && sustainability >= 7) {
+                balance = 'Your values align well - domestic products often have lower transportation emissions. Look for American-made products from companies with strong environmental practices.';
+            } else {
+                balance = 'Your priorities give you flexibility in making purchasing decisions. Use them as a guide when comparing similar products, and adjust based on the specific item and your budget for that purchase.';
+            }
+
+            document.getElementById('balanceText').textContent = balance;
+            document.getElementById('results').classList.add('active');
+        }
+    </script>
+</body>
+</html>

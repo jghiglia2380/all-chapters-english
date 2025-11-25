@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Alternative Investment Strategy Builder</title>
+    <!--
+    PURPOSE: Create personal approach to alternatives based on self-assessment and management plan
+    USE: Activity 5 - Personal Alternative Investment Strategy (10 minutes)
+    -->
+    <style>
+        :root {
+            --primary: #6366f1;
+            --secondary: #8b5cf6;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --text: #1f2937;
+            --surface: #f9fafb;
+        }
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: var(--primary);
+            border-bottom: 3px solid var(--primary);
+            padding-bottom: 10px;
+        }
+        .strategy-section {
+            background: var(--surface);
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .section-title {
+            background: var(--primary);
+            color: white;
+            padding: 10px 15px;
+            margin: -20px -20px 15px -20px;
+            border-radius: 6px 6px 0 0;
+            font-weight: bold;
+        }
+        .form-grid {
+            display: grid;
+            gap: 15px;
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        .form-item {
+            display: flex;
+            flex-direction: column;
+        }
+        .form-item label {
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+        .form-item input,
+        .form-item select,
+        .form-item textarea {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: inherit;
+        }
+        .form-item textarea {
+            min-height: 60px;
+        }
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px;
+            background: white;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+        .checkbox-item input {
+            width: auto;
+        }
+        .allocation-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        .allocation-table th {
+            background: var(--secondary);
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+        .allocation-table td {
+            border: 1px solid #e5e7eb;
+            padding: 10px;
+        }
+        .allocation-table input {
+            width: 60px;
+            padding: 5px;
+            text-align: center;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .total-row {
+            background: #eef2ff;
+            font-weight: bold;
+        }
+        .rules-list {
+            margin: 15px 0;
+        }
+        .rule-item {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            background: white;
+            border-radius: 6px;
+            margin: 8px 0;
+        }
+        .rule-item span {
+            font-weight: 600;
+            color: var(--primary);
+        }
+        .review-checklist {
+            margin: 15px 0;
+        }
+        .review-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px;
+            background: white;
+            border-radius: 4px;
+            margin: 5px 0;
+        }
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            cursor: pointer;
+            background: var(--primary);
+            color: white;
+            margin: 10px 5px;
+        }
+        .btn:hover {
+            background: #4f46e5;
+        }
+        .btn-print {
+            background: var(--success);
+        }
+        @media print {
+            .btn { display: none; }
+            body { font-size: 11pt; }
+        }
+    </style>
+</head>
+<body>
+    <h1>📋 Personal Alternative Investment Strategy</h1>
+
+    <p>Build your personalized approach to alternative investments based on your situation, goals, and risk tolerance.</p>
+
+    <!-- Section 1: Self-Assessment -->
+    <div class="strategy-section">
+        <div class="section-title">Section 1: Self-Assessment</div>
+        <div class="form-grid">
+            <div class="form-row">
+                <div class="form-item">
+                    <label>Investment Time Horizon:</label>
+                    <select>
+                        <option value="">Select...</option>
+                        <option>&lt;5 years - Short term</option>
+                        <option>5-10 years - Medium term</option>
+                        <option>10-20 years - Long term</option>
+                        <option>20+ years - Very long term</option>
+                    </select>
+                </div>
+                <div class="form-item">
+                    <label>Risk Tolerance:</label>
+                    <select>
+                        <option value="">Select...</option>
+                        <option>Conservative - Safety first</option>
+                        <option>Moderate - Balanced approach</option>
+                        <option>Aggressive - Growth focus</option>
+                        <option>Speculative - High risk OK</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-item">
+                <label>Current Portfolio Value (approximate):</label>
+                <select>
+                    <option value="">Select...</option>
+                    <option>&lt;$10,000</option>
+                    <option>$10,000 - $50,000</option>
+                    <option>$50,000 - $100,000</option>
+                    <option>$100,000+</option>
+                </select>
+            </div>
+            <div class="form-item">
+                <label>Primary Goal for Adding Alternatives:</label>
+                <div class="checkbox-group">
+                    <label class="checkbox-item">
+                        <input type="checkbox">
+                        Diversification
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox">
+                        Inflation protection
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox">
+                        Higher returns
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox">
+                        Income generation
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox">
+                        Reduce volatility
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox">
+                        Crisis hedge
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 2: Alternative Asset Selection -->
+    <div class="strategy-section">
+        <div class="section-title">Section 2: Target Alternative Allocation</div>
+        <table class="allocation-table">
+            <thead>
+                <tr>
+                    <th>Alternative Asset</th>
+                    <th>Include?</th>
+                    <th>Target %</th>
+                    <th>Rationale</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>REITs (Real Estate)</td>
+                    <td><input type="checkbox"></td>
+                    <td><input type="number" value="5" min="0" max="30"></td>
+                    <td><input type="text" placeholder="Why include?"></td>
+                </tr>
+                <tr>
+                    <td>Gold/Precious Metals</td>
+                    <td><input type="checkbox"></td>
+                    <td><input type="number" value="5" min="0" max="20"></td>
+                    <td><input type="text" placeholder="Why include?"></td>
+                </tr>
+                <tr>
+                    <td>Commodities</td>
+                    <td><input type="checkbox"></td>
+                    <td><input type="number" value="0" min="0" max="15"></td>
+                    <td><input type="text" placeholder="Why include?"></td>
+                </tr>
+                <tr>
+                    <td>Cryptocurrency</td>
+                    <td><input type="checkbox"></td>
+                    <td><input type="number" value="0" min="0" max="10"></td>
+                    <td><input type="text" placeholder="Why include?"></td>
+                </tr>
+                <tr>
+                    <td>Other:</td>
+                    <td><input type="checkbox"></td>
+                    <td><input type="number" value="0" min="0" max="15"></td>
+                    <td><input type="text" placeholder="Specify..."></td>
+                </tr>
+                <tr class="total-row">
+                    <td>Total Alternatives</td>
+                    <td></td>
+                    <td id="alt-total">10%</td>
+                    <td>(Recommended: 5-20% of portfolio)</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Section 3: Management Rules -->
+    <div class="strategy-section">
+        <div class="section-title">Section 3: Management Rules</div>
+
+        <div class="rules-list">
+            <div class="rule-item">
+                <span>Maximum allocation to ANY single alternative:</span>
+                <span>→</span>
+                <select>
+                    <option>5% of portfolio</option>
+                    <option>10% of portfolio</option>
+                    <option>15% of portfolio</option>
+                </select>
+            </div>
+
+            <div class="rule-item">
+                <span>Rebalance alternatives when they drift by:</span>
+                <span>→</span>
+                <select>
+                    <option>±3% from target</option>
+                    <option>±5% from target</option>
+                    <option>±10% from target</option>
+                </select>
+            </div>
+
+            <div class="rule-item">
+                <span>Review alternative holdings:</span>
+                <span>→</span>
+                <select>
+                    <option>Quarterly</option>
+                    <option>Semi-annually</option>
+                    <option>Annually</option>
+                </select>
+            </div>
+
+            <div class="rule-item">
+                <span>If an alternative drops 30%+, I will:</span>
+                <span>→</span>
+                <select>
+                    <option>Hold - stick to plan</option>
+                    <option>Rebalance - buy more</option>
+                    <option>Review - reassess thesis</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-item">
+            <label>Additional personal rules:</label>
+            <textarea placeholder="e.g., Never invest in alternatives I don't understand, always use index funds for alternatives..."></textarea>
+        </div>
+    </div>
+
+    <!-- Section 4: Review Commitments -->
+    <div class="strategy-section">
+        <div class="section-title">Section 4: Review and Monitoring</div>
+
+        <div class="review-checklist">
+            <p>I will monitor my alternative investments by:</p>
+            <label class="review-item">
+                <input type="checkbox">
+                Tracking performance vs. stated objectives
+            </label>
+            <label class="review-item">
+                <input type="checkbox">
+                Reviewing fees annually
+            </label>
+            <label class="review-item">
+                <input type="checkbox">
+                Checking correlation benefits are still present
+            </label>
+            <label class="review-item">
+                <input type="checkbox">
+                Reassessing when my situation changes
+            </label>
+            <label class="review-item">
+                <input type="checkbox">
+                Comparing to simple alternatives (index funds)
+            </label>
+        </div>
+
+        <div class="form-item">
+            <label>Next review date:</label>
+            <input type="date">
+        </div>
+    </div>
+
+    <!-- Section 5: Summary -->
+    <div class="strategy-section">
+        <div class="section-title">Section 5: Strategy Summary</div>
+        <div class="form-item">
+            <label>In one paragraph, summarize your alternative investment strategy:</label>
+            <textarea placeholder="Describe what alternatives you'll include, why, and how you'll manage them..." style="min-height: 100px;"></textarea>
+        </div>
+    </div>
+
+    <button class="btn btn-print" onclick="window.print()">🖨️ Print My Strategy</button>
+</body>
+</html>

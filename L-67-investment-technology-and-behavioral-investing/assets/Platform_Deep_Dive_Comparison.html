@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Platform Deep Dive Comparison Tool</title>
+    <style>
+        :root { --primary: #6366f1; --secondary: #8b5cf6; --success: #10b981; --warning: #f59e0b; --danger: #ef4444; }
+        body { font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 14px; line-height: 1.5; color: #1f2937; max-width: 900px; margin: 0 auto; padding: 15px; }
+        h1 { color: var(--primary); font-size: 24px; border-bottom: 2px solid var(--primary); padding-bottom: 8px; }
+        h2 { color: var(--secondary); font-size: 18px; margin-top: 20px; }
+        .inputs { background: #e0e7ff; padding: 15px; border-radius: 5px; margin: 15px 0; }
+        .input-row { display: flex; align-items: center; gap: 15px; margin: 10px 0; }
+        .input-row label { width: 200px; font-weight: bold; }
+        .input-row input { padding: 8px; border: 1px solid #d1d5db; border-radius: 4px; width: 150px; }
+        .platform-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin: 15px 0; }
+        .platform-card { background: #f9fafb; padding: 15px; border-radius: 5px; border: 2px solid #d1d5db; }
+        .platform-card h3 { margin: 0 0 10px 0; color: var(--primary); font-size: 16px; }
+        .metric { display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px solid #e5e7eb; font-size: 12px; }
+        .metric-value { font-weight: bold; }
+        .best { color: var(--success); }
+        .worst { color: var(--danger); }
+        .projection { background: white; padding: 10px; border-radius: 4px; margin-top: 10px; text-align: center; }
+        .projection-value { font-size: 20px; font-weight: bold; color: var(--primary); }
+        .projection-label { font-size: 11px; color: #6b7280; }
+        .comparison-table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        .comparison-table th, .comparison-table td { border: 1px solid #d1d5db; padding: 8px; text-align: center; font-size: 12px; }
+        .comparison-table th { background: var(--primary); color: white; }
+        .analysis { background: #fef3c7; padding: 15px; border-radius: 5px; margin: 15px 0; }
+        textarea { width: 100%; padding: 8px; border: 1px solid #d1d5db; border-radius: 4px; min-height: 60px; box-sizing: border-box; }
+        button { background: var(--primary); color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; margin: 5px; }
+        button:hover { background: var(--secondary); }
+        @media print { body { font-size: 10pt; } button { display: none; } .platform-cards { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <h1>Platform Deep Dive Comparison Tool</h1>
+    <p>Compare investment platforms with 30-year cost projections</p>
+
+    <div class="inputs">
+        <h2 style="margin-top: 0;">Your Investment Scenario</h2>
+        <div class="input-row">
+            <label>Initial Investment ($):</label>
+            <input type="number" id="initial" value="5000" step="1000">
+        </div>
+        <div class="input-row">
+            <label>Monthly Contribution ($):</label>
+            <input type="number" id="monthly" value="300" step="50">
+        </div>
+        <div class="input-row">
+            <label>Expected Return (%):</label>
+            <input type="number" id="return" value="7" step="0.5">
+        </div>
+        <button onclick="calculate()">Calculate 30-Year Projections</button>
+    </div>
+
+    <div class="platform-cards">
+        <div class="platform-card">
+            <h3>Betterment (Robo-Advisor)</h3>
+            <div class="metric"><span>Annual Fee</span><span class="metric-value">0.25%</span></div>
+            <div class="metric"><span>ETF Expense Ratios</span><span class="metric-value">0.05%</span></div>
+            <div class="metric"><span>Total Annual Cost</span><span class="metric-value">0.30%</span></div>
+            <div class="metric"><span>Minimum</span><span class="metric-value best">$0</span></div>
+            <div class="metric"><span>Tax-Loss Harvesting</span><span class="metric-value best">Automatic</span></div>
+            <div class="metric"><span>Rebalancing</span><span class="metric-value best">Automatic</span></div>
+            <div class="projection">
+                <div class="projection-label">30-Year Value</div>
+                <div class="projection-value" id="bettermentValue">$0</div>
+                <div class="projection-label">Fees Paid: <span id="bettermentFees">$0</span></div>
+            </div>
+        </div>
+
+        <div class="platform-card">
+            <h3>Fidelity Go (Robo)</h3>
+            <div class="metric"><span>Annual Fee</span><span class="metric-value">0.35%</span></div>
+            <div class="metric"><span>ETF Expense Ratios</span><span class="metric-value best">0.00%</span></div>
+            <div class="metric"><span>Total Annual Cost</span><span class="metric-value">0.35%</span></div>
+            <div class="metric"><span>Minimum</span><span class="metric-value">$10 (fee waived <$25K)</span></div>
+            <div class="metric"><span>Tax-Loss Harvesting</span><span class="metric-value">No</span></div>
+            <div class="metric"><span>Rebalancing</span><span class="metric-value best">Automatic</span></div>
+            <div class="projection">
+                <div class="projection-label">30-Year Value</div>
+                <div class="projection-value" id="fidelityGoValue">$0</div>
+                <div class="projection-label">Fees Paid: <span id="fidelityGoFees">$0</span></div>
+            </div>
+        </div>
+
+        <div class="platform-card">
+            <h3>Fidelity Self-Directed</h3>
+            <div class="metric"><span>Annual Fee</span><span class="metric-value best">$0</span></div>
+            <div class="metric"><span>ETF Expense Ratios</span><span class="metric-value">0.03%</span></div>
+            <div class="metric"><span>Total Annual Cost</span><span class="metric-value best">0.03%</span></div>
+            <div class="metric"><span>Minimum</span><span class="metric-value best">$0</span></div>
+            <div class="metric"><span>Tax-Loss Harvesting</span><span class="metric-value">Manual</span></div>
+            <div class="metric"><span>Rebalancing</span><span class="metric-value">Manual</span></div>
+            <div class="projection">
+                <div class="projection-label">30-Year Value</div>
+                <div class="projection-value" id="selfDirectedValue">$0</div>
+                <div class="projection-label">Fees Paid: <span id="selfDirectedFees">$0</span></div>
+            </div>
+        </div>
+    </div>
+
+    <h2>30-Year Cost Comparison</h2>
+    <table class="comparison-table">
+        <thead>
+            <tr>
+                <th>Platform</th>
+                <th>Total Fees</th>
+                <th>Final Value</th>
+                <th>Fee Impact</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Betterment</td>
+                <td id="bettermentFeesTable">$0</td>
+                <td id="bettermentValueTable">$0</td>
+                <td id="bettermentImpact">$0</td>
+            </tr>
+            <tr>
+                <td>Fidelity Go</td>
+                <td id="fidelityGoFeesTable">$0</td>
+                <td id="fidelityGoValueTable">$0</td>
+                <td id="fidelityGoImpact">$0</td>
+            </tr>
+            <tr>
+                <td>Fidelity Self-Directed</td>
+                <td id="selfDirectedFeesTable">$0</td>
+                <td id="selfDirectedValueTable">$0</td>
+                <td class="best">Baseline</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="analysis">
+        <h2 style="margin-top: 0;">Your Analysis</h2>
+        <p><strong>Which platform would you choose and why?</strong></p>
+        <textarea id="analysis" placeholder="Consider: fees, automation, your willingness to manage investments manually, tax benefits..."></textarea>
+    </div>
+
+    <script>
+        function calculate() {
+            const initial = parseFloat(document.getElementById('initial').value) || 0;
+            const monthly = parseFloat(document.getElementById('monthly').value) || 0;
+            const annualReturn = parseFloat(document.getElementById('return').value) / 100 || 0.07;
+
+            const platforms = [
+                { id: 'betterment', fee: 0.0030 },
+                { id: 'fidelityGo', fee: 0.0035 },
+                { id: 'selfDirected', fee: 0.0003 }
+            ];
+
+            const results = {};
+            const years = 30;
+
+            platforms.forEach(platform => {
+                let balance = initial;
+                let totalFees = 0;
+                const monthlyReturn = annualReturn / 12;
+                const monthlyFee = platform.fee / 12;
+
+                for (let month = 0; month < years * 12; month++) {
+                    balance += monthly;
+                    balance *= (1 + monthlyReturn);
+                    const fee = balance * monthlyFee;
+                    totalFees += fee;
+                    balance -= fee;
+                }
+
+                results[platform.id] = {
+                    value: balance,
+                    fees: totalFees
+                };
+            });
+
+            // Update cards
+            document.getElementById('bettermentValue').textContent = '$' + Math.round(results.betterment.value).toLocaleString();
+            document.getElementById('bettermentFees').textContent = '$' + Math.round(results.betterment.fees).toLocaleString();
+            document.getElementById('fidelityGoValue').textContent = '$' + Math.round(results.fidelityGo.value).toLocaleString();
+            document.getElementById('fidelityGoFees').textContent = '$' + Math.round(results.fidelityGo.fees).toLocaleString();
+            document.getElementById('selfDirectedValue').textContent = '$' + Math.round(results.selfDirected.value).toLocaleString();
+            document.getElementById('selfDirectedFees').textContent = '$' + Math.round(results.selfDirected.fees).toLocaleString();
+
+            // Update table
+            document.getElementById('bettermentFeesTable').textContent = '$' + Math.round(results.betterment.fees).toLocaleString();
+            document.getElementById('bettermentValueTable').textContent = '$' + Math.round(results.betterment.value).toLocaleString();
+            document.getElementById('bettermentImpact').textContent = '-$' + Math.round(results.selfDirected.value - results.betterment.value).toLocaleString();
+
+            document.getElementById('fidelityGoFeesTable').textContent = '$' + Math.round(results.fidelityGo.fees).toLocaleString();
+            document.getElementById('fidelityGoValueTable').textContent = '$' + Math.round(results.fidelityGo.value).toLocaleString();
+            document.getElementById('fidelityGoImpact').textContent = '-$' + Math.round(results.selfDirected.value - results.fidelityGo.value).toLocaleString();
+
+            document.getElementById('selfDirectedFeesTable').textContent = '$' + Math.round(results.selfDirected.fees).toLocaleString();
+            document.getElementById('selfDirectedValueTable').textContent = '$' + Math.round(results.selfDirected.value).toLocaleString();
+        }
+
+        // Initialize
+        calculate();
+    </script>
+</body>
+</html>

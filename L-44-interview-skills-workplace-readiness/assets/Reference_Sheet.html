@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interview Skills Reference | PFL Academy</title>
+    <style>
+        :root {
+            --primary: #6366f1;
+            --text: #1f2937;
+            --text-light: #6b7280;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-size: 14px;
+            line-height: 1.5;
+            color: var(--text);
+            padding: 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid var(--primary);
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        .concept-box {
+            background-color: #f9fafb;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .concept-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        .formula-box {
+            background-color: #fef3c7;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .formula {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .label {
+            font-weight: 600;
+        }
+
+        .example-box {
+            background-color: #e0f2fe;
+            padding: 10px;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+
+        .checklist {
+            list-style: none;
+            margin-left: 0;
+        }
+
+        .checklist li {
+            margin-bottom: 5px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .checklist li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .warning-box {
+            background-color: #fee2e2;
+            padding: 10px;
+            border-radius: 4px;
+            margin-top: 10px;
+            border-left: 3px solid #ef4444;
+        }
+
+        @media print {
+            body {
+                padding: 10px;
+                font-size: 11px;
+            }
+
+            .concept-box {
+                break-inside: avoid;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Interview Skills Quick Reference</h1>
+        <p style="color: var(--text-light);">Essential strategies for interview success</p>
+    </header>
+
+    <div class="concept-box">
+        <div class="concept-title">THE STAR METHOD</div>
+        <p>Use this framework to structure answers to behavioral questions:</p>
+
+        <div class="formula-box">
+            <div class="formula">S → T → A → R</div>
+        </div>
+
+        <div style="margin-top: 10px;">
+            <div style="margin-bottom: 8px;"><strong>S</strong>ituation - Set the scene (When? Where? Who was involved?)</div>
+            <div style="margin-bottom: 8px;"><strong>T</strong>ask - Your responsibility (What needed to be done?)</div>
+            <div style="margin-bottom: 8px;"><strong>A</strong>ction - What YOU did (Specific steps, not "we")</div>
+            <div><strong>R</strong>esult - The outcome (Use numbers when possible)</div>
+        </div>
+
+        <div class="example-box">
+            <strong>Example Question:</strong> "Tell me about a time you showed leadership."<br>
+            <strong>S:</strong> "Our club president resigned mid-semester."<br>
+            <strong>T:</strong> "I volunteered to lead the group as interim president."<br>
+            <strong>A:</strong> "I reorganized committees, delegated tasks, and planned a campus event."<br>
+            <strong>R:</strong> "Membership grew 40% and our event earned campus recognition."
+        </div>
+    </div>
+
+    <div class="grid">
+        <div class="concept-box">
+            <div class="concept-title">Before the Interview</div>
+            <ul class="checklist">
+                <li>Research company mission, products, and culture</li>
+                <li>Review the job description thoroughly</li>
+                <li>Prepare 5-7 STAR stories</li>
+                <li>Plan questions to ask the interviewer</li>
+                <li>Print copies of your resume</li>
+                <li>Plan your outfit and test technology</li>
+                <li>Map the route or test video platform</li>
+                <li>Get a good night's sleep</li>
+            </ul>
+        </div>
+
+        <div class="concept-box">
+            <div class="concept-title">Day of Interview</div>
+            <ul class="checklist">
+                <li>Arrive 10-15 minutes early</li>
+                <li>Bring resume, notepad, and pen</li>
+                <li>Turn off your phone</li>
+                <li>Practice deep breathing</li>
+                <li>Use positive self-talk</li>
+                <li>Greet everyone professionally</li>
+                <li>Remember interviewer names</li>
+                <li>Bring water (if in-person)</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="concept-box">
+        <div class="concept-title">COMMON INTERVIEW QUESTIONS</div>
+
+        <div style="margin-bottom: 15px;">
+            <div class="label">Background Questions:</div>
+            <ul style="margin-left: 20px; margin-top: 5px;">
+                <li>"Tell me about yourself" (2-minute professional summary)</li>
+                <li>"What are your strengths and weaknesses?"</li>
+                <li>"Why should we hire you?"</li>
+            </ul>
+        </div>
+
+        <div style="margin-bottom: 15px;">
+            <div class="label">Behavioral Questions:</div>
+            <ul style="margin-left: 20px; margin-top: 5px;">
+                <li>"Describe a time you worked under pressure"</li>
+                <li>"Tell me about a conflict you resolved"</li>
+                <li>"Give an example of leadership"</li>
+            </ul>
+        </div>
+
+        <div>
+            <div class="label">Career Questions:</div>
+            <ul style="margin-left: 20px; margin-top: 5px;">
+                <li>"Where do you see yourself in 5 years?"</li>
+                <li>"Why do you want to work here?"</li>
+                <li>"Why are you leaving your current job?"</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="grid">
+        <div class="concept-box">
+            <div class="concept-title">Body Language DO's</div>
+            <ul style="margin-left: 20px;">
+                <li>Firm handshake</li>
+                <li>Natural eye contact</li>
+                <li>Sit up straight, lean slightly forward</li>
+                <li>Nod to show engagement</li>
+                <li>Smile genuinely</li>
+                <li>Keep hands visible and still</li>
+                <li>Mirror interviewer's energy</li>
+            </ul>
+        </div>
+
+        <div class="concept-box">
+            <div class="concept-title">Body Language DON'Ts</div>
+            <ul style="margin-left: 20px;">
+                <li>Crossed arms</li>
+                <li>Fidgeting or tapping</li>
+                <li>Looking at phone/watch</li>
+                <li>Slouching</li>
+                <li>Avoiding eye contact</li>
+                <li>Excessive hand gestures</li>
+                <li>Playing with hair/jewelry</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="concept-box">
+        <div class="concept-title">QUESTIONS TO ASK THE INTERVIEWER</div>
+
+        <div class="grid">
+            <div>
+                <div class="label">About the Role:</div>
+                <ul style="margin-left: 20px; margin-top: 5px; font-size: 0.9rem;">
+                    <li>"What does success look like in the first 90 days?"</li>
+                    <li>"What are the biggest challenges in this role?"</li>
+                    <li>"How is performance measured?"</li>
+                </ul>
+            </div>
+            <div>
+                <div class="label">About the Team:</div>
+                <ul style="margin-left: 20px; margin-top: 5px; font-size: 0.9rem;">
+                    <li>"Who would I work with most closely?"</li>
+                    <li>"What's the management style?"</li>
+                    <li>"How does the team collaborate?"</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="warning-box">
+            <strong>Avoid asking about:</strong> Salary/benefits (wait for them to raise it), basic info on their website, vacation time, or personal questions about the interviewer.
+        </div>
+    </div>
+
+    <div class="concept-box">
+        <div class="concept-title">AFTER THE INTERVIEW</div>
+
+        <div style="margin-bottom: 10px;">
+            <div class="label">Within 24 Hours:</div>
+            <ul style="margin-left: 20px; margin-top: 5px;">
+                <li>Send personalized thank-you email to each interviewer</li>
+                <li>Reference specific conversation points</li>
+                <li>Reiterate your interest and fit for the role</li>
+                <li>Address any questions you didn't answer fully</li>
+            </ul>
+        </div>
+
+        <div>
+            <div class="label">If No Response After Expected Timeline:</div>
+            <ul style="margin-left: 20px; margin-top: 5px;">
+                <li>Send polite follow-up email</li>
+                <li>Express continued interest</li>
+                <li>Ask about next steps</li>
+                <li>Keep tone positive and professional</li>
+            </ul>
+        </div>
+
+        <div class="example-box">
+            <strong>Sample Thank-You Email Opening:</strong><br>
+            "Dear [Name], Thank you for taking the time to meet with me today about the [Position] role. I enjoyed learning about [specific topic discussed] and am even more excited about the opportunity to contribute to [specific project or goal]."
+        </div>
+    </div>
+
+    <div class="concept-box">
+        <div class="concept-title">INTERVIEW FORMATS</div>
+
+        <div class="grid">
+            <div>
+                <div class="label">Virtual Interviews:</div>
+                <ul style="margin-left: 20px; margin-top: 5px; font-size: 0.9rem;">
+                    <li>Test technology beforehand</li>
+                    <li>Choose quiet, well-lit space</li>
+                    <li>Look at camera, not screen</li>
+                    <li>Professional background</li>
+                    <li>Dress fully professional</li>
+                </ul>
+            </div>
+            <div>
+                <div class="label">Panel Interviews:</div>
+                <ul style="margin-left: 20px; margin-top: 5px; font-size: 0.9rem;">
+                    <li>Address questioner, include others</li>
+                    <li>Note each person's name/role</li>
+                    <li>Send individual thank-yous</li>
+                    <li>Bring enough resume copies</li>
+                    <li>Engage with all panelists</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div style="margin-top: 20px; padding: 15px; background-color: #f0f9ff; border-radius: 6px; border-left: 4px solid #3b82f6;">
+        <strong>Key Takeaway:</strong> Interview success comes from preparation. Research thoroughly, practice your STAR stories out loud, prepare thoughtful questions, and follow up professionally. Each interview—regardless of outcome—is practice for the next opportunity.
+    </div>
+</body>
+</html>

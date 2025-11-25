@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consumer Strategy Worksheets - PFL Academy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background-color: #f9fafb;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+            color: white;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 0.95rem;
+        }
+
+        .content {
+            padding: 24px;
+        }
+
+        .strategy-section {
+            margin-bottom: 32px;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .strategy-header {
+            padding: 16px 20px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .strategy-header .number {
+            background: white;
+            color: inherit;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+        }
+
+        .perfect-comp .strategy-header {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .monopolistic .strategy-header {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        .oligopoly .strategy-header {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .monopoly .strategy-header {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .strategy-body {
+            padding: 20px;
+        }
+
+        .characteristics {
+            background: #f9fafb;
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 16px;
+            font-size: 0.9rem;
+        }
+
+        .characteristics strong {
+            color: #374151;
+        }
+
+        .tips-list {
+            margin-bottom: 20px;
+        }
+
+        .tips-list h4 {
+            color: #4f46e5;
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
+
+        .tips-list ol {
+            margin-left: 20px;
+        }
+
+        .tips-list li {
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+
+        .examples-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
+        }
+
+        .examples-table th {
+            background: #f3f4f6;
+            padding: 10px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .examples-table td {
+            padding: 10px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .examples-table input {
+            width: 100%;
+            padding: 6px 8px;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+            font-size: 0.85rem;
+        }
+
+        .action-plan {
+            background: #f0f9ff;
+            border: 2px solid #bae6fd;
+            border-radius: 8px;
+            padding: 16px;
+        }
+
+        .action-plan h4 {
+            color: #0369a1;
+            margin-bottom: 12px;
+        }
+
+        .action-plan .input-group {
+            margin-bottom: 12px;
+        }
+
+        .action-plan label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 4px;
+            font-size: 0.9rem;
+            color: #374151;
+        }
+
+        .action-plan input,
+        .action-plan textarea {
+            width: 100%;
+            padding: 8px 10px;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+
+        .action-plan textarea {
+            min-height: 60px;
+            resize: vertical;
+        }
+
+        .negotiation-script {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 12px 16px;
+            margin: 16px 0;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.9rem;
+        }
+
+        .negotiation-script strong {
+            color: #92400e;
+        }
+
+        .total-savings {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: 24px;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 24px;
+        }
+
+        .total-savings h3 {
+            font-size: 1.3rem;
+            margin-bottom: 16px;
+        }
+
+        .savings-inputs {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .savings-input {
+            text-align: center;
+        }
+
+        .savings-input label {
+            display: block;
+            font-size: 0.85rem;
+            margin-bottom: 6px;
+            opacity: 0.9;
+        }
+
+        .savings-input input {
+            width: 100px;
+            padding: 10px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 6px;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .savings-input input::placeholder {
+            color: rgba(255,255,255,0.6);
+        }
+
+        .button-group {
+            display: flex;
+            gap: 12px;
+            margin-top: 24px;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-primary {
+            background: #6366f1;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #4f46e5;
+        }
+
+        .btn-secondary {
+            background: #f3f4f6;
+            color: #374151;
+        }
+
+        .btn-secondary:hover {
+            background: #e5e7eb;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 16px;
+            background: #f8fafc;
+            color: #6b7280;
+            font-size: 0.85rem;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 10px;
+                font-size: 11px;
+            }
+
+            .container {
+                box-shadow: none;
+            }
+
+            .btn {
+                display: none;
+            }
+
+            .strategy-section {
+                break-inside: avoid;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .header h1 {
+                font-size: 1.5rem;
+            }
+
+            .content {
+                padding: 16px;
+            }
+
+            .savings-inputs {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Consumer Strategy Worksheets</h1>
+            <p>Develop specific strategies for maximizing value in each market structure</p>
+        </div>
+
+        <div class="content">
+            <!-- Strategy 1: Perfect Competition -->
+            <div class="strategy-section perfect-comp">
+                <div class="strategy-header">
+                    <span class="number">1</span>
+                    Perfect Competition Strategy
+                </div>
+                <div class="strategy-body">
+                    <div class="characteristics">
+                        <strong>Characteristics:</strong> Many sellers, identical products, low prices, no negotiating needed
+                    </div>
+
+                    <div class="tips-list">
+                        <h4>Your Strategy:</h4>
+                        <ol>
+                            <li><strong>Shop by price alone</strong> - Products are identical, so pay the lowest price</li>
+                            <li><strong>Do not pay for branding</strong> - Generic = brand name (e.g., ibuprofen vs. Advil)</li>
+                            <li><strong>Use price comparison tools</strong> - Apps like GasBuddy, online shopping comparisons</li>
+                        </ol>
+                    </div>
+
+                    <table class="examples-table">
+                        <thead>
+                            <tr>
+                                <th>Purchase</th>
+                                <th>Perfectly Competitive?</th>
+                                <th>Your Strategy</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Gasoline</td>
+                                <td>Yes (locally)</td>
+                                <td>Use app to find cheapest station within 2 miles</td>
+                            </tr>
+                            <tr>
+                                <td>Generic medication</td>
+                                <td>Yes</td>
+                                <td>Buy store brand, not name brand</td>
+                            </tr>
+                            <tr>
+                                <td><input type="text" placeholder="Your example"></td>
+                                <td><input type="text" placeholder="Yes/No"></td>
+                                <td><input type="text" placeholder="Your strategy"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="action-plan">
+                        <h4>Your Action Plan</h4>
+                        <div class="input-group">
+                            <label>One perfectly competitive purchase I'll change strategy on:</label>
+                            <input type="text" placeholder="e.g., Gasoline, generic medications">
+                        </div>
+                        <div class="input-group">
+                            <label>How I'll save:</label>
+                            <input type="text" placeholder="e.g., Use GasBuddy app, buy store brand">
+                        </div>
+                        <div class="input-group">
+                            <label>Expected monthly savings: $</label>
+                            <input type="text" placeholder="0.00" class="savings-perfect">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Strategy 2: Monopolistic Competition -->
+            <div class="strategy-section monopolistic">
+                <div class="strategy-header">
+                    <span class="number">2</span>
+                    Monopolistic Competition Strategy
+                </div>
+                <div class="strategy-body">
+                    <div class="characteristics">
+                        <strong>Characteristics:</strong> Many sellers, differentiated products, some pricing power
+                    </div>
+
+                    <div class="tips-list">
+                        <h4>Your Strategy:</h4>
+                        <ol>
+                            <li><strong>Decide what YOU value</strong> - Brand? Quality? Convenience? Pay for what matters to YOU</li>
+                            <li><strong>Ignore marketing hype</strong> - Ads create perceived differentiation that may not exist</li>
+                            <li><strong>Try alternatives regularly</strong> - Your "favorite" may be habit, not preference</li>
+                            <li><strong>Negotiate when possible</strong> - Gyms, salons, service providers often negotiate</li>
+                            <li><strong>Shop sales but avoid false urgency</strong> - "One-day only" sales repeat monthly</li>
+                        </ol>
+                    </div>
+
+                    <table class="examples-table">
+                        <thead>
+                            <tr>
+                                <th>Purchase</th>
+                                <th>Differentiation</th>
+                                <th>What I Actually Value</th>
+                                <th>Am I Overpaying?</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Coffee shop</td>
+                                <td>Brand, location</td>
+                                <td>Caffeine + workspace</td>
+                                <td>Maybe - try local cafe</td>
+                            </tr>
+                            <tr>
+                                <td><input type="text" placeholder="Your purchase"></td>
+                                <td><input type="text" placeholder="Features"></td>
+                                <td><input type="text" placeholder="What you value"></td>
+                                <td><input type="text" placeholder="Yes/No/Maybe"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="action-plan">
+                        <h4>Your Action Plan</h4>
+                        <div class="input-group">
+                            <label>Purchase where I'm paying for differentiation I don't need:</label>
+                            <input type="text" placeholder="e.g., Premium coffee, brand-name clothing">
+                        </div>
+                        <div class="input-group">
+                            <label>Alternative I'll try:</label>
+                            <input type="text" placeholder="e.g., Local cafe, outlet store">
+                        </div>
+                        <div class="input-group">
+                            <label>Expected monthly savings: $</label>
+                            <input type="text" placeholder="0.00" class="savings-monopolistic">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Strategy 3: Oligopoly -->
+            <div class="strategy-section oligopoly">
+                <div class="strategy-header">
+                    <span class="number">3</span>
+                    Oligopoly Strategy
+                </div>
+                <div class="strategy-body">
+                    <div class="characteristics">
+                        <strong>Characteristics:</strong> Few sellers (3-10), high barriers, prices similar across firms
+                    </div>
+
+                    <div class="tips-list">
+                        <h4>Your Strategy:</h4>
+                        <ol>
+                            <li><strong>Compare ALL major players</strong> - Only 3-5 options, so compare them all thoroughly</li>
+                            <li><strong>Negotiate at contract renewal</strong> - Firms fight to keep you</li>
+                            <li><strong>Bundle when beneficial</strong> - But don't add unnecessary services</li>
+                            <li><strong>Watch for price coordination</strong> - All firms raising prices may signal collusion</li>
+                            <li><strong>Time purchases for competitive periods</strong> - Back-to-school, holiday promotions</li>
+                        </ol>
+                    </div>
+
+                    <div class="negotiation-script">
+                        <strong>Your Negotiation Script:</strong><br>
+                        "Hi, I've been a customer for [X years], but I'm seeing [Competitor] offers [specific plan] for $[Y] less per month. I'd prefer to stay with you - what can you offer to match or beat that?"
+                    </div>
+
+                    <table class="examples-table">
+                        <thead>
+                            <tr>
+                                <th>Oligopoly Service</th>
+                                <th>Current Provider</th>
+                                <th>Competitor Offers</th>
+                                <th>Negotiation Result</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Cell phone ({{STATE_NAME}})</td>
+                                <td><input type="text" placeholder="Your provider"></td>
+                                <td><input type="text" placeholder="Check other carriers"></td>
+                                <td><input type="text" placeholder="Result"></td>
+                            </tr>
+                            <tr>
+                                <td>Car insurance</td>
+                                <td><input type="text" placeholder="Your provider"></td>
+                                <td><input type="text" placeholder="Get 3+ quotes"></td>
+                                <td><input type="text" placeholder="Result"></td>
+                            </tr>
+                            <tr>
+                                <td>Internet</td>
+                                <td><input type="text" placeholder="Your provider"></td>
+                                <td><input type="text" placeholder="Limited options?"></td>
+                                <td><input type="text" placeholder="Result"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="action-plan">
+                        <h4>Your Action Plan</h4>
+                        <div class="input-group">
+                            <label>Oligopoly service I'll negotiate:</label>
+                            <input type="text" placeholder="e.g., Cell phone, car insurance, internet">
+                        </div>
+                        <div class="input-group">
+                            <label>Competitor offer I'll use as leverage:</label>
+                            <input type="text" placeholder="e.g., T-Mobile $50/month unlimited">
+                        </div>
+                        <div class="input-group">
+                            <label>Target monthly savings: $</label>
+                            <input type="text" placeholder="0.00" class="savings-oligopoly">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Strategy 4: Monopoly -->
+            <div class="strategy-section monopoly">
+                <div class="strategy-header">
+                    <span class="number">4</span>
+                    Monopoly Strategy
+                </div>
+                <div class="strategy-body">
+                    <div class="characteristics">
+                        <strong>Characteristics:</strong> One seller, no substitutes, maximum pricing power
+                    </div>
+
+                    <div class="tips-list">
+                        <h4>Your Strategy:</h4>
+                        <ol>
+                            <li><strong>Minimize consumption</strong> - You can't change the price, but you can buy less</li>
+                            <li><strong>Understand rate structures</strong> - Tiered pricing means avoid high-cost tiers</li>
+                            <li><strong>Look for long-term substitutes</strong> - Cable to streaming, electricity to solar</li>
+                            <li><strong>Advocate for regulation</strong> - Attend public utility commission hearings</li>
+                            <li><strong>Bundle if offered</strong> - Sometimes get discount for water + sewer, etc.</li>
+                        </ol>
+                    </div>
+
+                    <table class="examples-table">
+                        <thead>
+                            <tr>
+                                <th>Monopoly Service</th>
+                                <th>Current Cost</th>
+                                <th>Consumption Reduction Strategy</th>
+                                <th>Estimated Savings</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Electricity ({{STATE_UTILITY_PROVIDERS}})</td>
+                                <td><input type="text" placeholder="$/month"></td>
+                                <td><input type="text" placeholder="LED bulbs, adjust thermostat"></td>
+                                <td><input type="text" placeholder="$/month"></td>
+                            </tr>
+                            <tr>
+                                <td>Water</td>
+                                <td><input type="text" placeholder="$/month"></td>
+                                <td><input type="text" placeholder="Low-flow fixtures, fix leaks"></td>
+                                <td><input type="text" placeholder="$/month"></td>
+                            </tr>
+                            <tr>
+                                <td>Cable (if no alternatives)</td>
+                                <td><input type="text" placeholder="$/month"></td>
+                                <td><input type="text" placeholder="Cut cable, use streaming"></td>
+                                <td><input type="text" placeholder="$/month"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="action-plan">
+                        <h4>Your Action Plan</h4>
+                        <div class="input-group">
+                            <label>Monopoly service where I'll reduce consumption:</label>
+                            <input type="text" placeholder="e.g., Electricity, water, gas">
+                        </div>
+                        <div class="input-group">
+                            <label>Specific action:</label>
+                            <textarea placeholder="e.g., Install LED bulbs in all rooms, set thermostat to 68 in winter"></textarea>
+                        </div>
+                        <div class="input-group">
+                            <label>Expected monthly savings: $</label>
+                            <input type="text" placeholder="0.00" class="savings-monopoly">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Total Savings Calculator -->
+            <div class="total-savings">
+                <h3>Total Expected Savings from All Strategies</h3>
+                <div class="savings-inputs">
+                    <div class="savings-input">
+                        <label>Monthly Savings</label>
+                        <input type="text" id="totalMonthly" placeholder="$0">
+                    </div>
+                    <div class="savings-input">
+                        <label>Annual Savings</label>
+                        <input type="text" id="totalAnnual" placeholder="$0">
+                    </div>
+                </div>
+            </div>
+
+            <div class="button-group">
+                <button class="btn btn-primary" onclick="window.print()">Print Worksheets</button>
+                <button class="btn btn-secondary" onclick="calculateSavings()">Calculate Total Savings</button>
+            </div>
+        </div>
+
+        <div class="footer">
+            PFL Academy - L-51: Market Structures and Consumer Choice
+        </div>
+    </div>
+
+    <script>
+        function calculateSavings() {
+            const perfect = parseFloat(document.querySelector('.savings-perfect').value) || 0;
+            const monopolistic = parseFloat(document.querySelector('.savings-monopolistic').value) || 0;
+            const oligopoly = parseFloat(document.querySelector('.savings-oligopoly').value) || 0;
+            const monopoly = parseFloat(document.querySelector('.savings-monopoly').value) || 0;
+
+            const total = perfect + monopolistic + oligopoly + monopoly;
+            const annual = total * 12;
+
+            document.getElementById('totalMonthly').value = '$' + total.toFixed(2);
+            document.getElementById('totalAnnual').value = '$' + annual.toFixed(2);
+        }
+
+        // Auto-calculate when any savings input changes
+        document.querySelectorAll('[class^="savings-"]').forEach(input => {
+            input.addEventListener('input', calculateSavings);
+        });
+    </script>
+</body>
+</html>

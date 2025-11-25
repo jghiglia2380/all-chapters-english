@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Market Structure Identifier Tool - PFL Academy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background-color: #f9fafb;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+            color: white;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 0.95rem;
+        }
+
+        .content {
+            padding: 24px;
+        }
+
+        .instructions {
+            background-color: #eef2ff;
+            border-left: 4px solid #6366f1;
+            padding: 16px;
+            margin-bottom: 24px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .instructions h2 {
+            color: #4f46e5;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        .progress-bar {
+            background: #e5e7eb;
+            height: 8px;
+            border-radius: 4px;
+            margin-bottom: 24px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            background: linear-gradient(90deg, #6366f1, #8b5cf6);
+            height: 100%;
+            width: 33%;
+            transition: width 0.3s ease;
+            border-radius: 4px;
+        }
+
+        .step {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .step.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .step-header {
+            margin-bottom: 20px;
+        }
+
+        .step-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 8px;
+        }
+
+        .step-description {
+            color: #6b7280;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #374151;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.2s ease;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: #6366f1;
+        }
+
+        .options {
+            display: grid;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .option-card {
+            background: #f9fafb;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 16px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .option-card:hover {
+            border-color: #6366f1;
+            background: #f5f3ff;
+        }
+
+        .option-card.selected {
+            border-color: #6366f1;
+            background: #eef2ff;
+        }
+
+        .option-title {
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 4px;
+        }
+
+        .option-description {
+            font-size: 0.9rem;
+            color: #6b7280;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-primary {
+            background: #6366f1;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #4f46e5;
+        }
+
+        .btn-secondary {
+            background: #f3f4f6;
+            color: #374151;
+        }
+
+        .btn-secondary:hover {
+            background: #e5e7eb;
+        }
+
+        .result-box {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: 24px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .result-box h2 {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+        }
+
+        .result-box p {
+            opacity: 0.9;
+        }
+
+        .characteristics-box {
+            background: #f9fafb;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .characteristics-box h3 {
+            color: #6366f1;
+            margin-bottom: 12px;
+        }
+
+        .characteristic-item {
+            padding: 8px 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .characteristic-item:last-child {
+            border-bottom: none;
+        }
+
+        .strategy-box {
+            background: #fff7ed;
+            border: 2px solid #fed7aa;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .strategy-box h3 {
+            color: #ea580c;
+            margin-bottom: 12px;
+        }
+
+        .strategy-box ul {
+            margin-left: 20px;
+        }
+
+        .strategy-box li {
+            margin-bottom: 8px;
+        }
+
+        .examples-box {
+            background: #f0f9ff;
+            border-left: 4px solid #3b82f6;
+            padding: 16px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .examples-box h4 {
+            color: #1d4ed8;
+            margin-bottom: 8px;
+        }
+
+        .practice-section {
+            margin-top: 24px;
+            padding: 20px;
+            background: #f8fafc;
+            border-radius: 8px;
+        }
+
+        .practice-section h3 {
+            color: #1f2937;
+            margin-bottom: 16px;
+        }
+
+        .practice-section textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e5e7eb;
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 0.95rem;
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .practice-section textarea:focus {
+            outline: none;
+            border-color: #6366f1;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 16px;
+            background: #f8fafc;
+            color: #6b7280;
+            font-size: 0.85rem;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+
+            .container {
+                box-shadow: none;
+            }
+
+            .btn {
+                display: none;
+            }
+
+            .step {
+                display: block !important;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .header h1 {
+                font-size: 1.5rem;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Market Structure Identifier Tool</h1>
+            <p>Systematically classify any market and develop consumer strategies</p>
+        </div>
+
+        <div class="content">
+            <div class="instructions">
+                <h2>How to Use This Tool</h2>
+                <p>Follow the decision tree to identify the market structure for any product or service. The tool will provide specific consumer strategies based on the structure type.</p>
+            </div>
+
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressBar"></div>
+            </div>
+
+            <!-- Step 1: Product Input -->
+            <div class="step active" id="step1">
+                <div class="step-header">
+                    <div class="step-title">Step 1: What Are You Analyzing?</div>
+                    <p class="step-description">Enter the product or service you want to classify</p>
+                </div>
+
+                <div class="input-group">
+                    <label for="productInput">Product/Service:</label>
+                    <input type="text" id="productInput" placeholder="e.g., Smartphone, Electricity, Fast food, Gasoline">
+                </div>
+
+                <div class="button-group">
+                    <button class="btn btn-primary" onclick="nextStep()">Next: Count Sellers</button>
+                </div>
+            </div>
+
+            <!-- Step 2: Seller Count -->
+            <div class="step" id="step2">
+                <div class="step-header">
+                    <div class="step-title">Step 2: How Many Sellers?</div>
+                    <p class="step-description">Count the number of realistic options available to you</p>
+                </div>
+
+                <div class="options">
+                    <div class="option-card" onclick="selectOption(this, 'sellers', 'one')">
+                        <div class="option-title">One Seller</div>
+                        <div class="option-description">Only one provider exists - no alternatives available</div>
+                    </div>
+                    <div class="option-card" onclick="selectOption(this, 'sellers', 'few')">
+                        <div class="option-title">Few Sellers (2-10)</div>
+                        <div class="option-description">A small number of major players dominate the market</div>
+                    </div>
+                    <div class="option-card" onclick="selectOption(this, 'sellers', 'many')">
+                        <div class="option-title">Many Sellers (Dozens+)</div>
+                        <div class="option-description">Many companies compete for your business</div>
+                    </div>
+                </div>
+
+                <div class="button-group">
+                    <button class="btn btn-secondary" onclick="prevStep()">Back</button>
+                    <button class="btn btn-primary" onclick="processSellerCount()">Next</button>
+                </div>
+            </div>
+
+            <!-- Step 3a: Monopoly Verification -->
+            <div class="step" id="step3a">
+                <div class="step-header">
+                    <div class="step-title">Monopoly Verification</div>
+                    <p class="step-description">Confirm this is truly a monopoly</p>
+                </div>
+
+                <div class="options">
+                    <div class="option-card" onclick="selectOption(this, 'substitute', 'no')">
+                        <div class="option-title">No Substitutes Available</div>
+                        <div class="option-description">This is the only option that meets my needs</div>
+                    </div>
+                    <div class="option-card" onclick="selectOption(this, 'substitute', 'yes')">
+                        <div class="option-title">Some Substitutes Exist</div>
+                        <div class="option-description">I could use something else as an alternative</div>
+                    </div>
+                </div>
+
+                <div id="monopolyTypeSection" style="display: none; margin-top: 20px;">
+                    <p style="font-weight: 600; margin-bottom: 12px;">Why does this monopoly exist?</p>
+                    <div class="options">
+                        <div class="option-card" onclick="selectOption(this, 'monopolyType', 'natural')">
+                            <div class="option-title">Natural Monopoly (Infrastructure)</div>
+                            <div class="option-description">Electric, water, gas utilities - infrastructure costs prevent competition</div>
+                        </div>
+                        <div class="option-card" onclick="selectOption(this, 'monopolyType', 'legal')">
+                            <div class="option-title">Legal Monopoly (Patent/License)</div>
+                            <div class="option-description">Protected by patents, copyrights, or government licenses</div>
+                        </div>
+                        <div class="option-card" onclick="selectOption(this, 'monopolyType', 'market')">
+                            <div class="option-title">Market Power (Dominance)</div>
+                            <div class="option-description">Achieved through business practices and market control</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="button-group">
+                    <button class="btn btn-secondary" onclick="prevStep()">Back</button>
+                    <button class="btn btn-primary" onclick="completeMonopoly()">Show Results</button>
+                </div>
+            </div>
+
+            <!-- Step 3b: Oligopoly Verification -->
+            <div class="step" id="step3b">
+                <div class="step-header">
+                    <div class="step-title">Oligopoly Verification</div>
+                    <p class="step-description">Check for barriers to entry</p>
+                </div>
+
+                <div class="options">
+                    <div class="option-card" onclick="selectOption(this, 'barriers', 'yes')">
+                        <div class="option-title">High Barriers to Entry</div>
+                        <div class="option-description">Hard for new companies to enter (high capital, regulations, patents, scale)</div>
+                    </div>
+                    <div class="option-card" onclick="selectOption(this, 'barriers', 'no')">
+                        <div class="option-title">Low Barriers to Entry</div>
+                        <div class="option-description">New companies could enter relatively easily</div>
+                    </div>
+                </div>
+
+                <div class="button-group">
+                    <button class="btn btn-secondary" onclick="prevStep()">Back</button>
+                    <button class="btn btn-primary" onclick="completeOligopoly()">Show Results</button>
+                </div>
+            </div>
+
+            <!-- Step 3c: Competition Type -->
+            <div class="step" id="step3c">
+                <div class="step-header">
+                    <div class="step-title">Product Differentiation</div>
+                    <p class="step-description">Are products identical or different?</p>
+                </div>
+
+                <div class="options">
+                    <div class="option-card" onclick="selectOption(this, 'products', 'identical')">
+                        <div class="option-title">Identical Products</div>
+                        <div class="option-description">All sellers offer the exact same thing (commodities)</div>
+                    </div>
+                    <div class="option-card" onclick="selectOption(this, 'products', 'differentiated')">
+                        <div class="option-title">Differentiated Products</div>
+                        <div class="option-description">Each seller offers something slightly different (brands, features, quality)</div>
+                    </div>
+                </div>
+
+                <div class="button-group">
+                    <button class="btn btn-secondary" onclick="prevStep()">Back</button>
+                    <button class="btn btn-primary" onclick="completeCompetition()">Show Results</button>
+                </div>
+            </div>
+
+            <!-- Results -->
+            <div class="step" id="results">
+                <div class="step-header">
+                    <div class="step-title">Market Analysis Results</div>
+                </div>
+
+                <div class="result-box">
+                    <h2 id="structureName">Market Structure</h2>
+                    <p id="productAnalyzed"></p>
+                </div>
+
+                <div class="characteristics-box">
+                    <h3>Market Characteristics</h3>
+                    <div id="characteristicsList"></div>
+                </div>
+
+                <div class="strategy-box">
+                    <h3>Your Consumer Strategy</h3>
+                    <ul id="strategyList"></ul>
+                </div>
+
+                <div class="examples-box">
+                    <h4>Similar Markets:</h4>
+                    <p id="examplesList"></p>
+                </div>
+
+                <div class="practice-section">
+                    <h3>Apply Your Strategy</h3>
+                    <div class="input-group">
+                        <label for="strategyNotes">How will you use this strategy for your purchase?</label>
+                        <textarea id="strategyNotes" placeholder="Write your specific action plan here..."></textarea>
+                    </div>
+                </div>
+
+                <div class="button-group">
+                    <button class="btn btn-secondary" onclick="reset()">Analyze Another Market</button>
+                    <button class="btn btn-primary" onclick="window.print()">Print Results</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            PFL Academy - L-51: Market Structures and Consumer Choice
+        </div>
+    </div>
+
+    <script>
+        let currentStep = 1;
+        let analysisData = {};
+
+        function updateProgress() {
+            const progressMap = {1: 25, 2: 50, 3: 75, results: 100};
+            const progress = currentStep === 3 ? 75 : progressMap[currentStep] || 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+        }
+
+        function selectOption(card, key, value) {
+            const parent = card.parentElement;
+            parent.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
+            card.classList.add('selected');
+            analysisData[key] = value;
+
+            if (key === 'substitute' && value === 'no') {
+                document.getElementById('monopolyTypeSection').style.display = 'block';
+            }
+        }
+
+        function nextStep() {
+            if (currentStep === 1) {
+                const product = document.getElementById('productInput').value.trim();
+                if (!product) {
+                    alert('Please enter a product or service to analyze');
+                    return;
+                }
+                analysisData.product = product;
+            }
+
+            document.getElementById('step' + currentStep).classList.remove('active');
+            currentStep++;
+            document.getElementById('step' + currentStep).classList.add('active');
+            updateProgress();
+        }
+
+        function prevStep() {
+            document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+            if (currentStep === 3) {
+                currentStep = 2;
+            } else {
+                currentStep--;
+            }
+            document.getElementById('step' + currentStep).classList.add('active');
+            updateProgress();
+        }
+
+        function processSellerCount() {
+            if (!analysisData.sellers) {
+                alert('Please select the number of sellers');
+                return;
+            }
+
+            document.getElementById('step2').classList.remove('active');
+            currentStep = 3;
+
+            if (analysisData.sellers === 'one') {
+                document.getElementById('step3a').classList.add('active');
+            } else if (analysisData.sellers === 'few') {
+                document.getElementById('step3b').classList.add('active');
+            } else {
+                document.getElementById('step3c').classList.add('active');
+            }
+            updateProgress();
+        }
+
+        function completeMonopoly() {
+            if (!analysisData.substitute) {
+                alert('Please answer the question');
+                return;
+            }
+
+            if (analysisData.substitute === 'yes') {
+                showResults('Monopolistic Competition');
+            } else {
+                showResults('Monopoly');
+            }
+        }
+
+        function completeOligopoly() {
+            if (!analysisData.barriers) {
+                alert('Please answer the question');
+                return;
+            }
+
+            if (analysisData.barriers === 'yes') {
+                showResults('Oligopoly');
+            } else {
+                showResults('Monopolistic Competition');
+            }
+        }
+
+        function completeCompetition() {
+            if (!analysisData.products) {
+                alert('Please answer the question');
+                return;
+            }
+
+            if (analysisData.products === 'identical') {
+                showResults('Perfect Competition');
+            } else {
+                showResults('Monopolistic Competition');
+            }
+        }
+
+        function showResults(structure) {
+            analysisData.structure = structure;
+
+            document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+            document.getElementById('results').classList.add('active');
+
+            document.getElementById('structureName').textContent = structure;
+            document.getElementById('productAnalyzed').textContent = 'Analyzing: ' + analysisData.product;
+
+            const characteristics = getCharacteristics(structure);
+            const strategies = getStrategies(structure);
+            const examples = getExamples(structure);
+
+            document.getElementById('characteristicsList').innerHTML = characteristics.map(c =>
+                '<div class="characteristic-item"><strong>' + c.label + ':</strong> ' + c.value + '</div>'
+            ).join('');
+
+            document.getElementById('strategyList').innerHTML = strategies.map(s =>
+                '<li>' + s + '</li>'
+            ).join('');
+
+            document.getElementById('examplesList').textContent = examples.join(', ');
+
+            currentStep = 'results';
+            updateProgress();
+        }
+
+        function getCharacteristics(structure) {
+            const chars = {
+                'Monopoly': [
+                    {label: 'Number of Sellers', value: 'One (single seller controls market)'},
+                    {label: 'Price Control', value: 'Complete - seller sets price'},
+                    {label: 'Consumer Power', value: 'Very low - no alternatives'},
+                    {label: 'Barriers to Entry', value: 'Extreme - impossible or illegal to compete'},
+                    {label: 'Product Type', value: 'Unique with no close substitutes'}
+                ],
+                'Oligopoly': [
+                    {label: 'Number of Sellers', value: 'Few (2-10 major players)'},
+                    {label: 'Price Control', value: 'Significant - prices often similar across firms'},
+                    {label: 'Consumer Power', value: 'Limited - few alternatives available'},
+                    {label: 'Barriers to Entry', value: 'High - capital, technology, regulation'},
+                    {label: 'Product Type', value: 'Similar or differentiated products'}
+                ],
+                'Monopolistic Competition': [
+                    {label: 'Number of Sellers', value: 'Many competitors'},
+                    {label: 'Price Control', value: 'Some - through product differentiation'},
+                    {label: 'Consumer Power', value: 'Moderate - many options to choose from'},
+                    {label: 'Barriers to Entry', value: 'Low - relatively easy to enter'},
+                    {label: 'Product Type', value: 'Differentiated by brand, quality, features'}
+                ],
+                'Perfect Competition': [
+                    {label: 'Number of Sellers', value: 'Very many (hundreds or thousands)'},
+                    {label: 'Price Control', value: 'None - market determines price'},
+                    {label: 'Consumer Power', value: 'High - easy to switch sellers'},
+                    {label: 'Barriers to Entry', value: 'None - easy to enter and exit'},
+                    {label: 'Product Type', value: 'Identical/standardized products'}
+                ]
+            };
+            return chars[structure] || [];
+        }
+
+        function getStrategies(structure) {
+            const strats = {
+                'Monopoly': [
+                    'Minimize consumption - you cannot change the price, but you can buy less',
+                    'Understand rate structures - look for tiered pricing and stay in lower tiers',
+                    'Look for long-term substitutes (e.g., solar panels for electricity, streaming for cable)',
+                    'Advocate for regulation - attend public utility commission hearings',
+                    'Bundle services if the monopolist offers multiple services for a discount'
+                ],
+                'Oligopoly': [
+                    'Compare ALL major players thoroughly - only 3-5 options to evaluate',
+                    'Negotiate at contract renewal - threaten to switch to competitor',
+                    'Use script: "I am seeing [Competitor] offers [plan] for $[Y] less. What can you offer?"',
+                    'Time purchases for competitive periods (promotions, back-to-school)',
+                    'Watch for price coordination - if all firms raise prices together, it may be collusion'
+                ],
+                'Monopolistic Competition': [
+                    'Decide what YOU value - brand, quality, convenience, price',
+                    'Ignore marketing hype - ads create perceived differentiation',
+                    'Try alternatives regularly - your "favorite" may just be habit',
+                    'Negotiate when possible - gyms, salons, service providers often negotiate',
+                    'Shop sales but avoid false urgency - "one-day only" sales repeat monthly'
+                ],
+                'Perfect Competition': [
+                    'Shop by price alone - products are identical',
+                    'Do not pay for branding - generic equals brand name (e.g., generic vs. Advil)',
+                    'Use price comparison tools and apps (e.g., GasBuddy for gasoline)',
+                    'Buy from the cheapest seller - no loyalty benefits in this market',
+                    'Take advantage of competition - switch freely without consequences'
+                ]
+            };
+            return strats[structure] || [];
+        }
+
+        function getExamples(structure) {
+            const examples = {
+                'Monopoly': ['Local electric utility', 'Water company', 'Patented drugs', 'Professional sports leagues'],
+                'Oligopoly': ['Airlines', 'Cell phone carriers', 'Automobile manufacturers', 'Streaming services', 'Banks'],
+                'Monopolistic Competition': ['Restaurants', 'Clothing stores', 'Hair salons', 'Coffee shops', 'Gas stations'],
+                'Perfect Competition': ['Agricultural commodities', 'Stock market', 'Currency exchange', 'Generic medications']
+            };
+            return examples[structure] || [];
+        }
+
+        function reset() {
+            currentStep = 1;
+            analysisData = {};
+            document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+            document.getElementById('step1').classList.add('active');
+            document.getElementById('productInput').value = '';
+            document.getElementById('strategyNotes').value = '';
+            document.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
+            document.getElementById('monopolyTypeSection').style.display = 'none';
+            updateProgress();
+        }
+
+        updateProgress();
+    </script>
+</body>
+</html>

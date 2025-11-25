@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debt Management Reference Sheet - PFL Academy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            font-size: 12px;
+            line-height: 1.5;
+            color: #1f2937;
+            padding: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 3px solid #6366f1;
+        }
+
+        .header h1 {
+            font-size: 24px;
+            color: #6366f1;
+            margin-bottom: 4px;
+        }
+
+        .header p {
+            color: #6b7280;
+            font-size: 12px;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 11px;
+        }
+
+        .comparison-table th {
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+            color: white;
+            padding: 10px 8px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .comparison-table td {
+            padding: 8px;
+            border-bottom: 1px solid #e5e7eb;
+            vertical-align: top;
+        }
+
+        .comparison-table tr:hover {
+            background-color: #f9fafb;
+        }
+
+        .comparison-table td:first-child {
+            font-weight: 600;
+            background: #f9fafb;
+            width: 18%;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .strategy-box {
+            background: #f9fafb;
+            padding: 12px;
+            border-radius: 6px;
+            border-left: 4px solid #6366f1;
+        }
+
+        .strategy-box h3 {
+            font-size: 14px;
+            font-weight: 700;
+            color: #6366f1;
+            margin-bottom: 8px;
+        }
+
+        .strategy-box ul {
+            margin-left: 16px;
+            margin-bottom: 8px;
+        }
+
+        .strategy-box li {
+            margin-bottom: 3px;
+        }
+
+        .pros-cons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .pros, .cons {
+            padding: 6px 8px;
+            border-radius: 4px;
+            font-size: 10px;
+        }
+
+        .pros {
+            background: #ecfdf5;
+            border: 1px solid #10b981;
+        }
+
+        .cons {
+            background: #fef2f2;
+            border: 1px solid #ef4444;
+        }
+
+        .pros strong { color: #059669; }
+        .cons strong { color: #dc2626; }
+
+        .bankruptcy-section {
+            background: #fef3c7;
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 16px;
+        }
+
+        .bankruptcy-section h3 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #b45309;
+        }
+
+        .bankruptcy-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+
+        .bankruptcy-item {
+            background: white;
+            padding: 8px;
+            border-radius: 4px;
+        }
+
+        .bankruptcy-item h4 {
+            font-size: 11px;
+            font-weight: 600;
+            margin-bottom: 4px;
+            color: #b45309;
+        }
+
+        .bankruptcy-item ul {
+            margin-left: 12px;
+            font-size: 10px;
+        }
+
+        .rebuilding-section {
+            background: #ecfdf5;
+            padding: 12px;
+            border-radius: 6px;
+            border-left: 4px solid #10b981;
+            margin-bottom: 16px;
+        }
+
+        .rebuilding-section h3 {
+            font-size: 14px;
+            font-weight: 600;
+            color: #059669;
+            margin-bottom: 8px;
+        }
+
+        .step-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+        }
+
+        .step-box {
+            background: white;
+            padding: 8px;
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        .step-number {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            background: #10b981;
+            color: white;
+            border-radius: 50%;
+            font-weight: 700;
+            line-height: 24px;
+            font-size: 12px;
+            margin-bottom: 4px;
+        }
+
+        .step-box h4 {
+            font-size: 10px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .step-box p {
+            font-size: 9px;
+            color: #4b5563;
+        }
+
+        .warning-signs {
+            background: #fef2f2;
+            padding: 12px;
+            border-radius: 6px;
+            border-left: 4px solid #ef4444;
+            margin-bottom: 16px;
+        }
+
+        .warning-signs h3 {
+            font-size: 14px;
+            font-weight: 600;
+            color: #dc2626;
+            margin-bottom: 8px;
+        }
+
+        .warning-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+        }
+
+        .warning-item {
+            background: white;
+            padding: 6px 8px;
+            border-radius: 4px;
+            font-size: 10px;
+        }
+
+        .key-formulas {
+            background: #eff6ff;
+            padding: 12px;
+            border-radius: 6px;
+            border-left: 4px solid #3b82f6;
+            margin-bottom: 16px;
+        }
+
+        .key-formulas h3 {
+            font-size: 14px;
+            font-weight: 600;
+            color: #3b82f6;
+            margin-bottom: 8px;
+        }
+
+        .formula-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+
+        .formula-box {
+            background: white;
+            padding: 8px;
+            border-radius: 4px;
+        }
+
+        .formula-box h4 {
+            font-size: 11px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .formula-box p {
+            font-size: 10px;
+            font-family: monospace;
+            background: #f3f4f6;
+            padding: 4px;
+            border-radius: 2px;
+        }
+
+        .key-takeaway {
+            background: #f0fdf4;
+            padding: 12px;
+            border-radius: 6px;
+            border-left: 4px solid #10b981;
+        }
+
+        .key-takeaway h3 {
+            font-size: 12px;
+            font-weight: 600;
+            color: #059669;
+            margin-bottom: 6px;
+        }
+
+        .key-takeaway p {
+            font-size: 11px;
+        }
+
+        @media print {
+            body {
+                padding: 10px;
+                font-size: 10px;
+            }
+
+            .strategy-box,
+            .bankruptcy-section,
+            .rebuilding-section,
+            .warning-signs,
+            .key-formulas {
+                page-break-inside: avoid;
+            }
+
+            .comparison-table {
+                font-size: 9px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .two-column,
+            .bankruptcy-grid,
+            .step-grid,
+            .warning-grid,
+            .formula-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Debt Management Strategies Reference Sheet</h1>
+        <p>Quick reference for managing high levels of debt</p>
+    </div>
+
+    <table class="comparison-table">
+        <thead>
+            <tr>
+                <th>Strategy</th>
+                <th>Description</th>
+                <th>Best For</th>
+                <th>Credit Impact</th>
+                <th>Timeline</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Debt Management Plan (DMP)</td>
+                <td>Credit counselor negotiates lower rates; you make one payment</td>
+                <td>High-interest unsecured debt; need structure</td>
+                <td>Minimal; accounts may show "managed"</td>
+                <td>3-5 years</td>
+            </tr>
+            <tr>
+                <td>Debt Consolidation</td>
+                <td>Combine debts into single loan with lower interest</td>
+                <td>Good credit; multiple high-rate debts</td>
+                <td>Initial dip; improves long-term</td>
+                <td>2-5 years</td>
+            </tr>
+            <tr>
+                <td>Debt Settlement</td>
+                <td>Negotiate to pay less than full amount owed</td>
+                <td>Unable to make minimum payments; considering bankruptcy</td>
+                <td>Significant damage; stays 7 years</td>
+                <td>2-4 years</td>
+            </tr>
+            <tr>
+                <td>Balance Transfer</td>
+                <td>Move debt to 0% APR card for promotional period</td>
+                <td>Good credit; can pay off during promo period</td>
+                <td>Minimal; new account inquiry</td>
+                <td>12-21 months</td>
+            </tr>
+            <tr>
+                <td>Chapter 7 Bankruptcy</td>
+                <td>Liquidate non-exempt assets to discharge debts</td>
+                <td>Unable to repay; limited assets</td>
+                <td>Severe; stays 10 years</td>
+                <td>3-6 months</td>
+            </tr>
+            <tr>
+                <td>Chapter 13 Bankruptcy</td>
+                <td>Repayment plan while keeping assets</td>
+                <td>Regular income; want to keep home/car</td>
+                <td>Severe; stays 7 years</td>
+                <td>3-5 years</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="two-column">
+        <div class="strategy-box">
+            <h3>Debt Avalanche Method</h3>
+            <ul>
+                <li>Pay minimums on all debts</li>
+                <li>Put extra toward highest interest rate debt</li>
+                <li>When paid off, move to next highest rate</li>
+                <li>Saves most money in interest</li>
+            </ul>
+            <div class="pros-cons">
+                <div class="pros">
+                    <strong>Pros:</strong> Mathematically optimal; saves most money
+                </div>
+                <div class="cons">
+                    <strong>Cons:</strong> Slower initial wins; requires discipline
+                </div>
+            </div>
+        </div>
+
+        <div class="strategy-box">
+            <h3>Debt Snowball Method</h3>
+            <ul>
+                <li>Pay minimums on all debts</li>
+                <li>Put extra toward smallest balance</li>
+                <li>When paid off, move to next smallest</li>
+                <li>Quick wins build momentum</li>
+            </ul>
+            <div class="pros-cons">
+                <div class="pros">
+                    <strong>Pros:</strong> Psychological wins; builds confidence
+                </div>
+                <div class="cons">
+                    <strong>Cons:</strong> May pay more interest overall
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bankruptcy-section">
+        <h3>Bankruptcy: Last Resort Options</h3>
+        <div class="bankruptcy-grid">
+            <div class="bankruptcy-item">
+                <h4>Chapter 7 (Liquidation)</h4>
+                <ul>
+                    <li>Must pass means test (income below state median)</li>
+                    <li>Discharges most unsecured debts in 3-6 months</li>
+                    <li>May lose non-exempt assets</li>
+                    <li>Cannot file again for 8 years</li>
+                    <li>Stays on credit report 10 years</li>
+                </ul>
+            </div>
+            <div class="bankruptcy-item">
+                <h4>Chapter 13 (Reorganization)</h4>
+                <ul>
+                    <li>Must have regular income</li>
+                    <li>3-5 year repayment plan</li>
+                    <li>Keep home, car, and other assets</li>
+                    <li>Can file more frequently</li>
+                    <li>Stays on credit report 7 years</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="warning-signs">
+        <h3>Warning Signs You Need Help</h3>
+        <div class="warning-grid">
+            <div class="warning-item">Using new credit to pay off old credit</div>
+            <div class="warning-item">Can only afford minimum payments</div>
+            <div class="warning-item">Debt-to-income ratio over 40%</div>
+            <div class="warning-item">Receiving collection calls</div>
+            <div class="warning-item">Hiding spending from family</div>
+            <div class="warning-item">Considering payday loans</div>
+            <div class="warning-item">Missing bill payments</div>
+            <div class="warning-item">No emergency savings</div>
+            <div class="warning-item">Anxiety about finances daily</div>
+        </div>
+    </div>
+
+    <div class="key-formulas">
+        <h3>Key Financial Ratios</h3>
+        <div class="formula-grid">
+            <div class="formula-box">
+                <h4>Debt-to-Income Ratio</h4>
+                <p>Monthly Debt Payments / Gross Monthly Income</p>
+                <span style="font-size: 10px; color: #4b5563;">Target: Under 36% | Concern: Over 43%</span>
+            </div>
+            <div class="formula-box">
+                <h4>Credit Utilization</h4>
+                <p>Total Credit Card Balances / Total Credit Limits</p>
+                <span style="font-size: 10px; color: #4b5563;">Target: Under 30% | Ideal: Under 10%</span>
+            </div>
+            <div class="formula-box">
+                <h4>Emergency Fund Target</h4>
+                <p>Monthly Expenses x 3-6</p>
+                <span style="font-size: 10px; color: #4b5563;">Save this before aggressive debt payoff</span>
+            </div>
+            <div class="formula-box">
+                <h4>Payment Priority</h4>
+                <p>1. Min payments 2. Essentials 3. Extra to debt</p>
+                <span style="font-size: 10px; color: #4b5563;">Never miss minimums; avoid late fees</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="rebuilding-section">
+        <h3>Credit Rebuilding Roadmap</h3>
+        <div class="step-grid">
+            <div class="step-box">
+                <span class="step-number">1</span>
+                <h4>Secured Card</h4>
+                <p>Get secured credit card with small deposit. Use for small purchases, pay in full.</p>
+            </div>
+            <div class="step-box">
+                <span class="step-number">2</span>
+                <h4>On-Time Payments</h4>
+                <p>Pay all bills on time. Set up autopay. Payment history is 35% of score.</p>
+            </div>
+            <div class="step-box">
+                <span class="step-number">3</span>
+                <h4>Monitor Credit</h4>
+                <p>Check reports for errors. Use free services. Dispute inaccuracies.</p>
+            </div>
+            <div class="step-box">
+                <span class="step-number">4</span>
+                <h4>Graduate Up</h4>
+                <p>After 12-18 months, apply for unsecured card. Keep old accounts open.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="two-column">
+        <div class="strategy-box" style="border-left-color: #10b981;">
+            <h3 style="color: #059669;">Resources for Help</h3>
+            <ul>
+                <li><strong>NFCC:</strong> National Foundation for Credit Counseling - nfcc.org</li>
+                <li><strong>AICCCA:</strong> Association of Independent Consumer Credit Counseling</li>
+                <li><strong>HUD:</strong> Housing counseling agencies</li>
+                <li><strong>211:</strong> Dial for local assistance programs</li>
+            </ul>
+        </div>
+
+        <div class="strategy-box" style="border-left-color: #ef4444;">
+            <h3 style="color: #dc2626;">Red Flags to Avoid</h3>
+            <ul>
+                <li>Companies that charge high upfront fees</li>
+                <li>Promises to "fix" your credit quickly</li>
+                <li>Advice to stop paying bills without explanation</li>
+                <li>Pressure to sign up immediately</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="key-takeaway">
+        <h3>Key Takeaway</h3>
+        <p>The best debt management strategy depends on your specific situation, including total debt amount, income stability, credit score, and personal goals. Credit counseling from a nonprofit agency is often a good first step to evaluate options. While bankruptcy can provide a fresh start, explore all alternatives first as its impact on credit lasts 7-10 years. Regardless of which strategy you use, rebuilding credit afterward requires patience, discipline, and consistent positive financial behaviors.</p>
+    </div>
+</body>
+</html>

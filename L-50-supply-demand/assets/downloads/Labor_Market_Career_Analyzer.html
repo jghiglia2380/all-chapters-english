@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Labor Market Career Analyzer | PFL Academy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-size: 14px;
+            line-height: 1.6;
+            color: #1f2937;
+            padding: 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #6366f1;
+        }
+        h1 {
+            font-size: 1.8rem;
+            color: #6366f1;
+            margin-bottom: 5px;
+        }
+        .subtitle {
+            color: #6b7280;
+        }
+        .section {
+            background-color: #f9fafb;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 4px solid #6366f1;
+        }
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #6366f1;
+            margin-bottom: 15px;
+        }
+        .career-card {
+            background-color: white;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            border: 2px solid #e5e7eb;
+        }
+        .career-number {
+            background-color: #6366f1;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            margin-right: 10px;
+        }
+        .input-field {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #e5e7eb;
+            border-radius: 6px;
+            font-size: 14px;
+            font-family: inherit;
+            margin-top: 5px;
+        }
+        .input-field:focus {
+            outline: none;
+            border-color: #6366f1;
+        }
+        .input-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        .input-group {
+            margin-bottom: 10px;
+        }
+        .input-group label {
+            font-weight: 600;
+            display: block;
+            margin-bottom: 5px;
+            color: #374151;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 0.85rem;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border: 1px solid #e5e7eb;
+        }
+        th {
+            background-color: #f3f4f6;
+            font-weight: 600;
+        }
+        .select-field {
+            padding: 6px;
+            border: 1px solid #e5e7eb;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            width: 100%;
+        }
+        .scenario-box {
+            background-color: white;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            border-left: 4px solid #8b5cf6;
+        }
+        .scenario-title {
+            font-weight: 600;
+            color: #8b5cf6;
+            margin-bottom: 10px;
+        }
+        .impact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 15px 0;
+        }
+        .impact-box {
+            padding: 12px;
+            border-radius: 6px;
+        }
+        .impact-increase {
+            background-color: #dcfce7;
+            border: 1px solid #86efac;
+        }
+        .impact-decrease {
+            background-color: #fee2e2;
+            border: 1px solid #fca5a5;
+        }
+        .analysis-box {
+            background-color: #f0f9ff;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 15px 0;
+        }
+        .salary-display {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 10px 0;
+        }
+        .salary-input {
+            width: 120px;
+            padding: 8px;
+            border: 1px solid #e5e7eb;
+            border-radius: 4px;
+            text-align: right;
+        }
+        .arrow {
+            color: #6366f1;
+            font-size: 1.5rem;
+        }
+        .outlook-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        .outlook-strong {
+            background-color: #dcfce7;
+            color: #166534;
+        }
+        .outlook-moderate {
+            background-color: #fef3c7;
+            color: #92400e;
+        }
+        .outlook-weak {
+            background-color: #fee2e2;
+            color: #991b1b;
+        }
+        .strategy-box {
+            background-color: #f0fdf4;
+            border-left: 4px solid #10b981;
+            padding: 15px;
+            border-radius: 0 6px 6px 0;
+            margin: 15px 0;
+        }
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-right: 10px;
+            margin-top: 10px;
+        }
+        .btn-primary {
+            background-color: #6366f1;
+            color: white;
+        }
+        .btn-primary:hover {
+            background-color: #4f46e5;
+        }
+        .btn-secondary {
+            background-color: #f3f4f6;
+            color: #374151;
+        }
+        .note {
+            background-color: #fffbeb;
+            border-left: 4px solid #f59e0b;
+            padding: 12px;
+            margin: 15px 0;
+            font-size: 0.9rem;
+        }
+        @media print {
+            body {
+                padding: 10px;
+                font-size: 11px;
+            }
+            .section {
+                break-inside: avoid;
+            }
+            .btn {
+                display: none;
+            }
+        }
+        @media (max-width: 768px) {
+            .input-row {
+                grid-template-columns: 1fr;
+            }
+            .impact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>{{STATE_NAME}} Labor Market Career Analyzer</h1>
+        <p class="subtitle">Use supply and demand to make smarter career decisions</p>
+    </header>
+
+    <div class="section">
+        <div class="section-title">Part A: Analyze Career Fields in {{STATE_NAME}}</div>
+        <p style="margin-bottom: 15px;">Choose 3 career fields that interest you. Research and analyze their supply/demand dynamics.</p>
+
+        <!-- Career 1 -->
+        <div class="career-card">
+            <h4><span class="career-number">1</span>Career Field</h4>
+            <div class="input-group">
+                <input type="text" class="input-field" id="career1" placeholder="e.g., Software Engineer, Nurse, Electrician">
+            </div>
+            <div class="input-row">
+                <div class="input-group">
+                    <label>Demand Factors</label>
+                    <textarea class="input-field" rows="2" placeholder="e.g., Tech industry growing, healthcare needs rising"></textarea>
+                </div>
+                <div class="input-group">
+                    <label>Supply Factors</label>
+                    <textarea class="input-field" rows="2" placeholder="e.g., Many graduates, limited training programs"></textarea>
+                </div>
+            </div>
+            <div class="input-row">
+                <div class="input-group">
+                    <label>Market Outlook</label>
+                    <select class="select-field">
+                        <option value="">Select outlook...</option>
+                        <option value="strong">Demand > Supply (Rising wages)</option>
+                        <option value="balanced">Balanced</option>
+                        <option value="weak">Supply > Demand (Stagnant wages)</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>Starting Salary in {{STATE_NAME}}</label>
+                    <input type="text" class="input-field" placeholder="e.g., $55,000">
+                </div>
+            </div>
+            <div class="input-group">
+                <label>10-Year Salary Projection</label>
+                <input type="text" class="input-field" placeholder="e.g., $95,000">
+            </div>
+        </div>
+
+        <!-- Career 2 -->
+        <div class="career-card">
+            <h4><span class="career-number">2</span>Career Field</h4>
+            <div class="input-group">
+                <input type="text" class="input-field" id="career2" placeholder="e.g., Software Engineer, Nurse, Electrician">
+            </div>
+            <div class="input-row">
+                <div class="input-group">
+                    <label>Demand Factors</label>
+                    <textarea class="input-field" rows="2" placeholder="e.g., Tech industry growing, healthcare needs rising"></textarea>
+                </div>
+                <div class="input-group">
+                    <label>Supply Factors</label>
+                    <textarea class="input-field" rows="2" placeholder="e.g., Many graduates, limited training programs"></textarea>
+                </div>
+            </div>
+            <div class="input-row">
+                <div class="input-group">
+                    <label>Market Outlook</label>
+                    <select class="select-field">
+                        <option value="">Select outlook...</option>
+                        <option value="strong">Demand > Supply (Rising wages)</option>
+                        <option value="balanced">Balanced</option>
+                        <option value="weak">Supply > Demand (Stagnant wages)</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>Starting Salary in {{STATE_NAME}}</label>
+                    <input type="text" class="input-field" placeholder="e.g., $55,000">
+                </div>
+            </div>
+            <div class="input-group">
+                <label>10-Year Salary Projection</label>
+                <input type="text" class="input-field" placeholder="e.g., $95,000">
+            </div>
+        </div>
+
+        <!-- Career 3 -->
+        <div class="career-card">
+            <h4><span class="career-number">3</span>Career Field</h4>
+            <div class="input-group">
+                <input type="text" class="input-field" id="career3" placeholder="e.g., Software Engineer, Nurse, Electrician">
+            </div>
+            <div class="input-row">
+                <div class="input-group">
+                    <label>Demand Factors</label>
+                    <textarea class="input-field" rows="2" placeholder="e.g., Tech industry growing, healthcare needs rising"></textarea>
+                </div>
+                <div class="input-group">
+                    <label>Supply Factors</label>
+                    <textarea class="input-field" rows="2" placeholder="e.g., Many graduates, limited training programs"></textarea>
+                </div>
+            </div>
+            <div class="input-row">
+                <div class="input-group">
+                    <label>Market Outlook</label>
+                    <select class="select-field">
+                        <option value="">Select outlook...</option>
+                        <option value="strong">Demand > Supply (Rising wages)</option>
+                        <option value="balanced">Balanced</option>
+                        <option value="weak">Supply > Demand (Stagnant wages)</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>Starting Salary in {{STATE_NAME}}</label>
+                    <input type="text" class="input-field" placeholder="e.g., $55,000">
+                </div>
+            </div>
+            <div class="input-group">
+                <label>10-Year Salary Projection</label>
+                <input type="text" class="input-field" placeholder="e.g., $95,000">
+            </div>
+        </div>
+
+        <!-- Analysis Questions -->
+        <div class="analysis-box">
+            <h4 style="margin-bottom: 15px;">Analysis Questions</h4>
+
+            <div class="input-group">
+                <label>1. Which career has the strongest demand relative to supply?</label>
+                <input type="text" class="input-field" placeholder="Career name">
+                <textarea class="input-field" rows="2" style="margin-top: 10px;" placeholder="Evidence for this conclusion..."></textarea>
+                <input type="text" class="input-field" style="margin-top: 10px;" placeholder="Expected wage trajectory (rising/stable/falling)">
+            </div>
+
+            <div class="input-group" style="margin-top: 15px;">
+                <label>2. Which career has the weakest market position?</label>
+                <input type="text" class="input-field" placeholder="Career name">
+                <textarea class="input-field" rows="2" style="margin-top: 10px;" placeholder="Risk factors..."></textarea>
+                <textarea class="input-field" rows="2" style="margin-top: 10px;" placeholder="Would you still pursue it? Why/why not?"></textarea>
+            </div>
+
+            <div class="input-group" style="margin-top: 15px;">
+                <label>3. How can you increase your value in the labor market?</label>
+                <p style="font-size: 0.9rem; color: #6b7280; margin: 5px 0;">
+                    <strong>Reduce supply of "you":</strong> Develop rare skills, specialization<br>
+                    <strong>Increase demand for "you":</strong> Work in growing industries, network, build reputation
+                </p>
+                <textarea class="input-field" rows="3" placeholder="Your specific strategy to increase your market value..."></textarea>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Part B: Labor Market Shifts - Scenario Analysis</div>
+
+        <!-- Scenario 1: AI Revolution -->
+        <div class="scenario-box">
+            <div class="scenario-title">Scenario 1: AI Revolution</div>
+            <p style="margin-bottom: 15px;">Artificial intelligence becomes highly capable, affecting many jobs.</p>
+
+            <div class="impact-grid">
+                <div class="impact-box impact-decrease">
+                    <strong>Demand DECREASES for:</strong>
+                    <ul style="margin: 8px 0 0 20px; font-size: 0.9rem;">
+                        <li>Routine tasks</li>
+                        <li>Data entry</li>
+                        <li>Basic analysis</li>
+                        <li>Customer service</li>
+                    </ul>
+                </div>
+                <div class="impact-box impact-increase">
+                    <strong>Demand INCREASES for:</strong>
+                    <ul style="margin: 8px 0 0 20px; font-size: 0.9rem;">
+                        <li>AI development</li>
+                        <li>Creative work</li>
+                        <li>Human connection</li>
+                        <li>Skilled trades</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>In {{STATE_NAME}}, which careers are AI-resistant?</label>
+                <textarea class="input-field" rows="2" placeholder="Consider jobs requiring human judgment, creativity, physical skill, emotional intelligence..."></textarea>
+            </div>
+        </div>
+
+        <!-- Scenario 2: Economic Boom -->
+        <div class="scenario-box">
+            <div class="scenario-title">Scenario 2: {{STATE_NAME}} Economic Boom</div>
+            <p style="margin-bottom: 15px;">{{STATE_NAME}}'s economy grows rapidly with new industries and population influx.</p>
+
+            <div class="strategy-box">
+                <strong>Your Opportunity:</strong>
+                <ul style="margin: 8px 0 0 20px;">
+                    <li>Negotiate higher wages (demand for workers is strong)</li>
+                    <li>Switch jobs more easily (employers competing for talent)</li>
+                    <li>Consider entrepreneurship (growing market creates opportunities)</li>
+                </ul>
+            </div>
+
+            <div class="input-group">
+                <label>How would you take advantage of this scenario?</label>
+                <textarea class="input-field" rows="2" placeholder="Your strategy..."></textarea>
+            </div>
+        </div>
+
+        <!-- Scenario 3: Remote Work -->
+        <div class="scenario-box">
+            <div class="scenario-title">Scenario 3: Remote Work Expansion</div>
+            <p style="margin-bottom: 15px;">More jobs become remote-friendly.</p>
+
+            <div class="impact-grid">
+                <div class="impact-box" style="background-color: #fef3c7; border: 1px solid #fcd34d;">
+                    <strong>Challenges:</strong>
+                    <ul style="margin: 8px 0 0 20px; font-size: 0.9rem;">
+                        <li>Compete nationally/globally</li>
+                        <li>Wage pressure in high-cost areas</li>
+                        <li>More competition</li>
+                    </ul>
+                </div>
+                <div class="impact-box" style="background-color: #dbeafe; border: 1px solid #93c5fd;">
+                    <strong>Opportunities:</strong>
+                    <ul style="margin: 8px 0 0 20px; font-size: 0.9rem;">
+                        <li>Access jobs anywhere</li>
+                        <li>Live in low-cost areas</li>
+                        <li>More flexibility</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>Your Strategy:</label>
+                <textarea class="input-field" rows="2" placeholder="How will you position yourself for remote work opportunities?"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Reflection: Career Planning Impact</div>
+
+        <div class="input-group">
+            <label>How do these scenarios change your career planning?</label>
+            <textarea class="input-field" rows="3" placeholder="Reflect on what you've learned about labor market supply and demand..."></textarea>
+        </div>
+
+        <div class="input-group" style="margin-top: 15px;">
+            <label>What skills should you prioritize developing?</label>
+            <textarea class="input-field" rows="3" placeholder="List specific skills that are in high demand and low supply..."></textarea>
+        </div>
+    </div>
+
+    <div class="note">
+        <strong>Key Takeaway:</strong> Career choices should consider demand growth and supply constraints. Position yourself where demand exceeds supply to maximize your earning potential and job security.
+    </div>
+
+    <div style="text-align: center; margin-top: 20px;">
+        <button class="btn btn-primary" onclick="window.print()">Print / Save PDF</button>
+        <button class="btn btn-secondary" onclick="resetForm()">Reset Form</button>
+    </div>
+
+    <script>
+        function resetForm() {
+            document.querySelectorAll('input, textarea, select').forEach(el => {
+                if (el.tagName === 'SELECT') {
+                    el.selectedIndex = 0;
+                } else {
+                    el.value = '';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

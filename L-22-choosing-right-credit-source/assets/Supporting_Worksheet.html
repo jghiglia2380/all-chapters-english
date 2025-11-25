@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credit Source Analysis Worksheet - PFL Academy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            font-size: 12px;
+            line-height: 1.5;
+            color: #1f2937;
+            padding: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 3px solid #6366f1;
+        }
+
+        .header h1 {
+            font-size: 24px;
+            color: #6366f1;
+            margin-bottom: 4px;
+        }
+
+        .header p {
+            color: #6b7280;
+            font-size: 12px;
+        }
+
+        .student-info {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .info-field {
+            border-bottom: 1px solid #d1d5db;
+            padding: 4px 0;
+        }
+
+        .info-field label {
+            font-size: 10px;
+            color: #6b7280;
+            text-transform: uppercase;
+        }
+
+        .info-field input {
+            width: 100%;
+            border: none;
+            font-size: 12px;
+            padding: 4px 0;
+            font-family: inherit;
+        }
+
+        .section {
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px 6px 0 0;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .section-content {
+            border: 1px solid #e5e7eb;
+            border-top: none;
+            padding: 16px;
+            border-radius: 0 0 6px 6px;
+        }
+
+        .scenario-box {
+            background: #f9fafb;
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 16px;
+        }
+
+        .scenario-box h4 {
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #4b5563;
+        }
+
+        .scenario-box p {
+            font-size: 12px;
+            color: #6b7280;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 16px;
+            font-size: 11px;
+        }
+
+        .comparison-table th {
+            background: #f3f4f6;
+            padding: 8px;
+            text-align: left;
+            font-weight: 600;
+            border: 1px solid #e5e7eb;
+        }
+
+        .comparison-table td {
+            padding: 8px;
+            border: 1px solid #e5e7eb;
+            vertical-align: top;
+        }
+
+        .comparison-table input,
+        .comparison-table select {
+            width: 100%;
+            padding: 4px;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+            font-size: 11px;
+            font-family: inherit;
+        }
+
+        .question-group {
+            margin-bottom: 16px;
+        }
+
+        .question-group:last-child {
+            margin-bottom: 0;
+        }
+
+        .question-label {
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 12px;
+        }
+
+        .question-number {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            background: #6366f1;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 20px;
+            font-size: 11px;
+            margin-right: 8px;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 60px;
+            padding: 8px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 11px;
+            resize: vertical;
+        }
+
+        .checklist {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .checklist li {
+            padding: 6px 0;
+            border-bottom: 1px solid #f3f4f6;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .checklist li:last-child {
+            border-bottom: none;
+        }
+
+        .checklist input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .info-box {
+            background: #eff6ff;
+            border-left: 4px solid #3b82f6;
+            padding: 12px;
+            border-radius: 4px;
+            margin-bottom: 16px;
+        }
+
+        .info-box h4 {
+            font-size: 12px;
+            color: #1e40af;
+            margin-bottom: 6px;
+        }
+
+        .info-box p {
+            font-size: 11px;
+            color: #1e3a8a;
+        }
+
+        .warning-box {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 12px;
+            border-radius: 4px;
+            margin-bottom: 16px;
+        }
+
+        .warning-box h4 {
+            font-size: 12px;
+            color: #b45309;
+            margin-bottom: 6px;
+        }
+
+        .warning-box p {
+            font-size: 11px;
+            color: #92400e;
+        }
+
+        .calculation-box {
+            background: #f0fdf4;
+            border: 1px solid #86efac;
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 16px;
+        }
+
+        .calculation-box h4 {
+            font-size: 12px;
+            color: #059669;
+            margin-bottom: 8px;
+        }
+
+        .calc-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 4px 0;
+            font-size: 11px;
+        }
+
+        .calc-row input {
+            width: 80px;
+            text-align: right;
+            padding: 4px;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+        }
+
+        .calc-total {
+            border-top: 2px solid #10b981;
+            padding-top: 8px;
+            margin-top: 8px;
+            font-weight: 600;
+        }
+
+        .reflection-section {
+            background: #faf5ff;
+            padding: 16px;
+            border-radius: 6px;
+            border-left: 4px solid #8b5cf6;
+        }
+
+        .reflection-section h4 {
+            font-size: 13px;
+            color: #7c3aed;
+            margin-bottom: 12px;
+        }
+
+        .footer {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #e5e7eb;
+            color: #6b7280;
+            font-size: 10px;
+        }
+
+        @media print {
+            body {
+                padding: 10px;
+                font-size: 10px;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            input, textarea, select {
+                border: 1px solid #000 !important;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .student-info,
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Credit Source Analysis Worksheet</h1>
+        <p>Chapter 22: Choosing the Right Credit Source</p>
+    </div>
+
+    <div class="student-info">
+        <div class="info-field">
+            <label>Student Name</label>
+            <input type="text" placeholder="Enter your name">
+        </div>
+        <div class="info-field">
+            <label>Date</label>
+            <input type="date">
+        </div>
+        <div class="info-field">
+            <label>Period</label>
+            <input type="text" placeholder="Period">
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Part 1: Credit Source Identification</div>
+        <div class="section-content">
+            <div class="info-box">
+                <h4>Key Vocabulary</h4>
+                <p><strong>APR (Annual Percentage Rate):</strong> The yearly cost of borrowing money, including interest and fees. <strong>Collateral:</strong> An asset pledged as security for a loan. <strong>Creditworthiness:</strong> A measure of how likely you are to repay debt.</p>
+            </div>
+
+            <div class="question-group">
+                <div class="question-label">
+                    <span class="question-number">1</span>
+                    Match each credit source with its primary characteristic:
+                </div>
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Credit Source</th>
+                            <th>Primary Characteristic</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Commercial Bank</td>
+                            <td>
+                                <select>
+                                    <option value="">Select...</option>
+                                    <option value="a">A. Lowest interest rates, membership required</option>
+                                    <option value="b">B. Wide range of products, competitive rates</option>
+                                    <option value="c">C. Fast approval, higher rates</option>
+                                    <option value="d">D. Very high rates, no credit check</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Credit Union</td>
+                            <td>
+                                <select>
+                                    <option value="">Select...</option>
+                                    <option value="a">A. Lowest interest rates, membership required</option>
+                                    <option value="b">B. Wide range of products, competitive rates</option>
+                                    <option value="c">C. Fast approval, higher rates</option>
+                                    <option value="d">D. Very high rates, no credit check</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Online Lender</td>
+                            <td>
+                                <select>
+                                    <option value="">Select...</option>
+                                    <option value="a">A. Lowest interest rates, membership required</option>
+                                    <option value="b">B. Wide range of products, competitive rates</option>
+                                    <option value="c">C. Fast approval, higher rates</option>
+                                    <option value="d">D. Very high rates, no credit check</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Payday Lender</td>
+                            <td>
+                                <select>
+                                    <option value="">Select...</option>
+                                    <option value="a">A. Lowest interest rates, membership required</option>
+                                    <option value="b">B. Wide range of products, competitive rates</option>
+                                    <option value="c">C. Fast approval, higher rates</option>
+                                    <option value="d">D. Very high rates, no credit check</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Part 2: Scenario Analysis</div>
+        <div class="section-content">
+            <div class="scenario-box">
+                <h4>Scenario A: Emergency Expense</h4>
+                <p>Maya needs $800 to repair her car so she can get to work. Her credit score is 620, and she needs the money within 2 days. She has a checking account at a local credit union.</p>
+            </div>
+
+            <div class="question-group">
+                <div class="question-label">
+                    <span class="question-number">2</span>
+                    What credit source would you recommend for Maya? Why?
+                </div>
+                <textarea placeholder="I would recommend... because..."></textarea>
+            </div>
+
+            <div class="scenario-box">
+                <h4>Scenario B: Large Purchase</h4>
+                <p>Carlos wants to buy a $15,000 used car. He has excellent credit (750), steady income, and can wait 1-2 weeks for approval. He is a member of a credit union and has accounts at a national bank.</p>
+            </div>
+
+            <div class="question-group">
+                <div class="question-label">
+                    <span class="question-number">3</span>
+                    Compare two credit sources Carlos should consider:
+                </div>
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Factor</th>
+                            <th>Option 1: <input type="text" placeholder="Source"></th>
+                            <th>Option 2: <input type="text" placeholder="Source"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Expected APR</td>
+                            <td><input type="text" placeholder="%"></td>
+                            <td><input type="text" placeholder="%"></td>
+                        </tr>
+                        <tr>
+                            <td>Fees</td>
+                            <td><input type="text" placeholder="$"></td>
+                            <td><input type="text" placeholder="$"></td>
+                        </tr>
+                        <tr>
+                            <td>Approval Time</td>
+                            <td><input type="text" placeholder="Days"></td>
+                            <td><input type="text" placeholder="Days"></td>
+                        </tr>
+                        <tr>
+                            <td>Advantages</td>
+                            <td><input type="text" placeholder="List advantages"></td>
+                            <td><input type="text" placeholder="List advantages"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="question-group">
+                <div class="question-label">
+                    <span class="question-number">4</span>
+                    Which option would you recommend for Carlos and why?
+                </div>
+                <textarea placeholder="I recommend... because..."></textarea>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Part 3: Cost Calculation Practice</div>
+        <div class="section-content">
+            <div class="warning-box">
+                <h4>Understanding Total Cost</h4>
+                <p>The APR shows the yearly interest rate, but you also need to consider fees. Total cost = Principal + Interest + Fees. Always calculate the total before deciding!</p>
+            </div>
+
+            <div class="two-column">
+                <div class="calculation-box">
+                    <h4>Option A: Credit Union Loan</h4>
+                    <p style="font-size: 11px; margin-bottom: 8px;">$3,000 loan, 8% APR, no fees, 12-month term</p>
+                    <div class="calc-row">
+                        <span>Principal:</span>
+                        <input type="text" placeholder="$3,000">
+                    </div>
+                    <div class="calc-row">
+                        <span>Interest ($3,000 x 0.08):</span>
+                        <input type="text" placeholder="$">
+                    </div>
+                    <div class="calc-row">
+                        <span>Fees:</span>
+                        <input type="text" placeholder="$0">
+                    </div>
+                    <div class="calc-row calc-total">
+                        <span>Total Cost:</span>
+                        <input type="text" placeholder="$">
+                    </div>
+                </div>
+
+                <div class="calculation-box">
+                    <h4>Option B: Online Lender</h4>
+                    <p style="font-size: 11px; margin-bottom: 8px;">$3,000 loan, 15% APR, 5% origination fee</p>
+                    <div class="calc-row">
+                        <span>Principal:</span>
+                        <input type="text" placeholder="$3,000">
+                    </div>
+                    <div class="calc-row">
+                        <span>Interest ($3,000 x 0.15):</span>
+                        <input type="text" placeholder="$">
+                    </div>
+                    <div class="calc-row">
+                        <span>Fees ($3,000 x 0.05):</span>
+                        <input type="text" placeholder="$">
+                    </div>
+                    <div class="calc-row calc-total">
+                        <span>Total Cost:</span>
+                        <input type="text" placeholder="$">
+                    </div>
+                </div>
+            </div>
+
+            <div class="question-group">
+                <div class="question-label">
+                    <span class="question-number">5</span>
+                    Which option costs less? How much would you save by choosing the better option?
+                </div>
+                <textarea placeholder="Option ___ costs less. The savings would be $..."></textarea>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Part 4: Decision Checklist</div>
+        <div class="section-content">
+            <div class="question-group">
+                <div class="question-label">
+                    <span class="question-number">6</span>
+                    Before choosing a credit source, check all factors you should consider:
+                </div>
+                <ul class="checklist">
+                    <li><input type="checkbox"> Compare APR from at least 3 different lenders</li>
+                    <li><input type="checkbox"> Check for origination fees, application fees, or prepayment penalties</li>
+                    <li><input type="checkbox"> Verify I meet the minimum credit score requirement</li>
+                    <li><input type="checkbox"> Calculate the total cost (principal + interest + fees)</li>
+                    <li><input type="checkbox"> Consider how quickly I need the funds</li>
+                    <li><input type="checkbox"> Read the terms and conditions carefully</li>
+                    <li><input type="checkbox"> Have a clear repayment plan before borrowing</li>
+                    <li><input type="checkbox"> Consider whether I truly need to borrow this money</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Part 5: Critical Thinking</div>
+        <div class="section-content">
+            <div class="question-group">
+                <div class="question-label">
+                    <span class="question-number">7</span>
+                    Why do you think payday lenders continue to operate despite charging 300-400% APR? What alternatives should people consider in emergency situations?
+                </div>
+                <textarea placeholder="Payday lenders continue to operate because... Alternatives include..." style="min-height: 80px;"></textarea>
+            </div>
+
+            <div class="question-group">
+                <div class="question-label">
+                    <span class="question-number">8</span>
+                    How does your credit score affect your borrowing options? What steps can someone with a low credit score take to improve their options?
+                </div>
+                <textarea placeholder="Credit score affects options by... To improve options, someone could..." style="min-height: 80px;"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Part 6: Personal Reflection</div>
+        <div class="section-content">
+            <div class="reflection-section">
+                <h4>Apply What You've Learned</h4>
+                <div class="question-group">
+                    <div class="question-label">
+                        <span class="question-number">9</span>
+                        Think about a future situation where you might need to borrow money (buying a car, paying for education, starting a business, etc.). Which credit source would you choose and why?
+                    </div>
+                    <textarea placeholder="In the future, I might need to borrow money for... I would choose... because..." style="min-height: 100px;"></textarea>
+                </div>
+
+                <div class="question-group">
+                    <div class="question-label">
+                        <span class="question-number">10</span>
+                        What is the most important thing you learned about choosing credit sources? How will this knowledge help you make better financial decisions?
+                    </div>
+                    <textarea placeholder="The most important thing I learned is... This will help me..." style="min-height: 80px;"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>PFL Academy - Chapter 22: Choosing the Right Credit Source</p>
+        <p>Remember: The best credit source depends on your specific situation. Always compare options and calculate total costs before borrowing.</p>
+    </div>
+</body>
+</html>

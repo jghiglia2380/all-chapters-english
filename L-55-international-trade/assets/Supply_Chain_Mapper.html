@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supply Chain Mapper</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        header { text-align: center; margin-bottom: 30px; }
+        h1 { font-size: 2rem; color: #6366f1; margin-bottom: 10px; }
+        .subtitle { color: #6b7280; }
+        .product-selector {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        .product-btn {
+            padding: 15px;
+            background: #f9fafb;
+            border: 3px solid #e5e7eb;
+            border-radius: 10px;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        .product-btn:hover { border-color: #6366f1; }
+        .product-btn.selected { border-color: #6366f1; background: #eef2ff; }
+        .product-icon { font-size: 2rem; margin-bottom: 5px; }
+        .product-name { font-weight: 600; color: #1f2937; }
+        .chain-display { display: none; }
+        .chain-display.active { display: block; }
+        .chain-step {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: #6366f1;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        .step-content {
+            flex: 1;
+            background: #f9fafb;
+            padding: 15px;
+            border-radius: 10px;
+        }
+        .step-title { font-weight: bold; color: #1f2937; }
+        .step-location { font-size: 0.9rem; color: #6366f1; }
+        .step-detail { font-size: 0.85rem; color: #6b7280; margin-top: 5px; }
+        .vulnerability-section {
+            background: #fee2e2;
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 25px;
+        }
+        .vulnerability-section h3 { color: #dc2626; margin-bottom: 15px; }
+        .vulnerability-list { margin-left: 20px; color: #7f1d1d; }
+        .vulnerability-list li { margin-bottom: 8px; }
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #e5e7eb;
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+        @media (max-width: 768px) {
+            .product-selector { grid-template-columns: 1fr; }
+        }
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .container {
+                box-shadow: none;
+                padding: 20px;
+            }
+            .no-print {
+                display: none !important;
+            }
+            .chain-display {
+                display: block !important;
+            }
+            .chain-step,
+            .vulnerability-section {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Supply Chain Mapper</h1>
+            <p class="subtitle">Trace products through global supply chains</p>
+        </header>
+
+        <div class="product-selector">
+            <div class="product-btn" onclick="selectProduct('smartphone')">
+                <div class="product-icon">📱</div>
+                <div class="product-name">Smartphone</div>
+            </div>
+            <div class="product-btn" onclick="selectProduct('jeans')">
+                <div class="product-icon">👖</div>
+                <div class="product-name">Jeans</div>
+            </div>
+            <div class="product-btn" onclick="selectProduct('coffee')">
+                <div class="product-icon">☕</div>
+                <div class="product-name">Coffee</div>
+            </div>
+        </div>
+
+        <div class="chain-display" id="smartphone-chain">
+            <div class="chain-step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <div class="step-title">Raw Materials</div>
+                    <div class="step-location">🇨🇩 Congo, 🇦🇺 Australia, 🇨🇱 Chile</div>
+                    <div class="step-detail">Cobalt, lithium, copper, rare earth elements mined</div>
+                </div>
+            </div>
+            <div class="chain-step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <div class="step-title">Component Manufacturing</div>
+                    <div class="step-location">🇯🇵 Japan, 🇰🇷 South Korea, 🇹🇼 Taiwan</div>
+                    <div class="step-detail">Chips, screens, cameras, batteries produced</div>
+                </div>
+            </div>
+            <div class="chain-step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <div class="step-title">Assembly</div>
+                    <div class="step-location">🇨🇳 China, 🇻🇳 Vietnam, 🇮🇳 India</div>
+                    <div class="step-detail">Components assembled into finished phones</div>
+                </div>
+            </div>
+            <div class="chain-step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <div class="step-title">Distribution</div>
+                    <div class="step-location">🇺🇸 United States</div>
+                    <div class="step-detail">Shipped to distribution centers, then to stores</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="chain-display" id="jeans-chain">
+            <div class="chain-step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <div class="step-title">Cotton Growing</div>
+                    <div class="step-location">🇺🇸 USA, 🇮🇳 India, 🇺🇿 Uzbekistan</div>
+                    <div class="step-detail">Raw cotton harvested from farms</div>
+                </div>
+            </div>
+            <div class="chain-step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <div class="step-title">Spinning & Weaving</div>
+                    <div class="step-location">🇨🇳 China, 🇵🇰 Pakistan</div>
+                    <div class="step-detail">Cotton spun into yarn, woven into denim fabric</div>
+                </div>
+            </div>
+            <div class="chain-step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <div class="step-title">Cutting & Sewing</div>
+                    <div class="step-location">🇧🇩 Bangladesh, 🇻🇳 Vietnam</div>
+                    <div class="step-detail">Fabric cut and sewn into jeans</div>
+                </div>
+            </div>
+            <div class="chain-step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <div class="step-title">Retail</div>
+                    <div class="step-location">🇺🇸 United States</div>
+                    <div class="step-detail">Shipped to stores and sold to consumers</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="chain-display" id="coffee-chain">
+            <div class="chain-step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <div class="step-title">Growing & Harvesting</div>
+                    <div class="step-location">🇧🇷 Brazil, 🇨🇴 Colombia, 🇪🇹 Ethiopia</div>
+                    <div class="step-detail">Coffee cherries grown and picked by hand</div>
+                </div>
+            </div>
+            <div class="chain-step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <div class="step-title">Processing</div>
+                    <div class="step-location">Origin countries</div>
+                    <div class="step-detail">Beans extracted, dried, sorted, graded</div>
+                </div>
+            </div>
+            <div class="chain-step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <div class="step-title">Roasting</div>
+                    <div class="step-location">🇺🇸 United States, 🇩🇪 Germany</div>
+                    <div class="step-detail">Green beans roasted and packaged</div>
+                </div>
+            </div>
+            <div class="chain-step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <div class="step-title">Retail</div>
+                    <div class="step-location">Local stores & cafes</div>
+                    <div class="step-detail">Sold to consumers for home brewing or cafe drinks</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="vulnerability-section" id="vulnerabilities" style="display: none;">
+            <h3>⚠️ Supply Chain Vulnerabilities</h3>
+            <ul class="vulnerability-list" id="vulnerability-list"></ul>
+        </div>
+
+        <footer>
+            <p><strong>PFL Academy</strong> | International Trade</p>
+        </footer>
+    </div>
+
+    <script>
+        function selectProduct(product) {
+            document.querySelectorAll('.product-btn').forEach(btn => btn.classList.remove('selected'));
+            event.currentTarget.classList.add('selected');
+
+            document.querySelectorAll('.chain-display').forEach(chain => chain.classList.remove('active'));
+            document.getElementById(product + '-chain').classList.add('active');
+
+            const vulnList = document.getElementById('vulnerability-list');
+            let vulnerabilities = [];
+
+            if (product === 'smartphone') {
+                vulnerabilities = [
+                    'Rare earth supply concentrated in few countries',
+                    'Chip shortages can halt production for months',
+                    'Shipping delays from Asia increase costs',
+                    'Trade tensions affect component availability',
+                    'Single factory shutdowns can affect millions of units'
+                ];
+            } else if (product === 'jeans') {
+                vulnerabilities = [
+                    'Cotton crop failures affect availability',
+                    'Labor conditions in sewing countries',
+                    'Shipping container shortages',
+                    'Currency fluctuations affect costs',
+                    'Water scarcity in cotton-growing regions'
+                ];
+            } else if (product === 'coffee') {
+                vulnerabilities = [
+                    'Climate change affecting crop yields',
+                    'Coffee leaf rust disease outbreaks',
+                    'Political instability in growing regions',
+                    'Shipping costs for perishable goods',
+                    'Exchange rate volatility'
+                ];
+            }
+
+            vulnList.innerHTML = vulnerabilities.map(v => `<li>${v}</li>`).join('');
+            document.getElementById('vulnerabilities').style.display = 'block';
+        }
+    </script>
+</body>
+</html>

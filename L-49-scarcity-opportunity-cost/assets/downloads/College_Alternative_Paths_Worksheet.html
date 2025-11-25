@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College vs. Alternative Paths Worksheet - PFL Academy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background-color: #f9fafb;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+            color: white;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 24px;
+        }
+
+        .section {
+            margin-bottom: 24px;
+        }
+
+        .section-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #4f46e5;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e5e7eb;
+        }
+
+        .scenario-box {
+            background: #f0f9ff;
+            border: 2px solid #0ea5e9;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 20px;
+        }
+
+        .scenario-box h3 {
+            color: #0369a1;
+            margin-bottom: 12px;
+            font-size: 1.1rem;
+        }
+
+        .path-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .path-tab {
+            padding: 10px 20px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            background: white;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .path-tab:hover {
+            border-color: #6366f1;
+        }
+
+        .path-tab.active {
+            background: #6366f1;
+            color: white;
+            border-color: #6366f1;
+        }
+
+        .path-content {
+            display: none;
+        }
+
+        .path-content.active {
+            display: block;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .info-item {
+            background: #f9fafb;
+            padding: 12px;
+            border-radius: 6px;
+        }
+
+        .info-item label {
+            display: block;
+            font-size: 0.8rem;
+            color: #6b7280;
+            margin-bottom: 4px;
+        }
+
+        .info-item span {
+            font-weight: 600;
+            color: #1f2937;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 16px;
+            font-size: 0.9rem;
+        }
+
+        th, td {
+            padding: 10px 8px;
+            text-align: left;
+            border: 1px solid #e5e7eb;
+        }
+
+        th {
+            background: #f3f4f6;
+            font-weight: 600;
+            color: #374151;
+        }
+
+        .year-col {
+            width: 15%;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 6px 8px;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            text-align: right;
+        }
+
+        input[type="number"]:focus {
+            outline: none;
+            border-color: #6366f1;
+        }
+
+        .total-row {
+            background: #eef2ff;
+            font-weight: 600;
+        }
+
+        .total-row td {
+            color: #4f46e5;
+        }
+
+        .subtotal-cell {
+            background: #f9fafb;
+        }
+
+        .calculated {
+            background: #f0fdf4;
+            font-weight: 600;
+            color: #166534;
+        }
+
+        .comparison-table {
+            margin-top: 24px;
+        }
+
+        .comparison-table th {
+            background: #4f46e5;
+            color: white;
+        }
+
+        .winner-row {
+            background: #dcfce7;
+        }
+
+        .discussion-section {
+            background: #fef3c7;
+            border: 2px solid #f59e0b;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 24px;
+        }
+
+        .discussion-section h3 {
+            color: #92400e;
+            margin-bottom: 16px;
+        }
+
+        .discussion-question {
+            margin-bottom: 16px;
+        }
+
+        .discussion-question p {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #78350f;
+        }
+
+        .discussion-question textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #fcd34d;
+            border-radius: 4px;
+            resize: vertical;
+            min-height: 60px;
+            font-size: 0.9rem;
+        }
+
+        .btn-calculate {
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 16px;
+            transition: transform 0.2s;
+        }
+
+        .btn-calculate:hover {
+            transform: translateY(-2px);
+        }
+
+        .insight-box {
+            background: #eef2ff;
+            border-left: 4px solid #6366f1;
+            padding: 16px;
+            margin-top: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .insight-box h4 {
+            color: #4f46e5;
+            margin-bottom: 8px;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 16px;
+            background: #f9fafb;
+            border-top: 1px solid #e5e7eb;
+            font-size: 0.85rem;
+            color: #6b7280;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 10px;
+            }
+
+            .container {
+                box-shadow: none;
+            }
+
+            .btn-calculate {
+                display: none;
+            }
+
+            .path-content {
+                display: block !important;
+                page-break-inside: avoid;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            table {
+                font-size: 0.8rem;
+            }
+
+            th, td {
+                padding: 6px 4px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>College vs. Alternative Paths Worksheet</h1>
+            <p>Calculate and compare full economic costs (explicit + implicit) of different post-high school paths</p>
+        </div>
+
+        <div class="content">
+            <div class="scenario-box">
+                <h3>Scenario: Your friend Alex is deciding between three paths after high school graduation</h3>
+                <p>Help Alex analyze the opportunity costs of each option by calculating explicit costs, implicit costs (opportunity costs), and projecting 10-year outcomes.</p>
+            </div>
+
+            <div class="path-tabs">
+                <button class="path-tab active" onclick="showPath('pathA')">Path A: 4-Year University</button>
+                <button class="path-tab" onclick="showPath('pathB')">Path B: Trade School</button>
+                <button class="path-tab" onclick="showPath('pathC')">Path C: Immediate Workforce</button>
+                <button class="path-tab" onclick="showPath('comparison')">10-Year Comparison</button>
+            </div>
+
+            <!-- Path A: University -->
+            <div id="pathA" class="path-content active">
+                <div class="section-title">Path A: 4-Year Public University</div>
+
+                <div class="info-grid">
+                    <div class="info-item">
+                        <label>Annual Tuition</label>
+                        <span>$<input type="number" id="tuitionA" value="10000" style="width: 80px; display: inline;" onchange="calculatePathA()"></span>
+                    </div>
+                    <div class="info-item">
+                        <label>Room & Board/Year</label>
+                        <span>$<input type="number" id="roomA" value="12000" style="width: 80px; display: inline;" onchange="calculatePathA()"></span>
+                    </div>
+                    <div class="info-item">
+                        <label>Books & Supplies/Year</label>
+                        <span>$1,200</span>
+                    </div>
+                    <div class="info-item">
+                        <label>Part-Time Income/Year</label>
+                        <span>$12,000</span>
+                    </div>
+                    <div class="info-item">
+                        <label>Starting Salary After Graduation</label>
+                        <span>$55,000/year</span>
+                    </div>
+                </div>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Cost Category</th>
+                            <th class="year-col">Year 1</th>
+                            <th class="year-col">Year 2</th>
+                            <th class="year-col">Year 3</th>
+                            <th class="year-col">Year 4</th>
+                            <th>4-Year Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Tuition</td>
+                            <td id="tuitionA1">$10,000</td>
+                            <td id="tuitionA2">$10,000</td>
+                            <td id="tuitionA3">$10,000</td>
+                            <td id="tuitionA4">$10,000</td>
+                            <td id="tuitionATotal" class="calculated">$40,000</td>
+                        </tr>
+                        <tr>
+                            <td>Room & Board</td>
+                            <td id="roomA1">$12,000</td>
+                            <td id="roomA2">$12,000</td>
+                            <td id="roomA3">$12,000</td>
+                            <td id="roomA4">$12,000</td>
+                            <td id="roomATotal" class="calculated">$48,000</td>
+                        </tr>
+                        <tr>
+                            <td>Books/Supplies</td>
+                            <td>$1,200</td>
+                            <td>$1,200</td>
+                            <td>$1,200</td>
+                            <td>$1,200</td>
+                            <td class="calculated">$4,800</td>
+                        </tr>
+                        <tr class="total-row">
+                            <td><strong>Explicit Costs Subtotal</strong></td>
+                            <td id="explicitA1"></td>
+                            <td id="explicitA2"></td>
+                            <td id="explicitA3"></td>
+                            <td id="explicitA4"></td>
+                            <td id="explicitATotal"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="6" style="background: #fef3c7; font-weight: 600;">Opportunity Cost (Forgone Income)</td>
+                        </tr>
+                        <tr>
+                            <td>Could have earned full-time</td>
+                            <td>$30,000</td>
+                            <td>$30,000</td>
+                            <td>$30,000</td>
+                            <td>$30,000</td>
+                            <td>$120,000</td>
+                        </tr>
+                        <tr>
+                            <td>Minus part-time earnings</td>
+                            <td>-$12,000</td>
+                            <td>-$12,000</td>
+                            <td>-$12,000</td>
+                            <td>-$12,000</td>
+                            <td>-$48,000</td>
+                        </tr>
+                        <tr class="total-row">
+                            <td><strong>Net Opportunity Cost</strong></td>
+                            <td>$18,000</td>
+                            <td>$18,000</td>
+                            <td>$18,000</td>
+                            <td>$18,000</td>
+                            <td><strong>$72,000</strong></td>
+                        </tr>
+                        <tr style="background: #dcfce7;">
+                            <td><strong>TOTAL ECONOMIC COST</strong></td>
+                            <td id="totalEconA1"></td>
+                            <td id="totalEconA2"></td>
+                            <td id="totalEconA3"></td>
+                            <td id="totalEconA4"></td>
+                            <td id="totalEconATotal" style="font-weight: 700; color: #166534;"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Path B: Trade School -->
+            <div id="pathB" class="path-content">
+                <div class="section-title">Path B: Trade School + Apprenticeship</div>
+
+                <div class="info-grid">
+                    <div class="info-item">
+                        <label>Trade School Tuition</label>
+                        <span>$8,000/year (2 years)</span>
+                    </div>
+                    <div class="info-item">
+                        <label>Part-Time During School</label>
+                        <span>$20,000/year</span>
+                    </div>
+                    <div class="info-item">
+                        <label>Apprenticeship Pay</label>
+                        <span>$35,000/year</span>
+                    </div>
+                    <div class="info-item">
+                        <label>Expected Salary (Year 5+)</label>
+                        <span>$50,000/year</span>
+                    </div>
+                </div>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Cost Category</th>
+                            <th>Year 1-2 (School)</th>
+                            <th>Year 3-4 (Apprenticeship)</th>
+                            <th>4-Year Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Tuition</td>
+                            <td>$8,000/year x 2</td>
+                            <td>$0</td>
+                            <td class="calculated">$16,000</td>
+                        </tr>
+                        <tr>
+                            <td>Part-time income during school</td>
+                            <td>-$20,000/year x 2</td>
+                            <td>N/A</td>
+                            <td class="calculated">-$40,000</td>
+                        </tr>
+                        <tr>
+                            <td>Apprenticeship income</td>
+                            <td>N/A</td>
+                            <td>-$35,000/year x 2</td>
+                            <td class="calculated">-$70,000</td>
+                        </tr>
+                        <tr class="total-row">
+                            <td><strong>Net Cost/Income</strong></td>
+                            <td>-$24,000</td>
+                            <td>-$70,000</td>
+                            <td id="netCostB">-$94,000</td>
+                        </tr>
+                        <tr>
+                            <td colspan="4" style="background: #fef3c7; font-weight: 600;">Opportunity Cost (vs. Full-time Work)</td>
+                        </tr>
+                        <tr>
+                            <td>Could have earned</td>
+                            <td>$30,000/year x 2</td>
+                            <td>$30,000/year x 2</td>
+                            <td>$120,000</td>
+                        </tr>
+                        <tr>
+                            <td>Minus actual earnings</td>
+                            <td>-$20,000/year x 2</td>
+                            <td>-$35,000/year x 2</td>
+                            <td>-$110,000</td>
+                        </tr>
+                        <tr class="total-row">
+                            <td><strong>Net Opportunity Cost</strong></td>
+                            <td>$20,000</td>
+                            <td>-$10,000</td>
+                            <td><strong>$10,000</strong></td>
+                        </tr>
+                        <tr style="background: #dcfce7;">
+                            <td><strong>TOTAL ECONOMIC COST</strong></td>
+                            <td>-$4,000</td>
+                            <td>-$80,000</td>
+                            <td id="totalEconBTotal" style="font-weight: 700; color: #166534;">-$84,000</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="insight-box">
+                    <h4>Note on Negative Cost</h4>
+                    <p>A negative "cost" means this path actually generates net income during the 4-year period while still building skills and credentials.</p>
+                </div>
+            </div>
+
+            <!-- Path C: Workforce -->
+            <div id="pathC" class="path-content">
+                <div class="section-title">Path C: Immediately Enter Workforce</div>
+
+                <div class="info-grid">
+                    <div class="info-item">
+                        <label>Starting Salary</label>
+                        <span>$30,000/year</span>
+                    </div>
+                    <div class="info-item">
+                        <label>Salary After 4 Years</label>
+                        <span>$38,000/year</span>
+                    </div>
+                    <div class="info-item">
+                        <label>Explicit Costs</label>
+                        <span>$0</span>
+                    </div>
+                    <div class="info-item">
+                        <label>Opportunity Cost</label>
+                        <span>$0 (baseline)</span>
+                    </div>
+                </div>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Cost Category</th>
+                            <th>4-Year Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Explicit Costs</td>
+                            <td>$0</td>
+                        </tr>
+                        <tr>
+                            <td>Opportunity Cost</td>
+                            <td>$0 (this is the baseline for comparison)</td>
+                        </tr>
+                        <tr style="background: #dcfce7;">
+                            <td><strong>Income Earned (Years 1-4)</strong></td>
+                            <td style="font-weight: 700; color: #166534;">$128,000</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p style="margin-top: 12px; color: #6b7280;">Calculation: $30,000 x 3 years + $38,000 x 1 year = $128,000</p>
+            </div>
+
+            <!-- 10-Year Comparison -->
+            <div id="comparison" class="path-content">
+                <div class="section-title">10-Year Outlook Comparison</div>
+
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Path</th>
+                            <th>Years 1-4 Net</th>
+                            <th>Years 5-10 Earnings</th>
+                            <th>10-Year Net Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>A: University</strong></td>
+                            <td id="comp-a-4yr">-$164,800</td>
+                            <td>$55,000 x 6 = $330,000</td>
+                            <td id="comp-a-10yr" class="calculated">$165,200</td>
+                        </tr>
+                        <tr>
+                            <td><strong>B: Trade School</strong></td>
+                            <td>$84,000</td>
+                            <td>$50,000 x 6 = $300,000</td>
+                            <td class="calculated">$384,000</td>
+                        </tr>
+                        <tr>
+                            <td><strong>C: Workforce</strong></td>
+                            <td>$128,000</td>
+                            <td>$38,000 x 6 = $228,000</td>
+                            <td class="calculated">$356,000</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="insight-box">
+                    <h4>Key Insight</h4>
+                    <p>Over 10 years, Path B (Trade School) shows the highest total earnings in this scenario. However, Path A (University) may have better long-term growth potential beyond year 10, with higher salary ceilings and more career flexibility. The "best" choice depends on individual goals, interests, and circumstances.</p>
+                </div>
+
+                <button class="btn-calculate" onclick="recalculateAll()">Recalculate All Paths</button>
+            </div>
+
+            <div class="discussion-section">
+                <h3>Discussion Questions</h3>
+
+                <div class="discussion-question">
+                    <p>1. Which path has the lowest opportunity cost in the first 4 years? Why?</p>
+                    <textarea placeholder="Your analysis..."></textarea>
+                </div>
+
+                <div class="discussion-question">
+                    <p>2. Which path results in the highest total wealth after 10 years?</p>
+                    <textarea placeholder="Your analysis..."></textarea>
+                </div>
+
+                <div class="discussion-question">
+                    <p>3. What factors beyond money should Alex consider (job satisfaction, physical demands, flexibility, growth potential)?</p>
+                    <textarea placeholder="Your analysis..."></textarea>
+                </div>
+
+                <div class="discussion-question">
+                    <p>4. How would your analysis change if university tuition doubled? If trade school apprenticeship paid $45,000/year?</p>
+                    <textarea placeholder="Your analysis..."></textarea>
+                </div>
+
+                <div class="discussion-question">
+                    <p>5. How does this analysis apply to YOUR post-high school decision?</p>
+                    <textarea placeholder="Your personal reflection..."></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            PFL Academy - L-49: Scarcity, Opportunity Cost, and Incentives | Activity 1
+        </div>
+    </div>
+
+    <script>
+        function showPath(pathId) {
+            // Hide all path content
+            document.querySelectorAll('.path-content').forEach(el => {
+                el.classList.remove('active');
+            });
+
+            // Deactivate all tabs
+            document.querySelectorAll('.path-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            // Show selected path
+            document.getElementById(pathId).classList.add('active');
+
+            // Activate clicked tab
+            event.target.classList.add('active');
+        }
+
+        function calculatePathA() {
+            const tuition = parseFloat(document.getElementById('tuitionA').value) || 10000;
+            const room = parseFloat(document.getElementById('roomA').value) || 12000;
+            const books = 1200;
+            const oppCost = 18000;
+
+            // Update tuition cells
+            for (let i = 1; i <= 4; i++) {
+                document.getElementById(`tuitionA${i}`).textContent = formatCurrency(tuition);
+                document.getElementById(`roomA${i}`).textContent = formatCurrency(room);
+            }
+            document.getElementById('tuitionATotal').textContent = formatCurrency(tuition * 4);
+            document.getElementById('roomATotal').textContent = formatCurrency(room * 4);
+
+            // Calculate explicit costs
+            const explicitPerYear = tuition + room + books;
+            for (let i = 1; i <= 4; i++) {
+                document.getElementById(`explicitA${i}`).textContent = formatCurrency(explicitPerYear);
+            }
+            document.getElementById('explicitATotal').textContent = formatCurrency(explicitPerYear * 4);
+
+            // Calculate total economic cost
+            const totalEconPerYear = explicitPerYear + oppCost;
+            for (let i = 1; i <= 4; i++) {
+                document.getElementById(`totalEconA${i}`).textContent = formatCurrency(totalEconPerYear);
+            }
+            const totalEcon = (explicitPerYear * 4) + 72000;
+            document.getElementById('totalEconATotal').textContent = formatCurrency(totalEcon);
+
+            // Update comparison
+            const netA = -totalEcon + 48000; // Add back part-time earnings
+            document.getElementById('comp-a-4yr').textContent = formatCurrency(netA);
+            document.getElementById('comp-a-10yr').textContent = formatCurrency(netA + 330000);
+        }
+
+        function recalculateAll() {
+            calculatePathA();
+            alert('All calculations updated based on current inputs.');
+        }
+
+        function formatCurrency(amount) {
+            const formatted = new Intl.NumberFormat('en-US', {
+                style: 'currency',
+                currency: 'USD',
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0
+            }).format(Math.abs(amount));
+
+            return amount < 0 ? '-' + formatted : formatted;
+        }
+
+        // Initial calculation
+        calculatePathA();
+    </script>
+</body>
+</html>

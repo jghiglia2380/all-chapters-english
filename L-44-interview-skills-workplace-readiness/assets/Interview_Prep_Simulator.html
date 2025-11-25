@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interview Prep Simulator | PFL Academy</title>
+    <style>
+        :root {
+            --primary: #6366f1;
+            --secondary: #8b5cf6;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --text: #1f2937;
+            --text-light: #6b7280;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text);
+            padding: 20px;
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: #f9fafb;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 25px;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            border-bottom: 3px solid var(--primary);
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        .subtitle {
+            color: var(--text-light);
+        }
+
+        .simulator-container {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .question-category {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .category-btn {
+            padding: 10px 15px;
+            border: 2px solid var(--primary);
+            border-radius: 20px;
+            background: white;
+            color: var(--primary);
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .category-btn:hover,
+        .category-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .question-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .question-label {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            opacity: 0.8;
+            margin-bottom: 10px;
+        }
+
+        .question-text {
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .answer-section {
+            margin-bottom: 20px;
+        }
+
+        .answer-section label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .answer-section textarea {
+            width: 100%;
+            min-height: 150px;
+            padding: 15px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: inherit;
+            resize: vertical;
+        }
+
+        .answer-section textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .star-framework {
+            background: #f0f9ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 4px solid #3b82f6;
+        }
+
+        .star-framework h3 {
+            color: #1e40af;
+            margin-bottom: 10px;
+        }
+
+        .star-item {
+            margin-bottom: 8px;
+        }
+
+        .star-letter {
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+            margin-right: 10px;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #4f46e5;
+        }
+
+        .btn-secondary {
+            background: #e5e7eb;
+            color: var(--text);
+        }
+
+        .btn-secondary:hover {
+            background: #d1d5db;
+        }
+
+        .btn-success {
+            background: var(--success);
+            color: white;
+        }
+
+        .feedback-box {
+            background: #f0fdf4;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid var(--success);
+            margin-top: 20px;
+            display: none;
+        }
+
+        .feedback-box h3 {
+            color: #065f46;
+            margin-bottom: 10px;
+        }
+
+        .sample-answer {
+            background: #fefce8;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            border-left: 4px solid var(--warning);
+        }
+
+        .sample-answer h4 {
+            color: #92400e;
+            margin-bottom: 10px;
+        }
+
+        .progress-tracker {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            background: #f3f4f6;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .progress-text {
+            font-weight: 600;
+        }
+
+        .timer {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .tips-section {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .tip-card {
+            background: #f9fafb;
+            padding: 15px;
+            border-radius: 6px;
+            border-left: 3px solid var(--primary);
+        }
+
+        .tip-card h4 {
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        @media print {
+            .btn, .category-btn {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Interview Prep Simulator</h1>
+        <p class="subtitle">Practice answering common interview questions using the STAR method</p>
+    </header>
+
+    <div class="simulator-container">
+        <div class="section-title">Select Question Category</div>
+        <div class="question-category">
+            <button class="category-btn active" onclick="selectCategory('behavioral')">Behavioral</button>
+            <button class="category-btn" onclick="selectCategory('background')">Background</button>
+            <button class="category-btn" onclick="selectCategory('situational')">Situational</button>
+            <button class="category-btn" onclick="selectCategory('career')">Career Goals</button>
+        </div>
+
+        <div class="progress-tracker">
+            <span class="progress-text">Question <span id="currentQ">1</span> of <span id="totalQ">5</span></span>
+            <span class="timer" id="timer">2:00</span>
+        </div>
+
+        <div class="question-box">
+            <div class="question-label">Interview Question</div>
+            <div class="question-text" id="questionText">Tell me about a time when you had to work under a tight deadline.</div>
+        </div>
+
+        <div class="star-framework">
+            <h3>STAR Method Framework</h3>
+            <div class="star-item"><span class="star-letter">S</span>ituation - Describe the context</div>
+            <div class="star-item"><span class="star-letter">T</span>ask - Explain your responsibility</div>
+            <div class="star-item"><span class="star-letter">A</span>ction - Detail what you did</div>
+            <div class="star-item"><span class="star-letter">R</span>esult - Share the outcome (with metrics if possible)</div>
+        </div>
+
+        <div class="answer-section">
+            <label for="userAnswer">Your Response:</label>
+            <textarea id="userAnswer" placeholder="Structure your answer using the STAR method..."></textarea>
+        </div>
+
+        <div>
+            <button class="btn btn-primary" onclick="startTimer()">Start Timer (2 min)</button>
+            <button class="btn btn-success" onclick="showFeedback()">Get Feedback</button>
+            <button class="btn btn-secondary" onclick="nextQuestion()">Next Question</button>
+        </div>
+
+        <div class="feedback-box" id="feedbackBox">
+            <h3>Response Checklist</h3>
+            <ul id="feedbackList">
+                <li>Did you describe a specific situation?</li>
+                <li>Did you explain your role/task clearly?</li>
+                <li>Did you detail the actions YOU took?</li>
+                <li>Did you include measurable results?</li>
+                <li>Was your answer 1-2 minutes long?</li>
+            </ul>
+
+            <div class="sample-answer">
+                <h4>Sample Strong Answer</h4>
+                <p id="sampleAnswer"></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="tips-section">
+        <div class="section-title">Interview Success Tips</div>
+        <div class="tips-grid">
+            <div class="tip-card">
+                <h4>Before the Interview</h4>
+                <p>Research the company, prepare questions, practice your STAR stories, and plan your outfit.</p>
+            </div>
+            <div class="tip-card">
+                <h4>Body Language</h4>
+                <p>Maintain eye contact, sit up straight, offer a firm handshake, and smile naturally.</p>
+            </div>
+            <div class="tip-card">
+                <h4>Answer Strategy</h4>
+                <p>Listen carefully, pause before answering, stay focused, and be honest about what you don't know.</p>
+            </div>
+            <div class="tip-card">
+                <h4>After the Interview</h4>
+                <p>Send a thank-you email within 24 hours referencing specific conversation points.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const questions = {
+            behavioral: [
+                {
+                    question: "Tell me about a time when you had to work under a tight deadline.",
+                    sample: "During my internship at ABC Company, our team was assigned a client presentation with only three days to prepare instead of the usual two weeks (Situation). I was responsible for gathering competitive analysis data and creating five slides (Task). I immediately prioritized critical data points, created a streamlined research process, stayed late to complete the work, and collaborated with teammates to ensure integration (Action). We delivered on time, the client approved our proposal, and my manager commended my research visualizations as instrumental to our success (Result)."
+                },
+                {
+                    question: "Describe a time when you had to resolve a conflict with a coworker.",
+                    sample: "During a group project, a teammate and I disagreed on the approach for our marketing strategy (Situation). As project lead, I needed to resolve this to keep us on track (Task). I scheduled a one-on-one meeting to understand their perspective, found common ground, and we created a hybrid approach combining both ideas (Action). Our final project received the highest grade in class, and the professor specifically praised our innovative combination of strategies (Result)."
+                },
+                {
+                    question: "Give an example of a time you showed leadership.",
+                    sample: "When our club president resigned mid-semester, our environmental club was at risk of disbanding (Situation). Though I was only a general member, I volunteered to step up as interim leader (Task). I reorganized our committee structure, delegated responsibilities, and planned a campus-wide recycling event (Action). We increased membership by 40% and our event diverted 500 pounds of waste from landfills, earning recognition from the campus sustainability office (Result)."
+                },
+                {
+                    question: "Tell me about a time you failed and what you learned from it.",
+                    sample: "In my first sales job, I lost a major account because I didn't follow up properly after the initial meeting (Situation). I was responsible for maintaining client relationships (Task). I analyzed what went wrong, created a follow-up tracking system, and implemented weekly check-ins with all prospects (Action). The following quarter, my close rate improved by 35%, and I never lost another account due to poor follow-up. I learned that success is in the details (Result)."
+                },
+                {
+                    question: "Describe a time when you had to learn something new quickly.",
+                    sample: "My manager asked me to create a presentation using software I'd never used before, due in 48 hours (Situation). I needed to deliver a professional-quality presentation despite having no prior experience (Task). I watched tutorial videos during lunch, practiced for two hours that evening, and reached out to a colleague for tips on advanced features (Action). I delivered the presentation on time, received positive feedback, and now regularly use this software to help train new team members (Result)."
+                }
+            ],
+            background: [
+                {
+                    question: "Tell me about yourself.",
+                    sample: "I'm a marketing major at State University with a passion for digital content strategy. During my internship at XYZ Agency, I managed social media accounts that grew engagement by 45%. I'm also the marketing director for our student newspaper, where I've implemented data-driven strategies that increased readership by 30%. I'm excited about this role because it combines my love for creative content with analytics—exactly the direction I want to take my career."
+                },
+                {
+                    question: "What are your greatest strengths?",
+                    sample: "My greatest strength is my ability to analyze data and translate it into actionable strategies. In my current role, I noticed our email open rates were declining. I analyzed the data, identified patterns in timing and subject lines, and implemented changes that improved open rates by 25% within two months. I combine this analytical mindset with strong communication skills to explain insights to non-technical stakeholders."
+                },
+                {
+                    question: "What is your greatest weakness?",
+                    sample: "I sometimes take on too many projects because I'm eager to contribute. Early in my internship, I volunteered for multiple initiatives and found myself stretched thin. I've learned to evaluate my bandwidth before committing and to communicate realistic timelines. Now I use a project management system to track my capacity and have become better at saying 'I'd love to help with that—can we discuss timeline to ensure I can give it proper attention?'"
+                },
+                {
+                    question: "Why should we hire you?",
+                    sample: "You should hire me because I bring a unique combination of technical skills and creative thinking that matches what you're looking for. My experience managing social media campaigns has given me hands-on expertise with the tools you use, and I've demonstrated results—like increasing engagement by 45% at my internship. I'm also passionate about your company's mission in sustainable products, which means I'll bring genuine enthusiasm to every project."
+                },
+                {
+                    question: "Walk me through your resume.",
+                    sample: "I started my career journey in customer service, where I developed strong communication skills handling 50+ inquiries daily. I then moved into marketing through an internship where I discovered my passion for digital strategy. I increased their social media engagement by 45% by implementing data-driven content calendars. Currently, I'm completing my marketing degree while serving as marketing director for our student newspaper, where I've grown readership 30%. Each role has built skills that prepare me for this position."
+                }
+            ],
+            situational: [
+                {
+                    question: "How would you handle a situation where you disagreed with your manager's decision?",
+                    sample: "I would first make sure I fully understand my manager's reasoning by asking clarifying questions. If I still had concerns, I'd request a private meeting to share my perspective respectfully, focusing on the business impact rather than personal preferences. I'd come prepared with data or examples to support my viewpoint. Ultimately, I'd respect my manager's final decision and commit to executing it fully while documenting outcomes to inform future discussions."
+                },
+                {
+                    question: "What would you do if you were assigned a task you'd never done before?",
+                    sample: "I'd start by researching the task to understand best practices and potential challenges. Then I'd identify colleagues or resources who could provide guidance. I'd create a step-by-step plan, build in time for learning, and set up checkpoints to get feedback early. I'd also be transparent with my manager about my learning curve while demonstrating my commitment to delivering quality work. I see unfamiliar tasks as opportunities to expand my skills."
+                },
+                {
+                    question: "How would you prioritize multiple urgent deadlines?",
+                    sample: "I'd first assess each task's true urgency and impact—sometimes 'urgent' requests can wait while others have real consequences. I'd communicate with stakeholders to understand flexibility and dependencies. Then I'd create a prioritized list based on deadlines, importance, and effort required. For truly competing priorities, I'd escalate to my manager with options: 'I can deliver A by Tuesday or B by Tuesday—which should take priority?' I'd also identify if any tasks could be delegated."
+                },
+                {
+                    question: "What would you do if a team member wasn't contributing their fair share?",
+                    sample: "I'd start with a private, non-confrontational conversation to understand if there are obstacles I'm not aware of—they might be dealing with personal issues or unclear expectations. I'd focus on the project's needs rather than blame: 'I've noticed the research section isn't progressing. How can we get this back on track?' If the issue persists, I'd document specific instances and involve the team lead or manager while focusing on solutions rather than complaints."
+                },
+                {
+                    question: "How would you handle receiving critical feedback?",
+                    sample: "I'd listen carefully without becoming defensive, ask clarifying questions to fully understand the feedback, and thank the person for their input. I'd take time to reflect on the feedback objectively—even if it's hard to hear, there's usually something valuable to learn. Then I'd create a specific action plan to address the concerns and follow up to show I've implemented changes. I view feedback as essential for growth."
+                }
+            ],
+            career: [
+                {
+                    question: "Where do you see yourself in five years?",
+                    sample: "In five years, I see myself as a senior marketing specialist with expertise in digital strategy and team leadership. I want to develop deep skills in marketing analytics and campaign management while taking on increasing responsibility. I'm drawn to this company because your commitment to professional development and your track record of promoting from within align with my growth goals. I'm excited about potentially leading a small team and mentoring junior marketers."
+                },
+                {
+                    question: "Why are you leaving your current position?",
+                    sample: "I've learned a tremendous amount in my current role and am grateful for the experience. However, I'm ready for new challenges that better align with my career goals in digital marketing. My current position is more focused on traditional marketing, and I'm eager to work with more advanced analytics tools and digital campaigns—which is exactly what this role offers. I'm looking for an environment where I can grow my technical skills while contributing to a forward-thinking team."
+                },
+                {
+                    question: "Why do you want to work for our company?",
+                    sample: "I've followed your company for years and am impressed by your innovation in sustainable packaging—the recent biodegradable line was brilliant. Your commitment to environmental responsibility aligns with my personal values. I also appreciate your reputation for developing talent; I've read about your mentorship program and rotation opportunities. This role specifically excites me because it combines my passion for sustainability with my marketing skills. I want to help communicate your mission to a broader audience."
+                },
+                {
+                    question: "What are your salary expectations?",
+                    sample: "Based on my research of similar roles in this market and my relevant experience, I'm looking for compensation in the range of $45,000 to $55,000. However, I'm flexible and open to discussing the total compensation package, including benefits, professional development opportunities, and growth potential. I'm most focused on finding the right fit where I can contribute meaningfully and grow professionally."
+                },
+                {
+                    question: "What questions do you have for us?",
+                    sample: "I'd love to learn more about what success looks like in this role during the first 90 days. I'm also curious about the team structure—who would I be working with most closely? And given your company's recent expansion, how do you see this role evolving over the next few years? Finally, what do you enjoy most about working here?"
+                }
+            ]
+        };
+
+        let currentCategory = 'behavioral';
+        let currentQuestionIndex = 0;
+        let timerInterval;
+
+        function selectCategory(category) {
+            currentCategory = category;
+            currentQuestionIndex = 0;
+
+            document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            updateQuestion();
+            hideFeedback();
+        }
+
+        function updateQuestion() {
+            const categoryQuestions = questions[currentCategory];
+            const q = categoryQuestions[currentQuestionIndex];
+
+            document.getElementById('questionText').textContent = q.question;
+            document.getElementById('currentQ').textContent = currentQuestionIndex + 1;
+            document.getElementById('totalQ').textContent = categoryQuestions.length;
+            document.getElementById('userAnswer').value = '';
+            document.getElementById('sampleAnswer').textContent = q.sample;
+
+            resetTimer();
+            hideFeedback();
+        }
+
+        function nextQuestion() {
+            const categoryQuestions = questions[currentCategory];
+            currentQuestionIndex = (currentQuestionIndex + 1) % categoryQuestions.length;
+            updateQuestion();
+        }
+
+        function showFeedback() {
+            document.getElementById('feedbackBox').style.display = 'block';
+        }
+
+        function hideFeedback() {
+            document.getElementById('feedbackBox').style.display = 'none';
+        }
+
+        function startTimer() {
+            resetTimer();
+            let time = 120;
+
+            timerInterval = setInterval(() => {
+                time--;
+                const minutes = Math.floor(time / 60);
+                const seconds = time % 60;
+                document.getElementById('timer').textContent =
+                    `${minutes}:${seconds.toString().padStart(2, '0')}`;
+
+                if (time <= 0) {
+                    clearInterval(timerInterval);
+                    document.getElementById('timer').textContent = "Time's up!";
+                }
+            }, 1000);
+        }
+
+        function resetTimer() {
+            clearInterval(timerInterval);
+            document.getElementById('timer').textContent = '2:00';
+        }
+
+        // Initialize
+        updateQuestion();
+    </script>
+</body>
+</html>

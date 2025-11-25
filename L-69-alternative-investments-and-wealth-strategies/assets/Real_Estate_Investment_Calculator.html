@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real Estate Investment Calculator</title>
+    <style>
+        :root { --primary: #6366f1; --secondary: #8b5cf6; --success: #10b981; --warning: #f59e0b; --danger: #ef4444; }
+        body { font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 14px; line-height: 1.5; color: #1f2937; max-width: 900px; margin: 0 auto; padding: 15px; }
+        h1 { color: var(--primary); font-size: 24px; border-bottom: 2px solid var(--primary); padding-bottom: 8px; }
+        h2 { color: var(--secondary); font-size: 18px; margin-top: 20px; }
+        .comparison { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 15px 0; }
+        .investment-card { background: #f9fafb; padding: 15px; border-radius: 5px; border: 2px solid #d1d5db; }
+        .investment-card h3 { margin: 0 0 15px 0; color: var(--primary); font-size: 16px; text-align: center; }
+        .input-group { margin: 10px 0; }
+        .input-group label { display: block; font-size: 12px; margin-bottom: 3px; }
+        input { width: 100%; padding: 6px; border: 1px solid #d1d5db; border-radius: 4px; box-sizing: border-box; }
+        .results-section { background: #e0e7ff; padding: 15px; border-radius: 5px; margin: 15px 0; }
+        .results-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .result-column { background: white; padding: 15px; border-radius: 4px; }
+        .result-column h4 { margin: 0 0 10px 0; color: var(--primary); font-size: 14px; }
+        .metric { display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px solid #f3f4f6; font-size: 12px; }
+        .metric-value { font-weight: bold; }
+        .total-return { text-align: center; padding: 15px; background: #f9fafb; border-radius: 4px; margin-top: 10px; }
+        .total-value { font-size: 24px; font-weight: bold; color: var(--primary); }
+        .winner { border-color: var(--success); }
+        .winner h4 { color: var(--success); }
+        .analysis { background: #fef3c7; padding: 15px; border-radius: 5px; margin: 15px 0; }
+        button { background: var(--primary); color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; margin: 5px; }
+        button:hover { background: var(--secondary); }
+        @media print { body { font-size: 11pt; } button { display: none; } .comparison { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <h1>Real Estate Investment Calculator</h1>
+    <p>Compare direct property ownership vs. REIT investment over 10 years</p>
+
+    <div class="comparison">
+        <div class="investment-card">
+            <h3>Direct Property Ownership</h3>
+            <div class="input-group">
+                <label>Property Price ($)</label>
+                <input type="number" id="propertyPrice" value="300000" step="10000">
+            </div>
+            <div class="input-group">
+                <label>Down Payment (%)</label>
+                <input type="number" id="downPayment" value="20" step="5">
+            </div>
+            <div class="input-group">
+                <label>Mortgage Rate (%)</label>
+                <input type="number" id="mortgageRate" value="7" step="0.25">
+            </div>
+            <div class="input-group">
+                <label>Monthly Rent ($)</label>
+                <input type="number" id="monthlyRent" value="2000" step="100">
+            </div>
+            <div class="input-group">
+                <label>Annual Appreciation (%)</label>
+                <input type="number" id="appreciation" value="3" step="0.5">
+            </div>
+            <div class="input-group">
+                <label>Annual Expenses (% of value)</label>
+                <input type="number" id="expenses" value="1.5" step="0.25">
+            </div>
+        </div>
+
+        <div class="investment-card">
+            <h3>REIT Investment</h3>
+            <div class="input-group">
+                <label>Initial Investment ($)</label>
+                <input type="number" id="reitInvestment" value="60000" step="5000">
+                <p style="font-size: 10px; color: #6b7280; margin: 3px 0;">Same as down payment</p>
+            </div>
+            <div class="input-group">
+                <label>Expected Annual Return (%)</label>
+                <input type="number" id="reitReturn" value="8" step="0.5">
+            </div>
+            <div class="input-group">
+                <label>Dividend Yield (%)</label>
+                <input type="number" id="dividendYield" value="4" step="0.5">
+            </div>
+            <div class="input-group">
+                <label>Reinvest Dividends?</label>
+                <select id="reinvest">
+                    <option value="yes">Yes - Compound growth</option>
+                    <option value="no">No - Take income</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div style="text-align: center;">
+        <button onclick="calculate()">Calculate 10-Year Returns</button>
+    </div>
+
+    <div class="results-section">
+        <h2 style="margin-top: 0;">10-Year Comparison Results</h2>
+        <div class="results-grid">
+            <div class="result-column" id="propertyResults">
+                <h4>Direct Property</h4>
+                <div class="metric"><span>Initial Cash Invested</span><span class="metric-value" id="propCash">$60,000</span></div>
+                <div class="metric"><span>Property Value (Year 10)</span><span class="metric-value" id="propValue">$403,175</span></div>
+                <div class="metric"><span>Mortgage Balance</span><span class="metric-value" id="mortBalance">$197,000</span></div>
+                <div class="metric"><span>Total Equity</span><span class="metric-value" id="propEquity">$206,175</span></div>
+                <div class="metric"><span>Net Rental Income</span><span class="metric-value" id="rentalIncome">$48,000</span></div>
+                <div class="total-return">
+                    <div>Total Return</div>
+                    <div class="total-value" id="propTotal">$254,175</div>
+                    <div style="font-size: 12px;">ROI: <span id="propROI">324%</span></div>
+                </div>
+            </div>
+
+            <div class="result-column" id="reitResults">
+                <h4>REIT Investment</h4>
+                <div class="metric"><span>Initial Investment</span><span class="metric-value" id="reitCash">$60,000</span></div>
+                <div class="metric"><span>Portfolio Value</span><span class="metric-value" id="reitValue">$129,535</span></div>
+                <div class="metric"><span>Total Dividends</span><span class="metric-value" id="dividends">$24,000</span></div>
+                <div class="metric"><span>Liquidity</span><span class="metric-value" style="color: var(--success);">High</span></div>
+                <div class="metric"><span>Time Required</span><span class="metric-value" style="color: var(--success);">Minimal</span></div>
+                <div class="total-return">
+                    <div>Total Return</div>
+                    <div class="total-value" id="reitTotal">$153,535</div>
+                    <div style="font-size: 12px;">ROI: <span id="reitROI">156%</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="analysis" id="analysis">
+        <h2 style="margin-top: 0;">📊 Analysis</h2>
+        <p id="analysisText"></p>
+    </div>
+
+    <script>
+        function calculate() {
+            // Direct Property
+            const price = parseFloat(document.getElementById('propertyPrice').value) || 0;
+            const downPct = parseFloat(document.getElementById('downPayment').value) / 100 || 0.2;
+            const mortRate = parseFloat(document.getElementById('mortgageRate').value) / 100 || 0.07;
+            const rent = parseFloat(document.getElementById('monthlyRent').value) || 0;
+            const appreciation = parseFloat(document.getElementById('appreciation').value) / 100 || 0.03;
+            const expenses = parseFloat(document.getElementById('expenses').value) / 100 || 0.015;
+
+            const downPaymentAmt = price * downPct;
+            const loanAmount = price - downPaymentAmt;
+
+            // Calculate mortgage payment (30-year fixed)
+            const monthlyRate = mortRate / 12;
+            const numPayments = 360;
+            const mortgagePayment = loanAmount * (monthlyRate * Math.pow(1 + monthlyRate, numPayments)) / (Math.pow(1 + monthlyRate, numPayments) - 1);
+
+            // 10-year property value
+            const propValue10 = price * Math.pow(1 + appreciation, 10);
+
+            // Mortgage balance after 10 years
+            let balance = loanAmount;
+            for (let i = 0; i < 120; i++) {
+                const interest = balance * monthlyRate;
+                const principal = mortgagePayment - interest;
+                balance -= principal;
+            }
+
+            // Net rental income (rent - mortgage - expenses)
+            const annualRent = rent * 12;
+            const annualMortgage = mortgagePayment * 12;
+            const annualExpenses = price * expenses;
+            const annualCashFlow = annualRent - annualMortgage - annualExpenses;
+            const totalCashFlow = annualCashFlow * 10;
+
+            const propEquity = propValue10 - balance;
+            const propTotal = propEquity + Math.max(0, totalCashFlow);
+            const propROI = ((propTotal - downPaymentAmt) / downPaymentAmt * 100);
+
+            // REIT Investment
+            const reitInitial = parseFloat(document.getElementById('reitInvestment').value) || downPaymentAmt;
+            const reitReturn = parseFloat(document.getElementById('reitReturn').value) / 100 || 0.08;
+            const divYield = parseFloat(document.getElementById('dividendYield').value) / 100 || 0.04;
+            const reinvest = document.getElementById('reinvest').value === 'yes';
+
+            let reitValue = reitInitial;
+            let totalDividends = 0;
+
+            if (reinvest) {
+                reitValue = reitInitial * Math.pow(1 + reitReturn, 10);
+                totalDividends = 0; // Included in growth
+            } else {
+                const growthRate = reitReturn - divYield;
+                reitValue = reitInitial * Math.pow(1 + growthRate, 10);
+                totalDividends = reitInitial * divYield * 10;
+            }
+
+            const reitTotal = reitValue + totalDividends;
+            const reitROI = ((reitTotal - reitInitial) / reitInitial * 100);
+
+            // Update display
+            document.getElementById('propCash').textContent = '$' + downPaymentAmt.toLocaleString();
+            document.getElementById('propValue').textContent = '$' + Math.round(propValue10).toLocaleString();
+            document.getElementById('mortBalance').textContent = '$' + Math.round(balance).toLocaleString();
+            document.getElementById('propEquity').textContent = '$' + Math.round(propEquity).toLocaleString();
+            document.getElementById('rentalIncome').textContent = '$' + Math.round(totalCashFlow).toLocaleString();
+            document.getElementById('propTotal').textContent = '$' + Math.round(propTotal).toLocaleString();
+            document.getElementById('propROI').textContent = propROI.toFixed(0) + '%';
+
+            document.getElementById('reitCash').textContent = '$' + reitInitial.toLocaleString();
+            document.getElementById('reitValue').textContent = '$' + Math.round(reitValue).toLocaleString();
+            document.getElementById('dividends').textContent = '$' + Math.round(totalDividends).toLocaleString();
+            document.getElementById('reitTotal').textContent = '$' + Math.round(reitTotal).toLocaleString();
+            document.getElementById('reitROI').textContent = reitROI.toFixed(0) + '%';
+
+            // Highlight winner
+            document.getElementById('propertyResults').classList.toggle('winner', propTotal > reitTotal);
+            document.getElementById('reitResults').classList.toggle('winner', reitTotal > propTotal);
+
+            // Generate analysis
+            let analysis = '';
+            if (propTotal > reitTotal) {
+                const diff = propTotal - reitTotal;
+                analysis = `<strong>Direct property wins by $${Math.round(diff).toLocaleString()}</strong> due to leverage. `;
+                analysis += `However, consider: (1) Active management required, (2) $${Math.round(loanAmount).toLocaleString()} in debt, (3) Illiquid asset, (4) Concentration risk in single property.`;
+            } else {
+                const diff = reitTotal - propTotal;
+                analysis = `<strong>REITs win by $${Math.round(diff).toLocaleString()}</strong> in this scenario. `;
+                analysis += `Benefits: (1) No management hassle, (2) High liquidity, (3) Diversification across many properties, (4) No debt or vacancy risk.`;
+            }
+            document.getElementById('analysisText').innerHTML = analysis;
+        }
+
+        // Sync down payment to REIT initial
+        document.getElementById('downPayment').addEventListener('change', function() {
+            const price = parseFloat(document.getElementById('propertyPrice').value) || 0;
+            const downPct = parseFloat(this.value) / 100;
+            document.getElementById('reitInvestment').value = Math.round(price * downPct);
+        });
+
+        // Initialize
+        calculate();
+    </script>
+</body>
+</html>

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contract Comparison Tool</title>
+    <!--
+    PURPOSE: Compare competing contracts to identify best financial choice
+    USE: Activity 3 - Contract Comparison Station (10 minutes)
+    -->
+    <style>
+        :root {
+            --primary: #6366f1;
+            --secondary: #8b5cf6;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --text: #1f2937;
+            --surface: #f9fafb;
+        }
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: var(--primary);
+            border-bottom: 3px solid var(--primary);
+            padding-bottom: 10px;
+        }
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .comparison-table th {
+            background: var(--primary);
+            color: white;
+            padding: 12px;
+            text-align: center;
+        }
+        .comparison-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: center;
+        }
+        .comparison-table tr:nth-child(even) {
+            background: var(--surface);
+        }
+        .input-cell input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            text-align: center;
+        }
+        .result-row {
+            background: #eef2ff !important;
+            font-weight: bold;
+        }
+        .winner {
+            background: #d1fae5 !important;
+            color: var(--success);
+        }
+        .section-title {
+            background: var(--secondary);
+            color: white;
+            padding: 10px;
+            margin: 20px 0 10px 0;
+            border-radius: 6px;
+        }
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            cursor: pointer;
+            background: var(--primary);
+            color: white;
+            margin: 10px 5px;
+        }
+        .btn:hover {
+            background: #4f46e5;
+        }
+        .decision-box {
+            background: var(--surface);
+            border: 2px solid var(--primary);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        .decision-box h3 {
+            color: var(--primary);
+            margin-top: 0;
+        }
+        .decision-box textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            min-height: 80px;
+        }
+        @media print {
+            .btn { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <h1>📊 Contract Comparison Tool</h1>
+
+    <p>Compare three competing offers side-by-side. Enter the terms for each option and calculate the total cost to find the best deal.</p>
+
+    <!-- Scenario 1: Auto Loans -->
+    <div class="section-title">Scenario 1: Auto Loan Comparison</div>
+
+    <table class="comparison-table">
+        <thead>
+            <tr>
+                <th>Term</th>
+                <th>Bank A</th>
+                <th>Bank B</th>
+                <th>Dealer Financing</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Loan Amount</td>
+                <td class="input-cell"><input type="text" value="$25,000" readonly></td>
+                <td class="input-cell"><input type="text" value="$25,000" readonly></td>
+                <td class="input-cell"><input type="text" value="$25,000" readonly></td>
+            </tr>
+            <tr>
+                <td>APR</td>
+                <td class="input-cell"><input type="text" id="a1-apr" placeholder="e.g., 6.5%"></td>
+                <td class="input-cell"><input type="text" id="b1-apr" placeholder="e.g., 5.9%"></td>
+                <td class="input-cell"><input type="text" id="c1-apr" placeholder="e.g., 0%"></td>
+            </tr>
+            <tr>
+                <td>Loan Term (months)</td>
+                <td class="input-cell"><input type="text" id="a1-term" placeholder="e.g., 48"></td>
+                <td class="input-cell"><input type="text" id="b1-term" placeholder="e.g., 60"></td>
+                <td class="input-cell"><input type="text" id="c1-term" placeholder="e.g., 36"></td>
+            </tr>
+            <tr>
+                <td>Monthly Payment</td>
+                <td class="input-cell"><input type="text" id="a1-payment" placeholder="$___"></td>
+                <td class="input-cell"><input type="text" id="b1-payment" placeholder="$___"></td>
+                <td class="input-cell"><input type="text" id="c1-payment" placeholder="$___"></td>
+            </tr>
+            <tr>
+                <td>Origination/Fees</td>
+                <td class="input-cell"><input type="text" id="a1-fees" placeholder="$___"></td>
+                <td class="input-cell"><input type="text" id="b1-fees" placeholder="$___"></td>
+                <td class="input-cell"><input type="text" id="c1-fees" placeholder="$___"></td>
+            </tr>
+            <tr class="result-row">
+                <td><strong>Total Cost</strong></td>
+                <td id="a1-total">$_____</td>
+                <td id="b1-total">$_____</td>
+                <td id="c1-total">$_____</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <button class="btn" onclick="calculateAutoLoan()">Calculate Total Costs</button>
+
+    <!-- Scenario 2: Apartment Leases -->
+    <div class="section-title">Scenario 2: Apartment Lease Comparison</div>
+
+    <table class="comparison-table">
+        <thead>
+            <tr>
+                <th>Term</th>
+                <th>Apartment A</th>
+                <th>Apartment B</th>
+                <th>Apartment C</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Monthly Rent</td>
+                <td class="input-cell"><input type="text" id="a2-rent" placeholder="$___"></td>
+                <td class="input-cell"><input type="text" id="b2-rent" placeholder="$___"></td>
+                <td class="input-cell"><input type="text" id="c2-rent" placeholder="$___"></td>
+            </tr>
+            <tr>
+                <td>Security Deposit</td>
+                <td class="input-cell"><input type="text" id="a2-deposit" placeholder="$___"></td>
+                <td class="input-cell"><input type="text" id="b2-deposit" placeholder="$___"></td>
+                <td class="input-cell"><input type="text" id="c2-deposit" placeholder="$___"></td>
+            </tr>
+            <tr>
+                <td>Application Fee</td>
+                <td class="input-cell"><input type="text" id="a2-app" placeholder="$___"></td>
+                <td class="input-cell"><input type="text" id="b2-app" placeholder="$___"></td>
+                <td class="input-cell"><input type="text" id="c2-app" placeholder="$___"></td>
+            </tr>
+            <tr>
+                <td>Utilities Included?</td>
+                <td class="input-cell"><input type="text" id="a2-util" placeholder="Yes/No"></td>
+                <td class="input-cell"><input type="text" id="b2-util" placeholder="Yes/No"></td>
+                <td class="input-cell"><input type="text" id="c2-util" placeholder="Yes/No"></td>
+            </tr>
+            <tr>
+                <td>Estimated Utilities/mo</td>
+                <td class="input-cell"><input type="text" id="a2-utilcost" placeholder="$___"></td>
+                <td class="input-cell"><input type="text" id="b2-utilcost" placeholder="$___"></td>
+                <td class="input-cell"><input type="text" id="c2-utilcost" placeholder="$___"></td>
+            </tr>
+            <tr class="result-row">
+                <td><strong>First Year Total</strong></td>
+                <td id="a2-total">$_____</td>
+                <td id="b2-total">$_____</td>
+                <td id="c2-total">$_____</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <button class="btn" onclick="calculateApartment()">Calculate First Year Costs</button>
+
+    <!-- Decision Section -->
+    <div class="decision-box">
+        <h3>📝 Your Decision & Justification</h3>
+        <p><strong>Best Auto Loan Choice:</strong></p>
+        <textarea placeholder="Which option did you choose and why? Consider total cost, monthly payment, and any hidden fees..."></textarea>
+
+        <p><strong>Best Apartment Choice:</strong></p>
+        <textarea placeholder="Which option did you choose and why? Consider total cost, location value, and contract terms..."></textarea>
+    </div>
+
+    <script>
+        function calculateAutoLoan() {
+            // Simple calculation example
+            alert('Calculate based on: Total = (Monthly Payment × Term) + Fees\nEnter your calculated totals in the result row.');
+        }
+
+        function calculateApartment() {
+            // Simple calculation example
+            alert('Calculate based on: First Year = (Rent × 12) + Deposit + App Fee + (Utilities × 12 if not included)\nEnter your calculated totals in the result row.');
+        }
+    </script>
+</body>
+</html>

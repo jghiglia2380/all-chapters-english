@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supply & Demand Practice Worksheet | PFL Academy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-size: 14px;
+            line-height: 1.6;
+            color: #1f2937;
+            padding: 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #6366f1;
+        }
+        h1 {
+            font-size: 1.8rem;
+            color: #6366f1;
+            margin-bottom: 5px;
+        }
+        .subtitle {
+            color: #6b7280;
+        }
+        .section {
+            background-color: #f9fafb;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 4px solid #6366f1;
+        }
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #6366f1;
+            margin-bottom: 15px;
+        }
+        .scenario {
+            background-color: white;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+        }
+        .scenario-number {
+            font-weight: 700;
+            color: #6366f1;
+            margin-bottom: 8px;
+        }
+        .question {
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        .answer-space {
+            margin-bottom: 15px;
+        }
+        .answer-space textarea {
+            width: 100%;
+            min-height: 60px;
+            padding: 10px;
+            border: 2px solid #e5e7eb;
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 14px;
+            resize: vertical;
+        }
+        .answer-space textarea:focus {
+            outline: none;
+            border-color: #6366f1;
+        }
+        .select-answer {
+            display: flex;
+            gap: 15px;
+            margin: 10px 0;
+        }
+        .select-answer label {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            cursor: pointer;
+        }
+        .multiple-choice {
+            margin: 10px 0;
+        }
+        .multiple-choice label {
+            display: block;
+            padding: 8px 0;
+            cursor: pointer;
+        }
+        .multiple-choice input {
+            margin-right: 8px;
+        }
+        .fill-blank {
+            display: inline-block;
+            width: 150px;
+            border-bottom: 2px solid #6366f1;
+            text-align: center;
+            padding: 2px 5px;
+        }
+        .fill-blank input {
+            width: 100%;
+            border: none;
+            text-align: center;
+            font-family: inherit;
+            font-size: inherit;
+            outline: none;
+        }
+        .matching-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        .matching-table th,
+        .matching-table td {
+            padding: 10px;
+            border: 1px solid #e5e7eb;
+            text-align: left;
+        }
+        .matching-table th {
+            background-color: #f3f4f6;
+        }
+        .matching-input {
+            width: 40px;
+            padding: 5px;
+            text-align: center;
+            border: 1px solid #e5e7eb;
+            border-radius: 4px;
+        }
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-right: 10px;
+            margin-top: 10px;
+        }
+        .btn-primary {
+            background-color: #6366f1;
+            color: white;
+        }
+        .btn-primary:hover {
+            background-color: #4f46e5;
+        }
+        .btn-secondary {
+            background-color: #f3f4f6;
+            color: #374151;
+        }
+        @media print {
+            body {
+                padding: 10px;
+                font-size: 12px;
+            }
+            .section {
+                break-inside: avoid;
+            }
+            .btn {
+                display: none;
+            }
+            textarea {
+                border: 1px solid #ccc !important;
+                min-height: 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Supply & Demand Practice Worksheet</h1>
+        <p class="subtitle">Practice exercises for supply/demand analysis and market scenarios</p>
+    </header>
+
+    <div class="section">
+        <div class="section-title">Part 1: Housing Market Analysis</div>
+        <div class="scenario">
+            <div class="scenario-number">Scenario 1: Apartment Hunting in {{STATE_NAME}}</div>
+            <p>In your city, 1-bedroom apartments usually rent for $1,200/month. Recently, a major employer announced they're bringing 5,000 new jobs to the area.</p>
+
+            <div class="question">a) How will this affect demand for apartments?</div>
+            <div class="answer-space">
+                <textarea placeholder="Explain the impact on demand..."></textarea>
+            </div>
+
+            <div class="question">b) What will likely happen to rental prices? Why?</div>
+            <div class="answer-space">
+                <textarea placeholder="Predict price changes and explain your reasoning..."></textarea>
+            </div>
+
+            <div class="question">c) As a renter, how should you respond to this news?</div>
+            <div class="answer-space">
+                <textarea placeholder="Describe your strategy..."></textarea>
+            </div>
+        </div>
+
+        <div class="scenario">
+            <div class="scenario-number">Scenario 2: Home Buying Decision</div>
+            <p>{{STATE_NAME}} recently passed legislation making it easier to build new homes, and construction material costs have dropped 15%.</p>
+
+            <div class="question">a) What will happen to the supply of homes?</div>
+            <div class="select-answer">
+                <label><input type="radio" name="q2a" value="increase"> Increase</label>
+                <label><input type="radio" name="q2a" value="decrease"> Decrease</label>
+                <label><input type="radio" name="q2a" value="stable"> Stay the same</label>
+            </div>
+
+            <div class="question">b) What will likely happen to home prices?</div>
+            <div class="select-answer">
+                <label><input type="radio" name="q2b" value="rise"> Rise</label>
+                <label><input type="radio" name="q2b" value="fall"> Fall</label>
+                <label><input type="radio" name="q2b" value="stable"> Stay the same</label>
+            </div>
+
+            <div class="question">c) If you're planning to buy a home in 2 years, should you act now or wait? Explain.</div>
+            <div class="answer-space">
+                <textarea placeholder="Explain your timing strategy..."></textarea>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Part 2: Labor Market</div>
+        <div class="scenario">
+            <div class="scenario-number">Scenario 3: Career Choice</div>
+            <p>The demand for software developers is increasing rapidly due to AI growth, while coding bootcamps are graduating thousands of new developers.</p>
+
+            <div class="question">a) What happens to salaries for software developers?</div>
+            <div class="answer-space">
+                <textarea placeholder="Analyze salary trends considering both demand and supply..."></textarea>
+            </div>
+
+            <div class="question">b) How can you differentiate yourself in this market?</div>
+            <div class="answer-space">
+                <textarea placeholder="Strategies to stand out when supply is high..."></textarea>
+            </div>
+        </div>
+
+        <div class="scenario">
+            <div class="scenario-number">Scenario 4: Skilled Trades</div>
+            <p>Many electricians in {{STATE_NAME}} are retiring, and fewer young people are entering trade schools.</p>
+
+            <div class="question">a) What is happening to the supply of electricians?</div>
+            <div class="select-answer">
+                <label><input type="radio" name="q4a" value="increase"> Increasing</label>
+                <label><input type="radio" name="q4a" value="decrease"> Decreasing</label>
+            </div>
+
+            <div class="question">b) What does this mean for electrician wages?</div>
+            <div class="answer-space">
+                <textarea placeholder="Predict wage trends..."></textarea>
+            </div>
+
+            <div class="question">c) Is this a good career opportunity? Why or why not?</div>
+            <div class="answer-space">
+                <textarea placeholder="Evaluate the career opportunity..."></textarea>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Part 3: Consumer Goods</div>
+        <div class="scenario">
+            <div class="scenario-number">Scenario 5: Gas Prices</div>
+            <p>Gas prices have risen from $3.00 to $4.50 per gallon due to reduced oil production.</p>
+
+            <div class="question">a) This is an example of a decrease in <span class="fill-blank"><input type="text" placeholder="supply/demand"></span></div>
+
+            <div class="question" style="margin-top: 15px;">b) List 3 ways you could respond to higher gas prices:</div>
+            <div class="answer-space">
+                <textarea placeholder="1. &#10;2. &#10;3. "></textarea>
+            </div>
+
+            <div class="question">c) Is gas elastic or inelastic in the short term? Why?</div>
+            <div class="answer-space">
+                <textarea placeholder="Analyze the elasticity..."></textarea>
+            </div>
+        </div>
+
+        <div class="scenario">
+            <div class="scenario-number">Scenario 6: Seasonal Shopping</div>
+            <p>You need to buy a winter coat for next year.</p>
+
+            <div class="question">a) When is demand for winter coats highest?</div>
+            <div class="answer-space">
+                <textarea placeholder="Identify peak demand timing..."></textarea>
+            </div>
+
+            <div class="question">b) When would be the best time to buy to get the lowest price?</div>
+            <div class="answer-space">
+                <textarea placeholder="Optimal purchase timing..."></textarea>
+            </div>
+
+            <div class="question">c) How much might you save by timing your purchase correctly? (Estimate percentage)</div>
+            <div class="answer-space">
+                <textarea placeholder="Estimate savings..."></textarea>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Part 4: Matching - Identify the Shifter</div>
+        <p style="margin-bottom: 15px;">Match each event to whether it shifts DEMAND or SUPPLY:</p>
+
+        <table class="matching-table">
+            <thead>
+                <tr>
+                    <th>Event</th>
+                    <th>Shifts Demand or Supply?</th>
+                    <th>Direction (Left/Right)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>New technology reduces production costs</td>
+                    <td>
+                        <select style="padding: 5px; width: 100%;">
+                            <option value="">Select...</option>
+                            <option value="demand">Demand</option>
+                            <option value="supply">Supply</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select style="padding: 5px; width: 100%;">
+                            <option value="">Select...</option>
+                            <option value="left">Left (Decrease)</option>
+                            <option value="right">Right (Increase)</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Population in {{STATE_NAME}} grows by 10%</td>
+                    <td>
+                        <select style="padding: 5px; width: 100%;">
+                            <option value="">Select...</option>
+                            <option value="demand">Demand</option>
+                            <option value="supply">Supply</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select style="padding: 5px; width: 100%;">
+                            <option value="">Select...</option>
+                            <option value="left">Left (Decrease)</option>
+                            <option value="right">Right (Increase)</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>A hurricane destroys factories</td>
+                    <td>
+                        <select style="padding: 5px; width: 100%;">
+                            <option value="">Select...</option>
+                            <option value="demand">Demand</option>
+                            <option value="supply">Supply</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select style="padding: 5px; width: 100%;">
+                            <option value="">Select...</option>
+                            <option value="left">Left (Decrease)</option>
+                            <option value="right">Right (Increase)</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Consumer incomes rise significantly</td>
+                    <td>
+                        <select style="padding: 5px; width: 100%;">
+                            <option value="">Select...</option>
+                            <option value="demand">Demand</option>
+                            <option value="supply">Supply</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select style="padding: 5px; width: 100%;">
+                            <option value="">Select...</option>
+                            <option value="left">Left (Decrease)</option>
+                            <option value="right">Right (Increase)</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Government increases taxes on production</td>
+                    <td>
+                        <select style="padding: 5px; width: 100%;">
+                            <option value="">Select...</option>
+                            <option value="demand">Demand</option>
+                            <option value="supply">Supply</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select style="padding: 5px; width: 100%;">
+                            <option value="">Select...</option>
+                            <option value="left">Left (Decrease)</option>
+                            <option value="right">Right (Increase)</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>A product becomes trendy on social media</td>
+                    <td>
+                        <select style="padding: 5px; width: 100%;">
+                            <option value="">Select...</option>
+                            <option value="demand">Demand</option>
+                            <option value="supply">Supply</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select style="padding: 5px; width: 100%;">
+                            <option value="">Select...</option>
+                            <option value="left">Left (Decrease)</option>
+                            <option value="right">Right (Increase)</option>
+                        </select>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Part 5: Personal Application</div>
+        <div class="scenario">
+            <div class="scenario-number">Your Personal Market Analysis</div>
+
+            <div class="question">Choose a product or service you plan to purchase in the next 6 months:</div>
+            <div class="answer-space">
+                <textarea placeholder="What will you buy?" style="min-height: 40px;"></textarea>
+            </div>
+
+            <div class="question">What supply and demand factors affect its price?</div>
+            <div class="answer-space">
+                <textarea placeholder="List relevant supply and demand factors..."></textarea>
+            </div>
+
+            <div class="question">When is the best time to make this purchase?</div>
+            <div class="answer-space">
+                <textarea placeholder="Optimal timing based on supply/demand analysis..."></textarea>
+            </div>
+
+            <div class="question">What negotiation leverage do you have?</div>
+            <div class="answer-space">
+                <textarea placeholder="Consider elasticity, alternatives, and market conditions..."></textarea>
+            </div>
+
+            <div class="question">How much could you save with good timing and strategy?</div>
+            <div class="answer-space">
+                <textarea placeholder="Estimate your potential savings..."></textarea>
+            </div>
+        </div>
+    </div>
+
+    <div style="text-align: center; margin-top: 20px;">
+        <button class="btn btn-primary" onclick="window.print()">Print / Save PDF</button>
+        <button class="btn btn-secondary" onclick="resetForm()">Reset Form</button>
+    </div>
+
+    <script>
+        function resetForm() {
+            document.querySelectorAll('input, textarea, select').forEach(el => {
+                if (el.type === 'radio' || el.type === 'checkbox') {
+                    el.checked = false;
+                } else if (el.tagName === 'SELECT') {
+                    el.selectedIndex = 0;
+                } else {
+                    el.value = '';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

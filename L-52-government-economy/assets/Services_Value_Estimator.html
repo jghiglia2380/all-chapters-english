@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Government Services Value Estimator - PFL Academy</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background-color: #f9fafb;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+            color: white;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 0.95rem;
+        }
+
+        .content {
+            padding: 24px;
+        }
+
+        .section {
+            margin-bottom: 24px;
+        }
+
+        .section-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #4f46e5;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e5e7eb;
+        }
+
+        .services-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 16px;
+        }
+
+        .services-table th,
+        .services-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .services-table th {
+            background: #f3f4f6;
+            font-weight: 600;
+            color: #374151;
+            font-size: 0.9rem;
+        }
+
+        .services-table input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+
+        .services-table .total-row {
+            background: #eef2ff;
+            font-weight: 600;
+        }
+
+        .provider-badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .provider-state {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        .provider-local {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .provider-federal {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .results-box {
+            background: linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%);
+            border: 2px solid #6366f1;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .results-box h3 {
+            color: #4f46e5;
+            margin-bottom: 16px;
+            font-size: 1.125rem;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        @media (max-width: 600px) {
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .comparison-card {
+            background: white;
+            border-radius: 8px;
+            padding: 16px;
+            text-align: center;
+        }
+
+        .comparison-card h4 {
+            font-size: 0.85rem;
+            color: #6b7280;
+            margin-bottom: 8px;
+        }
+
+        .comparison-card .value {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .comparison-card.taxes {
+            border: 2px solid #ef4444;
+        }
+
+        .comparison-card.taxes .value {
+            color: #ef4444;
+        }
+
+        .comparison-card.services {
+            border: 2px solid #10b981;
+        }
+
+        .comparison-card.services .value {
+            color: #10b981;
+        }
+
+        .comparison-card.status {
+            border: 2px solid #6366f1;
+        }
+
+        .comparison-card.status .value {
+            color: #6366f1;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-top: 12px;
+        }
+
+        .status-recipient {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .status-contributor {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .info-box {
+            background: #eff6ff;
+            border-left: 4px solid #3b82f6;
+            padding: 12px 16px;
+            margin-bottom: 16px;
+            font-size: 0.9rem;
+            color: #1e40af;
+        }
+
+        .note-box {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 12px 16px;
+            margin-top: 16px;
+            font-size: 0.9rem;
+            color: #92400e;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 6px;
+            color: #374151;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            font-size: 0.95rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        @media (max-width: 600px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background: #6366f1;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #4f46e5;
+        }
+
+        .btn-secondary {
+            background: #e5e7eb;
+            color: #374151;
+        }
+
+        .btn-secondary:hover {
+            background: #d1d5db;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 10px;
+                font-size: 11px;
+            }
+
+            .container {
+                box-shadow: none;
+            }
+
+            .btn {
+                display: none;
+            }
+
+            .header {
+                padding: 16px;
+            }
+
+            .content {
+                padding: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Government Services Value Estimator</h1>
+            <p>Estimate the value of government services you consume - Activity 1, Part B (7 minutes)</p>
+        </div>
+
+        <div class="content">
+            <!-- Tax Input Section -->
+            <div class="section">
+                <h2 class="section-title">Your Tax Information</h2>
+                <div class="info-box">
+                    Enter your total taxes paid (from Part A) to compare against services received.
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="taxesPaid">Total Taxes Paid ($)</label>
+                        <input type="number" id="taxesPaid" value="6060" placeholder="From Tax Burden Calculator" oninput="calculateValue()">
+                    </div>
+                    <div class="form-group">
+                        <label for="state">State</label>
+                        <input type="text" id="state" placeholder="{{STATE_NAME}}" value="">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Services Value Section -->
+            <div class="section">
+                <h2 class="section-title">Government Services You Use</h2>
+                <div class="info-box">
+                    Estimate the value of each service if you had to pay for it privately.
+                </div>
+
+                <table class="services-table">
+                    <thead>
+                        <tr>
+                            <th>Service</th>
+                            <th>Provider</th>
+                            <th>Annual Value ($)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <strong>Public School (K-12)</strong>
+                                <div style="font-size: 0.8rem; color: #6b7280;">$12,000/year x 13 years = $156,000 total</div>
+                            </td>
+                            <td><span class="provider-badge provider-state">{{STATE_NAME}}</span></td>
+                            <td><input type="number" id="schools" value="12000" placeholder="What would private school cost?" oninput="calculateValue()"></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>Police Protection</strong>
+                                <div style="font-size: 0.8rem; color: #6b7280;">What would private security cost?</div>
+                            </td>
+                            <td><span class="provider-badge provider-local">Local</span></td>
+                            <td><input type="number" id="police" value="0" placeholder="Enter value" oninput="calculateValue()"></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>Fire Protection</strong>
+                                <div style="font-size: 0.8rem; color: #6b7280;">Insurance cost without fire dept?</div>
+                            </td>
+                            <td><span class="provider-badge provider-local">Local</span></td>
+                            <td><input type="number" id="fire" value="0" placeholder="Enter value" oninput="calculateValue()"></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>Roads/Highways</strong>
+                                <div style="font-size: 0.8rem; color: #6b7280;">What would tolls cost you?</div>
+                            </td>
+                            <td>
+                                <span class="provider-badge provider-state">{{STATE_NAME}}</span>
+                                <span class="provider-badge provider-federal">Federal</span>
+                            </td>
+                            <td><input type="number" id="roads" value="0" placeholder="Enter value" oninput="calculateValue()"></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>Parks and Libraries</strong>
+                                <div style="font-size: 0.8rem; color: #6b7280;">Gym, entertainment, books</div>
+                            </td>
+                            <td>
+                                <span class="provider-badge provider-local">Local</span>
+                                <span class="provider-badge provider-state">{{STATE_NAME}}</span>
+                            </td>
+                            <td><input type="number" id="parks" value="0" placeholder="Enter value" oninput="calculateValue()"></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>Public University Subsidy</strong>
+                                <div style="font-size: 0.8rem; color: #6b7280;">Difference vs. private tuition</div>
+                            </td>
+                            <td><span class="provider-badge provider-state">{{STATE_NAME}}</span></td>
+                            <td><input type="number" id="university" value="0" placeholder="If applicable" oninput="calculateValue()"></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>Other Services</strong>
+                                <div style="font-size: 0.8rem; color: #6b7280;">List: <input type="text" id="otherDesc" style="width: 150px; padding: 4px;"></div>
+                            </td>
+                            <td>Various</td>
+                            <td><input type="number" id="other" value="0" placeholder="Enter value" oninput="calculateValue()"></td>
+                        </tr>
+                        <tr class="total-row">
+                            <td colspan="2"><strong>TOTAL VALUE</strong></td>
+                            <td><strong id="totalValue">$12,000</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Calculate Button -->
+            <div class="btn-group">
+                <button class="btn btn-primary" onclick="calculateValue()">Calculate Comparison</button>
+                <button class="btn btn-secondary" onclick="resetForm()">Reset</button>
+            </div>
+
+            <!-- Results Section -->
+            <div class="results-box" id="resultsSection">
+                <h3>Net Contributor Analysis</h3>
+
+                <div class="comparison-grid">
+                    <div class="comparison-card taxes">
+                        <h4>Taxes Paid</h4>
+                        <div class="value" id="resultTaxes">$6,060</div>
+                    </div>
+                    <div class="comparison-card services">
+                        <h4>Services Value</h4>
+                        <div class="value" id="resultServices">$12,000</div>
+                    </div>
+                    <div class="comparison-card status">
+                        <h4>Net Difference</h4>
+                        <div class="value" id="resultDifference">+$5,940</div>
+                    </div>
+                </div>
+
+                <div style="text-align: center;">
+                    <span class="status-badge" id="statusBadge">Net Recipient</span>
+                    <p style="margin-top: 12px; font-size: 0.9rem; color: #6b7280;" id="statusExplanation">
+                        You receive more in government services than you pay in taxes.
+                    </p>
+                </div>
+
+                <div class="note-box">
+                    <strong>Understanding Your Status:</strong><br>
+                    - <strong>Net Recipients:</strong> Most young people (use schools, haven't paid lifetime of taxes yet)<br>
+                    - <strong>Net Contributors:</strong> As you age and earn more, you typically become a net contributor<br>
+                    - This is an <strong>intergenerational transfer</strong> - current workers fund services for youth and retirees
+                </div>
+            </div>
+
+            <!-- Print Button -->
+            <div class="btn-group">
+                <button class="btn btn-secondary" onclick="window.print()">Print Estimator</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function calculateValue() {
+            // Get taxes paid
+            const taxesPaid = parseFloat(document.getElementById('taxesPaid').value) || 0;
+
+            // Calculate total services value
+            const schools = parseFloat(document.getElementById('schools').value) || 0;
+            const police = parseFloat(document.getElementById('police').value) || 0;
+            const fire = parseFloat(document.getElementById('fire').value) || 0;
+            const roads = parseFloat(document.getElementById('roads').value) || 0;
+            const parks = parseFloat(document.getElementById('parks').value) || 0;
+            const university = parseFloat(document.getElementById('university').value) || 0;
+            const other = parseFloat(document.getElementById('other').value) || 0;
+
+            const totalServices = schools + police + fire + roads + parks + university + other;
+            const difference = totalServices - taxesPaid;
+
+            // Update table total
+            document.getElementById('totalValue').textContent = '$' + totalServices.toLocaleString();
+
+            // Update results
+            document.getElementById('resultTaxes').textContent = '$' + taxesPaid.toLocaleString();
+            document.getElementById('resultServices').textContent = '$' + totalServices.toLocaleString();
+
+            const diffText = difference >= 0 ? '+$' + difference.toLocaleString() : '-$' + Math.abs(difference).toLocaleString();
+            document.getElementById('resultDifference').textContent = diffText;
+
+            // Update status
+            const statusBadge = document.getElementById('statusBadge');
+            const statusExplanation = document.getElementById('statusExplanation');
+
+            if (totalServices > taxesPaid) {
+                statusBadge.textContent = 'Net Recipient';
+                statusBadge.className = 'status-badge status-recipient';
+                statusExplanation.textContent = 'You receive more in government services than you pay in taxes.';
+            } else if (totalServices < taxesPaid) {
+                statusBadge.textContent = 'Net Contributor';
+                statusBadge.className = 'status-badge status-contributor';
+                statusExplanation.textContent = 'You pay more in taxes than you receive in direct government services.';
+            } else {
+                statusBadge.textContent = 'Balanced';
+                statusBadge.className = 'status-badge';
+                statusBadge.style.background = '#fef3c7';
+                statusBadge.style.color = '#92400e';
+                statusExplanation.textContent = 'Your taxes paid roughly equal the services you receive.';
+            }
+        }
+
+        function resetForm() {
+            document.getElementById('taxesPaid').value = '6060';
+            document.getElementById('schools').value = '12000';
+            document.getElementById('police').value = '0';
+            document.getElementById('fire').value = '0';
+            document.getElementById('roads').value = '0';
+            document.getElementById('parks').value = '0';
+            document.getElementById('university').value = '0';
+            document.getElementById('other').value = '0';
+            document.getElementById('otherDesc').value = '';
+            calculateValue();
+        }
+
+        // Initial calculation
+        calculateValue();
+    </script>
+</body>
+</html>

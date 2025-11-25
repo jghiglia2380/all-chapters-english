@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gambling Psychology Worksheet - PFL Academy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background: #f9fafb;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+            color: white;
+            padding: 24px;
+            border-radius: 12px;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 16px;
+        }
+
+        .section {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .section h2 {
+            font-size: 18px;
+            color: #6366f1;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e5e7eb;
+        }
+
+        .section h3 {
+            font-size: 16px;
+            color: #4b5563;
+            margin-bottom: 12px;
+        }
+
+        .input-group {
+            margin-bottom: 16px;
+        }
+
+        .input-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 6px;
+            font-size: 14px;
+        }
+
+        .input-group input,
+        .input-group select,
+        .input-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 14px;
+        }
+
+        .input-group textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .checklist {
+            list-style: none;
+        }
+
+        .checklist li {
+            padding: 10px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 14px;
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        .checklist li:last-child {
+            border-bottom: none;
+        }
+
+        .checklist input[type="checkbox"] {
+            margin-top: 4px;
+        }
+
+        .warning-box {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 12px 16px;
+            border-radius: 4px;
+            margin-bottom: 16px;
+            font-size: 13px;
+        }
+
+        .warning-box strong {
+            color: #b45309;
+        }
+
+        .tip-box {
+            background: #eff6ff;
+            border-left: 4px solid #3b82f6;
+            padding: 12px 16px;
+            border-radius: 4px;
+            margin-bottom: 16px;
+            font-size: 13px;
+        }
+
+        .tip-box strong {
+            color: #3b82f6;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 16px;
+            font-size: 13px;
+        }
+
+        .comparison-table th {
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .comparison-table td {
+            padding: 10px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .comparison-table tr:hover {
+            background-color: #f9fafb;
+        }
+
+        .entertainment-card {
+            background: #f9fafb;
+            padding: 16px;
+            border-radius: 8px;
+            border-left: 4px solid #6366f1;
+            margin-bottom: 12px;
+        }
+
+        .entertainment-card h4 {
+            font-size: 14px;
+            color: #6366f1;
+            margin-bottom: 8px;
+        }
+
+        .entertainment-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 4px 0;
+            font-size: 13px;
+        }
+
+        .budget-tracker {
+            background: #f0fdf4;
+            border: 2px solid #10b981;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+
+        .budget-tracker h3 {
+            color: #059669;
+            margin-bottom: 12px;
+        }
+
+        .budget-input {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 12px;
+            margin-bottom: 8px;
+        }
+
+        .budget-total {
+            font-size: 18px;
+            font-weight: 700;
+            text-align: right;
+            padding-top: 8px;
+            border-top: 2px solid #10b981;
+        }
+
+        .scale-container {
+            margin-bottom: 16px;
+        }
+
+        .scale-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 11px;
+            color: #6b7280;
+            margin-bottom: 8px;
+        }
+
+        .scale-options {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .scale-option {
+            flex: 1;
+            text-align: center;
+        }
+
+        .scale-option input {
+            display: block;
+            margin: 0 auto 4px;
+        }
+
+        .scale-option label {
+            font-size: 12px;
+        }
+
+        .reflection-section {
+            background: #f0fdf4;
+            border-left: 4px solid #10b981;
+            padding: 16px;
+            border-radius: 8px;
+        }
+
+        .reflection-section h3 {
+            color: #059669;
+            margin-bottom: 12px;
+        }
+
+        .print-section {
+            text-align: center;
+            margin-top: 24px;
+        }
+
+        .print-btn {
+            background: #6366f1;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .print-btn:hover {
+            background: #4f46e5;
+        }
+
+        @media print {
+            body {
+                padding: 10px;
+                background: white;
+            }
+
+            .print-section {
+                display: none;
+            }
+
+            .section {
+                box-shadow: none;
+                page-break-inside: avoid;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Gambling Psychology and Responsible Practices</h1>
+            <p>Understand the psychology of gambling and develop a responsible approach</p>
+        </div>
+
+        <div class="section">
+            <h2>Part 1: Gambling as Entertainment Budget Analysis</h2>
+            <p style="font-size: 14px; color: #6b7280; margin-bottom: 16px;">Compare gambling costs to other entertainment options to understand its true cost as recreation.</p>
+
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Entertainment Activity</th>
+                        <th>Typical Cost</th>
+                        <th>Hours of Entertainment</th>
+                        <th>Cost Per Hour</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Movie Theater</td>
+                        <td>$15</td>
+                        <td>2 hours</td>
+                        <td>$7.50/hour</td>
+                    </tr>
+                    <tr>
+                        <td>Concert/Live Event</td>
+                        <td>$100</td>
+                        <td>3 hours</td>
+                        <td>$33.33/hour</td>
+                    </tr>
+                    <tr>
+                        <td>Dinner Out</td>
+                        <td>$50</td>
+                        <td>1.5 hours</td>
+                        <td>$33.33/hour</td>
+                    </tr>
+                    <tr>
+                        <td>Streaming Services (monthly)</td>
+                        <td>$15</td>
+                        <td>20 hours</td>
+                        <td>$0.75/hour</td>
+                    </tr>
+                    <tr>
+                        <td>Casino Visit (your budget)</td>
+                        <td><input type="number" id="casinoBudget" placeholder="$" style="width: 80px; padding: 4px;"></td>
+                        <td><input type="number" id="casinoHours" placeholder="hrs" style="width: 60px; padding: 4px;"></td>
+                        <td id="casinoCostPerHour">$0.00/hour</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="tip-box">
+                <strong>Key Insight:</strong> When you view gambling as entertainment with a fixed cost (like a movie ticket), you're less likely to chase losses or exceed your budget.
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Part 2: Recognize Warning Signs</h2>
+            <p style="font-size: 14px; color: #6b7280; margin-bottom: 16px;">Check off any behaviors that indicate gambling may be becoming problematic.</p>
+
+            <div class="two-column">
+                <div>
+                    <h3>Financial Warning Signs</h3>
+                    <ul class="checklist">
+                        <li><input type="checkbox"> Spending more than budgeted</li>
+                        <li><input type="checkbox"> Using money meant for bills/necessities</li>
+                        <li><input type="checkbox"> Borrowing money to gamble</li>
+                        <li><input type="checkbox"> Trying to win back losses</li>
+                        <li><input type="checkbox"> Hiding gambling expenses</li>
+                        <li><input type="checkbox"> Selling possessions to fund gambling</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Behavioral Warning Signs</h3>
+                    <ul class="checklist">
+                        <li><input type="checkbox"> Thinking about gambling constantly</li>
+                        <li><input type="checkbox"> Neglecting responsibilities</li>
+                        <li><input type="checkbox"> Lying about time or money spent</li>
+                        <li><input type="checkbox"> Feeling restless when not gambling</li>
+                        <li><input type="checkbox"> Using gambling to escape problems</li>
+                        <li><input type="checkbox"> Failed attempts to cut back</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="warning-box">
+                <strong>If you checked 2+ boxes:</strong> This may indicate a need to reassess your relationship with gambling. Consider talking to a counselor or calling the National Problem Gambling Helpline: 1-800-522-4700.
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Part 3: Responsible Gambling Plan</h2>
+            <p style="font-size: 14px; color: #6b7280; margin-bottom: 16px;">Create your personal plan for keeping gambling as safe entertainment.</p>
+
+            <div class="budget-tracker">
+                <h3>My Gambling Budget</h3>
+                <div class="budget-input">
+                    <label>Monthly Entertainment Budget Total:</label>
+                    <input type="number" id="totalEntBudget" placeholder="$0" style="width: 100px;">
+                </div>
+                <div class="budget-input">
+                    <label>Maximum % for Gambling (recommend 10-20%):</label>
+                    <input type="number" id="gamblingPercent" placeholder="%" min="0" max="100" style="width: 80px;">
+                </div>
+                <div class="budget-total">
+                    Maximum Gambling Budget: $<span id="maxGambling">0</span>/month
+                </div>
+            </div>
+
+            <div class="two-column">
+                <div class="input-group">
+                    <label>Maximum per session:</label>
+                    <input type="number" placeholder="$0" id="sessionLimit">
+                </div>
+                <div class="input-group">
+                    <label>Time limit per session:</label>
+                    <input type="text" placeholder="e.g., 2 hours">
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>My commitment when I lose my budgeted amount:</label>
+                <textarea placeholder="e.g., I will leave immediately, no exceptions. I will not use ATMs at the casino..."></textarea>
+            </div>
+
+            <div class="input-group">
+                <label>Activities I will do instead of gambling when stressed:</label>
+                <textarea placeholder="List 3-5 alternative activities for stress relief..."></textarea>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Part 4: Understanding Gambling Psychology</h2>
+            <p style="font-size: 14px; color: #6b7280; margin-bottom: 16px;">Rate your understanding of these common psychological traps.</p>
+
+            <div class="entertainment-card">
+                <h4>The Gambler's Fallacy</h4>
+                <p style="font-size: 13px; margin-bottom: 8px;">Believing that past events affect future independent outcomes (e.g., "Red is due to come up after 10 blacks").</p>
+                <div class="scale-container">
+                    <div class="scale-labels">
+                        <span>Don't understand</span>
+                        <span>Fully understand</span>
+                    </div>
+                    <div class="scale-options">
+                        <div class="scale-option"><input type="radio" name="fallacy1" value="1"><label>1</label></div>
+                        <div class="scale-option"><input type="radio" name="fallacy1" value="2"><label>2</label></div>
+                        <div class="scale-option"><input type="radio" name="fallacy1" value="3"><label>3</label></div>
+                        <div class="scale-option"><input type="radio" name="fallacy1" value="4"><label>4</label></div>
+                        <div class="scale-option"><input type="radio" name="fallacy1" value="5"><label>5</label></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="entertainment-card">
+                <h4>The Hot Hand Fallacy</h4>
+                <p style="font-size: 13px; margin-bottom: 8px;">Believing a winning streak will continue because you're "on a roll."</p>
+                <div class="scale-container">
+                    <div class="scale-labels">
+                        <span>Don't understand</span>
+                        <span>Fully understand</span>
+                    </div>
+                    <div class="scale-options">
+                        <div class="scale-option"><input type="radio" name="fallacy2" value="1"><label>1</label></div>
+                        <div class="scale-option"><input type="radio" name="fallacy2" value="2"><label>2</label></div>
+                        <div class="scale-option"><input type="radio" name="fallacy2" value="3"><label>3</label></div>
+                        <div class="scale-option"><input type="radio" name="fallacy2" value="4"><label>4</label></div>
+                        <div class="scale-option"><input type="radio" name="fallacy2" value="5"><label>5</label></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="entertainment-card">
+                <h4>Near-Miss Effect</h4>
+                <p style="font-size: 13px; margin-bottom: 8px;">Feeling encouraged by almost winning, even though near-misses don't affect future outcomes.</p>
+                <div class="scale-container">
+                    <div class="scale-labels">
+                        <span>Don't understand</span>
+                        <span>Fully understand</span>
+                    </div>
+                    <div class="scale-options">
+                        <div class="scale-option"><input type="radio" name="fallacy3" value="1"><label>1</label></div>
+                        <div class="scale-option"><input type="radio" name="fallacy3" value="2"><label>2</label></div>
+                        <div class="scale-option"><input type="radio" name="fallacy3" value="3"><label>3</label></div>
+                        <div class="scale-option"><input type="radio" name="fallacy3" value="4"><label>4</label></div>
+                        <div class="scale-option"><input type="radio" name="fallacy3" value="5"><label>5</label></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="entertainment-card">
+                <h4>Sunk Cost Fallacy</h4>
+                <p style="font-size: 13px; margin-bottom: 8px;">Continuing to gamble to try to recover money already lost, rather than accepting the loss.</p>
+                <div class="scale-container">
+                    <div class="scale-labels">
+                        <span>Don't understand</span>
+                        <span>Fully understand</span>
+                    </div>
+                    <div class="scale-options">
+                        <div class="scale-option"><input type="radio" name="fallacy4" value="1"><label>1</label></div>
+                        <div class="scale-option"><input type="radio" name="fallacy4" value="2"><label>2</label></div>
+                        <div class="scale-option"><input type="radio" name="fallacy4" value="3"><label>3</label></div>
+                        <div class="scale-option"><input type="radio" name="fallacy4" value="4"><label>4</label></div>
+                        <div class="scale-option"><input type="radio" name="fallacy4" value="5"><label>5</label></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Part 5: Scenario Analysis</h2>
+            <p style="font-size: 14px; color: #6b7280; margin-bottom: 16px;">Analyze these scenarios and identify the responsible course of action.</p>
+
+            <div class="entertainment-card">
+                <h4>Scenario 1</h4>
+                <p style="font-size: 13px; margin-bottom: 8px;">Alex went to the casino with $100 and lost it all in the first 30 minutes. They feel frustrated and consider getting more money from the ATM to win it back.</p>
+                <div class="input-group">
+                    <label>What should Alex do and why?</label>
+                    <textarea placeholder="Explain the responsible decision..."></textarea>
+                </div>
+            </div>
+
+            <div class="entertainment-card">
+                <h4>Scenario 2</h4>
+                <p style="font-size: 13px; margin-bottom: 8px;">Jamie has been winning at the slot machines for 30 minutes and is up $200 from their original $50 budget. They feel "lucky" and want to keep playing.</p>
+                <div class="input-group">
+                    <label>What should Jamie do and why?</label>
+                    <textarea placeholder="Explain the responsible decision..."></textarea>
+                </div>
+            </div>
+
+            <div class="entertainment-card">
+                <h4>Scenario 3</h4>
+                <p style="font-size: 13px; margin-bottom: 8px;">Sam's friend invites them to a weekly poker game. Sam enjoys playing but notices they've been spending more each week and staying later, even though they need to work early.</p>
+                <div class="input-group">
+                    <label>What should Sam do and why?</label>
+                    <textarea placeholder="Explain the responsible decision..."></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="section reflection-section">
+            <h3>Reflection Questions</h3>
+            <div class="input-group">
+                <label>1. Why is viewing gambling as entertainment (with a fixed cost) healthier than viewing it as a way to make money?</label>
+                <textarea placeholder="Explain your reasoning..."></textarea>
+            </div>
+            <div class="input-group">
+                <label>2. What personal strategies will you use to avoid the psychological traps of gambling?</label>
+                <textarea placeholder="List at least 3 specific strategies..."></textarea>
+            </div>
+            <div class="input-group">
+                <label>3. How would you help a friend who showed signs of problem gambling?</label>
+                <textarea placeholder="What would you say or do?"></textarea>
+            </div>
+        </div>
+
+        <div class="print-section">
+            <button class="print-btn" onclick="window.print()">Print Worksheet</button>
+        </div>
+    </div>
+
+    <script>
+        // Calculate casino cost per hour
+        function updateCasinoCost() {
+            const budget = parseFloat(document.getElementById('casinoBudget').value) || 0;
+            const hours = parseFloat(document.getElementById('casinoHours').value) || 1;
+            const costPerHour = budget / hours;
+            document.getElementById('casinoCostPerHour').textContent = '$' + costPerHour.toFixed(2) + '/hour';
+        }
+
+        // Calculate gambling budget
+        function updateGamblingBudget() {
+            const total = parseFloat(document.getElementById('totalEntBudget').value) || 0;
+            const percent = parseFloat(document.getElementById('gamblingPercent').value) || 0;
+            const maxGambling = (total * percent / 100).toFixed(2);
+            document.getElementById('maxGambling').textContent = maxGambling;
+        }
+
+        // Add event listeners
+        document.getElementById('casinoBudget').addEventListener('input', updateCasinoCost);
+        document.getElementById('casinoHours').addEventListener('input', updateCasinoCost);
+        document.getElementById('totalEntBudget').addEventListener('input', updateGamblingBudget);
+        document.getElementById('gamblingPercent').addEventListener('input', updateGamblingBudget);
+    </script>
+</body>
+</html>

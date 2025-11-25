@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Financial Strategy Worksheet - PFL Academy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background: #f9fafb;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+            color: white;
+            padding: 24px;
+            border-radius: 12px;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 16px;
+        }
+
+        .system-selector {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .system-selector h3 {
+            font-size: 18px;
+            color: #6366f1;
+            margin-bottom: 16px;
+        }
+
+        .system-tabs {
+            display: flex;
+            gap: 12px;
+        }
+
+        .system-tab {
+            flex: 1;
+            padding: 16px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .system-tab:hover {
+            border-color: #6366f1;
+        }
+
+        .system-tab.active {
+            border-color: #6366f1;
+            background: #f5f3ff;
+        }
+
+        .system-tab h4 {
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+
+        .system-tab p {
+            font-size: 11px;
+            color: #6b7280;
+        }
+
+        .recommendations-section {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .recommendations-section h3 {
+            font-size: 18px;
+            color: #6366f1;
+            margin-bottom: 16px;
+        }
+
+        .recommendation-list {
+            list-style: none;
+        }
+
+        .recommendation-item {
+            padding: 16px;
+            background: #f9fafb;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            border-left: 4px solid #6366f1;
+        }
+
+        .recommendation-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .recommendation-item h4 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #1f2937;
+        }
+
+        .recommendation-item p {
+            font-size: 13px;
+            color: #4b5563;
+        }
+
+        .priority-badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-left: 8px;
+        }
+
+        .priority-high { background: #fef2f2; color: #dc2626; }
+        .priority-medium { background: #fffbeb; color: #b45309; }
+        .priority-low { background: #ecfdf5; color: #059669; }
+
+        .strategy-worksheet {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .strategy-worksheet h3 {
+            font-size: 18px;
+            color: #6366f1;
+            margin-bottom: 16px;
+        }
+
+        .priority-input {
+            margin-bottom: 20px;
+            padding: 16px;
+            background: #f9fafb;
+            border-radius: 8px;
+        }
+
+        .priority-input:last-child {
+            margin-bottom: 0;
+        }
+
+        .priority-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            background: #6366f1;
+            color: white;
+            border-radius: 50%;
+            font-weight: 600;
+            font-size: 14px;
+            margin-right: 12px;
+        }
+
+        .priority-input label {
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .input-group {
+            margin-top: 12px;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 12px;
+            color: #6b7280;
+            margin-bottom: 4px;
+            font-weight: 500;
+        }
+
+        .input-group input,
+        .input-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 14px;
+        }
+
+        .input-group textarea {
+            min-height: 60px;
+            resize: vertical;
+        }
+
+        .input-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 12px;
+        }
+
+        .action-items {
+            background: #ecfdf5;
+            border-left: 4px solid #10b981;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 24px;
+        }
+
+        .action-items h3 {
+            font-size: 16px;
+            color: #059669;
+            margin-bottom: 12px;
+        }
+
+        .action-checklist {
+            list-style: none;
+        }
+
+        .action-checklist li {
+            padding: 8px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            font-size: 14px;
+        }
+
+        .action-checklist input[type="checkbox"] {
+            margin-top: 4px;
+        }
+
+        .print-section {
+            text-align: center;
+        }
+
+        .print-btn {
+            background: #6366f1;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .print-btn:hover {
+            background: #4f46e5;
+        }
+
+        @media print {
+            body {
+                padding: 10px;
+                background: white;
+            }
+
+            .print-section,
+            .system-selector {
+                display: none;
+            }
+
+            .recommendation-item,
+            .priority-input {
+                page-break-inside: avoid;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .system-tabs {
+                flex-direction: column;
+            }
+
+            .input-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Personal Financial Strategy Worksheet</h1>
+            <p>Develop financial strategies appropriate for your economic system</p>
+        </div>
+
+        <div class="system-selector">
+            <h3>Select Your Economic System</h3>
+            <div class="system-tabs">
+                <div class="system-tab" onclick="selectSystem('market')">
+                    <h4>Market Economy</h4>
+                    <p>High Freedom, Low Security</p>
+                </div>
+                <div class="system-tab" onclick="selectSystem('command')">
+                    <h4>Command Economy</h4>
+                    <p>Low Freedom, High Security</p>
+                </div>
+                <div class="system-tab active" onclick="selectSystem('mixed')">
+                    <h4>Mixed Economy (USA)</h4>
+                    <p>Moderate Freedom & Security</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="recommendations-section">
+            <h3>System-Specific Financial Priorities</h3>
+            <ul class="recommendation-list" id="recommendations">
+                <!-- Populated by JavaScript -->
+            </ul>
+        </div>
+
+        <div class="strategy-worksheet">
+            <h3>Your Top 3 Financial Priorities</h3>
+            <p style="font-size: 14px; color: #6b7280; margin-bottom: 16px;">Based on living in the United States (mixed economy), identify your priorities and how the economic system influences each:</p>
+
+            <div class="priority-input">
+                <span class="priority-number">1</span>
+                <label>First Priority</label>
+                <div class="input-group">
+                    <label>Financial Priority</label>
+                    <input type="text" placeholder="e.g., Build emergency fund, Maximize retirement savings, Start a business...">
+                </div>
+                <div class="input-row">
+                    <div class="input-group">
+                        <label>System Influence</label>
+                        <input type="text" placeholder="How does the mixed economy affect this?">
+                    </div>
+                    <div class="input-group">
+                        <label>Target Timeline</label>
+                        <input type="text" placeholder="e.g., 6 months, 2 years, 10 years">
+                    </div>
+                </div>
+            </div>
+
+            <div class="priority-input">
+                <span class="priority-number">2</span>
+                <label>Second Priority</label>
+                <div class="input-group">
+                    <label>Financial Priority</label>
+                    <input type="text" placeholder="e.g., Build emergency fund, Maximize retirement savings, Start a business...">
+                </div>
+                <div class="input-row">
+                    <div class="input-group">
+                        <label>System Influence</label>
+                        <input type="text" placeholder="How does the mixed economy affect this?">
+                    </div>
+                    <div class="input-group">
+                        <label>Target Timeline</label>
+                        <input type="text" placeholder="e.g., 6 months, 2 years, 10 years">
+                    </div>
+                </div>
+            </div>
+
+            <div class="priority-input">
+                <span class="priority-number">3</span>
+                <label>Third Priority</label>
+                <div class="input-group">
+                    <label>Financial Priority</label>
+                    <input type="text" placeholder="e.g., Build emergency fund, Maximize retirement savings, Start a business...">
+                </div>
+                <div class="input-row">
+                    <div class="input-group">
+                        <label>System Influence</label>
+                        <input type="text" placeholder="How does the mixed economy affect this?">
+                    </div>
+                    <div class="input-group">
+                        <label>Target Timeline</label>
+                        <input type="text" placeholder="e.g., 6 months, 2 years, 10 years">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="action-items">
+            <h3>Action Items for Mixed Economy Success</h3>
+            <ul class="action-checklist">
+                <li><input type="checkbox"> Build 3-6 month emergency fund (safety net exists but is limited)</li>
+                <li><input type="checkbox"> Maximize 401(k) employer match (free money from tax benefits)</li>
+                <li><input type="checkbox"> Research tax-advantaged accounts (Roth IRA, HSA, 529 plans)</li>
+                <li><input type="checkbox"> Develop marketable skills (market rewards talent but provides floor)</li>
+                <li><input type="checkbox"> Consider LLC for business ventures (limited liability protection)</li>
+                <li><input type="checkbox"> Stay informed about policy changes (government role constantly evolves)</li>
+                <li><input type="checkbox"> Understand Social Security benefits (plan for baseline retirement)</li>
+                <li><input type="checkbox"> Use education tax credits if pursuing additional training</li>
+            </ul>
+        </div>
+
+        <div class="print-section">
+            <button class="print-btn" onclick="window.print()">Print Worksheet</button>
+        </div>
+    </div>
+
+    <script>
+        const systemRecommendations = {
+            market: [
+                {
+                    title: 'Build Large Emergency Fund (6-12 months)',
+                    description: 'Critical because minimal safety net exists. You must self-insure against job loss, illness, and emergencies.',
+                    priority: 'high'
+                },
+                {
+                    title: 'Maximize Earning Potential',
+                    description: 'Invest heavily in education, skills, career advancement. System rewards talent and effort significantly.',
+                    priority: 'high'
+                },
+                {
+                    title: 'Save Aggressively for Retirement (20%+ of income)',
+                    description: 'Government won\'t provide retirement income. Your future depends entirely on your savings and investments.',
+                    priority: 'high'
+                },
+                {
+                    title: 'Consider Entrepreneurship',
+                    description: 'System heavily rewards risk-taking. If you have skills and ideas, starting a business offers highest upside.',
+                    priority: 'medium'
+                },
+                {
+                    title: 'Negotiate Salary Assertively',
+                    description: 'Market allows and rewards bargaining. Don\'t leave money on the table.',
+                    priority: 'medium'
+                },
+                {
+                    title: 'Stay Mobile and Flexible',
+                    description: 'Be willing to relocate for better opportunities. Geographic mobility is rewarded.',
+                    priority: 'low'
+                }
+            ],
+            command: [
+                {
+                    title: 'Acquire Scarce Goods',
+                    description: 'Money loses value when goods are unavailable. Focus on obtaining items that may become scarce.',
+                    priority: 'high'
+                },
+                {
+                    title: 'Build Political Connections',
+                    description: 'Advancement depends on party connections, not merit. Network strategically within the system.',
+                    priority: 'high'
+                },
+                {
+                    title: 'Save in Hard Assets or Foreign Currency',
+                    description: 'Local currency often loses value. Preserve wealth through tangible assets or stable foreign money.',
+                    priority: 'high'
+                },
+                {
+                    title: 'Avoid Entrepreneurship',
+                    description: 'Private business is illegal or heavily penalized. Risk of severe consequences not worth potential gain.',
+                    priority: 'medium'
+                },
+                {
+                    title: 'Work Minimally at Assigned Job',
+                    description: 'Effort is not rewarded financially. Outcome is same regardless of performance.',
+                    priority: 'low'
+                },
+                {
+                    title: 'Seek Emigration Opportunities',
+                    description: 'Better economic prospects exist elsewhere. Consider legal pathways to market economies.',
+                    priority: 'low'
+                }
+            ],
+            mixed: [
+                {
+                    title: 'Build Moderate Emergency Fund (3-6 months)',
+                    description: 'Safety net exists but is limited. Unemployment insurance and Medicaid provide backup, but personal savings still important.',
+                    priority: 'high'
+                },
+                {
+                    title: 'Use Government Programs Strategically',
+                    description: 'Maximize 401(k) tax benefits, education tax credits, financial aid, small business loans. System offers many advantages.',
+                    priority: 'high'
+                },
+                {
+                    title: 'Save Moderately for Retirement (10-15%)',
+                    description: 'Social Security provides baseline (~$1,800/month) but comfortable retirement requires personal savings.',
+                    priority: 'high'
+                },
+                {
+                    title: 'Balance Education Investment with Debt Caution',
+                    description: 'Education pays off but government may subsidize. Use financial aid and tax credits wisely.',
+                    priority: 'medium'
+                },
+                {
+                    title: 'Consider LLC-Protected Entrepreneurship',
+                    description: 'Limited liability reduces risk of business failure. Tax benefits available for small business owners.',
+                    priority: 'medium'
+                },
+                {
+                    title: 'Stay Informed About Policy Changes',
+                    description: 'Government role constantly evolves. Tax laws, healthcare policies, and regulations affect your strategy.',
+                    priority: 'low'
+                }
+            ]
+        };
+
+        function selectSystem(system) {
+            document.querySelectorAll('.system-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            event.target.closest('.system-tab').classList.add('active');
+            updateRecommendations(system);
+        }
+
+        function updateRecommendations(system) {
+            const container = document.getElementById('recommendations');
+            const recommendations = systemRecommendations[system];
+
+            container.innerHTML = recommendations.map(rec => `
+                <li class="recommendation-item">
+                    <h4>${rec.title}<span class="priority-badge priority-${rec.priority}">${rec.priority.toUpperCase()}</span></h4>
+                    <p>${rec.description}</p>
+                </li>
+            `).join('');
+        }
+
+        // Initialize with mixed economy
+        updateRecommendations('mixed');
+    </script>
+</body>
+</html>

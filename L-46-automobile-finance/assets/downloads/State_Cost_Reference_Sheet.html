@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{STATE_NAME}} Auto Cost Reference | PFL Academy</title>
+    <style>
+        :root {
+            --primary: #6366f1;
+            --secondary: #8b5cf6;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --info: #3b82f6;
+            --text: #1f2937;
+            --text-light: #6b7280;
+            --background: #ffffff;
+            --surface: #f9fafb;
+            --border: #e5e7eb;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-size: 13px;
+            line-height: 1.5;
+            color: var(--text);
+            background: var(--surface);
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 24px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .subtitle {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 24px;
+        }
+
+        .section {
+            margin-bottom: 24px;
+            page-break-inside: avoid;
+        }
+
+        h2 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--primary);
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .info-card {
+            background: var(--surface);
+            padding: 16px;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .info-label {
+            font-size: 0.75rem;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+
+        .info-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        .info-note {
+            font-size: 0.75rem;
+            color: var(--text-light);
+            margin-top: 4px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+            margin: 12px 0;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        th {
+            background: var(--surface);
+            font-weight: 600;
+        }
+
+        .highlight-box {
+            background: #fef3c7;
+            border-left: 4px solid var(--warning);
+            padding: 12px;
+            margin: 12px 0;
+            border-radius: 4px;
+            font-size: 0.85rem;
+        }
+
+        .highlight-box strong {
+            color: #92400e;
+        }
+
+        .example-box {
+            background: #ecfdf5;
+            border: 2px solid var(--success);
+            border-radius: 8px;
+            padding: 16px;
+            margin: 16px 0;
+        }
+
+        .example-box h3 {
+            color: #065f46;
+            font-size: 1rem;
+            margin-bottom: 12px;
+        }
+
+        .example-grid {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 4px;
+        }
+
+        .example-item {
+            display: contents;
+        }
+
+        .example-label {
+            padding: 6px 0;
+        }
+
+        .example-value {
+            padding: 6px 0;
+            text-align: right;
+            font-weight: 600;
+        }
+
+        .example-total {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--success);
+            padding-top: 8px;
+            border-top: 2px solid var(--success);
+            margin-top: 4px;
+        }
+
+        .resource-section {
+            background: #eff6ff;
+            padding: 16px;
+            border-radius: 8px;
+            margin-top: 16px;
+        }
+
+        .resource-section h3 {
+            color: var(--info);
+            font-size: 1rem;
+            margin-bottom: 12px;
+        }
+
+        .resource-list {
+            list-style: none;
+        }
+
+        .resource-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid #dbeafe;
+            font-size: 0.85rem;
+        }
+
+        .resource-list li:last-child {
+            border-bottom: none;
+        }
+
+        .resource-list strong {
+            color: var(--info);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .badge-yes {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .badge-no {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        footer {
+            text-align: center;
+            padding: 16px;
+            background: var(--surface);
+            font-size: 0.75rem;
+            color: var(--text-light);
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+
+            .container {
+                box-shadow: none;
+            }
+
+            .action-buttons {
+                display: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            @page {
+                margin: 0.5in;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>{{STATE_NAME}} Auto Purchase Cost Reference</h1>
+            <p class="subtitle">State-Specific Fees, Rates, and Resources</p>
+        </header>
+
+        <div class="content">
+            <!-- Taxes & Registration -->
+            <div class="section">
+                <h2>Taxes & Registration Fees</h2>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <div class="info-label">Vehicle Sales Tax</div>
+                        <div class="info-value">{{STATE_SALES_TAX}}%</div>
+                        <div class="info-note">Applied to purchase price</div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-label">Initial Registration</div>
+                        <div class="info-value">${{STATE_REGISTRATION_INITIAL}}</div>
+                        <div class="info-note">Title & registration fees</div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-label">Annual Renewal</div>
+                        <div class="info-value">${{STATE_REGISTRATION_ANNUAL}}</div>
+                        <div class="info-note">Yearly registration fee</div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-label">Inspection Required</div>
+                        <div class="info-value">
+                            <span class="badge badge-yes">Yes</span> or <span class="badge badge-no">No</span>
+                        </div>
+                        <div class="info-note">Check state requirements</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Insurance Costs -->
+            <div class="section">
+                <h2>Insurance Costs (State Averages)</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Age Group</th>
+                            <th>Monthly Premium</th>
+                            <th>Annual Cost</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>16-19 years old (Teen)</strong></td>
+                            <td><strong>${{STATE_INSURANCE_AVG_TEEN}}/mo</strong></td>
+                            <td>$<span id="teenAnnual"></span>/year</td>
+                        </tr>
+                        <tr>
+                            <td>20-25 years old</td>
+                            <td>~$180/mo</td>
+                            <td>~$2,160/year</td>
+                        </tr>
+                        <tr>
+                            <td>26-35 years old</td>
+                            <td>~$140/mo</td>
+                            <td>~$1,680/year</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="highlight-box">
+                    <strong>Note:</strong> Rates vary significantly based on driving record, vehicle type, coverage level, and location within {{STATE_NAME}}. Always compare multiple quotes.
+                </div>
+            </div>
+
+            <!-- Operating Costs -->
+            <div class="section">
+                <h2>Operating Costs</h2>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <div class="info-label">Current Gas Price</div>
+                        <div class="info-value">${{STATE_GAS_PRICE_CURRENT}}/gal</div>
+                        <div class="info-note">{{STATE_NAME}} average</div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-label">Est. Annual Fuel Cost</div>
+                        <div class="info-value" id="annualFuel">$1,543</div>
+                        <div class="info-note">12,000 mi/year @ 28 MPG</div>
+                    </div>
+                </div>
+
+                <table style="margin-top: 16px;">
+                    <thead>
+                        <tr>
+                            <th>Expense Type</th>
+                            <th>Estimated Annual Cost</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Routine Maintenance</td>
+                            <td>$800 - $1,200</td>
+                        </tr>
+                        <tr>
+                            <td>Unexpected Repairs</td>
+                            <td>$500 - $1,500</td>
+                        </tr>
+                        <tr>
+                            <td>Registration Renewal</td>
+                            <td><strong>${{STATE_REGISTRATION_ANNUAL}}</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- 6-Year Cost Example -->
+            <div class="section">
+                <h2>6-Year Total Cost Example ($25,000 Vehicle)</h2>
+                <div class="example-box">
+                    <h3>Total Cost of Ownership Calculation</h3>
+                    <div class="example-grid">
+                        <div class="example-item">
+                            <span class="example-label">Vehicle Purchase Price</span>
+                            <span class="example-value">$25,000</span>
+                        </div>
+                        <div class="example-item">
+                            <span class="example-label">Sales Tax ({{STATE_SALES_TAX}}%)</span>
+                            <span class="example-value" id="exTax">$1,500</span>
+                        </div>
+                        <div class="example-item">
+                            <span class="example-label">Initial Registration</span>
+                            <span class="example-value">${{STATE_REGISTRATION_INITIAL}}</span>
+                        </div>
+                        <div class="example-item">
+                            <span class="example-label">Registration Renewals (6 years)</span>
+                            <span class="example-value" id="exReg">$450</span>
+                        </div>
+                        <div class="example-item">
+                            <span class="example-label">Insurance (Teen rate x 72 months)</span>
+                            <span class="example-value" id="exIns">$16,920</span>
+                        </div>
+                        <div class="example-item">
+                            <span class="example-label">Fuel (12K mi/year x 6 years)</span>
+                            <span class="example-value" id="exFuel">$9,257</span>
+                        </div>
+                        <div class="example-item">
+                            <span class="example-label">Maintenance & Repairs</span>
+                            <span class="example-value">$6,000</span>
+                        </div>
+                        <div class="example-item">
+                            <span class="example-label"><strong>TOTAL 6-YEAR COST</strong></span>
+                            <span class="example-value example-total" id="exTotal">$59,627</span>
+                        </div>
+                        <div class="example-item">
+                            <span class="example-label">Less: Vehicle Value at Year 6</span>
+                            <span class="example-value" style="color: var(--success);">-$8,750</span>
+                        </div>
+                        <div class="example-item">
+                            <span class="example-label"><strong>NET COST OF OWNERSHIP</strong></span>
+                            <span class="example-value example-total" id="exNet">$50,877</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Resources -->
+            <div class="section">
+                <h2>Official Resources</h2>
+                <div class="resource-section">
+                    <h3>Helpful Links for {{STATE_NAME}}</h3>
+                    <ul class="resource-list">
+                        <li><strong>State DMV:</strong> Registration, title transfer, and fee information</li>
+                        <li><strong>Insurance Department:</strong> Compare insurance rates and file complaints</li>
+                        <li><strong>Consumer Protection:</strong> Lemon law and buyer protections</li>
+                        <li><strong>Federal Resources:</strong> Consumer Financial Protection Bureau - Auto Loans</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <button class="btn btn-primary" onclick="window.print()">Print Reference Sheet</button>
+            </div>
+        </div>
+
+        <footer>
+            <p>PFL Academy | L-46: Automobile Finance - Buying vs. Leasing</p>
+            <p style="margin-top: 8px;">Data is for educational purposes. Verify current rates with official sources before making decisions.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Parse state values with fallbacks
+        const salesTax = parseFloat('{{STATE_SALES_TAX}}') || 6.0;
+        const regAnnual = parseFloat('{{STATE_REGISTRATION_ANNUAL}}') || 75;
+        const regInitial = parseFloat('{{STATE_REGISTRATION_INITIAL}}') || 350;
+        const insuranceTeen = parseFloat('{{STATE_INSURANCE_AVG_TEEN}}') || 235;
+        const gasPrice = parseFloat('{{STATE_GAS_PRICE_CURRENT}}') || 3.50;
+
+        // Calculate derived values
+        const teenAnnual = insuranceTeen * 12;
+        const annualFuel = Math.round((12000 / 28) * gasPrice);
+
+        // 6-year example calculations
+        const exTax = 25000 * (salesTax / 100);
+        const exReg = regAnnual * 6;
+        const exIns = insuranceTeen * 72;
+        const exFuel = annualFuel * 6;
+        const exTotal = 25000 + exTax + regInitial + exReg + exIns + exFuel + 6000;
+        const exNet = exTotal - 8750;
+
+        // Update display
+        document.getElementById('teenAnnual').textContent = teenAnnual.toLocaleString();
+        document.getElementById('annualFuel').textContent = '$' + annualFuel.toLocaleString();
+        document.getElementById('exTax').textContent = '$' + exTax.toLocaleString();
+        document.getElementById('exReg').textContent = '$' + exReg.toLocaleString();
+        document.getElementById('exIns').textContent = '$' + exIns.toLocaleString();
+        document.getElementById('exFuel').textContent = '$' + exFuel.toLocaleString();
+        document.getElementById('exTotal').textContent = '$' + Math.round(exTotal).toLocaleString();
+        document.getElementById('exNet').textContent = '$' + Math.round(exNet).toLocaleString();
+    </script>
+</body>
+</html>

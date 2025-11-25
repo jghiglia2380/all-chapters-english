@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consumer Rights Database</title>
+    <!--
+    PURPOSE: Research applicable consumer protection laws for various scenarios
+    USE: Activity 2 - Consumer Rights Application (10 minutes)
+    -->
+    <style>
+        :root {
+            --primary: #6366f1;
+            --secondary: #8b5cf6;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --text: #1f2937;
+            --surface: #f9fafb;
+        }
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: var(--primary);
+            border-bottom: 3px solid var(--primary);
+            padding-bottom: 10px;
+        }
+        .search-box {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0;
+        }
+        .search-box input {
+            flex: 1;
+            padding: 12px;
+            border: 2px solid #e5e7eb;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+        .search-box select {
+            padding: 12px;
+            border: 2px solid #e5e7eb;
+            border-radius: 6px;
+            background: white;
+        }
+        .law-card {
+            background: var(--surface);
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+        .law-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+        .law-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+        .law-type {
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        .type-federal {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+        .type-state {
+            background: #fce7f3;
+            color: #9d174d;
+        }
+        .law-description {
+            margin: 10px 0;
+        }
+        .protection-list {
+            background: white;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 10px 0;
+        }
+        .protection-list h4 {
+            margin: 0 0 10px 0;
+            color: var(--success);
+        }
+        .protection-list ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        .scenario-section {
+            margin: 30px 0;
+        }
+        .scenario-card {
+            background: white;
+            border-left: 4px solid var(--warning);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 6px 6px 0;
+        }
+        .scenario-card h3 {
+            margin: 0 0 10px 0;
+            color: var(--warning);
+        }
+        .answer-section {
+            margin: 15px 0;
+        }
+        .answer-section label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .answer-section textarea {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #e5e7eb;
+            border-radius: 6px;
+            min-height: 80px;
+            font-family: inherit;
+        }
+        .quick-reference {
+            background: #f0fdf4;
+            border: 1px solid var(--success);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .quick-reference h3 {
+            color: var(--success);
+            margin-top: 0;
+        }
+        @media print {
+            .search-box { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <h1>⚖️ Consumer Rights Database</h1>
+
+    <div class="search-box">
+        <input type="text" placeholder="Search laws, rights, or protections..." id="searchInput" onkeyup="filterLaws()">
+        <select id="typeFilter" onchange="filterLaws()">
+            <option value="all">All Types</option>
+            <option value="federal">Federal</option>
+            <option value="state">State</option>
+        </select>
+    </div>
+
+    <!-- Consumer Protection Laws Database -->
+    <div id="laws-container">
+        <div class="law-card" data-type="federal" data-keywords="cooling-off cancel door-to-door sales">
+            <div class="law-header">
+                <span class="law-title">FTC Cooling-Off Rule</span>
+                <span class="law-type type-federal">Federal</span>
+            </div>
+            <div class="law-description">
+                Gives consumers 3 business days to cancel purchases over $25 made at home, workplace, or seller's temporary location.
+            </div>
+            <div class="protection-list">
+                <h4>Your Rights:</h4>
+                <ul>
+                    <li>Cancel within 3 business days</li>
+                    <li>Seller must provide cancellation form</li>
+                    <li>Full refund within 10 days of cancellation</li>
+                    <li>Applies to door-to-door sales, home parties, hotel presentations</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="law-card" data-type="federal" data-keywords="bait switch advertising false">
+            <div class="law-header">
+                <span class="law-title">FTC Act - Bait and Switch</span>
+                <span class="law-type type-federal">Federal</span>
+            </div>
+            <div class="law-description">
+                Prohibits advertising a product at a low price to lure customers, then pushing them to buy a more expensive item.
+            </div>
+            <div class="protection-list">
+                <h4>Your Rights:</h4>
+                <ul>
+                    <li>Advertised items must be available</li>
+                    <li>Sellers cannot disparage advertised items</li>
+                    <li>Report violations to FTC</li>
+                    <li>May be entitled to advertised price</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="law-card" data-type="federal" data-keywords="warranty magnuson-moss defective product">
+            <div class="law-header">
+                <span class="law-title">Magnuson-Moss Warranty Act</span>
+                <span class="law-type type-federal">Federal</span>
+            </div>
+            <div class="law-description">
+                Sets requirements for written warranties and prohibits unfair warranty practices for consumer products.
+            </div>
+            <div class="protection-list">
+                <h4>Your Rights:</h4>
+                <ul>
+                    <li>Warranties must be available before purchase</li>
+                    <li>Cannot void warranty for using non-brand parts</li>
+                    <li>Sue for breach of warranty</li>
+                    <li>Recover attorney fees if you win</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="law-card" data-type="federal" data-keywords="arbitration class action forced mandatory">
+            <div class="law-header">
+                <span class="law-title">Federal Arbitration Act</span>
+                <span class="law-type type-federal">Federal</span>
+            </div>
+            <div class="law-description">
+                Generally enforces arbitration agreements, but some states have limits. Class action waivers may be unconscionable.
+            </div>
+            <div class="protection-list">
+                <h4>Know Your Options:</h4>
+                <ul>
+                    <li>Some companies allow opt-out within 30 days</li>
+                    <li>Small claims court may still be available</li>
+                    <li>Check if state law provides additional protections</li>
+                    <li>CFPB rule may limit some financial arbitration clauses</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="law-card" data-type="state" data-keywords="lemon law car auto defective vehicle">
+            <div class="law-header">
+                <span class="law-title">State Lemon Laws</span>
+                <span class="law-type type-state">State</span>
+            </div>
+            <div class="law-description">
+                Protects buyers of vehicles with substantial defects that can't be fixed after reasonable attempts.
+            </div>
+            <div class="protection-list">
+                <h4>Typical Protections:</h4>
+                <ul>
+                    <li>Replacement or refund for defective vehicles</li>
+                    <li>Usually 3-4 repair attempts for same problem</li>
+                    <li>Or 30+ days out of service total</li>
+                    <li>Coverage varies by state - check your state's law</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="law-card" data-type="state" data-keywords="deceptive practices consumer protection unfair">
+            <div class="law-header">
+                <span class="law-title">State Consumer Protection Acts (UDAP)</span>
+                <span class="law-type type-state">State</span>
+            </div>
+            <div class="law-description">
+                Prohibits unfair or deceptive business practices. Most states allow private lawsuits with enhanced damages.
+            </div>
+            <div class="protection-list">
+                <h4>Common Protections:</h4>
+                <ul>
+                    <li>Actual damages plus additional penalties</li>
+                    <li>Attorney fee recovery</li>
+                    <li>Treble (3x) damages in some states</li>
+                    <li>Applies to most consumer transactions</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scenario Application Section -->
+    <div class="scenario-section">
+        <h2>🔍 Apply Your Knowledge</h2>
+        <p>For each scenario, identify which law(s) apply and explain how you would exercise your rights.</p>
+
+        <div class="scenario-card">
+            <h3>Scenario 1: Door-to-Door Sales</h3>
+            <p>You bought a $500 vacuum at a home demonstration last Saturday. It's now Tuesday, and you realize you can't afford it and don't really need it.</p>
+            <div class="answer-section">
+                <label>Which law applies and what should you do?</label>
+                <textarea placeholder="Identify the applicable law and explain your rights..."></textarea>
+            </div>
+        </div>
+
+        <div class="scenario-card">
+            <h3>Scenario 2: Advertised Price</h3>
+            <p>A store advertised a TV for $299, but when you arrived, they said it was "sold out" and tried to sell you a $599 model instead.</p>
+            <div class="answer-section">
+                <label>Which law applies and what should you do?</label>
+                <textarea placeholder="Identify the applicable law and explain your rights..."></textarea>
+            </div>
+        </div>
+
+        <div class="scenario-card">
+            <h3>Scenario 3: Warranty Denial</h3>
+            <p>Your laptop broke under warranty, but the manufacturer refused repair because you used a non-brand charger.</p>
+            <div class="answer-section">
+                <label>Which law applies and what should you do?</label>
+                <textarea placeholder="Identify the applicable law and explain your rights..."></textarea>
+            </div>
+        </div>
+
+        <div class="scenario-card">
+            <h3>Scenario 4: Forced Arbitration</h3>
+            <p>Your credit card company charged fraudulent fees, but the contract requires arbitration and prohibits class actions.</p>
+            <div class="answer-section">
+                <label>What are your options?</label>
+                <textarea placeholder="Explain what you can do in this situation..."></textarea>
+            </div>
+        </div>
+    </div>
+
+    <div class="quick-reference">
+        <h3>📞 Where to File Complaints</h3>
+        <ul>
+            <li><strong>FTC:</strong> reportfraud.ftc.gov</li>
+            <li><strong>CFPB:</strong> consumerfinance.gov/complaint</li>
+            <li><strong>State Attorney General:</strong> Search "[Your State] consumer protection"</li>
+            <li><strong>Better Business Bureau:</strong> bbb.org</li>
+        </ul>
+    </div>
+
+    <script>
+        function filterLaws() {
+            const search = document.getElementById('searchInput').value.toLowerCase();
+            const type = document.getElementById('typeFilter').value;
+            const cards = document.querySelectorAll('.law-card');
+
+            cards.forEach(card => {
+                const keywords = card.dataset.keywords.toLowerCase();
+                const cardType = card.dataset.type;
+                const title = card.querySelector('.law-title').textContent.toLowerCase();
+                const desc = card.querySelector('.law-description').textContent.toLowerCase();
+
+                const matchesSearch = !search ||
+                    keywords.includes(search) ||
+                    title.includes(search) ||
+                    desc.includes(search);
+                const matchesType = type === 'all' || cardType === type;
+
+                card.style.display = matchesSearch && matchesType ? 'block' : 'none';
+            });
+        }
+    </script>
+</body>
+</html>

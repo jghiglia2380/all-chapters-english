@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tax Burden Calculator - PFL Academy</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background-color: #f9fafb;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+            color: white;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 0.95rem;
+        }
+
+        .content {
+            padding: 24px;
+        }
+
+        .section {
+            margin-bottom: 24px;
+        }
+
+        .section-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #4f46e5;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e5e7eb;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 6px;
+            color: #374151;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #6366f1;
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        @media (max-width: 600px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .tax-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 16px;
+        }
+
+        .tax-table th,
+        .tax-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .tax-table th {
+            background: #f3f4f6;
+            font-weight: 600;
+            color: #374151;
+        }
+
+        .tax-table input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+
+        .tax-table .subtotal {
+            background: #eef2ff;
+            font-weight: 600;
+        }
+
+        .results-box {
+            background: linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%);
+            border: 2px solid #6366f1;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .results-box h3 {
+            color: #4f46e5;
+            margin-bottom: 16px;
+            font-size: 1.125rem;
+        }
+
+        .result-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .result-card {
+            background: white;
+            border-radius: 8px;
+            padding: 16px;
+            text-align: center;
+        }
+
+        .result-card h4 {
+            font-size: 0.85rem;
+            color: #6b7280;
+            margin-bottom: 8px;
+        }
+
+        .result-card .value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #4f46e5;
+        }
+
+        .result-card.highlight {
+            border: 2px solid #6366f1;
+        }
+
+        .result-card.highlight .value {
+            color: #dc2626;
+        }
+
+        .bar-chart {
+            margin-top: 20px;
+        }
+
+        .bar-item {
+            margin-bottom: 12px;
+        }
+
+        .bar-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 4px;
+            font-size: 0.9rem;
+        }
+
+        .bar-container {
+            background: #e5e7eb;
+            border-radius: 4px;
+            height: 24px;
+            overflow: hidden;
+        }
+
+        .bar-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.5s ease;
+        }
+
+        .bar-federal {
+            background: #6366f1;
+        }
+
+        .bar-state {
+            background: #8b5cf6;
+        }
+
+        .info-box {
+            background: #eff6ff;
+            border-left: 4px solid #3b82f6;
+            padding: 12px 16px;
+            margin-bottom: 16px;
+            font-size: 0.9rem;
+            color: #1e40af;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background: #6366f1;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #4f46e5;
+        }
+
+        .btn-secondary {
+            background: #e5e7eb;
+            color: #374151;
+        }
+
+        .btn-secondary:hover {
+            background: #d1d5db;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 10px;
+                font-size: 11px;
+            }
+
+            .container {
+                box-shadow: none;
+            }
+
+            .btn {
+                display: none;
+            }
+
+            .header {
+                padding: 16px;
+            }
+
+            .content {
+                padding: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Tax Burden Calculator</h1>
+            <p>Calculate your total tax burden from federal and state taxes - Activity 1, Part A (8 minutes)</p>
+        </div>
+
+        <div class="content">
+            <!-- Scenario Section -->
+            <div class="section">
+                <h2 class="section-title">Income Information</h2>
+                <div class="info-box">
+                    <strong>Scenario:</strong> You earn $40,000/year in {{STATE_NAME}}. Calculate your total tax burden including all federal and state taxes.
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="state">State</label>
+                        <input type="text" id="state" placeholder="{{STATE_NAME}}" value="">
+                    </div>
+                    <div class="form-group">
+                        <label for="income">Annual Income ($)</label>
+                        <input type="number" id="income" value="40000" oninput="calculateTaxes()">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Federal Taxes Section -->
+            <div class="section">
+                <h2 class="section-title">Federal Taxes</h2>
+                <table class="tax-table">
+                    <thead>
+                        <tr>
+                            <th>Tax Type</th>
+                            <th>Rate/Amount</th>
+                            <th>Annual Cost</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Federal Income Tax</td>
+                            <td>~12% bracket</td>
+                            <td><input type="number" id="fedIncome" value="3000" oninput="calculateTaxes()"></td>
+                        </tr>
+                        <tr>
+                            <td>Social Security</td>
+                            <td>6.2%</td>
+                            <td><input type="number" id="socialSecurity" value="2480" oninput="calculateTaxes()"></td>
+                        </tr>
+                        <tr>
+                            <td>Medicare</td>
+                            <td>1.45%</td>
+                            <td><input type="number" id="medicare" value="580" oninput="calculateTaxes()"></td>
+                        </tr>
+                        <tr class="subtotal">
+                            <td colspan="2"><strong>Federal Total</strong></td>
+                            <td><strong id="federalTotal">$6,060</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- State Taxes Section -->
+            <div class="section">
+                <h2 class="section-title">{{STATE_NAME}} Taxes</h2>
+                <table class="tax-table">
+                    <thead>
+                        <tr>
+                            <th>Tax Type</th>
+                            <th>Rate/Amount</th>
+                            <th>Annual Cost</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>State Income Tax</td>
+                            <td>{{STATE_TAX_STRUCTURE}}</td>
+                            <td><input type="number" id="stateIncome" placeholder="Enter amount" value="0" oninput="calculateTaxes()"></td>
+                        </tr>
+                        <tr>
+                            <td>Sales Tax (assume $10k spending)</td>
+                            <td><input type="text" id="salesRate" placeholder="__%" style="width: 60px;"> %</td>
+                            <td><input type="number" id="salesTax" placeholder="Enter amount" value="0" oninput="calculateTaxes()"></td>
+                        </tr>
+                        <tr>
+                            <td>Property Tax (if own home)</td>
+                            <td>Varies</td>
+                            <td><input type="number" id="propertyTax" placeholder="Enter amount" value="0" oninput="calculateTaxes()"></td>
+                        </tr>
+                        <tr>
+                            <td>Gas Tax (assume 500 gal/yr)</td>
+                            <td>$<input type="text" id="gasRate" placeholder="__" style="width: 50px;">/gal</td>
+                            <td><input type="number" id="gasTax" placeholder="Enter amount" value="0" oninput="calculateTaxes()"></td>
+                        </tr>
+                        <tr>
+                            <td>Other State/Local Taxes</td>
+                            <td>Various</td>
+                            <td><input type="number" id="otherTaxes" placeholder="Enter amount" value="0" oninput="calculateTaxes()"></td>
+                        </tr>
+                        <tr class="subtotal">
+                            <td colspan="2"><strong>{{STATE_NAME}} Total</strong></td>
+                            <td><strong id="stateTotal">$0</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Calculate Button -->
+            <div class="btn-group">
+                <button class="btn btn-primary" onclick="calculateTaxes()">Calculate Tax Burden</button>
+                <button class="btn btn-secondary" onclick="resetForm()">Reset</button>
+            </div>
+
+            <!-- Results Section -->
+            <div class="results-box" id="resultsSection">
+                <h3>Tax Burden Analysis</h3>
+
+                <div class="result-grid">
+                    <div class="result-card">
+                        <h4>Federal Taxes</h4>
+                        <div class="value" id="resultFederal">$6,060</div>
+                    </div>
+                    <div class="result-card">
+                        <h4>State/Local Taxes</h4>
+                        <div class="value" id="resultState">$0</div>
+                    </div>
+                    <div class="result-card highlight">
+                        <h4>Total Tax Burden</h4>
+                        <div class="value" id="resultTotal">$6,060</div>
+                    </div>
+                    <div class="result-card highlight">
+                        <h4>% of Income</h4>
+                        <div class="value" id="resultPercent">15.2%</div>
+                    </div>
+                </div>
+
+                <div class="bar-chart">
+                    <div class="bar-item">
+                        <div class="bar-label">
+                            <span>Federal Taxes</span>
+                            <span id="barFederalLabel">$6,060</span>
+                        </div>
+                        <div class="bar-container">
+                            <div class="bar-fill bar-federal" id="barFederal" style="width: 100%;"></div>
+                        </div>
+                    </div>
+                    <div class="bar-item">
+                        <div class="bar-label">
+                            <span>State/Local Taxes</span>
+                            <span id="barStateLabel">$0</span>
+                        </div>
+                        <div class="bar-container">
+                            <div class="bar-fill bar-state" id="barState" style="width: 0%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Analysis Questions -->
+            <div class="section" style="margin-top: 24px;">
+                <h2 class="section-title">Analysis Questions</h2>
+
+                <div class="form-group">
+                    <label>1. What do you get for these taxes? List 5 services you use:</label>
+                    <div style="background: #f9fafb; padding: 12px; border-radius: 6px; margin-bottom: 8px; font-size: 0.9rem;">
+                        <strong>Federal:</strong> National defense, Social Security, Medicare, roads, courts<br>
+                        <strong>State:</strong> Schools, police/fire, roads, parks, universities
+                    </div>
+                    <input type="text" placeholder="1. _______________">
+                    <input type="text" placeholder="2. _______________" style="margin-top: 8px;">
+                    <input type="text" placeholder="3. _______________" style="margin-top: 8px;">
+                    <input type="text" placeholder="4. _______________" style="margin-top: 8px;">
+                    <input type="text" placeholder="5. _______________" style="margin-top: 8px;">
+                </div>
+
+                <div class="form-group">
+                    <label>2. Are you getting good value? Do benefits exceed costs?</label>
+                    <textarea style="width: 100%; padding: 10px; border: 1px solid #d1d5db; border-radius: 6px; min-height: 80px;" placeholder="Consider whether the services you receive are worth the taxes you pay..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>3. How does {{STATE_NAME}} compare to other states?</label>
+                    <div style="background: #f9fafb; padding: 12px; border-radius: 6px; margin-bottom: 8px; font-size: 0.9rem;">
+                        <strong>High-tax states:</strong> CA, NY, NJ (more services but higher costs)<br>
+                        <strong>Low-tax states:</strong> TX, FL, TN (fewer services but lower costs)
+                    </div>
+                    <textarea style="width: 100%; padding: 10px; border: 1px solid #d1d5db; border-radius: 6px; min-height: 80px;" placeholder="Would you rather live in a high-tax or low-tax state? Why?"></textarea>
+                </div>
+            </div>
+
+            <!-- Print Button -->
+            <div class="btn-group">
+                <button class="btn btn-secondary" onclick="window.print()">Print Calculator</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function calculateTaxes() {
+            const income = parseFloat(document.getElementById('income').value) || 0;
+
+            // Federal taxes
+            const fedIncome = parseFloat(document.getElementById('fedIncome').value) || 0;
+            const socialSecurity = parseFloat(document.getElementById('socialSecurity').value) || 0;
+            const medicare = parseFloat(document.getElementById('medicare').value) || 0;
+            const federalTotal = fedIncome + socialSecurity + medicare;
+
+            // State taxes
+            const stateIncome = parseFloat(document.getElementById('stateIncome').value) || 0;
+            const salesTax = parseFloat(document.getElementById('salesTax').value) || 0;
+            const propertyTax = parseFloat(document.getElementById('propertyTax').value) || 0;
+            const gasTax = parseFloat(document.getElementById('gasTax').value) || 0;
+            const otherTaxes = parseFloat(document.getElementById('otherTaxes').value) || 0;
+            const stateTotal = stateIncome + salesTax + propertyTax + gasTax + otherTaxes;
+
+            // Total
+            const totalTaxes = federalTotal + stateTotal;
+            const percentOfIncome = income > 0 ? ((totalTaxes / income) * 100).toFixed(1) : 0;
+
+            // Update table totals
+            document.getElementById('federalTotal').textContent = '$' + federalTotal.toLocaleString();
+            document.getElementById('stateTotal').textContent = '$' + stateTotal.toLocaleString();
+
+            // Update results
+            document.getElementById('resultFederal').textContent = '$' + federalTotal.toLocaleString();
+            document.getElementById('resultState').textContent = '$' + stateTotal.toLocaleString();
+            document.getElementById('resultTotal').textContent = '$' + totalTaxes.toLocaleString();
+            document.getElementById('resultPercent').textContent = percentOfIncome + '%';
+
+            // Update bar chart
+            const maxTax = Math.max(federalTotal, stateTotal, 1);
+            document.getElementById('barFederal').style.width = ((federalTotal / maxTax) * 100) + '%';
+            document.getElementById('barState').style.width = ((stateTotal / maxTax) * 100) + '%';
+            document.getElementById('barFederalLabel').textContent = '$' + federalTotal.toLocaleString();
+            document.getElementById('barStateLabel').textContent = '$' + stateTotal.toLocaleString();
+        }
+
+        function resetForm() {
+            document.getElementById('income').value = '40000';
+            document.getElementById('fedIncome').value = '3000';
+            document.getElementById('socialSecurity').value = '2480';
+            document.getElementById('medicare').value = '580';
+            document.getElementById('stateIncome').value = '0';
+            document.getElementById('salesTax').value = '0';
+            document.getElementById('propertyTax').value = '0';
+            document.getElementById('gasTax').value = '0';
+            document.getElementById('otherTaxes').value = '0';
+            calculateTaxes();
+        }
+
+        // Initial calculation
+        calculateTaxes();
+    </script>
+</body>
+</html>

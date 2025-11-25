@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Correlation Matrix Analyzer</title>
+    <style>
+        :root {
+            --primary: #6366f1;
+            --secondary: #8b5cf6;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --info: #3b82f6;
+            --text: #1f2937;
+            --background: #ffffff;
+            --surface: #f9fafb;
+        }
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-size: 14px;
+            line-height: 1.5;
+            color: var(--text);
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+        h1 {
+            color: var(--primary);
+            font-size: 24px;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 8px;
+            margin-bottom: 15px;
+        }
+        h2 {
+            color: var(--secondary);
+            font-size: 18px;
+            margin-top: 20px;
+        }
+        .matrix-container {
+            overflow-x: auto;
+            margin: 15px 0;
+        }
+        table {
+            border-collapse: collapse;
+            font-size: 12px;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid #d1d5db;
+            padding: 6px;
+            text-align: center;
+        }
+        th {
+            background-color: var(--primary);
+            color: white;
+            font-size: 10px;
+        }
+        .row-header {
+            background-color: var(--surface);
+            font-weight: bold;
+            text-align: left;
+            font-size: 10px;
+        }
+        .high-pos { background-color: #fee2e2; }
+        .mod-pos { background-color: #fef3c7; }
+        .low { background-color: #d1fae5; }
+        .negative { background-color: #dbeafe; }
+        .legend {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin: 10px 0;
+            font-size: 12px;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .legend-box {
+            width: 20px;
+            height: 15px;
+            border: 1px solid #ccc;
+        }
+        .portfolio-builder {
+            background-color: var(--surface);
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        .allocation-row {
+            display: flex;
+            align-items: center;
+            margin: 8px 0;
+            gap: 10px;
+        }
+        .allocation-row label {
+            width: 180px;
+            font-size: 12px;
+        }
+        .allocation-row input {
+            width: 60px;
+            padding: 4px;
+            text-align: center;
+        }
+        .results {
+            background-color: #e0e7ff;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+        }
+        .result-box {
+            background: white;
+            padding: 10px;
+            border-radius: 4px;
+            text-align: center;
+        }
+        .result-value {
+            font-size: 20px;
+            font-weight: bold;
+            color: var(--primary);
+        }
+        button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 13px;
+            margin: 5px;
+        }
+        button:hover { background-color: var(--secondary); }
+        .questions {
+            background-color: #fef3c7;
+            padding: 12px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        @media print {
+            body { font-size: 10pt; }
+            button { display: none; }
+            .portfolio-builder { page-break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+    <h1>Correlation Matrix Analyzer</h1>
+    <p>Examine how different asset classes move together to build better diversified portfolios</p>
+
+    <h2>Asset Class Correlation Matrix</h2>
+    <div class="legend">
+        <div class="legend-item"><div class="legend-box high-pos"></div><span>High Positive (0.7-1.0)</span></div>
+        <div class="legend-item"><div class="legend-box mod-pos"></div><span>Moderate (0.3-0.7)</span></div>
+        <div class="legend-item"><div class="legend-box low"></div><span>Low (-0.3 to 0.3)</span></div>
+        <div class="legend-item"><div class="legend-box negative"></div><span>Negative (below -0.3)</span></div>
+    </div>
+
+    <div class="matrix-container">
+        <table id="correlationMatrix">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>US Large</th>
+                    <th>US Small</th>
+                    <th>Int'l Dev</th>
+                    <th>Emerging</th>
+                    <th>Gov Bonds</th>
+                    <th>Corp Bonds</th>
+                    <th>REITs</th>
+                    <th>Gold</th>
+                    <th>Commodities</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+    <div class="questions">
+        <strong>Analysis Questions:</strong>
+        <ol style="margin: 5px 0 0 20px; font-size: 12px;">
+            <li>Which two assets have the highest positive correlation?</li>
+            <li>Which asset pair has the lowest/negative correlation?</li>
+            <li>What's the correlation between US stocks and government bonds?</li>
+        </ol>
+    </div>
+
+    <h2>Portfolio Stress Test</h2>
+    <div class="portfolio-builder">
+        <strong>Build a Portfolio (must total 100%):</strong>
+        <div id="allocationInputs"></div>
+        <div style="margin-top: 10px;">
+            <button onclick="testPortfolio()">Test Portfolio</button>
+            <button onclick="loadPreset('A')">Portfolio A: 100% Stocks</button>
+            <button onclick="loadPreset('B')">Portfolio B: 50/50</button>
+            <button onclick="loadPreset('C')">Portfolio C: Diversified</button>
+        </div>
+    </div>
+
+    <div class="results" id="results" style="display: none;">
+        <h2 style="margin-top: 0;">Portfolio Analysis Results</h2>
+        <div class="results-grid">
+            <div class="result-box">
+                <div>Avg Annual Return</div>
+                <div class="result-value" id="avgReturn">-</div>
+            </div>
+            <div class="result-box">
+                <div>Volatility (Std Dev)</div>
+                <div class="result-value" id="volatility">-</div>
+            </div>
+            <div class="result-box">
+                <div>Max Drawdown</div>
+                <div class="result-value" id="maxDrawdown">-</div>
+            </div>
+            <div class="result-box">
+                <div>Sharpe Ratio</div>
+                <div class="result-value" id="sharpe">-</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const assets = [
+            'US Large-Cap', 'US Small-Cap', 'Int\'l Developed', 'Emerging Markets',
+            'Gov Bonds', 'Corp Bonds', 'REITs', 'Gold', 'Commodities'
+        ];
+
+        // Historical correlation data (approximate)
+        const correlations = [
+            [1.00, 0.88, 0.85, 0.78, -0.05, 0.25, 0.72, 0.05, 0.35],
+            [0.88, 1.00, 0.80, 0.75, -0.08, 0.22, 0.75, 0.08, 0.40],
+            [0.85, 0.80, 1.00, 0.82, 0.02, 0.28, 0.68, 0.15, 0.42],
+            [0.78, 0.75, 0.82, 1.00, 0.05, 0.30, 0.65, 0.18, 0.48],
+            [-0.05, -0.08, 0.02, 0.05, 1.00, 0.75, 0.15, 0.25, 0.08],
+            [0.25, 0.22, 0.28, 0.30, 0.75, 1.00, 0.35, 0.12, 0.18],
+            [0.72, 0.75, 0.68, 0.65, 0.15, 0.35, 1.00, 0.10, 0.25],
+            [0.05, 0.08, 0.15, 0.18, 0.25, 0.12, 0.10, 1.00, 0.35],
+            [0.35, 0.40, 0.42, 0.48, 0.08, 0.18, 0.25, 0.35, 1.00]
+        ];
+
+        // Expected returns and volatility (historical approximations)
+        const assetData = {
+            'US Large-Cap': { return: 10.5, vol: 15.5, maxDD: -37 },
+            'US Small-Cap': { return: 11.5, vol: 19.5, maxDD: -45 },
+            'Int\'l Developed': { return: 8.5, vol: 17.0, maxDD: -43 },
+            'Emerging Markets': { return: 10.0, vol: 23.0, maxDD: -55 },
+            'Gov Bonds': { return: 5.0, vol: 5.5, maxDD: -8 },
+            'Corp Bonds': { return: 6.5, vol: 7.5, maxDD: -15 },
+            'REITs': { return: 9.5, vol: 18.5, maxDD: -42 },
+            'Gold': { return: 7.0, vol: 15.0, maxDD: -28 },
+            'Commodities': { return: 5.5, vol: 18.0, maxDD: -50 }
+        };
+
+        // Build correlation matrix
+        function buildMatrix() {
+            const tbody = document.querySelector('#correlationMatrix tbody');
+            const shortNames = ['US Large', 'US Small', 'Int\'l Dev', 'Emerging', 'Gov Bonds', 'Corp Bonds', 'REITs', 'Gold', 'Commod.'];
+
+            for (let i = 0; i < assets.length; i++) {
+                const row = document.createElement('tr');
+                row.innerHTML = `<td class="row-header">${shortNames[i]}</td>`;
+
+                for (let j = 0; j < assets.length; j++) {
+                    const corr = correlations[i][j];
+                    let className = '';
+                    if (corr >= 0.7) className = 'high-pos';
+                    else if (corr >= 0.3) className = 'mod-pos';
+                    else if (corr >= -0.3) className = 'low';
+                    else className = 'negative';
+
+                    row.innerHTML += `<td class="${className}">${corr.toFixed(2)}</td>`;
+                }
+                tbody.appendChild(row);
+            }
+        }
+
+        // Build allocation inputs
+        function buildInputs() {
+            const container = document.getElementById('allocationInputs');
+            assets.forEach(asset => {
+                container.innerHTML += `
+                    <div class="allocation-row">
+                        <label>${asset}:</label>
+                        <input type="number" id="alloc-${asset.replace(/[^a-zA-Z]/g, '')}" min="0" max="100" value="0">%
+                    </div>
+                `;
+            });
+        }
+
+        function loadPreset(type) {
+            const presets = {
+                'A': [100, 0, 0, 0, 0, 0, 0, 0, 0],
+                'B': [50, 0, 0, 0, 50, 0, 0, 0, 0],
+                'C': [40, 0, 20, 0, 20, 0, 10, 10, 0]
+            };
+            assets.forEach((asset, i) => {
+                document.getElementById(`alloc-${asset.replace(/[^a-zA-Z]/g, '')}`).value = presets[type][i];
+            });
+        }
+
+        function testPortfolio() {
+            const allocations = assets.map(asset =>
+                parseFloat(document.getElementById(`alloc-${asset.replace(/[^a-zA-Z]/g, '')}`).value) || 0
+            );
+
+            const total = allocations.reduce((a, b) => a + b, 0);
+            if (Math.abs(total - 100) > 0.01) {
+                alert(`Allocations must total 100%. Current: ${total}%`);
+                return;
+            }
+
+            // Calculate portfolio metrics
+            let portReturn = 0, portVol = 0, portDD = 0;
+            allocations.forEach((alloc, i) => {
+                const weight = alloc / 100;
+                portReturn += weight * assetData[assets[i]].return;
+                portVol += weight * assetData[assets[i]].vol * 0.7; // Simplified
+                portDD = Math.min(portDD, assetData[assets[i]].maxDD * weight * 1.2);
+            });
+
+            // Diversification benefit
+            const numAssets = allocations.filter(a => a > 0).length;
+            if (numAssets > 1) portVol *= (0.85 - numAssets * 0.02);
+
+            const sharpe = ((portReturn - 3) / portVol).toFixed(2);
+
+            document.getElementById('avgReturn').textContent = portReturn.toFixed(1) + '%';
+            document.getElementById('volatility').textContent = portVol.toFixed(1) + '%';
+            document.getElementById('maxDrawdown').textContent = portDD.toFixed(0) + '%';
+            document.getElementById('sharpe').textContent = sharpe;
+            document.getElementById('results').style.display = 'block';
+        }
+
+        buildMatrix();
+        buildInputs();
+    </script>
+</body>
+</html>

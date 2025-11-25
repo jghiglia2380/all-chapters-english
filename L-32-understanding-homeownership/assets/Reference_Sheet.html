@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homeownership Reference | PFL Academy</title>
+    <style>
+        :root {
+            --primary: #6366f1;
+            --text: #1f2937;
+            --text-light: #6b7280;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-size: 14px;
+            line-height: 1.5;
+            color: var(--text);
+            padding: 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid var(--primary);
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        .concept-box {
+            background-color: #f9fafb;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .concept-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        .definition {
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .example-box {
+            background-color: #e0f2fe;
+            padding: 10px;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+
+        .formula-box {
+            background-color: #fef3c7;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .formula {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary);
+            font-family: monospace;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .label {
+            font-weight: 600;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+
+        th, td {
+            border: 1px solid #e5e7eb;
+            padding: 8px;
+            text-align: left;
+            font-size: 0.9rem;
+        }
+
+        th {
+            background-color: #f3f4f6;
+        }
+
+        @media print {
+            body {
+                padding: 10px;
+                font-size: 11px;
+            }
+
+            .concept-box {
+                break-inside: avoid;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Chapter 32: Understanding Homeownership</h1>
+        <p style="color: var(--text-light);">Key concepts for home buying and mortgages</p>
+    </header>
+
+    <div class="concept-box">
+        <div class="concept-title">KEY TERMS</div>
+
+        <div style="margin-bottom: 10px;">
+            <div class="label">Mortgage</div>
+            <div>A loan specifically for purchasing real estate, where the property serves as collateral</div>
+        </div>
+
+        <div style="margin-bottom: 10px;">
+            <div class="label">Down Payment</div>
+            <div>Initial upfront payment toward purchase price, typically 3-20%</div>
+        </div>
+
+        <div style="margin-bottom: 10px;">
+            <div class="label">Principal</div>
+            <div>The original loan amount borrowed to buy a home</div>
+        </div>
+
+        <div style="margin-bottom: 10px;">
+            <div class="label">Interest</div>
+            <div>The cost of borrowing money, expressed as a percentage</div>
+        </div>
+
+        <div style="margin-bottom: 10px;">
+            <div class="label">Escrow</div>
+            <div>Account managed by lender to collect and pay property taxes and insurance</div>
+        </div>
+
+        <div style="margin-bottom: 10px;">
+            <div class="label">PMI (Private Mortgage Insurance)</div>
+            <div>Insurance required when down payment is less than 20%, protects the lender</div>
+        </div>
+
+        <div style="margin-bottom: 10px;">
+            <div class="label">Home Equity</div>
+            <div>The difference between home's market value and amount owed on mortgage</div>
+        </div>
+    </div>
+
+    <div class="concept-box">
+        <div class="concept-title">TYPES OF MORTGAGES</div>
+
+        <table>
+            <tr>
+                <th>Type</th>
+                <th>Down Payment</th>
+                <th>Best For</th>
+            </tr>
+            <tr>
+                <td><strong>Conventional</strong></td>
+                <td>3-20%</td>
+                <td>Good credit (620+), stable income</td>
+            </tr>
+            <tr>
+                <td><strong>FHA</strong></td>
+                <td>3.5%</td>
+                <td>First-time buyers, lower credit (580+)</td>
+            </tr>
+            <tr>
+                <td><strong>VA</strong></td>
+                <td>0%</td>
+                <td>Military/veterans</td>
+            </tr>
+            <tr>
+                <td><strong>USDA</strong></td>
+                <td>0%</td>
+                <td>Rural areas, income limits apply</td>
+            </tr>
+            <tr>
+                <td><strong>Jumbo</strong></td>
+                <td>10-20%</td>
+                <td>High-priced homes, excellent credit (700+)</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="grid">
+        <div class="concept-box">
+            <div class="concept-title">Fixed-Rate Mortgage</div>
+            <div>Interest rate stays the same for entire loan term</div>
+            <ul style="margin-left: 20px; margin-top: 10px;">
+                <li>Predictable monthly payments</li>
+                <li>Common terms: 15, 20, 30 years</li>
+                <li>Higher initial rates than ARMs</li>
+                <li>Best when rates are low</li>
+            </ul>
+        </div>
+
+        <div class="concept-box">
+            <div class="concept-title">Adjustable-Rate Mortgage (ARM)</div>
+            <div>Interest rate changes after initial fixed period</div>
+            <ul style="margin-left: 20px; margin-top: 10px;">
+                <li>Lower initial rates</li>
+                <li>5/1 ARM = fixed 5 years, adjusts annually</li>
+                <li>Risk of payment increases</li>
+                <li>Best if moving/refinancing soon</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="concept-box">
+        <div class="concept-title">PITI - MONTHLY MORTGAGE PAYMENT</div>
+
+        <div class="formula-box">
+            <div class="formula">P + I + T + I = Total Monthly Payment</div>
+        </div>
+
+        <div class="grid">
+            <div>
+                <div class="label">P - Principal</div>
+                <div style="font-size: 0.9rem;">Portion that pays down your loan balance</div>
+            </div>
+            <div>
+                <div class="label">I - Interest</div>
+                <div style="font-size: 0.9rem;">Cost of borrowing money</div>
+            </div>
+            <div>
+                <div class="label">T - Taxes</div>
+                <div style="font-size: 0.9rem;">Property taxes (held in escrow)</div>
+            </div>
+            <div>
+                <div class="label">I - Insurance</div>
+                <div style="font-size: 0.9rem;">Homeowner's insurance + PMI if applicable</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="concept-box">
+        <div class="concept-title">TRUE COSTS OF HOMEOWNERSHIP</div>
+
+        <div class="grid">
+            <div>
+                <div class="label">Upfront Costs:</div>
+                <ul style="margin-left: 20px; font-size: 0.9rem;">
+                    <li>Down payment (3-20%)</li>
+                    <li>Closing costs (2-5%)</li>
+                    <li>Moving expenses</li>
+                    <li>Initial repairs/furniture</li>
+                </ul>
+            </div>
+
+            <div>
+                <div class="label">Ongoing Costs:</div>
+                <ul style="margin-left: 20px; font-size: 0.9rem;">
+                    <li>Mortgage payment (PITI)</li>
+                    <li>Utilities</li>
+                    <li>Maintenance (1% of home value/year)</li>
+                    <li>HOA fees (if applicable)</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="example-box">
+            <strong>Example:</strong> For a $300,000 home with 10% down:
+            <ul style="margin-left: 20px; margin-top: 5px;">
+                <li>Down payment: $30,000</li>
+                <li>Closing costs (3%): $9,000</li>
+                <li>Total upfront: $39,000+</li>
+                <li>Annual maintenance: ~$3,000</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="concept-box">
+        <div class="concept-title">HOME BUYING PROCESS</div>
+
+        <ol style="margin-left: 20px;">
+            <li><strong>Financial Preparation</strong> (6-12 months before)
+                <div style="font-size: 0.85rem; color: var(--text-light);">Improve credit, save for down payment, reduce debt</div>
+            </li>
+            <li><strong>Get Pre-Approved</strong> (1-2 months before)
+                <div style="font-size: 0.85rem; color: var(--text-light);">Submit documents, get pre-approval letter</div>
+            </li>
+            <li><strong>House Hunt</strong>
+                <div style="font-size: 0.85rem; color: var(--text-light);">Work with agent, view properties</div>
+            </li>
+            <li><strong>Make an Offer</strong>
+                <div style="font-size: 0.85rem; color: var(--text-light);">Negotiate price, include contingencies</div>
+            </li>
+            <li><strong>Inspection & Appraisal</strong>
+                <div style="font-size: 0.85rem; color: var(--text-light);">Professional inspection, lender appraisal</div>
+            </li>
+            <li><strong>Closing</strong>
+                <div style="font-size: 0.85rem; color: var(--text-light);">Sign documents, pay closing costs, get keys</div>
+            </li>
+        </ol>
+    </div>
+
+    <div class="grid">
+        <div class="concept-box">
+            <div class="concept-title">Benefits of Homeownership</div>
+            <ul style="margin-left: 20px;">
+                <li>Building equity over time</li>
+                <li>Potential appreciation</li>
+                <li>Tax deductions</li>
+                <li>Stability and control</li>
+                <li>Fixed housing costs (fixed-rate)</li>
+            </ul>
+        </div>
+
+        <div class="concept-box">
+            <div class="concept-title">Challenges of Homeownership</div>
+            <ul style="margin-left: 20px;">
+                <li>Limited liquidity</li>
+                <li>Market risk</li>
+                <li>Maintenance burden</li>
+                <li>Reduced mobility</li>
+                <li>Unexpected repair costs</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="concept-box">
+        <div class="concept-title">FINANCIAL READINESS CHECKLIST</div>
+
+        <table>
+            <tr>
+                <th>Factor</th>
+                <th>Recommended</th>
+            </tr>
+            <tr>
+                <td>Credit Score</td>
+                <td>620+ (conventional), 580+ (FHA)</td>
+            </tr>
+            <tr>
+                <td>Debt-to-Income Ratio</td>
+                <td>Below 36% (ideally)</td>
+            </tr>
+            <tr>
+                <td>Down Payment</td>
+                <td>3-20% saved</td>
+            </tr>
+            <tr>
+                <td>Emergency Fund</td>
+                <td>3-6 months expenses (separate)</td>
+            </tr>
+            <tr>
+                <td>Employment History</td>
+                <td>2+ years stable income</td>
+            </tr>
+            <tr>
+                <td>Geographic Stability</td>
+                <td>Plan to stay 3-5+ years</td>
+            </tr>
+        </table>
+    </div>
+
+    <div style="margin-top: 20px; padding: 15px; background-color: #f0f9ff; border-radius: 6px; border-left: 4px solid #3b82f6;">
+        <strong>Key Takeaway:</strong> Homeownership is a major financial decision that requires careful consideration of your finances, lifestyle, and market conditions. Understanding all costs beyond the purchase price and ensuring you're truly ready will help you make a decision that aligns with your long-term goals.
+    </div>
+</body>
+</html>

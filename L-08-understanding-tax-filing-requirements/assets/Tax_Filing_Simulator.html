@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tax Filing Simulator - PFL Academy</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background: #f9fafb;
+            padding: 20px;
+        }
+        .container { max-width: 900px; margin: 0 auto; }
+        .header {
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+            color: white;
+            padding: 24px;
+            border-radius: 12px;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+        .header h1 { font-size: 28px; font-weight: 700; margin-bottom: 8px; }
+        .header p { opacity: 0.9; font-size: 16px; }
+        .progress-bar {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 24px;
+            padding: 0 10px;
+        }
+        .progress-step {
+            flex: 1;
+            text-align: center;
+            position: relative;
+        }
+        .progress-step::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 50%;
+            width: 100%;
+            height: 3px;
+            background: #e5e7eb;
+        }
+        .progress-step:last-child::before { display: none; }
+        .step-circle {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: #e5e7eb;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 14px;
+            position: relative;
+            z-index: 1;
+        }
+        .step-circle.active { background: #6366f1; color: white; }
+        .step-circle.complete { background: #10b981; color: white; }
+        .step-label { font-size: 11px; margin-top: 4px; color: #6b7280; }
+        .form-section {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            margin-bottom: 24px;
+            display: none;
+        }
+        .form-section.active { display: block; }
+        .form-section h3 { font-size: 18px; color: #6366f1; margin-bottom: 16px; }
+        .input-group { margin-bottom: 16px; }
+        .input-group label { display: block; font-weight: 600; font-size: 14px; margin-bottom: 8px; }
+        .input-group input, .input-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+        .input-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        .info-box {
+            background: #eff6ff;
+            border-left: 4px solid #3b82f6;
+            padding: 12px;
+            margin: 16px 0;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+        .requirement-check { display: flex; align-items: center; gap: 8px; margin: 8px 0; font-size: 13px; }
+        .requirement-check input { width: auto; }
+        .nav-buttons { display: flex; justify-content: space-between; margin-top: 20px; }
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        .btn-primary { background: #6366f1; color: white; }
+        .btn-secondary { background: #e5e7eb; color: #374151; }
+        .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .results-section {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        .results-section h3 { font-size: 18px; color: #6366f1; margin-bottom: 16px; }
+        .result-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 20px; }
+        .result-item { background: #f9fafb; padding: 12px; border-radius: 8px; text-align: center; }
+        .result-value { font-size: 20px; font-weight: 700; margin-bottom: 4px; }
+        .result-value.refund { color: #10b981; }
+        .result-value.owe { color: #ef4444; }
+        .result-label { font-size: 11px; color: #6b7280; }
+        .filing-status {
+            background: #ecfdf5;
+            border: 2px solid #10b981;
+            padding: 16px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .filing-status h4 { color: #059669; margin-bottom: 8px; }
+        .deadline-alert {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 12px;
+            border-radius: 4px;
+            margin-top: 16px;
+        }
+        @media print { .nav-buttons { display: none; } body { background: white; } }
+        @media (max-width: 768px) { .input-row, .result-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Tax Filing Simulator</h1>
+            <p>Practice determining your filing requirements and obligations</p>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress-step">
+                <div class="step-circle active" id="step1">1</div>
+                <div class="step-label">Personal Info</div>
+            </div>
+            <div class="progress-step">
+                <div class="step-circle" id="step2">2</div>
+                <div class="step-label">Income</div>
+            </div>
+            <div class="progress-step">
+                <div class="step-circle" id="step3">3</div>
+                <div class="step-label">Filing Status</div>
+            </div>
+            <div class="progress-step">
+                <div class="step-circle" id="step4">4</div>
+                <div class="step-label">Results</div>
+            </div>
+        </div>
+
+        <!-- Step 1: Personal Information -->
+        <div class="form-section active" id="section1">
+            <h3>Step 1: Personal Information</h3>
+            <div class="input-row">
+                <div class="input-group">
+                    <label>Your Age</label>
+                    <input type="number" id="age" value="22" min="0" max="120">
+                </div>
+                <div class="input-group">
+                    <label>Are you a dependent?</label>
+                    <select id="dependent">
+                        <option value="no">No - I support myself</option>
+                        <option value="yes">Yes - Someone claims me</option>
+                    </select>
+                </div>
+            </div>
+            <div class="input-group">
+                <label>Are you blind or disabled?</label>
+                <select id="blind">
+                    <option value="no">No</option>
+                    <option value="yes">Yes</option>
+                </select>
+            </div>
+            <div class="info-box">
+                <strong>Why this matters:</strong> Your age and dependency status affect filing thresholds and which forms you can use.
+            </div>
+            <div class="nav-buttons">
+                <button class="btn btn-secondary" disabled>Previous</button>
+                <button class="btn btn-primary" onclick="nextStep(1)">Next</button>
+            </div>
+        </div>
+
+        <!-- Step 2: Income -->
+        <div class="form-section" id="section2">
+            <h3>Step 2: Income Sources</h3>
+            <div class="input-row">
+                <div class="input-group">
+                    <label>Wages (W-2 Income) ($)</label>
+                    <input type="number" id="wages" value="35000" step="1000">
+                </div>
+                <div class="input-group">
+                    <label>Self-Employment Income ($)</label>
+                    <input type="number" id="selfEmployment" value="0" step="100">
+                </div>
+            </div>
+            <div class="input-row">
+                <div class="input-group">
+                    <label>Interest & Dividends ($)</label>
+                    <input type="number" id="interest" value="50" step="10">
+                </div>
+                <div class="input-group">
+                    <label>Other Income ($)</label>
+                    <input type="number" id="other" value="0" step="100">
+                </div>
+            </div>
+            <div class="input-group">
+                <label>Federal Tax Withheld (from W-2) ($)</label>
+                <input type="number" id="withheld" value="4200" step="100">
+            </div>
+            <div class="info-box">
+                <strong>Filing Thresholds (2024):</strong> Single under 65: $14,600 | Single 65+: $16,550 | Married Filing Jointly: $29,200
+            </div>
+            <div class="nav-buttons">
+                <button class="btn btn-secondary" onclick="prevStep(2)">Previous</button>
+                <button class="btn btn-primary" onclick="nextStep(2)">Next</button>
+            </div>
+        </div>
+
+        <!-- Step 3: Filing Status -->
+        <div class="form-section" id="section3">
+            <h3>Step 3: Filing Status Determination</h3>
+            <div class="input-group">
+                <label>Marital Status (as of Dec 31)</label>
+                <select id="marital">
+                    <option value="single">Single / Never Married</option>
+                    <option value="married">Married</option>
+                    <option value="divorced">Divorced / Legally Separated</option>
+                    <option value="widowed">Widowed</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label>Do you have dependents?</label>
+                <select id="hasDependents">
+                    <option value="no">No</option>
+                    <option value="yes">Yes</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label>Did you pay more than half the cost of maintaining a home for a qualifying person?</label>
+                <select id="headHousehold">
+                    <option value="no">No</option>
+                    <option value="yes">Yes</option>
+                </select>
+            </div>
+            <div class="info-box">
+                <strong>Filing Status Options:</strong> Single, Married Filing Jointly, Married Filing Separately, Head of Household, Qualifying Surviving Spouse
+            </div>
+            <div class="nav-buttons">
+                <button class="btn btn-secondary" onclick="prevStep(3)">Previous</button>
+                <button class="btn btn-primary" onclick="calculateResults()">Calculate Results</button>
+            </div>
+        </div>
+
+        <!-- Step 4: Results -->
+        <div class="form-section" id="section4">
+            <h3>Your Tax Filing Summary</h3>
+
+            <div class="filing-status">
+                <h4>Recommended Filing Status</h4>
+                <div style="font-size: 20px; font-weight: 700;" id="filingStatus">Single</div>
+            </div>
+
+            <div class="result-grid" style="margin-top: 20px;">
+                <div class="result-item">
+                    <div class="result-value" id="totalIncome">$35,050</div>
+                    <div class="result-label">Gross Income</div>
+                </div>
+                <div class="result-item">
+                    <div class="result-value" id="taxableIncome">$20,450</div>
+                    <div class="result-label">Taxable Income</div>
+                </div>
+                <div class="result-item">
+                    <div class="result-value" id="taxLiability">$2,134</div>
+                    <div class="result-label">Tax Liability</div>
+                </div>
+            </div>
+
+            <div class="result-grid">
+                <div class="result-item">
+                    <div class="result-value" id="withheldAmount">$4,200</div>
+                    <div class="result-label">Tax Withheld</div>
+                </div>
+                <div class="result-item">
+                    <div class="result-value refund" id="refundOwe">$2,066</div>
+                    <div class="result-label" id="refundOweLabel">Refund</div>
+                </div>
+                <div class="result-item">
+                    <div class="result-value" id="mustFile">YES</div>
+                    <div class="result-label">Must File?</div>
+                </div>
+            </div>
+
+            <div class="deadline-alert">
+                <strong>⚠️ Important Deadlines:</strong>
+                <ul style="margin: 8px 0 0 20px; font-size: 12px;">
+                    <li>Federal return due: April 15, 2025</li>
+                    <li>Extension deadline: October 15, 2025</li>
+                    <li>Q1 Estimated taxes (if needed): April 15</li>
+                </ul>
+            </div>
+
+            <div class="nav-buttons">
+                <button class="btn btn-secondary" onclick="prevStep(4)">Start Over</button>
+                <button class="btn btn-primary" onclick="window.print()">Print Summary</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentStep = 1;
+
+        function updateProgress() {
+            for (let i = 1; i <= 4; i++) {
+                const circle = document.getElementById('step' + i);
+                circle.classList.remove('active', 'complete');
+                if (i < currentStep) circle.classList.add('complete');
+                else if (i === currentStep) circle.classList.add('active');
+            }
+        }
+
+        function nextStep(step) {
+            document.getElementById('section' + step).classList.remove('active');
+            document.getElementById('section' + (step + 1)).classList.add('active');
+            currentStep = step + 1;
+            updateProgress();
+        }
+
+        function prevStep(step) {
+            document.getElementById('section' + step).classList.remove('active');
+            document.getElementById('section' + (step - 1)).classList.add('active');
+            currentStep = step - 1;
+            updateProgress();
+        }
+
+        function calculateResults() {
+            const age = parseInt(document.getElementById('age').value) || 22;
+            const isDependent = document.getElementById('dependent').value === 'yes';
+            const wages = parseFloat(document.getElementById('wages').value) || 0;
+            const selfEmployment = parseFloat(document.getElementById('selfEmployment').value) || 0;
+            const interest = parseFloat(document.getElementById('interest').value) || 0;
+            const other = parseFloat(document.getElementById('other').value) || 0;
+            const withheld = parseFloat(document.getElementById('withheld').value) || 0;
+            const marital = document.getElementById('marital').value;
+            const hasDependents = document.getElementById('hasDependents').value === 'yes';
+            const headHousehold = document.getElementById('headHousehold').value === 'yes';
+
+            const totalIncome = wages + selfEmployment + interest + other;
+
+            // Determine filing status
+            let filingStatus = 'Single';
+            let standardDeduction = 14600;
+
+            if (marital === 'married') {
+                filingStatus = 'Married Filing Jointly';
+                standardDeduction = 29200;
+            } else if ((marital === 'single' || marital === 'divorced') && hasDependents && headHousehold) {
+                filingStatus = 'Head of Household';
+                standardDeduction = 21900;
+            } else if (marital === 'widowed' && hasDependents) {
+                filingStatus = 'Qualifying Surviving Spouse';
+                standardDeduction = 29200;
+            }
+
+            // Calculate taxable income
+            const taxableIncome = Math.max(0, totalIncome - standardDeduction);
+
+            // Calculate tax (simplified single brackets)
+            let tax = 0;
+            if (filingStatus === 'Single' || filingStatus === 'Married Filing Separately') {
+                if (taxableIncome <= 11600) tax = taxableIncome * 0.10;
+                else if (taxableIncome <= 47150) tax = 1160 + (taxableIncome - 11600) * 0.12;
+                else if (taxableIncome <= 100525) tax = 5426 + (taxableIncome - 47150) * 0.22;
+                else tax = 17168 + (taxableIncome - 100525) * 0.24;
+            } else {
+                // Simplified for MFJ/HoH
+                if (taxableIncome <= 23200) tax = taxableIncome * 0.10;
+                else if (taxableIncome <= 94300) tax = 2320 + (taxableIncome - 23200) * 0.12;
+                else tax = 10852 + (taxableIncome - 94300) * 0.22;
+            }
+
+            // Self-employment tax
+            if (selfEmployment > 400) {
+                tax += selfEmployment * 0.153 * 0.9235;
+            }
+
+            const refundOwe = withheld - tax;
+
+            // Must file determination
+            let mustFile = 'NO';
+            const threshold = age >= 65 ? 16550 : 14600;
+            if (totalIncome >= threshold || selfEmployment >= 400 || withheld > 0) {
+                mustFile = 'YES';
+            }
+
+            // Update display
+            document.getElementById('filingStatus').textContent = filingStatus;
+            document.getElementById('totalIncome').textContent = '$' + totalIncome.toLocaleString();
+            document.getElementById('taxableIncome').textContent = '$' + taxableIncome.toLocaleString();
+            document.getElementById('taxLiability').textContent = '$' + Math.round(tax).toLocaleString();
+            document.getElementById('withheldAmount').textContent = '$' + withheld.toLocaleString();
+
+            const refundOweEl = document.getElementById('refundOwe');
+            const refundOweLabelEl = document.getElementById('refundOweLabel');
+            if (refundOwe >= 0) {
+                refundOweEl.textContent = '$' + Math.round(refundOwe).toLocaleString();
+                refundOweEl.className = 'result-value refund';
+                refundOweLabelEl.textContent = 'Refund';
+            } else {
+                refundOweEl.textContent = '$' + Math.round(Math.abs(refundOwe)).toLocaleString();
+                refundOweEl.className = 'result-value owe';
+                refundOweLabelEl.textContent = 'Amount Owed';
+            }
+
+            document.getElementById('mustFile').textContent = mustFile;
+            document.getElementById('mustFile').style.color = mustFile === 'YES' ? '#6366f1' : '#10b981';
+
+            nextStep(3);
+        }
+    </script>
+</body>
+</html>

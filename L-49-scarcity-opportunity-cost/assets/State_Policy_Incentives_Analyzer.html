@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>State Policy Incentives Analyzer - PFL Academy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background-color: #f9fafb;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+            color: white;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 24px;
+        }
+
+        .section {
+            margin-bottom: 24px;
+        }
+
+        .section-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #4f46e5;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e5e7eb;
+        }
+
+        .objective-box {
+            background: #eef2ff;
+            border: 2px solid #6366f1;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 20px;
+        }
+
+        .objective-box h3 {
+            color: #4f46e5;
+            margin-bottom: 8px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 16px;
+            font-size: 0.9rem;
+        }
+
+        th, td {
+            padding: 10px 8px;
+            text-align: left;
+            border: 1px solid #e5e7eb;
+            vertical-align: top;
+        }
+
+        th {
+            background: #f3f4f6;
+            font-weight: 600;
+            color: #374151;
+        }
+
+        .policy-area {
+            background: #eef2ff;
+            font-weight: 600;
+            color: #4f46e5;
+        }
+
+        .example-row {
+            background: #f9fafb;
+            font-style: italic;
+            color: #6b7280;
+        }
+
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 6px 8px;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+            font-size: 0.85rem;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 50px;
+        }
+
+        .analysis-section {
+            background: #fef3c7;
+            border: 2px solid #f59e0b;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 24px;
+        }
+
+        .analysis-section h3 {
+            color: #92400e;
+            margin-bottom: 16px;
+        }
+
+        .analysis-question {
+            margin-bottom: 20px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #fcd34d;
+        }
+
+        .analysis-question:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .analysis-question h4 {
+            color: #78350f;
+            margin-bottom: 12px;
+            font-size: 1rem;
+        }
+
+        .analysis-question p {
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+            color: #78350f;
+        }
+
+        .application-section {
+            background: #f0fdf4;
+            border: 2px solid #86efac;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 24px;
+        }
+
+        .application-section h3 {
+            color: #166534;
+            margin-bottom: 16px;
+        }
+
+        .application-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .application-table th {
+            background: #166534;
+            color: white;
+        }
+
+        .application-table td {
+            padding: 12px;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 16px;
+            background: #f9fafb;
+            border-top: 1px solid #e5e7eb;
+            font-size: 0.85rem;
+            color: #6b7280;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 10px;
+            }
+
+            .container {
+                box-shadow: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            table {
+                font-size: 0.8rem;
+            }
+
+            th, td {
+                padding: 6px 4px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>State Policy Incentives Analyzer</h1>
+            <p>Analyze how government policies create incentives that affect your personal finance</p>
+        </div>
+
+        <div class="content">
+            <div class="objective-box">
+                <h3>Objective</h3>
+                <p>Understand how state government creates incentives in education, housing, employment, environment, and retirement that affect your personal financial decisions. Learn to identify and leverage these policies to your advantage.</p>
+            </div>
+
+            <div class="section">
+                <div class="section-title">Part A: Identify State Incentive Policies</div>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width: 15%;">Policy Area</th>
+                            <th style="width: 20%;">Incentive Mechanism</th>
+                            <th style="width: 25%;">Behavior It Encourages</th>
+                            <th style="width: 40%;">How It Affects YOU</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="policy-area">
+                            <td colspan="4">Education</td>
+                        </tr>
+                        <tr class="example-row">
+                            <td>Example</td>
+                            <td>529 plan tax deductions</td>
+                            <td>Save for college in tax-advantaged accounts</td>
+                            <td>Lower college costs, tax savings for family</td>
+                        </tr>
+                        <tr>
+                            <td>Your State</td>
+                            <td><input type="text" placeholder="Tax credit, scholarship, grant..."></td>
+                            <td><input type="text" placeholder="What behavior does it encourage?"></td>
+                            <td><input type="text" placeholder="How does this affect your education plans?"></td>
+                        </tr>
+                        <tr class="policy-area">
+                            <td colspan="4">Housing</td>
+                        </tr>
+                        <tr class="example-row">
+                            <td>Example</td>
+                            <td>First-time homebuyer programs</td>
+                            <td>Down payment assistance, lower rates</td>
+                            <td>Makes homeownership more accessible</td>
+                        </tr>
+                        <tr>
+                            <td>Your State</td>
+                            <td><input type="text" placeholder="Assistance program, tax benefit..."></td>
+                            <td><input type="text" placeholder="What behavior does it encourage?"></td>
+                            <td><input type="text" placeholder="How does this affect your housing plans?"></td>
+                        </tr>
+                        <tr class="policy-area">
+                            <td colspan="4">Employment</td>
+                        </tr>
+                        <tr class="example-row">
+                            <td>Example</td>
+                            <td>Minimum wage laws</td>
+                            <td>Wage floor for workers</td>
+                            <td>Affects your earnings potential</td>
+                        </tr>
+                        <tr>
+                            <td>Your State</td>
+                            <td><input type="text" placeholder="Your state's minimum wage..."></td>
+                            <td><input type="text" placeholder="What behavior does it encourage?"></td>
+                            <td><input type="text" placeholder="How does this affect your job prospects?"></td>
+                        </tr>
+                        <tr class="policy-area">
+                            <td colspan="4">Environment/Energy</td>
+                        </tr>
+                        <tr class="example-row">
+                            <td>Example</td>
+                            <td>Electric vehicle tax credit</td>
+                            <td>Purchase electric vehicles</td>
+                            <td>Reduces cost of EV purchase</td>
+                        </tr>
+                        <tr>
+                            <td>Your State</td>
+                            <td><input type="text" placeholder="Rebate, tax credit, incentive..."></td>
+                            <td><input type="text" placeholder="What behavior does it encourage?"></td>
+                            <td><input type="text" placeholder="How might this affect your future purchases?"></td>
+                        </tr>
+                        <tr class="policy-area">
+                            <td colspan="4">Retirement</td>
+                        </tr>
+                        <tr class="example-row">
+                            <td>Example</td>
+                            <td>State retirement savings program</td>
+                            <td>Auto-enrollment, tax benefits</td>
+                            <td>Easier to save, tax advantages</td>
+                        </tr>
+                        <tr>
+                            <td>Your State</td>
+                            <td><input type="text" placeholder="IRA, pension, savings program..."></td>
+                            <td><input type="text" placeholder="What behavior does it encourage?"></td>
+                            <td><input type="text" placeholder="How will this affect your retirement planning?"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="analysis-section">
+                <h3>Part B: Analysis Questions</h3>
+
+                <div class="analysis-question">
+                    <h4>1. Unintended Consequences</h4>
+                    <p>Consider your state's minimum wage policy:</p>
+                    <p><strong>Intended effect:</strong> Higher income for workers</p>
+                    <p><strong>Possible unintended effects:</strong></p>
+                    <textarea placeholder="e.g., fewer entry-level jobs, reduced hours, automation, higher prices..."></textarea>
+                    <p style="margin-top: 8px;"><strong>How might this affect your job opportunities or hours available?</strong></p>
+                    <textarea placeholder="Your analysis..."></textarea>
+                </div>
+
+                <div class="analysis-question">
+                    <h4>2. Tax Incentives</h4>
+                    <p>Research tax incentives available in your state (education, homeownership, retirement):</p>
+                    <p><strong>Who benefits most from these incentives?</strong></p>
+                    <textarea placeholder="e.g., higher income families who can afford to save, homeowners vs renters..."></textarea>
+                    <p style="margin-top: 8px;"><strong>What's the opportunity cost for your state?</strong></p>
+                    <textarea placeholder="What does the state give up in tax revenue? What else could that money fund?"></textarea>
+                    <p style="margin-top: 8px;"><strong>Should you take advantage of these incentives? How?</strong></p>
+                    <textarea placeholder="Your plan to leverage state incentives..."></textarea>
+                </div>
+
+                <div class="analysis-question">
+                    <h4>3. Trade-offs</h4>
+                    <p>Every incentive has an opportunity cost for the government. Money spent on one program can't be spent on another.</p>
+                    <p><strong>If you were a policymaker in your state, what would you prioritize? Why?</strong></p>
+                    <textarea placeholder="Consider education funding, housing assistance, job training, environmental programs..."></textarea>
+                </div>
+            </div>
+
+            <div class="application-section">
+                <h3>Part C: Personal Application</h3>
+                <p style="margin-bottom: 16px; font-weight: 600; color: #166534;">How can you use your state's incentive policies to your advantage?</p>
+
+                <table class="application-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 25%;">Your Goal</th>
+                            <th style="width: 35%;">State Incentive to Leverage</th>
+                            <th style="width: 40%;">Action You'll Take</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="example-row">
+                            <td>Example: Buy first home</td>
+                            <td>First-time homebuyer program</td>
+                            <td>Research eligibility, save for down payment</td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" placeholder="Your goal 1"></td>
+                            <td><input type="text" placeholder="State program or incentive"></td>
+                            <td><input type="text" placeholder="Specific steps you'll take"></td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" placeholder="Your goal 2"></td>
+                            <td><input type="text" placeholder="State program or incentive"></td>
+                            <td><input type="text" placeholder="Specific steps you'll take"></td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" placeholder="Your goal 3"></td>
+                            <td><input type="text" placeholder="State program or incentive"></td>
+                            <td><input type="text" placeholder="Specific steps you'll take"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div style="margin-top: 24px; padding: 16px; background: #f9fafb; border-radius: 8px;">
+                <h4 style="color: #4f46e5; margin-bottom: 12px;">Research Tips</h4>
+                <ul style="margin-left: 20px; color: #6b7280;">
+                    <li>Visit your state's official government website for current programs</li>
+                    <li>Search for "[Your State] first-time homebuyer programs"</li>
+                    <li>Check your state's department of education for scholarship opportunities</li>
+                    <li>Look up "[Your State] 529 plan" for education savings benefits</li>
+                    <li>Research "[Your State] minimum wage 2024" for current rates</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer">
+            PFL Academy - L-49: Scarcity, Opportunity Cost, and Incentives | Activity 4
+        </div>
+    </div>
+</body>
+</html>

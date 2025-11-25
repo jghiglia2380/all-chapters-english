@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brokerage Platform Comparison Tool</title>
+    <style>
+        :root { --primary: #6366f1; --secondary: #8b5cf6; --success: #10b981; --warning: #f59e0b; --danger: #ef4444; }
+        body { font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 14px; line-height: 1.5; color: #1f2937; max-width: 900px; margin: 0 auto; padding: 15px; }
+        h1 { color: var(--primary); font-size: 24px; border-bottom: 2px solid var(--primary); padding-bottom: 8px; }
+        h2 { color: var(--secondary); font-size: 18px; margin-top: 20px; }
+        .priorities { background: #e0e7ff; padding: 15px; border-radius: 5px; margin: 15px 0; }
+        .priority-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin: 10px 0; }
+        .priority-item { background: white; padding: 10px; border-radius: 4px; }
+        .priority-item label { display: flex; align-items: center; gap: 8px; font-size: 13px; }
+        .comparison-table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 12px; }
+        .comparison-table th, .comparison-table td { border: 1px solid #d1d5db; padding: 8px; text-align: center; }
+        .comparison-table th { background: var(--primary); color: white; }
+        .comparison-table tr:nth-child(even) { background: #f9fafb; }
+        .highlight { background: #fef3c7 !important; }
+        .best { color: var(--success); font-weight: bold; }
+        .worst { color: var(--danger); }
+        .recommendation { background: #d1fae5; padding: 15px; border-radius: 5px; margin: 15px 0; border: 1px solid var(--success); }
+        .notes { background: #f9fafb; padding: 15px; border-radius: 5px; margin: 15px 0; }
+        textarea { width: 100%; padding: 8px; border: 1px solid #d1d5db; border-radius: 4px; min-height: 80px; box-sizing: border-box; }
+        button { background: var(--primary); color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; margin: 5px; }
+        button:hover { background: var(--secondary); }
+        @media print { body { font-size: 10pt; } button { display: none; } .comparison-table { font-size: 9pt; } }
+    </style>
+</head>
+<body>
+    <h1>Brokerage Platform Comparison Tool</h1>
+    <p>Compare major brokerage platforms based on your investment priorities</p>
+
+    <div class="priorities">
+        <h2 style="margin-top: 0;">Select Your Top Priorities</h2>
+        <p style="font-size: 12px;">Check the features that matter most to you:</p>
+        <div class="priority-grid">
+            <div class="priority-item"><label><input type="checkbox" id="pLowCost" onchange="updateHighlights()"> Low/No Commissions</label></div>
+            <div class="priority-item"><label><input type="checkbox" id="pResearch" onchange="updateHighlights()"> Research Tools</label></div>
+            <div class="priority-item"><label><input type="checkbox" id="pMobile" onchange="updateHighlights()"> Mobile App Quality</label></div>
+            <div class="priority-item"><label><input type="checkbox" id="pEducation" onchange="updateHighlights()"> Education Resources</label></div>
+            <div class="priority-item"><label><input type="checkbox" id="pFractional" onchange="updateHighlights()"> Fractional Shares</label></div>
+            <div class="priority-item"><label><input type="checkbox" id="pCustomer" onchange="updateHighlights()"> Customer Service</label></div>
+        </div>
+        <button onclick="getRecommendation()">Get Personalized Recommendation</button>
+    </div>
+
+    <h2>Platform Comparison</h2>
+    <table class="comparison-table">
+        <thead>
+            <tr>
+                <th>Feature</th>
+                <th>Fidelity</th>
+                <th>Charles Schwab</th>
+                <th>Vanguard</th>
+                <th>E*TRADE</th>
+                <th>Robinhood</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr id="row-cost">
+                <td><strong>Stock/ETF Commission</strong></td>
+                <td class="best">$0</td>
+                <td class="best">$0</td>
+                <td class="best">$0</td>
+                <td class="best">$0</td>
+                <td class="best">$0</td>
+            </tr>
+            <tr id="row-options">
+                <td><strong>Options Contract Fee</strong></td>
+                <td>$0.65</td>
+                <td>$0.65</td>
+                <td>$1.00</td>
+                <td>$0.65</td>
+                <td class="best">$0</td>
+            </tr>
+            <tr id="row-minimum">
+                <td><strong>Account Minimum</strong></td>
+                <td class="best">$0</td>
+                <td class="best">$0</td>
+                <td class="best">$0</td>
+                <td class="best">$0</td>
+                <td class="best">$0</td>
+            </tr>
+            <tr id="row-research">
+                <td><strong>Research Quality</strong></td>
+                <td class="best">Excellent</td>
+                <td class="best">Excellent</td>
+                <td>Good</td>
+                <td>Very Good</td>
+                <td class="worst">Basic</td>
+            </tr>
+            <tr id="row-mobile">
+                <td><strong>Mobile App Rating</strong></td>
+                <td>4.7/5</td>
+                <td>4.6/5</td>
+                <td>4.5/5</td>
+                <td>4.5/5</td>
+                <td class="best">4.8/5</td>
+            </tr>
+            <tr id="row-education">
+                <td><strong>Education Resources</strong></td>
+                <td class="best">Extensive</td>
+                <td class="best">Extensive</td>
+                <td>Good</td>
+                <td>Very Good</td>
+                <td class="worst">Limited</td>
+            </tr>
+            <tr id="row-fractional">
+                <td><strong>Fractional Shares</strong></td>
+                <td class="best">Yes</td>
+                <td class="best">Yes</td>
+                <td>ETFs only</td>
+                <td class="best">Yes</td>
+                <td class="best">Yes</td>
+            </tr>
+            <tr id="row-customer">
+                <td><strong>Customer Service</strong></td>
+                <td class="best">24/7 Phone</td>
+                <td class="best">24/7 Phone</td>
+                <td>Business Hours</td>
+                <td>24/7 Phone</td>
+                <td class="worst">Email Only</td>
+            </tr>
+            <tr id="row-ira">
+                <td><strong>IRA Options</strong></td>
+                <td class="best">All Types</td>
+                <td class="best">All Types</td>
+                <td class="best">All Types</td>
+                <td class="best">All Types</td>
+                <td>Traditional/Roth</td>
+            </tr>
+            <tr>
+                <td><strong>Best For</strong></td>
+                <td>Overall</td>
+                <td>Full Service</td>
+                <td>Index Funds</td>
+                <td>Active Traders</td>
+                <td>Beginners</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="recommendation" id="recommendation" style="display: none;">
+        <h2 style="margin-top: 0;">📊 Your Personalized Recommendation</h2>
+        <p id="recText"></p>
+    </div>
+
+    <div class="notes">
+        <h2 style="margin-top: 0;">Your Research Notes</h2>
+        <p><strong>Which platform interests you most and why?</strong></p>
+        <textarea id="notes1" placeholder="Based on my priorities, I'm most interested in..."></textarea>
+        <p><strong>What questions do you still have about these platforms?</strong></p>
+        <textarea id="notes2" placeholder="I want to learn more about..."></textarea>
+    </div>
+
+    <script>
+        function updateHighlights() {
+            // Remove all highlights
+            document.querySelectorAll('.comparison-table tr').forEach(row => {
+                row.classList.remove('highlight');
+            });
+
+            // Add highlights based on priorities
+            if (document.getElementById('pLowCost').checked) {
+                document.getElementById('row-cost').classList.add('highlight');
+                document.getElementById('row-options').classList.add('highlight');
+            }
+            if (document.getElementById('pResearch').checked) {
+                document.getElementById('row-research').classList.add('highlight');
+            }
+            if (document.getElementById('pMobile').checked) {
+                document.getElementById('row-mobile').classList.add('highlight');
+            }
+            if (document.getElementById('pEducation').checked) {
+                document.getElementById('row-education').classList.add('highlight');
+            }
+            if (document.getElementById('pFractional').checked) {
+                document.getElementById('row-fractional').classList.add('highlight');
+            }
+            if (document.getElementById('pCustomer').checked) {
+                document.getElementById('row-customer').classList.add('highlight');
+            }
+        }
+
+        function getRecommendation() {
+            const scores = {
+                'Fidelity': 0,
+                'Charles Schwab': 0,
+                'Vanguard': 0,
+                'E*TRADE': 0,
+                'Robinhood': 0
+            };
+
+            if (document.getElementById('pLowCost').checked) {
+                scores['Robinhood'] += 2; // Best for options
+                scores['Fidelity'] += 1;
+                scores['Charles Schwab'] += 1;
+            }
+            if (document.getElementById('pResearch').checked) {
+                scores['Fidelity'] += 2;
+                scores['Charles Schwab'] += 2;
+                scores['E*TRADE'] += 1;
+            }
+            if (document.getElementById('pMobile').checked) {
+                scores['Robinhood'] += 2;
+                scores['Fidelity'] += 1;
+            }
+            if (document.getElementById('pEducation').checked) {
+                scores['Fidelity'] += 2;
+                scores['Charles Schwab'] += 2;
+                scores['E*TRADE'] += 1;
+            }
+            if (document.getElementById('pFractional').checked) {
+                scores['Fidelity'] += 1;
+                scores['Charles Schwab'] += 1;
+                scores['Robinhood'] += 1;
+                scores['E*TRADE'] += 1;
+            }
+            if (document.getElementById('pCustomer').checked) {
+                scores['Fidelity'] += 2;
+                scores['Charles Schwab'] += 2;
+                scores['E*TRADE'] += 1;
+            }
+
+            // Find best match
+            let best = 'Fidelity';
+            let bestScore = scores['Fidelity'];
+            for (const [platform, score] of Object.entries(scores)) {
+                if (score > bestScore) {
+                    best = platform;
+                    bestScore = score;
+                }
+            }
+
+            const reasons = {
+                'Fidelity': 'offers excellent research tools, extensive educational resources, top-tier customer service, and no commissions - making it ideal for serious investors who want comprehensive support.',
+                'Charles Schwab': 'provides a full-service experience with excellent research, education, and 24/7 customer support - perfect for investors who want robust tools and reliable service.',
+                'Vanguard': 'is best known for low-cost index funds and a long-term investing philosophy - ideal for passive investors focused on building wealth over time.',
+                'E*TRADE': 'offers strong research tools and an excellent platform for active traders, with good educational resources and customer service.',
+                'Robinhood': 'has the best mobile app experience and zero options fees - great for beginners who want a simple, commission-free way to start investing.'
+            };
+
+            document.getElementById('recText').innerHTML = `Based on your priorities, <strong>${best}</strong> appears to be your best match. This platform ${reasons[best]}`;
+            document.getElementById('recommendation').style.display = 'block';
+        }
+    </script>
+</body>
+</html>

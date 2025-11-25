@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interest Rate Personal Finance Calculator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-size: 2rem;
+            color: #6366f1;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #6b7280;
+        }
+
+        .rate-control {
+            background: #f0f9ff;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .rate-label {
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #1e40af;
+        }
+
+        .rate-display {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #6366f1;
+            margin-bottom: 15px;
+        }
+
+        .rate-slider {
+            width: 100%;
+            max-width: 400px;
+        }
+
+        input[type="range"] {
+            width: 100%;
+            height: 8px;
+            border-radius: 4px;
+            background: #e5e7eb;
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #6366f1;
+            cursor: pointer;
+        }
+
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .impact-card {
+            background: #f9fafb;
+            padding: 20px;
+            border-radius: 12px;
+            border: 2px solid #e5e7eb;
+        }
+
+        .impact-card h3 {
+            font-size: 1rem;
+            color: #374151;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .impact-icon {
+            font-size: 1.3rem;
+        }
+
+        .impact-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .impact-row:last-child {
+            border-bottom: none;
+        }
+
+        .impact-label {
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+
+        .impact-value {
+            font-weight: 600;
+            color: #1f2937;
+        }
+
+        .impact-change {
+            font-size: 0.85rem;
+            margin-left: 5px;
+        }
+
+        .change-up { color: #dc2626; }
+        .change-down { color: #059669; }
+
+        .summary-box {
+            background: #fef3c7;
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid #f59e0b;
+        }
+
+        .summary-box h3 {
+            font-size: 1rem;
+            color: #92400e;
+            margin-bottom: 10px;
+        }
+
+        .summary-box p {
+            color: #78350f;
+            font-size: 0.95rem;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #e5e7eb;
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .container {
+                box-shadow: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            .rate-display {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Interest Rate Impact Calculator</h1>
+            <p class="subtitle">See how Fed rate changes affect your personal finances</p>
+        </header>
+
+        <div class="rate-control">
+            <div class="rate-label">Federal Funds Rate</div>
+            <div class="rate-display" id="rateDisplay">5.25%</div>
+            <input type="range" class="rate-slider" min="0" max="10" step="0.25" value="5.25" oninput="updateImpacts()">
+            <div style="display: flex; justify-content: space-between; max-width: 400px; margin: 10px auto 0; font-size: 0.85rem; color: #6b7280;">
+                <span>0%</span>
+                <span>5%</span>
+                <span>10%</span>
+            </div>
+        </div>
+
+        <div class="impact-grid">
+            <div class="impact-card">
+                <h3><span class="impact-icon">🏠</span> Mortgage (30-year)</h3>
+                <div class="impact-row">
+                    <span class="impact-label">Rate</span>
+                    <span class="impact-value" id="mortgageRate">7.0%</span>
+                </div>
+                <div class="impact-row">
+                    <span class="impact-label">Monthly ($300K loan)</span>
+                    <span class="impact-value" id="mortgagePayment">$1,996</span>
+                </div>
+                <div class="impact-row">
+                    <span class="impact-label">Total Interest</span>
+                    <span class="impact-value" id="mortgageInterest">$418,527</span>
+                </div>
+            </div>
+
+            <div class="impact-card">
+                <h3><span class="impact-icon">🚗</span> Auto Loan (5-year)</h3>
+                <div class="impact-row">
+                    <span class="impact-label">Rate</span>
+                    <span class="impact-value" id="autoRate">7.5%</span>
+                </div>
+                <div class="impact-row">
+                    <span class="impact-label">Monthly ($30K loan)</span>
+                    <span class="impact-value" id="autoPayment">$601</span>
+                </div>
+                <div class="impact-row">
+                    <span class="impact-label">Total Interest</span>
+                    <span class="impact-value" id="autoInterest">$6,045</span>
+                </div>
+            </div>
+
+            <div class="impact-card">
+                <h3><span class="impact-icon">💳</span> Credit Card</h3>
+                <div class="impact-row">
+                    <span class="impact-label">APR</span>
+                    <span class="impact-value" id="creditRate">22.0%</span>
+                </div>
+                <div class="impact-row">
+                    <span class="impact-label">Monthly Interest ($5K)</span>
+                    <span class="impact-value" id="creditInterest">$92</span>
+                </div>
+                <div class="impact-row">
+                    <span class="impact-label">Annual Cost</span>
+                    <span class="impact-value" id="creditAnnual">$1,100</span>
+                </div>
+            </div>
+
+            <div class="impact-card">
+                <h3><span class="impact-icon">💰</span> Savings Account</h3>
+                <div class="impact-row">
+                    <span class="impact-label">APY</span>
+                    <span class="impact-value" id="savingsRate">4.5%</span>
+                </div>
+                <div class="impact-row">
+                    <span class="impact-label">Annual Earnings ($10K)</span>
+                    <span class="impact-value" id="savingsEarnings">$450</span>
+                </div>
+                <div class="impact-row">
+                    <span class="impact-label">5-Year Growth</span>
+                    <span class="impact-value" id="savingsGrowth">$2,462</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="summary-box">
+            <h3>Key Takeaway</h3>
+            <p id="summaryText">At the current rate, borrowing is expensive but savings earn meaningful returns. Higher rates help savers but hurt borrowers with variable-rate debt.</p>
+        </div>
+
+        <footer>
+            <p><strong>PFL Academy</strong> | Fiscal and Monetary Policy</p>
+        </footer>
+    </div>
+
+    <script>
+        function updateImpacts() {
+            const fedRate = parseFloat(document.querySelector('input[type="range"]').value);
+            document.getElementById('rateDisplay').textContent = fedRate.toFixed(2) + '%';
+
+            // Mortgage: typically Fed rate + 1.5-2%
+            const mortgageRate = fedRate + 1.75;
+            const mortgageMonthly = calculateMortgage(300000, mortgageRate, 30);
+            const mortgageTotal = (mortgageMonthly * 360) - 300000;
+
+            // Auto: typically Fed rate + 2-3%
+            const autoRate = fedRate + 2.25;
+            const autoMonthly = calculateMortgage(30000, autoRate, 5);
+            const autoTotal = (autoMonthly * 60) - 30000;
+
+            // Credit Card: typically Fed rate + 15-18%
+            const creditRate = fedRate + 16.75;
+            const creditMonthly = 5000 * (creditRate / 100 / 12);
+            const creditAnnual = creditMonthly * 12;
+
+            // Savings: typically Fed rate - 0.5-1%
+            const savingsRate = Math.max(0, fedRate - 0.75);
+            const savingsAnnual = 10000 * (savingsRate / 100);
+            const savings5Year = 10000 * Math.pow(1 + savingsRate / 100, 5) - 10000;
+
+            document.getElementById('mortgageRate').textContent = mortgageRate.toFixed(1) + '%';
+            document.getElementById('mortgagePayment').textContent = '$' + Math.round(mortgageMonthly).toLocaleString();
+            document.getElementById('mortgageInterest').textContent = '$' + Math.round(mortgageTotal).toLocaleString();
+
+            document.getElementById('autoRate').textContent = autoRate.toFixed(1) + '%';
+            document.getElementById('autoPayment').textContent = '$' + Math.round(autoMonthly).toLocaleString();
+            document.getElementById('autoInterest').textContent = '$' + Math.round(autoTotal).toLocaleString();
+
+            document.getElementById('creditRate').textContent = creditRate.toFixed(1) + '%';
+            document.getElementById('creditInterest').textContent = '$' + Math.round(creditMonthly);
+            document.getElementById('creditAnnual').textContent = '$' + Math.round(creditAnnual).toLocaleString();
+
+            document.getElementById('savingsRate').textContent = savingsRate.toFixed(1) + '%';
+            document.getElementById('savingsEarnings').textContent = '$' + Math.round(savingsAnnual);
+            document.getElementById('savingsGrowth').textContent = '$' + Math.round(savings5Year).toLocaleString();
+
+            // Update summary
+            let summary = '';
+            if (fedRate < 2) {
+                summary = 'Low rates make borrowing cheap—great for homebuyers and car loans. But savers earn almost nothing. Consider investing rather than keeping cash in savings.';
+            } else if (fedRate < 5) {
+                summary = 'Moderate rates balance borrowing costs with savings returns. A good time for both taking on reasonable debt and building savings.';
+            } else {
+                summary = 'High rates make borrowing expensive—pay down variable-rate debt quickly. The upside: savings accounts and CDs offer attractive returns.';
+            }
+            document.getElementById('summaryText').textContent = summary;
+        }
+
+        function calculateMortgage(principal, annualRate, years) {
+            const monthlyRate = annualRate / 100 / 12;
+            const numPayments = years * 12;
+            return principal * (monthlyRate * Math.pow(1 + monthlyRate, numPayments)) / (Math.pow(1 + monthlyRate, numPayments) - 1);
+        }
+    </script>
+</body>
+</html>

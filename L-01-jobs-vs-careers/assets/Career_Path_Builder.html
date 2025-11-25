@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career Path Builder - PFL Academy</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background: #f9fafb;
+            padding: 20px;
+        }
+        .container { max-width: 1100px; margin: 0 auto; }
+        .header {
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+            color: white;
+            padding: 24px;
+            border-radius: 12px;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+        .header h1 { font-size: 28px; font-weight: 700; margin-bottom: 8px; }
+        .header p { opacity: 0.9; font-size: 16px; }
+        .main-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px; }
+        .panel {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        .panel h3 { font-size: 18px; color: #6366f1; margin-bottom: 16px; }
+        .input-group { margin-bottom: 16px; }
+        .input-group label { display: block; font-weight: 600; font-size: 14px; margin-bottom: 8px; }
+        .input-group select, .input-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+        .career-card {
+            background: #f9fafb;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 12px;
+            border-left: 4px solid #6366f1;
+        }
+        .career-card h4 { font-size: 16px; color: #374151; margin-bottom: 8px; }
+        .career-card .salary { font-size: 24px; font-weight: 700; color: #10b981; }
+        .career-card .details { font-size: 12px; color: #6b7280; margin-top: 8px; }
+        .results-panel {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            margin-bottom: 24px;
+        }
+        .results-panel h3 { font-size: 18px; color: #6366f1; margin-bottom: 16px; }
+        .result-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 20px; }
+        .result-item { background: #f9fafb; padding: 12px; border-radius: 8px; text-align: center; }
+        .result-value { font-size: 20px; font-weight: 700; color: #6366f1; margin-bottom: 4px; }
+        .result-label { font-size: 11px; color: #6b7280; }
+        .timeline-section {
+            background: #eff6ff;
+            border-left: 4px solid #3b82f6;
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .timeline-section h4 { color: #3b82f6; font-size: 14px; margin-bottom: 12px; }
+        .timeline-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+            font-size: 13px;
+        }
+        .timeline-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #3b82f6;
+            margin-right: 12px;
+        }
+        .comparison-section {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 16px;
+            border-radius: 8px;
+        }
+        .comparison-section h4 { color: #b45309; font-size: 14px; margin-bottom: 8px; }
+        .comparison-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+        .comparison-item { text-align: center; }
+        .comparison-item .label { font-size: 11px; color: #6b7280; }
+        .comparison-item .value { font-size: 18px; font-weight: 700; }
+        .action-buttons { text-align: center; }
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            margin: 0 8px;
+        }
+        .btn-primary { background: #6366f1; color: white; }
+        .skills-list { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+        .skill-tag {
+            background: #e0e7ff;
+            color: #4338ca;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+        }
+        @media print { .action-buttons { display: none; } body { background: white; } }
+        @media (max-width: 768px) { .main-grid, .result-grid, .comparison-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Career Path Builder</h1>
+            <p>Explore careers, compare salaries, and plan your financial future</p>
+        </div>
+
+        <div class="main-grid">
+            <div class="panel">
+                <h3>Select Your Interests</h3>
+                <div class="input-group">
+                    <label>Career Field</label>
+                    <select id="careerField" onchange="updateCareers()">
+                        <option value="technology">Technology</option>
+                        <option value="healthcare">Healthcare</option>
+                        <option value="business">Business & Finance</option>
+                        <option value="education">Education</option>
+                        <option value="trades">Skilled Trades</option>
+                        <option value="creative">Creative & Media</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>Specific Career</label>
+                    <select id="career" onchange="calculate()">
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>Your State</label>
+                    <select id="state" onchange="calculate()">
+                        <option value="national">National Average</option>
+                        <option value="california">California</option>
+                        <option value="texas">Texas</option>
+                        <option value="newyork">New York</option>
+                        <option value="florida">Florida</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>Years of Experience</label>
+                    <input type="number" id="experience" value="0" min="0" max="40" oninput="calculate()">
+                </div>
+            </div>
+
+            <div class="panel">
+                <h3>Career Overview</h3>
+                <div class="career-card">
+                    <h4 id="careerTitle">Software Developer</h4>
+                    <div class="salary" id="salary">$89,000</div>
+                    <div class="details" id="careerDetails">
+                        <strong>Education:</strong> Bachelor's degree typically required<br>
+                        <strong>Growth:</strong> 25% (Much faster than average)<br>
+                        <strong>Work Environment:</strong> Office, remote options available
+                    </div>
+                    <div class="skills-list" id="skillsList">
+                        <span class="skill-tag">Problem Solving</span>
+                        <span class="skill-tag">Programming</span>
+                        <span class="skill-tag">Communication</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="results-panel">
+            <h3>Financial Projection</h3>
+            <div class="result-grid">
+                <div class="result-item">
+                    <div class="result-value" id="startingSalary">$65,000</div>
+                    <div class="result-label">Starting Salary</div>
+                </div>
+                <div class="result-item">
+                    <div class="result-value" id="midCareer">$89,000</div>
+                    <div class="result-label">Mid-Career (5 yrs)</div>
+                </div>
+                <div class="result-item">
+                    <div class="result-value" id="seniorLevel">$120,000</div>
+                    <div class="result-label">Senior Level (10+ yrs)</div>
+                </div>
+                <div class="result-item">
+                    <div class="result-value" id="lifetimeEarnings">$3.6M</div>
+                    <div class="result-label">40-Year Earnings</div>
+                </div>
+            </div>
+
+            <div class="timeline-section">
+                <h4>Typical Career Timeline</h4>
+                <div id="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <span><strong>Years 0-2:</strong> Entry-level position, learning fundamentals</span>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <span><strong>Years 3-5:</strong> Mid-level, increased responsibility</span>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <span><strong>Years 6-10:</strong> Senior roles, specialization</span>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <span><strong>Years 10+:</strong> Leadership, management, or expert consultant</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="comparison-section">
+                <h4>Monthly Budget at Mid-Career Salary</h4>
+                <div class="comparison-grid">
+                    <div class="comparison-item">
+                        <div class="label">Monthly Gross</div>
+                        <div class="value" id="monthlyGross" style="color: #6366f1;">$7,417</div>
+                    </div>
+                    <div class="comparison-item">
+                        <div class="label">Est. Monthly Net (after taxes)</div>
+                        <div class="value" id="monthlyNet" style="color: #10b981;">$5,560</div>
+                    </div>
+                </div>
+                <p style="font-size: 11px; color: #6b7280; margin-top: 8px; text-align: center;">
+                    Using 50/30/20 rule: <strong id="needs">$2,780</strong> needs | <strong id="wants">$1,668</strong> wants | <strong id="savings">$1,112</strong> savings
+                </p>
+            </div>
+        </div>
+
+        <div class="action-buttons">
+            <button class="btn btn-primary" onclick="calculate()">Recalculate</button>
+            <button class="btn" style="background: #e5e7eb; color: #374151;" onclick="window.print()">Print Results</button>
+        </div>
+    </div>
+
+    <script>
+        const careerData = {
+            technology: [
+                { name: 'Software Developer', start: 65000, mid: 89000, senior: 120000, growth: '25%', education: "Bachelor's degree typically required", environment: 'Office, remote options available', skills: ['Problem Solving', 'Programming', 'Communication'] },
+                { name: 'Data Analyst', start: 55000, mid: 75000, senior: 100000, growth: '23%', education: "Bachelor's degree in statistics, math, or related field", environment: 'Office setting', skills: ['Analytics', 'SQL', 'Visualization'] },
+                { name: 'Cybersecurity Analyst', start: 60000, mid: 99000, senior: 130000, growth: '35%', education: "Bachelor's degree, certifications valuable", environment: 'Office, some remote', skills: ['Security', 'Networking', 'Risk Assessment'] },
+                { name: 'IT Support Specialist', start: 40000, mid: 55000, senior: 75000, growth: '6%', education: "Associate's degree or certifications", environment: 'Office, on-site support', skills: ['Troubleshooting', 'Customer Service', 'Hardware'] }
+            ],
+            healthcare: [
+                { name: 'Registered Nurse', start: 60000, mid: 77000, senior: 95000, growth: '6%', education: "Bachelor's or Associate's in Nursing", environment: 'Hospitals, clinics, varied shifts', skills: ['Patient Care', 'Critical Thinking', 'Communication'] },
+                { name: 'Medical Assistant', start: 32000, mid: 38000, senior: 48000, growth: '16%', education: 'Postsecondary certificate', environment: 'Physician offices, clinics', skills: ['Clinical Skills', 'Administrative', 'Patient Care'] },
+                { name: 'Physical Therapist', start: 70000, mid: 91000, senior: 110000, growth: '17%', education: 'Doctor of Physical Therapy (DPT)', environment: 'Hospitals, private practices, homes', skills: ['Anatomy', 'Patient Care', 'Exercise Science'] },
+                { name: 'Pharmacy Technician', start: 33000, mid: 37000, senior: 48000, growth: '5%', education: 'High school diploma, certification preferred', environment: 'Pharmacies, hospitals', skills: ['Attention to Detail', 'Customer Service', 'Math'] }
+            ],
+            business: [
+                { name: 'Accountant', start: 52000, mid: 73000, senior: 100000, growth: '4%', education: "Bachelor's in Accounting, CPA preferred", environment: 'Office setting', skills: ['Analysis', 'Attention to Detail', 'Math'] },
+                { name: 'Financial Analyst', start: 58000, mid: 83000, senior: 115000, growth: '9%', education: "Bachelor's in Finance or related field", environment: 'Office, financial institutions', skills: ['Financial Modeling', 'Excel', 'Analysis'] },
+                { name: 'Marketing Manager', start: 55000, mid: 135000, senior: 180000, growth: '10%', education: "Bachelor's in Marketing or Business", environment: 'Office, some travel', skills: ['Strategy', 'Communication', 'Analytics'] },
+                { name: 'Human Resources Specialist', start: 45000, mid: 62000, senior: 85000, growth: '8%', education: "Bachelor's in HR or Business", environment: 'Office setting', skills: ['Communication', 'Organization', 'Conflict Resolution'] }
+            ],
+            education: [
+                { name: 'High School Teacher', start: 42000, mid: 62000, senior: 78000, growth: '5%', education: "Bachelor's degree, teaching license", environment: 'Schools, standard school hours', skills: ['Communication', 'Patience', 'Subject Expertise'] },
+                { name: 'Elementary Teacher', start: 40000, mid: 60000, senior: 75000, growth: '4%', education: "Bachelor's degree, teaching license", environment: 'Schools, standard school hours', skills: ['Creativity', 'Patience', 'Organization'] },
+                { name: 'School Counselor', start: 45000, mid: 58000, senior: 77000, growth: '10%', education: "Master's degree required", environment: 'Schools', skills: ['Counseling', 'Communication', 'Empathy'] },
+                { name: 'Special Education Teacher', start: 45000, mid: 61000, senior: 80000, growth: '4%', education: "Bachelor's degree, special ed certification", environment: 'Schools, varied settings', skills: ['Patience', 'Adaptability', 'IEP Development'] }
+            ],
+            trades: [
+                { name: 'Electrician', start: 40000, mid: 56000, senior: 80000, growth: '7%', education: 'Apprenticeship, license required', environment: 'Various locations, physical work', skills: ['Technical', 'Problem Solving', 'Safety'] },
+                { name: 'Plumber', start: 38000, mid: 56000, senior: 78000, growth: '5%', education: 'Apprenticeship, license required', environment: 'Various locations, physical work', skills: ['Technical', 'Customer Service', 'Physical Stamina'] },
+                { name: 'HVAC Technician', start: 38000, mid: 50000, senior: 70000, growth: '5%', education: 'Postsecondary training, certification', environment: 'Various locations, physical work', skills: ['Technical', 'Troubleshooting', 'Customer Service'] },
+                { name: 'Welder', start: 35000, mid: 44000, senior: 63000, growth: '3%', education: 'Technical training, certification', environment: 'Factories, construction sites', skills: ['Precision', 'Physical Stamina', 'Blueprint Reading'] }
+            ],
+            creative: [
+                { name: 'Graphic Designer', start: 40000, mid: 53000, senior: 75000, growth: '3%', education: "Bachelor's in Graphic Design or related", environment: 'Office, freelance options', skills: ['Creativity', 'Software Skills', 'Communication'] },
+                { name: 'UX Designer', start: 55000, mid: 85000, senior: 120000, growth: '13%', education: "Bachelor's degree, portfolio important", environment: 'Office, remote options', skills: ['User Research', 'Prototyping', 'Visual Design'] },
+                { name: 'Video Editor', start: 38000, mid: 59000, senior: 85000, growth: '12%', education: "Bachelor's preferred, portfolio important", environment: 'Office, freelance, remote', skills: ['Software Skills', 'Storytelling', 'Attention to Detail'] },
+                { name: 'Content Writer', start: 38000, mid: 52000, senior: 75000, growth: '4%', education: "Bachelor's in English, Journalism, or related", environment: 'Office, remote, freelance', skills: ['Writing', 'Research', 'SEO'] }
+            ]
+        };
+
+        const stateMultipliers = {
+            national: 1.0,
+            california: 1.15,
+            texas: 0.95,
+            newyork: 1.20,
+            florida: 0.92
+        };
+
+        function updateCareers() {
+            const field = document.getElementById('careerField').value;
+            const careerSelect = document.getElementById('career');
+            const careers = careerData[field];
+
+            careerSelect.innerHTML = careers.map((career, index) =>
+                `<option value="${index}">${career.name}</option>`
+            ).join('');
+
+            calculate();
+        }
+
+        function calculate() {
+            const field = document.getElementById('careerField').value;
+            const careerIndex = parseInt(document.getElementById('career').value) || 0;
+            const state = document.getElementById('state').value;
+            const experience = parseInt(document.getElementById('experience').value) || 0;
+
+            const career = careerData[field][careerIndex];
+            const multiplier = stateMultipliers[state];
+
+            // Calculate salary based on experience
+            let currentSalary;
+            if (experience < 3) {
+                currentSalary = career.start + (career.mid - career.start) * (experience / 5);
+            } else if (experience < 10) {
+                currentSalary = career.mid + (career.senior - career.mid) * ((experience - 5) / 5);
+            } else {
+                currentSalary = career.senior * (1 + (experience - 10) * 0.02);
+            }
+            currentSalary *= multiplier;
+
+            const startSalary = career.start * multiplier;
+            const midSalary = career.mid * multiplier;
+            const seniorSalary = career.senior * multiplier;
+
+            // Calculate lifetime earnings (40 years)
+            const avgSalary = (startSalary + midSalary + seniorSalary) / 3;
+            const lifetimeEarnings = avgSalary * 40;
+
+            // Update career card
+            document.getElementById('careerTitle').textContent = career.name;
+            document.getElementById('salary').textContent = '$' + Math.round(currentSalary).toLocaleString();
+            document.getElementById('careerDetails').innerHTML = `
+                <strong>Education:</strong> ${career.education}<br>
+                <strong>Growth:</strong> ${career.growth} (Job outlook)<br>
+                <strong>Work Environment:</strong> ${career.environment}
+            `;
+
+            // Update skills
+            document.getElementById('skillsList').innerHTML = career.skills.map(skill =>
+                `<span class="skill-tag">${skill}</span>`
+            ).join('');
+
+            // Update projections
+            document.getElementById('startingSalary').textContent = '$' + Math.round(startSalary).toLocaleString();
+            document.getElementById('midCareer').textContent = '$' + Math.round(midSalary).toLocaleString();
+            document.getElementById('seniorLevel').textContent = '$' + Math.round(seniorSalary).toLocaleString();
+
+            if (lifetimeEarnings >= 1000000) {
+                document.getElementById('lifetimeEarnings').textContent = '$' + (lifetimeEarnings / 1000000).toFixed(1) + 'M';
+            } else {
+                document.getElementById('lifetimeEarnings').textContent = '$' + Math.round(lifetimeEarnings).toLocaleString();
+            }
+
+            // Calculate monthly budget
+            const monthlyGross = midSalary / 12;
+            const monthlyNet = monthlyGross * 0.75; // Estimate 25% taxes
+
+            document.getElementById('monthlyGross').textContent = '$' + Math.round(monthlyGross).toLocaleString();
+            document.getElementById('monthlyNet').textContent = '$' + Math.round(monthlyNet).toLocaleString();
+            document.getElementById('needs').textContent = '$' + Math.round(monthlyNet * 0.5).toLocaleString();
+            document.getElementById('wants').textContent = '$' + Math.round(monthlyNet * 0.3).toLocaleString();
+            document.getElementById('savings').textContent = '$' + Math.round(monthlyNet * 0.2).toLocaleString();
+        }
+
+        // Initialize
+        updateCareers();
+    </script>
+</body>
+</html>

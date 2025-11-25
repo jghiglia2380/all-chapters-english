@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Market Crisis Survival Simulator</title>
+    <style>
+        :root {
+            --primary: #6366f1;
+            --secondary: #8b5cf6;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+        }
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-size: 14px;
+            line-height: 1.5;
+            color: #1f2937;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+        h1 {
+            color: var(--primary);
+            font-size: 24px;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 8px;
+        }
+        h2 { color: var(--secondary); font-size: 18px; margin-top: 20px; }
+        .portfolio-setup {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 15px 0;
+        }
+        .portfolio-card {
+            background: #f9fafb;
+            padding: 15px;
+            border-radius: 5px;
+            border: 2px solid #d1d5db;
+        }
+        .portfolio-card h3 {
+            margin: 0 0 10px 0;
+            color: var(--primary);
+        }
+        select, input {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+        }
+        .timeline {
+            background: #e0e7ff;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        .phase {
+            background: white;
+            padding: 10px;
+            margin: 8px 0;
+            border-radius: 4px;
+            border-left: 4px solid var(--primary);
+        }
+        .phase.crisis { border-left-color: var(--danger); }
+        .phase.recovery { border-left-color: var(--success); }
+        .decision-point {
+            background: #fef3c7;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            border: 2px solid var(--warning);
+        }
+        .decision-options {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .decision-btn {
+            padding: 10px;
+            background: white;
+            border: 2px solid #d1d5db;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            font-size: 12px;
+        }
+        .decision-btn:hover { border-color: var(--primary); background: #f0f7ff; }
+        .decision-btn.selected { border-color: var(--primary); background: #e0e7ff; }
+        .results {
+            background: #f0f7ff;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+        .result-column { background: white; padding: 10px; border-radius: 4px; }
+        .result-column h4 { margin: 0 0 10px 0; color: var(--primary); }
+        .metric {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px 0;
+            border-bottom: 1px solid #f3f4f6;
+            font-size: 13px;
+        }
+        .metric-value { font-weight: bold; }
+        .positive { color: var(--success); }
+        .negative { color: var(--danger); }
+        button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover { background: var(--secondary); }
+        @media print {
+            body { font-size: 11pt; }
+            button { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <h1>Market Crisis Survival Simulator</h1>
+    <p>Build portfolios and see how they perform through a major market crisis</p>
+
+    <h2>Portfolio Setup (Starting: $50,000 each)</h2>
+    <div class="portfolio-setup">
+        <div class="portfolio-card">
+            <h3>Portfolio A: Concentrated</h3>
+            <label>100% in one asset:</label>
+            <select id="concentratedAsset">
+                <option value="stocks">US Stocks Only</option>
+                <option value="bonds">Bonds Only</option>
+                <option value="tech">Tech Sector Only</option>
+            </select>
+        </div>
+        <div class="portfolio-card">
+            <h3>Portfolio B: Diversified</h3>
+            <div style="font-size: 12px;">
+                <div>US Stocks: <input type="number" id="divUS" value="40" style="width: 50px;">%</div>
+                <div>Int'l Stocks: <input type="number" id="divIntl" value="20" style="width: 50px;">%</div>
+                <div>Bonds: <input type="number" id="divBonds" value="25" style="width: 50px;">%</div>
+                <div>Real Estate: <input type="number" id="divREIT" value="10" style="width: 50px;">%</div>
+                <div>Gold: <input type="number" id="divGold" value="5" style="width: 50px;">%</div>
+            </div>
+        </div>
+    </div>
+
+    <div style="text-align: center;">
+        <button onclick="startSimulation()">Start Crisis Simulation</button>
+    </div>
+
+    <div id="simulation" style="display: none;">
+        <h2>Crisis Timeline</h2>
+        <div class="timeline">
+            <div class="phase">
+                <strong>Months 1-3: Decline Begins</strong><br>
+                Stocks: -15% | Bonds: +2% | Gold: +5%
+            </div>
+            <div class="phase crisis">
+                <strong>Months 4-6: Crisis Deepens</strong><br>
+                Stocks: -32% total | Bonds: +5% | Gold: +10%
+            </div>
+            <div class="phase crisis">
+                <strong>Months 7-9: Panic Peak</strong><br>
+                Stocks: -41% from start | Emerging: -50% | Gold: +15%
+            </div>
+            <div class="phase recovery">
+                <strong>Months 10-18: Recovery</strong><br>
+                Stocks: +25% from bottom | Bonds give back some gains
+            </div>
+            <div class="phase recovery">
+                <strong>Months 19-30: Bull Market</strong><br>
+                Stocks: +35% more | Back to new highs
+            </div>
+        </div>
+
+        <div class="decision-point" id="decision1">
+            <strong>🔴 Decision Point - Month 9 (Panic Peak)</strong><br>
+            Markets have crashed. What do you do?
+            <div class="decision-options">
+                <div class="decision-btn" onclick="selectDecision(1, 'sell')">
+                    <strong>Panic Sell</strong><br>
+                    Sell everything to cash
+                </div>
+                <div class="decision-btn" onclick="selectDecision(1, 'hold')">
+                    <strong>Hold Steady</strong><br>
+                    Do nothing
+                </div>
+                <div class="decision-btn" onclick="selectDecision(1, 'rebalance')">
+                    <strong>Rebalance</strong><br>
+                    Sell bonds, buy stocks
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin: 20px 0;">
+            <button onclick="completeSimulation()">Complete Simulation</button>
+        </div>
+    </div>
+
+    <div class="results" id="results" style="display: none;">
+        <h2 style="margin-top: 0;">Final Results (After 30 Months)</h2>
+        <div class="results-grid">
+            <div class="result-column">
+                <h4>Portfolio A (Concentrated)</h4>
+                <div class="metric"><span>Starting Value</span><span>$50,000</span></div>
+                <div class="metric"><span>Max Loss</span><span class="metric-value negative" id="aMaxLoss">-$20,500</span></div>
+                <div class="metric"><span>Recovery Time</span><span class="metric-value" id="aRecovery">18 months</span></div>
+                <div class="metric"><span>Final Value</span><span class="metric-value" id="aFinal">$52,000</span></div>
+            </div>
+            <div class="result-column">
+                <h4>Portfolio B (Diversified)</h4>
+                <div class="metric"><span>Starting Value</span><span>$50,000</span></div>
+                <div class="metric"><span>Max Loss</span><span class="metric-value negative" id="bMaxLoss">-$12,000</span></div>
+                <div class="metric"><span>Recovery Time</span><span class="metric-value" id="bRecovery">12 months</span></div>
+                <div class="metric"><span>Final Value</span><span class="metric-value" id="bFinal">$58,000</span></div>
+            </div>
+        </div>
+        <div style="background: #fef3c7; padding: 10px; border-radius: 4px; margin-top: 15px;">
+            <strong>Key Insight:</strong> <span id="insight">Diversification reduced max loss by 41% and recovery time by 6 months.</span>
+        </div>
+    </div>
+
+    <script>
+        let decision1 = 'hold';
+
+        function selectDecision(point, choice) {
+            if (point === 1) {
+                decision1 = choice;
+                document.querySelectorAll('#decision1 .decision-btn').forEach(btn => {
+                    btn.classList.remove('selected');
+                });
+                event.target.closest('.decision-btn').classList.add('selected');
+            }
+        }
+
+        function startSimulation() {
+            document.getElementById('simulation').style.display = 'block';
+            document.getElementById('results').style.display = 'none';
+        }
+
+        function completeSimulation() {
+            const asset = document.getElementById('concentratedAsset').value;
+
+            // Calculate concentrated portfolio results
+            let aMaxLoss, aRecovery, aFinal;
+            if (asset === 'stocks') {
+                aMaxLoss = -20500;
+                aRecovery = '18 months';
+                aFinal = decision1 === 'sell' ? 29500 : (decision1 === 'rebalance' ? 56000 : 52000);
+            } else if (asset === 'bonds') {
+                aMaxLoss = -2500;
+                aRecovery = '6 months';
+                aFinal = 53500;
+            } else {
+                aMaxLoss = -27500;
+                aRecovery = '24 months';
+                aFinal = decision1 === 'sell' ? 22500 : 48000;
+            }
+
+            // Calculate diversified portfolio results
+            let bMaxLoss = -12000;
+            let bRecovery = '12 months';
+            let bFinal = decision1 === 'sell' ? 38000 : (decision1 === 'rebalance' ? 62000 : 58000);
+
+            // Update display
+            document.getElementById('aMaxLoss').textContent = '$' + aMaxLoss.toLocaleString();
+            document.getElementById('aRecovery').textContent = aRecovery;
+            document.getElementById('aFinal').textContent = '$' + aFinal.toLocaleString();
+            document.getElementById('aFinal').className = 'metric-value ' + (aFinal >= 50000 ? 'positive' : 'negative');
+
+            document.getElementById('bMaxLoss').textContent = '$' + bMaxLoss.toLocaleString();
+            document.getElementById('bRecovery').textContent = bRecovery;
+            document.getElementById('bFinal').textContent = '$' + bFinal.toLocaleString();
+            document.getElementById('bFinal').className = 'metric-value positive';
+
+            // Generate insight
+            let insight = '';
+            if (decision1 === 'sell') {
+                insight = 'Panic selling locked in losses! You missed the recovery and permanently destroyed wealth.';
+            } else if (decision1 === 'rebalance') {
+                insight = 'Excellent! Rebalancing during the crisis (buying stocks on sale) maximized your recovery.';
+            } else {
+                insight = 'Holding steady preserved your ability to recover. Diversification reduced max loss by ' +
+                         Math.round((1 - bMaxLoss / aMaxLoss) * 100) + '%.';
+            }
+            document.getElementById('insight').textContent = insight;
+
+            document.getElementById('results').style.display = 'block';
+        }
+    </script>
+</body>
+</html>

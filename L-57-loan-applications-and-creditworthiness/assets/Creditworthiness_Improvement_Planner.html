@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creditworthiness Improvement Planner</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        header { text-align: center; margin-bottom: 30px; }
+        h1 { font-size: 2rem; color: #6366f1; margin-bottom: 10px; }
+        .subtitle { color: #6b7280; }
+        .current-section {
+            background: #f9fafb;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+        }
+        .section-title { font-size: 1.1rem; font-weight: bold; margin-bottom: 15px; color: #1f2937; }
+        .input-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+        .input-group label { display: block; font-weight: 600; margin-bottom: 5px; font-size: 0.9rem; }
+        .input-group input, .input-group select {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #d1d5db;
+            border-radius: 8px;
+        }
+        .plan-btn {
+            width: 100%;
+            padding: 15px;
+            background: #6366f1;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 25px;
+        }
+        .plan-btn:hover { background: #4f46e5; }
+        .results { display: none; }
+        .results.active { display: block; }
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 10px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: #6366f1;
+        }
+        .milestone {
+            position: relative;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f9fafb;
+            border-radius: 10px;
+        }
+        .milestone::before {
+            content: '';
+            position: absolute;
+            left: -24px;
+            top: 20px;
+            width: 12px;
+            height: 12px;
+            background: #6366f1;
+            border-radius: 50%;
+        }
+        .milestone-month { font-weight: bold; color: #6366f1; margin-bottom: 5px; }
+        .milestone-tasks { font-size: 0.9rem; color: #4b5563; }
+        .milestone-tasks li { margin-bottom: 5px; }
+        .projection {
+            background: #d1fae5;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .projection h3 { color: #065f46; margin-bottom: 10px; }
+        .projection-value { font-size: 2rem; font-weight: bold; color: #059669; }
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #e5e7eb;
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+        @media (max-width: 768px) {
+            .input-grid { grid-template-columns: 1fr; }
+        }
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .container {
+                box-shadow: none;
+                padding: 20px;
+            }
+            .plan-btn,
+            .no-print {
+                display: none !important;
+            }
+            .results {
+                display: block !important;
+            }
+            .milestone,
+            .projection {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Creditworthiness Improvement Planner</h1>
+            <p class="subtitle">Create a 6-12 month plan to improve your loan terms</p>
+        </header>
+
+        <div class="current-section">
+            <div class="section-title">Current Situation</div>
+            <div class="input-grid">
+                <div class="input-group">
+                    <label>Current Credit Score</label>
+                    <input type="number" id="currentScore" placeholder="650" min="300" max="850">
+                </div>
+                <div class="input-group">
+                    <label>Target Score</label>
+                    <input type="number" id="targetScore" placeholder="720" min="300" max="850">
+                </div>
+                <div class="input-group">
+                    <label>Current Savings</label>
+                    <input type="number" id="savings" placeholder="2000">
+                </div>
+                <div class="input-group">
+                    <label>Target Down Payment</label>
+                    <input type="number" id="downPayment" placeholder="10000">
+                </div>
+                <div class="input-group">
+                    <label>Credit Card Utilization %</label>
+                    <input type="number" id="utilization" placeholder="45" min="0" max="100">
+                </div>
+                <div class="input-group">
+                    <label>Timeline</label>
+                    <select id="timeline">
+                        <option value="6">6 months</option>
+                        <option value="12" selected>12 months</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <button class="plan-btn" onclick="generatePlan()">Generate My Improvement Plan</button>
+
+        <div class="results" id="results">
+            <div class="section-title">Your Improvement Timeline</div>
+            <div class="timeline" id="timeline-content"></div>
+            <div class="projection">
+                <h3>Projected Improvement</h3>
+                <div class="projection-value" id="projectedScore">+50 points</div>
+            </div>
+        </div>
+
+        <footer>
+            <p><strong>PFL Academy</strong> | Loan Applications</p>
+        </footer>
+    </div>
+
+    <script>
+        function generatePlan() {
+            const currentScore = parseInt(document.getElementById('currentScore').value) || 650;
+            const targetScore = parseInt(document.getElementById('targetScore').value) || 720;
+            const savings = parseFloat(document.getElementById('savings').value) || 0;
+            const downPayment = parseFloat(document.getElementById('downPayment').value) || 10000;
+            const utilization = parseInt(document.getElementById('utilization').value) || 30;
+            const months = parseInt(document.getElementById('timeline').value);
+
+            const scoreDiff = targetScore - currentScore;
+            const savingsNeeded = downPayment - savings;
+            const monthlyTarget = savingsNeeded > 0 ? savingsNeeded / months : 0;
+
+            let milestones = [];
+
+            // Month 1-2
+            let tasks1 = ['Check credit reports from all three bureaus for errors', 'Dispute any inaccuracies found'];
+            if (utilization > 30) {
+                tasks1.push(`Reduce credit utilization from ${utilization}% to under 30%`);
+            }
+            tasks1.push('Set up automatic payments to ensure on-time payments');
+            milestones.push({ month: 'Month 1-2', tasks: tasks1 });
+
+            // Month 3-4
+            let tasks2 = ['Continue on-time payments (35% of score)', `Save $${(monthlyTarget * 2).toLocaleString()} toward down payment`];
+            if (utilization > 30) {
+                tasks2.push('Pay down highest interest credit cards first');
+            }
+            tasks2.push('Avoid opening new credit accounts');
+            milestones.push({ month: 'Month 3-4', tasks: tasks2 });
+
+            // Month 5-6
+            let tasks3 = ['Review progress - credit score should show improvement', `Savings target: $${(savings + monthlyTarget * 5).toLocaleString()}`];
+            tasks3.push('Consider becoming authorized user on family member\'s old account');
+            milestones.push({ month: 'Month 5-6', tasks: tasks3 });
+
+            if (months === 12) {
+                // Month 7-9
+                let tasks4 = ['Continue all positive habits', 'Credit utilization should be under 10% for best scores', `Savings target: $${(savings + monthlyTarget * 8).toLocaleString()}`];
+                milestones.push({ month: 'Month 7-9', tasks: tasks4 });
+
+                // Month 10-12
+                let tasks5 = ['Pull updated credit scores', 'Compile loan documentation', `Final savings: $${downPayment.toLocaleString()}`, 'Shop for best loan rates with improved profile'];
+                milestones.push({ month: 'Month 10-12', tasks: tasks5 });
+            }
+
+            const timeline = document.getElementById('timeline-content');
+            timeline.innerHTML = milestones.map(m => `
+                <div class="milestone">
+                    <div class="milestone-month">${m.month}</div>
+                    <ul class="milestone-tasks">
+                        ${m.tasks.map(t => `<li>${t}</li>`).join('')}
+                    </ul>
+                </div>
+            `).join('');
+
+            const projection = Math.min(scoreDiff, utilization > 30 ? 50 : 30);
+            document.getElementById('projectedScore').textContent = `+${projection} to +${projection + 20} points`;
+
+            document.getElementById('results').classList.add('active');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investment Option Analyzer - PFL Academy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background: #f9fafb;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+            color: white;
+            padding: 24px;
+            border-radius: 12px;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 16px;
+        }
+
+        .instructions {
+            background: #eff6ff;
+            border-left: 4px solid #3b82f6;
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 24px;
+        }
+
+        .instructions h3 {
+            font-size: 16px;
+            color: #1e40af;
+            margin-bottom: 8px;
+        }
+
+        .instructions p {
+            font-size: 14px;
+            color: #374151;
+        }
+
+        .analysis-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-bottom: 24px;
+        }
+
+        .investment-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 3px solid transparent;
+        }
+
+        .investment-card:hover {
+            transform: translateY(-2px);
+        }
+
+        .investment-card.selected {
+            border-color: #6366f1;
+            background: #f5f3ff;
+        }
+
+        .investment-card h3 {
+            font-size: 16px;
+            margin-bottom: 12px;
+            color: #6366f1;
+        }
+
+        .card-details {
+            font-size: 13px;
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        .detail-row:last-child {
+            border-bottom: none;
+        }
+
+        .detail-label {
+            color: #6b7280;
+            font-weight: 500;
+        }
+
+        .detail-value {
+            font-weight: 600;
+        }
+
+        .risk-low { color: #10b981; }
+        .risk-moderate { color: #f59e0b; }
+        .risk-high { color: #ef4444; }
+
+        .comparison-section {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            margin-bottom: 24px;
+        }
+
+        .comparison-section h3 {
+            font-size: 18px;
+            color: #6366f1;
+            margin-bottom: 16px;
+        }
+
+        .comparison-placeholder {
+            text-align: center;
+            padding: 40px;
+            color: #9ca3af;
+            font-style: italic;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .comparison-table th {
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .comparison-table td {
+            padding: 12px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .comparison-table tr:hover {
+            background: #f9fafb;
+        }
+
+        .chart-container {
+            margin-top: 20px;
+        }
+
+        .bar-chart {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .bar-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .bar-label {
+            width: 120px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .bar-container {
+            flex: 1;
+            height: 24px;
+            background: #f3f4f6;
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .bar {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.5s ease;
+        }
+
+        .bar-value {
+            position: absolute;
+            right: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .analysis-section {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            margin-bottom: 24px;
+        }
+
+        .analysis-section h3 {
+            font-size: 18px;
+            color: #6366f1;
+            margin-bottom: 16px;
+        }
+
+        .question-box {
+            background: #f9fafb;
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 16px;
+        }
+
+        .question-box:last-child {
+            margin-bottom: 0;
+        }
+
+        .question-box label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .question-box select,
+        .question-box textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 14px;
+        }
+
+        .question-box textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+
+        .recommendation-box {
+            background: #ecfdf5;
+            border-left: 4px solid #10b981;
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 24px;
+        }
+
+        .recommendation-box h3 {
+            font-size: 16px;
+            color: #059669;
+            margin-bottom: 8px;
+        }
+
+        .recommendation-box p {
+            font-size: 14px;
+            color: #374151;
+        }
+
+        .print-section {
+            text-align: center;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            margin: 0 8px;
+        }
+
+        .btn-primary {
+            background: #6366f1;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #4f46e5;
+        }
+
+        .btn-secondary {
+            background: #e5e7eb;
+            color: #374151;
+        }
+
+        .btn-secondary:hover {
+            background: #d1d5db;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #6b7280;
+            font-size: 12px;
+        }
+
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            cursor: help;
+        }
+
+        .tooltip .tooltip-text {
+            visibility: hidden;
+            width: 200px;
+            background-color: #374151;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 8px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -100px;
+            font-size: 12px;
+            font-weight: normal;
+        }
+
+        .tooltip:hover .tooltip-text {
+            visibility: visible;
+        }
+
+        @media print {
+            body {
+                padding: 10px;
+                background: white;
+            }
+
+            .print-section {
+                display: none;
+            }
+
+            .investment-card {
+                box-shadow: none;
+                page-break-inside: avoid;
+            }
+
+            .analysis-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .analysis-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .bar-label {
+                width: 80px;
+                font-size: 11px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Investment Option Analyzer</h1>
+            <p>Compare and analyze different investment options based on risk, return, and your financial goals</p>
+        </div>
+
+        <div class="instructions">
+            <h3>How to Use This Tool</h3>
+            <p>Select two or more investment options to compare their characteristics. The tool will generate a side-by-side comparison showing risk levels, potential returns, liquidity, and best use cases. Use this analysis to make informed decisions about which investments align with your goals.</p>
+        </div>
+
+        <div class="analysis-grid">
+            <div class="investment-card" onclick="toggleSelection(this, 'savings')">
+                <h3>Savings Account</h3>
+                <div class="card-details">
+                    <div class="detail-row">
+                        <span class="detail-label">Risk Level</span>
+                        <span class="detail-value risk-low">Very Low</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Expected Return</span>
+                        <span class="detail-value">0.5% - 5%</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Liquidity</span>
+                        <span class="detail-value">High</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Time Horizon</span>
+                        <span class="detail-value">Short-term</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">FDIC Insured</span>
+                        <span class="detail-value">Yes</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="investment-card" onclick="toggleSelection(this, 'cd')">
+                <h3>Certificate of Deposit (CD)</h3>
+                <div class="card-details">
+                    <div class="detail-row">
+                        <span class="detail-label">Risk Level</span>
+                        <span class="detail-value risk-low">Low</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Expected Return</span>
+                        <span class="detail-value">1% - 5%</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Liquidity</span>
+                        <span class="detail-value">Low (penalties)</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Time Horizon</span>
+                        <span class="detail-value">6 mo - 5 years</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">FDIC Insured</span>
+                        <span class="detail-value">Yes</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="investment-card" onclick="toggleSelection(this, 'bonds')">
+                <h3>Corporate Bonds</h3>
+                <div class="card-details">
+                    <div class="detail-row">
+                        <span class="detail-label">Risk Level</span>
+                        <span class="detail-value risk-moderate">Moderate</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Expected Return</span>
+                        <span class="detail-value">3% - 7%</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Liquidity</span>
+                        <span class="detail-value">Moderate</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Time Horizon</span>
+                        <span class="detail-value">3 - 10 years</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">FDIC Insured</span>
+                        <span class="detail-value">No</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="investment-card" onclick="toggleSelection(this, 'mutualfunds')">
+                <h3>Mutual Funds</h3>
+                <div class="card-details">
+                    <div class="detail-row">
+                        <span class="detail-label">Risk Level</span>
+                        <span class="detail-value risk-moderate">Moderate-High</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Expected Return</span>
+                        <span class="detail-value">5% - 10%</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Liquidity</span>
+                        <span class="detail-value">Moderate</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Time Horizon</span>
+                        <span class="detail-value">5+ years</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">FDIC Insured</span>
+                        <span class="detail-value">No</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="investment-card" onclick="toggleSelection(this, 'etfs')">
+                <h3>ETFs (Exchange-Traded Funds)</h3>
+                <div class="card-details">
+                    <div class="detail-row">
+                        <span class="detail-label">Risk Level</span>
+                        <span class="detail-value risk-moderate">Moderate-High</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Expected Return</span>
+                        <span class="detail-value">5% - 12%</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Liquidity</span>
+                        <span class="detail-value">High</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Time Horizon</span>
+                        <span class="detail-value">5+ years</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">FDIC Insured</span>
+                        <span class="detail-value">No</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="investment-card" onclick="toggleSelection(this, 'stocks')">
+                <h3>Individual Stocks</h3>
+                <div class="card-details">
+                    <div class="detail-row">
+                        <span class="detail-label">Risk Level</span>
+                        <span class="detail-value risk-high">High</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Expected Return</span>
+                        <span class="detail-value">7% - 15%+</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Liquidity</span>
+                        <span class="detail-value">High</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Time Horizon</span>
+                        <span class="detail-value">5+ years</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">FDIC Insured</span>
+                        <span class="detail-value">No</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="comparison-section">
+            <h3>Risk vs. Return Comparison</h3>
+            <div id="comparisonContent">
+                <div class="comparison-placeholder">
+                    Select investment options above to see a detailed comparison
+                </div>
+            </div>
+        </div>
+
+        <div class="analysis-section">
+            <h3>Investment Analysis Questions</h3>
+
+            <div class="question-box">
+                <label>1. What is your primary financial goal?</label>
+                <select id="goalSelect" onchange="updateRecommendation()">
+                    <option value="">Select your goal...</option>
+                    <option value="emergency">Building an emergency fund (6-12 months)</option>
+                    <option value="shortterm">Short-term purchase (1-3 years)</option>
+                    <option value="mediumterm">Medium-term goal (3-10 years)</option>
+                    <option value="retirement">Long-term retirement savings (10+ years)</option>
+                    <option value="growth">Maximum growth potential</option>
+                </select>
+            </div>
+
+            <div class="question-box">
+                <label>2. How would you describe your risk tolerance?</label>
+                <select id="riskSelect" onchange="updateRecommendation()">
+                    <option value="">Select your risk tolerance...</option>
+                    <option value="conservative">Conservative - I cannot afford to lose money</option>
+                    <option value="moderate">Moderate - I can accept some risk for better returns</option>
+                    <option value="aggressive">Aggressive - I'm comfortable with high risk for high returns</option>
+                </select>
+            </div>
+
+            <div class="question-box">
+                <label>3. Based on your analysis, which investment option(s) would be most appropriate for your situation? Why?</label>
+                <textarea id="analysisResponse" placeholder="Consider factors like your time horizon, risk tolerance, liquidity needs, and financial goals..."></textarea>
+            </div>
+
+            <div class="question-box">
+                <label>4. How might diversification (spreading money across different investment types) reduce your overall risk?</label>
+                <textarea id="diversificationResponse" placeholder="Think about why putting all your eggs in one basket might be risky..."></textarea>
+            </div>
+        </div>
+
+        <div id="recommendationBox" class="recommendation-box" style="display: none;">
+            <h3>Personalized Recommendation</h3>
+            <p id="recommendationText"></p>
+        </div>
+
+        <div class="print-section">
+            <button class="btn btn-secondary" onclick="clearSelections()">Clear Selections</button>
+            <button class="btn btn-primary" onclick="window.print()">Print Analysis</button>
+        </div>
+
+        <div class="footer">
+            <p>PFL Academy - Chapter 5.3: Evaluating Saving and Investment Strategies</p>
+        </div>
+    </div>
+
+    <script>
+        let selectedOptions = [];
+
+        const investmentData = {
+            savings: {
+                name: 'Savings Account',
+                risk: 1,
+                return: 2.5,
+                liquidity: 5,
+                riskLabel: 'Very Low',
+                returnLabel: '0.5% - 5%',
+                color: '#10b981'
+            },
+            cd: {
+                name: 'Certificate of Deposit',
+                risk: 1.5,
+                return: 3,
+                liquidity: 2,
+                riskLabel: 'Low',
+                returnLabel: '1% - 5%',
+                color: '#059669'
+            },
+            bonds: {
+                name: 'Corporate Bonds',
+                risk: 3,
+                return: 5,
+                liquidity: 3,
+                riskLabel: 'Moderate',
+                returnLabel: '3% - 7%',
+                color: '#f59e0b'
+            },
+            mutualfunds: {
+                name: 'Mutual Funds',
+                risk: 3.5,
+                return: 7.5,
+                liquidity: 3,
+                riskLabel: 'Moderate-High',
+                returnLabel: '5% - 10%',
+                color: '#3b82f6'
+            },
+            etfs: {
+                name: 'ETFs',
+                risk: 3.5,
+                return: 8.5,
+                liquidity: 4.5,
+                riskLabel: 'Moderate-High',
+                returnLabel: '5% - 12%',
+                color: '#6366f1'
+            },
+            stocks: {
+                name: 'Individual Stocks',
+                risk: 5,
+                return: 11,
+                liquidity: 4.5,
+                riskLabel: 'High',
+                returnLabel: '7% - 15%+',
+                color: '#ef4444'
+            }
+        };
+
+        function toggleSelection(card, option) {
+            card.classList.toggle('selected');
+
+            if (selectedOptions.includes(option)) {
+                selectedOptions = selectedOptions.filter(o => o !== option);
+            } else {
+                selectedOptions.push(option);
+            }
+
+            updateComparison();
+        }
+
+        function updateComparison() {
+            const container = document.getElementById('comparisonContent');
+
+            if (selectedOptions.length < 2) {
+                container.innerHTML = '<div class="comparison-placeholder">Select at least two investment options to compare</div>';
+                return;
+            }
+
+            let html = `
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Characteristic</th>
+                            ${selectedOptions.map(opt => `<th>${investmentData[opt].name}</th>`).join('')}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Risk Level</td>
+                            ${selectedOptions.map(opt => `<td>${investmentData[opt].riskLabel}</td>`).join('')}
+                        </tr>
+                        <tr>
+                            <td>Expected Return</td>
+                            ${selectedOptions.map(opt => `<td>${investmentData[opt].returnLabel}</td>`).join('')}
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="chart-container">
+                    <h4 style="font-size: 14px; margin-bottom: 12px; color: #374151;">Visual Comparison</h4>
+                    <div class="bar-chart">
+                        ${selectedOptions.map(opt => `
+                            <div class="bar-row">
+                                <div class="bar-label">${investmentData[opt].name}</div>
+                                <div class="bar-container">
+                                    <div class="bar" style="width: ${investmentData[opt].return * 8}%; background: ${investmentData[opt].color};"></div>
+                                    <span class="bar-value">${investmentData[opt].returnLabel}</span>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+
+            container.innerHTML = html;
+        }
+
+        function updateRecommendation() {
+            const goal = document.getElementById('goalSelect').value;
+            const risk = document.getElementById('riskSelect').value;
+            const box = document.getElementById('recommendationBox');
+            const text = document.getElementById('recommendationText');
+
+            if (!goal || !risk) {
+                box.style.display = 'none';
+                return;
+            }
+
+            let recommendation = '';
+
+            if (goal === 'emergency' || (goal === 'shortterm' && risk === 'conservative')) {
+                recommendation = 'Based on your need for accessible funds and low risk tolerance, a high-yield savings account or money market account would be most appropriate. These options provide FDIC insurance, easy access to your money, and modest returns without risking your principal.';
+            } else if (goal === 'shortterm') {
+                recommendation = 'For your short-term goal, consider a mix of savings accounts and short-term CDs. CDs can offer slightly higher returns while keeping your money secure. Just be mindful of early withdrawal penalties if you need the funds before the CD matures.';
+            } else if (goal === 'mediumterm' && risk === 'conservative') {
+                recommendation = 'For medium-term goals with conservative risk tolerance, consider a mix of CDs and high-quality corporate bonds. This combination provides better returns than savings accounts while maintaining relative stability.';
+            } else if (goal === 'mediumterm') {
+                recommendation = 'For your medium-term goal, a balanced approach mixing bonds and conservative mutual funds would be appropriate. This provides growth potential while managing risk. Consider bond funds or balanced mutual funds that invest in both stocks and bonds.';
+            } else if (goal === 'retirement' && risk === 'conservative') {
+                recommendation = 'For long-term retirement savings with conservative risk tolerance, consider a diversified portfolio with more bonds than stocks (perhaps 60% bonds, 40% stocks). Target-date funds can automatically adjust this balance as you approach retirement.';
+            } else if (goal === 'retirement') {
+                recommendation = 'For long-term retirement savings, a diversified portfolio of mutual funds or ETFs focusing on stocks is recommended. With a long time horizon, you can weather market volatility. Consider low-cost index funds that track the overall market for broad diversification.';
+            } else if (goal === 'growth') {
+                recommendation = 'For maximum growth, a portfolio heavily weighted toward stocks and equity ETFs is appropriate. Consider diversifying across different sectors and company sizes. Remember that higher potential returns come with higher risk, so only invest money you will not need for 5+ years.';
+            }
+
+            text.textContent = recommendation;
+            box.style.display = 'block';
+        }
+
+        function clearSelections() {
+            selectedOptions = [];
+            document.querySelectorAll('.investment-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            updateComparison();
+            document.getElementById('goalSelect').value = '';
+            document.getElementById('riskSelect').value = '';
+            document.getElementById('analysisResponse').value = '';
+            document.getElementById('diversificationResponse').value = '';
+            document.getElementById('recommendationBox').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

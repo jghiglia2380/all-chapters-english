@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Risk Management Reference Sheet - PFL Academy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            font-size: 12px;
+            line-height: 1.5;
+            color: #1f2937;
+            padding: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 3px solid #6366f1;
+        }
+
+        .header h1 {
+            font-size: 24px;
+            color: #6366f1;
+            margin-bottom: 4px;
+        }
+
+        .header p {
+            color: #6b7280;
+            font-size: 12px;
+        }
+
+        .risk-types-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 11px;
+        }
+
+        .risk-types-table th {
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+            color: white;
+            padding: 10px 8px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .risk-types-table td {
+            padding: 8px;
+            border-bottom: 1px solid #e5e7eb;
+            vertical-align: top;
+        }
+
+        .risk-types-table tr:hover {
+            background-color: #f9fafb;
+        }
+
+        .risk-types-table td:first-child {
+            font-weight: 600;
+            background: #f9fafb;
+            width: 18%;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .three-column {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .concept-box {
+            background: #f9fafb;
+            padding: 12px;
+            border-radius: 6px;
+            border-left: 4px solid #6366f1;
+        }
+
+        .concept-box h3 {
+            font-size: 14px;
+            font-weight: 700;
+            color: #6366f1;
+            margin-bottom: 8px;
+        }
+
+        .concept-box ul {
+            margin-left: 16px;
+            margin-bottom: 8px;
+        }
+
+        .concept-box li {
+            margin-bottom: 3px;
+        }
+
+        .profile-section {
+            background: #eff6ff;
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 16px;
+        }
+
+        .profile-section h3 {
+            font-size: 14px;
+            font-weight: 600;
+            color: #3b82f6;
+            margin-bottom: 8px;
+        }
+
+        .profile-card {
+            background: white;
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 8px;
+        }
+
+        .profile-card:last-child {
+            margin-bottom: 0;
+        }
+
+        .profile-card h4 {
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .profile-card.conservative h4 { color: #10b981; }
+        .profile-card.moderate h4 { color: #f59e0b; }
+        .profile-card.aggressive h4 { color: #ef4444; }
+
+        .profile-card p {
+            font-size: 10px;
+            color: #4b5563;
+            margin-bottom: 4px;
+        }
+
+        .allocation-bar {
+            display: flex;
+            height: 12px;
+            border-radius: 3px;
+            overflow: hidden;
+            margin-top: 4px;
+        }
+
+        .allocation-stocks { background: #6366f1; }
+        .allocation-bonds { background: #3b82f6; }
+        .allocation-cash { background: #10b981; }
+
+        .diversification-section {
+            background: #ecfdf5;
+            padding: 12px;
+            border-radius: 6px;
+            border-left: 4px solid #10b981;
+            margin-bottom: 16px;
+        }
+
+        .diversification-section h3 {
+            font-size: 14px;
+            font-weight: 600;
+            color: #059669;
+            margin-bottom: 8px;
+        }
+
+        .diversification-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+        }
+
+        .diversification-item {
+            background: white;
+            padding: 8px;
+            border-radius: 4px;
+        }
+
+        .diversification-item h4 {
+            font-size: 11px;
+            font-weight: 600;
+            color: #059669;
+            margin-bottom: 4px;
+        }
+
+        .diversification-item ul {
+            margin-left: 12px;
+            font-size: 10px;
+        }
+
+        .fraud-warning {
+            background: #fef2f2;
+            padding: 12px;
+            border-radius: 6px;
+            border-left: 4px solid #ef4444;
+            margin-bottom: 16px;
+        }
+
+        .fraud-warning h3 {
+            font-size: 14px;
+            font-weight: 600;
+            color: #dc2626;
+            margin-bottom: 8px;
+        }
+
+        .fraud-warning ul {
+            margin-left: 16px;
+        }
+
+        .fraud-warning li {
+            margin-bottom: 4px;
+        }
+
+        .formulas-section {
+            background: #fffbeb;
+            padding: 12px;
+            border-radius: 6px;
+            border-left: 4px solid #f59e0b;
+            margin-bottom: 16px;
+        }
+
+        .formulas-section h3 {
+            font-size: 14px;
+            font-weight: 600;
+            color: #b45309;
+            margin-bottom: 8px;
+        }
+
+        .formula-item {
+            background: white;
+            padding: 8px;
+            border-radius: 4px;
+            margin-bottom: 8px;
+        }
+
+        .formula-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .formula-item h4 {
+            font-size: 11px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .formula-item code {
+            font-family: monospace;
+            background: #fef3c7;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 10px;
+        }
+
+        .formula-item p {
+            font-size: 10px;
+            color: #4b5563;
+            margin-top: 4px;
+        }
+
+        .key-takeaway {
+            background: #eff6ff;
+            padding: 12px;
+            border-radius: 6px;
+            border-left: 4px solid #3b82f6;
+        }
+
+        .key-takeaway h3 {
+            font-size: 12px;
+            font-weight: 600;
+            color: #3b82f6;
+            margin-bottom: 6px;
+        }
+
+        .key-takeaway p {
+            font-size: 11px;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 12px;
+            border-top: 1px solid #e5e7eb;
+            color: #6b7280;
+            font-size: 10px;
+        }
+
+        @media print {
+            body {
+                padding: 10px;
+                font-size: 10px;
+            }
+
+            .concept-box,
+            .profile-section,
+            .diversification-section,
+            .fraud-warning,
+            .formulas-section {
+                page-break-inside: avoid;
+            }
+
+            .risk-types-table {
+                font-size: 9px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .two-column,
+            .three-column,
+            .diversification-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Risk Management Reference Sheet</h1>
+        <p>Quick reference for understanding and managing financial risks</p>
+    </div>
+
+    <!-- Types of Financial Risk -->
+    <table class="risk-types-table">
+        <thead>
+            <tr>
+                <th>Risk Type</th>
+                <th>Definition</th>
+                <th>Example</th>
+                <th>Management Strategy</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Market Risk</td>
+                <td>Possibility of losses due to factors affecting overall financial markets (recessions, political events, global crises)</td>
+                <td>Stock portfolio drops 20% during economic recession</td>
+                <td>Diversification, long time horizon, avoid panic selling</td>
+            </tr>
+            <tr>
+                <td>Financial Risk</td>
+                <td>Risk related to a company's ability to manage debt and meet financial obligations</td>
+                <td>Company goes bankrupt and bondholders lose investment</td>
+                <td>Research company financials, credit ratings, avoid over-concentration</td>
+            </tr>
+            <tr>
+                <td>Inflation Risk</td>
+                <td>Possibility that purchasing power decreases as prices rise over time</td>
+                <td>$10,000 in savings loses 26% purchasing power over 10 years at 3% inflation</td>
+                <td>Include growth investments, consider I-bonds, TIPS</td>
+            </tr>
+            <tr>
+                <td>Fraud Risk</td>
+                <td>Danger of losing money due to scams, deception, or fraudulent schemes</td>
+                <td>Ponzi scheme promises 20% guaranteed returns with "no risk"</td>
+                <td>Due diligence, verify credentials, avoid too-good-to-be-true offers</td>
+            </tr>
+            <tr>
+                <td>Liquidity Risk</td>
+                <td>Risk that you cannot sell an investment quickly without significant loss</td>
+                <td>Real estate cannot be sold quickly during market downturn</td>
+                <td>Maintain emergency fund, balance liquid and illiquid investments</td>
+            </tr>
+            <tr>
+                <td>Interest Rate Risk</td>
+                <td>Risk that bond values decrease when interest rates rise</td>
+                <td>Bond values drop when Federal Reserve raises rates</td>
+                <td>Bond laddering, shorter durations, diversified fixed income</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Risk Tolerance Profiles -->
+    <div class="profile-section">
+        <h3>Risk Tolerance Profiles</h3>
+        <div class="profile-card conservative">
+            <h4>Conservative (Low Risk Tolerance)</h4>
+            <p><strong>Characteristics:</strong> Short time horizon, low income stability, high liquidity needs, uncomfortable with volatility</p>
+            <p><strong>Suggested Allocation:</strong> 20% Stocks / 50% Bonds / 30% Cash</p>
+            <div class="allocation-bar">
+                <div class="allocation-stocks" style="width: 20%"></div>
+                <div class="allocation-bonds" style="width: 50%"></div>
+                <div class="allocation-cash" style="width: 30%"></div>
+            </div>
+        </div>
+        <div class="profile-card moderate">
+            <h4>Moderate (Medium Risk Tolerance)</h4>
+            <p><strong>Characteristics:</strong> Medium time horizon (5-10 years), stable income, balanced goals, can tolerate some fluctuation</p>
+            <p><strong>Suggested Allocation:</strong> 50% Stocks / 35% Bonds / 15% Cash</p>
+            <div class="allocation-bar">
+                <div class="allocation-stocks" style="width: 50%"></div>
+                <div class="allocation-bonds" style="width: 35%"></div>
+                <div class="allocation-cash" style="width: 15%"></div>
+            </div>
+        </div>
+        <div class="profile-card aggressive">
+            <h4>Aggressive (High Risk Tolerance)</h4>
+            <p><strong>Characteristics:</strong> Long time horizon (10+ years), high income stability, low liquidity needs, comfortable with volatility</p>
+            <p><strong>Suggested Allocation:</strong> 80% Stocks / 15% Bonds / 5% Cash</p>
+            <div class="allocation-bar">
+                <div class="allocation-stocks" style="width: 80%"></div>
+                <div class="allocation-bonds" style="width: 15%"></div>
+                <div class="allocation-cash" style="width: 5%"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Two Column: Asset Classes and Diversification Benefits -->
+    <div class="two-column">
+        <div class="concept-box">
+            <h3>Asset Classes by Risk Level</h3>
+            <ul>
+                <li><strong>Low Risk:</strong> Savings accounts, CDs, Treasury bonds, money market funds</li>
+                <li><strong>Moderate Risk:</strong> Investment-grade bonds, balanced funds, blue-chip stocks, REITs</li>
+                <li><strong>High Risk:</strong> Growth stocks, small-cap stocks, emerging markets, sector funds</li>
+                <li><strong>Very High Risk:</strong> Options, futures, cryptocurrency, penny stocks</li>
+            </ul>
+        </div>
+        <div class="concept-box">
+            <h3>Risk-Return Tradeoff</h3>
+            <ul>
+                <li>Higher potential returns = Higher risk</li>
+                <li>Lower risk = Lower potential returns</li>
+                <li>No investment is completely risk-free</li>
+                <li>Time horizon affects appropriate risk level</li>
+                <li>Diversification can reduce risk without proportionally reducing returns</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Diversification Strategies -->
+    <div class="diversification-section">
+        <h3>Diversification Strategies</h3>
+        <div class="diversification-grid">
+            <div class="diversification-item">
+                <h4>Asset Class Diversification</h4>
+                <ul>
+                    <li>Stocks for growth</li>
+                    <li>Bonds for income/stability</li>
+                    <li>Cash for liquidity</li>
+                    <li>Real estate for inflation hedge</li>
+                </ul>
+            </div>
+            <div class="diversification-item">
+                <h4>Sector Diversification</h4>
+                <ul>
+                    <li>Technology</li>
+                    <li>Healthcare</li>
+                    <li>Consumer goods</li>
+                    <li>Financial services</li>
+                    <li>Energy/Utilities</li>
+                </ul>
+            </div>
+            <div class="diversification-item">
+                <h4>Geographic Diversification</h4>
+                <ul>
+                    <li>U.S. domestic stocks</li>
+                    <li>International developed markets</li>
+                    <li>Emerging markets</li>
+                    <li>Global bonds</li>
+                </ul>
+            </div>
+            <div class="diversification-item">
+                <h4>Time Diversification</h4>
+                <ul>
+                    <li>Dollar-cost averaging</li>
+                    <li>Regular contributions</li>
+                    <li>CD laddering</li>
+                    <li>Bond laddering</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fraud Warning Signs -->
+    <div class="fraud-warning">
+        <h3>Red Flags: Warning Signs of Investment Fraud</h3>
+        <ul>
+            <li><strong>Guaranteed high returns with no risk</strong> - All investments carry some risk</li>
+            <li><strong>Pressure to invest immediately</strong> - "Limited time offer" or "Act now"</li>
+            <li><strong>Unregistered investments</strong> - Check SEC.gov or FINRA BrokerCheck</li>
+            <li><strong>Unlicensed sellers</strong> - Always verify credentials</li>
+            <li><strong>Can't explain the strategy clearly</strong> - If it sounds too complex, be cautious</li>
+            <li><strong>Missing documentation</strong> - Legitimate investments provide prospectuses and disclosures</li>
+            <li><strong>Difficulty receiving payments</strong> - Trouble withdrawing money is a major red flag</li>
+        </ul>
+    </div>
+
+    <!-- Key Formulas and Concepts -->
+    <div class="formulas-section">
+        <h3>Key Formulas and Concepts</h3>
+        <div class="formula-item">
+            <h4>Rule of 72 (Doubling Time)</h4>
+            <code>Years to Double = 72 / Annual Return %</code>
+            <p>Example: At 8% return, money doubles in 72/8 = 9 years</p>
+        </div>
+        <div class="formula-item">
+            <h4>Inflation Impact</h4>
+            <code>Real Return = Nominal Return - Inflation Rate</code>
+            <p>Example: 5% return - 3% inflation = 2% real return</p>
+        </div>
+        <div class="formula-item">
+            <h4>Age-Based Allocation Rule</h4>
+            <code>Stock % = 110 - Your Age (or 100 - Age for conservative)</code>
+            <p>Example: Age 25 = 85% stocks, 15% bonds; Age 60 = 50% stocks, 50% bonds</p>
+        </div>
+        <div class="formula-item">
+            <h4>Emergency Fund Target</h4>
+            <code>Emergency Fund = Monthly Expenses x 3 to 6 months</code>
+            <p>Higher job instability or health concerns = target 6 months</p>
+        </div>
+    </div>
+
+    <!-- Three Column: Quick Tips -->
+    <div class="three-column">
+        <div class="concept-box">
+            <h3>Before Investing</h3>
+            <ul>
+                <li>Build emergency fund first</li>
+                <li>Pay off high-interest debt</li>
+                <li>Define your goals and timeline</li>
+                <li>Assess your risk tolerance</li>
+                <li>Research investment options</li>
+            </ul>
+        </div>
+        <div class="concept-box">
+            <h3>During Investing</h3>
+            <ul>
+                <li>Diversify across asset classes</li>
+                <li>Invest regularly (dollar-cost averaging)</li>
+                <li>Rebalance periodically</li>
+                <li>Avoid emotional decisions</li>
+                <li>Keep costs low</li>
+            </ul>
+        </div>
+        <div class="concept-box">
+            <h3>Risk Management</h3>
+            <ul>
+                <li>Never invest what you can't afford to lose</li>
+                <li>Match risk to time horizon</li>
+                <li>Review and adjust as life changes</li>
+                <li>Stay informed but avoid overreacting</li>
+                <li>Seek professional advice when needed</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Key Takeaway -->
+    <div class="key-takeaway">
+        <h3>Key Takeaway</h3>
+        <p>Risk is inherent in all financial decisions, but it can be managed effectively through education, diversification, and honest self-assessment. Understanding your personal risk tolerance and matching it with appropriate investment strategies allows you to pursue your financial goals while maintaining peace of mind. Remember: the goal isn't to eliminate risk entirely, but to take appropriate risks that align with your goals, timeline, and comfort level. Start with a solid emergency fund, diversify your investments, stay patient during market volatility, and adjust your strategy as your life circumstances change.</p>
+    </div>
+
+    <div class="footer">
+        <p>PFL Academy - Chapter 5.5: Understanding Monetary Risks</p>
+        <p>This reference sheet is for educational purposes. Consult a financial professional for personalized advice.</p>
+    </div>
+</body>
+</html>

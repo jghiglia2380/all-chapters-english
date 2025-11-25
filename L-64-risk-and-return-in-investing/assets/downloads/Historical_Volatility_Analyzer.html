@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historical Volatility Analyzer</title>
+    <!--
+    PURPOSE: Analyze 30-year historical market data and make investment decisions during simulated scenarios
+    USE: Activity 4 - Historical Volatility Analysis and Decision-Making (10 minutes)
+    -->
+    <style>
+        :root {
+            --primary: #6366f1;
+            --secondary: #8b5cf6;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --text: #1f2937;
+            --surface: #f9fafb;
+        }
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: var(--primary);
+            border-bottom: 3px solid var(--primary);
+            padding-bottom: 10px;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .stat-card {
+            background: var(--surface);
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+        }
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+        .stat-label {
+            font-size: 0.8rem;
+            color: #6b7280;
+        }
+        .scenario-section {
+            background: var(--surface);
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .scenario-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .scenario-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+        .scenario-date {
+            background: var(--danger);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+        }
+        .scenario-context {
+            background: white;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 10px 0;
+        }
+        .market-impact {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin: 15px 0;
+        }
+        .impact-item {
+            padding: 10px;
+            border-radius: 6px;
+            text-align: center;
+        }
+        .impact-negative {
+            background: #fee2e2;
+            color: var(--danger);
+        }
+        .impact-positive {
+            background: #d1fae5;
+            color: var(--success);
+        }
+        .decision-box {
+            margin: 15px 0;
+        }
+        .decision-box label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .decision-options {
+            display: grid;
+            gap: 8px;
+        }
+        .decision-option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            background: white;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        .decision-option:hover {
+            background: #f3f4f6;
+        }
+        .decision-option input {
+            width: auto;
+        }
+        .outcome-box {
+            padding: 15px;
+            border-radius: 6px;
+            margin: 15px 0;
+            display: none;
+        }
+        .outcome-good {
+            background: #d1fae5;
+            border-left: 4px solid var(--success);
+        }
+        .outcome-bad {
+            background: #fee2e2;
+            border-left: 4px solid var(--danger);
+        }
+        .outcome-neutral {
+            background: #fef3c7;
+            border-left: 4px solid var(--warning);
+        }
+        .key-lesson {
+            background: #f0f7ff;
+            border-left: 4px solid var(--primary);
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .analysis-box {
+            margin: 20px 0;
+        }
+        .analysis-box label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .analysis-box textarea {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #e5e7eb;
+            border-radius: 6px;
+            min-height: 70px;
+            font-family: inherit;
+        }
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            background: var(--primary);
+            color: white;
+            margin: 5px;
+        }
+        .btn:hover {
+            background: #4f46e5;
+        }
+        @media print {
+            body { font-size: 11pt; }
+        }
+    </style>
+</head>
+<body>
+    <h1>📉 Historical Volatility Analyzer</h1>
+
+    <p>Analyze historical market data and practice making investment decisions during volatile periods. Learn from the past to prepare for future market turbulence.</p>
+
+    <h3>S&P 500 Historical Statistics (1994-2024)</h3>
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-value">10.3%</div>
+            <div class="stat-label">Avg Annual Return</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value">15.4%</div>
+            <div class="stat-label">Std Deviation</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value">24</div>
+            <div class="stat-label">Positive Years</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value">6</div>
+            <div class="stat-label">Negative Years</div>
+        </div>
+    </div>
+
+    <!-- Scenario 1: Dot-Com Crash -->
+    <div class="scenario-section">
+        <div class="scenario-header">
+            <span class="scenario-title">Scenario 1: Dot-Com Bust</span>
+            <span class="scenario-date">March 2000</span>
+        </div>
+
+        <div class="scenario-context">
+            <strong>The Situation:</strong> Tech stocks have soared 400% in 5 years. NASDAQ is at all-time highs. Everyone is talking about "new economy" stocks. Your tech-heavy portfolio is up 80% in the past year. News headlines predict NASDAQ will hit 10,000 by year end.
+        </div>
+
+        <div class="market-impact">
+            <div class="impact-item impact-positive">
+                <strong>Your Portfolio:</strong> +80% YTD
+            </div>
+            <div class="impact-item impact-negative">
+                <strong>Next 3 Years:</strong> -78% (NASDAQ)
+            </div>
+        </div>
+
+        <div class="decision-box">
+            <label>What would you do?</label>
+            <div class="decision-options">
+                <label class="decision-option">
+                    <input type="radio" name="scenario1" value="hold" onclick="showOutcome(1, 'hold')">
+                    Hold everything - momentum will continue
+                </label>
+                <label class="decision-option">
+                    <input type="radio" name="scenario1" value="rebalance" onclick="showOutcome(1, 'rebalance')">
+                    Rebalance - sell some tech, diversify
+                </label>
+                <label class="decision-option">
+                    <input type="radio" name="scenario1" value="sell" onclick="showOutcome(1, 'sell')">
+                    Sell all tech - switch to bonds
+                </label>
+                <label class="decision-option">
+                    <input type="radio" name="scenario1" value="buy" onclick="showOutcome(1, 'buy')">
+                    Buy more tech - don't miss out
+                </label>
+            </div>
+        </div>
+
+        <div class="outcome-box" id="outcome-1">
+            <!-- Populated by JS -->
+        </div>
+    </div>
+
+    <!-- Scenario 2: 2008 Crisis -->
+    <div class="scenario-section">
+        <div class="scenario-header">
+            <span class="scenario-title">Scenario 2: Financial Crisis</span>
+            <span class="scenario-date">October 2008</span>
+        </div>
+
+        <div class="scenario-context">
+            <strong>The Situation:</strong> Lehman Brothers just collapsed. Banks are failing. Market is down 35% from peak and falling fast. Your balanced portfolio has lost $50,000. News is predicting Great Depression 2.0. Your friends are moving to cash.
+        </div>
+
+        <div class="market-impact">
+            <div class="impact-item impact-negative">
+                <strong>Market YTD:</strong> -35%
+            </div>
+            <div class="impact-item impact-positive">
+                <strong>Next 5 Years:</strong> +128%
+            </div>
+        </div>
+
+        <div class="decision-box">
+            <label>What would you do?</label>
+            <div class="decision-options">
+                <label class="decision-option">
+                    <input type="radio" name="scenario2" value="sell" onclick="showOutcome(2, 'sell')">
+                    Sell everything - get out before it's worse
+                </label>
+                <label class="decision-option">
+                    <input type="radio" name="scenario2" value="hold" onclick="showOutcome(2, 'hold')">
+                    Hold and wait - don't panic
+                </label>
+                <label class="decision-option">
+                    <input type="radio" name="scenario2" value="rebalance" onclick="showOutcome(2, 'rebalance')">
+                    Rebalance - buy stocks with bond money
+                </label>
+                <label class="decision-option">
+                    <input type="radio" name="scenario2" value="buy" onclick="showOutcome(2, 'buy')">
+                    Buy more aggressively - stocks are cheap
+                </label>
+            </div>
+        </div>
+
+        <div class="outcome-box" id="outcome-2">
+            <!-- Populated by JS -->
+        </div>
+    </div>
+
+    <!-- Scenario 3: COVID Crash -->
+    <div class="scenario-section">
+        <div class="scenario-header">
+            <span class="scenario-title">Scenario 3: COVID-19 Crash</span>
+            <span class="scenario-date">March 2020</span>
+        </div>
+
+        <div class="scenario-context">
+            <strong>The Situation:</strong> Market dropped 34% in just 23 days - fastest decline in history. Global pandemic shutting down economies. Unemployment claims hit 6.6 million in one week. No one knows how long lockdowns will last or if vaccines are possible.
+        </div>
+
+        <div class="market-impact">
+            <div class="impact-item impact-negative">
+                <strong>February → March:</strong> -34%
+            </div>
+            <div class="impact-item impact-positive">
+                <strong>March → August:</strong> +51%
+            </div>
+        </div>
+
+        <div class="decision-box">
+            <label>What would you do?</label>
+            <div class="decision-options">
+                <label class="decision-option">
+                    <input type="radio" name="scenario3" value="sell" onclick="showOutcome(3, 'sell')">
+                    Sell everything - unprecedented crisis
+                </label>
+                <label class="decision-option">
+                    <input type="radio" name="scenario3" value="hold" onclick="showOutcome(3, 'hold')">
+                    Hold steady - stick to my plan
+                </label>
+                <label class="decision-option">
+                    <input type="radio" name="scenario3" value="buy" onclick="showOutcome(3, 'buy')">
+                    Buy the dip - great opportunity
+                </label>
+            </div>
+        </div>
+
+        <div class="outcome-box" id="outcome-3">
+            <!-- Populated by JS -->
+        </div>
+    </div>
+
+    <div class="key-lesson">
+        <h3>📚 Key Historical Lessons</h3>
+        <ul>
+            <li><strong>Time heals:</strong> Every major crash has been followed by recovery and new highs</li>
+            <li><strong>Panic sells hurt:</strong> Missing the best 10 days can cut your returns in half</li>
+            <li><strong>Diversification works:</strong> Bonds often rise when stocks fall</li>
+            <li><strong>Rebalancing helps:</strong> Systematically buying low and selling high</li>
+            <li><strong>Cash is not safe:</strong> Inflation erodes purchasing power over time</li>
+        </ul>
+    </div>
+
+    <div class="analysis-box">
+        <label>What emotional biases do you notice in yourself when reading these scenarios?</label>
+        <textarea placeholder="Consider fear, greed, recency bias, loss aversion..."></textarea>
+    </div>
+
+    <div class="analysis-box">
+        <label>How can you prepare yourself to make better decisions during the next market crash?</label>
+        <textarea placeholder="Think about having a written plan, automatic rebalancing, avoiding news..."></textarea>
+    </div>
+
+    <script>
+        const outcomes = {
+            1: {
+                hold: { type: 'bad', text: 'The NASDAQ fell 78% over three years. A $100,000 tech portfolio became $22,000. Holding through extreme overvaluation caused massive losses.' },
+                rebalance: { type: 'good', text: 'Rebalancing locked in some gains and reduced concentration risk. While still painful, diversified investors recovered much faster.' },
+                sell: { type: 'neutral', text: 'Moving to bonds avoided the worst losses but you missed timing the bottom. Re-entering later was psychologically difficult.' },
+                buy: { type: 'bad', text: 'Buying more at the peak amplified losses. The NASDAQ took 15 years to recover to 2000 levels. Chasing momentum is dangerous.' }
+            },
+            2: {
+                sell: { type: 'bad', text: 'Selling at the bottom locked in 35%+ losses and missed the 128% recovery. The market hit new highs by 2013. Panic selling is costly.' },
+                hold: { type: 'good', text: 'Holding through the pain was emotionally difficult but rewarded. Patient investors fully recovered by 2012 and gained significantly thereafter.' },
+                rebalance: { type: 'good', text: 'Rebalancing into stocks at low prices was optimal. This systematically "bought low" and enhanced the recovery.' },
+                buy: { type: 'good', text: 'Aggressive buying at the bottom was extremely profitable but required strong conviction and available cash. Hard to execute emotionally.' }
+            },
+            3: {
+                sell: { type: 'bad', text: 'The fastest 34% decline was followed by the fastest recovery in history. Sellers missed a 51% gain in just 5 months. Recovery was complete by August.' },
+                hold: { type: 'good', text: 'Holding steady despite unprecedented uncertainty was rewarded. New all-time highs by August 2020.' },
+                buy: { type: 'good', text: 'Buying the dip was extremely profitable. Investors who bought in March were up 50%+ by summer. Required courage and available cash.' }
+            }
+        };
+
+        function showOutcome(scenario, decision) {
+            const outcome = outcomes[scenario][decision];
+            const box = document.getElementById(`outcome-${scenario}`);
+
+            let className = 'outcome-box ';
+            if (outcome.type === 'good') className += 'outcome-good';
+            else if (outcome.type === 'bad') className += 'outcome-bad';
+            else className += 'outcome-neutral';
+
+            box.className = className;
+            box.innerHTML = `<strong>Outcome:</strong> ${outcome.text}`;
+            box.style.display = 'block';
+        }
+    </script>
+</body>
+</html>

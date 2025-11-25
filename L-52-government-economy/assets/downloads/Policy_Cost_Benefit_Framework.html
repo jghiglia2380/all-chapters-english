@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Policy Cost-Benefit Framework - PFL Academy</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background-color: #f9fafb;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+            color: white;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 0.95rem;
+        }
+
+        .content {
+            padding: 24px;
+        }
+
+        .section {
+            margin-bottom: 24px;
+        }
+
+        .section-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #4f46e5;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e5e7eb;
+        }
+
+        .step-header {
+            background: #eef2ff;
+            padding: 12px 16px;
+            border-radius: 8px 8px 0 0;
+            font-weight: 600;
+            color: #4f46e5;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .step-number {
+            background: #6366f1;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+        }
+
+        .step-content {
+            border: 1px solid #e5e7eb;
+            border-top: none;
+            border-radius: 0 0 8px 8px;
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 6px;
+            color: #374151;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            font-size: 0.95rem;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #6366f1;
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+        }
+
+        .form-group textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+
+        .policy-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .policy-option {
+            display: flex;
+            align-items: center;
+            padding: 12px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .policy-option:hover {
+            border-color: #6366f1;
+            background: #eef2ff;
+        }
+
+        .policy-option input[type="radio"] {
+            margin-right: 12px;
+        }
+
+        .policy-option.selected {
+            border-color: #6366f1;
+            background: #eef2ff;
+        }
+
+        .stakeholder-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .stakeholder-table th,
+        .stakeholder-table td {
+            padding: 10px;
+            border: 1px solid #e5e7eb;
+            text-align: left;
+        }
+
+        .stakeholder-table th {
+            background: #f3f4f6;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .stakeholder-table input {
+            width: 100%;
+            padding: 6px;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+            font-size: 0.85rem;
+        }
+
+        .recommendation-options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .recommendation-option {
+            display: flex;
+            align-items: flex-start;
+            padding: 12px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .recommendation-option:hover {
+            border-color: #6366f1;
+        }
+
+        .recommendation-option input[type="radio"] {
+            margin-right: 12px;
+            margin-top: 4px;
+        }
+
+        .recommendation-option.selected {
+            border-color: #6366f1;
+            background: #eef2ff;
+        }
+
+        .recommendation-label {
+            flex: 1;
+        }
+
+        .recommendation-label strong {
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .recommendation-label span {
+            font-size: 0.85rem;
+            color: #6b7280;
+        }
+
+        .confidence-slider {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .confidence-slider input[type="range"] {
+            flex: 1;
+        }
+
+        .confidence-value {
+            font-weight: 600;
+            color: #6366f1;
+            min-width: 30px;
+        }
+
+        .info-box {
+            background: #eff6ff;
+            border-left: 4px solid #3b82f6;
+            padding: 12px 16px;
+            margin-bottom: 16px;
+            font-size: 0.9rem;
+            color: #1e40af;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background: #6366f1;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #4f46e5;
+        }
+
+        .btn-secondary {
+            background: #e5e7eb;
+            color: #374151;
+        }
+
+        .btn-secondary:hover {
+            background: #d1d5db;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 10px;
+                font-size: 11px;
+            }
+
+            .container {
+                box-shadow: none;
+            }
+
+            .btn {
+                display: none;
+            }
+
+            .header {
+                padding: 16px;
+            }
+
+            .content {
+                padding: 16px;
+            }
+
+            .step-content {
+                break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Policy Cost-Benefit Framework</h1>
+            <p>Systematically evaluate proposed policies - Activity 2 (15 minutes)</p>
+        </div>
+
+        <div class="content">
+            <!-- Policy Selection -->
+            <div class="section">
+                <h2 class="section-title">Choose ONE Policy to Analyze</h2>
+                <div class="policy-options">
+                    <label class="policy-option">
+                        <input type="radio" name="policy" value="minimum_wage">
+                        Raise {{STATE_NAME}} minimum wage to $15/hour
+                    </label>
+                    <label class="policy-option">
+                        <input type="radio" name="policy" value="free_college">
+                        Make public community college free in {{STATE_NAME}}
+                    </label>
+                    <label class="policy-option">
+                        <input type="radio" name="policy" value="carbon_tax">
+                        Implement statewide carbon tax
+                    </label>
+                    <label class="policy-option">
+                        <input type="radio" name="policy" value="plastic_ban">
+                        Ban single-use plastic bags in {{STATE_NAME}}
+                    </label>
+                    <label class="policy-option">
+                        <input type="radio" name="policy" value="gas_tax">
+                        Increase gas tax by $0.10/gallon for infrastructure
+                    </label>
+                    <label class="policy-option">
+                        <input type="radio" name="policy" value="paid_leave">
+                        Require paid family leave for all employers
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label for="customPolicy">Or enter your own policy:</label>
+                    <input type="text" id="customPolicy" placeholder="Your policy to analyze...">
+                </div>
+            </div>
+
+            <!-- Step 1: Identify the Problem -->
+            <div class="step-header">
+                <span class="step-number">1</span>
+                Identify the Problem
+            </div>
+            <div class="step-content">
+                <div class="form-group">
+                    <label for="problem">What market failure or issue does this policy address?</label>
+                    <textarea id="problem" placeholder="Describe the problem this policy is trying to solve..."></textarea>
+                </div>
+            </div>
+
+            <!-- Step 2: Benefits -->
+            <div class="step-header">
+                <span class="step-number">2</span>
+                Benefits
+            </div>
+            <div class="step-content">
+                <table class="stakeholder-table">
+                    <thead>
+                        <tr>
+                            <th>Stakeholder</th>
+                            <th>How They Benefit</th>
+                            <th>Estimated Value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input type="text" placeholder="Group 1"></td>
+                            <td><input type="text" placeholder="Benefit description"></td>
+                            <td><input type="text" placeholder="$ or describe"></td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" placeholder="Group 2"></td>
+                            <td><input type="text" placeholder="Benefit description"></td>
+                            <td><input type="text" placeholder="$ or describe"></td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" placeholder="Group 3"></td>
+                            <td><input type="text" placeholder="Benefit description"></td>
+                            <td><input type="text" placeholder="$ or describe"></td>
+                        </tr>
+                        <tr>
+                            <td>Society overall</td>
+                            <td><input type="text" placeholder="Overall benefit"></td>
+                            <td><input type="text" placeholder="$ or describe"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Step 3: Costs -->
+            <div class="step-header">
+                <span class="step-number">3</span>
+                Costs
+            </div>
+            <div class="step-content">
+                <table class="stakeholder-table">
+                    <thead>
+                        <tr>
+                            <th>Stakeholder</th>
+                            <th>How They're Harmed</th>
+                            <th>Estimated Cost</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input type="text" placeholder="Group 1"></td>
+                            <td><input type="text" placeholder="Cost/harm description"></td>
+                            <td><input type="text" placeholder="$ or describe"></td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" placeholder="Group 2"></td>
+                            <td><input type="text" placeholder="Cost/harm description"></td>
+                            <td><input type="text" placeholder="$ or describe"></td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" placeholder="Group 3"></td>
+                            <td><input type="text" placeholder="Cost/harm description"></td>
+                            <td><input type="text" placeholder="$ or describe"></td>
+                        </tr>
+                        <tr>
+                            <td>Society overall</td>
+                            <td><input type="text" placeholder="Overall cost"></td>
+                            <td><input type="text" placeholder="$ or describe"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Step 4: Unintended Consequences -->
+            <div class="step-header">
+                <span class="step-number">4</span>
+                Unintended Consequences
+            </div>
+            <div class="step-content">
+                <div class="info-box">
+                    <strong>Example:</strong> Minimum wage increase may lead to automation, reduced hours, or businesses moving to other states.
+                </div>
+                <div class="form-group">
+                    <label for="consequences">What might happen that policymakers didn't anticipate?</label>
+                    <textarea id="consequences" placeholder="List potential unintended consequences of this policy..."></textarea>
+                </div>
+            </div>
+
+            <!-- Step 5: Alternatives -->
+            <div class="step-header">
+                <span class="step-number">5</span>
+                Alternatives
+            </div>
+            <div class="step-content">
+                <div class="form-group">
+                    <label for="alternatives">Is there a better way to solve the problem?</label>
+                    <textarea id="alternatives" placeholder="Consider market-based solutions, different regulations, or doing nothing..."></textarea>
+                </div>
+            </div>
+
+            <!-- Step 6: Your Recommendation -->
+            <div class="step-header">
+                <span class="step-number">6</span>
+                Your Recommendation
+            </div>
+            <div class="step-content">
+                <div class="recommendation-options">
+                    <label class="recommendation-option">
+                        <input type="radio" name="recommendation" value="implement">
+                        <div class="recommendation-label">
+                            <strong>Implement</strong>
+                            <span>Benefits clearly exceed costs</span>
+                        </div>
+                    </label>
+                    <label class="recommendation-option">
+                        <input type="radio" name="recommendation" value="modify">
+                        <div class="recommendation-label">
+                            <strong>Modify</strong>
+                            <span>Good idea but needs changes</span>
+                        </div>
+                    </label>
+                    <label class="recommendation-option">
+                        <input type="radio" name="recommendation" value="reject">
+                        <div class="recommendation-label">
+                            <strong>Reject</strong>
+                            <span>Costs exceed benefits or better alternatives exist</span>
+                        </div>
+                    </label>
+                </div>
+
+                <div class="form-group" style="margin-top: 16px;">
+                    <label for="modifications">If modifying, what changes would you make?</label>
+                    <input type="text" id="modifications" placeholder="Describe modifications...">
+                </div>
+
+                <div class="form-group">
+                    <label for="reasoning">Reasoning for your recommendation:</label>
+                    <textarea id="reasoning" placeholder="Explain why you chose this recommendation..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>How confident are you? (1-10)</label>
+                    <div class="confidence-slider">
+                        <input type="range" id="confidence" min="1" max="10" value="5" oninput="updateConfidence()">
+                        <span class="confidence-value" id="confidenceValue">5</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="moreInfo">What information would increase your confidence?</label>
+                    <textarea id="moreInfo" placeholder="What additional data or evidence would help you make a better decision?"></textarea>
+                </div>
+            </div>
+
+            <!-- Print Button -->
+            <div class="btn-group">
+                <button class="btn btn-secondary" onclick="window.print()">Print Framework</button>
+                <button class="btn btn-secondary" onclick="resetForm()">Reset</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Policy option selection
+        document.querySelectorAll('.policy-option').forEach(option => {
+            option.addEventListener('click', function() {
+                document.querySelectorAll('.policy-option').forEach(o => o.classList.remove('selected'));
+                this.classList.add('selected');
+            });
+        });
+
+        // Recommendation option selection
+        document.querySelectorAll('.recommendation-option').forEach(option => {
+            option.addEventListener('click', function() {
+                document.querySelectorAll('.recommendation-option').forEach(o => o.classList.remove('selected'));
+                this.classList.add('selected');
+            });
+        });
+
+        function updateConfidence() {
+            document.getElementById('confidenceValue').textContent = document.getElementById('confidence').value;
+        }
+
+        function resetForm() {
+            document.querySelectorAll('input[type="text"], textarea').forEach(el => el.value = '');
+            document.querySelectorAll('input[type="radio"]').forEach(el => el.checked = false);
+            document.querySelectorAll('.policy-option, .recommendation-option').forEach(el => el.classList.remove('selected'));
+            document.getElementById('confidence').value = 5;
+            updateConfidence();
+        }
+    </script>
+</body>
+</html>

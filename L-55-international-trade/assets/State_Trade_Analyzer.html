@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>State Export/Import Analyzer</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        header { text-align: center; margin-bottom: 30px; }
+        h1 { font-size: 2rem; color: #6366f1; margin-bottom: 10px; }
+        .subtitle { color: #6b7280; }
+        .state-display {
+            background: #f0f9ff;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        .state-name { font-size: 1.5rem; font-weight: bold; color: #1e40af; }
+        .trade-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+        .trade-card {
+            background: #f9fafb;
+            padding: 20px;
+            border-radius: 12px;
+        }
+        .trade-title {
+            font-size: 1rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e5e7eb;
+        }
+        .exports { color: #059669; }
+        .imports { color: #dc2626; }
+        .trade-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #f3f4f6;
+        }
+        .trade-item:last-child { border-bottom: none; }
+        .item-name { color: #374151; }
+        .item-value { font-weight: 600; }
+        .impact-section {
+            background: #fef3c7;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+        }
+        .section-title { font-size: 1.1rem; font-weight: bold; margin-bottom: 15px; color: #92400e; }
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+        .impact-item { text-align: center; }
+        .impact-label { font-size: 0.85rem; color: #78350f; }
+        .impact-value { font-size: 1.3rem; font-weight: bold; color: #92400e; }
+        .personal-section {
+            background: #d1fae5;
+            padding: 20px;
+            border-radius: 12px;
+        }
+        .personal-section h3 { color: #065f46; margin-bottom: 15px; }
+        .personal-list { margin-left: 20px; color: #064e3b; }
+        .personal-list li { margin-bottom: 8px; }
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #e5e7eb;
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+        @media print {
+            body { background: white; padding: 0; }
+            .container { box-shadow: none; }
+        }
+        @media (max-width: 768px) {
+            .trade-grid, .impact-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>State Export/Import Analyzer</h1>
+            <p class="subtitle">Understand your state's role in global trade</p>
+        </header>
+
+        <div class="state-display">
+            <div class="state-name">{{STATE_NAME}}</div>
+        </div>
+
+        <div class="trade-grid">
+            <div class="trade-card">
+                <div class="trade-title exports">Top Exports</div>
+                <div class="trade-item">
+                    <span class="item-name">Machinery & Equipment</span>
+                    <span class="item-value">$12.4B</span>
+                </div>
+                <div class="trade-item">
+                    <span class="item-name">Agricultural Products</span>
+                    <span class="item-value">$8.7B</span>
+                </div>
+                <div class="trade-item">
+                    <span class="item-name">Chemicals</span>
+                    <span class="item-value">$6.2B</span>
+                </div>
+                <div class="trade-item">
+                    <span class="item-name">Transportation Equipment</span>
+                    <span class="item-value">$5.8B</span>
+                </div>
+                <div class="trade-item">
+                    <span class="item-name">Computer & Electronics</span>
+                    <span class="item-value">$4.3B</span>
+                </div>
+            </div>
+
+            <div class="trade-card">
+                <div class="trade-title imports">Top Imports</div>
+                <div class="trade-item">
+                    <span class="item-name">Consumer Electronics</span>
+                    <span class="item-value">$9.8B</span>
+                </div>
+                <div class="trade-item">
+                    <span class="item-name">Vehicles & Parts</span>
+                    <span class="item-value">$7.2B</span>
+                </div>
+                <div class="trade-item">
+                    <span class="item-name">Petroleum Products</span>
+                    <span class="item-value">$5.9B</span>
+                </div>
+                <div class="trade-item">
+                    <span class="item-name">Pharmaceuticals</span>
+                    <span class="item-value">$4.1B</span>
+                </div>
+                <div class="trade-item">
+                    <span class="item-name">Apparel & Textiles</span>
+                    <span class="item-value">$3.6B</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="impact-section">
+            <div class="section-title">Trade Impact on {{STATE_NAME}}</div>
+            <div class="impact-grid">
+                <div class="impact-item">
+                    <div class="impact-label">Jobs from Exports</div>
+                    <div class="impact-value">285,000</div>
+                </div>
+                <div class="impact-item">
+                    <div class="impact-label">Trade Balance</div>
+                    <div class="impact-value">+$4.2B</div>
+                </div>
+                <div class="impact-item">
+                    <div class="impact-label">GDP from Trade</div>
+                    <div class="impact-value">18%</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="personal-section">
+            <h3>How This Affects You</h3>
+            <ul class="personal-list">
+                <li><strong>Jobs:</strong> Export industries tend to pay 15-20% higher wages</li>
+                <li><strong>Consumer prices:</strong> Imports keep prices lower on electronics, clothing, and vehicles</li>
+                <li><strong>Career opportunities:</strong> Skills in logistics, international business, and languages are valuable</li>
+                <li><strong>Investment:</strong> State companies involved in trade may offer growth opportunities</li>
+                <li><strong>Risks:</strong> Trade disputes can affect local employment in export industries</li>
+            </ul>
+        </div>
+
+        <footer>
+            <p><strong>PFL Academy</strong> | International Trade</p>
+        </footer>
+    </div>
+</body>
+</html>

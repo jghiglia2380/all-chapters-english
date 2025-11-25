@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capital Gains Timing Tool</title>
+    <style>
+        :root { --primary: #6366f1; --secondary: #8b5cf6; --success: #10b981; --warning: #f59e0b; --danger: #ef4444; }
+        body { font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 14px; line-height: 1.5; color: #1f2937; max-width: 900px; margin: 0 auto; padding: 15px; }
+        h1 { color: var(--primary); font-size: 24px; border-bottom: 2px solid var(--primary); padding-bottom: 8px; }
+        h2 { color: var(--secondary); font-size: 18px; margin-top: 20px; }
+        .scenario { background: #f9fafb; padding: 15px; border-radius: 5px; margin: 15px 0; }
+        .input-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; }
+        .input-group label { display: block; font-weight: bold; margin-bottom: 5px; font-size: 13px; }
+        input, select { width: 100%; padding: 8px; border: 1px solid #d1d5db; border-radius: 4px; box-sizing: border-box; }
+        .comparison { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 15px 0; }
+        .timing-card { background: white; padding: 15px; border-radius: 5px; border: 2px solid #d1d5db; }
+        .timing-card h3 { margin: 0 0 10px 0; font-size: 16px; }
+        .timing-card.short-term { border-color: var(--danger); }
+        .timing-card.short-term h3 { color: var(--danger); }
+        .timing-card.long-term { border-color: var(--success); }
+        .timing-card.long-term h3 { color: var(--success); }
+        .metric { display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px solid #f3f4f6; font-size: 12px; }
+        .metric-value { font-weight: bold; }
+        .net-proceeds { text-align: center; padding: 10px; background: #f9fafb; border-radius: 4px; margin-top: 10px; }
+        .net-value { font-size: 24px; font-weight: bold; }
+        .savings { background: #d1fae5; padding: 15px; border-radius: 5px; margin: 15px 0; text-align: center; }
+        .savings-value { font-size: 32px; font-weight: bold; color: var(--success); }
+        .strategy-tips { background: #fef3c7; padding: 15px; border-radius: 5px; margin: 15px 0; }
+        button { background: var(--primary); color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; margin: 5px; }
+        button:hover { background: var(--secondary); }
+        .holding-period { background: #e0e7ff; padding: 10px; border-radius: 4px; margin: 10px 0; }
+        @media print { body { font-size: 11pt; } button { display: none; } .comparison { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <h1>Capital Gains Timing Tool</h1>
+    <p>Understand how holding period affects your tax bill</p>
+
+    <div class="scenario">
+        <h2 style="margin-top: 0;">Your Investment Scenario</h2>
+        <div class="input-grid">
+            <div class="input-group">
+                <label>Purchase Price ($)</label>
+                <input type="number" id="purchase" value="10000" step="500">
+            </div>
+            <div class="input-group">
+                <label>Current Value ($)</label>
+                <input type="number" id="current" value="15000" step="500">
+            </div>
+            <div class="input-group">
+                <label>Days Held</label>
+                <input type="number" id="daysHeld" value="300" step="30">
+            </div>
+            <div class="input-group">
+                <label>Your Tax Bracket (%)</label>
+                <select id="taxBracket">
+                    <option value="10">10%</option>
+                    <option value="12">12%</option>
+                    <option value="22" selected>22%</option>
+                    <option value="24">24%</option>
+                    <option value="32">32%</option>
+                    <option value="35">35%</option>
+                    <option value="37">37%</option>
+                </select>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 15px;">
+            <button onclick="calculate()">Calculate Tax Impact</button>
+        </div>
+    </div>
+
+    <div class="holding-period" id="holdingPeriod">
+        <strong>Holding Period Status:</strong> <span id="periodStatus">300 days - Short-term (need 66 more days for long-term)</span>
+    </div>
+
+    <div class="comparison">
+        <div class="timing-card short-term">
+            <h3>Sell Now (Short-Term)</h3>
+            <div class="metric"><span>Capital Gain</span><span class="metric-value" id="stGain">$5,000</span></div>
+            <div class="metric"><span>Tax Rate</span><span class="metric-value" id="stRate">22%</span></div>
+            <div class="metric"><span>Tax Owed</span><span class="metric-value" id="stTax">$1,100</span></div>
+            <div class="net-proceeds">
+                <div>Net Proceeds</div>
+                <div class="net-value" id="stNet">$13,900</div>
+            </div>
+        </div>
+
+        <div class="timing-card long-term">
+            <h3>Wait for Long-Term</h3>
+            <div class="metric"><span>Capital Gain</span><span class="metric-value" id="ltGain">$5,000</span></div>
+            <div class="metric"><span>Tax Rate</span><span class="metric-value" id="ltRate">15%</span></div>
+            <div class="metric"><span>Tax Owed</span><span class="metric-value" id="ltTax">$750</span></div>
+            <div class="net-proceeds">
+                <div>Net Proceeds</div>
+                <div class="net-value" id="ltNet">$14,250</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="savings">
+        <div>Tax Savings by Waiting</div>
+        <div class="savings-value" id="savings">$350</div>
+        <div id="waitDays">Wait 66 more days to save this amount</div>
+    </div>
+
+    <div class="strategy-tips">
+        <h2 style="margin-top: 0;">📋 Timing Strategies</h2>
+        <ul style="font-size: 13px; margin: 10px 0;">
+            <li><strong>Hold at least 366 days</strong> to qualify for long-term rates (0%, 15%, or 20%)</li>
+            <li><strong>Harvest losses strategically</strong> to offset gains (see Tax-Loss Harvesting)</li>
+            <li><strong>Consider your income year</strong> - realize gains in lower-income years</li>
+            <li><strong>Bunch gains with losses</strong> - sell winners and losers in the same year</li>
+            <li><strong>Gift appreciated stock</strong> - charity gets full value, you avoid the tax</li>
+        </ul>
+    </div>
+
+    <script>
+        function calculate() {
+            const purchase = parseFloat(document.getElementById('purchase').value) || 0;
+            const current = parseFloat(document.getElementById('current').value) || 0;
+            const daysHeld = parseInt(document.getElementById('daysHeld').value) || 0;
+            const taxBracket = parseFloat(document.getElementById('taxBracket').value) / 100;
+
+            const gain = current - purchase;
+            const daysToLongTerm = Math.max(0, 366 - daysHeld);
+            const isLongTerm = daysHeld >= 366;
+
+            // Short-term rate = ordinary income rate
+            const stRate = taxBracket;
+
+            // Long-term rate based on bracket
+            let ltRate;
+            if (taxBracket <= 0.12) {
+                ltRate = 0;
+            } else if (taxBracket <= 0.35) {
+                ltRate = 0.15;
+            } else {
+                ltRate = 0.20;
+            }
+
+            const stTax = gain * stRate;
+            const ltTax = gain * ltRate;
+            const stNet = current - stTax;
+            const ltNet = current - ltTax;
+            const savings = stTax - ltTax;
+
+            // Update holding period status
+            let periodStatus = `${daysHeld} days - `;
+            if (isLongTerm) {
+                periodStatus += '<span style="color: var(--success); font-weight: bold;">Long-term ✓</span>';
+            } else {
+                periodStatus += `<span style="color: var(--warning);">Short-term (need ${daysToLongTerm} more days)</span>`;
+            }
+            document.getElementById('periodStatus').innerHTML = periodStatus;
+
+            // Update cards
+            document.getElementById('stGain').textContent = '$' + gain.toLocaleString();
+            document.getElementById('stRate').textContent = (stRate * 100).toFixed(0) + '%';
+            document.getElementById('stTax').textContent = '$' + Math.round(stTax).toLocaleString();
+            document.getElementById('stNet').textContent = '$' + Math.round(stNet).toLocaleString();
+
+            document.getElementById('ltGain').textContent = '$' + gain.toLocaleString();
+            document.getElementById('ltRate').textContent = (ltRate * 100).toFixed(0) + '%';
+            document.getElementById('ltTax').textContent = '$' + Math.round(ltTax).toLocaleString();
+            document.getElementById('ltNet').textContent = '$' + Math.round(ltNet).toLocaleString();
+
+            document.getElementById('savings').textContent = '$' + Math.round(savings).toLocaleString();
+
+            if (isLongTerm) {
+                document.getElementById('waitDays').textContent = 'You already qualify for long-term rates!';
+            } else {
+                document.getElementById('waitDays').textContent = `Wait ${daysToLongTerm} more days to save this amount`;
+            }
+        }
+
+        // Initialize
+        calculate();
+    </script>
+</body>
+</html>

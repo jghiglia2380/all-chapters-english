@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investment Vehicles Reference Sheet - PFL Academy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            font-size: 12px;
+            line-height: 1.5;
+            color: #1f2937;
+            padding: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 3px solid #6366f1;
+        }
+
+        .header h1 {
+            font-size: 24px;
+            color: #6366f1;
+            margin-bottom: 4px;
+        }
+
+        .header p {
+            color: #6b7280;
+            font-size: 12px;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 11px;
+        }
+
+        .comparison-table th {
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+            color: white;
+            padding: 10px 8px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .comparison-table td {
+            padding: 8px;
+            border-bottom: 1px solid #e5e7eb;
+            vertical-align: top;
+        }
+
+        .comparison-table tr:hover {
+            background-color: #f9fafb;
+        }
+
+        .comparison-table td:first-child {
+            font-weight: 600;
+            background: #f9fafb;
+            width: 18%;
+        }
+
+        .risk-low { color: #10b981; font-weight: 600; }
+        .risk-moderate { color: #f59e0b; font-weight: 600; }
+        .risk-high { color: #ef4444; font-weight: 600; }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .info-box {
+            background: #f9fafb;
+            padding: 12px;
+            border-radius: 6px;
+            border-left: 4px solid #6366f1;
+        }
+
+        .info-box h3 {
+            font-size: 14px;
+            font-weight: 700;
+            color: #6366f1;
+            margin-bottom: 8px;
+        }
+
+        .info-box ul {
+            margin-left: 16px;
+            margin-bottom: 8px;
+        }
+
+        .info-box li {
+            margin-bottom: 3px;
+        }
+
+        .time-horizon-section {
+            background: #eff6ff;
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 16px;
+        }
+
+        .time-horizon-section h3 {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1e40af;
+            margin-bottom: 8px;
+        }
+
+        .horizon-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+        }
+
+        .horizon-item {
+            background: white;
+            padding: 8px;
+            border-radius: 4px;
+        }
+
+        .horizon-item h4 {
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 4px;
+            color: #1e40af;
+        }
+
+        .horizon-item p {
+            font-size: 10px;
+            color: #4b5563;
+            margin-bottom: 4px;
+        }
+
+        .horizon-item .vehicles {
+            font-size: 10px;
+            color: #6366f1;
+            font-weight: 500;
+        }
+
+        .risk-tolerance-section {
+            background: #fef3c7;
+            padding: 12px;
+            border-radius: 6px;
+            border-left: 4px solid #f59e0b;
+            margin-bottom: 16px;
+        }
+
+        .risk-tolerance-section h3 {
+            font-size: 14px;
+            font-weight: 600;
+            color: #b45309;
+            margin-bottom: 8px;
+        }
+
+        .risk-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+        }
+
+        .risk-item {
+            background: white;
+            padding: 8px;
+            border-radius: 4px;
+        }
+
+        .risk-item h4 {
+            font-size: 11px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .risk-item.conservative h4 { color: #10b981; }
+        .risk-item.moderate h4 { color: #f59e0b; }
+        .risk-item.aggressive h4 { color: #ef4444; }
+
+        .risk-item ul {
+            margin-left: 12px;
+            font-size: 10px;
+        }
+
+        .asset-allocation-section {
+            background: #ecfdf5;
+            padding: 12px;
+            border-radius: 6px;
+            border-left: 4px solid #10b981;
+            margin-bottom: 16px;
+        }
+
+        .asset-allocation-section h3 {
+            font-size: 14px;
+            font-weight: 600;
+            color: #059669;
+            margin-bottom: 8px;
+        }
+
+        .allocation-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+        }
+
+        .allocation-item {
+            background: white;
+            padding: 8px;
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        .allocation-item h4 {
+            font-size: 11px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .allocation-bar {
+            height: 20px;
+            border-radius: 3px;
+            overflow: hidden;
+            display: flex;
+            margin-bottom: 4px;
+        }
+
+        .bar-stocks {
+            background: #6366f1;
+        }
+
+        .bar-bonds {
+            background: #10b981;
+        }
+
+        .bar-cash {
+            background: #f59e0b;
+        }
+
+        .allocation-item .label {
+            font-size: 9px;
+            color: #6b7280;
+        }
+
+        .key-terms-section {
+            background: #f5f3ff;
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 16px;
+        }
+
+        .key-terms-section h3 {
+            font-size: 14px;
+            font-weight: 600;
+            color: #6366f1;
+            margin-bottom: 8px;
+        }
+
+        .terms-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+        }
+
+        .term-item {
+            font-size: 10px;
+        }
+
+        .term-item strong {
+            color: #4f46e5;
+        }
+
+        .key-takeaway {
+            background: #eff6ff;
+            padding: 12px;
+            border-radius: 6px;
+            border-left: 4px solid #3b82f6;
+        }
+
+        .key-takeaway h3 {
+            font-size: 12px;
+            font-weight: 600;
+            color: #3b82f6;
+            margin-bottom: 6px;
+        }
+
+        .key-takeaway p {
+            font-size: 11px;
+        }
+
+        .footer {
+            text-align: center;
+            padding-top: 16px;
+            color: #6b7280;
+            font-size: 10px;
+        }
+
+        @media print {
+            body {
+                padding: 10px;
+                font-size: 10px;
+            }
+
+            .info-box,
+            .time-horizon-section,
+            .risk-tolerance-section,
+            .asset-allocation-section,
+            .key-terms-section {
+                page-break-inside: avoid;
+            }
+
+            .comparison-table {
+                font-size: 9px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .two-column,
+            .horizon-grid,
+            .risk-grid,
+            .allocation-grid,
+            .terms-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Investment Vehicles Reference Sheet</h1>
+        <p>Quick reference for savings and investment options, time horizons, and asset allocation</p>
+    </div>
+
+    <table class="comparison-table">
+        <thead>
+            <tr>
+                <th>Vehicle</th>
+                <th>Risk Level</th>
+                <th>Expected Return</th>
+                <th>Liquidity</th>
+                <th>Time Horizon</th>
+                <th>Best For</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Savings Account</td>
+                <td class="risk-low">Very Low</td>
+                <td>0.5% - 5%</td>
+                <td>Very High</td>
+                <td>Immediate - 1 year</td>
+                <td>Emergency funds, short-term goals</td>
+            </tr>
+            <tr>
+                <td>Money Market Account</td>
+                <td class="risk-low">Very Low</td>
+                <td>1% - 5%</td>
+                <td>High</td>
+                <td>Immediate - 2 years</td>
+                <td>Higher-yield liquid savings</td>
+            </tr>
+            <tr>
+                <td>Certificate of Deposit (CD)</td>
+                <td class="risk-low">Low</td>
+                <td>1% - 5%</td>
+                <td>Low</td>
+                <td>6 months - 5 years</td>
+                <td>Guaranteed returns for fixed periods</td>
+            </tr>
+            <tr>
+                <td>Government Bonds</td>
+                <td class="risk-low">Low</td>
+                <td>2% - 5%</td>
+                <td>Moderate</td>
+                <td>1 - 30 years</td>
+                <td>Safe, predictable income</td>
+            </tr>
+            <tr>
+                <td>Corporate Bonds</td>
+                <td class="risk-moderate">Moderate</td>
+                <td>3% - 7%</td>
+                <td>Moderate</td>
+                <td>3 - 10 years</td>
+                <td>Higher yields with moderate risk</td>
+            </tr>
+            <tr>
+                <td>Bond Mutual Funds</td>
+                <td class="risk-moderate">Low-Moderate</td>
+                <td>3% - 6%</td>
+                <td>Moderate</td>
+                <td>3 - 10 years</td>
+                <td>Diversified fixed-income</td>
+            </tr>
+            <tr>
+                <td>Balanced Mutual Funds</td>
+                <td class="risk-moderate">Moderate</td>
+                <td>5% - 8%</td>
+                <td>Moderate</td>
+                <td>5 - 15 years</td>
+                <td>Growth with some protection</td>
+            </tr>
+            <tr>
+                <td>Index Funds/ETFs</td>
+                <td class="risk-moderate">Moderate-High</td>
+                <td>7% - 10%</td>
+                <td>High</td>
+                <td>5+ years</td>
+                <td>Low-cost market returns</td>
+            </tr>
+            <tr>
+                <td>Growth Mutual Funds</td>
+                <td class="risk-high">High</td>
+                <td>8% - 12%</td>
+                <td>Moderate</td>
+                <td>7+ years</td>
+                <td>Long-term wealth building</td>
+            </tr>
+            <tr>
+                <td>Individual Stocks</td>
+                <td class="risk-high">High</td>
+                <td>Variable (-50% to +100%)</td>
+                <td>High</td>
+                <td>5+ years</td>
+                <td>Experienced investors</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="two-column">
+        <div class="info-box">
+            <h3>FDIC-Insured Options</h3>
+            <ul>
+                <li>Savings accounts (up to $250,000)</li>
+                <li>Money market accounts</li>
+                <li>Certificates of Deposit (CDs)</li>
+            </ul>
+            <p style="font-size: 10px; color: #6b7280; margin-top: 8px;">
+                FDIC insurance protects your principal even if the bank fails.
+            </p>
+        </div>
+
+        <div class="info-box">
+            <h3>Non-Insured Options</h3>
+            <ul>
+                <li>Stocks and stock funds</li>
+                <li>Bonds and bond funds</li>
+                <li>Mutual funds and ETFs</li>
+            </ul>
+            <p style="font-size: 10px; color: #6b7280; margin-top: 8px;">
+                May lose value but offer higher return potential.
+            </p>
+        </div>
+    </div>
+
+    <div class="time-horizon-section">
+        <h3>Matching Time Horizons to Investments</h3>
+        <div class="horizon-grid">
+            <div class="horizon-item">
+                <h4>Short-Term (0-3 years)</h4>
+                <p>Emergency fund, car purchase, vacation, small purchases</p>
+                <div class="vehicles">Savings, Money Market, Short CDs</div>
+            </div>
+            <div class="horizon-item">
+                <h4>Medium-Term (3-10 years)</h4>
+                <p>Home down payment, education, starting a business</p>
+                <div class="vehicles">CDs, Bonds, Balanced Funds</div>
+            </div>
+            <div class="horizon-item">
+                <h4>Long-Term (10+ years)</h4>
+                <p>Retirement, children's college, wealth building</p>
+                <div class="vehicles">Stock Funds, Index Funds, ETFs</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="risk-tolerance-section">
+        <h3>Risk Tolerance Profiles</h3>
+        <div class="risk-grid">
+            <div class="risk-item conservative">
+                <h4>Conservative</h4>
+                <ul>
+                    <li>Cannot afford losses</li>
+                    <li>Prioritizes safety</li>
+                    <li>Accepts lower returns</li>
+                    <li>Sleeps well at night</li>
+                </ul>
+            </div>
+            <div class="risk-item moderate">
+                <h4>Moderate</h4>
+                <ul>
+                    <li>Can tolerate some loss</li>
+                    <li>Balanced approach</li>
+                    <li>Diversified portfolio</li>
+                    <li>Growth with protection</li>
+                </ul>
+            </div>
+            <div class="risk-item aggressive">
+                <h4>Aggressive</h4>
+                <ul>
+                    <li>Comfortable with volatility</li>
+                    <li>Maximizes growth</li>
+                    <li>Long time horizon</li>
+                    <li>Can wait out downturns</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="asset-allocation-section">
+        <h3>Sample Asset Allocations by Age/Time Horizon</h3>
+        <div class="allocation-grid">
+            <div class="allocation-item">
+                <h4>Young Adult (40+ years)</h4>
+                <div class="allocation-bar">
+                    <div class="bar-stocks" style="width: 80%;"></div>
+                    <div class="bar-bonds" style="width: 15%;"></div>
+                    <div class="bar-cash" style="width: 5%;"></div>
+                </div>
+                <div class="label">80% Stocks / 15% Bonds / 5% Cash</div>
+            </div>
+            <div class="allocation-item">
+                <h4>Mid-Career (20-30 years)</h4>
+                <div class="allocation-bar">
+                    <div class="bar-stocks" style="width: 70%;"></div>
+                    <div class="bar-bonds" style="width: 25%;"></div>
+                    <div class="bar-cash" style="width: 5%;"></div>
+                </div>
+                <div class="label">70% Stocks / 25% Bonds / 5% Cash</div>
+            </div>
+            <div class="allocation-item">
+                <h4>Pre-Retirement (10-20 years)</h4>
+                <div class="allocation-bar">
+                    <div class="bar-stocks" style="width: 50%;"></div>
+                    <div class="bar-bonds" style="width: 40%;"></div>
+                    <div class="bar-cash" style="width: 10%;"></div>
+                </div>
+                <div class="label">50% Stocks / 40% Bonds / 10% Cash</div>
+            </div>
+            <div class="allocation-item">
+                <h4>Retirement (0-10 years)</h4>
+                <div class="allocation-bar">
+                    <div class="bar-stocks" style="width: 30%;"></div>
+                    <div class="bar-bonds" style="width: 50%;"></div>
+                    <div class="bar-cash" style="width: 20%;"></div>
+                </div>
+                <div class="label">30% Stocks / 50% Bonds / 20% Cash</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="key-terms-section">
+        <h3>Key Terms</h3>
+        <div class="terms-grid">
+            <div class="term-item">
+                <strong>Diversification:</strong> Spreading investments across different asset types to reduce risk
+            </div>
+            <div class="term-item">
+                <strong>Liquidity:</strong> How quickly an investment can be converted to cash
+            </div>
+            <div class="term-item">
+                <strong>Principal:</strong> The original amount of money invested
+            </div>
+            <div class="term-item">
+                <strong>Rate of Return:</strong> Percentage gain or loss on an investment
+            </div>
+            <div class="term-item">
+                <strong>Compound Interest:</strong> Interest earned on both principal and accumulated interest
+            </div>
+            <div class="term-item">
+                <strong>Inflation:</strong> The gradual increase in prices that reduces purchasing power
+            </div>
+            <div class="term-item">
+                <strong>Asset Allocation:</strong> Division of investments among different asset classes
+            </div>
+            <div class="term-item">
+                <strong>Time Horizon:</strong> Length of time before you need access to your money
+            </div>
+        </div>
+    </div>
+
+    <div class="key-takeaway">
+        <h3>Key Takeaway: The Rule of 100</h3>
+        <p>A simple guideline for asset allocation: subtract your age from 100 to get the percentage you might invest in stocks. For example, at age 20, you might invest 80% in stocks and 20% in bonds/cash. At age 60, you might invest 40% in stocks and 60% in bonds/cash. This is just a starting point - your actual allocation should consider your risk tolerance, goals, and financial situation. Always remember: longer time horizons can tolerate more risk because you have more time to recover from market downturns.</p>
+    </div>
+
+    <div class="footer">
+        <p>PFL Academy - Chapter 5.4: Time is Money - Developing a Savings and Investment Strategy</p>
+    </div>
+</body>
+</html>

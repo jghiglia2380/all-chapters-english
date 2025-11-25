@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tax Prep Checklist Builder | PFL Academy</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        header { text-align: center; margin-bottom: 30px; }
+        h1 { font-size: 2rem; color: #6366f1; margin-bottom: 10px; }
+        .subtitle { color: #6b7280; }
+        .section {
+            background: #f9fafb;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #1f2937;
+        }
+        .filing-status-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .status-btn {
+            padding: 15px;
+            background: white;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.3s;
+        }
+        .status-btn:hover { border-color: #6366f1; }
+        .status-btn.selected { border-color: #6366f1; background: #eef2ff; }
+        .status-name { font-weight: bold; font-size: 0.95rem; }
+        .status-desc { font-size: 0.8rem; color: #6b7280; margin-top: 3px; }
+        .deadline-tracker {
+            background: #fef3c7;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+        .deadline-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            background: white;
+            border-radius: 8px;
+            margin-bottom: 8px;
+        }
+        .deadline-info { flex: 1; }
+        .deadline-name { font-weight: 600; font-size: 0.9rem; }
+        .deadline-date { font-size: 0.85rem; color: #6b7280; }
+        .deadline-status {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        .status-upcoming { background: #fef3c7; color: #92400e; }
+        .status-soon { background: #fee2e2; color: #991b1b; }
+        .document-section {
+            background: #f0f9ff;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+        .doc-category {
+            margin-bottom: 15px;
+        }
+        .doc-category-title {
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 10px;
+            color: #374151;
+        }
+        .doc-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            background: white;
+            border-radius: 8px;
+            margin-bottom: 6px;
+        }
+        .doc-item input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: #6366f1;
+        }
+        .doc-label { flex: 1; font-size: 0.9rem; }
+        .doc-note { font-size: 0.75rem; color: #6b7280; }
+        .progress-container {
+            margin-bottom: 20px;
+        }
+        .progress-bar {
+            background: #e5e7eb;
+            border-radius: 10px;
+            height: 20px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            background: linear-gradient(90deg, #6366f1, #8b5cf6);
+            height: 100%;
+            border-radius: 10px;
+            transition: width 0.3s;
+        }
+        .progress-text {
+            text-align: center;
+            font-weight: 600;
+            color: #6366f1;
+            margin-top: 8px;
+        }
+        .situation-checklist {
+            background: #d1fae5;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+        .situation-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            background: white;
+            border-radius: 8px;
+            margin-bottom: 6px;
+        }
+        .situation-item input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: #10b981;
+        }
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .generate-btn {
+            flex: 1;
+            padding: 15px;
+            background: #6366f1;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        .generate-btn:hover { background: #4f46e5; }
+        .print-btn {
+            flex: 1;
+            padding: 15px;
+            background: white;
+            color: #6366f1;
+            border: 2px solid #6366f1;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        .print-btn:hover { background: #eef2ff; }
+        .results { display: none; margin-top: 25px; }
+        .results.active { display: block; }
+        .result-card {
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+        }
+        .checklist-card { background: #dbeafe; border-left: 4px solid #3b82f6; }
+        .tips-card { background: #fef3c7; border-left: 4px solid #f59e0b; }
+        .next-steps-card { background: #d1fae5; border-left: 4px solid #10b981; }
+        .result-card h4 { margin-bottom: 10px; color: #1f2937; }
+        .result-card ul { margin-left: 20px; }
+        .result-card li { margin-bottom: 8px; font-size: 0.9rem; }
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #e5e7eb;
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+        @media (max-width: 768px) {
+            .filing-status-grid { grid-template-columns: 1fr; }
+            .btn-group { flex-direction: column; }
+        }
+        @media print {
+            body { background: white; padding: 0; }
+            .container { box-shadow: none; max-width: 100%; }
+            .generate-btn, .print-btn { display: none; }
+            .results { display: block !important; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Tax Prep Checklist Builder</h1>
+            <p class="subtitle">Build your personalized tax preparation checklist</p>
+        </header>
+
+        <!-- Progress Tracker -->
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+            </div>
+            <div class="progress-text" id="progressText">0% Complete - Start by selecting your filing status</div>
+        </div>
+
+        <!-- Filing Status Selector -->
+        <div class="section">
+            <div class="section-title">Step 1: Select Your Filing Status</div>
+            <div class="filing-status-grid">
+                <button class="status-btn" onclick="selectStatus('single')" id="status-single">
+                    <div class="status-name">Single</div>
+                    <div class="status-desc">Unmarried or legally separated</div>
+                </button>
+                <button class="status-btn" onclick="selectStatus('mfj')" id="status-mfj">
+                    <div class="status-name">Married Filing Jointly</div>
+                    <div class="status-desc">Married, filing one return together</div>
+                </button>
+                <button class="status-btn" onclick="selectStatus('mfs')" id="status-mfs">
+                    <div class="status-name">Married Filing Separately</div>
+                    <div class="status-desc">Married, filing separate returns</div>
+                </button>
+                <button class="status-btn" onclick="selectStatus('hoh')" id="status-hoh">
+                    <div class="status-name">Head of Household</div>
+                    <div class="status-desc">Unmarried with qualifying dependent</div>
+                </button>
+            </div>
+        </div>
+
+        <!-- Key Deadlines -->
+        <div class="deadline-tracker">
+            <div class="section-title">Key Tax Deadlines for {{STATE_NAME}}</div>
+            <div class="deadline-item">
+                <div class="deadline-info">
+                    <div class="deadline-name">W-2s and 1099s Due</div>
+                    <div class="deadline-date">January 31</div>
+                </div>
+                <span class="deadline-status status-upcoming">Upcoming</span>
+            </div>
+            <div class="deadline-item">
+                <div class="deadline-info">
+                    <div class="deadline-name">IRA Contribution Deadline</div>
+                    <div class="deadline-date">April 15</div>
+                </div>
+                <span class="deadline-status status-upcoming">Upcoming</span>
+            </div>
+            <div class="deadline-item">
+                <div class="deadline-info">
+                    <div class="deadline-name">Tax Filing Deadline</div>
+                    <div class="deadline-date">April 15</div>
+                </div>
+                <span class="deadline-status status-soon">Important</span>
+            </div>
+            <div class="deadline-item">
+                <div class="deadline-info">
+                    <div class="deadline-name">Extension Deadline</div>
+                    <div class="deadline-date">October 15</div>
+                </div>
+                <span class="deadline-status status-upcoming">If needed</span>
+            </div>
+        </div>
+
+        <!-- Document Organizer -->
+        <div class="document-section">
+            <div class="section-title">Step 2: Document Checklist</div>
+
+            <div class="doc-category">
+                <div class="doc-category-title">Income Documents</div>
+                <div class="doc-item">
+                    <input type="checkbox" id="doc-w2" onchange="updateProgress()">
+                    <label class="doc-label" for="doc-w2">
+                        W-2 (Wages from employers)
+                        <div class="doc-note">One from each employer</div>
+                    </label>
+                </div>
+                <div class="doc-item">
+                    <input type="checkbox" id="doc-1099nec" onchange="updateProgress()">
+                    <label class="doc-label" for="doc-1099nec">
+                        1099-NEC (Freelance/Contract income)
+                        <div class="doc-note">Self-employment income over $600</div>
+                    </label>
+                </div>
+                <div class="doc-item">
+                    <input type="checkbox" id="doc-1099int" onchange="updateProgress()">
+                    <label class="doc-label" for="doc-1099int">
+                        1099-INT (Interest income)
+                        <div class="doc-note">From banks and investments</div>
+                    </label>
+                </div>
+                <div class="doc-item">
+                    <input type="checkbox" id="doc-1099div" onchange="updateProgress()">
+                    <label class="doc-label" for="doc-1099div">
+                        1099-DIV (Dividend income)
+                        <div class="doc-note">From stocks and mutual funds</div>
+                    </label>
+                </div>
+            </div>
+
+            <div class="doc-category">
+                <div class="doc-category-title">Personal Information</div>
+                <div class="doc-item">
+                    <input type="checkbox" id="doc-ssn" onchange="updateProgress()">
+                    <label class="doc-label" for="doc-ssn">
+                        Social Security numbers
+                        <div class="doc-note">For you, spouse, and dependents</div>
+                    </label>
+                </div>
+                <div class="doc-item">
+                    <input type="checkbox" id="doc-id" onchange="updateProgress()">
+                    <label class="doc-label" for="doc-id">
+                        Government-issued ID
+                        <div class="doc-note">Driver's license or state ID</div>
+                    </label>
+                </div>
+                <div class="doc-item">
+                    <input type="checkbox" id="doc-bank" onchange="updateProgress()">
+                    <label class="doc-label" for="doc-bank">
+                        Bank account information
+                        <div class="doc-note">Routing and account numbers for direct deposit</div>
+                    </label>
+                </div>
+            </div>
+
+            <div class="doc-category">
+                <div class="doc-category-title">Deduction Documents</div>
+                <div class="doc-item">
+                    <input type="checkbox" id="doc-1098" onchange="updateProgress()">
+                    <label class="doc-label" for="doc-1098">
+                        1098 (Mortgage interest)
+                        <div class="doc-note">From your mortgage lender</div>
+                    </label>
+                </div>
+                <div class="doc-item">
+                    <input type="checkbox" id="doc-1098e" onchange="updateProgress()">
+                    <label class="doc-label" for="doc-1098e">
+                        1098-E (Student loan interest)
+                        <div class="doc-note">From your loan servicer</div>
+                    </label>
+                </div>
+                <div class="doc-item">
+                    <input type="checkbox" id="doc-1098t" onchange="updateProgress()">
+                    <label class="doc-label" for="doc-1098t">
+                        1098-T (Tuition statement)
+                        <div class="doc-note">From educational institution</div>
+                    </label>
+                </div>
+                <div class="doc-item">
+                    <input type="checkbox" id="doc-charity" onchange="updateProgress()">
+                    <label class="doc-label" for="doc-charity">
+                        Charitable donation receipts
+                        <div class="doc-note">Cash and non-cash contributions</div>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Special Situations -->
+        <div class="situation-checklist">
+            <div class="section-title">Step 3: Special Situations (Check all that apply)</div>
+            <div class="situation-item">
+                <input type="checkbox" id="sit-student" onchange="updateProgress()">
+                <label class="doc-label" for="sit-student">I'm a student or paid for education</label>
+            </div>
+            <div class="situation-item">
+                <input type="checkbox" id="sit-selfemploy" onchange="updateProgress()">
+                <label class="doc-label" for="sit-selfemploy">I have self-employment income</label>
+            </div>
+            <div class="situation-item">
+                <input type="checkbox" id="sit-homeowner" onchange="updateProgress()">
+                <label class="doc-label" for="sit-homeowner">I own a home</label>
+            </div>
+            <div class="situation-item">
+                <input type="checkbox" id="sit-investments" onchange="updateProgress()">
+                <label class="doc-label" for="sit-investments">I sold stocks or investments</label>
+            </div>
+            <div class="situation-item">
+                <input type="checkbox" id="sit-retirement" onchange="updateProgress()">
+                <label class="doc-label" for="sit-retirement">I contributed to retirement accounts</label>
+            </div>
+            <div class="situation-item">
+                <input type="checkbox" id="sit-hsa" onchange="updateProgress()">
+                <label class="doc-label" for="sit-hsa">I have a Health Savings Account (HSA)</label>
+            </div>
+            <div class="situation-item">
+                <input type="checkbox" id="sit-children" onchange="updateProgress()">
+                <label class="doc-label" for="sit-children">I have dependent children</label>
+            </div>
+        </div>
+
+        <div class="btn-group">
+            <button class="generate-btn" onclick="generateChecklist()">Generate My Checklist</button>
+            <button class="print-btn" onclick="window.print()">Print / Save PDF</button>
+        </div>
+
+        <div class="results" id="results">
+            <div class="result-card checklist-card">
+                <h4>Your Personalized Document Checklist</h4>
+                <ul id="personalChecklist"></ul>
+            </div>
+
+            <div class="result-card tips-card">
+                <h4>Preparation Tips for Your Situation</h4>
+                <ul id="prepTips"></ul>
+            </div>
+
+            <div class="result-card next-steps-card">
+                <h4>Next Steps</h4>
+                <ul id="nextSteps"></ul>
+            </div>
+        </div>
+
+        <footer>
+            <p><strong>PFL Academy</strong> | Chapter 2.5: Tax Planning and Compliance</p>
+            <p style="margin-top: 5px; font-size: 0.8rem;">Deadlines may vary. Check IRS.gov for current year deadlines.</p>
+        </footer>
+    </div>
+
+    <script>
+        let selectedStatus = null;
+
+        function selectStatus(status) {
+            selectedStatus = status;
+            document.querySelectorAll('.status-btn').forEach(btn => {
+                btn.classList.remove('selected');
+            });
+            document.getElementById('status-' + status).classList.add('selected');
+            updateProgress();
+        }
+
+        function updateProgress() {
+            const allCheckboxes = document.querySelectorAll('input[type="checkbox"]');
+            const checked = document.querySelectorAll('input[type="checkbox"]:checked').length;
+            const total = allCheckboxes.length;
+
+            let percent = 0;
+            if (selectedStatus) {
+                percent = 10; // Base for selecting status
+            }
+            percent += (checked / total) * 90;
+
+            document.getElementById('progressFill').style.width = percent + '%';
+            document.getElementById('progressText').textContent = `${Math.round(percent)}% Complete`;
+        }
+
+        function generateChecklist() {
+            if (!selectedStatus) {
+                alert('Please select your filing status first.');
+                return;
+            }
+
+            let checklistItems = [];
+            let tips = [];
+            let nextSteps = [];
+
+            // Base checklist items
+            checklistItems.push('Valid government-issued ID');
+            checklistItems.push('Social Security number(s)');
+            checklistItems.push('Bank account information for direct deposit');
+            checklistItems.push('Copy of last year\'s tax return');
+
+            // Income documents
+            if (document.getElementById('doc-w2').checked) {
+                checklistItems.push('W-2 form(s) from all employers');
+            }
+            if (document.getElementById('doc-1099nec').checked || document.getElementById('sit-selfemploy').checked) {
+                checklistItems.push('1099-NEC for freelance/contract work');
+                checklistItems.push('Records of business expenses');
+                tips.push('Track all business expenses throughout the year using an app or spreadsheet');
+                tips.push('Consider quarterly estimated tax payments to avoid penalties');
+            }
+            if (document.getElementById('doc-1099int').checked || document.getElementById('doc-1099div').checked) {
+                checklistItems.push('1099-INT and 1099-DIV forms from financial institutions');
+            }
+
+            // Deduction documents
+            if (document.getElementById('sit-homeowner').checked || document.getElementById('doc-1098').checked) {
+                checklistItems.push('Form 1098 (Mortgage Interest Statement)');
+                checklistItems.push('Property tax records');
+                tips.push('Compare your total itemized deductions to the standard deduction');
+            }
+            if (document.getElementById('sit-student').checked || document.getElementById('doc-1098t').checked) {
+                checklistItems.push('Form 1098-T (Tuition Statement)');
+                checklistItems.push('Records of education expenses (books, supplies)');
+                tips.push('You may qualify for the American Opportunity Credit or Lifetime Learning Credit');
+            }
+            if (document.getElementById('doc-1098e').checked) {
+                checklistItems.push('Form 1098-E (Student Loan Interest)');
+            }
+            if (document.getElementById('sit-retirement').checked) {
+                checklistItems.push('Form 5498 (IRA contributions)');
+                checklistItems.push('401(k) contribution records');
+                tips.push('You can still contribute to an IRA until the tax filing deadline');
+            }
+            if (document.getElementById('sit-hsa').checked) {
+                checklistItems.push('Form 5498-SA (HSA contributions)');
+                checklistItems.push('Records of HSA distributions');
+            }
+            if (document.getElementById('sit-investments').checked) {
+                checklistItems.push('Form 1099-B (Proceeds from broker transactions)');
+                checklistItems.push('Cost basis records for investments sold');
+                tips.push('Review for tax-loss harvesting opportunities');
+            }
+            if (document.getElementById('sit-children').checked) {
+                checklistItems.push('Social Security numbers for all dependents');
+                checklistItems.push('Childcare provider information and expenses');
+                tips.push('You may qualify for Child Tax Credit and Child and Dependent Care Credit');
+            }
+            if (document.getElementById('doc-charity').checked) {
+                checklistItems.push('Charitable contribution receipts');
+                checklistItems.push('Written acknowledgment for donations over $250');
+            }
+
+            // Filing status specific tips
+            switch(selectedStatus) {
+                case 'single':
+                    tips.push('Standard deduction for Single filers: $13,850 (2023)');
+                    break;
+                case 'mfj':
+                    tips.push('Standard deduction for Married Filing Jointly: $27,700 (2023)');
+                    tips.push('Both spouses must sign the return');
+                    break;
+                case 'mfs':
+                    tips.push('Consider whether filing jointly would result in lower total tax');
+                    tips.push('Some credits are not available when filing separately');
+                    break;
+                case 'hoh':
+                    tips.push('Standard deduction for Head of Household: $20,800 (2023)');
+                    tips.push('Must have paid more than half the cost of maintaining a home');
+                    break;
+            }
+
+            // Next steps
+            nextSteps.push('Gather all documents on your checklist');
+            nextSteps.push('Review last year\'s return for consistency');
+            nextSteps.push('Choose your filing method: DIY software, tax professional, or free file options');
+            nextSteps.push('File by April 15 or request an extension');
+            nextSteps.push('Keep copies of your return and all documents for at least 3 years');
+
+            // Display results
+            document.getElementById('personalChecklist').innerHTML = checklistItems.map(item => `<li>${item}</li>`).join('');
+            document.getElementById('prepTips').innerHTML = tips.map(tip => `<li>${tip}</li>`).join('');
+            document.getElementById('nextSteps').innerHTML = nextSteps.map(step => `<li>${step}</li>`).join('');
+
+            document.getElementById('results').classList.add('active');
+            document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

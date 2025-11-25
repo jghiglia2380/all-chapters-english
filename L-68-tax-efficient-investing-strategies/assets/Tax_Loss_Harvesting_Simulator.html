@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tax-Loss Harvesting Simulator</title>
+    <style>
+        :root { --primary: #6366f1; --secondary: #8b5cf6; --success: #10b981; --warning: #f59e0b; --danger: #ef4444; }
+        body { font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 14px; line-height: 1.5; color: #1f2937; max-width: 900px; margin: 0 auto; padding: 15px; }
+        h1 { color: var(--primary); font-size: 24px; border-bottom: 2px solid var(--primary); padding-bottom: 8px; }
+        h2 { color: var(--secondary); font-size: 18px; margin-top: 20px; }
+        .portfolio { background: #f9fafb; padding: 15px; border-radius: 5px; margin: 15px 0; }
+        .holding { display: grid; grid-template-columns: 80px 1fr 100px 100px 100px 80px; gap: 10px; align-items: center; padding: 10px; border-bottom: 1px solid #e5e7eb; font-size: 12px; }
+        .holding.header { font-weight: bold; background: #e0e7ff; border-radius: 4px; }
+        .loss { color: var(--danger); }
+        .gain { color: var(--success); }
+        .harvest-btn { padding: 4px 8px; font-size: 11px; background: var(--warning); color: white; border: none; border-radius: 3px; cursor: pointer; }
+        .harvest-btn:hover { background: var(--danger); }
+        .harvest-btn.selected { background: var(--danger); }
+        .replacement { background: #e0e7ff; padding: 15px; border-radius: 5px; margin: 15px 0; }
+        .replacement-options { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin: 10px 0; }
+        .replacement-card { background: white; padding: 10px; border: 2px solid #d1d5db; border-radius: 4px; cursor: pointer; }
+        .replacement-card:hover { border-color: var(--primary); }
+        .replacement-card.selected { border-color: var(--primary); background: #f0f7ff; }
+        .replacement-card.invalid { border-color: var(--danger); background: #fee2e2; cursor: not-allowed; }
+        .card-title { font-weight: bold; font-size: 13px; }
+        .card-desc { font-size: 11px; color: #6b7280; }
+        .wash-sale { background: #fee2e2; padding: 10px; border-radius: 4px; margin: 10px 0; border: 1px solid var(--danger); font-size: 12px; }
+        .results { background: #d1fae5; padding: 15px; border-radius: 5px; margin: 15px 0; }
+        .results-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
+        .result-box { background: white; padding: 10px; border-radius: 4px; text-align: center; }
+        .result-value { font-size: 20px; font-weight: bold; color: var(--success); }
+        .result-label { font-size: 11px; color: #6b7280; }
+        button { background: var(--primary); color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; margin: 5px; }
+        button:hover { background: var(--secondary); }
+        @media print { body { font-size: 11pt; } button, .harvest-btn { display: none; } }
+    </style>
+</head>
+<body>
+    <h1>Tax-Loss Harvesting Simulator</h1>
+    <p>Identify harvesting opportunities and select appropriate replacements</p>
+
+    <div class="portfolio">
+        <h2 style="margin-top: 0;">Your Portfolio</h2>
+        <div class="holding header">
+            <div>Symbol</div>
+            <div>Description</div>
+            <div>Cost Basis</div>
+            <div>Current</div>
+            <div>Gain/Loss</div>
+            <div>Action</div>
+        </div>
+        <div class="holding">
+            <div>VTI</div>
+            <div>Total Stock Market ETF</div>
+            <div>$15,000</div>
+            <div>$13,200</div>
+            <div class="loss">-$1,800</div>
+            <button class="harvest-btn" onclick="toggleHarvest('VTI', this)">Harvest</button>
+        </div>
+        <div class="holding">
+            <div>VXUS</div>
+            <div>International Stock ETF</div>
+            <div>$8,000</div>
+            <div>$6,800</div>
+            <div class="loss">-$1,200</div>
+            <button class="harvest-btn" onclick="toggleHarvest('VXUS', this)">Harvest</button>
+        </div>
+        <div class="holding">
+            <div>BND</div>
+            <div>Total Bond Market ETF</div>
+            <div>$10,000</div>
+            <div>$9,500</div>
+            <div class="loss">-$500</div>
+            <button class="harvest-btn" onclick="toggleHarvest('BND', this)">Harvest</button>
+        </div>
+        <div class="holding">
+            <div>QQQ</div>
+            <div>Nasdaq-100 ETF</div>
+            <div>$5,000</div>
+            <div>$6,200</div>
+            <div class="gain">+$1,200</div>
+            <button class="harvest-btn" disabled style="opacity: 0.5;">No Loss</button>
+        </div>
+    </div>
+
+    <div class="replacement" id="replacement-section" style="display: none;">
+        <h2 style="margin-top: 0;">Select Replacement for <span id="harvested-symbol">VTI</span></h2>
+        <p style="font-size: 12px;">Choose a similar but not "substantially identical" investment:</p>
+
+        <div class="replacement-options" id="replacement-options">
+            <!-- Options will be populated dynamically -->
+        </div>
+
+        <div class="wash-sale" id="wash-warning" style="display: none;">
+            ⚠️ <strong>Wash Sale Warning:</strong> This security is substantially identical to what you sold. The IRS will disallow the loss deduction.
+        </div>
+    </div>
+
+    <div style="text-align: center; margin: 20px 0;">
+        <button onclick="calculateBenefit()">Calculate Tax Benefit</button>
+    </div>
+
+    <div class="results" id="results" style="display: none;">
+        <h2 style="margin-top: 0;">Tax-Loss Harvesting Results</h2>
+        <div class="results-grid">
+            <div class="result-box">
+                <div class="result-label">Total Loss Harvested</div>
+                <div class="result-value" id="totalLoss">$0</div>
+            </div>
+            <div class="result-box">
+                <div class="result-label">Tax Savings (22% bracket)</div>
+                <div class="result-value" id="taxSavings">$0</div>
+            </div>
+            <div class="result-box">
+                <div class="result-label">Offset Cap Gains</div>
+                <div class="result-value" id="offsetGains">$0</div>
+            </div>
+            <div class="result-box">
+                <div class="result-label">Offset Income</div>
+                <div class="result-value" id="offsetIncome">$0</div>
+            </div>
+        </div>
+        <p style="font-size: 12px; margin-top: 15px;"><strong>Note:</strong> Up to $3,000 in losses can offset ordinary income annually. Excess losses carry forward to future years.</p>
+    </div>
+
+    <script>
+        const holdings = {
+            'VTI': { loss: 1800, type: 'us_total' },
+            'VXUS': { loss: 1200, type: 'intl' },
+            'BND': { loss: 500, type: 'bond' }
+        };
+
+        const replacements = {
+            'us_total': [
+                { symbol: 'ITOT', name: 'iShares Core S&P Total US', valid: true },
+                { symbol: 'SPTM', name: 'SPDR Portfolio S&P 1500', valid: true },
+                { symbol: 'VTI', name: 'Vanguard Total Stock (same)', valid: false },
+                { symbol: 'VOO', name: 'Vanguard S&P 500 ETF', valid: true }
+            ],
+            'intl': [
+                { symbol: 'IXUS', name: 'iShares Core MSCI Total Intl', valid: true },
+                { symbol: 'SPDW', name: 'SPDR Developed World ex-US', valid: true },
+                { symbol: 'VXUS', name: 'Vanguard Total Intl (same)', valid: false },
+                { symbol: 'VEA', name: 'Vanguard FTSE Developed', valid: true }
+            ],
+            'bond': [
+                { symbol: 'AGG', name: 'iShares Core US Aggregate', valid: true },
+                { symbol: 'SCHZ', name: 'Schwab US Aggregate Bond', valid: true },
+                { symbol: 'BND', name: 'Vanguard Total Bond (same)', valid: false },
+                { symbol: 'GOVT', name: 'iShares US Treasury Bond', valid: true }
+            ]
+        };
+
+        let harvested = {};
+        let selectedReplacements = {};
+
+        function toggleHarvest(symbol, button) {
+            if (harvested[symbol]) {
+                delete harvested[symbol];
+                button.classList.remove('selected');
+                button.textContent = 'Harvest';
+            } else {
+                harvested[symbol] = holdings[symbol];
+                button.classList.add('selected');
+                button.textContent = 'Cancel';
+            }
+
+            updateReplacementSection();
+        }
+
+        function updateReplacementSection() {
+            const symbols = Object.keys(harvested);
+            if (symbols.length === 0) {
+                document.getElementById('replacement-section').style.display = 'none';
+                return;
+            }
+
+            const symbol = symbols[symbols.length - 1];
+            const type = harvested[symbol].type;
+
+            document.getElementById('harvested-symbol').textContent = symbol;
+            document.getElementById('replacement-section').style.display = 'block';
+
+            const options = replacements[type];
+            const container = document.getElementById('replacement-options');
+            container.innerHTML = '';
+
+            options.forEach(opt => {
+                const card = document.createElement('div');
+                card.className = `replacement-card ${opt.valid ? '' : 'invalid'}`;
+                card.innerHTML = `
+                    <div class="card-title">${opt.symbol}</div>
+                    <div class="card-desc">${opt.name}</div>
+                `;
+                if (opt.valid) {
+                    card.onclick = () => selectReplacement(symbol, opt.symbol, card);
+                } else {
+                    card.onclick = () => showWashSale();
+                }
+                container.appendChild(card);
+            });
+        }
+
+        function selectReplacement(forSymbol, replacement, element) {
+            selectedReplacements[forSymbol] = replacement;
+            document.getElementById('wash-warning').style.display = 'none';
+
+            // Update visual
+            document.querySelectorAll('.replacement-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            element.classList.add('selected');
+        }
+
+        function showWashSale() {
+            document.getElementById('wash-warning').style.display = 'block';
+        }
+
+        function calculateBenefit() {
+            const symbols = Object.keys(harvested);
+            if (symbols.length === 0) {
+                alert('Please select at least one holding to harvest.');
+                return;
+            }
+
+            let totalLoss = 0;
+            symbols.forEach(symbol => {
+                totalLoss += harvested[symbol].loss;
+            });
+
+            const capGainsOffset = Math.min(totalLoss, 1200); // Assume $1,200 in gains to offset
+            const remaining = totalLoss - capGainsOffset;
+            const incomeOffset = Math.min(remaining, 3000);
+            const taxSavings = (capGainsOffset * 0.15) + (incomeOffset * 0.22);
+
+            document.getElementById('totalLoss').textContent = '$' + totalLoss.toLocaleString();
+            document.getElementById('taxSavings').textContent = '$' + Math.round(taxSavings).toLocaleString();
+            document.getElementById('offsetGains').textContent = '$' + capGainsOffset.toLocaleString();
+            document.getElementById('offsetIncome').textContent = '$' + incomeOffset.toLocaleString();
+
+            document.getElementById('results').style.display = 'block';
+        }
+    </script>
+</body>
+</html>

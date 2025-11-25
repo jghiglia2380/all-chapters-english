@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Goal Setting Reference Sheet - PFL Academy</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-size: 12px;
+            line-height: 1.5;
+            color: #1f2937;
+            padding: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 3px solid #6366f1;
+        }
+        .header h1 { font-size: 24px; color: #6366f1; margin-bottom: 4px; }
+        .header p { color: #6b7280; font-size: 12px; }
+        .smart-section {
+            background: #eff6ff;
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 16px;
+        }
+        .smart-section h3 { font-size: 16px; font-weight: 600; color: #3b82f6; margin-bottom: 12px; }
+        .smart-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; }
+        .smart-item { background: white; padding: 10px; border-radius: 6px; text-align: center; }
+        .smart-item h4 { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+        .smart-item.specific h4 { color: #3b82f6; }
+        .smart-item.measurable h4 { color: #8b5cf6; }
+        .smart-item.achievable h4 { color: #10b981; }
+        .smart-item.relevant h4 { color: #f59e0b; }
+        .smart-item.timebound h4 { color: #ef4444; }
+        .smart-item p { font-size: 10px; color: #6b7280; }
+        .two-column { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+        .section-box {
+            background: #f9fafb;
+            padding: 12px;
+            border-radius: 6px;
+            border-left: 4px solid #6366f1;
+        }
+        .section-box h3 { font-size: 14px; font-weight: 700; color: #6366f1; margin-bottom: 8px; }
+        .section-box ul { margin-left: 16px; }
+        .section-box li { margin-bottom: 3px; }
+        .comparison-table { width: 100%; border-collapse: collapse; margin-bottom: 16px; font-size: 11px; }
+        .comparison-table th {
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+            color: white;
+            padding: 10px 8px;
+            text-align: left;
+            font-weight: 600;
+        }
+        .comparison-table td { padding: 8px; border-bottom: 1px solid #e5e7eb; vertical-align: top; }
+        .comparison-table tr:hover { background-color: #f9fafb; }
+        .timeline-section {
+            background: #fef3c7;
+            padding: 12px;
+            border-radius: 6px;
+            border-left: 4px solid #f59e0b;
+            margin-bottom: 16px;
+        }
+        .timeline-section h3 { font-size: 14px; font-weight: 600; color: #b45309; margin-bottom: 8px; }
+        .timeline-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+        .timeline-item { background: white; padding: 10px; border-radius: 4px; }
+        .timeline-item h4 { font-size: 12px; font-weight: 600; margin-bottom: 4px; }
+        .timeline-item ul { margin-left: 12px; font-size: 10px; }
+        .priority-section {
+            background: #ecfdf5;
+            padding: 12px;
+            border-radius: 6px;
+            border-left: 4px solid #10b981;
+            margin-bottom: 16px;
+        }
+        .priority-section h3 { font-size: 14px; font-weight: 600; color: #059669; margin-bottom: 8px; }
+        .key-takeaway {
+            background: #f0fdf4;
+            padding: 12px;
+            border-radius: 6px;
+            border-left: 4px solid #10b981;
+        }
+        .key-takeaway h3 { font-size: 12px; font-weight: 600; color: #059669; margin-bottom: 6px; }
+        @media print { body { padding: 10px; font-size: 10px; } }
+        @media (max-width: 768px) { .two-column, .smart-grid, .timeline-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Financial Goal Setting Reference Sheet</h1>
+        <p>Creating effective financial goals using the SMART framework</p>
+    </div>
+
+    <div class="smart-section">
+        <h3>The SMART Goal Framework</h3>
+        <div class="smart-grid">
+            <div class="smart-item specific">
+                <h4>S</h4>
+                <p><strong>Specific</strong><br>Clear and well-defined. What exactly do you want to achieve?</p>
+            </div>
+            <div class="smart-item measurable">
+                <h4>M</h4>
+                <p><strong>Measurable</strong><br>Quantifiable with numbers. How will you track progress?</p>
+            </div>
+            <div class="smart-item achievable">
+                <h4>A</h4>
+                <p><strong>Achievable</strong><br>Realistic given your resources. Can you actually do this?</p>
+            </div>
+            <div class="smart-item relevant">
+                <h4>R</h4>
+                <p><strong>Relevant</strong><br>Aligned with your values. Why does this matter to you?</p>
+            </div>
+            <div class="smart-item timebound">
+                <h4>T</h4>
+                <p><strong>Time-bound</strong><br>Has a deadline. When will you achieve this?</p>
+            </div>
+        </div>
+    </div>
+
+    <table class="comparison-table">
+        <thead>
+            <tr>
+                <th>Weak Goal</th>
+                <th>SMART Goal</th>
+                <th>Why It's Better</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>"I want to save money"</td>
+                <td>"I will save $3,000 for an emergency fund by December 31st by setting aside $250/month"</td>
+                <td>Specific amount, clear timeline, actionable steps</td>
+            </tr>
+            <tr>
+                <td>"I need to pay off debt"</td>
+                <td>"I will pay off my $2,400 credit card balance in 12 months by paying $200/month plus any extra income"</td>
+                <td>Measurable target, realistic timeline, specific strategy</td>
+            </tr>
+            <tr>
+                <td>"I should invest"</td>
+                <td>"I will open a Roth IRA and contribute $100/month starting January 1st, increasing to $200/month after my raise in July"</td>
+                <td>Specific action, measurable amounts, time-bound milestones</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="timeline-section">
+        <h3>Goal Timeline Categories</h3>
+        <div class="timeline-grid">
+            <div class="timeline-item">
+                <h4>Short-Term (< 1 year)</h4>
+                <ul>
+                    <li>Build starter emergency fund ($500-1,000)</li>
+                    <li>Pay off small debts</li>
+                    <li>Create and stick to a budget</li>
+                    <li>Start automatic savings</li>
+                    <li>Build credit history</li>
+                </ul>
+            </div>
+            <div class="timeline-item">
+                <h4>Medium-Term (1-5 years)</h4>
+                <ul>
+                    <li>Full emergency fund (3-6 months)</li>
+                    <li>Pay off high-interest debt</li>
+                    <li>Save for major purchases</li>
+                    <li>Start investing</li>
+                    <li>Increase income/skills</li>
+                </ul>
+            </div>
+            <div class="timeline-item">
+                <h4>Long-Term (5+ years)</h4>
+                <ul>
+                    <li>Down payment for home</li>
+                    <li>Retirement savings (15%+ income)</li>
+                    <li>Children's education fund</li>
+                    <li>Financial independence</li>
+                    <li>Wealth building</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="two-column">
+        <div class="section-box">
+            <h3>Goal Prioritization Strategy</h3>
+            <ul>
+                <li><strong>1. Immediate needs:</strong> Food, shelter, basic transportation</li>
+                <li><strong>2. High-interest debt:</strong> Credit cards, payday loans</li>
+                <li><strong>3. Employer match:</strong> 401(k) up to full match</li>
+                <li><strong>4. Emergency fund:</strong> 3-6 months expenses</li>
+                <li><strong>5. Additional retirement:</strong> Max out tax-advantaged accounts</li>
+                <li><strong>6. Other goals:</strong> House, education, large purchases</li>
+            </ul>
+        </div>
+
+        <div class="section-box">
+            <h3>Common Goal-Setting Mistakes</h3>
+            <ul>
+                <li><strong>Too vague:</strong> "Save more" vs. "Save $200/month"</li>
+                <li><strong>Too aggressive:</strong> Setting unrealistic timelines</li>
+                <li><strong>No tracking:</strong> Failing to monitor progress</li>
+                <li><strong>Too many goals:</strong> Focus on 2-3 priorities</li>
+                <li><strong>No flexibility:</strong> Life changes; adjust goals accordingly</li>
+                <li><strong>Ignoring "why":</strong> Goals need personal meaning</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="priority-section">
+        <h3>Breaking Down Large Goals</h3>
+        <p style="margin-bottom: 8px;"><strong>Example: Save $10,000 for a car in 2 years</strong></p>
+        <ul style="margin-left: 16px; font-size: 11px;">
+            <li><strong>Yearly target:</strong> $5,000/year</li>
+            <li><strong>Monthly target:</strong> $417/month</li>
+            <li><strong>Weekly target:</strong> $96/week</li>
+            <li><strong>Daily equivalent:</strong> $13.70/day</li>
+        </ul>
+        <p style="font-size: 10px; color: #6b7280; margin-top: 8px;">
+            Breaking goals into smaller chunks makes them less overwhelming and easier to track. Celebrate milestones along the way!
+        </p>
+    </div>
+
+    <div class="two-column">
+        <div class="section-box" style="border-left-color: #8b5cf6;">
+            <h3 style="color: #8b5cf6;">Tracking Methods</h3>
+            <ul>
+                <li><strong>Spreadsheets:</strong> Custom tracking, visual charts</li>
+                <li><strong>Apps:</strong> YNAB, Mint, Personal Capital</li>
+                <li><strong>Paper:</strong> Goal journal, vision board</li>
+                <li><strong>Bank tools:</strong> Savings buckets, automatic transfers</li>
+                <li><strong>Calendar:</strong> Monthly check-ins, milestone dates</li>
+            </ul>
+        </div>
+
+        <div class="section-box" style="border-left-color: #f59e0b;">
+            <h3 style="color: #b45309;">Staying Motivated</h3>
+            <ul>
+                <li><strong>Visualize success:</strong> Picture achieving your goal</li>
+                <li><strong>Find accountability:</strong> Share goals with others</li>
+                <li><strong>Reward milestones:</strong> Celebrate progress (within budget!)</li>
+                <li><strong>Review regularly:</strong> Weekly/monthly progress checks</li>
+                <li><strong>Adjust as needed:</strong> Goals can evolve with life</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="key-takeaway">
+        <h3>Key Formulas & Benchmarks</h3>
+        <p>
+            <strong>Emergency Fund Target:</strong> Monthly expenses × 3-6 months<br>
+            <strong>Savings Rate Goal:</strong> At least 20% of gross income<br>
+            <strong>Retirement Savings:</strong> 15% of income (including employer match)<br>
+            <strong>Debt Payoff Priority:</strong> Highest interest rate first (avalanche) or smallest balance first (snowball)<br>
+            <strong>Goal Progress:</strong> (Current Amount ÷ Target Amount) × 100 = % Complete
+        </p>
+    </div>
+</body>
+</html>

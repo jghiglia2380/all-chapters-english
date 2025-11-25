@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Financial Service Provider Comparison Tool | PFL Academy</title>
+<style>
+:root {
+    --primary: #6366f1;
+    --primary-dark: #4f46e5;
+    --secondary: #8b5cf6;
+    --success: #10b981;
+    --warning: #f59e0b;
+    --danger: #ef4444;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #1f2937;
+    background: #f9fafb;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+header {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    text-align: center;
+    padding: 25px 20px;
+}
+
+header h1 {
+    font-size: 1.8rem;
+    margin-bottom: 8px;
+}
+
+.subtitle {
+    opacity: 0.9;
+    font-size: 1rem;
+}
+
+.content {
+    padding: 25px;
+}
+
+.print-btn {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.print-btn:hover {
+    background: var(--primary-dark);
+}
+
+.section {
+    margin-bottom: 25px;
+}
+
+.section-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 15px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #e5e7eb;
+}
+
+/* Provider Comparison Grid */
+.comparison-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.provider-card {
+    background: #f9fafb;
+    border-radius: 8px;
+    padding: 15px;
+    border: 2px solid #e5e7eb;
+    transition: all 0.3s ease;
+}
+
+.provider-card:hover {
+    border-color: var(--primary);
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.15);
+}
+
+.provider-card h3 {
+    color: var(--primary);
+    font-size: 1rem;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.provider-card ul {
+    list-style: none;
+    font-size: 0.85rem;
+}
+
+.provider-card li {
+    padding: 5px 0;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.provider-card li:last-child {
+    border-bottom: none;
+}
+
+.check-icon {
+    color: var(--success);
+    margin-right: 5px;
+}
+
+.x-icon {
+    color: var(--danger);
+    margin-right: 5px;
+}
+
+/* Fee Calculator */
+.fee-calculator {
+    background: #f0f9ff;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 25px;
+}
+
+.calc-row {
+    display: grid;
+    grid-template-columns: 200px 1fr 1fr 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 10px;
+    align-items: center;
+}
+
+.calc-header {
+    font-weight: 700;
+    color: var(--primary);
+    font-size: 0.85rem;
+}
+
+.calc-row label {
+    font-weight: 600;
+    font-size: 0.85rem;
+}
+
+.calc-row input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 0.85rem;
+}
+
+.calc-row input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+}
+
+.calc-total {
+    background: var(--primary);
+    color: white;
+    padding: 10px;
+    border-radius: 6px;
+    text-align: center;
+    font-weight: 700;
+}
+
+.calculate-btn {
+    background: var(--success);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-top: 10px;
+}
+
+.calculate-btn:hover {
+    background: #059669;
+}
+
+/* Service Checklist */
+.checklist-section {
+    background: #fef3c7;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 25px;
+}
+
+.checklist-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.checklist-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    background: white;
+    border-radius: 6px;
+}
+
+.checklist-item input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--primary);
+}
+
+.checklist-item label {
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+/* Needs Assessment */
+.needs-assessment {
+    background: #f3e8ff;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 25px;
+}
+
+.needs-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.needs-item {
+    padding: 15px;
+    background: white;
+    border-radius: 6px;
+}
+
+.needs-item label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+}
+
+.needs-item select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 0.85rem;
+}
+
+/* Recommendation Box */
+.recommendation-box {
+    background: linear-gradient(135deg, #ecfdf5, #d1fae5);
+    border: 2px solid var(--success);
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.recommendation-box h3 {
+    color: #065f46;
+    margin-bottom: 10px;
+}
+
+#recommendation-result {
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+.get-recommendation-btn {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.get-recommendation-btn:hover {
+    background: var(--primary-dark);
+}
+
+/* Results Table */
+.results-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+.results-table th,
+.results-table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.results-table th {
+    background: var(--primary);
+    color: white;
+    font-weight: 600;
+}
+
+.results-table tr:hover {
+    background: #f9fafb;
+}
+
+.winner {
+    background: #ecfdf5 !important;
+    font-weight: 600;
+}
+
+@media print {
+    body {
+        padding: 0;
+        background: white;
+    }
+
+    .container {
+        box-shadow: none;
+    }
+
+    .print-btn,
+    .calculate-btn,
+    .get-recommendation-btn {
+        display: none;
+    }
+
+    header {
+        background: var(--primary) !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+}
+
+@media (max-width: 768px) {
+    .comparison-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .calc-row {
+        grid-template-columns: 1fr;
+    }
+
+    .checklist-grid,
+    .needs-grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>Financial Service Provider Comparison Tool</h1>
+        <p class="subtitle">Compare Banks, Credit Unions, Online Banks & Brokerages</p>
+    </header>
+
+    <div class="content">
+        <button class="print-btn" onclick="window.print()">
+            <span>Print / Save PDF</span>
+        </button>
+
+        <!-- Provider Overview -->
+        <div class="section">
+            <h2 class="section-title">Provider Type Comparison</h2>
+            <div class="comparison-grid">
+                <div class="provider-card">
+                    <h3>Traditional Banks</h3>
+                    <ul>
+                        <li><span class="check-icon">&#10003;</span> Wide branch network</li>
+                        <li><span class="check-icon">&#10003;</span> Full service offerings</li>
+                        <li><span class="check-icon">&#10003;</span> FDIC insured</li>
+                        <li><span class="x-icon">&#10007;</span> Higher fees</li>
+                        <li><span class="x-icon">&#10007;</span> Lower interest rates</li>
+                    </ul>
+                </div>
+                <div class="provider-card">
+                    <h3>Credit Unions</h3>
+                    <ul>
+                        <li><span class="check-icon">&#10003;</span> Lower fees</li>
+                        <li><span class="check-icon">&#10003;</span> Better rates</li>
+                        <li><span class="check-icon">&#10003;</span> Member-owned</li>
+                        <li><span class="x-icon">&#10007;</span> Membership required</li>
+                        <li><span class="x-icon">&#10007;</span> Fewer branches</li>
+                    </ul>
+                </div>
+                <div class="provider-card">
+                    <h3>Online Banks</h3>
+                    <ul>
+                        <li><span class="check-icon">&#10003;</span> Highest interest rates</li>
+                        <li><span class="check-icon">&#10003;</span> Low/no fees</li>
+                        <li><span class="check-icon">&#10003;</span> 24/7 access</li>
+                        <li><span class="x-icon">&#10007;</span> No physical branches</li>
+                        <li><span class="x-icon">&#10007;</span> Cash deposits difficult</li>
+                    </ul>
+                </div>
+                <div class="provider-card">
+                    <h3>Brokerages</h3>
+                    <ul>
+                        <li><span class="check-icon">&#10003;</span> Investment options</li>
+                        <li><span class="check-icon">&#10003;</span> Cash management</li>
+                        <li><span class="check-icon">&#10003;</span> Research tools</li>
+                        <li><span class="x-icon">&#10007;</span> Complex for beginners</li>
+                        <li><span class="x-icon">&#10007;</span> Limited banking</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Fee Calculator -->
+        <div class="section">
+            <h2 class="section-title">Annual Fee Comparison Calculator</h2>
+            <div class="fee-calculator">
+                <div class="calc-row">
+                    <div class="calc-header">Fee Type</div>
+                    <div class="calc-header">Traditional Bank</div>
+                    <div class="calc-header">Credit Union</div>
+                    <div class="calc-header">Online Bank</div>
+                    <div class="calc-header">Brokerage</div>
+                </div>
+                <div class="calc-row">
+                    <label>Monthly Fee ($)</label>
+                    <input type="number" id="fee-bank-monthly" value="12" min="0">
+                    <input type="number" id="fee-cu-monthly" value="0" min="0">
+                    <input type="number" id="fee-online-monthly" value="0" min="0">
+                    <input type="number" id="fee-brokerage-monthly" value="0" min="0">
+                </div>
+                <div class="calc-row">
+                    <label>ATM Fees/Month ($)</label>
+                    <input type="number" id="fee-bank-atm" value="6" min="0">
+                    <input type="number" id="fee-cu-atm" value="3" min="0">
+                    <input type="number" id="fee-online-atm" value="0" min="0">
+                    <input type="number" id="fee-brokerage-atm" value="0" min="0">
+                </div>
+                <div class="calc-row">
+                    <label>Overdraft Fees/Year ($)</label>
+                    <input type="number" id="fee-bank-overdraft" value="70" min="0">
+                    <input type="number" id="fee-cu-overdraft" value="50" min="0">
+                    <input type="number" id="fee-online-overdraft" value="0" min="0">
+                    <input type="number" id="fee-brokerage-overdraft" value="0" min="0">
+                </div>
+                <div class="calc-row">
+                    <label>Other Annual Fees ($)</label>
+                    <input type="number" id="fee-bank-other" value="25" min="0">
+                    <input type="number" id="fee-cu-other" value="10" min="0">
+                    <input type="number" id="fee-online-other" value="0" min="0">
+                    <input type="number" id="fee-brokerage-other" value="50" min="0">
+                </div>
+                <button class="calculate-btn" onclick="calculateFees()">Calculate Annual Costs</button>
+                <div id="fee-results"></div>
+            </div>
+        </div>
+
+        <!-- Service Checklist -->
+        <div class="section">
+            <h2 class="section-title">Services I Need (Check All That Apply)</h2>
+            <div class="checklist-section">
+                <div class="checklist-grid">
+                    <div class="checklist-item">
+                        <input type="checkbox" id="need-checking" checked>
+                        <label for="need-checking">Checking Account</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="need-savings" checked>
+                        <label for="need-savings">Savings Account</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="need-branches">
+                        <label for="need-branches">Physical Branch Access</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="need-atm">
+                        <label for="need-atm">Large ATM Network</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="need-mobile" checked>
+                        <label for="need-mobile">Mobile Banking App</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="need-deposit">
+                        <label for="need-deposit">Mobile Check Deposit</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="need-credit">
+                        <label for="need-credit">Credit Card Options</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="need-loans">
+                        <label for="need-loans">Personal/Auto Loans</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="need-mortgage">
+                        <label for="need-mortgage">Mortgage Services</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="need-invest">
+                        <label for="need-invest">Investment Services</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="need-highyield">
+                        <label for="need-highyield">High-Yield Savings</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="need-nofees">
+                        <label for="need-nofees">No Monthly Fees</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Needs Assessment -->
+        <div class="section">
+            <h2 class="section-title">Your Financial Priorities</h2>
+            <div class="needs-assessment">
+                <div class="needs-grid">
+                    <div class="needs-item">
+                        <label for="priority-fees">Fee Sensitivity</label>
+                        <select id="priority-fees">
+                            <option value="low">Not Important</option>
+                            <option value="medium">Somewhat Important</option>
+                            <option value="high" selected>Very Important</option>
+                        </select>
+                    </div>
+                    <div class="needs-item">
+                        <label for="priority-interest">Interest Rates</label>
+                        <select id="priority-interest">
+                            <option value="low">Not Important</option>
+                            <option value="medium" selected>Somewhat Important</option>
+                            <option value="high">Very Important</option>
+                        </select>
+                    </div>
+                    <div class="needs-item">
+                        <label for="priority-access">Branch Access</label>
+                        <select id="priority-access">
+                            <option value="low">Not Important</option>
+                            <option value="medium" selected>Somewhat Important</option>
+                            <option value="high">Very Important</option>
+                        </select>
+                    </div>
+                    <div class="needs-item">
+                        <label for="priority-tech">Technology/Mobile</label>
+                        <select id="priority-tech">
+                            <option value="low">Not Important</option>
+                            <option value="medium">Somewhat Important</option>
+                            <option value="high" selected>Very Important</option>
+                        </select>
+                    </div>
+                    <div class="needs-item">
+                        <label for="priority-service">Customer Service</label>
+                        <select id="priority-service">
+                            <option value="low">Not Important</option>
+                            <option value="medium" selected>Somewhat Important</option>
+                            <option value="high">Very Important</option>
+                        </select>
+                    </div>
+                    <div class="needs-item">
+                        <label for="priority-products">Product Variety</label>
+                        <select id="priority-products">
+                            <option value="low">Not Important</option>
+                            <option value="medium" selected>Somewhat Important</option>
+                            <option value="high">Very Important</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recommendation -->
+        <div class="section">
+            <h2 class="section-title">Your Personalized Recommendation</h2>
+            <button class="get-recommendation-btn" onclick="getRecommendation()">Get My Recommendation</button>
+            <div class="recommendation-box">
+                <h3>Recommended Provider Type</h3>
+                <div id="recommendation-result">
+                    Click "Get My Recommendation" above after completing the checklist and priorities to receive a personalized provider recommendation based on your needs.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function calculateFees() {
+    // Get all fee inputs
+    const bankTotal = (parseFloat(document.getElementById('fee-bank-monthly').value) * 12) +
+                     (parseFloat(document.getElementById('fee-bank-atm').value) * 12) +
+                     parseFloat(document.getElementById('fee-bank-overdraft').value) +
+                     parseFloat(document.getElementById('fee-bank-other').value);
+
+    const cuTotal = (parseFloat(document.getElementById('fee-cu-monthly').value) * 12) +
+                   (parseFloat(document.getElementById('fee-cu-atm').value) * 12) +
+                   parseFloat(document.getElementById('fee-cu-overdraft').value) +
+                   parseFloat(document.getElementById('fee-cu-other').value);
+
+    const onlineTotal = (parseFloat(document.getElementById('fee-online-monthly').value) * 12) +
+                       (parseFloat(document.getElementById('fee-online-atm').value) * 12) +
+                       parseFloat(document.getElementById('fee-online-overdraft').value) +
+                       parseFloat(document.getElementById('fee-online-other').value);
+
+    const brokerageTotal = (parseFloat(document.getElementById('fee-brokerage-monthly').value) * 12) +
+                          (parseFloat(document.getElementById('fee-brokerage-atm').value) * 12) +
+                          parseFloat(document.getElementById('fee-brokerage-overdraft').value) +
+                          parseFloat(document.getElementById('fee-brokerage-other').value);
+
+    const results = [
+        { name: 'Traditional Bank', total: bankTotal },
+        { name: 'Credit Union', total: cuTotal },
+        { name: 'Online Bank', total: onlineTotal },
+        { name: 'Brokerage', total: brokerageTotal }
+    ];
+
+    results.sort((a, b) => a.total - b.total);
+    const lowest = results[0].total;
+
+    let html = `<table class="results-table">
+        <tr>
+            <th>Provider Type</th>
+            <th>Annual Cost</th>
+            <th>Savings vs. Highest</th>
+        </tr>`;
+
+    const highest = results[results.length - 1].total;
+
+    results.forEach(result => {
+        const isWinner = result.total === lowest;
+        const savings = highest - result.total;
+        html += `<tr class="${isWinner ? 'winner' : ''}">
+            <td>${result.name} ${isWinner ? '(Lowest Cost)' : ''}</td>
+            <td>$${result.total.toFixed(2)}</td>
+            <td>$${savings.toFixed(2)}</td>
+        </tr>`;
+    });
+
+    html += '</table>';
+    document.getElementById('fee-results').innerHTML = html;
+}
+
+function getRecommendation() {
+    // Calculate scores for each provider type
+    let scores = {
+        bank: 0,
+        creditUnion: 0,
+        online: 0,
+        brokerage: 0
+    };
+
+    // Check services needed
+    if (document.getElementById('need-branches').checked) {
+        scores.bank += 3;
+        scores.creditUnion += 2;
+    }
+    if (document.getElementById('need-atm').checked) {
+        scores.bank += 2;
+        scores.creditUnion += 1;
+    }
+    if (document.getElementById('need-highyield').checked) {
+        scores.online += 3;
+        scores.creditUnion += 1;
+    }
+    if (document.getElementById('need-nofees').checked) {
+        scores.online += 3;
+        scores.creditUnion += 2;
+    }
+    if (document.getElementById('need-invest').checked) {
+        scores.brokerage += 3;
+        scores.bank += 1;
+    }
+    if (document.getElementById('need-loans').checked) {
+        scores.bank += 2;
+        scores.creditUnion += 3;
+    }
+    if (document.getElementById('need-mortgage').checked) {
+        scores.bank += 2;
+        scores.creditUnion += 2;
+    }
+    if (document.getElementById('need-mobile').checked) {
+        scores.online += 2;
+        scores.brokerage += 1;
+    }
+
+    // Check priorities
+    const feesPriority = document.getElementById('priority-fees').value;
+    const interestPriority = document.getElementById('priority-interest').value;
+    const accessPriority = document.getElementById('priority-access').value;
+    const techPriority = document.getElementById('priority-tech').value;
+
+    const priorityWeight = { low: 0, medium: 1, high: 3 };
+
+    // Fee sensitivity favors online and credit unions
+    scores.online += priorityWeight[feesPriority] * 2;
+    scores.creditUnion += priorityWeight[feesPriority] * 1.5;
+
+    // Interest rates favor online banks
+    scores.online += priorityWeight[interestPriority] * 2;
+    scores.creditUnion += priorityWeight[interestPriority];
+
+    // Branch access favors traditional banks
+    scores.bank += priorityWeight[accessPriority] * 2;
+    scores.creditUnion += priorityWeight[accessPriority];
+
+    // Technology favors online and brokerages
+    scores.online += priorityWeight[techPriority] * 1.5;
+    scores.brokerage += priorityWeight[techPriority];
+
+    // Determine winner
+    const sortedScores = Object.entries(scores).sort((a, b) => b[1] - a[1]);
+    const winner = sortedScores[0][0];
+    const runnerUp = sortedScores[1][0];
+
+    const names = {
+        bank: 'Traditional Bank',
+        creditUnion: 'Credit Union',
+        online: 'Online Bank',
+        brokerage: 'Brokerage'
+    };
+
+    const reasons = {
+        bank: 'Traditional banks are ideal for those who value in-person service, extensive branch and ATM networks, and comprehensive financial products all in one place. They offer the full range of banking services with personalized support.',
+        creditUnion: 'Credit unions offer the best of both worlds: lower fees and better rates than traditional banks, while still providing personal service and physical locations. As member-owned institutions, they prioritize your financial well-being.',
+        online: 'Online banks are perfect for tech-savvy individuals who want to maximize their savings with higher interest rates and minimal fees. They offer convenience through robust mobile apps and 24/7 digital access.',
+        brokerage: 'Brokerage accounts with cash management features are ideal for those focused on investing and building wealth. They combine investment capabilities with basic banking services for a streamlined financial experience.'
+    };
+
+    const tips = {
+        bank: '<br><br><strong>Tips:</strong> Look for accounts that waive monthly fees with direct deposit or minimum balance. Compare several banks as fees and services vary significantly.',
+        creditUnion: '<br><br><strong>Tips:</strong> Check membership requirements - many credit unions have open eligibility through community or employer affiliations. Compare rates on loans and savings products.',
+        online: '<br><br><strong>Tips:</strong> Ensure they have a large ATM network or reimburse ATM fees. Consider keeping a small account at a traditional bank for cash deposits if needed.',
+        brokerage: '<br><br><strong>Tips:</strong> Make sure they offer FDIC-insured sweep accounts for your cash. Consider pairing with a traditional bank or credit union for everyday banking needs.'
+    };
+
+    let resultHTML = `<strong>Primary Recommendation: ${names[winner]}</strong><br><br>`;
+    resultHTML += reasons[winner];
+    resultHTML += tips[winner];
+    resultHTML += `<br><br><strong>Also Consider:</strong> ${names[runnerUp]} - This could be a good secondary option or complement to your primary provider.`;
+
+    document.getElementById('recommendation-result').innerHTML = resultHTML;
+}
+</script>
+</body>
+</html>

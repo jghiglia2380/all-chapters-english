@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Financial Service Providers Reference Sheet | PFL Academy</title>
+<style>
+:root {
+    --primary: #6366f1;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #1f2937;
+    background: #fff;
+    padding: 20px;
+}
+
+.container {
+    max-width: 850px;
+    margin: 0 auto;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 3px solid var(--primary);
+}
+
+h1 {
+    font-size: 1.8rem;
+    color: var(--primary);
+    margin-bottom: 5px;
+}
+
+.subtitle {
+    color: #6b7280;
+    font-size: 0.9rem;
+}
+
+.print-btn {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    margin-bottom: 15px;
+}
+
+.print-btn:hover {
+    background: #4f46e5;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.section {
+    background: #f9fafb;
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 4px solid var(--primary);
+}
+
+.section-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 10px;
+}
+
+.section ul {
+    list-style-position: inside;
+    margin-left: 10px;
+}
+
+.section li {
+    margin-bottom: 6px;
+}
+
+.full-width {
+    grid-column: 1 / -1;
+}
+
+.highlight-box {
+    background: #fef3c7;
+    border-left: 4px solid #f59e0b;
+    padding: 12px;
+    margin: 15px 0;
+    border-radius: 6px;
+}
+
+.key-points {
+    background: #eff6ff;
+    padding: 15px;
+    border-radius: 8px;
+    margin: 15px 0;
+}
+
+.key-points h3 {
+    color: var(--primary);
+    margin-bottom: 10px;
+    font-size: 1rem;
+}
+
+.key-points ul {
+    list-style-position: inside;
+}
+
+.key-points li {
+    margin-bottom: 6px;
+}
+
+.comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+    margin-top: 10px;
+}
+
+.comparison-table th,
+.comparison-table td {
+    padding: 8px;
+    text-align: left;
+    border: 1px solid #e5e7eb;
+}
+
+.comparison-table th {
+    background: var(--primary);
+    color: white;
+    font-weight: 600;
+}
+
+.comparison-table tr:nth-child(even) {
+    background: #f9fafb;
+}
+
+.questions-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.question-item {
+    background: #f0f9ff;
+    padding: 10px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+}
+
+.question-item strong {
+    color: var(--primary);
+}
+
+@media print {
+    body {
+        padding: 10px;
+    }
+
+    .container {
+        max-width: 100%;
+    }
+
+    .print-btn {
+        display: none;
+    }
+
+    .grid {
+        gap: 10px;
+    }
+
+    .section {
+        break-inside: avoid;
+    }
+}
+
+@media (max-width: 768px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .questions-grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>Financial Service Providers Reference Sheet</h1>
+        <p class="subtitle">Quick Guide to Choosing and Working with Financial Institutions</p>
+    </header>
+
+    <button class="print-btn" onclick="window.print()">Print / Save PDF</button>
+
+    <div class="key-points">
+        <h3>Types of Financial Service Providers</h3>
+        <ul>
+            <li><strong>Traditional Banks:</strong> Full-service institutions with physical branches, ATMs, and complete product offerings. FDIC insured up to $250,000.</li>
+            <li><strong>Credit Unions:</strong> Member-owned, not-for-profit cooperatives offering lower fees and better rates. NCUA insured up to $250,000.</li>
+            <li><strong>Online Banks:</strong> Digital-only institutions with higher interest rates and lower fees due to reduced overhead costs.</li>
+            <li><strong>Brokerages:</strong> Investment-focused firms that may offer cash management accounts with banking features.</li>
+        </ul>
+    </div>
+
+    <div class="grid">
+        <div class="section">
+            <div class="section-title">Key Services Offered</div>
+            <ul>
+                <li><strong>Checking accounts</strong> - daily transactions</li>
+                <li><strong>Savings accounts</strong> - emergency funds</li>
+                <li><strong>Certificates of Deposit (CDs)</strong> - fixed-term savings</li>
+                <li><strong>Money market accounts</strong> - higher-yield savings</li>
+                <li><strong>Credit cards</strong> - revolving credit</li>
+                <li><strong>Personal loans</strong> - fixed borrowing</li>
+                <li><strong>Auto loans</strong> - vehicle financing</li>
+                <li><strong>Mortgages</strong> - home financing</li>
+                <li><strong>Investment services</strong> - wealth building</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Fees to Watch For</div>
+            <ul>
+                <li><strong>Monthly maintenance fees</strong> - $5-15/month</li>
+                <li><strong>ATM fees</strong> - $2-5 per transaction</li>
+                <li><strong>Overdraft fees</strong> - $25-35 per occurrence</li>
+                <li><strong>Wire transfer fees</strong> - $15-50</li>
+                <li><strong>Foreign transaction fees</strong> - 1-3%</li>
+                <li><strong>Account closure fees</strong> - $25-50</li>
+                <li><strong>Paper statement fees</strong> - $2-5/month</li>
+                <li><strong>Minimum balance fees</strong> - varies</li>
+                <li><strong>Returned check fees</strong> - $25-40</li>
+            </ul>
+        </div>
+
+        <div class="section full-width">
+            <div class="section-title">Provider Comparison at a Glance</div>
+            <table class="comparison-table">
+                <tr>
+                    <th>Feature</th>
+                    <th>Traditional Bank</th>
+                    <th>Credit Union</th>
+                    <th>Online Bank</th>
+                </tr>
+                <tr>
+                    <td>Interest Rates (Savings)</td>
+                    <td>0.01-0.10%</td>
+                    <td>0.10-0.50%</td>
+                    <td>3.00-5.00%</td>
+                </tr>
+                <tr>
+                    <td>Monthly Fees</td>
+                    <td>$5-15 (often waivable)</td>
+                    <td>$0-5</td>
+                    <td>$0</td>
+                </tr>
+                <tr>
+                    <td>ATM Access</td>
+                    <td>Extensive network</td>
+                    <td>Shared networks</td>
+                    <td>ATM reimbursement</td>
+                </tr>
+                <tr>
+                    <td>Branch Access</td>
+                    <td>Many locations</td>
+                    <td>Limited locations</td>
+                    <td>None</td>
+                </tr>
+                <tr>
+                    <td>Mobile Features</td>
+                    <td>Good</td>
+                    <td>Good</td>
+                    <td>Excellent</td>
+                </tr>
+                <tr>
+                    <td>Loan Rates</td>
+                    <td>Higher</td>
+                    <td>Lower</td>
+                    <td>Varies</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="section">
+            <div class="section-title">How to Choose a Provider</div>
+            <ul>
+                <li>Identify your primary banking needs</li>
+                <li>Compare fees across multiple providers</li>
+                <li>Check interest rates for accounts</li>
+                <li>Evaluate convenience (branches, ATMs)</li>
+                <li>Review mobile app ratings and features</li>
+                <li>Verify insurance coverage (FDIC/NCUA)</li>
+                <li>Read customer service reviews</li>
+                <li>Consider bundling opportunities</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Red Flags to Avoid</div>
+            <ul>
+                <li>Unusually high or hidden fees</li>
+                <li>Poor online/mobile capabilities</li>
+                <li>Consistently negative reviews</li>
+                <li>Lack of FDIC/NCUA insurance</li>
+                <li>Pressure to open unnecessary accounts</li>
+                <li>Unclear fee disclosures</li>
+                <li>Limited customer service hours</li>
+                <li>No fraud protection policies</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section full-width" style="margin-bottom: 20px;">
+        <div class="section-title">Essential Questions to Ask Providers</div>
+        <div class="questions-grid">
+            <div class="question-item">
+                <strong>Fees:</strong> "What fees are associated with this account and how can I avoid them?"
+            </div>
+            <div class="question-item">
+                <strong>Interest:</strong> "What is the current APY and how often does it change?"
+            </div>
+            <div class="question-item">
+                <strong>Access:</strong> "How many free ATMs are available and what are out-of-network fees?"
+            </div>
+            <div class="question-item">
+                <strong>Minimums:</strong> "What are the minimum balance requirements to avoid fees?"
+            </div>
+            <div class="question-item">
+                <strong>Overdraft:</strong> "What overdraft protection options do you offer and what do they cost?"
+            </div>
+            <div class="question-item">
+                <strong>Security:</strong> "What fraud protection and security features are included?"
+            </div>
+            <div class="question-item">
+                <strong>Mobile:</strong> "What can I do through your mobile app? Is mobile deposit available?"
+            </div>
+            <div class="question-item">
+                <strong>Support:</strong> "What are your customer service hours and contact options?"
+            </div>
+        </div>
+    </div>
+
+    <div class="highlight-box">
+        <strong>Remember:</strong> You can use multiple financial service providers to meet different needs. Many people have a checking account at a traditional bank or credit union for daily transactions and a high-yield savings account at an online bank for emergency funds. In {{STATE_NAME}}, compare local credit unions and community banks alongside national options for the best combination of rates and service.
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bias Counter Rules Builder</title>
+    <style>
+        :root { --primary: #6366f1; --secondary: #8b5cf6; --success: #10b981; --warning: #f59e0b; --danger: #ef4444; }
+        body { font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 14px; line-height: 1.5; color: #1f2937; max-width: 900px; margin: 0 auto; padding: 15px; }
+        h1 { color: var(--primary); font-size: 24px; border-bottom: 2px solid var(--primary); padding-bottom: 8px; }
+        h2 { color: var(--secondary); font-size: 18px; margin-top: 20px; }
+        .section { background: #f9fafb; padding: 15px; border-radius: 5px; margin: 15px 0; }
+        .rule-builder { background: #e0e7ff; padding: 15px; border-radius: 5px; margin: 15px 0; }
+        .rule-item { background: white; padding: 10px; border-radius: 4px; margin: 10px 0; }
+        .rule-label { font-weight: bold; margin-bottom: 5px; font-size: 13px; }
+        .rule-hint { font-size: 11px; color: #6b7280; margin-bottom: 5px; }
+        textarea { width: 100%; padding: 8px; border: 1px solid #d1d5db; border-radius: 4px; min-height: 60px; box-sizing: border-box; font-size: 13px; }
+        input { width: 100%; padding: 8px; border: 1px solid #d1d5db; border-radius: 4px; box-sizing: border-box; }
+        .bias-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin: 10px 0; }
+        .bias-card { background: white; padding: 10px; border-radius: 4px; border: 2px solid #d1d5db; cursor: pointer; }
+        .bias-card:hover { border-color: var(--primary); }
+        .bias-card.selected { border-color: var(--primary); background: #f0f7ff; }
+        .bias-name { font-weight: bold; font-size: 13px; }
+        .bias-desc { font-size: 11px; color: #6b7280; }
+        .final-rules { background: #d1fae5; padding: 15px; border-radius: 5px; margin: 15px 0; border: 2px solid var(--success); display: none; }
+        .rule-display { background: white; padding: 10px; border-radius: 4px; margin: 10px 0; }
+        .rule-category { font-weight: bold; color: var(--primary); margin-bottom: 5px; }
+        button { background: var(--primary); color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; margin: 5px; }
+        button:hover { background: var(--secondary); }
+        @media print { body { font-size: 11pt; } button { display: none; } .final-rules { display: block !important; } }
+    </style>
+</head>
+<body>
+    <h1>Bias Counter Rules Builder</h1>
+    <p>Create personal rules to counter your behavioral biases</p>
+
+    <div class="section">
+        <h2 style="margin-top: 0;">Step 1: Select Your Top Biases to Counter</h2>
+        <p style="font-size: 12px;">Choose 2-3 biases you want to address:</p>
+        <div class="bias-grid">
+            <div class="bias-card" onclick="toggleBias('loss_aversion', this)">
+                <div class="bias-name">Loss Aversion</div>
+                <div class="bias-desc">Feeling losses more strongly than gains</div>
+            </div>
+            <div class="bias-card" onclick="toggleBias('overconfidence', this)">
+                <div class="bias-name">Overconfidence</div>
+                <div class="bias-desc">Overestimating your abilities</div>
+            </div>
+            <div class="bias-card" onclick="toggleBias('confirmation', this)">
+                <div class="bias-name">Confirmation Bias</div>
+                <div class="bias-desc">Seeking confirming information</div>
+            </div>
+            <div class="bias-card" onclick="toggleBias('herd', this)">
+                <div class="bias-name">Herd Mentality</div>
+                <div class="bias-desc">Following the crowd</div>
+            </div>
+            <div class="bias-card" onclick="toggleBias('recency', this)">
+                <div class="bias-name">Recency Bias</div>
+                <div class="bias-desc">Overweighting recent events</div>
+            </div>
+            <div class="bias-card" onclick="toggleBias('anchoring', this)">
+                <div class="bias-name">Anchoring</div>
+                <div class="bias-desc">Fixating on specific numbers</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="rule-builder">
+        <h2 style="margin-top: 0;">Step 2: Build Your Counter Rules</h2>
+
+        <div class="rule-item">
+            <div class="rule-label">📊 Buying Rules</div>
+            <div class="rule-hint">What criteria must be met before you buy an investment?</div>
+            <textarea id="buyRules" placeholder="Example: I will only buy after waiting 48 hours and completing a written analysis of pros AND cons..."></textarea>
+        </div>
+
+        <div class="rule-item">
+            <div class="rule-label">📉 Selling Rules</div>
+            <div class="rule-hint">When will you sell? What triggers are acceptable?</div>
+            <textarea id="sellRules" placeholder="Example: I will sell when my thesis is broken, not when the price drops. I will review bearish arguments before panic selling..."></textarea>
+        </div>
+
+        <div class="rule-item">
+            <div class="rule-label">⚖️ Portfolio Management Rules</div>
+            <div class="rule-hint">How will you maintain discipline over time?</div>
+            <textarea id="portfolioRules" placeholder="Example: I will rebalance quarterly regardless of market conditions. I will not check my portfolio more than once per week..."></textarea>
+        </div>
+
+        <div class="rule-item">
+            <div class="rule-label">🧘 Emotional Control Rules</div>
+            <div class="rule-hint">How will you handle market volatility and FOMO?</div>
+            <textarea id="emotionalRules" placeholder="Example: During a crash, I will wait 7 days before making any changes. I will not buy 'hot' stocks discussed on social media..."></textarea>
+        </div>
+
+        <div class="rule-item">
+            <div class="rule-label">🔢 Position Sizing Rules</div>
+            <div class="rule-hint">How will you prevent overconcentration?</div>
+            <textarea id="sizingRules" placeholder="Example: No single stock will exceed 5% of my portfolio. I will diversify across at least 3 asset classes..."></textarea>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2 style="margin-top: 0;">Step 3: Accountability System</h2>
+        <div class="rule-item">
+            <div class="rule-label">How will you enforce these rules?</div>
+            <textarea id="accountability" placeholder="Example: I will review this document before any trade. I will keep a trading journal and review decisions monthly..."></textarea>
+        </div>
+    </div>
+
+    <div style="text-align: center; margin: 20px 0;">
+        <button onclick="generateRules()">Generate My Rules Document</button>
+    </div>
+
+    <div class="final-rules" id="final-rules">
+        <h2 style="margin-top: 0;">📜 My Personal Bias-Counter Rules</h2>
+        <p style="font-size: 12px; color: #6b7280;">Date Created: <span id="date"></span></p>
+
+        <div id="selected-biases"></div>
+
+        <div class="rule-display">
+            <div class="rule-category">Buying Rules</div>
+            <div id="display-buy"></div>
+        </div>
+
+        <div class="rule-display">
+            <div class="rule-category">Selling Rules</div>
+            <div id="display-sell"></div>
+        </div>
+
+        <div class="rule-display">
+            <div class="rule-category">Portfolio Management</div>
+            <div id="display-portfolio"></div>
+        </div>
+
+        <div class="rule-display">
+            <div class="rule-category">Emotional Control</div>
+            <div id="display-emotional"></div>
+        </div>
+
+        <div class="rule-display">
+            <div class="rule-category">Position Sizing</div>
+            <div id="display-sizing"></div>
+        </div>
+
+        <div class="rule-display">
+            <div class="rule-category">Accountability</div>
+            <div id="display-accountability"></div>
+        </div>
+
+        <p style="font-size: 12px; margin-top: 15px; padding: 10px; background: #fef3c7; border-radius: 4px;">
+            <strong>Commitment:</strong> I commit to following these rules for all investment decisions. I will review this document before any trade and update it as I learn more about my behavioral tendencies.
+        </p>
+    </div>
+
+    <script>
+        let selectedBiases = [];
+
+        function toggleBias(bias, element) {
+            const index = selectedBiases.indexOf(bias);
+            if (index > -1) {
+                selectedBiases.splice(index, 1);
+                element.classList.remove('selected');
+            } else {
+                selectedBiases.push(bias);
+                element.classList.add('selected');
+            }
+        }
+
+        function generateRules() {
+            const biasNames = {
+                loss_aversion: 'Loss Aversion',
+                overconfidence: 'Overconfidence',
+                confirmation: 'Confirmation Bias',
+                herd: 'Herd Mentality',
+                recency: 'Recency Bias',
+                anchoring: 'Anchoring'
+            };
+
+            // Display selected biases
+            if (selectedBiases.length > 0) {
+                document.getElementById('selected-biases').innerHTML = `
+                    <p><strong>Biases I'm Targeting:</strong> ${selectedBiases.map(b => biasNames[b]).join(', ')}</p>
+                `;
+            }
+
+            // Display rules
+            document.getElementById('date').textContent = new Date().toLocaleDateString();
+            document.getElementById('display-buy').textContent = document.getElementById('buyRules').value || 'Not specified';
+            document.getElementById('display-sell').textContent = document.getElementById('sellRules').value || 'Not specified';
+            document.getElementById('display-portfolio').textContent = document.getElementById('portfolioRules').value || 'Not specified';
+            document.getElementById('display-emotional').textContent = document.getElementById('emotionalRules').value || 'Not specified';
+            document.getElementById('display-sizing').textContent = document.getElementById('sizingRules').value || 'Not specified';
+            document.getElementById('display-accountability').textContent = document.getElementById('accountability').value || 'Not specified';
+
+            document.getElementById('final-rules').style.display = 'block';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Contract Evaluation Planner</title>
+    <!--
+    PURPOSE: Create action plans for current and anticipated contracts
+    USE: Activity 5 - Personal Contract Evaluation (10 minutes)
+    -->
+    <style>
+        :root {
+            --primary: #6366f1;
+            --secondary: #8b5cf6;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --text: #1f2937;
+            --surface: #f9fafb;
+        }
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: var(--primary);
+            border-bottom: 3px solid var(--primary);
+            padding-bottom: 10px;
+        }
+        .planner-section {
+            background: var(--surface);
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .section-title {
+            background: var(--primary);
+            color: white;
+            padding: 10px 15px;
+            margin: -20px -20px 15px -20px;
+            border-radius: 6px 6px 0 0;
+            font-weight: bold;
+        }
+        .contract-entry {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .entry-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .entry-title {
+            font-weight: bold;
+            color: var(--primary);
+        }
+        .status-badge {
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        .status-current {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+        .status-upcoming {
+            background: #fef3c7;
+            color: #b45309;
+        }
+        .form-grid {
+            display: grid;
+            gap: 12px;
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+        .form-item label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 6px;
+            font-size: 0.9rem;
+        }
+        .form-item input,
+        .form-item textarea,
+        .form-item select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: inherit;
+        }
+        .form-item textarea {
+            min-height: 60px;
+        }
+        .action-plan {
+            background: #f0fdf4;
+            border-left: 4px solid var(--success);
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .action-plan h4 {
+            color: var(--success);
+            margin-top: 0;
+        }
+        .action-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 8px;
+            background: white;
+            border-radius: 4px;
+            margin: 5px 0;
+        }
+        .action-item input[type="checkbox"] {
+            width: auto;
+            margin-top: 3px;
+        }
+        .timeline-box {
+            background: #fef3c7;
+            border-left: 4px solid var(--warning);
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .add-contract-btn {
+            background: white;
+            border: 2px dashed var(--primary);
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            color: var(--primary);
+            font-weight: 600;
+        }
+        .add-contract-btn:hover {
+            background: #eef2ff;
+        }
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            cursor: pointer;
+            background: var(--primary);
+            color: white;
+            margin: 10px 5px;
+        }
+        .btn:hover {
+            background: #4f46e5;
+        }
+        .btn-print {
+            background: var(--success);
+        }
+        @media print {
+            .btn, .add-contract-btn { display: none; }
+            body { font-size: 11pt; }
+        }
+    </style>
+</head>
+<body>
+    <h1>📋 Personal Contract Evaluation Planner</h1>
+
+    <p>Create action plans for contracts you currently have and anticipate signing in the future. This helps you stay organized and prepared.</p>
+
+    <!-- Current Contracts Section -->
+    <div class="planner-section">
+        <div class="section-title">📄 Current Contracts to Review</div>
+
+        <div class="contract-entry">
+            <div class="entry-header">
+                <span class="entry-title">Contract #1</span>
+                <span class="status-badge status-current">Current</span>
+            </div>
+            <div class="form-grid">
+                <div class="form-row">
+                    <div class="form-item">
+                        <label>Contract Type</label>
+                        <select>
+                            <option value="">Select...</option>
+                            <option>Cell phone service</option>
+                            <option>Streaming subscription</option>
+                            <option>Gym membership</option>
+                            <option>Auto insurance</option>
+                            <option>Other subscription</option>
+                        </select>
+                    </div>
+                    <div class="form-item">
+                        <label>Provider/Company</label>
+                        <input type="text" placeholder="Company name">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-item">
+                        <label>Contract End/Renewal Date</label>
+                        <input type="date">
+                    </div>
+                    <div class="form-item">
+                        <label>Monthly Cost</label>
+                        <input type="text" placeholder="$___">
+                    </div>
+                </div>
+                <div class="form-item">
+                    <label>Key Terms to Review</label>
+                    <textarea placeholder="Auto-renewal terms, cancellation policy, price changes..."></textarea>
+                </div>
+                <div class="form-item">
+                    <label>Potential Issues Identified</label>
+                    <textarea placeholder="Any red flags or concerns with current terms..."></textarea>
+                </div>
+            </div>
+
+            <div class="action-plan">
+                <h4>📝 Action Plan</h4>
+                <div class="action-item">
+                    <input type="checkbox">
+                    <span>Locate and read current contract terms</span>
+                </div>
+                <div class="action-item">
+                    <input type="checkbox">
+                    <span>Note renewal date on calendar</span>
+                </div>
+                <div class="action-item">
+                    <input type="checkbox">
+                    <span>Research competitor offers</span>
+                </div>
+                <div class="action-item">
+                    <input type="checkbox">
+                    <span>Prepare negotiation strategy</span>
+                </div>
+                <div class="action-item">
+                    <input type="checkbox">
+                    <span>Contact provider to negotiate/review terms</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="contract-entry">
+            <div class="entry-header">
+                <span class="entry-title">Contract #2</span>
+                <span class="status-badge status-current">Current</span>
+            </div>
+            <div class="form-grid">
+                <div class="form-row">
+                    <div class="form-item">
+                        <label>Contract Type</label>
+                        <select>
+                            <option value="">Select...</option>
+                            <option>Cell phone service</option>
+                            <option>Streaming subscription</option>
+                            <option>Gym membership</option>
+                            <option>Auto insurance</option>
+                            <option>Other subscription</option>
+                        </select>
+                    </div>
+                    <div class="form-item">
+                        <label>Provider/Company</label>
+                        <input type="text" placeholder="Company name">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-item">
+                        <label>Contract End/Renewal Date</label>
+                        <input type="date">
+                    </div>
+                    <div class="form-item">
+                        <label>Monthly Cost</label>
+                        <input type="text" placeholder="$___">
+                    </div>
+                </div>
+                <div class="form-item">
+                    <label>Key Terms to Review</label>
+                    <textarea placeholder="Auto-renewal terms, cancellation policy, price changes..."></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Future Contracts Section -->
+    <div class="planner-section">
+        <div class="section-title">🔮 Anticipated Future Contracts</div>
+
+        <div class="contract-entry">
+            <div class="entry-header">
+                <span class="entry-title">Future Contract #1</span>
+                <span class="status-badge status-upcoming">Upcoming</span>
+            </div>
+            <div class="form-grid">
+                <div class="form-row">
+                    <div class="form-item">
+                        <label>Contract Type</label>
+                        <select>
+                            <option value="">Select...</option>
+                            <option>Apartment lease</option>
+                            <option>Auto loan/lease</option>
+                            <option>Employment contract</option>
+                            <option>Student loans</option>
+                            <option>Credit card</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+                    <div class="form-item">
+                        <label>Expected Timeline</label>
+                        <select>
+                            <option value="">Select...</option>
+                            <option>Within 3 months</option>
+                            <option>3-6 months</option>
+                            <option>6-12 months</option>
+                            <option>1-2 years</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-item">
+                    <label>Key Terms to Research</label>
+                    <textarea placeholder="What should you look for in this type of contract?"></textarea>
+                </div>
+                <div class="form-item">
+                    <label>Potential Red Flags to Watch</label>
+                    <textarea placeholder="Common problematic terms in this contract type..."></textarea>
+                </div>
+                <div class="form-item">
+                    <label>Preparation Steps</label>
+                    <textarea placeholder="How will you prepare before signing?"></textarea>
+                </div>
+            </div>
+
+            <div class="timeline-box">
+                <strong>⏰ Preparation Timeline:</strong>
+                <ul>
+                    <li>2 weeks before: Research standard terms and competitor offers</li>
+                    <li>1 week before: Prepare list of questions and negotiation points</li>
+                    <li>Day of: Take time to read everything before signing</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="contract-entry">
+            <div class="entry-header">
+                <span class="entry-title">Future Contract #2</span>
+                <span class="status-badge status-upcoming">Upcoming</span>
+            </div>
+            <div class="form-grid">
+                <div class="form-row">
+                    <div class="form-item">
+                        <label>Contract Type</label>
+                        <select>
+                            <option value="">Select...</option>
+                            <option>Apartment lease</option>
+                            <option>Auto loan/lease</option>
+                            <option>Employment contract</option>
+                            <option>Student loans</option>
+                            <option>Credit card</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+                    <div class="form-item">
+                        <label>Expected Timeline</label>
+                        <select>
+                            <option value="">Select...</option>
+                            <option>Within 3 months</option>
+                            <option>3-6 months</option>
+                            <option>6-12 months</option>
+                            <option>1-2 years</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-item">
+                    <label>Key Terms to Research</label>
+                    <textarea placeholder="What should you look for in this type of contract?"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Personal Commitments -->
+    <div class="planner-section">
+        <div class="section-title">✅ My Contract Review Commitments</div>
+        <div class="form-item">
+            <label>I commit to doing the following before signing ANY contract:</label>
+            <textarea placeholder="Write your personal commitments here..." style="min-height: 100px;"></textarea>
+        </div>
+    </div>
+
+    <button class="btn btn-print" onclick="window.print()">🖨️ Print My Planner</button>
+</body>
+</html>

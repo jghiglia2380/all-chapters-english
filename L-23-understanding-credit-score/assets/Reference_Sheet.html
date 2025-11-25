@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credit Score Reference Sheet - PFL Academy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            font-size: 12px;
+            line-height: 1.5;
+            color: #1f2937;
+            padding: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 3px solid #6366f1;
+        }
+
+        .header h1 {
+            font-size: 24px;
+            color: #6366f1;
+            margin-bottom: 4px;
+        }
+
+        .header p {
+            color: #6b7280;
+            font-size: 12px;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .three-column {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .score-ranges {
+            background: #f9fafb;
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 16px;
+        }
+
+        .score-ranges h3 {
+            font-size: 14px;
+            font-weight: 700;
+            color: #6366f1;
+            margin-bottom: 12px;
+        }
+
+        .range-bar {
+            display: flex;
+            height: 32px;
+            border-radius: 6px;
+            overflow: hidden;
+            margin-bottom: 12px;
+        }
+
+        .range-segment {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 11px;
+        }
+
+        .range-poor {
+            background: #ef4444;
+            width: 23%;
+        }
+
+        .range-fair {
+            background: #f59e0b;
+            width: 14%;
+        }
+
+        .range-good {
+            background: #3b82f6;
+            width: 14%;
+        }
+
+        .range-excellent {
+            background: #10b981;
+            width: 49%;
+        }
+
+        .range-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 10px;
+            color: #6b7280;
+        }
+
+        .factors-section {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+
+        .factors-section h3 {
+            font-size: 14px;
+            font-weight: 700;
+            color: #6366f1;
+            margin-bottom: 12px;
+        }
+
+        .factor-item {
+            display: flex;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        .factor-item:last-child {
+            border-bottom: none;
+        }
+
+        .factor-weight {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+            color: white;
+            margin-right: 12px;
+        }
+
+        .weight-35 { background: linear-gradient(135deg, #10b981, #059669); }
+        .weight-30 { background: linear-gradient(135deg, #3b82f6, #2563eb); }
+        .weight-15 { background: linear-gradient(135deg, #8b5cf6, #7c3aed); }
+        .weight-10a { background: linear-gradient(135deg, #f59e0b, #d97706); }
+        .weight-10b { background: linear-gradient(135deg, #ec4899, #db2777); }
+
+        .factor-info {
+            flex: 1;
+        }
+
+        .factor-name {
+            font-weight: 600;
+            font-size: 13px;
+            margin-bottom: 2px;
+        }
+
+        .factor-desc {
+            font-size: 11px;
+            color: #6b7280;
+        }
+
+        .impact-section {
+            margin-bottom: 16px;
+        }
+
+        .impact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .impact-box {
+            padding: 12px;
+            border-radius: 6px;
+        }
+
+        .impact-box.positive {
+            background: #ecfdf5;
+            border-left: 4px solid #10b981;
+        }
+
+        .impact-box.negative {
+            background: #fef2f2;
+            border-left: 4px solid #ef4444;
+        }
+
+        .impact-box h4 {
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .impact-box.positive h4 { color: #059669; }
+        .impact-box.negative h4 { color: #dc2626; }
+
+        .impact-box ul {
+            margin-left: 16px;
+            font-size: 11px;
+        }
+
+        .impact-box li {
+            margin-bottom: 4px;
+        }
+
+        .bureaus-section {
+            background: #eff6ff;
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 16px;
+        }
+
+        .bureaus-section h3 {
+            font-size: 13px;
+            font-weight: 600;
+            color: #1e40af;
+            margin-bottom: 8px;
+        }
+
+        .bureau-list {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .bureau-item {
+            text-align: center;
+        }
+
+        .bureau-name {
+            font-weight: 600;
+            font-size: 12px;
+            margin-bottom: 2px;
+        }
+
+        .bureau-site {
+            font-size: 10px;
+            color: #3b82f6;
+        }
+
+        .real-world-section {
+            background: #fef3c7;
+            padding: 12px;
+            border-radius: 6px;
+            border-left: 4px solid #f59e0b;
+            margin-bottom: 16px;
+        }
+
+        .real-world-section h3 {
+            font-size: 13px;
+            font-weight: 600;
+            color: #b45309;
+            margin-bottom: 8px;
+        }
+
+        .real-world-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+        }
+
+        .real-world-item {
+            background: white;
+            padding: 8px;
+            border-radius: 4px;
+        }
+
+        .real-world-item h5 {
+            font-size: 11px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .real-world-item p {
+            font-size: 10px;
+            color: #6b7280;
+        }
+
+        .strategies-section {
+            background: #f0fdf4;
+            padding: 12px;
+            border-radius: 6px;
+            border-left: 4px solid #10b981;
+            margin-bottom: 16px;
+        }
+
+        .strategies-section h3 {
+            font-size: 13px;
+            font-weight: 600;
+            color: #059669;
+            margin-bottom: 8px;
+        }
+
+        .strategy-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+
+        .strategy-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            background: white;
+            padding: 8px;
+            border-radius: 4px;
+        }
+
+        .strategy-number {
+            width: 20px;
+            height: 20px;
+            background: #10b981;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .strategy-text {
+            font-size: 10px;
+        }
+
+        .strategy-text strong {
+            display: block;
+            font-size: 11px;
+            margin-bottom: 2px;
+        }
+
+        .myths-section {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 16px;
+        }
+
+        .myths-section h3 {
+            font-size: 13px;
+            font-weight: 600;
+            color: #6366f1;
+            margin-bottom: 8px;
+        }
+
+        .myth-item {
+            padding: 8px 0;
+            border-bottom: 1px solid #f3f4f6;
+            font-size: 11px;
+        }
+
+        .myth-item:last-child {
+            border-bottom: none;
+        }
+
+        .myth-false {
+            color: #dc2626;
+            font-weight: 600;
+        }
+
+        .myth-true {
+            color: #059669;
+            font-weight: 600;
+        }
+
+        .quick-tips {
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+            color: white;
+            padding: 12px;
+            border-radius: 8px;
+        }
+
+        .quick-tips h3 {
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+        }
+
+        .tip-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 8px;
+            border-radius: 4px;
+            font-size: 10px;
+        }
+
+        .tip-item strong {
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .footer {
+            text-align: center;
+            padding-top: 16px;
+            border-top: 1px solid #e5e7eb;
+            color: #6b7280;
+            font-size: 10px;
+        }
+
+        @media print {
+            body {
+                padding: 10px;
+                font-size: 10px;
+            }
+
+            .factors-section,
+            .impact-section,
+            .strategies-section,
+            .myths-section {
+                page-break-inside: avoid;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .two-column,
+            .three-column,
+            .impact-grid,
+            .real-world-grid,
+            .strategy-list,
+            .tips-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Credit Score Reference Sheet</h1>
+        <p>Quick guide to understanding and improving your credit score</p>
+    </div>
+
+    <div class="score-ranges">
+        <h3>Credit Score Ranges (FICO)</h3>
+        <div class="range-bar">
+            <div class="range-segment range-poor">Poor</div>
+            <div class="range-segment range-fair">Fair</div>
+            <div class="range-segment range-good">Good</div>
+            <div class="range-segment range-excellent">Excellent</div>
+        </div>
+        <div class="range-labels">
+            <span>300</span>
+            <span>580</span>
+            <span>670</span>
+            <span>740</span>
+            <span>850</span>
+        </div>
+    </div>
+
+    <div class="factors-section">
+        <h3>The 5 Factors That Determine Your Score</h3>
+        <div class="factor-item">
+            <div class="factor-weight weight-35">35%</div>
+            <div class="factor-info">
+                <div class="factor-name">Payment History</div>
+                <div class="factor-desc">Your record of on-time vs. late payments. Most important factor!</div>
+            </div>
+        </div>
+        <div class="factor-item">
+            <div class="factor-weight weight-30">30%</div>
+            <div class="factor-info">
+                <div class="factor-name">Credit Utilization</div>
+                <div class="factor-desc">Percentage of available credit you're using. Keep below 30%.</div>
+            </div>
+        </div>
+        <div class="factor-item">
+            <div class="factor-weight weight-15">15%</div>
+            <div class="factor-info">
+                <div class="factor-name">Length of Credit History</div>
+                <div class="factor-desc">How long you've had credit accounts. Older is better.</div>
+            </div>
+        </div>
+        <div class="factor-item">
+            <div class="factor-weight weight-10a">10%</div>
+            <div class="factor-info">
+                <div class="factor-name">Credit Mix</div>
+                <div class="factor-desc">Variety of credit types (cards, loans, mortgage).</div>
+            </div>
+        </div>
+        <div class="factor-item">
+            <div class="factor-weight weight-10b">10%</div>
+            <div class="factor-info">
+                <div class="factor-name">New Credit</div>
+                <div class="factor-desc">Recent credit applications. Too many hurts your score.</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="impact-section">
+        <div class="impact-grid">
+            <div class="impact-box positive">
+                <h4>Actions That HELP Your Score</h4>
+                <ul>
+                    <li>Pay all bills on time, every time</li>
+                    <li>Keep credit card balances low (&lt;30%)</li>
+                    <li>Keep old accounts open</li>
+                    <li>Become an authorized user on a good account</li>
+                    <li>Mix of credit types (cards + installment loans)</li>
+                    <li>Check your report for errors</li>
+                    <li>Set up automatic payments</li>
+                </ul>
+            </div>
+            <div class="impact-box negative">
+                <h4>Actions That HURT Your Score</h4>
+                <ul>
+                    <li>Late payments (30+ days)</li>
+                    <li>Maxing out credit cards</li>
+                    <li>Applying for too much credit at once</li>
+                    <li>Closing oldest credit cards</li>
+                    <li>Collections or charge-offs</li>
+                    <li>Bankruptcy or foreclosure</li>
+                    <li>Only having one type of credit</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="bureaus-section">
+        <h3>The Three Credit Bureaus</h3>
+        <div class="bureau-list">
+            <div class="bureau-item">
+                <div class="bureau-name">Equifax</div>
+                <div class="bureau-site">equifax.com</div>
+            </div>
+            <div class="bureau-item">
+                <div class="bureau-name">Experian</div>
+                <div class="bureau-site">experian.com</div>
+            </div>
+            <div class="bureau-item">
+                <div class="bureau-name">TransUnion</div>
+                <div class="bureau-site">transunion.com</div>
+            </div>
+        </div>
+        <p style="text-align: center; font-size: 10px; margin-top: 8px; color: #1e40af;">
+            Get free reports annually at <strong>AnnualCreditReport.com</strong>
+        </p>
+    </div>
+
+    <div class="real-world-section">
+        <h3>Real-World Impact of Your Credit Score</h3>
+        <div class="real-world-grid">
+            <div class="real-world-item">
+                <h5>Loan Interest Rates</h5>
+                <p>750 score: 4% APR<br>650 score: 8% APR<br>On $25K car loan = $2,600 difference!</p>
+            </div>
+            <div class="real-world-item">
+                <h5>Renting an Apartment</h5>
+                <p>Landlords check credit. Low scores may require larger deposits or co-signers.</p>
+            </div>
+            <div class="real-world-item">
+                <h5>Insurance Premiums</h5>
+                <p>Many insurers use credit-based scores. Poor credit = higher premiums.</p>
+            </div>
+            <div class="real-world-item">
+                <h5>Employment</h5>
+                <p>Some employers check credit for positions involving money or security.</p>
+            </div>
+            <div class="real-world-item">
+                <h5>Utility Deposits</h5>
+                <p>Good credit may waive deposits for electric, gas, or phone services.</p>
+            </div>
+            <div class="real-world-item">
+                <h5>Credit Card Offers</h5>
+                <p>Best rewards cards require excellent credit (740+).</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="strategies-section">
+        <h3>Top Strategies to Build/Improve Credit</h3>
+        <div class="strategy-list">
+            <div class="strategy-item">
+                <span class="strategy-number">1</span>
+                <div class="strategy-text">
+                    <strong>Set Up Autopay</strong>
+                    Never miss a payment - the #1 factor in your score.
+                </div>
+            </div>
+            <div class="strategy-item">
+                <span class="strategy-number">2</span>
+                <div class="strategy-text">
+                    <strong>Use &lt;30% of Credit</strong>
+                    If you have $1,000 limit, keep balance under $300.
+                </div>
+            </div>
+            <div class="strategy-item">
+                <span class="strategy-number">3</span>
+                <div class="strategy-text">
+                    <strong>Keep Old Accounts Open</strong>
+                    Even if you don't use them, they help your history.
+                </div>
+            </div>
+            <div class="strategy-item">
+                <span class="strategy-number">4</span>
+                <div class="strategy-text">
+                    <strong>Become Authorized User</strong>
+                    Ask parent/guardian to add you to their good account.
+                </div>
+            </div>
+            <div class="strategy-item">
+                <span class="strategy-number">5</span>
+                <div class="strategy-text">
+                    <strong>Start with Secured Card</strong>
+                    Deposit becomes your limit; good for beginners.
+                </div>
+            </div>
+            <div class="strategy-item">
+                <span class="strategy-number">6</span>
+                <div class="strategy-text">
+                    <strong>Check Report for Errors</strong>
+                    Dispute any mistakes with the credit bureaus.
+                </div>
+            </div>
+            <div class="strategy-item">
+                <span class="strategy-number">7</span>
+                <div class="strategy-text">
+                    <strong>Limit Hard Inquiries</strong>
+                    Only apply for credit you really need.
+                </div>
+            </div>
+            <div class="strategy-item">
+                <span class="strategy-number">8</span>
+                <div class="strategy-text">
+                    <strong>Pay Before Statement</strong>
+                    Low balance when reported = lower utilization.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="myths-section">
+        <h3>Common Credit Score Myths</h3>
+        <div class="myth-item">
+            <span class="myth-false">MYTH:</span> Checking your own credit hurts your score.<br>
+            <span class="myth-true">FACT:</span> Checking your own score is a "soft inquiry" and doesn't affect it.
+        </div>
+        <div class="myth-item">
+            <span class="myth-false">MYTH:</span> You need to carry a balance to build credit.<br>
+            <span class="myth-true">FACT:</span> Paying in full each month is better - shows responsibility, avoids interest.
+        </div>
+        <div class="myth-item">
+            <span class="myth-false">MYTH:</span> Closing old cards improves your score.<br>
+            <span class="myth-true">FACT:</span> Closing cards reduces credit history length and increases utilization.
+        </div>
+        <div class="myth-item">
+            <span class="myth-false">MYTH:</span> Income affects your credit score.<br>
+            <span class="myth-true">FACT:</span> Income isn't a factor - only how you manage credit matters.
+        </div>
+        <div class="myth-item">
+            <span class="myth-false">MYTH:</span> All credit inquiries hurt your score equally.<br>
+            <span class="myth-true">FACT:</span> Rate shopping for mortgages/auto within 14-45 days counts as one inquiry.
+        </div>
+    </div>
+
+    <div class="quick-tips">
+        <h3>Quick Reference: Key Numbers to Remember</h3>
+        <div class="tips-grid">
+            <div class="tip-item">
+                <strong>30%</strong>
+                Maximum utilization to maintain
+            </div>
+            <div class="tip-item">
+                <strong>35%</strong>
+                Weight of payment history
+            </div>
+            <div class="tip-item">
+                <strong>7 Years</strong>
+                Late payments stay on report
+            </div>
+            <div class="tip-item">
+                <strong>740+</strong>
+                Score for best interest rates
+            </div>
+            <div class="tip-item">
+                <strong>10 Years</strong>
+                Bankruptcy stays on report
+            </div>
+            <div class="tip-item">
+                <strong>1x/Year</strong>
+                Free credit report from each bureau
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>PFL Academy - Chapter 23: Understanding Credit Scores</p>
+        <p>Your credit score is built over time through consistent, responsible financial behavior. Start building good habits now!</p>
+    </div>
+</body>
+</html>

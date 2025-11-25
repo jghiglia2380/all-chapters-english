@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Federal Budget Analyzer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-size: 2rem;
+            color: #6366f1;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #6b7280;
+        }
+
+        .budget-overview {
+            background: #f0f9ff;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            text-align: center;
+        }
+
+        .overview-item h3 {
+            font-size: 0.85rem;
+            color: #6b7280;
+            margin-bottom: 5px;
+        }
+
+        .overview-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .revenue { color: #059669; }
+        .spending { color: #dc2626; }
+        .deficit { color: #7c3aed; }
+
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #1f2937;
+        }
+
+        .spending-categories {
+            margin-bottom: 25px;
+        }
+
+        .category-item {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            background: #f9fafb;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .category-info {
+            flex: 1;
+        }
+
+        .category-name {
+            font-weight: 600;
+            color: #1f2937;
+        }
+
+        .category-current {
+            font-size: 0.85rem;
+            color: #6b7280;
+        }
+
+        .category-slider {
+            width: 150px;
+            margin: 0 15px;
+        }
+
+        .category-value {
+            width: 80px;
+            text-align: right;
+            font-weight: 600;
+            color: #6366f1;
+        }
+
+        input[type="range"] {
+            width: 100%;
+            height: 6px;
+            border-radius: 3px;
+            background: #e5e7eb;
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: #6366f1;
+            cursor: pointer;
+        }
+
+        .impact-summary {
+            background: #fef3c7;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+        }
+
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .impact-item {
+            text-align: center;
+        }
+
+        .impact-label {
+            font-size: 0.85rem;
+            color: #92400e;
+        }
+
+        .impact-value {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #78350f;
+        }
+
+        .tradeoffs {
+            background: #f0fdf4;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+
+        .tradeoffs ul {
+            margin-left: 20px;
+            color: #166534;
+        }
+
+        .tradeoffs li {
+            margin-bottom: 8px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #e5e7eb;
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .container {
+                box-shadow: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .budget-overview {
+                grid-template-columns: 1fr;
+            }
+            .category-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            .category-slider {
+                width: 100%;
+                margin: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Federal Budget Analyzer</h1>
+            <p class="subtitle">Evaluate spending priorities and budget trade-offs</p>
+        </header>
+
+        <div class="budget-overview">
+            <div class="overview-item">
+                <h3>Total Revenue</h3>
+                <div class="overview-value revenue">$4.4T</div>
+            </div>
+            <div class="overview-item">
+                <h3>Your Total Spending</h3>
+                <div class="overview-value spending" id="totalSpending">$6.1T</div>
+            </div>
+            <div class="overview-item">
+                <h3>Budget Deficit</h3>
+                <div class="overview-value deficit" id="deficit">-$1.7T</div>
+            </div>
+        </div>
+
+        <div class="spending-categories">
+            <div class="section-title">Adjust Spending Priorities</div>
+
+            <div class="category-item">
+                <div class="category-info">
+                    <div class="category-name">Social Security</div>
+                    <div class="category-current">Mandatory entitlement</div>
+                </div>
+                <div class="category-slider">
+                    <input type="range" min="800" max="1600" value="1200" oninput="updateBudget()">
+                </div>
+                <div class="category-value">$1.2T</div>
+            </div>
+
+            <div class="category-item">
+                <div class="category-info">
+                    <div class="category-name">Medicare/Medicaid</div>
+                    <div class="category-current">Healthcare programs</div>
+                </div>
+                <div class="category-slider">
+                    <input type="range" min="800" max="2000" value="1500" oninput="updateBudget()">
+                </div>
+                <div class="category-value">$1.5T</div>
+            </div>
+
+            <div class="category-item">
+                <div class="category-info">
+                    <div class="category-name">Defense</div>
+                    <div class="category-current">Military spending</div>
+                </div>
+                <div class="category-slider">
+                    <input type="range" min="400" max="1200" value="800" oninput="updateBudget()">
+                </div>
+                <div class="category-value">$800B</div>
+            </div>
+
+            <div class="category-item">
+                <div class="category-info">
+                    <div class="category-name">Interest on Debt</div>
+                    <div class="category-current">Fixed obligation</div>
+                </div>
+                <div class="category-slider">
+                    <input type="range" min="600" max="600" value="600" disabled>
+                </div>
+                <div class="category-value">$600B</div>
+            </div>
+
+            <div class="category-item">
+                <div class="category-info">
+                    <div class="category-name">Other Discretionary</div>
+                    <div class="category-current">Education, infrastructure, etc.</div>
+                </div>
+                <div class="category-slider">
+                    <input type="range" min="500" max="1500" value="1000" oninput="updateBudget()">
+                </div>
+                <div class="category-value">$1.0T</div>
+            </div>
+        </div>
+
+        <div class="impact-summary">
+            <div class="section-title">Your Budget Impact</div>
+            <div class="impact-grid">
+                <div class="impact-item">
+                    <div class="impact-label">Deficit as % of GDP</div>
+                    <div class="impact-value" id="deficitGDP">6.5%</div>
+                </div>
+                <div class="impact-item">
+                    <div class="impact-label">Debt Growth</div>
+                    <div class="impact-value" id="debtGrowth">+$1.7T</div>
+                </div>
+                <div class="impact-item">
+                    <div class="impact-label">Fiscal Policy Stance</div>
+                    <div class="impact-value" id="policyStance">Expansionary</div>
+                </div>
+                <div class="impact-item">
+                    <div class="impact-label">Economic Impact</div>
+                    <div class="impact-value" id="econImpact">Stimulative</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tradeoffs">
+            <div class="section-title">Key Trade-offs to Consider</div>
+            <ul>
+                <li><strong>Social Security cuts</strong> = Reduced retirement security for seniors</li>
+                <li><strong>Healthcare cuts</strong> = Less access to medical care for vulnerable populations</li>
+                <li><strong>Defense cuts</strong> = Potential national security implications</li>
+                <li><strong>Discretionary cuts</strong> = Less investment in education, infrastructure, research</li>
+                <li><strong>Higher deficits</strong> = More debt interest payments in the future</li>
+            </ul>
+        </div>
+
+        <footer>
+            <p><strong>PFL Academy</strong> | Fiscal and Monetary Policy</p>
+        </footer>
+    </div>
+
+    <script>
+        function updateBudget() {
+            const sliders = document.querySelectorAll('input[type="range"]');
+            const values = document.querySelectorAll('.category-value');
+            let total = 0;
+
+            sliders.forEach((slider, index) => {
+                const value = parseInt(slider.value);
+                total += value;
+                if (value >= 1000) {
+                    values[index].textContent = '$' + (value / 1000).toFixed(1) + 'T';
+                } else {
+                    values[index].textContent = '$' + value + 'B';
+                }
+            });
+
+            const totalT = total / 1000;
+            const revenue = 4.4;
+            const deficit = revenue - totalT;
+
+            document.getElementById('totalSpending').textContent = '$' + totalT.toFixed(1) + 'T';
+            document.getElementById('deficit').textContent = (deficit >= 0 ? '+' : '') + '$' + Math.abs(deficit).toFixed(1) + 'T';
+
+            const deficitGDP = Math.abs(deficit) / 26 * 100;
+            document.getElementById('deficitGDP').textContent = deficitGDP.toFixed(1) + '%';
+            document.getElementById('debtGrowth').textContent = (deficit < 0 ? '+' : '-') + '$' + Math.abs(deficit).toFixed(1) + 'T';
+
+            if (deficit < -1) {
+                document.getElementById('policyStance').textContent = 'Expansionary';
+                document.getElementById('econImpact').textContent = 'Stimulative';
+            } else if (deficit > 0) {
+                document.getElementById('policyStance').textContent = 'Contractionary';
+                document.getElementById('econImpact').textContent = 'Restrictive';
+            } else {
+                document.getElementById('policyStance').textContent = 'Neutral';
+                document.getElementById('econImpact').textContent = 'Balanced';
+            }
+        }
+    </script>
+</body>
+</html>

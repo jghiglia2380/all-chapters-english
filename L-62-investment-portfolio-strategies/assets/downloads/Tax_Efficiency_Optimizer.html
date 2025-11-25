@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tax Efficiency Optimizer</title>
+    <!--
+    PURPOSE: Calculate 20-year after-tax outcomes for different asset location strategies
+    USE: Activity 4 - Tax Optimization Strategy (10 minutes)
+    -->
+    <style>
+        :root {
+            --primary: #6366f1;
+            --secondary: #8b5cf6;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --text: #1f2937;
+            --surface: #f9fafb;
+        }
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: var(--primary);
+            border-bottom: 3px solid var(--primary);
+            padding-bottom: 10px;
+        }
+        .strategy-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .strategy-card {
+            background: var(--surface);
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 15px;
+        }
+        .strategy-card h3 {
+            color: var(--primary);
+            margin-top: 0;
+            font-size: 1rem;
+        }
+        .strategy-card.optimal {
+            border-color: var(--success);
+            background: #f0fdf4;
+        }
+        .account-box {
+            background: white;
+            padding: 10px;
+            border-radius: 6px;
+            margin: 8px 0;
+            font-size: 0.85rem;
+        }
+        .account-label {
+            font-weight: 600;
+            color: var(--secondary);
+        }
+        .final-value {
+            text-align: center;
+            padding: 15px;
+            margin-top: 10px;
+        }
+        .value-number {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+        .value-diff {
+            font-size: 0.85rem;
+        }
+        .value-diff.positive {
+            color: var(--success);
+        }
+        .value-diff.negative {
+            color: var(--danger);
+        }
+        .input-section {
+            background: var(--surface);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        .input-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+        .input-item {
+            display: flex;
+            flex-direction: column;
+        }
+        .input-item label {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        .input-item input,
+        .input-item select {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            cursor: pointer;
+            background: var(--primary);
+            color: white;
+            margin-top: 15px;
+        }
+        .btn:hover {
+            background: #4f46e5;
+        }
+        .concept-box {
+            background: #f0f7ff;
+            border-left: 4px solid var(--primary);
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .tax-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 0.85rem;
+        }
+        .tax-table th {
+            background: var(--primary);
+            color: white;
+            padding: 8px;
+        }
+        .tax-table td {
+            border: 1px solid #e5e7eb;
+            padding: 8px;
+            text-align: center;
+        }
+        .analysis-section {
+            margin: 20px 0;
+        }
+        .analysis-section label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .analysis-section textarea {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #e5e7eb;
+            border-radius: 6px;
+            min-height: 70px;
+            font-family: inherit;
+        }
+        @media print {
+            body { font-size: 10pt; }
+            .strategy-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <h1>💰 Tax Efficiency Optimizer</h1>
+
+    <p>Compare three asset location strategies to see how placing investments in the right accounts can save thousands in taxes over 20 years.</p>
+
+    <div class="concept-box">
+        <strong>Key Concept - Asset Location:</strong> Different accounts have different tax treatments. Placing tax-inefficient investments (bonds, REITs) in tax-advantaged accounts and tax-efficient investments (stocks) in taxable accounts maximizes after-tax returns.
+    </div>
+
+    <table class="tax-table">
+        <thead>
+            <tr>
+                <th>Account Type</th>
+                <th>Tax Treatment</th>
+                <th>Best For</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Traditional IRA/401(k)</strong></td>
+                <td>Tax-deferred growth, taxed at withdrawal</td>
+                <td>Bonds, REITs (high current income)</td>
+            </tr>
+            <tr>
+                <td><strong>Roth IRA</strong></td>
+                <td>Tax-free growth and withdrawal</td>
+                <td>Highest growth potential (stocks)</td>
+            </tr>
+            <tr>
+                <td><strong>Taxable Brokerage</strong></td>
+                <td>Annual taxes on dividends/gains</td>
+                <td>Tax-efficient index funds, munis</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="input-section">
+        <h3>Your Scenario</h3>
+        <div class="input-grid">
+            <div class="input-item">
+                <label>Total Portfolio Value:</label>
+                <input type="number" id="total" value="100000" step="10000">
+            </div>
+            <div class="input-item">
+                <label>Tax Bracket:</label>
+                <select id="bracket">
+                    <option value="0.12">12% (Single: $11K-$44K)</option>
+                    <option value="0.22" selected>22% (Single: $44K-$95K)</option>
+                    <option value="0.24">24% (Single: $95K-$171K)</option>
+                    <option value="0.32">32% (Single: $171K-$372K)</option>
+                </select>
+            </div>
+            <div class="input-item">
+                <label>Stock Allocation:</label>
+                <select id="stockAlloc">
+                    <option value="60">60% Stocks / 40% Bonds</option>
+                    <option value="70" selected>70% Stocks / 30% Bonds</option>
+                    <option value="80">80% Stocks / 20% Bonds</option>
+                </select>
+            </div>
+            <div class="input-item">
+                <label>Time Horizon:</label>
+                <select id="years">
+                    <option value="10">10 Years</option>
+                    <option value="20" selected>20 Years</option>
+                    <option value="30">30 Years</option>
+                </select>
+            </div>
+        </div>
+        <button class="btn" onclick="calculateStrategies()">Calculate Strategies</button>
+    </div>
+
+    <h3>Strategy Comparison</h3>
+    <div class="strategy-grid">
+        <!-- Strategy 1: Random -->
+        <div class="strategy-card" id="random-card">
+            <h3>❌ Random Placement</h3>
+            <div class="account-box">
+                <div class="account-label">Traditional IRA:</div>
+                50% stocks, 50% bonds
+            </div>
+            <div class="account-box">
+                <div class="account-label">Roth IRA:</div>
+                50% stocks, 50% bonds
+            </div>
+            <div class="account-box">
+                <div class="account-label">Taxable:</div>
+                50% stocks, 50% bonds
+            </div>
+            <div class="final-value">
+                <div class="value-number" id="random-value">$___</div>
+                <div class="value-diff" id="random-diff">Baseline</div>
+            </div>
+        </div>
+
+        <!-- Strategy 2: Partially Optimized -->
+        <div class="strategy-card" id="partial-card">
+            <h3>⚠️ Partially Optimized</h3>
+            <div class="account-box">
+                <div class="account-label">Traditional IRA:</div>
+                70% bonds, 30% stocks
+            </div>
+            <div class="account-box">
+                <div class="account-label">Roth IRA:</div>
+                50% stocks, 50% bonds
+            </div>
+            <div class="account-box">
+                <div class="account-label">Taxable:</div>
+                70% stocks, 30% bonds
+            </div>
+            <div class="final-value">
+                <div class="value-number" id="partial-value">$___</div>
+                <div class="value-diff positive" id="partial-diff">+$___</div>
+            </div>
+        </div>
+
+        <!-- Strategy 3: Fully Optimized -->
+        <div class="strategy-card optimal" id="optimal-card">
+            <h3>✓ Fully Optimized</h3>
+            <div class="account-box">
+                <div class="account-label">Traditional IRA:</div>
+                100% bonds
+            </div>
+            <div class="account-box">
+                <div class="account-label">Roth IRA:</div>
+                100% stocks
+            </div>
+            <div class="account-box">
+                <div class="account-label">Taxable:</div>
+                Tax-efficient index funds
+            </div>
+            <div class="final-value">
+                <div class="value-number" id="optimal-value">$___</div>
+                <div class="value-diff positive" id="optimal-diff">+$___</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="analysis-section">
+        <label>Why does the optimized strategy outperform?</label>
+        <textarea placeholder="Consider how tax drag affects different asset types and where each grows most efficiently..."></textarea>
+    </div>
+
+    <div class="analysis-section">
+        <label>What factors might change the optimal strategy for different investors?</label>
+        <textarea placeholder="Consider current vs. future tax brackets, account sizes, and expected returns..."></textarea>
+    </div>
+
+    <script>
+        function calculateStrategies() {
+            const total = parseInt(document.getElementById('total').value);
+            const bracket = parseFloat(document.getElementById('bracket').value);
+            const stockPct = parseInt(document.getElementById('stockAlloc').value) / 100;
+            const years = parseInt(document.getElementById('years').value);
+
+            // Assume equal account sizes
+            const perAccount = total / 3;
+
+            // Expected returns
+            const stockReturn = 0.08;
+            const bondReturn = 0.035;
+            const dividendYield = 0.02; // Stock dividend yield for tax calculation
+
+            // Strategy 1: Random (50/50 in each)
+            let random = 0;
+            // Traditional - taxed at withdrawal
+            const tradRandom = perAccount * Math.pow(1 + (stockReturn * 0.5 + bondReturn * 0.5), years);
+            random += tradRandom * (1 - bracket);
+            // Roth - tax free
+            const rothRandom = perAccount * Math.pow(1 + (stockReturn * 0.5 + bondReturn * 0.5), years);
+            random += rothRandom;
+            // Taxable - annual tax drag on dividends
+            const taxReturn = stockReturn * 0.5 + bondReturn * 0.5 - (dividendYield * 0.5 * bracket * 0.5); // Simplified
+            const taxRandom = perAccount * Math.pow(1 + taxReturn, years);
+            random += taxRandom * (1 - 0.15); // 15% LTCG on gains
+
+            // Strategy 2: Partially Optimized
+            let partial = 0;
+            // Traditional - more bonds
+            const tradPartial = perAccount * Math.pow(1 + (stockReturn * 0.3 + bondReturn * 0.7), years);
+            partial += tradPartial * (1 - bracket);
+            // Roth - 50/50
+            const rothPartial = perAccount * Math.pow(1 + (stockReturn * 0.5 + bondReturn * 0.5), years);
+            partial += rothPartial;
+            // Taxable - more stocks
+            const taxPartialReturn = stockReturn * 0.7 + bondReturn * 0.3 - (dividendYield * 0.7 * bracket * 0.3);
+            const taxPartial = perAccount * Math.pow(1 + taxPartialReturn, years);
+            partial += taxPartial * (1 - 0.15);
+
+            // Strategy 3: Fully Optimized
+            let optimal = 0;
+            // Traditional - all bonds
+            const tradOptimal = perAccount * Math.pow(1 + bondReturn, years);
+            optimal += tradOptimal * (1 - bracket);
+            // Roth - all stocks (tax-free growth!)
+            const rothOptimal = perAccount * Math.pow(1 + stockReturn, years);
+            optimal += rothOptimal;
+            // Taxable - tax-efficient stocks
+            const taxOptimalReturn = stockReturn - (dividendYield * bracket * 0.2); // Very tax efficient
+            const taxOptimal = perAccount * Math.pow(1 + taxOptimalReturn, years);
+            optimal += taxOptimal * (1 - 0.15);
+
+            // Display results
+            document.getElementById('random-value').textContent = '$' + random.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+            document.getElementById('partial-value').textContent = '$' + partial.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+            document.getElementById('optimal-value').textContent = '$' + optimal.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
+            const partialDiff = partial - random;
+            const optimalDiff = optimal - random;
+
+            document.getElementById('partial-diff').textContent = '+$' + partialDiff.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+            document.getElementById('optimal-diff').textContent = '+$' + optimalDiff.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+        }
+
+        // Initial calculation
+        calculateStrategies();
+    </script>
+</body>
+</html>

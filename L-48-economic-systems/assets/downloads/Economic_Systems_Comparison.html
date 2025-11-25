@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Economic Systems Comparison Tool - PFL Academy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background: #f9fafb;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+            color: white;
+            padding: 24px;
+            border-radius: 12px;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 16px;
+        }
+
+        .system-selector {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .system-btn {
+            padding: 12px 24px;
+            border: 2px solid #e5e7eb;
+            background: white;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .system-btn:hover {
+            border-color: #6366f1;
+            background: #f5f3ff;
+        }
+
+        .system-btn.active {
+            background: #6366f1;
+            color: white;
+            border-color: #6366f1;
+        }
+
+        .system-btn.capitalism { --accent: #10b981; }
+        .system-btn.socialism { --accent: #ef4444; }
+        .system-btn.mixed { --accent: #3b82f6; }
+
+        .system-btn.active.capitalism { background: #10b981; border-color: #10b981; }
+        .system-btn.active.socialism { background: #ef4444; border-color: #ef4444; }
+        .system-btn.active.mixed { background: #3b82f6; border-color: #3b82f6; }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+            margin-bottom: 24px;
+        }
+
+        .system-card {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            border: 3px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .system-card.capitalism { border-color: #10b981; }
+        .system-card.socialism { border-color: #ef4444; }
+        .system-card.mixed { border-color: #3b82f6; }
+
+        .system-card.hidden {
+            display: none;
+        }
+
+        .system-card h2 {
+            font-size: 20px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .system-card.capitalism h2 { color: #10b981; }
+        .system-card.socialism h2 { color: #ef4444; }
+        .system-card.mixed h2 { color: #3b82f6; }
+
+        .country-example {
+            background: #f9fafb;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 16px;
+            font-size: 14px;
+        }
+
+        .country-example strong {
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .characteristic {
+            margin-bottom: 12px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        .characteristic:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .characteristic-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: #6b7280;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .characteristic-value {
+            font-size: 14px;
+            color: #1f2937;
+        }
+
+        .outcomes-section {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            margin-bottom: 24px;
+        }
+
+        .outcomes-section h3 {
+            font-size: 18px;
+            margin-bottom: 16px;
+            color: #6366f1;
+        }
+
+        .outcomes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+        }
+
+        .outcome-item {
+            text-align: center;
+            padding: 16px;
+            background: #f9fafb;
+            border-radius: 8px;
+        }
+
+        .outcome-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: #6366f1;
+            margin-bottom: 4px;
+        }
+
+        .outcome-label {
+            font-size: 12px;
+            color: #6b7280;
+        }
+
+        .dimension-explorer {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            margin-bottom: 24px;
+        }
+
+        .dimension-explorer h3 {
+            font-size: 18px;
+            margin-bottom: 16px;
+            color: #6366f1;
+        }
+
+        .dimension-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+        }
+
+        .dimension-tab {
+            padding: 8px 16px;
+            background: #f3f4f6;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .dimension-tab:hover {
+            background: #e5e7eb;
+        }
+
+        .dimension-tab.active {
+            background: #6366f1;
+            color: white;
+        }
+
+        .dimension-content {
+            display: none;
+        }
+
+        .dimension-content.active {
+            display: block;
+        }
+
+        .dimension-comparison {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+
+        .dimension-item {
+            padding: 16px;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        .dimension-item.capitalism { background: #ecfdf5; border: 1px solid #10b981; }
+        .dimension-item.socialism { background: #fef2f2; border: 1px solid #ef4444; }
+        .dimension-item.mixed { background: #eff6ff; border: 1px solid #3b82f6; }
+
+        .dimension-item h4 {
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .dimension-item.capitalism h4 { color: #10b981; }
+        .dimension-item.socialism h4 { color: #ef4444; }
+        .dimension-item.mixed h4 { color: #3b82f6; }
+
+        .historical-section {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .historical-section h3 {
+            font-size: 18px;
+            margin-bottom: 16px;
+            color: #6366f1;
+        }
+
+        .historical-example {
+            background: #f9fafb;
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 12px;
+        }
+
+        .historical-example:last-child {
+            margin-bottom: 0;
+        }
+
+        .historical-example h4 {
+            font-size: 16px;
+            margin-bottom: 8px;
+            color: #1f2937;
+        }
+
+        .historical-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-top: 12px;
+        }
+
+        .stat-box {
+            padding: 12px;
+            border-radius: 6px;
+            text-align: center;
+        }
+
+        .stat-box.market { background: #ecfdf5; }
+        .stat-box.command { background: #fef2f2; }
+
+        .stat-box strong {
+            display: block;
+            font-size: 18px;
+            margin-bottom: 4px;
+        }
+
+        .stat-box span {
+            font-size: 11px;
+            color: #6b7280;
+        }
+
+        .print-section {
+            margin-top: 24px;
+            text-align: center;
+        }
+
+        .print-btn {
+            background: #6366f1;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .print-btn:hover {
+            background: #4f46e5;
+        }
+
+        @media print {
+            body {
+                padding: 10px;
+                background: white;
+            }
+
+            .system-selector,
+            .print-section {
+                display: none;
+            }
+
+            .system-card.hidden {
+                display: block;
+            }
+
+            .comparison-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 10px;
+            }
+
+            .system-card {
+                box-shadow: none;
+                padding: 12px;
+                page-break-inside: avoid;
+            }
+
+            .dimension-comparison {
+                font-size: 12px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .dimension-comparison {
+                grid-template-columns: 1fr;
+            }
+
+            .historical-stats {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Economic Systems Comparison Tool</h1>
+            <p>Compare capitalism, socialism, and mixed economies across multiple dimensions</p>
+        </div>
+
+        <div class="system-selector">
+            <button class="system-btn capitalism active" onclick="toggleSystem('capitalism')">Capitalism</button>
+            <button class="system-btn socialism active" onclick="toggleSystem('socialism')">Socialism</button>
+            <button class="system-btn mixed active" onclick="toggleSystem('mixed')">Mixed Economy</button>
+            <button class="system-btn" onclick="showAll()">Show All</button>
+        </div>
+
+        <div class="comparison-grid">
+            <div class="system-card capitalism" id="card-capitalism">
+                <h2>Capitalism (Market Economy)</h2>
+                <div class="country-example">
+                    <strong>Example: Singapore</strong>
+                    Resource ownership: 85% private | Max tax rate: 22%
+                </div>
+                <div class="characteristic">
+                    <div class="characteristic-label">Resource Ownership</div>
+                    <div class="characteristic-value">85% private ownership</div>
+                </div>
+                <div class="characteristic">
+                    <div class="characteristic-label">Price Mechanism</div>
+                    <div class="characteristic-value">Market-determined prices</div>
+                </div>
+                <div class="characteristic">
+                    <div class="characteristic-label">Government Role</div>
+                    <div class="characteristic-value">Minimal regulation, low taxes</div>
+                </div>
+                <div class="characteristic">
+                    <div class="characteristic-label">Property Rights</div>
+                    <div class="characteristic-value">Very strong legal protections</div>
+                </div>
+                <div class="characteristic">
+                    <div class="characteristic-label">Business Startup</div>
+                    <div class="characteristic-value">$300, 1 day processing</div>
+                </div>
+                <div class="characteristic">
+                    <div class="characteristic-label">Career Freedom</div>
+                    <div class="characteristic-value">Complete - choose any job, negotiate salary</div>
+                </div>
+                <div class="characteristic">
+                    <div class="characteristic-label">Investment Options</div>
+                    <div class="characteristic-value">Unrestricted - stocks, bonds, real estate, businesses</div>
+                </div>
+            </div>
+
+            <div class="system-card socialism" id="card-socialism">
+                <h2>Socialism (Command Economy)</h2>
+                <div class="country-example">
+                    <strong>Example: Cuba</strong>
+                    Resource ownership: 90% government | Private investment: Prohibited
+                </div>
+                <div class="characteristic">
+                    <div class="characteristic-label">Resource Ownership</div>
+                    <div class="characteristic-value">90% government ownership</div>
+                </div>
+                <div class="characteristic">
+                    <div class="characteristic-label">Price Mechanism</div>
+                    <div class="characteristic-value">Government-set prices</div>
+                </div>
+                <div class="characteristic">
+                    <div class="characteristic-label">Government Role</div>
+                    <div class="characteristic-value">Controls production, employment, distribution</div>
+                </div>
+                <div class="characteristic">
+                    <div class="characteristic-label">Property Rights</div>
+                    <div class="characteristic-value">Weak - government can nationalize</div>
+                </div>
+                <div class="characteristic">
+                    <div class="characteristic-label">Business Startup</div>
+                    <div class="characteristic-value">Prohibited for most industries</div>
+                </div>
+                <div class="characteristic">
+                    <div class="characteristic-label">Career Freedom</div>
+                    <div class="characteristic-value">Limited - government assigns jobs</div>
+                </div>
+                <div class="characteristic">
+                    <div class="characteristic-label">Investment Options</div>
+                    <div class="characteristic-value">None - private investment illegal</div>
+                </div>
+            </div>
+
+            <div class="system-card mixed" id="card-mixed">
+                <h2>Mixed Economy</h2>
+                <div class="country-example">
+                    <strong>Example: United States</strong>
+                    Resource ownership: 75% private | Tax rate: ~28% average
+                </div>
+                <div class="characteristic">
+                    <div class="characteristic-label">Resource Ownership</div>
+                    <div class="characteristic-value">75% private, 25% government/regulated</div>
+                </div>
+                <div class="characteristic">
+                    <div class="characteristic-label">Price Mechanism</div>
+                    <div class="characteristic-value">Mostly market, some government intervention</div>
+                </div>
+                <div class="characteristic">
+                    <div class="characteristic-label">Government Role</div>
+                    <div class="characteristic-value">Provides public goods, regulates, redistributes</div>
+                </div>
+                <div class="characteristic">
+                    <div class="characteristic-label">Property Rights</div>
+                    <div class="characteristic-value">Strong but regulated (zoning, environmental)</div>
+                </div>
+                <div class="characteristic">
+                    <div class="characteristic-label">Business Startup</div>
+                    <div class="characteristic-value">$2,000-$10,000, weeks to months</div>
+                </div>
+                <div class="characteristic">
+                    <div class="characteristic-label">Career Freedom</div>
+                    <div class="characteristic-value">High - choose jobs, negotiate pay freely</div>
+                </div>
+                <div class="characteristic">
+                    <div class="characteristic-label">Investment Options</div>
+                    <div class="characteristic-value">Extensive - stocks, bonds, real estate, retirement accounts</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="outcomes-section">
+            <h3>Typical Economic Outcomes</h3>
+            <div class="outcomes-grid">
+                <div class="outcome-item">
+                    <div class="outcome-value" id="outcome-gdp">$65K / $9.5K / $70K</div>
+                    <div class="outcome-label">GDP Per Capita (Cap / Soc / Mix)</div>
+                </div>
+                <div class="outcome-item">
+                    <div class="outcome-value">0.46 / 0.25 / 0.41</div>
+                    <div class="outcome-label">Gini Inequality Index</div>
+                </div>
+                <div class="outcome-item">
+                    <div class="outcome-value">5-8% / 1-2% / 2-3%</div>
+                    <div class="outcome-label">Annual Economic Growth</div>
+                </div>
+                <div class="outcome-item">
+                    <div class="outcome-value">High / None / High</div>
+                    <div class="outcome-label">Entrepreneurship Rate</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="dimension-explorer">
+            <h3>Explore by Dimension</h3>
+            <div class="dimension-tabs">
+                <button class="dimension-tab active" onclick="showDimension('career')">Career Freedom</button>
+                <button class="dimension-tab" onclick="showDimension('investment')">Investment</button>
+                <button class="dimension-tab" onclick="showDimension('safety')">Safety Net</button>
+                <button class="dimension-tab" onclick="showDimension('entrepreneurship')">Entrepreneurship</button>
+            </div>
+
+            <div class="dimension-content active" id="dim-career">
+                <div class="dimension-comparison">
+                    <div class="dimension-item capitalism">
+                        <h4>Capitalism</h4>
+                        <p>Complete freedom to choose any job, negotiate salary, change careers. Performance determines income. Top 20% of marketers earn $150,000+ within 10 years.</p>
+                    </div>
+                    <div class="dimension-item socialism">
+                        <h4>Socialism</h4>
+                        <p>Government assigns jobs. Salary fixed at $800/month, non-negotiable. Advancement based on seniority and political connections, not performance.</p>
+                    </div>
+                    <div class="dimension-item mixed">
+                        <h4>Mixed Economy</h4>
+                        <p>High freedom with some protections. Can negotiate salary ($50K-$85K range). Anti-discrimination laws apply. Top performers earn $120,000+ in 10 years.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dimension-content" id="dim-investment">
+                <div class="dimension-comparison">
+                    <div class="dimension-item capitalism">
+                        <h4>Capitalism</h4>
+                        <p>Unrestricted investment in stocks, bonds, real estate, businesses. No government limits. High potential returns but must save aggressively (20%+) for retirement.</p>
+                    </div>
+                    <div class="dimension-item socialism">
+                        <h4>Socialism</h4>
+                        <p>Private investment illegal. No stock markets or investment options. Must save in hard assets or foreign currency. Government provides pension ($600/month).</p>
+                    </div>
+                    <div class="dimension-item mixed">
+                        <h4>Mixed Economy</h4>
+                        <p>Extensive options with tax benefits. 401(k), IRA, stocks, bonds, real estate. Social Security provides baseline. Save 10-15% for comfortable retirement.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dimension-content" id="dim-safety">
+                <div class="dimension-comparison">
+                    <div class="dimension-item capitalism">
+                        <h4>Capitalism</h4>
+                        <p>Minimal safety net. Unemployment insurance for 6 months only. Must build 6-12 month emergency fund. Healthcare $6,000-$15,000 annually.</p>
+                    </div>
+                    <div class="dimension-item socialism">
+                        <h4>Socialism</h4>
+                        <p>Comprehensive but low quality. Free healthcare (long waits), free housing (basic), guaranteed food rations. No risk of homelessness or starvation.</p>
+                    </div>
+                    <div class="dimension-item mixed">
+                        <h4>Mixed Economy</h4>
+                        <p>Moderate protections. Unemployment 6-12 months, Medicaid, Social Security (~$1,800/month), Medicare at 65. Safety net prevents destitution.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dimension-content" id="dim-entrepreneurship">
+                <div class="dimension-comparison">
+                    <div class="dimension-item capitalism">
+                        <h4>Capitalism</h4>
+                        <p>Start with $10,000. If successful, earn $200,000+. If fail, you're liable for debts. Highest startup rate globally. World's highest entrepreneurship per capita.</p>
+                    </div>
+                    <div class="dimension-item socialism">
+                        <h4>Socialism</h4>
+                        <p>Illegal. Private businesses prohibited in most industries. No entrepreneurship opportunities. Cannot accumulate wealth through business ownership.</p>
+                    </div>
+                    <div class="dimension-item mixed">
+                        <h4>Mixed Economy</h4>
+                        <p>Permitted with regulations. Startup costs $5,000-$20,000. LLC protects personal assets. 8% of adults start businesses. Tax benefits available.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="historical-section">
+            <h3>Historical Comparisons</h3>
+
+            <div class="historical-example">
+                <h4>East Germany vs. West Germany (1945-1990)</h4>
+                <p>Same culture, language, history - divided after WWII. East: Socialist. West: Capitalist.</p>
+                <div class="historical-stats">
+                    <div class="stat-box market">
+                        <strong>3x</strong>
+                        <span>West German income vs East</span>
+                    </div>
+                    <div class="stat-box market">
+                        <strong>4x</strong>
+                        <span>West German productivity</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="historical-example">
+                <h4>North Korea vs. South Korea (1950-present)</h4>
+                <p>Same ethnic background, divided after Korean War.</p>
+                <div class="historical-stats">
+                    <div class="stat-box market">
+                        <strong>$35,000</strong>
+                        <span>South Korea GDP per capita</span>
+                    </div>
+                    <div class="stat-box command">
+                        <strong>$1,800</strong>
+                        <span>North Korea GDP per capita</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="historical-example">
+                <h4>Venezuela vs. Chile (2000-present)</h4>
+                <p>Both resource-rich South American countries with different economic paths.</p>
+                <div class="historical-stats">
+                    <div class="stat-box market">
+                        <strong>+200%</strong>
+                        <span>Chile GDP growth (market)</span>
+                    </div>
+                    <div class="stat-box command">
+                        <strong>-75%</strong>
+                        <span>Venezuela GDP decline (socialist)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="print-section">
+            <button class="print-btn" onclick="window.print()">Print Comparison</button>
+        </div>
+    </div>
+
+    <script>
+        function toggleSystem(system) {
+            const card = document.getElementById('card-' + system);
+            const btn = document.querySelector('.system-btn.' + system);
+
+            card.classList.toggle('hidden');
+            btn.classList.toggle('active');
+        }
+
+        function showAll() {
+            const cards = document.querySelectorAll('.system-card');
+            const btns = document.querySelectorAll('.system-btn.capitalism, .system-btn.socialism, .system-btn.mixed');
+
+            cards.forEach(card => card.classList.remove('hidden'));
+            btns.forEach(btn => btn.classList.add('active'));
+        }
+
+        function showDimension(dimension) {
+            const tabs = document.querySelectorAll('.dimension-tab');
+            const contents = document.querySelectorAll('.dimension-content');
+
+            tabs.forEach(tab => tab.classList.remove('active'));
+            contents.forEach(content => content.classList.remove('active'));
+
+            event.target.classList.add('active');
+            document.getElementById('dim-' + dimension).classList.add('active');
+        }
+    </script>
+</body>
+</html>

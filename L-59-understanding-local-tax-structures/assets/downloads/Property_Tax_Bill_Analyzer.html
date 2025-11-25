@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Property Tax Bill Analyzer</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 950px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        header { text-align: center; margin-bottom: 30px; }
+        h1 { font-size: 2rem; color: #6366f1; margin-bottom: 10px; }
+        .subtitle { color: #6b7280; }
+        .bill-section {
+            background: #f9fafb;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+        .section-title { font-size: 1.1rem; font-weight: bold; margin-bottom: 15px; color: #1f2937; }
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; font-weight: 600; margin-bottom: 5px; font-size: 0.9rem; }
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+        .analyze-btn {
+            width: 100%;
+            padding: 15px;
+            background: #6366f1;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        .analyze-btn:hover { background: #4f46e5; }
+        .results { display: none; margin-top: 25px; }
+        .results.active { display: block; }
+        .breakdown-card {
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+        .breakdown-card h4 { margin-bottom: 10px; }
+        .authority-card { background: #dbeafe; border-left: 4px solid #3b82f6; }
+        .exemption-card { background: #d1fae5; border-left: 4px solid #10b981; }
+        .allocation-card { background: #fef3c7; border-left: 4px solid #f59e0b; }
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+        .result-item:last-child { border-bottom: none; }
+        .total-row { font-weight: bold; font-size: 1.1rem; padding-top: 10px; }
+        .insight-box {
+            background: #f0f9ff;
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid #6366f1;
+            margin-top: 15px;
+        }
+        .insight-box h4 { color: #4338ca; margin-bottom: 8px; }
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #e5e7eb;
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+        @media (max-width: 768px) {
+            .form-grid { grid-template-columns: 1fr; }
+        }
+        @media print {
+            body { background: white; padding: 0; }
+            .container { box-shadow: none; }
+            .analyze-btn { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Property Tax Bill Analyzer</h1>
+            <p class="subtitle">Decode your property tax bill and understand where your money goes</p>
+        </header>
+
+        <div class="bill-section">
+            <div class="section-title">Property Information</div>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>Assessed Value ($)</label>
+                    <input type="number" id="assessedValue" value="250000">
+                </div>
+                <div class="form-group">
+                    <label>Market Value ($)</label>
+                    <input type="number" id="marketValue" value="300000">
+                </div>
+            </div>
+        </div>
+
+        <div class="bill-section">
+            <div class="section-title">Tax Rates by Authority (mills)</div>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>County</label>
+                    <input type="number" id="countyMills" value="8.5" step="0.1">
+                </div>
+                <div class="form-group">
+                    <label>City/Township</label>
+                    <input type="number" id="cityMills" value="12.3" step="0.1">
+                </div>
+                <div class="form-group">
+                    <label>School District</label>
+                    <input type="number" id="schoolMills" value="45.2" step="0.1">
+                </div>
+                <div class="form-group">
+                    <label>Special Districts</label>
+                    <input type="number" id="specialMills" value="3.0" step="0.1">
+                </div>
+            </div>
+        </div>
+
+        <div class="bill-section">
+            <div class="section-title">Exemptions</div>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>Homestead Exemption ($)</label>
+                    <input type="number" id="homesteadExemption" value="25000">
+                </div>
+                <div class="form-group">
+                    <label>Senior/Disability Exemption ($)</label>
+                    <input type="number" id="seniorExemption" value="0">
+                </div>
+            </div>
+        </div>
+
+        <button class="analyze-btn" onclick="analyzeBill()">Analyze My Tax Bill</button>
+
+        <div class="results" id="results">
+            <div class="breakdown-card authority-card">
+                <h4>Tax by Authority</h4>
+                <div class="result-item">
+                    <span>County</span>
+                    <span id="countyTax">$0</span>
+                </div>
+                <div class="result-item">
+                    <span>City/Township</span>
+                    <span id="cityTax">$0</span>
+                </div>
+                <div class="result-item">
+                    <span>School District</span>
+                    <span id="schoolTax">$0</span>
+                </div>
+                <div class="result-item">
+                    <span>Special Districts</span>
+                    <span id="specialTax">$0</span>
+                </div>
+                <div class="result-item total-row">
+                    <span>Total Annual Tax</span>
+                    <span id="totalTax">$0</span>
+                </div>
+            </div>
+
+            <div class="breakdown-card exemption-card">
+                <h4>Exemption Savings</h4>
+                <div class="result-item">
+                    <span>Taxable Value (after exemptions)</span>
+                    <span id="taxableValue">$0</span>
+                </div>
+                <div class="result-item">
+                    <span>Total Exemption Savings</span>
+                    <span id="exemptionSavings">$0</span>
+                </div>
+            </div>
+
+            <div class="breakdown-card allocation-card">
+                <h4>Budget Allocation</h4>
+                <div class="result-item">
+                    <span>School District</span>
+                    <span id="schoolPercent">0%</span>
+                </div>
+                <div class="result-item">
+                    <span>City/Township</span>
+                    <span id="cityPercent">0%</span>
+                </div>
+                <div class="result-item">
+                    <span>County</span>
+                    <span id="countyPercent">0%</span>
+                </div>
+                <div class="result-item">
+                    <span>Special Districts</span>
+                    <span id="specialPercent">0%</span>
+                </div>
+            </div>
+
+            <div class="insight-box">
+                <h4>Key Insights</h4>
+                <ul id="insights" style="margin-left: 20px; font-size: 0.9rem;"></ul>
+            </div>
+        </div>
+
+        <footer>
+            <p><strong>PFL Academy</strong> | Understanding Local Tax Structures</p>
+        </footer>
+    </div>
+
+    <script>
+        function analyzeBill() {
+            const assessedValue = parseFloat(document.getElementById('assessedValue').value) || 0;
+            const marketValue = parseFloat(document.getElementById('marketValue').value) || 0;
+            const homesteadExemption = parseFloat(document.getElementById('homesteadExemption').value) || 0;
+            const seniorExemption = parseFloat(document.getElementById('seniorExemption').value) || 0;
+
+            const countyMills = parseFloat(document.getElementById('countyMills').value) || 0;
+            const cityMills = parseFloat(document.getElementById('cityMills').value) || 0;
+            const schoolMills = parseFloat(document.getElementById('schoolMills').value) || 0;
+            const specialMills = parseFloat(document.getElementById('specialMills').value) || 0;
+
+            const totalExemptions = homesteadExemption + seniorExemption;
+            const taxableValue = Math.max(0, assessedValue - totalExemptions);
+            const totalMills = countyMills + cityMills + schoolMills + specialMills;
+
+            // Calculate taxes (mills / 1000 * taxable value)
+            const countyTax = (countyMills / 1000) * taxableValue;
+            const cityTax = (cityMills / 1000) * taxableValue;
+            const schoolTax = (schoolMills / 1000) * taxableValue;
+            const specialTax = (specialMills / 1000) * taxableValue;
+            const totalTax = countyTax + cityTax + schoolTax + specialTax;
+
+            // Calculate what tax would be without exemptions
+            const taxWithoutExemptions = (totalMills / 1000) * assessedValue;
+            const exemptionSavings = taxWithoutExemptions - totalTax;
+
+            // Update display
+            document.getElementById('countyTax').textContent = '$' + countyTax.toFixed(2);
+            document.getElementById('cityTax').textContent = '$' + cityTax.toFixed(2);
+            document.getElementById('schoolTax').textContent = '$' + schoolTax.toFixed(2);
+            document.getElementById('specialTax').textContent = '$' + specialTax.toFixed(2);
+            document.getElementById('totalTax').textContent = '$' + totalTax.toFixed(2);
+
+            document.getElementById('taxableValue').textContent = '$' + taxableValue.toLocaleString();
+            document.getElementById('exemptionSavings').textContent = '$' + exemptionSavings.toFixed(2);
+
+            // Percentages
+            if (totalTax > 0) {
+                document.getElementById('schoolPercent').textContent = ((schoolTax / totalTax) * 100).toFixed(1) + '%';
+                document.getElementById('cityPercent').textContent = ((cityTax / totalTax) * 100).toFixed(1) + '%';
+                document.getElementById('countyPercent').textContent = ((countyTax / totalTax) * 100).toFixed(1) + '%';
+                document.getElementById('specialPercent').textContent = ((specialTax / totalTax) * 100).toFixed(1) + '%';
+            }
+
+            // Generate insights
+            const insights = [];
+            const assessmentRatio = (assessedValue / marketValue) * 100;
+            insights.push(`Assessment ratio: ${assessmentRatio.toFixed(1)}% of market value`);
+            insights.push(`Monthly tax payment: $${(totalTax / 12).toFixed(2)}`);
+            insights.push(`Effective tax rate: ${((totalTax / marketValue) * 100).toFixed(2)}% of market value`);
+
+            if (schoolTax / totalTax > 0.5) {
+                insights.push(`School taxes make up ${((schoolTax / totalTax) * 100).toFixed(0)}% of your bill - typical for most areas`);
+            }
+
+            if (exemptionSavings > 0) {
+                insights.push(`Your exemptions save you $${exemptionSavings.toFixed(2)} annually`);
+            }
+
+            document.getElementById('insights').innerHTML = insights.map(i => `<li>${i}</li>`).join('');
+            document.getElementById('results').classList.add('active');
+        }
+    </script>
+</body>
+</html>

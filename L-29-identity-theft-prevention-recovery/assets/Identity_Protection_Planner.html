@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Identity Protection Planner - PFL Academy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background: #f9fafb;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+            color: white;
+            padding: 24px;
+            border-radius: 12px;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 16px;
+        }
+
+        .section {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .section h3 {
+            font-size: 18px;
+            color: #6366f1;
+            margin-bottom: 16px;
+        }
+
+        .protection-checklist {
+            list-style: none;
+        }
+
+        .checklist-item {
+            padding: 12px 16px;
+            background: #f9fafb;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            border-left: 4px solid #e5e7eb;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .checklist-item:hover {
+            border-left-color: #6366f1;
+        }
+
+        .checklist-item.completed {
+            border-left-color: #10b981;
+            background: #ecfdf5;
+        }
+
+        .checklist-item input[type="checkbox"] {
+            margin-top: 4px;
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        .checklist-content {
+            flex: 1;
+        }
+
+        .checklist-content h4 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .checklist-content p {
+            font-size: 13px;
+            color: #6b7280;
+        }
+
+        .priority-badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-left: 8px;
+        }
+
+        .priority-high { background: #fef2f2; color: #dc2626; }
+        .priority-medium { background: #fffbeb; color: #b45309; }
+        .priority-low { background: #ecfdf5; color: #059669; }
+
+        .progress-tracker {
+            background: #eff6ff;
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 24px;
+        }
+
+        .progress-bar {
+            height: 12px;
+            background: #e5e7eb;
+            border-radius: 6px;
+            overflow: hidden;
+            margin-top: 8px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+            border-radius: 6px;
+            transition: width 0.5s ease;
+        }
+
+        .progress-text {
+            font-size: 14px;
+            font-weight: 600;
+            color: #3b82f6;
+        }
+
+        .credit-freeze-section {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 24px;
+        }
+
+        .credit-freeze-section h3 {
+            font-size: 16px;
+            color: #b45309;
+            margin-bottom: 16px;
+        }
+
+        .bureau-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        .bureau-card {
+            background: white;
+            padding: 16px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .bureau-card h4 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #1f2937;
+        }
+
+        .bureau-card p {
+            font-size: 12px;
+            color: #6b7280;
+            margin-bottom: 8px;
+        }
+
+        .bureau-card a {
+            color: #6366f1;
+            font-size: 12px;
+            text-decoration: none;
+        }
+
+        .bureau-card a:hover {
+            text-decoration: underline;
+        }
+
+        .bureau-status {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-top: 8px;
+        }
+
+        .status-pending { background: #fef3c7; color: #b45309; }
+        .status-complete { background: #ecfdf5; color: #059669; }
+
+        .recovery-plan {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .recovery-plan h3 {
+            font-size: 18px;
+            color: #dc2626;
+            margin-bottom: 16px;
+        }
+
+        .recovery-timeline {
+            position: relative;
+            padding-left: 24px;
+        }
+
+        .recovery-timeline::before {
+            content: '';
+            position: absolute;
+            left: 8px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #e5e7eb;
+        }
+
+        .recovery-step {
+            position: relative;
+            padding: 12px 16px;
+            background: #f9fafb;
+            border-radius: 8px;
+            margin-bottom: 12px;
+        }
+
+        .recovery-step::before {
+            content: '';
+            position: absolute;
+            left: -20px;
+            top: 18px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #6366f1;
+        }
+
+        .recovery-step h4 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .recovery-step p {
+            font-size: 13px;
+            color: #6b7280;
+        }
+
+        .timeframe {
+            font-size: 11px;
+            color: #6366f1;
+            font-weight: 600;
+        }
+
+        .action-builder {
+            background: #ecfdf5;
+            border-left: 4px solid #10b981;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 24px;
+        }
+
+        .action-builder h3 {
+            font-size: 16px;
+            color: #059669;
+            margin-bottom: 16px;
+        }
+
+        .action-input {
+            margin-bottom: 16px;
+        }
+
+        .action-input label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .action-input input,
+        .action-input textarea,
+        .action-input select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 14px;
+        }
+
+        .action-input textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+
+        .action-list {
+            list-style: none;
+        }
+
+        .action-list li {
+            padding: 12px;
+            background: white;
+            border-radius: 6px;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .action-list li button {
+            background: #ef4444;
+            color: white;
+            border: none;
+            padding: 4px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .add-action-btn {
+            background: #10b981;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .add-action-btn:hover {
+            background: #059669;
+        }
+
+        .monitoring-section {
+            background: #f0fdf4;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 24px;
+        }
+
+        .monitoring-section h3 {
+            font-size: 16px;
+            color: #059669;
+            margin-bottom: 12px;
+        }
+
+        .monitoring-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .monitoring-item {
+            background: white;
+            padding: 12px;
+            border-radius: 6px;
+        }
+
+        .monitoring-item h4 {
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .monitoring-item p {
+            font-size: 12px;
+            color: #6b7280;
+        }
+
+        .print-section {
+            text-align: center;
+        }
+
+        .print-btn {
+            background: #6366f1;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .print-btn:hover {
+            background: #4f46e5;
+        }
+
+        @media print {
+            body {
+                padding: 10px;
+                background: white;
+            }
+
+            .print-section {
+                display: none;
+            }
+
+            .section,
+            .credit-freeze-section,
+            .recovery-plan,
+            .action-builder {
+                page-break-inside: avoid;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .bureau-grid,
+            .monitoring-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Identity Protection Planner</h1>
+            <p>Interactive tool for protecting your personal information and planning identity theft recovery</p>
+        </div>
+
+        <div class="progress-tracker">
+            <span class="progress-text">Protection Progress: <span id="progressPercent">0%</span></span>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>Personal Information Protection Checklist</h3>
+            <ul class="protection-checklist" id="protectionChecklist">
+                <li class="checklist-item" data-category="documents">
+                    <input type="checkbox" onchange="updateProgress()">
+                    <div class="checklist-content">
+                        <h4>Store Social Security card securely<span class="priority-badge priority-high">HIGH</span></h4>
+                        <p>Keep your Social Security card in a locked safe or safety deposit box, not in your wallet.</p>
+                    </div>
+                </li>
+                <li class="checklist-item" data-category="documents">
+                    <input type="checkbox" onchange="updateProgress()">
+                    <div class="checklist-content">
+                        <h4>Shred sensitive documents<span class="priority-badge priority-high">HIGH</span></h4>
+                        <p>Use a cross-cut shredder for bank statements, medical bills, and pre-approved credit offers.</p>
+                    </div>
+                </li>
+                <li class="checklist-item" data-category="digital">
+                    <input type="checkbox" onchange="updateProgress()">
+                    <div class="checklist-content">
+                        <h4>Use strong, unique passwords<span class="priority-badge priority-high">HIGH</span></h4>
+                        <p>Create different passwords for each account using a password manager.</p>
+                    </div>
+                </li>
+                <li class="checklist-item" data-category="digital">
+                    <input type="checkbox" onchange="updateProgress()">
+                    <div class="checklist-content">
+                        <h4>Enable two-factor authentication<span class="priority-badge priority-high">HIGH</span></h4>
+                        <p>Add 2FA to all financial accounts, email, and social media.</p>
+                    </div>
+                </li>
+                <li class="checklist-item" data-category="financial">
+                    <input type="checkbox" onchange="updateProgress()">
+                    <div class="checklist-content">
+                        <h4>Review credit reports regularly<span class="priority-badge priority-medium">MEDIUM</span></h4>
+                        <p>Check all three credit bureaus at AnnualCreditReport.com at least once per year.</p>
+                    </div>
+                </li>
+                <li class="checklist-item" data-category="financial">
+                    <input type="checkbox" onchange="updateProgress()">
+                    <div class="checklist-content">
+                        <h4>Monitor bank and credit card statements<span class="priority-badge priority-medium">MEDIUM</span></h4>
+                        <p>Review statements monthly for unauthorized charges or suspicious activity.</p>
+                    </div>
+                </li>
+                <li class="checklist-item" data-category="digital">
+                    <input type="checkbox" onchange="updateProgress()">
+                    <div class="checklist-content">
+                        <h4>Secure home Wi-Fi network<span class="priority-badge priority-medium">MEDIUM</span></h4>
+                        <p>Use WPA3 encryption, change default router password, and hide network name.</p>
+                    </div>
+                </li>
+                <li class="checklist-item" data-category="mail">
+                    <input type="checkbox" onchange="updateProgress()">
+                    <div class="checklist-content">
+                        <h4>Opt out of pre-screened credit offers<span class="priority-badge priority-low">LOW</span></h4>
+                        <p>Call 1-888-5-OPT-OUT to reduce mail theft risk and junk mail.</p>
+                    </div>
+                </li>
+                <li class="checklist-item" data-category="mail">
+                    <input type="checkbox" onchange="updateProgress()">
+                    <div class="checklist-content">
+                        <h4>Use informed delivery from USPS<span class="priority-badge priority-low">LOW</span></h4>
+                        <p>Get email previews of incoming mail to detect missing items.</p>
+                    </div>
+                </li>
+                <li class="checklist-item" data-category="social">
+                    <input type="checkbox" onchange="updateProgress()">
+                    <div class="checklist-content">
+                        <h4>Limit social media information sharing<span class="priority-badge priority-medium">MEDIUM</span></h4>
+                        <p>Avoid posting birth date, address, phone number, or vacation plans publicly.</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="credit-freeze-section">
+            <h3>Credit Freeze / Fraud Alert Setup Guide</h3>
+            <p style="font-size: 14px; color: #92400e; margin-bottom: 16px;">A credit freeze prevents new accounts from being opened in your name. It's free to place and lift.</p>
+            <div class="bureau-grid">
+                <div class="bureau-card">
+                    <h4>Equifax</h4>
+                    <p>1-800-685-1111</p>
+                    <a href="https://www.equifax.com/personal/credit-report-services/credit-freeze/" target="_blank">equifax.com/freeze</a>
+                    <div>
+                        <span class="bureau-status status-pending" id="equifaxStatus">Pending</span>
+                    </div>
+                    <button onclick="markBureauComplete('equifax')" style="margin-top: 8px; padding: 4px 8px; font-size: 11px; cursor: pointer;">Mark Complete</button>
+                </div>
+                <div class="bureau-card">
+                    <h4>Experian</h4>
+                    <p>1-888-397-3742</p>
+                    <a href="https://www.experian.com/freeze/center.html" target="_blank">experian.com/freeze</a>
+                    <div>
+                        <span class="bureau-status status-pending" id="experianStatus">Pending</span>
+                    </div>
+                    <button onclick="markBureauComplete('experian')" style="margin-top: 8px; padding: 4px 8px; font-size: 11px; cursor: pointer;">Mark Complete</button>
+                </div>
+                <div class="bureau-card">
+                    <h4>TransUnion</h4>
+                    <p>1-888-909-8872</p>
+                    <a href="https://www.transunion.com/credit-freeze" target="_blank">transunion.com/freeze</a>
+                    <div>
+                        <span class="bureau-status status-pending" id="transunionStatus">Pending</span>
+                    </div>
+                    <button onclick="markBureauComplete('transunion')" style="margin-top: 8px; padding: 4px 8px; font-size: 11px; cursor: pointer;">Mark Complete</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="recovery-plan">
+            <h3>Identity Theft Recovery Action Plan</h3>
+            <p style="font-size: 14px; color: #6b7280; margin-bottom: 16px;">If you become a victim of identity theft, follow these steps in order:</p>
+            <div class="recovery-timeline">
+                <div class="recovery-step">
+                    <span class="timeframe">Immediately</span>
+                    <h4>1. Place fraud alerts on credit reports</h4>
+                    <p>Contact one bureau; they'll notify the others. Initial alert lasts 1 year.</p>
+                </div>
+                <div class="recovery-step">
+                    <span class="timeframe">Within 24 hours</span>
+                    <h4>2. Report to FTC at IdentityTheft.gov</h4>
+                    <p>Create an official Identity Theft Report and get a personalized recovery plan.</p>
+                </div>
+                <div class="recovery-step">
+                    <span class="timeframe">Within 24 hours</span>
+                    <h4>3. File a police report</h4>
+                    <p>Some creditors require this. Bring your FTC report and any evidence.</p>
+                </div>
+                <div class="recovery-step">
+                    <span class="timeframe">Within 48 hours</span>
+                    <h4>4. Contact affected companies</h4>
+                    <p>Call fraud departments of banks, credit card companies, and other affected accounts.</p>
+                </div>
+                <div class="recovery-step">
+                    <span class="timeframe">Within 1 week</span>
+                    <h4>5. Review credit reports thoroughly</h4>
+                    <p>Request free reports from all three bureaus and dispute fraudulent accounts.</p>
+                </div>
+                <div class="recovery-step">
+                    <span class="timeframe">Ongoing</span>
+                    <h4>6. Monitor accounts and credit</h4>
+                    <p>Continue checking statements and credit reports for several months.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="action-builder">
+            <h3>Build Your Personal Protection Action Plan</h3>
+            <div class="action-input">
+                <label for="actionDescription">Action Item</label>
+                <input type="text" id="actionDescription" placeholder="e.g., Set up credit monitoring service">
+            </div>
+            <div class="action-input">
+                <label for="actionDeadline">Deadline</label>
+                <input type="date" id="actionDeadline">
+            </div>
+            <button class="add-action-btn" onclick="addAction()">Add to Plan</button>
+            <ul class="action-list" id="actionList"></ul>
+        </div>
+
+        <div class="monitoring-section">
+            <h3>Ongoing Monitoring Recommendations</h3>
+            <div class="monitoring-grid">
+                <div class="monitoring-item">
+                    <h4>Weekly</h4>
+                    <p>Check bank and credit card transactions online</p>
+                </div>
+                <div class="monitoring-item">
+                    <h4>Monthly</h4>
+                    <p>Review all financial statements for unauthorized activity</p>
+                </div>
+                <div class="monitoring-item">
+                    <h4>Quarterly</h4>
+                    <p>Check one credit bureau report (rotate through all three)</p>
+                </div>
+                <div class="monitoring-item">
+                    <h4>Annually</h4>
+                    <p>Review all three credit reports and update passwords</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="print-section">
+            <button class="print-btn" onclick="window.print()">Print / Save as PDF</button>
+        </div>
+    </div>
+
+    <script>
+        let actions = [];
+
+        function updateProgress() {
+            const checkboxes = document.querySelectorAll('.checklist-item input[type="checkbox"]');
+            const checked = document.querySelectorAll('.checklist-item input[type="checkbox"]:checked');
+            const percentage = Math.round((checked.length / checkboxes.length) * 100);
+
+            document.getElementById('progressPercent').textContent = percentage + '%';
+            document.getElementById('progressFill').style.width = percentage + '%';
+
+            // Update checklist item styling
+            checkboxes.forEach(checkbox => {
+                const item = checkbox.closest('.checklist-item');
+                if (checkbox.checked) {
+                    item.classList.add('completed');
+                } else {
+                    item.classList.remove('completed');
+                }
+            });
+        }
+
+        function markBureauComplete(bureau) {
+            const statusElement = document.getElementById(bureau + 'Status');
+            statusElement.textContent = 'Complete';
+            statusElement.classList.remove('status-pending');
+            statusElement.classList.add('status-complete');
+        }
+
+        function addAction() {
+            const description = document.getElementById('actionDescription').value;
+            const deadline = document.getElementById('actionDeadline').value;
+
+            if (description.trim() === '') {
+                alert('Please enter an action item');
+                return;
+            }
+
+            const action = {
+                id: Date.now(),
+                description: description,
+                deadline: deadline
+            };
+
+            actions.push(action);
+            renderActions();
+
+            // Clear inputs
+            document.getElementById('actionDescription').value = '';
+            document.getElementById('actionDeadline').value = '';
+        }
+
+        function removeAction(id) {
+            actions = actions.filter(action => action.id !== id);
+            renderActions();
+        }
+
+        function renderActions() {
+            const list = document.getElementById('actionList');
+            list.innerHTML = actions.map(action => `
+                <li>
+                    <span>${action.description} ${action.deadline ? '(Due: ' + action.deadline + ')' : ''}</span>
+                    <button onclick="removeAction(${action.id})">Remove</button>
+                </li>
+            `).join('');
+        }
+    </script>
+</body>
+</html>

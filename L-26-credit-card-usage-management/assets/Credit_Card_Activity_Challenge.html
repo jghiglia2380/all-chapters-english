@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credit Card Comparison Challenge - PFL Academy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background: #f9fafb;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+            color: white;
+            padding: 24px;
+            border-radius: 12px;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 16px;
+        }
+
+        .intro-section {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .intro-section h3 {
+            font-size: 18px;
+            color: #6366f1;
+            margin-bottom: 8px;
+        }
+
+        .intro-section p {
+            color: #4b5563;
+            font-size: 14px;
+        }
+
+        .card-comparison {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .credit-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            border-top: 4px solid #6366f1;
+        }
+
+        .credit-card h4 {
+            font-size: 16px;
+            font-weight: 700;
+            color: #6366f1;
+            margin-bottom: 12px;
+        }
+
+        .card-detail {
+            padding: 8px 0;
+            border-bottom: 1px solid #f3f4f6;
+            font-size: 12px;
+        }
+
+        .card-detail:last-child {
+            border-bottom: none;
+        }
+
+        .detail-label {
+            font-weight: 600;
+            color: #6b7280;
+            font-size: 10px;
+            text-transform: uppercase;
+            margin-bottom: 2px;
+        }
+
+        .detail-value {
+            color: #1f2937;
+        }
+
+        .calculator-section {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            margin-bottom: 24px;
+        }
+
+        .calculator-section h3 {
+            font-size: 18px;
+            color: #6366f1;
+            margin-bottom: 16px;
+        }
+
+        .calculator-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .calc-group {
+            margin-bottom: 12px;
+        }
+
+        .calc-group label {
+            display: block;
+            font-weight: 600;
+            font-size: 12px;
+            margin-bottom: 4px;
+        }
+
+        .calc-group input,
+        .calc-group select {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #e5e7eb;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        .calc-group input:focus,
+        .calc-group select:focus {
+            outline: none;
+            border-color: #6366f1;
+        }
+
+        .calc-btn {
+            background: #6366f1;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            width: 100%;
+        }
+
+        .calc-btn:hover {
+            background: #4f46e5;
+        }
+
+        .results-section {
+            display: none;
+            margin-top: 20px;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+
+        .result-card {
+            background: #f9fafb;
+            padding: 16px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .result-card h5 {
+            font-size: 12px;
+            font-weight: 600;
+            color: #6b7280;
+            margin-bottom: 8px;
+        }
+
+        .result-card .amount {
+            font-size: 20px;
+            font-weight: 700;
+            color: #6366f1;
+        }
+
+        .result-card .detail {
+            font-size: 10px;
+            color: #6b7280;
+            margin-top: 4px;
+        }
+
+        .result-card.best {
+            background: #dcfce7;
+            border: 2px solid #10b981;
+        }
+
+        .result-card.best h5 {
+            color: #059669;
+        }
+
+        .result-card.best .amount {
+            color: #059669;
+        }
+
+        .winner-badge {
+            background: #10b981;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 10px;
+            font-weight: 600;
+            display: inline-block;
+            margin-top: 8px;
+        }
+
+        .scenario-section {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            margin-bottom: 24px;
+        }
+
+        .scenario-section h3 {
+            font-size: 18px;
+            color: #6366f1;
+            margin-bottom: 16px;
+        }
+
+        .scenario-card {
+            background: #f9fafb;
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 16px;
+            border-left: 4px solid #6366f1;
+        }
+
+        .scenario-card:last-child {
+            margin-bottom: 0;
+        }
+
+        .scenario-card h4 {
+            font-size: 14px;
+            font-weight: 600;
+            color: #6366f1;
+            margin-bottom: 8px;
+        }
+
+        .scenario-card p {
+            font-size: 13px;
+            color: #4b5563;
+            margin-bottom: 12px;
+        }
+
+        .scenario-options {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 8px;
+        }
+
+        .scenario-btn {
+            padding: 8px 16px;
+            border: 2px solid #e5e7eb;
+            border-radius: 6px;
+            background: white;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .scenario-btn:hover {
+            border-color: #6366f1;
+        }
+
+        .scenario-btn.selected {
+            background: #6366f1;
+            color: white;
+            border-color: #6366f1;
+        }
+
+        .scenario-btn.correct {
+            background: #dcfce7;
+            border-color: #10b981;
+            color: #059669;
+        }
+
+        .scenario-btn.incorrect {
+            background: #fee2e2;
+            border-color: #ef4444;
+            color: #dc2626;
+        }
+
+        .scenario-feedback {
+            display: none;
+            font-size: 12px;
+            padding: 10px;
+            border-radius: 6px;
+            margin-top: 8px;
+        }
+
+        .scenario-feedback.show {
+            display: block;
+        }
+
+        .scenario-feedback.correct {
+            background: #dcfce7;
+            color: #059669;
+        }
+
+        .scenario-feedback.incorrect {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+
+        .tips-section {
+            background: #fef3c7;
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 24px;
+            border-left: 4px solid #f59e0b;
+        }
+
+        .tips-section h3 {
+            font-size: 14px;
+            font-weight: 600;
+            color: #b45309;
+            margin-bottom: 8px;
+        }
+
+        .tips-section ul {
+            margin-left: 16px;
+            font-size: 12px;
+        }
+
+        .tips-section li {
+            margin-bottom: 4px;
+        }
+
+        .score-tracker {
+            background: white;
+            border-radius: 12px;
+            padding: 16px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        .score-tracker h3 {
+            font-size: 14px;
+            color: #6b7280;
+            margin-bottom: 8px;
+        }
+
+        .score-value {
+            font-size: 36px;
+            font-weight: 700;
+            color: #6366f1;
+        }
+
+        .score-label {
+            font-size: 12px;
+            color: #6b7280;
+        }
+
+        .print-section {
+            text-align: center;
+            margin-top: 24px;
+        }
+
+        .print-btn {
+            background: #6366f1;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .print-btn:hover {
+            background: #4f46e5;
+        }
+
+        @media print {
+            body {
+                padding: 10px;
+                background: white;
+            }
+
+            .print-section {
+                display: none;
+            }
+
+            .header {
+                background: #6366f1 !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            .credit-card,
+            .calculator-section,
+            .scenario-section {
+                box-shadow: none;
+                page-break-inside: avoid;
+            }
+
+            .calc-btn,
+            .scenario-btn {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .card-comparison,
+            .calculator-grid,
+            .results-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .scenario-options {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Credit Card Comparison Challenge</h1>
+            <p>Compare credit card offers and make informed decisions</p>
+        </div>
+
+        <div class="intro-section">
+            <h3>Your Challenge</h3>
+            <p>Compare three credit card offers below, calculate total costs using the calculator, and then answer scenario-based questions to find the best card for different situations. Understanding APR, fees, and rewards helps you choose the right card and save money.</p>
+        </div>
+
+        <div class="score-tracker">
+            <h3>Your Score</h3>
+            <div class="score-value" id="score">0</div>
+            <div class="score-label">out of 4 scenarios</div>
+        </div>
+
+        <div class="card-comparison">
+            <div class="credit-card">
+                <h4>Card A: Cash Back Basic</h4>
+                <div class="card-detail">
+                    <div class="detail-label">Purchase APR</div>
+                    <div class="detail-value">19.99%</div>
+                </div>
+                <div class="card-detail">
+                    <div class="detail-label">Annual Fee</div>
+                    <div class="detail-value">$0</div>
+                </div>
+                <div class="card-detail">
+                    <div class="detail-label">Cash Back</div>
+                    <div class="detail-value">1.5% on all purchases</div>
+                </div>
+                <div class="card-detail">
+                    <div class="detail-label">Intro APR</div>
+                    <div class="detail-value">0% for 12 months</div>
+                </div>
+                <div class="card-detail">
+                    <div class="detail-label">Balance Transfer Fee</div>
+                    <div class="detail-value">3% (min $5)</div>
+                </div>
+                <div class="card-detail">
+                    <div class="detail-label">Late Payment Fee</div>
+                    <div class="detail-value">Up to $40</div>
+                </div>
+                <div class="card-detail">
+                    <div class="detail-label">Foreign Transaction</div>
+                    <div class="detail-value">3%</div>
+                </div>
+            </div>
+
+            <div class="credit-card">
+                <h4>Card B: Premium Rewards</h4>
+                <div class="card-detail">
+                    <div class="detail-label">Purchase APR</div>
+                    <div class="detail-value">17.49% - 24.49%</div>
+                </div>
+                <div class="card-detail">
+                    <div class="detail-label">Annual Fee</div>
+                    <div class="detail-value">$95</div>
+                </div>
+                <div class="card-detail">
+                    <div class="detail-label">Rewards</div>
+                    <div class="detail-value">3% dining, 2% groceries, 1% other</div>
+                </div>
+                <div class="card-detail">
+                    <div class="detail-label">Intro APR</div>
+                    <div class="detail-value">None</div>
+                </div>
+                <div class="card-detail">
+                    <div class="detail-label">Sign-up Bonus</div>
+                    <div class="detail-value">$200 after $1,000 spent</div>
+                </div>
+                <div class="card-detail">
+                    <div class="detail-label">Late Payment Fee</div>
+                    <div class="detail-value">Up to $40</div>
+                </div>
+                <div class="card-detail">
+                    <div class="detail-label">Foreign Transaction</div>
+                    <div class="detail-value">0%</div>
+                </div>
+            </div>
+
+            <div class="credit-card">
+                <h4>Card C: Student Starter</h4>
+                <div class="card-detail">
+                    <div class="detail-label">Purchase APR</div>
+                    <div class="detail-value">22.99%</div>
+                </div>
+                <div class="card-detail">
+                    <div class="detail-label">Annual Fee</div>
+                    <div class="detail-value">$0</div>
+                </div>
+                <div class="card-detail">
+                    <div class="detail-label">Cash Back</div>
+                    <div class="detail-value">1% on all purchases</div>
+                </div>
+                <div class="card-detail">
+                    <div class="detail-label">Intro APR</div>
+                    <div class="detail-value">0% for 6 months</div>
+                </div>
+                <div class="card-detail">
+                    <div class="detail-label">Credit Limit</div>
+                    <div class="detail-value">$500 - $1,500</div>
+                </div>
+                <div class="card-detail">
+                    <div class="detail-label">Late Payment Fee</div>
+                    <div class="detail-value">Up to $35</div>
+                </div>
+                <div class="card-detail">
+                    <div class="detail-label">Credit Building</div>
+                    <div class="detail-value">Reports to all 3 bureaus</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="calculator-section">
+            <h3>Cost Calculator</h3>
+            <p style="font-size: 13px; color: #6b7280; margin-bottom: 16px;">Calculate the total cost of carrying a balance on each card.</p>
+
+            <div class="calculator-grid">
+                <div>
+                    <div class="calc-group">
+                        <label for="balance">Balance Amount ($)</label>
+                        <input type="number" id="balance" value="2000" min="0" step="100">
+                    </div>
+                    <div class="calc-group">
+                        <label for="months">Repayment Period (months)</label>
+                        <input type="number" id="months" value="12" min="1" max="60">
+                    </div>
+                </div>
+                <div>
+                    <div class="calc-group">
+                        <label for="spending">Monthly Spending ($)</label>
+                        <input type="number" id="spending" value="500" min="0" step="50">
+                    </div>
+                    <div class="calc-group">
+                        <label for="payFull">Pay Balance in Full Each Month?</label>
+                        <select id="payFull">
+                            <option value="no">No - Carry a Balance</option>
+                            <option value="yes">Yes - Pay in Full</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <button class="calc-btn" onclick="calculateCosts()">Calculate & Compare</button>
+
+            <div class="results-section" id="results">
+                <h4 style="font-size: 14px; margin-bottom: 12px;">First Year Cost Comparison</h4>
+                <div class="results-grid" id="results-grid">
+                    <!-- Results will be inserted here -->
+                </div>
+            </div>
+        </div>
+
+        <div class="scenario-section">
+            <h3>Scenario Challenges</h3>
+            <p style="font-size: 13px; color: #6b7280; margin-bottom: 16px;">Select the best card for each situation based on the card features above.</p>
+
+            <div class="scenario-card" id="scenario-1">
+                <h4>Scenario 1: Balance Transfer</h4>
+                <p>Alex has $3,000 in credit card debt at 24% APR and wants to transfer it to pay off over 12 months. Which card offers the best option?</p>
+                <div class="scenario-options">
+                    <button class="scenario-btn" onclick="checkScenario(1, 'A', true)">Card A</button>
+                    <button class="scenario-btn" onclick="checkScenario(1, 'B', false)">Card B</button>
+                    <button class="scenario-btn" onclick="checkScenario(1, 'C', false)">Card C</button>
+                </div>
+                <div class="scenario-feedback" id="feedback-1"></div>
+            </div>
+
+            <div class="scenario-card" id="scenario-2">
+                <h4>Scenario 2: International Travel</h4>
+                <p>Jordan is studying abroad and will spend about $800/month on food and activities in Europe. They always pay their balance in full. Which card is best?</p>
+                <div class="scenario-options">
+                    <button class="scenario-btn" onclick="checkScenario(2, 'A', false)">Card A</button>
+                    <button class="scenario-btn" onclick="checkScenario(2, 'B', true)">Card B</button>
+                    <button class="scenario-btn" onclick="checkScenario(2, 'C', false)">Card C</button>
+                </div>
+                <div class="scenario-feedback" id="feedback-2"></div>
+            </div>
+
+            <div class="scenario-card" id="scenario-3">
+                <h4>Scenario 3: Building Credit</h4>
+                <p>Sam is 18 with no credit history and needs to start building credit. They plan to use the card for small purchases ($50-100/month) and pay in full. Which card is best?</p>
+                <div class="scenario-options">
+                    <button class="scenario-btn" onclick="checkScenario(3, 'A', false)">Card A</button>
+                    <button class="scenario-btn" onclick="checkScenario(3, 'B', false)">Card B</button>
+                    <button class="scenario-btn" onclick="checkScenario(3, 'C', true)">Card C</button>
+                </div>
+                <div class="scenario-feedback" id="feedback-3"></div>
+            </div>
+
+            <div class="scenario-card" id="scenario-4">
+                <h4>Scenario 4: Heavy Spender</h4>
+                <p>Taylor spends $400/month on dining out and $600/month on groceries. They pay in full each month and want to maximize rewards. Which card is best for the first year?</p>
+                <div class="scenario-options">
+                    <button class="scenario-btn" onclick="checkScenario(4, 'A', false)">Card A</button>
+                    <button class="scenario-btn" onclick="checkScenario(4, 'B', true)">Card B</button>
+                    <button class="scenario-btn" onclick="checkScenario(4, 'C', false)">Card C</button>
+                </div>
+                <div class="scenario-feedback" id="feedback-4"></div>
+            </div>
+        </div>
+
+        <div class="tips-section">
+            <h3>Credit Card Selection Tips</h3>
+            <ul>
+                <li><strong>If you carry a balance:</strong> Focus on low APR, not rewards. Interest costs will outweigh any rewards earned.</li>
+                <li><strong>If you pay in full:</strong> Focus on rewards that match your spending patterns. APR doesn't matter if you never pay interest.</li>
+                <li><strong>Annual fee cards:</strong> Calculate if rewards exceed the fee. A $95 fee needs $95+ in extra rewards to break even.</li>
+                <li><strong>Intro APR offers:</strong> Great for planned large purchases or balance transfers, but have a payoff plan before the rate jumps.</li>
+                <li><strong>Building credit:</strong> Start with no-fee cards, keep utilization below 30%, and always pay on time.</li>
+            </ul>
+        </div>
+
+        <div class="print-section">
+            <button class="print-btn" onclick="window.print()">Print / Save as PDF</button>
+        </div>
+    </div>
+
+    <script>
+        let score = 0;
+        let answered = [false, false, false, false];
+
+        function calculateCosts() {
+            const balance = parseFloat(document.getElementById('balance').value) || 0;
+            const months = parseInt(document.getElementById('months').value) || 12;
+            const spending = parseFloat(document.getElementById('spending').value) || 0;
+            const payFull = document.getElementById('payFull').value === 'yes';
+
+            // Card rates and fees
+            const cards = [
+                {
+                    name: 'Card A',
+                    apr: 19.99,
+                    annualFee: 0,
+                    cashBack: 0.015,
+                    introMonths: 12,
+                    introAPR: 0
+                },
+                {
+                    name: 'Card B',
+                    apr: 20.99, // Using mid-range
+                    annualFee: 95,
+                    // Average rewards rate for typical spending
+                    cashBack: 0.02,
+                    introMonths: 0,
+                    signupBonus: 200
+                },
+                {
+                    name: 'Card C',
+                    apr: 22.99,
+                    annualFee: 0,
+                    cashBack: 0.01,
+                    introMonths: 6,
+                    introAPR: 0
+                }
+            ];
+
+            const results = cards.map(card => {
+                let totalInterest = 0;
+                let totalRewards = spending * 12 * card.cashBack;
+                let totalFees = card.annualFee;
+
+                if (!payFull && balance > 0) {
+                    // Calculate interest on carried balance
+                    let remainingBalance = balance;
+                    const monthlyPayment = balance / months;
+
+                    for (let i = 0; i < months; i++) {
+                        let monthlyRate;
+                        if (i < card.introMonths) {
+                            monthlyRate = (card.introAPR || 0) / 100 / 12;
+                        } else {
+                            monthlyRate = card.apr / 100 / 12;
+                        }
+
+                        const interest = remainingBalance * monthlyRate;
+                        totalInterest += interest;
+                        remainingBalance = remainingBalance + interest - monthlyPayment;
+                        if (remainingBalance < 0) remainingBalance = 0;
+                    }
+                }
+
+                const signupBonus = card.signupBonus || 0;
+                const netCost = totalInterest + totalFees - totalRewards - signupBonus;
+
+                return {
+                    name: card.name,
+                    interest: totalInterest,
+                    fees: totalFees,
+                    rewards: totalRewards + signupBonus,
+                    netCost: netCost
+                };
+            });
+
+            // Find the best (lowest net cost)
+            const minCost = Math.min(...results.map(r => r.netCost));
+
+            // Display results
+            const resultsGrid = document.getElementById('results-grid');
+            resultsGrid.innerHTML = results.map(result => `
+                <div class="result-card ${result.netCost === minCost ? 'best' : ''}">
+                    <h5>${result.name}</h5>
+                    <div class="amount">$${result.netCost.toFixed(2)}</div>
+                    <div class="detail">Net Cost</div>
+                    <div class="detail" style="margin-top: 8px; font-size: 10px;">
+                        Interest: $${result.interest.toFixed(2)}<br>
+                        Fees: $${result.fees.toFixed(2)}<br>
+                        Rewards: -$${result.rewards.toFixed(2)}
+                    </div>
+                    ${result.netCost === minCost ? '<span class="winner-badge">Best Value</span>' : ''}
+                </div>
+            `).join('');
+
+            document.getElementById('results').style.display = 'block';
+        }
+
+        const scenarioAnswers = {
+            1: {
+                correct: 'A',
+                explanation: 'Card A offers 0% intro APR for 12 months, perfect for paying off $3,000 over a year. The 3% transfer fee ($90) is much less than the interest on Card B or Card C\'s shorter intro period.'
+            },
+            2: {
+                correct: 'B',
+                explanation: 'Card B has no foreign transaction fee (saving $24/month or $288 over study abroad), plus 3% back on dining. Card A and C charge 3% foreign transaction fees that would cost $288 on $9,600 spending.'
+            },
+            3: {
+                correct: 'C',
+                explanation: 'Card C is designed for students building credit, reports to all 3 bureaus, has no annual fee, and appropriate credit limits. Card A may be harder to qualify for without credit history, and Card B\'s $95 fee isn\'t worth it for low spending.'
+            },
+            4: {
+                correct: 'B',
+                explanation: 'Card B earns: $400 x 3% x 12 = $144 (dining) + $600 x 2% x 12 = $144 (groceries) + $200 bonus = $488. Minus $95 fee = $393 net. Card A earns $1,000 x 1.5% x 12 = $180. Card B wins by $213.'
+            }
+        };
+
+        function checkScenario(num, selected, isCorrect) {
+            if (answered[num - 1]) return;
+            answered[num - 1] = true;
+
+            const scenario = document.getElementById('scenario-' + num);
+            const buttons = scenario.querySelectorAll('.scenario-btn');
+            const feedback = document.getElementById('feedback-' + num);
+            const answer = scenarioAnswers[num];
+
+            buttons.forEach(btn => {
+                btn.disabled = true;
+                if (btn.textContent.includes(selected)) {
+                    btn.classList.add(isCorrect ? 'correct' : 'incorrect');
+                }
+                if (btn.textContent.includes(answer.correct) && !isCorrect) {
+                    btn.classList.add('correct');
+                }
+            });
+
+            if (isCorrect) {
+                score++;
+                document.getElementById('score').textContent = score;
+            }
+
+            feedback.textContent = (isCorrect ? 'Correct! ' : 'Incorrect. ') + answer.explanation;
+            feedback.className = 'scenario-feedback show ' + (isCorrect ? 'correct' : 'incorrect');
+        }
+    </script>
+</body>
+</html>

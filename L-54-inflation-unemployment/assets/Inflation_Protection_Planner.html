@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inflation Protection Strategy Planner</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        header { text-align: center; margin-bottom: 30px; }
+        h1 { font-size: 2rem; color: #6366f1; margin-bottom: 10px; }
+        .subtitle { color: #6b7280; }
+        .section { margin-bottom: 25px; }
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #1f2937;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e5e7eb;
+        }
+        .strategy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .strategy-card {
+            background: #f9fafb;
+            padding: 15px;
+            border-radius: 10px;
+            border: 2px solid #e5e7eb;
+        }
+        .strategy-card h4 {
+            font-size: 0.95rem;
+            color: #374151;
+            margin-bottom: 10px;
+        }
+        .checkbox-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 8px;
+        }
+        .checkbox-item input {
+            margin-right: 8px;
+            margin-top: 4px;
+        }
+        .checkbox-item label {
+            font-size: 0.9rem;
+            color: #4b5563;
+            cursor: pointer;
+        }
+        .priority-select {
+            margin-top: 10px;
+        }
+        .priority-select label {
+            font-size: 0.8rem;
+            color: #6b7280;
+        }
+        .priority-select select {
+            width: 100%;
+            padding: 6px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            font-size: 0.85rem;
+        }
+        .plan-btn {
+            width: 100%;
+            padding: 15px;
+            background: #6366f1;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 25px;
+        }
+        .plan-btn:hover { background: #4f46e5; }
+        .results { display: none; }
+        .results.active { display: block; }
+        .plan-summary {
+            background: #f0fdf4;
+            padding: 20px;
+            border-radius: 12px;
+            border: 2px solid #10b981;
+        }
+        .plan-summary h3 {
+            color: #065f46;
+            margin-bottom: 15px;
+        }
+        .plan-item {
+            padding: 10px;
+            background: white;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            border-left: 3px solid #10b981;
+        }
+        .plan-item strong {
+            color: #065f46;
+        }
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #e5e7eb;
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+        @media print {
+            body { background: white; padding: 0; }
+            .container { box-shadow: none; }
+            .plan-btn { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Inflation Protection Strategy Planner</h1>
+            <p class="subtitle">Plan your defense against rising prices</p>
+        </header>
+
+        <div class="section">
+            <div class="section-title">Investment Strategies</div>
+            <div class="strategy-grid">
+                <div class="strategy-card">
+                    <h4>Inflation-Hedging Assets</h4>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="tips" value="TIPS (Treasury Inflation-Protected Securities)">
+                        <label for="tips">TIPS bonds</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="ibonds" value="I-Bonds (inflation-adjusted savings bonds)">
+                        <label for="ibonds">I-Bonds</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="reits" value="Real estate investment trusts (REITs)">
+                        <label for="reits">REITs</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="commodities" value="Commodity funds or ETFs">
+                        <label for="commodities">Commodity funds</label>
+                    </div>
+                    <div class="priority-select">
+                        <label>Priority:</label>
+                        <select id="investPriority">
+                            <option value="high">High</option>
+                            <option value="medium" selected>Medium</option>
+                            <option value="low">Low</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="strategy-card">
+                    <h4>Stock Strategies</h4>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="dividend" value="Dividend growth stocks">
+                        <label for="dividend">Dividend growth stocks</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="value" value="Value stocks in essential sectors">
+                        <label for="value">Value stocks</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="international" value="International diversification">
+                        <label for="international">International stocks</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Income Strategies</div>
+            <div class="strategy-grid">
+                <div class="strategy-card">
+                    <h4>Wage Negotiation</h4>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="cola" value="Request COLA (cost-of-living adjustment)">
+                        <label for="cola">Request COLA adjustment</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="market" value="Research market salary rates">
+                        <label for="market">Research market rates</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="skills" value="Develop in-demand skills">
+                        <label for="skills">Develop new skills</label>
+                    </div>
+                    <div class="priority-select">
+                        <label>Priority:</label>
+                        <select id="incomePriority">
+                            <option value="high">High</option>
+                            <option value="medium" selected>Medium</option>
+                            <option value="low">Low</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="strategy-card">
+                    <h4>Additional Income</h4>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="side" value="Start a side hustle">
+                        <label for="side">Side hustle</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="freelance" value="Freelance in your expertise">
+                        <label for="freelance">Freelance work</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="passive" value="Build passive income streams">
+                        <label for="passive">Passive income</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Spending Adjustments</div>
+            <div class="strategy-grid">
+                <div class="strategy-card">
+                    <h4>Smart Purchasing</h4>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="bulk" value="Buy in bulk when prices are low">
+                        <label for="bulk">Buy in bulk</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="substitute" value="Substitute cheaper alternatives">
+                        <label for="substitute">Find substitutes</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="delay" value="Delay non-essential purchases">
+                        <label for="delay">Delay purchases</label>
+                    </div>
+                    <div class="priority-select">
+                        <label>Priority:</label>
+                        <select id="spendPriority">
+                            <option value="high">High</option>
+                            <option value="medium" selected>Medium</option>
+                            <option value="low">Low</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="strategy-card">
+                    <h4>Fixed Costs</h4>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="lock" value="Lock in rates (mortgage, insurance)">
+                        <label for="lock">Lock in rates</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="renegotiate" value="Renegotiate contracts annually">
+                        <label for="renegotiate">Renegotiate contracts</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="energy" value="Reduce energy consumption">
+                        <label for="energy">Reduce energy use</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button class="plan-btn" onclick="generatePlan()">Generate My Protection Plan</button>
+
+        <div class="results" id="results">
+            <div class="plan-summary">
+                <h3>Your Inflation Protection Plan</h3>
+                <div id="planItems"></div>
+            </div>
+        </div>
+
+        <footer>
+            <p><strong>PFL Academy</strong> | Inflation and Unemployment</p>
+        </footer>
+    </div>
+
+    <script>
+        function generatePlan() {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+            const planItems = document.getElementById('planItems');
+            planItems.innerHTML = '';
+
+            if (checkboxes.length === 0) {
+                planItems.innerHTML = '<div class="plan-item">Please select at least one strategy to generate your plan.</div>';
+            } else {
+                const priorities = {
+                    invest: document.getElementById('investPriority').value,
+                    income: document.getElementById('incomePriority').value,
+                    spend: document.getElementById('spendPriority').value
+                };
+
+                const highPriority = [];
+                const mediumPriority = [];
+                const lowPriority = [];
+
+                checkboxes.forEach(cb => {
+                    const item = cb.value;
+                    const id = cb.id;
+
+                    let priority = 'medium';
+                    if (['tips', 'ibonds', 'reits', 'commodities', 'dividend', 'value', 'international'].includes(id)) {
+                        priority = priorities.invest;
+                    } else if (['cola', 'market', 'skills', 'side', 'freelance', 'passive'].includes(id)) {
+                        priority = priorities.income;
+                    } else {
+                        priority = priorities.spend;
+                    }
+
+                    if (priority === 'high') highPriority.push(item);
+                    else if (priority === 'medium') mediumPriority.push(item);
+                    else lowPriority.push(item);
+                });
+
+                if (highPriority.length > 0) {
+                    planItems.innerHTML += '<div class="plan-item"><strong>🔴 High Priority (Start Now):</strong><br>' + highPriority.join('<br>') + '</div>';
+                }
+                if (mediumPriority.length > 0) {
+                    planItems.innerHTML += '<div class="plan-item"><strong>🟡 Medium Priority (This Quarter):</strong><br>' + mediumPriority.join('<br>') + '</div>';
+                }
+                if (lowPriority.length > 0) {
+                    planItems.innerHTML += '<div class="plan-item"><strong>🟢 Low Priority (This Year):</strong><br>' + lowPriority.join('<br>') + '</div>';
+                }
+            }
+
+            document.getElementById('results').classList.add('active');
+        }
+    </script>
+</body>
+</html>

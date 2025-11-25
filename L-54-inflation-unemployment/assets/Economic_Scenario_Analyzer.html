@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Economic Scenario Analyzer</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        header { text-align: center; margin-bottom: 30px; }
+        h1 { font-size: 2rem; color: #6366f1; margin-bottom: 10px; }
+        .subtitle { color: #6b7280; }
+        .scenario-selector {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        .scenario-card {
+            background: #f9fafb;
+            padding: 20px;
+            border-radius: 12px;
+            border: 3px solid #e5e7eb;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .scenario-card:hover { border-color: #6366f1; }
+        .scenario-card.selected { border-color: #6366f1; background: #eef2ff; }
+        .scenario-name { font-weight: bold; color: #1f2937; margin-bottom: 5px; }
+        .scenario-indicators { font-size: 0.85rem; color: #6b7280; }
+        .allocation-section {
+            background: #f0f9ff;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+        }
+        .section-title { font-size: 1.1rem; font-weight: bold; margin-bottom: 15px; color: #1e40af; }
+        .allocation-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+        .allocation-item {
+            display: flex;
+            flex-direction: column;
+        }
+        .allocation-item label {
+            font-size: 0.9rem;
+            color: #374151;
+            margin-bottom: 5px;
+        }
+        .allocation-item input {
+            padding: 8px;
+            border: 2px solid #d1d5db;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+        .allocation-item input:focus { outline: none; border-color: #6366f1; }
+        .total-display {
+            text-align: center;
+            padding: 10px;
+            background: white;
+            border-radius: 8px;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+        .total-good { color: #059669; }
+        .total-bad { color: #dc2626; }
+        .analyze-btn {
+            width: 100%;
+            padding: 15px;
+            background: #6366f1;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 25px;
+        }
+        .analyze-btn:hover { background: #4f46e5; }
+        .results { display: none; }
+        .results.active { display: block; }
+        .result-box {
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+        }
+        .analysis-box {
+            background: #d1fae5;
+            border-left: 4px solid #10b981;
+        }
+        .risk-box {
+            background: #fee2e2;
+            border-left: 4px solid #ef4444;
+        }
+        .opportunity-box {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+        }
+        .result-box h3 { font-size: 1rem; margin-bottom: 10px; color: #374151; }
+        .result-box p { font-size: 0.95rem; }
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #e5e7eb;
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+        @media print {
+            body { background: white; padding: 0; }
+            .container { box-shadow: none; }
+            .analyze-btn { display: none; }
+        }
+        @media (max-width: 768px) {
+            .scenario-selector, .allocation-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Economic Scenario Analyzer</h1>
+            <p class="subtitle">Allocate funds based on economic conditions</p>
+        </header>
+
+        <div class="scenario-selector">
+            <div class="scenario-card" onclick="selectScenario('growth')">
+                <div class="scenario-name">📈 Strong Growth</div>
+                <div class="scenario-indicators">High inflation, low unemployment</div>
+            </div>
+            <div class="scenario-card" onclick="selectScenario('stagflation')">
+                <div class="scenario-name">⚠️ Stagflation</div>
+                <div class="scenario-indicators">High inflation, high unemployment</div>
+            </div>
+            <div class="scenario-card" onclick="selectScenario('recession')">
+                <div class="scenario-name">📉 Recession</div>
+                <div class="scenario-indicators">Low inflation, high unemployment</div>
+            </div>
+            <div class="scenario-card" onclick="selectScenario('goldilocks')">
+                <div class="scenario-name">✨ Goldilocks</div>
+                <div class="scenario-indicators">Low inflation, low unemployment</div>
+            </div>
+        </div>
+
+        <div class="allocation-section">
+            <div class="section-title">Your $10,000 Allocation</div>
+            <div class="allocation-grid">
+                <div class="allocation-item">
+                    <label>Stocks ($)</label>
+                    <input type="number" id="stocks" value="4000" min="0" max="10000" oninput="updateTotal()">
+                </div>
+                <div class="allocation-item">
+                    <label>Bonds ($)</label>
+                    <input type="number" id="bonds" value="2000" min="0" max="10000" oninput="updateTotal()">
+                </div>
+                <div class="allocation-item">
+                    <label>Cash/Savings ($)</label>
+                    <input type="number" id="cash" value="2000" min="0" max="10000" oninput="updateTotal()">
+                </div>
+                <div class="allocation-item">
+                    <label>Inflation Hedges ($)</label>
+                    <input type="number" id="hedges" value="2000" min="0" max="10000" oninput="updateTotal()">
+                </div>
+            </div>
+            <div class="total-display" id="totalDisplay">Total: $10,000</div>
+        </div>
+
+        <button class="analyze-btn" onclick="analyzeAllocation()">Analyze My Allocation</button>
+
+        <div class="results" id="results">
+            <div class="result-box analysis-box">
+                <h3>Allocation Analysis</h3>
+                <p id="analysisText"></p>
+            </div>
+            <div class="result-box risk-box">
+                <h3>Key Risks</h3>
+                <p id="riskText"></p>
+            </div>
+            <div class="result-box opportunity-box">
+                <h3>Opportunities</h3>
+                <p id="opportunityText"></p>
+            </div>
+        </div>
+
+        <footer>
+            <p><strong>PFL Academy</strong> | Inflation and Unemployment</p>
+        </footer>
+    </div>
+
+    <script>
+        let selectedScenario = null;
+
+        function selectScenario(scenario) {
+            selectedScenario = scenario;
+            document.querySelectorAll('.scenario-card').forEach(card => card.classList.remove('selected'));
+            event.currentTarget.classList.add('selected');
+        }
+
+        function updateTotal() {
+            const stocks = parseInt(document.getElementById('stocks').value) || 0;
+            const bonds = parseInt(document.getElementById('bonds').value) || 0;
+            const cash = parseInt(document.getElementById('cash').value) || 0;
+            const hedges = parseInt(document.getElementById('hedges').value) || 0;
+            const total = stocks + bonds + cash + hedges;
+
+            const display = document.getElementById('totalDisplay');
+            display.textContent = 'Total: $' + total.toLocaleString();
+            display.className = 'total-display ' + (total === 10000 ? 'total-good' : 'total-bad');
+        }
+
+        function analyzeAllocation() {
+            if (!selectedScenario) {
+                alert('Please select an economic scenario first.');
+                return;
+            }
+
+            const stocks = parseInt(document.getElementById('stocks').value) || 0;
+            const bonds = parseInt(document.getElementById('bonds').value) || 0;
+            const cash = parseInt(document.getElementById('cash').value) || 0;
+            const hedges = parseInt(document.getElementById('hedges').value) || 0;
+
+            let analysis = '', risks = '', opportunities = '';
+
+            if (selectedScenario === 'growth') {
+                if (stocks >= 4000 && hedges >= 2000) {
+                    analysis = 'Good allocation for growth! High stock exposure captures gains while inflation hedges protect purchasing power.';
+                } else if (stocks < 3000) {
+                    analysis = 'Consider increasing stock allocation. In strong growth with low unemployment, equities typically outperform.';
+                } else {
+                    analysis = 'Reasonable allocation, but consider more inflation protection given high inflation in this scenario.';
+                }
+                risks = 'Inflation eroding bond returns. Possible market correction if growth overheats. Fed may raise rates aggressively.';
+                opportunities = 'Stocks benefit from strong earnings. TIPS and commodities hedge inflation. Consider growth stocks and sectors tied to consumer spending.';
+            } else if (selectedScenario === 'stagflation') {
+                if (hedges >= 3000 && cash >= 2000) {
+                    analysis = 'Defensive allocation suits stagflation. Inflation hedges and cash provide protection in this challenging environment.';
+                } else if (stocks >= 5000) {
+                    analysis = 'High stock allocation is risky in stagflation. Stocks typically suffer when growth is weak and inflation is high.';
+                } else {
+                    analysis = 'Consider more defensive positioning. Stagflation is tough on both stocks and bonds.';
+                }
+                risks = 'Stocks hurt by weak growth. Bonds hurt by inflation. Unemployment risk to personal income. Longest recovery time.';
+                opportunities = 'Commodities and TIPS outperform. Essential consumer goods companies hold up better. Cash gives optionality.';
+            } else if (selectedScenario === 'recession') {
+                if (bonds >= 3000 && cash >= 3000) {
+                    analysis = 'Conservative allocation appropriate for recession. Bonds rally as rates fall, and cash provides security.';
+                } else if (stocks >= 5000) {
+                    analysis = 'High stock allocation is risky in recession, but if you have a long time horizon, buying during downturns can pay off.';
+                } else {
+                    analysis = 'Consider increasing bond allocation. Government bonds typically rise in recessions as rates fall.';
+                }
+                risks = 'Job loss risk. Stock market declines. Deflation possible. Credit risk on corporate bonds.';
+                opportunities = 'Quality bonds appreciate. Stocks become cheap for long-term buying. High-quality dividend stocks provide income.';
+            } else if (selectedScenario === 'goldilocks') {
+                if (stocks >= 5000) {
+                    analysis = 'Aggressive allocation works well in Goldilocks conditions. Stable growth and low inflation favor equities.';
+                } else if (cash >= 4000) {
+                    analysis = 'Too much cash in ideal conditions. You may be missing out on gains in this favorable environment.';
+                } else {
+                    analysis = 'Balanced approach is fine, but consider tilting more toward stocks given favorable conditions.';
+                }
+                risks = 'Goldilocks conditions rarely last forever. Complacency can lead to insufficient diversification.';
+                opportunities = 'Broad market gains likely. Growth stocks thrive. Real estate performs well. Take moderate risk for strong returns.';
+            }
+
+            document.getElementById('analysisText').textContent = analysis;
+            document.getElementById('riskText').textContent = risks;
+            document.getElementById('opportunityText').textContent = opportunities;
+            document.getElementById('results').classList.add('active');
+        }
+    </script>
+</body>
+</html>

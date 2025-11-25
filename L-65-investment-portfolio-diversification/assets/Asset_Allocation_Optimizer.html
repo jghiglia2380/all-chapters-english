@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asset Allocation Optimizer</title>
+    <style>
+        :root {
+            --primary: #6366f1;
+            --secondary: #8b5cf6;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+        }
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-size: 14px;
+            line-height: 1.5;
+            color: #1f2937;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+        h1 {
+            color: var(--primary);
+            font-size: 24px;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 8px;
+        }
+        h2 { color: var(--secondary); font-size: 18px; margin-top: 20px; }
+        .investor-tabs {
+            display: flex;
+            gap: 10px;
+            margin: 15px 0;
+        }
+        .tab {
+            padding: 10px 20px;
+            background: #f3f4f6;
+            border: 2px solid #d1d5db;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .tab.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        .investor-profile {
+            background: #f9fafb;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        .profile-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .profile-item {
+            text-align: center;
+            background: white;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .profile-value {
+            font-size: 20px;
+            font-weight: bold;
+            color: var(--primary);
+        }
+        .allocation-builder {
+            background: #e0e7ff;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        .slider-group {
+            margin: 12px 0;
+        }
+        .slider-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 13px;
+        }
+        input[type="range"] {
+            width: 100%;
+            height: 8px;
+        }
+        .results-panel {
+            background: #f0f7ff;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 10px;
+        }
+        .result-box {
+            background: white;
+            padding: 10px;
+            border-radius: 4px;
+            text-align: center;
+        }
+        .result-value {
+            font-size: 18px;
+            font-weight: bold;
+            color: var(--primary);
+        }
+        .suggestion {
+            background: #fef3c7;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+            font-size: 13px;
+        }
+        button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover { background: var(--secondary); }
+        @media print {
+            body { font-size: 11pt; }
+            button, .investor-tabs { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <h1>Asset Allocation Optimizer</h1>
+    <p>Design appropriate allocations for investors at different life stages</p>
+
+    <div class="investor-tabs">
+        <div class="tab active" onclick="selectInvestor(0)">Maya (25)</div>
+        <div class="tab" onclick="selectInvestor(1)">David (45)</div>
+        <div class="tab" onclick="selectInvestor(2)">Patricia (60)</div>
+    </div>
+
+    <div class="investor-profile" id="investorProfile">
+        <!-- Dynamic content -->
+    </div>
+
+    <h2>Build Asset Allocation</h2>
+    <div class="allocation-builder">
+        <div class="slider-group">
+            <div class="slider-label"><span>US Stocks</span><span id="usStocksVal">50%</span></div>
+            <input type="range" id="usStocks" min="0" max="100" value="50" oninput="updateAllocation()">
+        </div>
+        <div class="slider-group">
+            <div class="slider-label"><span>International Stocks</span><span id="intlStocksVal">20%</span></div>
+            <input type="range" id="intlStocks" min="0" max="100" value="20" oninput="updateAllocation()">
+        </div>
+        <div class="slider-group">
+            <div class="slider-label"><span>Bonds</span><span id="bondsVal">25%</span></div>
+            <input type="range" id="bonds" min="0" max="100" value="25" oninput="updateAllocation()">
+        </div>
+        <div class="slider-group">
+            <div class="slider-label"><span>Real Estate</span><span id="reitsVal">5%</span></div>
+            <input type="range" id="reits" min="0" max="100" value="5" oninput="updateAllocation()">
+        </div>
+        <div style="text-align: center; margin-top: 10px;">
+            <strong>Total: <span id="totalAlloc">100</span>%</strong>
+            <span id="allocWarning" style="color: var(--danger); margin-left: 10px;"></span>
+        </div>
+        <div style="text-align: center; margin-top: 10px;">
+            <button onclick="applySuggestion()">Apply Suggested Allocation</button>
+            <button onclick="calculate()">Calculate Projections</button>
+        </div>
+    </div>
+
+    <div class="suggestion" id="suggestion">
+        <!-- Dynamic suggestion based on age -->
+    </div>
+
+    <div class="results-panel" id="results">
+        <h2 style="margin-top: 0;">Projection Results</h2>
+        <div class="results-grid">
+            <div class="result-box">
+                <div>Total Stocks</div>
+                <div class="result-value" id="totalStocks">70%</div>
+            </div>
+            <div class="result-box">
+                <div>Expected Return</div>
+                <div class="result-value" id="expReturn">8.5%</div>
+            </div>
+            <div class="result-box">
+                <div>Risk Level</div>
+                <div class="result-value" id="riskLevel">Moderate</div>
+            </div>
+            <div class="result-box">
+                <div>Max Drawdown</div>
+                <div class="result-value" id="maxDD">-28%</div>
+            </div>
+            <div class="result-box">
+                <div>Wealth at Retirement</div>
+                <div class="result-value" id="wealthAtRetire">$1.2M</div>
+            </div>
+            <div class="result-box">
+                <div>Recovery Time</div>
+                <div class="result-value" id="recovery">3 years</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const investors = [
+            {
+                name: 'Maya',
+                age: 25,
+                monthly: 400,
+                retireAge: 65,
+                years: 40,
+                suggestedStocks: 95,
+                description: 'Recent college grad starting career'
+            },
+            {
+                name: 'David',
+                age: 45,
+                monthly: 800,
+                retireAge: 67,
+                years: 22,
+                suggestedStocks: 75,
+                description: 'Mid-career professional'
+            },
+            {
+                name: 'Patricia',
+                age: 60,
+                monthly: 500,
+                retireAge: 67,
+                years: 7,
+                suggestedStocks: 40,
+                description: 'Planning to retire soon, needs income'
+            }
+        ];
+
+        let currentInvestor = 0;
+
+        function selectInvestor(index) {
+            currentInvestor = index;
+            document.querySelectorAll('.tab').forEach((tab, i) => {
+                tab.classList.toggle('active', i === index);
+            });
+            updateProfile();
+            updateSuggestion();
+        }
+
+        function updateProfile() {
+            const inv = investors[currentInvestor];
+            document.getElementById('investorProfile').innerHTML = `
+                <strong>${inv.name} (Age ${inv.age})</strong> - ${inv.description}
+                <div class="profile-grid">
+                    <div class="profile-item">
+                        <div>Monthly Investment</div>
+                        <div class="profile-value">$${inv.monthly}</div>
+                    </div>
+                    <div class="profile-item">
+                        <div>Retire Age</div>
+                        <div class="profile-value">${inv.retireAge}</div>
+                    </div>
+                    <div class="profile-item">
+                        <div>Years to Invest</div>
+                        <div class="profile-value">${inv.years}</div>
+                    </div>
+                    <div class="profile-item">
+                        <div>Total Contributions</div>
+                        <div class="profile-value">$${(inv.monthly * 12 * inv.years / 1000).toFixed(0)}K</div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function updateSuggestion() {
+            const inv = investors[currentInvestor];
+            const bondsSuggested = 100 - inv.suggestedStocks;
+            document.getElementById('suggestion').innerHTML = `
+                <strong>📊 "120 Minus Age" Rule Suggestion for ${inv.name}:</strong><br>
+                120 - ${inv.age} = ${120 - inv.age}% stocks (using ${inv.suggestedStocks}% for this profile)<br>
+                <strong>Recommended:</strong> ${inv.suggestedStocks}% stocks / ${bondsSuggested}% bonds
+            `;
+        }
+
+        function updateAllocation() {
+            const us = parseInt(document.getElementById('usStocks').value);
+            const intl = parseInt(document.getElementById('intlStocks').value);
+            const bonds = parseInt(document.getElementById('bonds').value);
+            const reits = parseInt(document.getElementById('reits').value);
+
+            document.getElementById('usStocksVal').textContent = us + '%';
+            document.getElementById('intlStocksVal').textContent = intl + '%';
+            document.getElementById('bondsVal').textContent = bonds + '%';
+            document.getElementById('reitsVal').textContent = reits + '%';
+
+            const total = us + intl + bonds + reits;
+            document.getElementById('totalAlloc').textContent = total;
+            document.getElementById('allocWarning').textContent = total !== 100 ? '(Must equal 100%)' : '';
+        }
+
+        function applySuggestion() {
+            const inv = investors[currentInvestor];
+            const stocks = inv.suggestedStocks;
+            document.getElementById('usStocks').value = Math.round(stocks * 0.7);
+            document.getElementById('intlStocks').value = Math.round(stocks * 0.3);
+            document.getElementById('bonds').value = 100 - stocks - 5;
+            document.getElementById('reits').value = 5;
+            updateAllocation();
+        }
+
+        function calculate() {
+            const us = parseInt(document.getElementById('usStocks').value);
+            const intl = parseInt(document.getElementById('intlStocks').value);
+            const bonds = parseInt(document.getElementById('bonds').value);
+            const reits = parseInt(document.getElementById('reits').value);
+
+            if (us + intl + bonds + reits !== 100) {
+                alert('Allocation must total 100%');
+                return;
+            }
+
+            const totalStocks = us + intl;
+            const inv = investors[currentInvestor];
+
+            // Calculate expected return (simplified)
+            const expReturn = (us * 10.5 + intl * 8.5 + bonds * 5 + reits * 9) / 100;
+
+            // Risk level
+            let riskLevel, maxDD, recovery;
+            if (totalStocks >= 80) {
+                riskLevel = 'High';
+                maxDD = -38;
+                recovery = '4-5 years';
+            } else if (totalStocks >= 60) {
+                riskLevel = 'Moderate-High';
+                maxDD = -28;
+                recovery = '3 years';
+            } else if (totalStocks >= 40) {
+                riskLevel = 'Moderate';
+                maxDD = -18;
+                recovery = '2 years';
+            } else {
+                riskLevel = 'Conservative';
+                maxDD = -10;
+                recovery = '1 year';
+            }
+
+            // Project wealth at retirement
+            const monthlyRate = expReturn / 100 / 12;
+            const months = inv.years * 12;
+            const fv = inv.monthly * ((Math.pow(1 + monthlyRate, months) - 1) / monthlyRate);
+            const wealth = fv >= 1000000 ? `$${(fv / 1000000).toFixed(1)}M` : `$${Math.round(fv / 1000)}K`;
+
+            document.getElementById('totalStocks').textContent = totalStocks + '%';
+            document.getElementById('expReturn').textContent = expReturn.toFixed(1) + '%';
+            document.getElementById('riskLevel').textContent = riskLevel;
+            document.getElementById('maxDD').textContent = maxDD + '%';
+            document.getElementById('wealthAtRetire').textContent = wealth;
+            document.getElementById('recovery').textContent = recovery;
+        }
+
+        // Initialize
+        updateProfile();
+        updateSuggestion();
+        updateAllocation();
+    </script>
+</body>
+</html>

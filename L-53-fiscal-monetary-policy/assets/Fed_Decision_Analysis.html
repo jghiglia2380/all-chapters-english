@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Federal Reserve Decision Analysis Tool</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-size: 2rem;
+            color: #6366f1;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #6b7280;
+            font-size: 1rem;
+        }
+
+        .economic-data {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .data-card {
+            background: #f9fafb;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            border: 2px solid #e5e7eb;
+        }
+
+        .data-card h3 {
+            font-size: 0.9rem;
+            color: #6b7280;
+            margin-bottom: 8px;
+        }
+
+        .data-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #1f2937;
+        }
+
+        .data-status {
+            font-size: 0.8rem;
+            margin-top: 5px;
+            padding: 3px 8px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        .status-high { background: #fee2e2; color: #dc2626; }
+        .status-low { background: #dbeafe; color: #2563eb; }
+        .status-target { background: #d1fae5; color: #059669; }
+
+        .decision-section {
+            background: #f0f9ff;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+        }
+
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #1e40af;
+        }
+
+        .decision-options {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .decision-btn {
+            flex: 1;
+            min-width: 150px;
+            padding: 15px;
+            border: 3px solid #e5e7eb;
+            border-radius: 10px;
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .decision-btn:hover {
+            border-color: #6366f1;
+        }
+
+        .decision-btn.selected {
+            border-color: #6366f1;
+            background: #eef2ff;
+        }
+
+        .decision-btn .icon {
+            font-size: 2rem;
+            margin-bottom: 8px;
+        }
+
+        .decision-btn .label {
+            font-weight: 600;
+            color: #1f2937;
+        }
+
+        .decision-btn .desc {
+            font-size: 0.8rem;
+            color: #6b7280;
+            margin-top: 5px;
+        }
+
+        .reasoning-section {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #374151;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #d1d5db;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 1rem;
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: #6366f1;
+        }
+
+        .analyze-btn {
+            width: 100%;
+            padding: 15px;
+            background: #6366f1;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .analyze-btn:hover {
+            background: #4f46e5;
+        }
+
+        .results {
+            margin-top: 25px;
+            display: none;
+        }
+
+        .results.active {
+            display: block;
+        }
+
+        .result-box {
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+        }
+
+        .analysis-result {
+            background: #f0fdf4;
+            border: 2px solid #10b981;
+        }
+
+        .impact-result {
+            background: #fef3c7;
+            border: 2px solid #f59e0b;
+        }
+
+        .result-box h3 {
+            font-size: 1rem;
+            margin-bottom: 10px;
+            color: #374151;
+        }
+
+        .result-box p {
+            color: #4b5563;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #e5e7eb;
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .container {
+                box-shadow: none;
+                padding: 20px;
+            }
+            .analyze-btn {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            h1 {
+                font-size: 1.5rem;
+            }
+            .decision-options {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Federal Reserve Decision Analysis</h1>
+            <p class="subtitle">Analyze economic indicators and make interest rate decisions</p>
+        </header>
+
+        <div class="economic-data">
+            <div class="data-card">
+                <h3>Inflation Rate</h3>
+                <div class="data-value" id="inflationRate">4.2%</div>
+                <div class="data-status status-high">Above Target</div>
+            </div>
+            <div class="data-card">
+                <h3>Unemployment</h3>
+                <div class="data-value" id="unemploymentRate">3.8%</div>
+                <div class="data-status status-target">Near Target</div>
+            </div>
+            <div class="data-card">
+                <h3>GDP Growth</h3>
+                <div class="data-value" id="gdpGrowth">2.1%</div>
+                <div class="data-status status-target">Moderate</div>
+            </div>
+            <div class="data-card">
+                <h3>Current Fed Rate</h3>
+                <div class="data-value" id="currentRate">5.25%</div>
+                <div class="data-status status-high">Elevated</div>
+            </div>
+        </div>
+
+        <div class="decision-section">
+            <div class="section-title">Your Interest Rate Decision</div>
+            <div class="decision-options">
+                <button class="decision-btn" onclick="selectDecision('raise')">
+                    <div class="icon">📈</div>
+                    <div class="label">Raise Rates</div>
+                    <div class="desc">+0.25% to fight inflation</div>
+                </button>
+                <button class="decision-btn" onclick="selectDecision('hold')">
+                    <div class="icon">➡️</div>
+                    <div class="label">Hold Steady</div>
+                    <div class="desc">Maintain current rates</div>
+                </button>
+                <button class="decision-btn" onclick="selectDecision('lower')">
+                    <div class="icon">📉</div>
+                    <div class="label">Lower Rates</div>
+                    <div class="desc">-0.25% to boost growth</div>
+                </button>
+            </div>
+        </div>
+
+        <div class="reasoning-section">
+            <label for="reasoning">Explain Your Reasoning</label>
+            <textarea id="reasoning" placeholder="Consider the dual mandate: price stability and maximum employment. What economic indicators influenced your decision? What are the potential risks of your choice?"></textarea>
+        </div>
+
+        <button class="analyze-btn" onclick="analyzeDecision()">Analyze My Decision</button>
+
+        <div class="results" id="results">
+            <div class="result-box analysis-result">
+                <h3>Decision Analysis</h3>
+                <p id="analysisText"></p>
+            </div>
+            <div class="result-box impact-result">
+                <h3>Predicted Economic Impact</h3>
+                <p id="impactText"></p>
+            </div>
+        </div>
+
+        <footer>
+            <p><strong>PFL Academy</strong> | Fiscal and Monetary Policy</p>
+        </footer>
+    </div>
+
+    <script>
+        let selectedDecision = null;
+
+        function selectDecision(decision) {
+            selectedDecision = decision;
+            document.querySelectorAll('.decision-btn').forEach(btn => {
+                btn.classList.remove('selected');
+            });
+            event.target.closest('.decision-btn').classList.add('selected');
+        }
+
+        function analyzeDecision() {
+            if (!selectedDecision) {
+                alert('Please select an interest rate decision first.');
+                return;
+            }
+
+            const reasoning = document.getElementById('reasoning').value;
+            let analysisText = '';
+            let impactText = '';
+
+            if (selectedDecision === 'raise') {
+                analysisText = 'Raising rates is a reasonable choice given inflation at 4.2% (above the 2% target). This contractionary monetary policy should help reduce inflationary pressures by increasing borrowing costs and slowing spending.';
+                impactText = 'Expected outcomes: Inflation may decrease over 6-12 months. Consumer spending and business investment will likely slow. Mortgage rates and loan costs will increase. Risk: Could push unemployment higher if maintained too long.';
+            } else if (selectedDecision === 'hold') {
+                analysisText = 'Holding rates steady is a cautious approach that allows time to assess the impact of previous rate increases. With unemployment near target (3.8%) and moderate GDP growth, this balances both sides of the dual mandate.';
+                impactText = 'Expected outcomes: Economic conditions remain stable in the short term. Inflation may continue declining slowly. Provides time to evaluate lagged effects of prior policy. Risk: Inflation could remain sticky if no further action is taken.';
+            } else if (selectedDecision === 'lower') {
+                analysisText = 'Lowering rates with inflation at 4.2% would be an unconventional choice. This expansionary policy prioritizes growth over price stability. This might be justified if you believe inflation will fall naturally or GDP growth is at risk.';
+                impactText = 'Expected outcomes: Economic growth would be stimulated, potentially preventing recession. However, inflation could increase further. Consumer borrowing becomes cheaper. Risk: Could de-anchor inflation expectations.';
+            }
+
+            document.getElementById('analysisText').textContent = analysisText;
+            document.getElementById('impactText').textContent = impactText;
+            document.getElementById('results').classList.add('active');
+        }
+    </script>
+</body>
+</html>

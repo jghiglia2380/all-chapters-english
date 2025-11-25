@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Housing Market Analysis Worksheet | PFL Academy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-size: 14px;
+            line-height: 1.6;
+            color: #1f2937;
+            padding: 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #6366f1;
+        }
+        h1 {
+            font-size: 1.8rem;
+            color: #6366f1;
+            margin-bottom: 5px;
+        }
+        .subtitle {
+            color: #6b7280;
+        }
+        .section {
+            background-color: #f9fafb;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 4px solid #6366f1;
+        }
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #6366f1;
+            margin-bottom: 15px;
+        }
+        .data-box {
+            background-color: #eef2ff;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+        }
+        .data-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .data-row:last-child {
+            border-bottom: none;
+        }
+        .data-label {
+            font-weight: 600;
+        }
+        .data-value {
+            color: #6366f1;
+        }
+        .input-field {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #e5e7eb;
+            border-radius: 6px;
+            font-size: 14px;
+            font-family: inherit;
+            margin-top: 5px;
+        }
+        .input-field:focus {
+            outline: none;
+            border-color: #6366f1;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 0.9rem;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #e5e7eb;
+        }
+        th {
+            background-color: #f3f4f6;
+            font-weight: 600;
+        }
+        .select-field {
+            padding: 6px;
+            border: 1px solid #e5e7eb;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            width: 100%;
+        }
+        .prediction-box {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        .prediction-box h4 {
+            margin-bottom: 10px;
+        }
+        .checkbox-group {
+            margin: 10px 0;
+        }
+        .checkbox-group label {
+            display: block;
+            padding: 5px 0;
+            cursor: pointer;
+        }
+        .checkbox-group input {
+            margin-right: 8px;
+        }
+        .scenario-box {
+            background-color: white;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            border: 1px solid #e5e7eb;
+        }
+        .scenario-title {
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 10px;
+        }
+        .calculation-box {
+            background-color: #f0fdf4;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 10px 0;
+        }
+        .calc-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+        }
+        .calc-input {
+            width: 150px;
+            padding: 8px;
+            border: 1px solid #e5e7eb;
+            border-radius: 4px;
+            text-align: right;
+        }
+        .result-display {
+            background-color: #6366f1;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 6px;
+            font-weight: 600;
+            text-align: center;
+            margin-top: 10px;
+        }
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-right: 10px;
+            margin-top: 10px;
+        }
+        .btn-primary {
+            background-color: #6366f1;
+            color: white;
+        }
+        .btn-primary:hover {
+            background-color: #4f46e5;
+        }
+        .btn-secondary {
+            background-color: #f3f4f6;
+            color: #374151;
+        }
+        .note {
+            background-color: #fffbeb;
+            border-left: 4px solid #f59e0b;
+            padding: 12px;
+            margin: 15px 0;
+            font-size: 0.9rem;
+        }
+        @media print {
+            body {
+                padding: 10px;
+                font-size: 11px;
+            }
+            .section {
+                break-inside: avoid;
+            }
+            .btn {
+                display: none;
+            }
+            .input-field, .select-field, .calc-input {
+                border: 1px solid #ccc;
+            }
+        }
+        @media (max-width: 768px) {
+            .data-row {
+                flex-direction: column;
+            }
+            .calc-row {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .calc-input {
+                width: 100%;
+                margin-top: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>{{STATE_NAME}} Housing Market Analysis</h1>
+        <p class="subtitle">Analyze supply and demand factors to make informed housing decisions</p>
+    </header>
+
+    <div class="section">
+        <div class="section-title">Background Data</div>
+        <div class="data-box">
+            <div class="data-row">
+                <span class="data-label">Median Home Price:</span>
+                <span class="data-value">{{STATE_MEDIAN_HOME_PRICE}}</span>
+            </div>
+            <div class="data-row">
+                <span class="data-label">Median Rent:</span>
+                <span class="data-value">{{STATE_MEDIAN_RENT}}/month</span>
+            </div>
+            <div class="data-row">
+                <span class="data-label">Market Trend:</span>
+                <span class="data-value">{{STATE_HOUSING_MARKET_TRENDS}}</span>
+            </div>
+            <div class="data-row">
+                <span class="data-label">Days on Market:</span>
+                <input type="text" class="input-field" style="width: 100px;" placeholder="____ days">
+            </div>
+            <div class="data-row">
+                <span class="data-label">Inventory Level:</span>
+                <select class="select-field" style="width: 150px;">
+                    <option value="">Select...</option>
+                    <option value="low">Low</option>
+                    <option value="moderate">Moderate</option>
+                    <option value="high">High</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Part A: Identify Supply and Demand Factors</div>
+
+        <h4 style="margin-bottom: 10px; color: #374151;">Demand Factors in {{STATE_NAME}}</h4>
+        <table>
+            <thead>
+                <tr>
+                    <th>Factor</th>
+                    <th>Effect on Demand</th>
+                    <th>Strength</th>
+                    <th>Current Trend</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Population growth</td>
+                    <td>
+                        <select class="select-field demand-effect">
+                            <option value="">Select</option>
+                            <option value="increase">Increase</option>
+                            <option value="decrease">Decrease</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="select-field demand-strength">
+                            <option value="low">Low</option>
+                            <option value="medium">Medium</option>
+                            <option value="high">High</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="select-field">
+                            <option value="">Select</option>
+                            <option value="growing">Growing</option>
+                            <option value="stable">Stable</option>
+                            <option value="declining">Declining</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Income levels</td>
+                    <td>
+                        <select class="select-field demand-effect">
+                            <option value="">Select</option>
+                            <option value="increase">Increase</option>
+                            <option value="decrease">Decrease</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="select-field demand-strength">
+                            <option value="low">Low</option>
+                            <option value="medium">Medium</option>
+                            <option value="high">High</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="select-field">
+                            <option value="">Select</option>
+                            <option value="rising">Rising</option>
+                            <option value="stable">Stable</option>
+                            <option value="falling">Falling</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Mortgage interest rates</td>
+                    <td>
+                        <select class="select-field demand-effect">
+                            <option value="">Select</option>
+                            <option value="increase">Increase</option>
+                            <option value="decrease">Decrease</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="select-field demand-strength">
+                            <option value="low">Low</option>
+                            <option value="medium">Medium</option>
+                            <option value="high">High</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="select-field">
+                            <option value="">Select</option>
+                            <option value="rising">Rising</option>
+                            <option value="stable">Stable</option>
+                            <option value="falling">Falling</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Employment rate</td>
+                    <td>
+                        <select class="select-field demand-effect">
+                            <option value="">Select</option>
+                            <option value="increase">Increase</option>
+                            <option value="decrease">Decrease</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="select-field demand-strength">
+                            <option value="low">Low</option>
+                            <option value="medium">Medium</option>
+                            <option value="high">High</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="select-field">
+                            <option value="">Select</option>
+                            <option value="strong">Strong</option>
+                            <option value="moderate">Moderate</option>
+                            <option value="weak">Weak</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Investor demand</td>
+                    <td>
+                        <select class="select-field demand-effect">
+                            <option value="">Select</option>
+                            <option value="increase">Increase</option>
+                            <option value="decrease">Decrease</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="select-field demand-strength">
+                            <option value="low">Low</option>
+                            <option value="medium">Medium</option>
+                            <option value="high">High</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="select-field">
+                            <option value="">Select</option>
+                            <option value="high">High</option>
+                            <option value="moderate">Moderate</option>
+                            <option value="low">Low</option>
+                        </select>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="prediction-box">
+            <h4>Net Effect on Demand:</h4>
+            <div class="checkbox-group" style="display: flex; gap: 20px;">
+                <label><input type="radio" name="demandShift" value="right"> Shift Right (Increase)</label>
+                <label><input type="radio" name="demandShift" value="left"> Shift Left (Decrease)</label>
+                <label><input type="radio" name="demandShift" value="stable"> Stable</label>
+            </div>
+        </div>
+
+        <h4 style="margin: 20px 0 10px; color: #374151;">Supply Factors in {{STATE_NAME}}</h4>
+        <table>
+            <thead>
+                <tr>
+                    <th>Factor</th>
+                    <th>Effect on Supply</th>
+                    <th>Strength</th>
+                    <th>Current Trend</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Construction costs</td>
+                    <td>
+                        <select class="select-field supply-effect">
+                            <option value="">Select</option>
+                            <option value="increase">Increase</option>
+                            <option value="decrease">Decrease</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="select-field supply-strength">
+                            <option value="low">Low</option>
+                            <option value="medium">Medium</option>
+                            <option value="high">High</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="select-field">
+                            <option value="">Select</option>
+                            <option value="rising">Rising</option>
+                            <option value="stable">Stable</option>
+                            <option value="falling">Falling</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Availability of land</td>
+                    <td>
+                        <select class="select-field supply-effect">
+                            <option value="">Select</option>
+                            <option value="increase">Increase</option>
+                            <option value="decrease">Decrease</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="select-field supply-strength">
+                            <option value="low">Low</option>
+                            <option value="medium">Medium</option>
+                            <option value="high">High</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="select-field">
+                            <option value="">Select</option>
+                            <option value="abundant">Abundant</option>
+                            <option value="limited">Limited</option>
+                            <option value="scarce">Scarce</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Zoning regulations</td>
+                    <td>
+                        <select class="select-field supply-effect">
+                            <option value="">Select</option>
+                            <option value="increase">Increase</option>
+                            <option value="decrease">Decrease</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="select-field supply-strength">
+                            <option value="low">Low</option>
+                            <option value="medium">Medium</option>
+                            <option value="high">High</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="select-field">
+                            <option value="">Select</option>
+                            <option value="restrictive">Restrictive</option>
+                            <option value="moderate">Moderate</option>
+                            <option value="permissive">Permissive</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Number of new builds</td>
+                    <td>
+                        <select class="select-field supply-effect">
+                            <option value="">Select</option>
+                            <option value="increase">Increase</option>
+                            <option value="decrease">Decrease</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="select-field supply-strength">
+                            <option value="low">Low</option>
+                            <option value="medium">Medium</option>
+                            <option value="high">High</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="select-field">
+                            <option value="">Select</option>
+                            <option value="many">Many</option>
+                            <option value="moderate">Moderate</option>
+                            <option value="few">Few</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Material costs</td>
+                    <td>
+                        <select class="select-field supply-effect">
+                            <option value="">Select</option>
+                            <option value="increase">Increase</option>
+                            <option value="decrease">Decrease</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="select-field supply-strength">
+                            <option value="low">Low</option>
+                            <option value="medium">Medium</option>
+                            <option value="high">High</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="select-field">
+                            <option value="">Select</option>
+                            <option value="high">High</option>
+                            <option value="moderate">Moderate</option>
+                            <option value="low">Low</option>
+                        </select>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="prediction-box">
+            <h4>Net Effect on Supply:</h4>
+            <div class="checkbox-group" style="display: flex; gap: 20px;">
+                <label><input type="radio" name="supplyShift" value="right"> Shift Right (Increase)</label>
+                <label><input type="radio" name="supplyShift" value="left"> Shift Left (Decrease)</label>
+                <label><input type="radio" name="supplyShift" value="stable"> Stable</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Part B: Predict Market Equilibrium</div>
+
+        <div class="scenario-box">
+            <div class="scenario-title">1. Overall Market Pressure</div>
+            <p><strong>Demand is shifting:</strong></p>
+            <div class="checkbox-group" style="margin-left: 20px;">
+                <label><input type="checkbox"> Right (increasing)</label>
+                <label><input type="checkbox"> Left (decreasing)</label>
+                <label><input type="checkbox"> Stable</label>
+            </div>
+            <p style="margin-top: 10px;"><strong>Supply is shifting:</strong></p>
+            <div class="checkbox-group" style="margin-left: 20px;">
+                <label><input type="checkbox"> Right (increasing)</label>
+                <label><input type="checkbox"> Left (decreasing)</label>
+                <label><input type="checkbox"> Stable</label>
+            </div>
+        </div>
+
+        <div class="scenario-box">
+            <div class="scenario-title">2. Price Prediction</div>
+            <p><strong>Prices will likely:</strong></p>
+            <div class="checkbox-group" style="margin-left: 20px; display: flex; gap: 20px;">
+                <label><input type="radio" name="pricePred" value="rise"> Rise</label>
+                <label><input type="radio" name="pricePred" value="fall"> Fall</label>
+                <label><input type="radio" name="pricePred" value="stable"> Stay stable</label>
+            </div>
+            <p style="margin-top: 10px;"><strong>Reasoning:</strong></p>
+            <textarea class="input-field" rows="2" placeholder="Explain your prediction..."></textarea>
+        </div>
+
+        <div class="scenario-box">
+            <div class="scenario-title">3. Market Conditions</div>
+            <p><strong>Currently:</strong></p>
+            <div class="checkbox-group" style="margin-left: 20px;">
+                <label><input type="radio" name="marketCond" value="seller"> Seller's market (demand > supply)</label>
+                <label><input type="radio" name="marketCond" value="buyer"> Buyer's market (supply > demand)</label>
+                <label><input type="radio" name="marketCond" value="balanced"> Balanced</label>
+            </div>
+            <p style="margin-top: 10px;"><strong>Evidence:</strong></p>
+            <textarea class="input-field" rows="2" placeholder="What evidence supports this?"></textarea>
+        </div>
+
+        <div class="scenario-box">
+            <div class="scenario-title">4. Timeline</div>
+            <p><strong>How long will current trends continue?</strong></p>
+            <input type="text" class="input-field" placeholder="e.g., 6 months, 1-2 years">
+            <p style="margin-top: 10px;"><strong>What could change these trends?</strong></p>
+            <textarea class="input-field" rows="2" placeholder="Identify potential disruptions..."></textarea>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Part C: Personal Application</div>
+
+        <div class="scenario-box">
+            <div class="scenario-title">Scenario 1: Planning to Rent</div>
+            <p>Given {{STATE_NAME}} market conditions, your best strategy is:</p>
+            <div class="checkbox-group" style="margin: 10px 0 15px 20px;">
+                <label><input type="radio" name="rentStrategy" value="now"> Sign lease now (prices rising, lock in current rate)</label>
+                <label><input type="radio" name="rentStrategy" value="wait"> Wait (prices falling, better deals coming)</label>
+                <label><input type="radio" name="rentStrategy" value="negotiate"> Negotiate (market balanced, leverage available)</label>
+            </div>
+            <p><strong>Reasoning:</strong></p>
+            <textarea class="input-field" rows="2" placeholder="Explain your strategy..."></textarea>
+
+            <div style="margin-top: 15px;">
+                <p><strong>Negotiation tactics based on supply/demand:</strong></p>
+                <p style="margin: 8px 0;">If vacancy rates are high (supply > demand):</p>
+                <input type="text" class="input-field" placeholder="Your negotiation approach...">
+                <p style="margin: 8px 0;">If vacancy rates are low (demand > supply):</p>
+                <input type="text" class="input-field" placeholder="Your negotiation approach...">
+                <p style="margin: 8px 0;">What time of year has the most leverage?</p>
+                <input type="text" class="input-field" placeholder="e.g., Winter months when demand is lower">
+            </div>
+        </div>
+
+        <div class="scenario-box">
+            <div class="scenario-title">Scenario 2: Planning to Buy (5-10 years)</div>
+
+            <div class="calculation-box">
+                <h4 style="margin-bottom: 10px; color: #10b981;">Down Payment Calculator</h4>
+                <div class="calc-row">
+                    <span>Current median price:</span>
+                    <input type="number" class="calc-input" id="currentPrice" placeholder="e.g., 350000">
+                </div>
+                <div class="calc-row">
+                    <span>Annual appreciation rate (%):</span>
+                    <input type="number" class="calc-input" id="appreciationRate" placeholder="e.g., 3" step="0.1">
+                </div>
+                <div class="calc-row">
+                    <span>Years until purchase:</span>
+                    <input type="number" class="calc-input" id="years" placeholder="e.g., 5">
+                </div>
+                <button class="btn btn-primary" onclick="calculateDownPayment()">Calculate</button>
+                <div id="downPaymentResult" class="result-display" style="display: none;"></div>
+            </div>
+
+            <p style="margin-top: 15px;"><strong>Market timing decision:</strong></p>
+            <textarea class="input-field" rows="2" placeholder="Should you buy as soon as you can afford it, or wait? Consider supply/demand trends..."></textarea>
+        </div>
+
+        <div class="scenario-box">
+            <div class="scenario-title">Scenario 3: Considering Real Estate Investment</div>
+
+            <div class="calculation-box">
+                <h4 style="margin-bottom: 10px; color: #10b981;">Cash Flow Analysis</h4>
+                <div class="calc-row">
+                    <span>Purchase price:</span>
+                    <input type="number" class="calc-input" id="purchasePrice" placeholder="e.g., 350000">
+                </div>
+                <div class="calc-row">
+                    <span>Expected monthly rent:</span>
+                    <input type="number" class="calc-input" id="monthlyRent" placeholder="e.g., 1800">
+                </div>
+                <div class="calc-row">
+                    <span>Monthly mortgage payment:</span>
+                    <input type="number" class="calc-input" id="mortgage" placeholder="e.g., 1500">
+                </div>
+                <div class="calc-row">
+                    <span>Other costs (taxes, ins., maint.):</span>
+                    <input type="number" class="calc-input" id="otherCosts" placeholder="e.g., 400">
+                </div>
+                <button class="btn btn-primary" onclick="calculateCashFlow()">Calculate Cash Flow</button>
+                <div id="cashFlowResult" class="result-display" style="display: none;"></div>
+            </div>
+
+            <p style="margin-top: 15px;"><strong>Investment Prognosis:</strong></p>
+            <div class="checkbox-group" style="margin-left: 20px;">
+                <label><input type="radio" name="investPrognosis" value="good"> Good investment</label>
+                <label><input type="radio" name="investPrognosis" value="risky"> Risky</label>
+                <label><input type="radio" name="investPrognosis" value="avoid"> Avoid</label>
+            </div>
+            <p style="margin-top: 10px;"><strong>Reasoning:</strong></p>
+            <textarea class="input-field" rows="2" placeholder="Consider rental demand, competition, and opportunity costs..."></textarea>
+        </div>
+    </div>
+
+    <div class="note">
+        <strong>Key Takeaway:</strong> Understanding {{STATE_NAME}}'s housing supply and demand helps you time decisions, negotiate effectively, and make smarter financial choices whether renting, buying, or investing.
+    </div>
+
+    <div style="text-align: center; margin-top: 20px;">
+        <button class="btn btn-primary" onclick="window.print()">Print / Save PDF</button>
+        <button class="btn btn-secondary" onclick="resetForm()">Reset Form</button>
+    </div>
+
+    <script>
+        function calculateDownPayment() {
+            const price = parseFloat(document.getElementById('currentPrice').value) || 0;
+            const rate = parseFloat(document.getElementById('appreciationRate').value) || 0;
+            const years = parseFloat(document.getElementById('years').value) || 0;
+
+            if (price && rate && years) {
+                const futurePrice = price * Math.pow(1 + rate/100, years);
+                const downPayment = futurePrice * 0.20;
+                const monthlySavings = downPayment / (years * 12);
+
+                const result = document.getElementById('downPaymentResult');
+                result.style.display = 'block';
+                result.innerHTML = `
+                    Future Price: $${futurePrice.toLocaleString('en-US', {maximumFractionDigits: 0})}<br>
+                    20% Down Payment: $${downPayment.toLocaleString('en-US', {maximumFractionDigits: 0})}<br>
+                    Monthly Savings Needed: $${monthlySavings.toLocaleString('en-US', {maximumFractionDigits: 0})}
+                `;
+            }
+        }
+
+        function calculateCashFlow() {
+            const rent = parseFloat(document.getElementById('monthlyRent').value) || 0;
+            const mortgage = parseFloat(document.getElementById('mortgage').value) || 0;
+            const other = parseFloat(document.getElementById('otherCosts').value) || 0;
+
+            const cashFlow = rent - mortgage - other;
+            const result = document.getElementById('cashFlowResult');
+            result.style.display = 'block';
+
+            if (cashFlow > 0) {
+                result.style.backgroundColor = '#10b981';
+                result.innerHTML = `Net Monthly Cash Flow: +$${cashFlow.toLocaleString('en-US', {maximumFractionDigits: 0})} (Positive)`;
+            } else if (cashFlow < 0) {
+                result.style.backgroundColor = '#ef4444';
+                result.innerHTML = `Net Monthly Cash Flow: -$${Math.abs(cashFlow).toLocaleString('en-US', {maximumFractionDigits: 0})} (Negative)`;
+            } else {
+                result.style.backgroundColor = '#f59e0b';
+                result.innerHTML = `Net Monthly Cash Flow: $0 (Break-even)`;
+            }
+        }
+
+        function resetForm() {
+            document.querySelectorAll('input, textarea, select').forEach(el => {
+                if (el.type === 'checkbox' || el.type === 'radio') {
+                    el.checked = false;
+                } else if (el.tagName === 'SELECT') {
+                    el.selectedIndex = 0;
+                } else {
+                    el.value = '';
+                }
+            });
+            document.getElementById('downPaymentResult').style.display = 'none';
+            document.getElementById('cashFlowResult').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

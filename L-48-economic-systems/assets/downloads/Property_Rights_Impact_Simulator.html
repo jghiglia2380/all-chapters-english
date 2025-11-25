@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Property Rights Impact Simulator - PFL Academy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background: #f9fafb;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+            color: white;
+            padding: 24px;
+            border-radius: 12px;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 16px;
+        }
+
+        .scenario-tabs {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .scenario-tab {
+            flex: 1;
+            padding: 16px;
+            background: white;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .scenario-tab:hover {
+            border-color: #6366f1;
+        }
+
+        .scenario-tab.active {
+            border-color: #6366f1;
+            background: #f5f3ff;
+        }
+
+        .scenario-tab h3 {
+            font-size: 16px;
+            margin-bottom: 4px;
+            color: #1f2937;
+        }
+
+        .scenario-tab p {
+            font-size: 12px;
+            color: #6b7280;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+
+        .rights-panel {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .rights-panel h3 {
+            font-size: 18px;
+            margin-bottom: 16px;
+            color: #6366f1;
+        }
+
+        .rights-type {
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .rights-type:last-child {
+            margin-bottom: 0;
+        }
+
+        .rights-type.strong {
+            background: #ecfdf5;
+        }
+
+        .rights-type.weak {
+            background: #fef2f2;
+        }
+
+        .rights-type.selected {
+            border-color: #6366f1;
+        }
+
+        .rights-type h4 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .rights-type.strong h4 { color: #059669; }
+        .rights-type.weak h4 { color: #dc2626; }
+
+        .rights-type ul {
+            font-size: 13px;
+            margin-left: 16px;
+            color: #4b5563;
+        }
+
+        .rights-type li {
+            margin-bottom: 4px;
+        }
+
+        .results-panel {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .results-panel h3 {
+            font-size: 18px;
+            margin-bottom: 16px;
+            color: #6366f1;
+        }
+
+        .outcome-card {
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 12px;
+        }
+
+        .outcome-card.positive { background: #ecfdf5; border-left: 4px solid #10b981; }
+        .outcome-card.negative { background: #fef2f2; border-left: 4px solid #ef4444; }
+
+        .outcome-card h4 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .outcome-card.positive h4 { color: #059669; }
+        .outcome-card.negative h4 { color: #dc2626; }
+
+        .outcome-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 8px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 6px;
+        }
+
+        .stat-value {
+            font-size: 18px;
+            font-weight: 700;
+            color: #6366f1;
+        }
+
+        .stat-label {
+            font-size: 11px;
+            color: #6b7280;
+        }
+
+        .outcome-description {
+            font-size: 13px;
+            color: #4b5563;
+        }
+
+        .comparison-section {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            margin-bottom: 24px;
+        }
+
+        .comparison-section h3 {
+            font-size: 18px;
+            margin-bottom: 16px;
+            color: #6366f1;
+        }
+
+        .wealth-comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .wealth-box {
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .wealth-box.strong { background: #ecfdf5; }
+        .wealth-box.weak { background: #fef2f2; }
+
+        .wealth-box h4 {
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+
+        .wealth-box.strong h4 { color: #059669; }
+        .wealth-box.weak h4 { color: #dc2626; }
+
+        .wealth-amount {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .wealth-box.strong .wealth-amount { color: #059669; }
+        .wealth-box.weak .wealth-amount { color: #dc2626; }
+
+        .wealth-note {
+            font-size: 12px;
+            color: #6b7280;
+        }
+
+        .reflection-section {
+            background: #fffbeb;
+            border-left: 4px solid #f59e0b;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 24px;
+        }
+
+        .reflection-section h3 {
+            font-size: 16px;
+            margin-bottom: 12px;
+            color: #b45309;
+        }
+
+        .reflection-input {
+            width: 100%;
+            min-height: 80px;
+            padding: 12px;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 14px;
+            resize: vertical;
+        }
+
+        .print-section {
+            text-align: center;
+        }
+
+        .print-btn {
+            background: #6366f1;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .print-btn:hover {
+            background: #4f46e5;
+        }
+
+        @media print {
+            body {
+                padding: 10px;
+                background: white;
+            }
+
+            .print-section {
+                display: none;
+            }
+
+            .reflection-input {
+                border: 1px solid #000;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+
+            .scenario-tabs {
+                flex-direction: column;
+            }
+
+            .wealth-comparison {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Property Rights Impact Simulator</h1>
+            <p>Explore how property rights affect investment decisions and wealth building</p>
+        </div>
+
+        <div class="scenario-tabs">
+            <div class="scenario-tab active" onclick="selectScenario('business')">
+                <h3>Starting a Business</h3>
+                <p>$25,000 coffee shop investment</p>
+            </div>
+            <div class="scenario-tab" onclick="selectScenario('home')">
+                <h3>Buying a Home</h3>
+                <p>$300,000 property purchase</p>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="rights-panel">
+                <h3>Select Property Rights Environment</h3>
+
+                <div class="rights-type strong selected" onclick="selectRights('strong')">
+                    <h4>Strong Property Rights (USA)</h4>
+                    <ul>
+                        <li>Contract enforcement protects lease</li>
+                        <li>Courts resolve disputes fairly</li>
+                        <li>Lenders offer expansion loans</li>
+                        <li>You keep profits after taxes</li>
+                        <li>Can sell or pass to children</li>
+                    </ul>
+                </div>
+
+                <div class="rights-type weak" onclick="selectRights('weak')">
+                    <h4>Weak Property Rights (Failed State)</h4>
+                    <ul>
+                        <li>Police demand "protection money"</li>
+                        <li>Landlord might evict arbitrarily</li>
+                        <li>Employees might steal equipment</li>
+                        <li>Courts don't function properly</li>
+                        <li>Government might nationalize business</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="results-panel">
+                <h3>Investment Outcomes</h3>
+                <div id="results-content">
+                    <!-- Populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+
+        <div class="comparison-section">
+            <h3 id="comparison-title">Wealth Building Impact (5-Year Projection)</h3>
+            <div class="wealth-comparison" id="wealth-comparison">
+                <!-- Populated by JavaScript -->
+            </div>
+        </div>
+
+        <div class="reflection-section">
+            <h3>Personal Reflection</h3>
+            <p style="margin-bottom: 12px; font-size: 14px;">How much would you invest in education, business, or property if you faced a 50% chance of losing it to corruption or arbitrary government action? How does this explain poverty in countries with weak property rights?</p>
+            <textarea class="reflection-input" placeholder="Type your reflection here..."></textarea>
+        </div>
+
+        <div class="print-section">
+            <button class="print-btn" onclick="window.print()">Print Simulation Results</button>
+        </div>
+    </div>
+
+    <script>
+        let currentScenario = 'business';
+        let currentRights = 'strong';
+
+        const scenarios = {
+            business: {
+                strong: {
+                    positive: true,
+                    title: 'High Investment Confidence',
+                    stats: [
+                        { value: '$200,000', label: 'Business Value (Year 5)' },
+                        { value: '$45,000', label: 'Annual Profit (Year 2)' },
+                        { value: 'HIGH', label: 'Willingness to Invest' },
+                        { value: 'LOW', label: 'Risk Level' }
+                    ],
+                    description: 'Legal protections mean investment likely pays off. You buy equipment ($15,000), sign 5-year lease ($2,000/month), hire employees. Year 1 profit: $20,000. Year 2 profit: $45,000. By Year 5, business worth $200,000 - can sell for retirement or pass to children.'
+                },
+                weak: {
+                    positive: false,
+                    title: 'Low Investment Confidence',
+                    stats: [
+                        { value: '$0', label: 'Business Value (Year 5)' },
+                        { value: '$0', label: 'Annual Profit' },
+                        { value: 'LOW', label: 'Willingness to Invest' },
+                        { value: 'EXTREME', label: 'Risk Level' }
+                    ],
+                    description: 'Investment could be lost to corruption, theft, expropriation, or arbitrary rule changes. Protection money ($500/month), unreliable lease, employee theft, no loans available. $25,000 stays in mattress, generates no returns, loses value to inflation.'
+                },
+                wealth: {
+                    strong: { amount: '$200,000', note: 'From $25,000 initial investment' },
+                    weak: { amount: '$0', note: '$25,000 uninvested, loses to inflation' }
+                }
+            },
+            home: {
+                strong: {
+                    positive: true,
+                    title: 'Secure Home Investment',
+                    stats: [
+                        { value: '$600,000', label: 'Home Value (30 years)' },
+                        { value: '$540,000', label: 'Equity Built' },
+                        { value: 'HIGH', label: 'Willingness to Buy' },
+                        { value: 'LOW', label: 'Risk Level' }
+                    ],
+                    description: 'Title search confirms ownership. Deed transfers securely, government records protect ownership. Mortgage lender accepts house as collateral. You can sell, rent, renovate, or leave to children. Over 30 years, house appreciates to $600,000, building $540,000 equity.'
+                },
+                weak: {
+                    positive: false,
+                    title: 'Risky Home Purchase',
+                    stats: [
+                        { value: '$300,000', label: 'Home Value (Stagnant)' },
+                        { value: '$0', label: 'Equity Built' },
+                        { value: 'IMPOSSIBLE', label: 'Willingness to Buy' },
+                        { value: 'EXTREME', label: 'Risk Level' }
+                    ],
+                    description: 'Title unclear - previous owner might reclaim. Government might seize without fair compensation. No mortgage available since lenders can\'t foreclose. Would need $300,000 cash (impossible for most). Zoning not enforced - factory could destroy value.'
+                },
+                wealth: {
+                    strong: { amount: '$540,000', note: 'From $60,000 down payment' },
+                    weak: { amount: '$60,000', note: 'Savings stagnate, no home ownership' }
+                }
+            }
+        };
+
+        function selectScenario(scenario) {
+            currentScenario = scenario;
+            document.querySelectorAll('.scenario-tab').forEach(tab => tab.classList.remove('active'));
+            event.target.closest('.scenario-tab').classList.add('active');
+            updateResults();
+        }
+
+        function selectRights(rights) {
+            currentRights = rights;
+            document.querySelectorAll('.rights-type').forEach(type => type.classList.remove('selected'));
+            document.querySelector('.rights-type.' + rights).classList.add('selected');
+            updateResults();
+        }
+
+        function updateResults() {
+            const data = scenarios[currentScenario][currentRights];
+            const wealthData = scenarios[currentScenario].wealth;
+
+            // Update results panel
+            const resultsContent = document.getElementById('results-content');
+            const cardClass = data.positive ? 'positive' : 'negative';
+
+            let statsHtml = '<div class="outcome-stats">';
+            data.stats.forEach(stat => {
+                statsHtml += `
+                    <div class="stat-item">
+                        <div class="stat-value">${stat.value}</div>
+                        <div class="stat-label">${stat.label}</div>
+                    </div>
+                `;
+            });
+            statsHtml += '</div>';
+
+            resultsContent.innerHTML = `
+                <div class="outcome-card ${cardClass}">
+                    <h4>${data.title}</h4>
+                    ${statsHtml}
+                    <p class="outcome-description">${data.description}</p>
+                </div>
+            `;
+
+            // Update wealth comparison
+            const comparisonTitle = currentScenario === 'business'
+                ? 'Wealth Building Impact (5-Year Projection)'
+                : 'Wealth Building Impact (30-Year Projection)';
+            document.getElementById('comparison-title').textContent = comparisonTitle;
+
+            document.getElementById('wealth-comparison').innerHTML = `
+                <div class="wealth-box strong">
+                    <h4>Strong Property Rights</h4>
+                    <div class="wealth-amount">${wealthData.strong.amount}</div>
+                    <div class="wealth-note">${wealthData.strong.note}</div>
+                </div>
+                <div class="wealth-box weak">
+                    <h4>Weak Property Rights</h4>
+                    <div class="wealth-amount">${wealthData.weak.amount}</div>
+                    <div class="wealth-note">${wealthData.weak.note}</div>
+                </div>
+            `;
+        }
+
+        // Initialize
+        updateResults();
+    </script>
+</body>
+</html>

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investment Decision Simulator</title>
+    <style>
+        :root { --primary: #6366f1; --secondary: #8b5cf6; --success: #10b981; --warning: #f59e0b; --danger: #ef4444; }
+        body { font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 14px; line-height: 1.5; color: #1f2937; max-width: 900px; margin: 0 auto; padding: 15px; }
+        h1 { color: var(--primary); font-size: 24px; border-bottom: 2px solid var(--primary); padding-bottom: 8px; }
+        h2 { color: var(--secondary); font-size: 18px; margin-top: 20px; }
+        .scenario { background: #f9fafb; padding: 15px; border-radius: 5px; margin: 15px 0; }
+        .scenario-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+        .scenario-badge { background: var(--primary); color: white; padding: 4px 8px; border-radius: 4px; font-size: 12px; }
+        .context { background: #e0e7ff; padding: 10px; border-radius: 4px; margin: 10px 0; }
+        .options { display: grid; gap: 10px; margin: 15px 0; }
+        .option-btn { padding: 12px; background: white; border: 2px solid #d1d5db; border-radius: 5px; cursor: pointer; text-align: left; }
+        .option-btn:hover { border-color: var(--primary); background: #f0f7ff; }
+        .option-btn.selected { border-color: var(--primary); background: #e0e7ff; }
+        .outcome { padding: 15px; border-radius: 5px; margin: 15px 0; display: none; }
+        .outcome.good { background: #d1fae5; border: 1px solid var(--success); }
+        .outcome.bad { background: #fee2e2; border: 1px solid var(--danger); }
+        .outcome.neutral { background: #fef3c7; border: 1px solid var(--warning); }
+        .bias-tag { display: inline-block; background: var(--warning); color: white; padding: 2px 6px; border-radius: 3px; font-size: 11px; margin: 2px; }
+        .final-results { background: #e0e7ff; padding: 15px; border-radius: 5px; margin: 15px 0; display: none; }
+        .score-display { text-align: center; padding: 20px; }
+        .score-value { font-size: 48px; font-weight: bold; color: var(--primary); }
+        button { background: var(--primary); color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; margin: 5px; }
+        button:hover { background: var(--secondary); }
+        @media print { body { font-size: 11pt; } button { display: none; } }
+    </style>
+</head>
+<body>
+    <h1>Investment Decision Simulator</h1>
+    <p>Navigate challenging scenarios and see how biases affect your decisions</p>
+
+    <div id="scenarios-container"></div>
+
+    <div style="text-align: center; margin: 20px 0;">
+        <button onclick="startSimulation()">Start Simulation</button>
+        <button onclick="showFinalResults()">Show Final Analysis</button>
+    </div>
+
+    <div class="final-results" id="final-results">
+        <h2 style="margin-top: 0;">Simulation Results</h2>
+        <div class="score-display">
+            <div>Your Score</div>
+            <div class="score-value" id="total-score">0/3</div>
+        </div>
+        <div id="lessons"></div>
+    </div>
+
+    <script>
+        const scenarios = [
+            {
+                id: 1,
+                title: "The Market Crash",
+                badge: "Loss Aversion Test",
+                context: "The market has dropped 30% in a month. Your portfolio is down $15,000. Headlines are screaming about recession. Everyone seems to be selling.",
+                portfolio: "$50,000 → $35,000",
+                options: [
+                    {
+                        text: "Sell everything and move to cash until things calm down",
+                        biases: ["Loss Aversion", "Recency Bias"],
+                        outcome: "bad",
+                        result: "6 months later, the market recovered 40%. Your $35,000 in cash is now worth $35,000, while staying invested would have given you $49,000. Panic selling locked in your losses.",
+                        score: 0
+                    },
+                    {
+                        text: "Hold your current positions and stick to your plan",
+                        biases: [],
+                        outcome: "good",
+                        result: "6 months later, the market recovered 40%. Your $35,000 grew to $49,000. By staying disciplined, you recovered most of your losses.",
+                        score: 1
+                    },
+                    {
+                        text: "Buy more stocks while they're cheap (rebalance)",
+                        biases: [],
+                        outcome: "good",
+                        result: "6 months later, the market recovered 40%. By buying more at the low, your portfolio grew to $56,000 - exceeding your original balance!",
+                        score: 1
+                    }
+                ]
+            },
+            {
+                id: 2,
+                title: "The Hot Stock",
+                badge: "Herd Mentality Test",
+                context: "TechHype Inc. has tripled in the past month. It's all over social media. Your coworkers are bragging about their gains. FOMO is real.",
+                portfolio: "Considering: $5,000 investment",
+                options: [
+                    {
+                        text: "Buy now before you miss out completely",
+                        biases: ["Herd Mentality", "FOMO"],
+                        outcome: "bad",
+                        result: "TechHype was in a speculative bubble. It crashed 60% over the next 3 months. Your $5,000 is now worth $2,000. The hype was not based on fundamentals.",
+                        score: 0
+                    },
+                    {
+                        text: "Research the company's financials before deciding",
+                        biases: [],
+                        outcome: "good",
+                        result: "Your research revealed the stock was trading at 100x sales with no profits. You avoided the 60% crash and invested in a fundamentally sound alternative instead.",
+                        score: 1
+                    },
+                    {
+                        text: "Buy a small amount so you don't miss out entirely",
+                        biases: ["Herd Mentality"],
+                        outcome: "neutral",
+                        result: "You invested $1,000 and lost $600 in the crash. Limited damage, but you still made an emotional decision without proper analysis.",
+                        score: 0
+                    }
+                ]
+            },
+            {
+                id: 3,
+                title: "The Confirmation Trap",
+                badge: "Confirmation Bias Test",
+                context: "You bought EcoGreen at $50, confident in your analysis. It's now at $35. You find an article saying it's undervalued, but also see reports about serious competitive threats.",
+                portfolio: "$5,000 → $3,500",
+                options: [
+                    {
+                        text: "The bullish article confirms your thesis - hold or buy more",
+                        biases: ["Confirmation Bias", "Anchoring"],
+                        outcome: "bad",
+                        result: "The competitive threats were real. EcoGreen continued declining to $20 as competitors took market share. You should have weighed all evidence equally.",
+                        score: 0
+                    },
+                    {
+                        text: "Thoroughly analyze both the bullish and bearish cases",
+                        biases: [],
+                        outcome: "good",
+                        result: "Your balanced analysis revealed the competitive threats were serious. You sold at $35 and avoided the further decline to $20, preserving $1,500.",
+                        score: 1
+                    },
+                    {
+                        text: "The loss proves you were wrong - sell everything",
+                        biases: ["Loss Aversion"],
+                        outcome: "neutral",
+                        result: "Sometimes selling is right, but your decision was based on emotion, not analysis. Develop a systematic approach to evaluating when to sell.",
+                        score: 0
+                    }
+                ]
+            }
+        ];
+
+        let decisions = {};
+
+        function startSimulation() {
+            const container = document.getElementById('scenarios-container');
+            container.innerHTML = '';
+            decisions = {};
+            document.getElementById('final-results').style.display = 'none';
+
+            scenarios.forEach(scenario => {
+                const div = document.createElement('div');
+                div.className = 'scenario';
+                div.id = `scenario-${scenario.id}`;
+                div.innerHTML = `
+                    <div class="scenario-header">
+                        <h2 style="margin: 0;">Scenario ${scenario.id}: ${scenario.title}</h2>
+                        <span class="scenario-badge">${scenario.badge}</span>
+                    </div>
+                    <div class="context">
+                        <strong>Situation:</strong> ${scenario.context}<br>
+                        <strong>Your Portfolio:</strong> ${scenario.portfolio}
+                    </div>
+                    <p><strong>What do you do?</strong></p>
+                    <div class="options" id="options-${scenario.id}">
+                        ${scenario.options.map((opt, i) => `
+                            <div class="option-btn" onclick="selectDecision(${scenario.id}, ${i}, this)">
+                                ${opt.text}
+                            </div>
+                        `).join('')}
+                    </div>
+                    <div class="outcome" id="outcome-${scenario.id}"></div>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        function selectDecision(scenarioId, optionIndex, element) {
+            const scenario = scenarios.find(s => s.id === scenarioId);
+            const option = scenario.options[optionIndex];
+            decisions[scenarioId] = { optionIndex, option };
+
+            // Update visual
+            const options = document.querySelectorAll(`#options-${scenarioId} .option-btn`);
+            options.forEach(opt => opt.classList.remove('selected'));
+            element.classList.add('selected');
+
+            // Show outcome
+            const outcomeDiv = document.getElementById(`outcome-${scenarioId}`);
+            outcomeDiv.className = `outcome ${option.outcome}`;
+            outcomeDiv.innerHTML = `
+                <strong>${option.outcome === 'good' ? '✓ Good Decision' : option.outcome === 'bad' ? '✗ Poor Decision' : '⚠ Mixed Result'}</strong><br>
+                ${option.result}
+                ${option.biases.length > 0 ? '<br><br><strong>Biases at play:</strong> ' + option.biases.map(b => `<span class="bias-tag">${b}</span>`).join(' ') : ''}
+            `;
+            outcomeDiv.style.display = 'block';
+        }
+
+        function showFinalResults() {
+            if (Object.keys(decisions).length < scenarios.length) {
+                alert('Please make decisions for all scenarios first.');
+                return;
+            }
+
+            let totalScore = 0;
+            let lessons = [];
+
+            Object.entries(decisions).forEach(([scenarioId, decision]) => {
+                totalScore += decision.option.score;
+                if (decision.option.biases.length > 0) {
+                    lessons.push(`<li><strong>Scenario ${scenarioId}:</strong> Watch out for ${decision.option.biases.join(' and ')}</li>`);
+                }
+            });
+
+            document.getElementById('total-score').textContent = `${totalScore}/3`;
+            document.getElementById('lessons').innerHTML = lessons.length > 0 ?
+                `<h3>Key Lessons:</h3><ul>${lessons.join('')}</ul>` :
+                '<p style="color: var(--success); font-weight: bold;">Excellent! You avoided the major behavioral traps in all scenarios.</p>';
+
+            document.getElementById('final-results').style.display = 'block';
+        }
+
+        // Initialize
+        startSimulation();
+    </script>
+</body>
+</html>

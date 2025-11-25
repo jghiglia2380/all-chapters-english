@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tax Preparation Reference Sheet | PFL Academy</title>
+    <style>
+        :root { --primary: #6366f1; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-size: 14px;
+            line-height: 1.5;
+            color: #1f2937;
+            background: #fff;
+            padding: 20px;
+        }
+        .container { max-width: 850px; margin: 0 auto; }
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid var(--primary);
+        }
+        h1 { font-size: 1.8rem; color: var(--primary); margin-bottom: 5px; }
+        .subtitle { color: #6b7280; font-size: 0.9rem; }
+        .print-btn {
+            display: block;
+            width: 200px;
+            margin: 0 auto 20px;
+            padding: 10px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        .print-btn:hover { background: #4f46e5; }
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .section {
+            background: #f9fafb;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary);
+        }
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        .section ul { list-style-position: inside; margin-left: 10px; }
+        .section li { margin-bottom: 6px; }
+        .full-width { grid-column: 1 / -1; }
+        .highlight-box {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 12px;
+            margin: 15px 0;
+            border-radius: 6px;
+        }
+        .key-points {
+            background: #eff6ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        .key-points h3 { color: var(--primary); margin-bottom: 10px; font-size: 1rem; }
+        .key-points ul { list-style-position: inside; }
+        .key-points li { margin-bottom: 6px; }
+        .term-list { margin-top: 10px; }
+        .term-item {
+            padding: 8px 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .term-item:last-child { border-bottom: none; }
+        .term-name { font-weight: 600; color: #374151; }
+        .term-def { font-size: 0.85rem; color: #6b7280; margin-top: 2px; }
+        .deadline-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        .deadline-table th, .deadline-table td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .deadline-table th {
+            background: #f3f4f6;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+        .deadline-table td { font-size: 0.85rem; }
+        .doc-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+            margin-top: 10px;
+        }
+        .doc-item {
+            background: white;
+            padding: 8px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+        }
+        .doc-item strong { color: #374151; }
+        .doc-item span { color: #6b7280; font-size: 0.75rem; }
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 2px solid #e5e7eb;
+            color: #6b7280;
+            font-size: 0.85rem;
+        }
+        @media print {
+            body { padding: 10px; }
+            .container { max-width: 100%; }
+            .grid { gap: 10px; }
+            .print-btn { display: none; }
+        }
+        @media (max-width: 768px) {
+            .grid { grid-template-columns: 1fr; }
+            .doc-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Tax Preparation Reference Sheet</h1>
+            <p class="subtitle">Quick Guide to Tax Planning and Compliance</p>
+        </header>
+
+        <button class="print-btn" onclick="window.print()">Print / Save PDF</button>
+
+        <div class="key-points">
+            <h3>Key Concepts</h3>
+            <ul>
+                <li><strong>Tax Planning:</strong> Legal strategies to minimize tax liability through informed decisions</li>
+                <li><strong>Tax Compliance:</strong> Following tax laws correctly and filing on time</li>
+                <li><strong>Tax Evasion:</strong> Illegal non-payment through deception (avoid at all costs!)</li>
+                <li><strong>Tax-Advantaged Accounts:</strong> Special accounts that provide tax benefits (IRA, 401k, HSA)</li>
+            </ul>
+        </div>
+
+        <div class="grid">
+            <div class="section">
+                <div class="section-title">Key Tax Terms</div>
+                <div class="term-list">
+                    <div class="term-item">
+                        <div class="term-name">Adjusted Gross Income (AGI)</div>
+                        <div class="term-def">Gross income minus above-the-line deductions</div>
+                    </div>
+                    <div class="term-item">
+                        <div class="term-name">Standard Deduction</div>
+                        <div class="term-def">Fixed deduction based on filing status ($13,850 single, $27,700 MFJ)</div>
+                    </div>
+                    <div class="term-item">
+                        <div class="term-name">Taxable Income</div>
+                        <div class="term-def">AGI minus deductions; the amount actually taxed</div>
+                    </div>
+                    <div class="term-item">
+                        <div class="term-name">Tax Liability</div>
+                        <div class="term-def">Total tax owed before credits are applied</div>
+                    </div>
+                    <div class="term-item">
+                        <div class="term-name">Tax Bracket</div>
+                        <div class="term-def">Income range subject to a specific marginal rate</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-title">Filing Status Options</div>
+                <div class="term-list">
+                    <div class="term-item">
+                        <div class="term-name">Single</div>
+                        <div class="term-def">Unmarried or legally separated</div>
+                    </div>
+                    <div class="term-item">
+                        <div class="term-name">Married Filing Jointly</div>
+                        <div class="term-def">Married couple filing one return (usually best rate)</div>
+                    </div>
+                    <div class="term-item">
+                        <div class="term-name">Married Filing Separately</div>
+                        <div class="term-def">Married couple filing two returns</div>
+                    </div>
+                    <div class="term-item">
+                        <div class="term-name">Head of Household</div>
+                        <div class="term-def">Unmarried with qualifying dependent</div>
+                    </div>
+                    <div class="term-item">
+                        <div class="term-name">Qualifying Widow(er)</div>
+                        <div class="term-def">Surviving spouse with dependent child</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section full-width">
+            <div class="section-title">Important Tax Deadlines</div>
+            <table class="deadline-table">
+                <tr>
+                    <th>Date</th>
+                    <th>Deadline</th>
+                    <th>Notes</th>
+                </tr>
+                <tr>
+                    <td>January 31</td>
+                    <td>W-2s and 1099s due</td>
+                    <td>Employers must send to employees</td>
+                </tr>
+                <tr>
+                    <td>April 15</td>
+                    <td>Tax filing deadline</td>
+                    <td>Also IRA contribution deadline</td>
+                </tr>
+                <tr>
+                    <td>April 15</td>
+                    <td>Q1 estimated tax due</td>
+                    <td>For self-employed individuals</td>
+                </tr>
+                <tr>
+                    <td>June 15</td>
+                    <td>Q2 estimated tax due</td>
+                    <td>For self-employed individuals</td>
+                </tr>
+                <tr>
+                    <td>September 15</td>
+                    <td>Q3 estimated tax due</td>
+                    <td>For self-employed individuals</td>
+                </tr>
+                <tr>
+                    <td>October 15</td>
+                    <td>Extension deadline</td>
+                    <td>Must have filed extension by April 15</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="grid">
+            <div class="section">
+                <div class="section-title">Essential Documents</div>
+                <div class="doc-grid">
+                    <div class="doc-item">
+                        <strong>W-2</strong><br>
+                        <span>Wages from employers</span>
+                    </div>
+                    <div class="doc-item">
+                        <strong>1099-NEC</strong><br>
+                        <span>Freelance income</span>
+                    </div>
+                    <div class="doc-item">
+                        <strong>1099-INT</strong><br>
+                        <span>Interest income</span>
+                    </div>
+                    <div class="doc-item">
+                        <strong>1099-DIV</strong><br>
+                        <span>Dividend income</span>
+                    </div>
+                    <div class="doc-item">
+                        <strong>1098</strong><br>
+                        <span>Mortgage interest</span>
+                    </div>
+                    <div class="doc-item">
+                        <strong>1098-E</strong><br>
+                        <span>Student loan interest</span>
+                    </div>
+                    <div class="doc-item">
+                        <strong>1098-T</strong><br>
+                        <span>Tuition paid</span>
+                    </div>
+                    <div class="doc-item">
+                        <strong>5498</strong><br>
+                        <span>IRA contributions</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-title">Common Deductions</div>
+                <ul>
+                    <li><strong>Student loan interest</strong> - Up to $2,500</li>
+                    <li><strong>Traditional IRA</strong> - Up to $6,500 ($7,500 if 50+)</li>
+                    <li><strong>HSA contributions</strong> - Up to $3,850 individual</li>
+                    <li><strong>Educator expenses</strong> - Up to $300</li>
+                    <li><strong>Mortgage interest</strong> - On loans up to $750,000</li>
+                    <li><strong>State/local taxes</strong> - Up to $10,000 (SALT)</li>
+                    <li><strong>Charitable contributions</strong> - Up to 60% of AGI</li>
+                    <li><strong>Medical expenses</strong> - Exceeding 7.5% of AGI</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="grid">
+            <div class="section">
+                <div class="section-title">Common Tax Credits</div>
+                <ul>
+                    <li><strong>American Opportunity</strong> - Up to $2,500 (education)</li>
+                    <li><strong>Lifetime Learning</strong> - Up to $2,000 (education)</li>
+                    <li><strong>Child Tax Credit</strong> - Up to $2,000/child</li>
+                    <li><strong>Child Care Credit</strong> - Up to $3,000 (1 child)</li>
+                    <li><strong>Saver's Credit</strong> - Up to $1,000 (retirement)</li>
+                    <li><strong>Earned Income Credit</strong> - Up to $7,430 (refundable)</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <div class="section-title">Common Mistakes to Avoid</div>
+                <ul>
+                    <li><strong>Missing deadlines</strong> - File on time, even if you can't pay</li>
+                    <li><strong>Math errors</strong> - Double-check all calculations</li>
+                    <li><strong>Wrong filing status</strong> - Choose the most beneficial status</li>
+                    <li><strong>Missing income</strong> - Report ALL income sources</li>
+                    <li><strong>Incorrect SSN</strong> - Verify all Social Security numbers</li>
+                    <li><strong>Poor records</strong> - Keep documents for 3+ years</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="highlight-box">
+            <strong>Remember:</strong> Tax planning is an ongoing process, not just an annual task. Proactive planning throughout the year can significantly reduce your tax burden while ensuring full compliance with tax laws. When in doubt, consult a qualified tax professional.
+        </div>
+
+        <footer>
+            <p><strong>PFL Academy</strong> | Chapter 2.5: Tax Planning and Compliance</p>
+            <p style="margin-top: 5px;">Tax laws change frequently. Verify current rates and limits at IRS.gov</p>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consumer Surplus Maximization Game</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        header { text-align: center; margin-bottom: 30px; }
+        h1 { font-size: 2rem; color: #6366f1; margin-bottom: 10px; }
+        .subtitle { color: #6b7280; }
+        .score-display {
+            background: #f0f9ff;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        .score { font-size: 2rem; font-weight: bold; color: #6366f1; }
+        .scenario-card {
+            background: #f9fafb;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+        .scenario-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .scenario-title { font-weight: bold; font-size: 1.1rem; }
+        .round-badge {
+            background: #6366f1;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+        .scenario-text { margin-bottom: 15px; color: #4b5563; }
+        .price-info {
+            background: #e0e7ff;
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+        .action-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+        .action-btn {
+            padding: 12px;
+            background: white;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.3s;
+        }
+        .action-btn:hover { border-color: #6366f1; }
+        .action-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .action-btn.correct { background: #d1fae5; border-color: #10b981; }
+        .action-btn.incorrect { background: #fee2e2; border-color: #ef4444; }
+        .feedback {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 8px;
+            display: none;
+        }
+        .feedback.show { display: block; }
+        .feedback.correct { background: #d1fae5; color: #065f46; }
+        .feedback.incorrect { background: #fee2e2; color: #991b1b; }
+        .next-btn {
+            width: 100%;
+            padding: 12px;
+            background: #6366f1;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 15px;
+            display: none;
+        }
+        .next-btn.show { display: block; }
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #e5e7eb;
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+        @media (max-width: 768px) {
+            .action-grid { grid-template-columns: 1fr; }
+        }
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .container {
+                box-shadow: none;
+                padding: 20px;
+            }
+            .next-btn,
+            .no-print {
+                display: none !important;
+            }
+            .scenario-card {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Consumer Surplus Game</h1>
+            <p class="subtitle">Maximize the value you capture from purchases</p>
+        </header>
+
+        <div class="score-display">
+            Total Surplus Captured: <span class="score" id="totalScore">$0</span>
+        </div>
+
+        <div class="scenario-card" id="scenario">
+            <div class="scenario-header">
+                <span class="scenario-title" id="scenarioTitle">Loading...</span>
+                <span class="round-badge" id="roundBadge">Round 1/4</span>
+            </div>
+            <p class="scenario-text" id="scenarioText"></p>
+            <div class="price-info" id="priceInfo"></div>
+            <div class="action-grid" id="actionGrid"></div>
+            <div class="feedback" id="feedback"></div>
+            <button class="next-btn" id="nextBtn" onclick="nextScenario()">Next Scenario</button>
+        </div>
+
+        <footer>
+            <p><strong>PFL Academy</strong> | Consumer Surplus</p>
+        </footer>
+    </div>
+
+    <script>
+        const scenarios = [
+            {
+                title: 'Laptop Purchase',
+                text: 'You value a new laptop at $1,200 (what it\'s worth to you). Best Buy lists it at $999. You find the same model on Amazon for $899.',
+                priceInfo: 'Your Value: $1,200 | Best Buy: $999 | Amazon: $899',
+                actions: [
+                    { text: 'Buy at Best Buy ($999)', surplus: 201, correct: false },
+                    { text: 'Buy on Amazon ($899)', surplus: 301, correct: true },
+                    { text: 'Wait for a sale', surplus: 0, correct: false },
+                    { text: 'Buy a cheaper laptop', surplus: 0, correct: false }
+                ],
+                feedback: 'Buy on Amazon! Consumer surplus = $1,200 - $899 = $301. Always capture the maximum difference between your value and the lowest available price.'
+            },
+            {
+                title: 'Concert Tickets',
+                text: 'You\'d pay up to $150 for Taylor Swift tickets. Face value is $100 but it\'s sold out. Resellers charge $200+.',
+                priceInfo: 'Your Value: $150 | Face Value: $100 | Resale: $200+',
+                actions: [
+                    { text: 'Buy resale at $200', surplus: -50, correct: false },
+                    { text: 'Don\'t buy (negative surplus)', surplus: 0, correct: true },
+                    { text: 'Keep refreshing for face value', surplus: 50, correct: false },
+                    { text: 'Ask scalper for $175', surplus: -25, correct: false }
+                ],
+                feedback: 'Don\'t buy! At $200+, you\'d have negative surplus (paying more than your value). A rational consumer never buys when price exceeds value.'
+            },
+            {
+                title: 'Coffee Maker',
+                text: 'You value a quality coffee maker at $80. Target has it for $70. You find a 20% off coupon.',
+                priceInfo: 'Your Value: $80 | Target Price: $70 | With Coupon: $56',
+                actions: [
+                    { text: 'Buy at $70 (surplus: $10)', surplus: 10, correct: false },
+                    { text: 'Use coupon ($56) (surplus: $24)', surplus: 24, correct: true },
+                    { text: 'Wait for Black Friday', surplus: 0, correct: false },
+                    { text: 'Buy a cheaper model', surplus: 0, correct: false }
+                ],
+                feedback: 'Use the coupon! Consumer surplus = $80 - $56 = $24. Coupons, sales, and discounts directly increase your surplus.'
+            },
+            {
+                title: 'Used Car Negotiation',
+                text: 'You value a used car at $15,000. Dealer asks $14,500. You know comparable cars sell for $13,500.',
+                priceInfo: 'Your Value: $15,000 | Asking: $14,500 | Market: $13,500',
+                actions: [
+                    { text: 'Pay asking price ($14,500)', surplus: 500, correct: false },
+                    { text: 'Offer $13,000, settle at $13,500', surplus: 1500, correct: true },
+                    { text: 'Lowball at $12,000', surplus: 0, correct: false },
+                    { text: 'Walk away', surplus: 0, correct: false }
+                ],
+                feedback: 'Negotiate to market value! Surplus = $15,000 - $13,500 = $1,500. Research comparable prices before any negotiation.'
+            }
+        ];
+
+        let currentRound = 0;
+        let totalScore = 0;
+
+        function loadScenario() {
+            const s = scenarios[currentRound];
+            document.getElementById('scenarioTitle').textContent = s.title;
+            document.getElementById('roundBadge').textContent = `Round ${currentRound + 1}/${scenarios.length}`;
+            document.getElementById('scenarioText').textContent = s.text;
+            document.getElementById('priceInfo').textContent = s.priceInfo;
+
+            const grid = document.getElementById('actionGrid');
+            grid.innerHTML = s.actions.map((a, i) => `
+                <button class="action-btn" onclick="selectAction(${i})">${a.text}</button>
+            `).join('');
+
+            document.getElementById('feedback').className = 'feedback';
+            document.getElementById('nextBtn').className = 'next-btn';
+        }
+
+        function selectAction(index) {
+            const s = scenarios[currentRound];
+            const action = s.actions[index];
+            const buttons = document.querySelectorAll('.action-btn');
+
+            buttons.forEach((btn, i) => {
+                btn.disabled = true;
+                if (i === index) {
+                    btn.classList.add(action.correct ? 'correct' : 'incorrect');
+                }
+                if (s.actions[i].correct) {
+                    btn.classList.add('correct');
+                }
+            });
+
+            const surplus = action.surplus;
+            if (surplus > 0) {
+                totalScore += surplus;
+                document.getElementById('totalScore').textContent = '$' + totalScore;
+            }
+
+            const feedback = document.getElementById('feedback');
+            feedback.className = 'feedback show ' + (action.correct ? 'correct' : 'incorrect');
+            feedback.textContent = (action.correct ? '✓ Correct! ' : '✗ Not optimal. ') + s.feedback;
+
+            if (currentRound < scenarios.length - 1) {
+                document.getElementById('nextBtn').className = 'next-btn show';
+            } else {
+                document.getElementById('nextBtn').className = 'next-btn show';
+                document.getElementById('nextBtn').textContent = 'See Final Score';
+            }
+        }
+
+        function nextScenario() {
+            currentRound++;
+            if (currentRound < scenarios.length) {
+                loadScenario();
+            } else {
+                document.getElementById('scenario').innerHTML = `
+                    <div style="text-align: center; padding: 30px;">
+                        <h2 style="color: #6366f1; margin-bottom: 15px;">Game Complete!</h2>
+                        <p style="font-size: 2rem; font-weight: bold; color: #059669;">Total Surplus: $${totalScore}</p>
+                        <p style="color: #6b7280; margin-top: 15px;">Maximum possible: $1,850</p>
+                    </div>
+                `;
+            }
+        }
+
+        loadScenario();
+    </script>
+</body>
+</html>

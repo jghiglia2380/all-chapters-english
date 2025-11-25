@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Policy Impact Analyzer Tool - PFL Academy</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background-color: #f9fafb;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+            color: white;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 0.95rem;
+        }
+
+        .content {
+            padding: 24px;
+        }
+
+        .section {
+            margin-bottom: 24px;
+        }
+
+        .section-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #4f46e5;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e5e7eb;
+        }
+
+        .step-container {
+            margin-bottom: 20px;
+        }
+
+        .step-header {
+            background: #eef2ff;
+            padding: 12px 16px;
+            border-radius: 8px 8px 0 0;
+            font-weight: 600;
+            color: #4f46e5;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .step-number {
+            background: #6366f1;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+        }
+
+        .step-content {
+            border: 1px solid #e5e7eb;
+            border-top: none;
+            border-radius: 0 0 8px 8px;
+            padding: 16px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group:last-child {
+            margin-bottom: 0;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 6px;
+            color: #374151;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            font-size: 0.95rem;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #6366f1;
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+        }
+
+        .form-group textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+
+        .checkbox-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 8px;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            padding: 8px 12px;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .checkbox-item:hover {
+            border-color: #6366f1;
+            background: #eef2ff;
+        }
+
+        .checkbox-item input {
+            margin-right: 8px;
+        }
+
+        .checkbox-item.selected {
+            border-color: #6366f1;
+            background: #eef2ff;
+        }
+
+        .winners-losers-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .winners-losers-table th,
+        .winners-losers-table td {
+            padding: 10px;
+            border: 1px solid #e5e7eb;
+            text-align: left;
+        }
+
+        .winners-losers-table th {
+            background: #f3f4f6;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        .winners-losers-table input,
+        .winners-losers-table select {
+            width: 100%;
+            padding: 6px;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+            font-size: 0.85rem;
+        }
+
+        .radio-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .radio-item {
+            display: flex;
+            align-items: center;
+            padding: 8px 12px;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .radio-item:hover {
+            border-color: #6366f1;
+        }
+
+        .radio-item input {
+            margin-right: 8px;
+        }
+
+        .radio-item.selected {
+            border-color: #6366f1;
+            background: #eef2ff;
+        }
+
+        .position-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .position-option {
+            display: flex;
+            align-items: flex-start;
+            padding: 12px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .position-option:hover {
+            border-color: #6366f1;
+        }
+
+        .position-option input[type="radio"] {
+            margin-right: 12px;
+            margin-top: 4px;
+        }
+
+        .position-option.selected {
+            border-color: #6366f1;
+            background: #eef2ff;
+        }
+
+        .position-label {
+            flex: 1;
+        }
+
+        .position-label strong {
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .position-label span {
+            font-size: 0.85rem;
+            color: #6b7280;
+        }
+
+        .confidence-slider {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .confidence-slider input[type="range"] {
+            flex: 1;
+        }
+
+        .confidence-value {
+            font-weight: 600;
+            color: #6366f1;
+            min-width: 30px;
+        }
+
+        .info-box {
+            background: #eff6ff;
+            border-left: 4px solid #3b82f6;
+            padding: 12px 16px;
+            margin-bottom: 16px;
+            font-size: 0.9rem;
+            color: #1e40af;
+        }
+
+        .example-list {
+            background: #f9fafb;
+            padding: 12px 16px;
+            border-radius: 6px;
+            margin-bottom: 12px;
+        }
+
+        .example-list ul {
+            margin-left: 20px;
+            font-size: 0.9rem;
+            color: #6b7280;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background: #6366f1;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #4f46e5;
+        }
+
+        .btn-secondary {
+            background: #e5e7eb;
+            color: #374151;
+        }
+
+        .btn-secondary:hover {
+            background: #d1d5db;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 10px;
+                font-size: 11px;
+            }
+
+            .container {
+                box-shadow: none;
+            }
+
+            .btn {
+                display: none;
+            }
+
+            .header {
+                padding: 16px;
+            }
+
+            .content {
+                padding: 16px;
+            }
+
+            .step-container {
+                break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Policy Impact Analyzer Tool</h1>
+            <p>Six-step framework to analyze any government policy - Activity 4 (10 minutes)</p>
+        </div>
+
+        <div class="content">
+            <!-- Policy Selection -->
+            <div class="section">
+                <h2 class="section-title">Choose a Policy That Affects YOU</h2>
+                <div class="example-list">
+                    <strong>Examples:</strong>
+                    <ul>
+                        <li>Student loan forgiveness</li>
+                        <li>Gas tax increase</li>
+                        <li>Affordable Care Act (Obamacare)</li>
+                        <li>Social Security (will you get benefits?)</li>
+                        <li>{{STATE_NAME}}-specific policy</li>
+                    </ul>
+                </div>
+                <div class="form-group">
+                    <label for="chosenPolicy">Your chosen policy:</label>
+                    <input type="text" id="chosenPolicy" placeholder="Enter the policy you want to analyze...">
+                </div>
+            </div>
+
+            <!-- Step 1: Classify the Policy -->
+            <div class="step-container">
+                <div class="step-header">
+                    <span class="step-number">1</span>
+                    Classify the Policy
+                </div>
+                <div class="step-content">
+                    <div class="form-group">
+                        <label>Policy type:</label>
+                        <div class="checkbox-grid">
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="policyType" value="tax"> Tax
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="policyType" value="subsidy"> Subsidy
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="policyType" value="price_control"> Price control
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="policyType" value="regulation"> Regulation
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="policyType" value="public_good"> Public good provision
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="policyType" value="redistribution"> Redistribution
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 2: Identify Market Failure -->
+            <div class="step-container">
+                <div class="step-header">
+                    <span class="step-number">2</span>
+                    Identify Market Failure (if any)
+                </div>
+                <div class="step-content">
+                    <div class="form-group">
+                        <label>What market failure does this address?</label>
+                        <div class="checkbox-grid">
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="marketFailure" value="monopoly"> Monopoly
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="marketFailure" value="externality"> Externality
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="marketFailure" value="public_good"> Public good
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="marketFailure" value="information"> Information asymmetry
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="marketFailure" value="inequality"> Inequality
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="marketFailure" value="none"> None (not addressing market failure)
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 3: Map Winners and Losers -->
+            <div class="step-container">
+                <div class="step-header">
+                    <span class="step-number">3</span>
+                    Map Winners and Losers
+                </div>
+                <div class="step-content">
+                    <table class="winners-losers-table">
+                        <thead>
+                            <tr>
+                                <th>Group</th>
+                                <th>Win or Lose?</th>
+                                <th>How?</th>
+                                <th>Magnitude</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>You personally</td>
+                                <td>
+                                    <select>
+                                        <option value="">Select...</option>
+                                        <option value="win">Win</option>
+                                        <option value="lose">Lose</option>
+                                        <option value="neutral">Neutral</option>
+                                    </select>
+                                </td>
+                                <td><input type="text" placeholder="How affected?"></td>
+                                <td><input type="text" placeholder="$ or scale"></td>
+                            </tr>
+                            <tr>
+                                <td>Your demographic</td>
+                                <td>
+                                    <select>
+                                        <option value="">Select...</option>
+                                        <option value="win">Win</option>
+                                        <option value="lose">Lose</option>
+                                        <option value="neutral">Neutral</option>
+                                    </select>
+                                </td>
+                                <td><input type="text" placeholder="How affected?"></td>
+                                <td><input type="text" placeholder="$ or scale"></td>
+                            </tr>
+                            <tr>
+                                <td>Taxpayers</td>
+                                <td>
+                                    <select>
+                                        <option value="">Select...</option>
+                                        <option value="win">Win</option>
+                                        <option value="lose">Lose</option>
+                                        <option value="neutral">Neutral</option>
+                                    </select>
+                                </td>
+                                <td><input type="text" placeholder="How affected?"></td>
+                                <td><input type="text" placeholder="$ or scale"></td>
+                            </tr>
+                            <tr>
+                                <td>Specific industry</td>
+                                <td>
+                                    <select>
+                                        <option value="">Select...</option>
+                                        <option value="win">Win</option>
+                                        <option value="lose">Lose</option>
+                                        <option value="neutral">Neutral</option>
+                                    </select>
+                                </td>
+                                <td><input type="text" placeholder="How affected?"></td>
+                                <td><input type="text" placeholder="$ or scale"></td>
+                            </tr>
+                            <tr>
+                                <td>Future generations</td>
+                                <td>
+                                    <select>
+                                        <option value="">Select...</option>
+                                        <option value="win">Win</option>
+                                        <option value="lose">Lose</option>
+                                        <option value="neutral">Neutral</option>
+                                    </select>
+                                </td>
+                                <td><input type="text" placeholder="How affected?"></td>
+                                <td><input type="text" placeholder="$ or scale"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Step 4: Assess Effectiveness -->
+            <div class="step-container">
+                <div class="step-header">
+                    <span class="step-number">4</span>
+                    Assess Effectiveness
+                </div>
+                <div class="step-content">
+                    <div class="form-group">
+                        <label>Does policy achieve its stated goal?</label>
+                        <div class="radio-group">
+                            <label class="radio-item">
+                                <input type="radio" name="effectiveness" value="yes"> Yes, fully
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="effectiveness" value="partially"> Partially
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="effectiveness" value="no"> No
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="effectiveness" value="unclear"> Unclear/too soon
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 5: Consider Opportunity Cost -->
+            <div class="step-container">
+                <div class="step-header">
+                    <span class="step-number">5</span>
+                    Consider Opportunity Cost
+                </div>
+                <div class="step-content">
+                    <div class="form-group">
+                        <label for="opportunityCost">What else could the money/resources be used for?</label>
+                        <textarea id="opportunityCost" placeholder="List alternative uses for these resources..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Is this the best use?</label>
+                        <div class="radio-group">
+                            <label class="radio-item">
+                                <input type="radio" name="bestUse" value="yes"> Yes
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="bestUse" value="maybe"> Maybe
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="bestUse" value="no"> No
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 6: Make Recommendation -->
+            <div class="step-container">
+                <div class="step-header">
+                    <span class="step-number">6</span>
+                    Make Recommendation
+                </div>
+                <div class="step-content">
+                    <div class="form-group">
+                        <label>Your position:</label>
+                        <div class="position-options">
+                            <label class="position-option">
+                                <input type="radio" name="position" value="support">
+                                <div class="position-label">
+                                    <strong>Support</strong>
+                                    <span>Benefits exceed costs, good policy</span>
+                                </div>
+                            </label>
+                            <label class="position-option">
+                                <input type="radio" name="position" value="support_modify">
+                                <div class="position-label">
+                                    <strong>Support with modifications</strong>
+                                    <span>Good concept but needs changes</span>
+                                </div>
+                            </label>
+                            <label class="position-option">
+                                <input type="radio" name="position" value="oppose">
+                                <div class="position-label">
+                                    <strong>Oppose</strong>
+                                    <span>Costs exceed benefits, poor policy</span>
+                                </div>
+                            </label>
+                            <label class="position-option">
+                                <input type="radio" name="position" value="uncertain">
+                                <div class="position-label">
+                                    <strong>Uncertain</strong>
+                                    <span>Need more information</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="modifications">If supporting with modifications, what changes?</label>
+                        <input type="text" id="modifications" placeholder="Describe needed modifications...">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="moreInfo">If uncertain, what information do you need?</label>
+                        <input type="text" id="moreInfo" placeholder="What would help you decide?">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="keyEvidence">Key evidence for your position:</label>
+                        <textarea id="keyEvidence" placeholder="What facts or reasoning support your position?"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>How strongly do you feel? (1-10)</label>
+                        <div class="confidence-slider">
+                            <input type="range" id="strength" min="1" max="10" value="5" oninput="updateStrength()">
+                            <span class="confidence-value" id="strengthValue">5</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Print Button -->
+            <div class="btn-group">
+                <button class="btn btn-secondary" onclick="window.print()">Print Analysis</button>
+                <button class="btn btn-secondary" onclick="resetForm()">Reset</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Checkbox item selection styling
+        document.querySelectorAll('.checkbox-item').forEach(item => {
+            item.addEventListener('click', function(e) {
+                if (e.target.type !== 'checkbox') {
+                    const checkbox = this.querySelector('input[type="checkbox"]');
+                    checkbox.checked = !checkbox.checked;
+                }
+                this.classList.toggle('selected', this.querySelector('input').checked);
+            });
+        });
+
+        // Radio item selection styling
+        document.querySelectorAll('.radio-item').forEach(item => {
+            item.addEventListener('click', function() {
+                const groupName = this.querySelector('input').name;
+                document.querySelectorAll(`.radio-item input[name="${groupName}"]`).forEach(input => {
+                    input.closest('.radio-item').classList.remove('selected');
+                });
+                this.classList.add('selected');
+            });
+        });
+
+        // Position option selection
+        document.querySelectorAll('.position-option').forEach(option => {
+            option.addEventListener('click', function() {
+                document.querySelectorAll('.position-option').forEach(o => o.classList.remove('selected'));
+                this.classList.add('selected');
+            });
+        });
+
+        function updateStrength() {
+            document.getElementById('strengthValue').textContent = document.getElementById('strength').value;
+        }
+
+        function resetForm() {
+            document.querySelectorAll('input[type="text"], textarea').forEach(el => el.value = '');
+            document.querySelectorAll('input[type="checkbox"], input[type="radio"]').forEach(el => el.checked = false);
+            document.querySelectorAll('select').forEach(el => el.selectedIndex = 0);
+            document.querySelectorAll('.checkbox-item, .radio-item, .position-option').forEach(el => el.classList.remove('selected'));
+            document.getElementById('strength').value = 5;
+            updateStrength();
+        }
+    </script>
+</body>
+</html>

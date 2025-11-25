@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Tracking System Designer</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        header { text-align: center; margin-bottom: 30px; }
+        h1 { font-size: 2rem; color: #6366f1; margin-bottom: 10px; }
+        .subtitle { color: #6b7280; }
+        .section { margin-bottom: 25px; }
+        .section-title { font-size: 1.1rem; font-weight: bold; margin-bottom: 15px; color: #1f2937; }
+        .method-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .method-card {
+            padding: 20px;
+            background: #f9fafb;
+            border: 3px solid #e5e7eb;
+            border-radius: 12px;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        .method-card:hover { border-color: #6366f1; }
+        .method-card.selected { border-color: #6366f1; background: #eef2ff; }
+        .method-icon { font-size: 2rem; margin-bottom: 10px; }
+        .method-name { font-weight: bold; color: #1f2937; }
+        .method-desc { font-size: 0.85rem; color: #6b7280; margin-top: 5px; }
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+        .feature-item {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            background: #f9fafb;
+            border-radius: 8px;
+        }
+        .feature-item input { margin-right: 10px; }
+        .feature-item label { font-size: 0.9rem; cursor: pointer; }
+        .frequency-options {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        .freq-btn {
+            padding: 10px 20px;
+            background: #f9fafb;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        .freq-btn:hover { border-color: #6366f1; }
+        .freq-btn.selected { border-color: #6366f1; background: #eef2ff; }
+        .generate-btn {
+            width: 100%;
+            padding: 15px;
+            background: #6366f1;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 25px;
+        }
+        .generate-btn:hover { background: #4f46e5; }
+        .results { display: none; }
+        .results.active { display: block; }
+        .system-preview {
+            background: #f0fdf4;
+            padding: 20px;
+            border-radius: 12px;
+            border: 2px solid #10b981;
+        }
+        .system-preview h3 { color: #065f46; margin-bottom: 15px; }
+        .preview-item {
+            padding: 10px;
+            background: white;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+        .preview-item strong { color: #374151; }
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #e5e7eb;
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+        @media (max-width: 768px) {
+            .method-grid, .feature-list { grid-template-columns: 1fr; }
+        }
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .container {
+                box-shadow: none;
+                padding: 20px;
+            }
+            .generate-btn,
+            .no-print {
+                display: none !important;
+            }
+            .results {
+                display: block !important;
+            }
+            .method-card,
+            .system-preview {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Financial Tracking System Designer</h1>
+            <p class="subtitle">Design your personalized record-keeping system</p>
+        </header>
+
+        <div class="section">
+            <div class="section-title">Choose Your Primary Method</div>
+            <div class="method-grid">
+                <div class="method-card" onclick="selectMethod('register', this)">
+                    <div class="method-icon">📒</div>
+                    <div class="method-name">Paper Register</div>
+                    <div class="method-desc">Traditional checkbook ledger</div>
+                </div>
+                <div class="method-card" onclick="selectMethod('spreadsheet', this)">
+                    <div class="method-icon">📊</div>
+                    <div class="method-name">Spreadsheet</div>
+                    <div class="method-desc">Excel or Google Sheets</div>
+                </div>
+                <div class="method-card" onclick="selectMethod('app', this)">
+                    <div class="method-icon">📱</div>
+                    <div class="method-name">Banking App</div>
+                    <div class="method-desc">Automated tracking</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Select Features to Track</div>
+            <div class="feature-list">
+                <div class="feature-item">
+                    <input type="checkbox" id="f1" checked>
+                    <label for="f1">Transaction date</label>
+                </div>
+                <div class="feature-item">
+                    <input type="checkbox" id="f2" checked>
+                    <label for="f2">Description/payee</label>
+                </div>
+                <div class="feature-item">
+                    <input type="checkbox" id="f3" checked>
+                    <label for="f3">Amount</label>
+                </div>
+                <div class="feature-item">
+                    <input type="checkbox" id="f4" checked>
+                    <label for="f4">Running balance</label>
+                </div>
+                <div class="feature-item">
+                    <input type="checkbox" id="f5">
+                    <label for="f5">Category/budget</label>
+                </div>
+                <div class="feature-item">
+                    <input type="checkbox" id="f6">
+                    <label for="f6">Reconciled status</label>
+                </div>
+                <div class="feature-item">
+                    <input type="checkbox" id="f7">
+                    <label for="f7">Receipt photo</label>
+                </div>
+                <div class="feature-item">
+                    <input type="checkbox" id="f8">
+                    <label for="f8">Tax deductible flag</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Reconciliation Frequency</div>
+            <div class="frequency-options">
+                <button class="freq-btn" onclick="selectFreq('daily', this)">Daily</button>
+                <button class="freq-btn selected" onclick="selectFreq('weekly', this)">Weekly</button>
+                <button class="freq-btn" onclick="selectFreq('monthly', this)">Monthly</button>
+            </div>
+        </div>
+
+        <button class="generate-btn" onclick="generateSystem()">Generate My System</button>
+
+        <div class="results" id="results">
+            <div class="system-preview">
+                <h3>Your Personalized Financial Tracking System</h3>
+                <div id="systemDetails"></div>
+            </div>
+        </div>
+
+        <footer>
+            <p><strong>PFL Academy</strong> | Financial Record Keeping</p>
+        </footer>
+    </div>
+
+    <script>
+        let selectedMethod = 'spreadsheet';
+        let selectedFreq = 'weekly';
+
+        function selectMethod(method, btn) {
+            selectedMethod = method;
+            document.querySelectorAll('.method-card').forEach(c => c.classList.remove('selected'));
+            btn.classList.add('selected');
+        }
+
+        function selectFreq(freq, btn) {
+            selectedFreq = freq;
+            document.querySelectorAll('.freq-btn').forEach(b => b.classList.remove('selected'));
+            btn.classList.add('selected');
+        }
+
+        function generateSystem() {
+            const features = [];
+            for (let i = 1; i <= 8; i++) {
+                if (document.getElementById('f' + i).checked) {
+                    features.push(document.getElementById('f' + i).nextElementSibling.textContent);
+                }
+            }
+
+            let methodDetails = '';
+            if (selectedMethod === 'register') {
+                methodDetails = '<div class="preview-item"><strong>Method:</strong> Paper Register - Best for those who prefer tactile tracking and don\'t need automated calculations. Keep it with your checkbook.</div>';
+            } else if (selectedMethod === 'spreadsheet') {
+                methodDetails = '<div class="preview-item"><strong>Method:</strong> Spreadsheet - Great for customization and automatic calculations. Use formulas for running balance. Back up regularly!</div>';
+            } else {
+                methodDetails = '<div class="preview-item"><strong>Method:</strong> Banking App - Convenient and automatic, but review regularly for accuracy. Export data periodically for records.</div>';
+            }
+
+            let freqAdvice = '';
+            if (selectedFreq === 'daily') {
+                freqAdvice = 'Daily review keeps you on top of every transaction. Ideal if you have frequent transactions or are concerned about fraud.';
+            } else if (selectedFreq === 'weekly') {
+                freqAdvice = 'Weekly review balances vigilance with convenience. Set a specific day (like Sunday evening) as your financial review time.';
+            } else {
+                freqAdvice = 'Monthly review aligns with bank statements. Make sure to set alerts for unusual activity between reviews.';
+            }
+
+            const details = document.getElementById('systemDetails');
+            details.innerHTML = `
+                ${methodDetails}
+                <div class="preview-item"><strong>Features to Track:</strong> ${features.join(', ')}</div>
+                <div class="preview-item"><strong>Reconciliation:</strong> ${selectedFreq.charAt(0).toUpperCase() + selectedFreq.slice(1)} - ${freqAdvice}</div>
+                <div class="preview-item"><strong>Getting Started:</strong> Set up your system this week, record every transaction for one month, then evaluate what's working.</div>
+            `;
+
+            document.getElementById('results').classList.add('active');
+        }
+    </script>
+</body>
+</html>

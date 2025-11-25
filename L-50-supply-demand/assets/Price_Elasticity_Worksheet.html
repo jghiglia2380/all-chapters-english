@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Price Elasticity Worksheet | PFL Academy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-size: 14px;
+            line-height: 1.6;
+            color: #1f2937;
+            padding: 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #6366f1;
+        }
+        h1 {
+            font-size: 1.8rem;
+            color: #6366f1;
+            margin-bottom: 5px;
+        }
+        .subtitle {
+            color: #6b7280;
+        }
+        .section {
+            background-color: #f9fafb;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 4px solid #6366f1;
+        }
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #6366f1;
+            margin-bottom: 15px;
+        }
+        .concept-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        .concept-box {
+            padding: 15px;
+            border-radius: 8px;
+        }
+        .elastic-box {
+            background-color: #dbeafe;
+            border: 2px solid #3b82f6;
+        }
+        .inelastic-box {
+            background-color: #fee2e2;
+            border: 2px solid #ef4444;
+        }
+        .concept-title {
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .elastic-title {
+            color: #1d4ed8;
+        }
+        .inelastic-title {
+            color: #dc2626;
+        }
+        .input-field {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #e5e7eb;
+            border-radius: 6px;
+            font-size: 14px;
+            font-family: inherit;
+        }
+        .input-field:focus {
+            outline: none;
+            border-color: #6366f1;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 0.9rem;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #e5e7eb;
+        }
+        th {
+            background-color: #f3f4f6;
+            font-weight: 600;
+        }
+        .example-row {
+            background-color: #f0fdf4;
+        }
+        .select-field {
+            padding: 8px;
+            border: 1px solid #e5e7eb;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            width: 100%;
+        }
+        .strategy-input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #e5e7eb;
+            border-radius: 4px;
+            font-size: 0.85rem;
+        }
+        .analysis-box {
+            background-color: white;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 15px 0;
+            border: 1px solid #e5e7eb;
+        }
+        .analysis-title {
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 10px;
+        }
+        .input-group {
+            margin-bottom: 12px;
+        }
+        .input-group label {
+            font-weight: 600;
+            display: block;
+            margin-bottom: 5px;
+            color: #374151;
+        }
+        .application-box {
+            background-color: #eef2ff;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        .leverage-display {
+            display: flex;
+            gap: 10px;
+            margin: 15px 0;
+        }
+        .leverage-option {
+            flex: 1;
+            padding: 10px;
+            text-align: center;
+            border-radius: 6px;
+            cursor: pointer;
+            border: 2px solid #e5e7eb;
+            background-color: white;
+        }
+        .leverage-option:hover {
+            border-color: #6366f1;
+        }
+        .leverage-option.selected {
+            background-color: #6366f1;
+            color: white;
+            border-color: #6366f1;
+        }
+        .action-plan {
+            background-color: #f0fdf4;
+            border-left: 4px solid #10b981;
+            padding: 15px;
+            border-radius: 0 6px 6px 0;
+            margin: 15px 0;
+        }
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-right: 10px;
+            margin-top: 10px;
+        }
+        .btn-primary {
+            background-color: #6366f1;
+            color: white;
+        }
+        .btn-primary:hover {
+            background-color: #4f46e5;
+        }
+        .btn-secondary {
+            background-color: #f3f4f6;
+            color: #374151;
+        }
+        .note {
+            background-color: #fffbeb;
+            border-left: 4px solid #f59e0b;
+            padding: 12px;
+            margin: 15px 0;
+            font-size: 0.9rem;
+        }
+        @media print {
+            body {
+                padding: 10px;
+                font-size: 11px;
+            }
+            .section {
+                break-inside: avoid;
+            }
+            .btn {
+                display: none;
+            }
+        }
+        @media (max-width: 768px) {
+            .concept-grid {
+                grid-template-columns: 1fr;
+            }
+            .leverage-display {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Price Elasticity Worksheet</h1>
+        <p class="subtitle">Understand when prices are flexible vs. sticky and use this to save money</p>
+    </header>
+
+    <div class="section">
+        <div class="section-title">Part A: Elasticity Concept</div>
+        <p style="margin-bottom: 15px;"><strong>Price Elasticity of Demand:</strong> How sensitive is quantity demanded to price changes?</p>
+
+        <div class="concept-grid">
+            <div class="concept-box elastic-box">
+                <div class="concept-title elastic-title">Elastic Demand (Price Sensitive)</div>
+                <p style="margin-bottom: 8px;">Small price increase = Large decrease in quantity demanded</p>
+                <p style="font-size: 0.9rem;"><strong>Examples:</strong> Luxury goods, goods with many substitutes, non-essentials</p>
+                <p style="font-size: 0.9rem; margin-top: 8px; color: #1d4ed8;"><strong>Implication:</strong> Sellers can't raise prices much without losing customers</p>
+            </div>
+            <div class="concept-box inelastic-box">
+                <div class="concept-title inelastic-title">Inelastic Demand (Price Insensitive)</div>
+                <p style="margin-bottom: 8px;">Price increase = Small decrease in quantity demanded</p>
+                <p style="font-size: 0.9rem;"><strong>Examples:</strong> Necessities, goods with few substitutes, addictive products</p>
+                <p style="font-size: 0.9rem; margin-top: 8px; color: #dc2626;"><strong>Implication:</strong> Sellers can raise prices without losing many customers</p>
+            </div>
+        </div>
+
+        <div class="note">
+            <strong>Why This Matters:</strong><br>
+            <strong>Elastic goods:</strong> Wait for sales, negotiate, find alternatives<br>
+            <strong>Inelastic goods:</strong> You have less leverage; focus on reducing consumption
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Part B: Classify Goods and Plan Purchases</div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 20%;">Purchase</th>
+                    <th style="width: 20%;">Elastic or Inelastic?</th>
+                    <th style="width: 30%;">Reasoning</th>
+                    <th style="width: 30%;">Money-Saving Strategy</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="example-row">
+                    <td><strong>Gasoline</strong></td>
+                    <td>Inelastic (short-term)</td>
+                    <td>Need to get to work/school; few substitutes short-term</td>
+                    <td>Reduce driving, carpool, buy fuel-efficient car long-term</td>
+                </tr>
+                <tr class="example-row">
+                    <td><strong>Concert tickets</strong></td>
+                    <td>Elastic</td>
+                    <td>Entertainment, many alternatives</td>
+                    <td>Buy early, wait for resale market, attend less popular shows</td>
+                </tr>
+                <tr class="example-row">
+                    <td><strong>Prescription medication</strong></td>
+                    <td>Inelastic</td>
+                    <td>Medical necessity</td>
+                    <td>Use generic, shop pharmacies, check insurance coverage</td>
+                </tr>
+                <tr>
+                    <td><strong>Smartphone</strong></td>
+                    <td>
+                        <select class="select-field">
+                            <option value="">Select...</option>
+                            <option value="elastic">Elastic</option>
+                            <option value="inelastic">Inelastic</option>
+                        </select>
+                    </td>
+                    <td><input type="text" class="strategy-input" placeholder="Your reasoning..."></td>
+                    <td><input type="text" class="strategy-input" placeholder="Your strategy..."></td>
+                </tr>
+                <tr>
+                    <td><strong>College textbooks</strong></td>
+                    <td>
+                        <select class="select-field">
+                            <option value="">Select...</option>
+                            <option value="elastic">Elastic</option>
+                            <option value="inelastic">Inelastic</option>
+                        </select>
+                    </td>
+                    <td><input type="text" class="strategy-input" placeholder="Your reasoning..."></td>
+                    <td><input type="text" class="strategy-input" placeholder="Your strategy..."></td>
+                </tr>
+                <tr>
+                    <td><strong>Apartment rent in {{STATE_NAME}}</strong></td>
+                    <td>
+                        <select class="select-field">
+                            <option value="">Select...</option>
+                            <option value="elastic">Elastic</option>
+                            <option value="inelastic">Inelastic</option>
+                        </select>
+                    </td>
+                    <td><input type="text" class="strategy-input" placeholder="Your reasoning..."></td>
+                    <td><input type="text" class="strategy-input" placeholder="Your strategy..."></td>
+                </tr>
+                <tr>
+                    <td><strong>Restaurant meals</strong></td>
+                    <td>
+                        <select class="select-field">
+                            <option value="">Select...</option>
+                            <option value="elastic">Elastic</option>
+                            <option value="inelastic">Inelastic</option>
+                        </select>
+                    </td>
+                    <td><input type="text" class="strategy-input" placeholder="Your reasoning..."></td>
+                    <td><input type="text" class="strategy-input" placeholder="Your strategy..."></td>
+                </tr>
+                <tr>
+                    <td><strong>Winter coat</strong></td>
+                    <td>
+                        <select class="select-field">
+                            <option value="">Select...</option>
+                            <option value="elastic">Elastic</option>
+                            <option value="inelastic">Inelastic</option>
+                        </select>
+                    </td>
+                    <td><input type="text" class="strategy-input" placeholder="Your reasoning..."></td>
+                    <td><input type="text" class="strategy-input" placeholder="Your strategy..."></td>
+                </tr>
+                <tr>
+                    <td><strong>Electricity</strong></td>
+                    <td>
+                        <select class="select-field">
+                            <option value="">Select...</option>
+                            <option value="elastic">Elastic</option>
+                            <option value="inelastic">Inelastic</option>
+                        </select>
+                    </td>
+                    <td><input type="text" class="strategy-input" placeholder="Your reasoning..."></td>
+                    <td><input type="text" class="strategy-input" placeholder="Your strategy..."></td>
+                </tr>
+                <tr>
+                    <td><strong>Streaming services</strong></td>
+                    <td>
+                        <select class="select-field">
+                            <option value="">Select...</option>
+                            <option value="elastic">Elastic</option>
+                            <option value="inelastic">Inelastic</option>
+                        </select>
+                    </td>
+                    <td><input type="text" class="strategy-input" placeholder="Your reasoning..."></td>
+                    <td><input type="text" class="strategy-input" placeholder="Your strategy..."></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="analysis-box">
+            <div class="analysis-title">Analysis</div>
+
+            <div class="input-group">
+                <label>1. Which of your regular expenses are most elastic?</label>
+                <input type="text" class="input-field" placeholder="List elastic expenses...">
+                <p style="font-size: 0.85rem; color: #6b7280; margin-top: 5px;">Strategy: These are where you have the most negotiating power/flexibility</p>
+            </div>
+
+            <div class="input-group">
+                <label>2. Which expenses are inelastic?</label>
+                <input type="text" class="input-field" placeholder="List inelastic expenses...">
+                <p style="font-size: 0.85rem; color: #6b7280; margin-top: 5px;">Strategy: Reduce quantity consumed, find long-term substitutes</p>
+            </div>
+
+            <div class="input-group">
+                <label>3. Timing purchases of elastic goods</label>
+                <p style="font-size: 0.9rem; color: #6b7280; margin-bottom: 8px;">When is demand lowest? (Off-season, weekdays, end-of-month for cars, etc.)</p>
+                <p style="font-size: 0.9rem; margin-bottom: 8px;"><strong>Example:</strong> Winter coats are elastic - buy in spring when demand is low</p>
+                <input type="text" class="input-field" placeholder="Your example of timing a purchase for savings...">
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Part C: Real-World Application</div>
+
+        <div class="application-box">
+            <h4 style="margin-bottom: 15px;">Your Major Purchase</h4>
+
+            <div class="input-group">
+                <label>Purchase you're planning:</label>
+                <input type="text" class="input-field" id="majorPurchase" placeholder="e.g., laptop, car, concert tickets, apartment">
+            </div>
+
+            <h4 style="margin: 20px 0 15px;">Elasticity Analysis</h4>
+
+            <div class="input-group">
+                <label>Is this good elastic or inelastic?</label>
+                <select class="select-field" style="width: auto;">
+                    <option value="">Select...</option>
+                    <option value="elastic">Elastic</option>
+                    <option value="inelastic">Inelastic</option>
+                    <option value="moderate">Moderately elastic</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label>How many substitutes exist?</label>
+                <input type="text" class="input-field" placeholder="e.g., many, few, none">
+            </div>
+
+            <div class="input-group">
+                <label>How urgently do you need it?</label>
+                <input type="text" class="input-field" placeholder="e.g., immediately, within a month, flexible">
+            </div>
+
+            <h4 style="margin: 20px 0 15px;">Supply and Demand Analysis</h4>
+
+            <div class="input-group">
+                <label>When is supply highest?</label>
+                <input type="text" class="input-field" placeholder="e.g., after new model release, end of season">
+            </div>
+
+            <div class="input-group">
+                <label>When is demand lowest?</label>
+                <input type="text" class="input-field" placeholder="e.g., weekdays, off-season, January">
+            </div>
+
+            <div class="input-group">
+                <label>Best time to buy:</label>
+                <input type="text" class="input-field" placeholder="Combine high supply + low demand timing">
+            </div>
+
+            <h4 style="margin: 20px 0 15px;">Price Negotiation Leverage</h4>
+            <p style="font-size: 0.9rem; color: #6b7280; margin-bottom: 10px;">
+                If elastic + high supply + low demand = Strong leverage<br>
+                If inelastic + low supply + high demand = Weak leverage
+            </p>
+
+            <div class="leverage-display">
+                <div class="leverage-option" onclick="selectLeverage(this, 'strong')">
+                    <strong>Strong</strong>
+                </div>
+                <div class="leverage-option" onclick="selectLeverage(this, 'moderate')">
+                    <strong>Moderate</strong>
+                </div>
+                <div class="leverage-option" onclick="selectLeverage(this, 'weak')">
+                    <strong>Weak</strong>
+                </div>
+            </div>
+        </div>
+
+        <div class="action-plan">
+            <h4 style="margin-bottom: 15px; color: #10b981;">Action Plan</h4>
+
+            <div class="input-group">
+                <label>1. Optimal timing:</label>
+                <input type="text" class="input-field" placeholder="When will you make this purchase?">
+            </div>
+
+            <div class="input-group">
+                <label>2. Negotiation strategy:</label>
+                <input type="text" class="input-field" placeholder="How will you negotiate or find the best price?">
+            </div>
+
+            <div class="input-group">
+                <label>3. Alternatives if price too high:</label>
+                <input type="text" class="input-field" placeholder="What are your backup options?">
+            </div>
+
+            <div class="input-group">
+                <label>4. Expected savings from good timing:</label>
+                <input type="text" class="input-field" placeholder="e.g., $50, $500, 10%">
+            </div>
+        </div>
+    </div>
+
+    <div class="note">
+        <strong>Key Takeaway:</strong> Knowing price sensitivity helps you identify where you have negotiating power. Buy elastic goods when supply is high and demand is low. For inelastic necessities, focus on reducing consumption or finding long-term alternatives.
+    </div>
+
+    <div style="text-align: center; margin-top: 20px;">
+        <button class="btn btn-primary" onclick="window.print()">Print / Save PDF</button>
+        <button class="btn btn-secondary" onclick="resetForm()">Reset Form</button>
+    </div>
+
+    <script>
+        function selectLeverage(element, value) {
+            document.querySelectorAll('.leverage-option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            element.classList.add('selected');
+        }
+
+        function resetForm() {
+            document.querySelectorAll('input, textarea, select').forEach(el => {
+                if (el.tagName === 'SELECT') {
+                    el.selectedIndex = 0;
+                } else {
+                    el.value = '';
+                }
+            });
+            document.querySelectorAll('.leverage-option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+        }
+    </script>
+</body>
+</html>

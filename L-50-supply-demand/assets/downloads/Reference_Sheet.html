@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supply & Demand Reference Sheet | PFL Academy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-size: 14px;
+            line-height: 1.5;
+            color: #1f2937;
+            padding: 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #6366f1;
+        }
+        h1 {
+            font-size: 1.8rem;
+            color: #6366f1;
+        }
+        .subtitle {
+            color: #6b7280;
+            margin-top: 5px;
+        }
+        .box {
+            background-color: #f9fafb;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border-left: 4px solid #6366f1;
+        }
+        .box-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #6366f1;
+            margin-bottom: 8px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        .highlight {
+            background-color: white;
+            padding: 12px;
+            border-radius: 6px;
+            margin-top: 10px;
+        }
+        .law-box {
+            background-color: #eef2ff;
+            padding: 12px;
+            border-radius: 6px;
+            margin: 10px 0;
+        }
+        .shifter-list {
+            margin-left: 20px;
+        }
+        .shifter-list li {
+            margin: 4px 0;
+        }
+        .application-item {
+            background-color: white;
+            padding: 10px;
+            border-radius: 6px;
+            margin-bottom: 8px;
+        }
+        .application-label {
+            font-weight: 600;
+            color: #374151;
+        }
+        .elasticity-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .elastic-box {
+            background-color: #dbeafe;
+            padding: 10px;
+            border-radius: 6px;
+        }
+        .inelastic-box {
+            background-color: #fee2e2;
+            padding: 10px;
+            border-radius: 6px;
+        }
+        .takeaway {
+            background-color: #f0f9ff;
+            border-left: 4px solid #3b82f6;
+            padding: 15px;
+            border-radius: 0 6px 6px 0;
+            margin-top: 15px;
+        }
+        .formula {
+            font-family: 'Courier New', monospace;
+            background-color: #f3f4f6;
+            padding: 8px 12px;
+            border-radius: 4px;
+            display: inline-block;
+            margin: 5px 0;
+        }
+        @media print {
+            body {
+                padding: 10px;
+                font-size: 11px;
+            }
+            .box {
+                break-inside: avoid;
+            }
+        }
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+            .elasticity-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Supply & Demand Reference Sheet</h1>
+        <p class="subtitle">Quick reference for personal financial decision-making</p>
+    </header>
+
+    <div class="box">
+        <div class="box-title">LAW OF DEMAND</div>
+        <p><strong>Definition:</strong> When price increases, quantity demanded decreases (and vice versa)</p>
+        <div class="law-box">
+            <strong>Personal Finance Example:</strong> When gas prices rise to $5/gallon, you drive less and carpool more. When they drop to $2.50/gallon, you take more road trips.
+        </div>
+    </div>
+
+    <div class="box">
+        <div class="box-title">LAW OF SUPPLY</div>
+        <p><strong>Definition:</strong> When price increases, quantity supplied increases (and vice versa)</p>
+        <div class="law-box">
+            <strong>Personal Finance Example:</strong> When salaries for nurses increase, more people enter nursing programs. When wages fall, fewer people pursue that career.
+        </div>
+    </div>
+
+    <div class="grid">
+        <div class="box">
+            <div class="box-title">Demand Shifters</div>
+            <ul class="shifter-list">
+                <li><strong>Income changes</strong> - More income = more demand (for normal goods)</li>
+                <li><strong>Consumer preferences</strong> - Trends, tastes, advertising</li>
+                <li><strong>Prices of related goods</strong> - Substitutes and complements</li>
+                <li><strong>Future expectations</strong> - Expect prices to rise? Buy now</li>
+                <li><strong>Number of buyers</strong> - Population growth increases demand</li>
+            </ul>
+        </div>
+        <div class="box">
+            <div class="box-title">Supply Shifters</div>
+            <ul class="shifter-list">
+                <li><strong>Production costs</strong> - Higher costs = less supply</li>
+                <li><strong>Technology</strong> - Better tech = more efficient supply</li>
+                <li><strong>Natural disasters</strong> - Disruptions reduce supply</li>
+                <li><strong>Government policies</strong> - Taxes, regulations, subsidies</li>
+                <li><strong>Number of sellers</strong> - More competition = more supply</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="box">
+        <div class="box-title">EQUILIBRIUM</div>
+        <p><strong>Definition:</strong> The price where quantity demanded equals quantity supplied</p>
+        <div class="highlight">
+            <strong>Key Insight:</strong> Markets naturally move toward equilibrium. Understanding this helps you predict when prices might be temporary vs. long-term.
+            <p style="margin-top: 8px;"><strong>Example:</strong> A housing shortage pushes prices above equilibrium - expect higher rent until more apartments are built.</p>
+        </div>
+    </div>
+
+    <div class="box">
+        <div class="box-title">MARKET PREDICTION GUIDE</div>
+        <table style="width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 0.9rem;">
+            <tr style="background-color: #f3f4f6;">
+                <th style="padding: 8px; border: 1px solid #e5e7eb;">If Demand...</th>
+                <th style="padding: 8px; border: 1px solid #e5e7eb;">And Supply...</th>
+                <th style="padding: 8px; border: 1px solid #e5e7eb;">Then Price...</th>
+                <th style="padding: 8px; border: 1px solid #e5e7eb;">And Quantity...</th>
+            </tr>
+            <tr>
+                <td style="padding: 8px; border: 1px solid #e5e7eb;">Increases</td>
+                <td style="padding: 8px; border: 1px solid #e5e7eb;">Stable</td>
+                <td style="padding: 8px; border: 1px solid #e5e7eb; color: #dc2626;">Rises</td>
+                <td style="padding: 8px; border: 1px solid #e5e7eb; color: #16a34a;">Rises</td>
+            </tr>
+            <tr>
+                <td style="padding: 8px; border: 1px solid #e5e7eb;">Decreases</td>
+                <td style="padding: 8px; border: 1px solid #e5e7eb;">Stable</td>
+                <td style="padding: 8px; border: 1px solid #e5e7eb; color: #16a34a;">Falls</td>
+                <td style="padding: 8px; border: 1px solid #e5e7eb; color: #dc2626;">Falls</td>
+            </tr>
+            <tr>
+                <td style="padding: 8px; border: 1px solid #e5e7eb;">Stable</td>
+                <td style="padding: 8px; border: 1px solid #e5e7eb;">Increases</td>
+                <td style="padding: 8px; border: 1px solid #e5e7eb; color: #16a34a;">Falls</td>
+                <td style="padding: 8px; border: 1px solid #e5e7eb; color: #16a34a;">Rises</td>
+            </tr>
+            <tr>
+                <td style="padding: 8px; border: 1px solid #e5e7eb;">Stable</td>
+                <td style="padding: 8px; border: 1px solid #e5e7eb;">Decreases</td>
+                <td style="padding: 8px; border: 1px solid #e5e7eb; color: #dc2626;">Rises</td>
+                <td style="padding: 8px; border: 1px solid #e5e7eb; color: #dc2626;">Falls</td>
+            </tr>
+            <tr>
+                <td style="padding: 8px; border: 1px solid #e5e7eb;">Increases</td>
+                <td style="padding: 8px; border: 1px solid #e5e7eb;">Decreases</td>
+                <td style="padding: 8px; border: 1px solid #e5e7eb; color: #dc2626;">Rises strongly</td>
+                <td style="padding: 8px; border: 1px solid #e5e7eb;">Uncertain</td>
+            </tr>
+            <tr>
+                <td style="padding: 8px; border: 1px solid #e5e7eb;">Decreases</td>
+                <td style="padding: 8px; border: 1px solid #e5e7eb;">Increases</td>
+                <td style="padding: 8px; border: 1px solid #e5e7eb; color: #16a34a;">Falls strongly</td>
+                <td style="padding: 8px; border: 1px solid #e5e7eb;">Uncertain</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="box">
+        <div class="box-title">PRICE ELASTICITY</div>
+        <p>How sensitive is quantity demanded to price changes?</p>
+
+        <div class="elasticity-grid">
+            <div class="elastic-box">
+                <strong style="color: #1d4ed8;">Elastic (Sensitive)</strong>
+                <ul style="margin: 8px 0 0 15px; font-size: 0.9rem;">
+                    <li>Luxury goods</li>
+                    <li>Many substitutes</li>
+                    <li>Non-essentials</li>
+                </ul>
+                <p style="margin-top: 8px; font-size: 0.85rem;"><strong>Strategy:</strong> Wait for sales, negotiate, find alternatives</p>
+            </div>
+            <div class="inelastic-box">
+                <strong style="color: #dc2626;">Inelastic (Insensitive)</strong>
+                <ul style="margin: 8px 0 0 15px; font-size: 0.9rem;">
+                    <li>Necessities</li>
+                    <li>Few substitutes</li>
+                    <li>Urgent needs</li>
+                </ul>
+                <p style="margin-top: 8px; font-size: 0.85rem;"><strong>Strategy:</strong> Reduce consumption, find long-term alternatives</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="box">
+        <div class="box-title">PERSONAL FINANCE APPLICATIONS</div>
+
+        <div class="application-item">
+            <span class="application-label">Housing:</span> High demand + limited supply = rising rents. Time your apartment search during off-peak seasons (winter) when demand is lower.
+        </div>
+
+        <div class="application-item">
+            <span class="application-label">Careers:</span> High demand for skills + low supply of workers = higher salaries. Choose careers where demand exceeds supply.
+        </div>
+
+        <div class="application-item">
+            <span class="application-label">Shopping:</span> Buy seasonal items off-season when demand is low (winter coats in spring, ACs in fall).
+        </div>
+
+        <div class="application-item">
+            <span class="application-label">Negotiation:</span> You have more leverage when supply is high and demand is low. Less leverage when you have inelastic demand for something.
+        </div>
+
+        <div class="application-item">
+            <span class="application-label">Investing:</span> Identify markets where supply/demand imbalances create opportunities (e.g., housing in growing cities).
+        </div>
+    </div>
+
+    <div class="takeaway">
+        <strong>Key Takeaway:</strong> Supply and demand determine prices in free markets. Use this knowledge to time purchases, choose careers, negotiate effectively, and make smarter financial decisions. Buy when supply is high and demand is low; sell when demand is high and supply is low.
+    </div>
+</body>
+</html>
