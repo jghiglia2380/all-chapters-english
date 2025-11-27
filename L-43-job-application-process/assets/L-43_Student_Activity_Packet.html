@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-43 Student Activity Packet</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+        :root {
+            --primary: #6366f1;
+            --primary-light: #eef2ff;
+            --accent: #f59e0b;
+            --accent-light: #fef3c7;
+            --success: #059669;
+            --text-dark: #1e293b;
+            --text-medium: #475569;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --bg-light: #f8fafc;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+
+        @page {
+            size: letter;
+            margin: 0.5in;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 10.5pt;
+            line-height: 1.5;
+            color: var(--text-dark);
+            background: white;
+        }
+
+        .header {
+            background: var(--primary);
+            color: white;
+            padding: 14px 18px;
+            border-radius: 6px;
+            margin-bottom: 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-left h1 {
+            font-size: 13pt;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .header-left h2 {
+            font-size: 10pt;
+            font-weight: 400;
+            margin: 2px 0 0;
+            opacity: 0.9;
+        }
+
+        .header-right {
+            font-size: 9pt;
+            text-align: right;
+            opacity: 0.9;
+        }
+
+        .section-header {
+            font-size: 11pt;
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 4px;
+            margin: 20px 0 12px;
+        }
+
+        .challenge-box {
+            background: var(--accent-light);
+            border-left: 4px solid var(--accent);
+            padding: 14px 16px;
+            margin-bottom: 16px;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .challenge-box p {
+            font-style: italic;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+        }
+
+        .challenge-box .framing-question {
+            font-weight: 600;
+            font-style: normal;
+            color: #92400e;
+        }
+
+        .objectives-box {
+            background: var(--primary-light);
+            border: 1px solid #c7d2fe;
+            border-radius: 6px;
+            padding: 12px 16px;
+            margin-bottom: 18px;
+        }
+
+        .objectives-box h3 {
+            font-size: 10pt;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 6px;
+        }
+
+        .objectives-box ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .objectives-box li {
+            margin-bottom: 3px;
+            color: var(--text-medium);
+        }
+
+        .terms-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 14px;
+            font-size: 10pt;
+        }
+
+        .terms-table th {
+            background: var(--bg-light);
+            text-align: left;
+            padding: 8px 10px;
+            border: 1px solid var(--border);
+            font-weight: 600;
+            color: var(--text-medium);
+        }
+
+        .terms-table td {
+            padding: 8px 10px;
+            border: 1px solid var(--border);
+            vertical-align: top;
+        }
+
+        .terms-table td:first-child {
+            font-weight: 600;
+            color: var(--primary);
+            width: 28%;
+        }
+
+        .background-box {
+            background: var(--bg-light);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 12px 16px;
+            margin-bottom: 18px;
+            font-size: 10pt;
+            color: var(--text-medium);
+        }
+
+        .background-box strong {
+            color: var(--text-dark);
+        }
+
+        .scenario-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 12px 14px;
+            margin-bottom: 14px;
+            page-break-inside: avoid;
+        }
+
+        .scenario-title {
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 6px;
+            font-size: 10pt;
+        }
+
+        .scenario-description {
+            color: var(--text-medium);
+            margin-bottom: 10px;
+            font-size: 10pt;
+        }
+
+        .response-line {
+            display: flex;
+            align-items: baseline;
+            margin-bottom: 8px;
+        }
+
+        .response-label {
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-right: 8px;
+            white-space: nowrap;
+        }
+
+        .response-blank {
+            flex-grow: 1;
+            border-bottom: 1px solid var(--text-light);
+            min-height: 18px;
+        }
+
+        .response-options {
+            color: var(--text-light);
+            font-size: 9pt;
+            margin-left: 8px;
+            white-space: nowrap;
+        }
+
+        .question {
+            margin-bottom: 14px;
+            page-break-inside: avoid;
+        }
+
+        .question-number {
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .question-text {
+            color: var(--text-dark);
+            margin-bottom: 6px;
+        }
+
+        .answer-lines {
+            margin-top: 6px;
+        }
+
+        .answer-line {
+            border-bottom: 1px solid var(--text-light);
+            height: 22px;
+            margin-bottom: 4px;
+        }
+
+        .mc-options {
+            margin-top: 6px;
+            margin-left: 20px;
+        }
+
+        .mc-option {
+            display: flex;
+            align-items: center;
+            margin-bottom: 4px;
+        }
+
+        .mc-checkbox {
+            width: 14px;
+            height: 14px;
+            border: 1px solid var(--text-light);
+            border-radius: 2px;
+            margin-right: 8px;
+            flex-shrink: 0;
+        }
+
+        .hint-box {
+            background: #f0fdf4;
+            border-left: 3px solid var(--success);
+            padding: 8px 12px;
+            margin: 10px 0;
+            font-size: 9pt;
+            font-style: italic;
+            color: #166534;
+        }
+
+        .hint-box strong {
+            font-style: normal;
+        }
+
+        .part-header {
+            font-weight: 700;
+            font-size: 10pt;
+            color: var(--primary);
+            text-transform: uppercase;
+            margin: 16px 0 10px;
+            padding-bottom: 4px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .job-description-box {
+            background: var(--bg-light);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 12px;
+            margin-bottom: 14px;
+            font-size: 9pt;
+        }
+
+        .job-description-box h4 {
+            font-size: 10pt;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+        }
+
+        .job-description-box .company {
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .job-description-box ul {
+            margin: 6px 0;
+            padding-left: 16px;
+            color: var(--text-medium);
+        }
+
+        .job-description-box li {
+            margin-bottom: 3px;
+        }
+
+        .stats-box {
+            background: var(--primary-light);
+            border-radius: 4px;
+            padding: 10px 12px;
+            margin: 10px 0;
+            font-size: 9pt;
+        }
+
+        .stats-box strong {
+            color: var(--primary);
+        }
+
+        .footer {
+            margin-top: 24px;
+            padding-top: 10px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            font-size: 9pt;
+            color: var(--text-light);
+        }
+
+        .mb-sm { margin-bottom: 8px; }
+        .mb-md { margin-bottom: 14px; }
+        .mb-lg { margin-bottom: 20px; }
+
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <div class="header">
+        <div class="header-left">
+            <h1>PFL Academy</h1>
+            <h2>Chapter 15.3: Job Application Process</h2>
+        </div>
+        <div class="header-right">
+            Student Activity Packet
+        </div>
+    </div>
+
+    <!-- THE CHALLENGE -->
+    <div class="section-header">The Challenge</div>
+    <div class="challenge-box">
+        <p>Alex submitted dozens of random applications with a generic resume and never heard back from employers. After learning strategic job search techniques, he identified target companies, tailored his materials using keywords from each job description, and connected with a professional at one company through a tech meetup. Within two weeks of submitting his customized application—which highlighted how his capstone project demonstrated the exact skills mentioned in the job posting—he received an interview invitation. The hiring manager mentioned that his tailored application and personal connection helped him stand out from over 200 applicants.</p>
+        <p class="framing-question">What's the difference between applying to many jobs randomly and taking a strategic, targeted approach to the application process?</p>
+    </div>
+
+    <!-- LEARNING OBJECTIVES -->
+    <div class="objectives-box">
+        <h3>Learning Objectives</h3>
+        <ul>
+            <li>Identify effective strategies for finding job opportunities across different industries.</li>
+            <li>Understand how to read and interpret job descriptions and requirements.</li>
+            <li>Develop techniques for customizing application materials for specific positions.</li>
+            <li>Learn best practices for navigating applicant tracking systems (ATS).</li>
+            <li>Recognize the importance of networking in the job search process.</li>
+        </ul>
+    </div>
+
+    <!-- CORE CONCEPTS -->
+    <div class="section-header">Core Concepts</div>
+
+    <table class="terms-table">
+        <tr>
+            <th>Term</th>
+            <th>Definition</th>
+        </tr>
+        <tr>
+            <td>Applicant Tracking System (ATS)</td>
+            <td>Software used by employers to collect, sort, and filter job applications based on keywords and qualifications.</td>
+        </tr>
+        <tr>
+            <td>Keywords</td>
+            <td>Specific terms in job descriptions that highlight required skills, qualifications, and experience—essential for passing ATS screening.</td>
+        </tr>
+        <tr>
+            <td>Cover Letter</td>
+            <td>A document submitted with a resume that introduces you and highlights why you're qualified for the specific position.</td>
+        </tr>
+        <tr>
+            <td>Networking</td>
+            <td>Building professional relationships to exchange information, advice, and job opportunities.</td>
+        </tr>
+        <tr>
+            <td>Tailoring</td>
+            <td>Customizing your resume and cover letter for each job by incorporating relevant keywords and highlighting applicable experiences.</td>
+        </tr>
+    </table>
+
+    <div class="background-box">
+        <strong>Background:</strong> The job application process is more than just sending out resumes—it requires research, preparation, and careful attention to detail. Studies show that 70-80% of jobs are never publicly advertised, highlighting the importance of networking. Additionally, most large companies use ATS software that filters applications before a human ever sees them, making keyword optimization and proper formatting essential.
+    </div>
+
+    <div class="stats-box">
+        <strong>Key Statistic:</strong> Approximately 75% of applications are rejected by ATS before reaching a human reviewer. Applications with tailored keywords and proper formatting are 3x more likely to pass initial screening.
+    </div>
+
+    <!-- APPLY IT -->
+    <div class="section-header">Apply It</div>
+
+    <div class="part-header">Part A: Job Description Analysis</div>
+    <p class="mb-sm">Read the sample job description below and answer the questions that follow.</p>
+
+    <div class="job-description-box">
+        <h4>Marketing Coordinator - TechStart Inc.</h4>
+        <div class="company">Location: San Francisco, CA | Type: Full-Time</div>
+        <p><strong>Required Qualifications:</strong></p>
+        <ul>
+            <li>Bachelor's degree in Marketing, Communications, or related field</li>
+            <li>1-2 years of experience in digital marketing or social media management</li>
+            <li>Proficiency in social media platforms and analytics tools</li>
+            <li>Strong written and verbal communication skills</li>
+            <li>Experience with content creation and campaign management</li>
+        </ul>
+        <p><strong>Preferred Qualifications:</strong></p>
+        <ul>
+            <li>Experience with SEO and Google Analytics</li>
+            <li>Knowledge of email marketing platforms (Mailchimp, Constant Contact)</li>
+            <li>Graphic design skills (Adobe Creative Suite)</li>
+        </ul>
+        <p><strong>Responsibilities:</strong> Manage social media accounts, create engaging content, analyze campaign performance, coordinate marketing projects, collaborate with design team.</p>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">1.</span> List 5 keywords from this job description that you should include in your application:</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">2.</span> What is the difference between required and preferred qualifications? Should you apply if you don't meet all requirements?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <!-- PART B -->
+    <div class="part-header">Part B: ATS Optimization Scenarios</div>
+    <p class="mb-md">For each scenario, identify whether the application strategy would help or hurt ATS compatibility.</p>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Scenario 1</div>
+        <div class="scenario-description">Maya created a visually stunning resume with graphics, text boxes, and a creative layout to stand out from other applicants.</div>
+        <div class="response-line">
+            <span class="response-label">ATS Impact:</span>
+            <span class="response-blank"></span>
+            <span class="response-options">(helps / hurts)</span>
+        </div>
+        <div class="response-line">
+            <span class="response-label">Why:</span>
+            <span class="response-blank"></span>
+        </div>
+    </div>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Scenario 2</div>
+        <div class="scenario-description">James used exact phrases from the job description in his resume, such as "project management," "budget analysis," and "cross-functional collaboration."</div>
+        <div class="response-line">
+            <span class="response-label">ATS Impact:</span>
+            <span class="response-blank"></span>
+            <span class="response-options">(helps / hurts)</span>
+        </div>
+        <div class="response-line">
+            <span class="response-label">Why:</span>
+            <span class="response-blank"></span>
+        </div>
+    </div>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Scenario 3</div>
+        <div class="scenario-description">Emily saved her resume as "resume_final_v3.pdf" and used non-standard section headings like "My Journey" instead of "Experience."</div>
+        <div class="response-line">
+            <span class="response-label">ATS Impact:</span>
+            <span class="response-blank"></span>
+            <span class="response-options">(helps / hurts)</span>
+        </div>
+        <div class="response-line">
+            <span class="response-label">Why:</span>
+            <span class="response-blank"></span>
+        </div>
+    </div>
+
+    <div class="hint-box">
+        <strong>Hint:</strong> ATS systems prefer simple formatting, standard section headings, and keyword-rich content that matches the job description.
+    </div>
+
+    <!-- PART C -->
+    <div class="part-header">Part C: Networking Strategy</div>
+    <p class="mb-md">Given that 70-80% of jobs are found through networking, plan your networking approach:</p>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">3.</span> List 3 networking strategies you could use to find job opportunities in your field of interest:</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <!-- CHECK YOUR UNDERSTANDING -->
+    <div class="section-header">Check Your Understanding</div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">1.</span> Why do most large companies use Applicant Tracking Systems (ATS)?</p>
+        <div class="mc-options">
+            <div class="mc-option"><div class="mc-checkbox"></div> A. To make applications more difficult</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> B. To efficiently filter and rank large numbers of applications</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> C. To automatically hire candidates</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> D. To replace human hiring managers</div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">2.</span> What is the general rule for applying to jobs when you don't meet all listed requirements?</p>
+        <div class="mc-options">
+            <div class="mc-option"><div class="mc-checkbox"></div> A. Only apply if you meet 100% of requirements</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> B. Apply if you meet about 70-80% of requirements, especially the essential ones</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> C. Never apply unless you exceed all requirements</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> D. Requirements don't matter; apply everywhere</div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">3.</span> Why is tailoring your application materials for each job more effective than using a generic resume?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">4.</span> What is the appropriate timing and tone for a follow-up email after submitting an application?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">5.</span> <strong>Reflection:</strong> Think about a job or field you're interested in. What specific steps would you take to find opportunities and create a successful application? Include both online strategies and networking approaches.</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        <span>© PFL Academy | pflacademy.co</span>
+        <span>Chapter 15.3: Job Application Process</span>
+    </div>
+
+</body>
+</html>

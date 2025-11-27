@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-49 Student Activity Packet</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+        :root {
+            --primary: #6366f1;
+            --primary-light: #eef2ff;
+            --accent: #f59e0b;
+            --accent-light: #fef3c7;
+            --success: #059669;
+            --text-dark: #1e293b;
+            --text-medium: #475569;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --bg-light: #f8fafc;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+        @page { size: letter; margin: 0.5in; }
+
+        body { font-family: 'Open Sans', sans-serif; font-size: 10.5pt; line-height: 1.5; color: var(--text-dark); background: white; }
+
+        .header { background: var(--primary); color: white; padding: 14px 18px; border-radius: 6px; margin-bottom: 18px; display: flex; justify-content: space-between; align-items: center; }
+        .header-left h1 { font-size: 13pt; font-weight: 700; margin: 0; }
+        .header-left h2 { font-size: 10pt; font-weight: 400; margin: 2px 0 0; opacity: 0.9; }
+        .header-right { font-size: 9pt; text-align: right; opacity: 0.9; }
+
+        .section-header { font-size: 11pt; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 2px solid var(--primary); padding-bottom: 4px; margin: 20px 0 12px; }
+
+        .challenge-box { background: var(--accent-light); border-left: 4px solid var(--accent); padding: 14px 16px; margin-bottom: 16px; border-radius: 0 6px 6px 0; }
+        .challenge-box p { font-style: italic; color: var(--text-dark); margin-bottom: 10px; }
+        .challenge-box .framing-question { font-weight: 600; font-style: normal; color: #92400e; }
+
+        .objectives-box { background: var(--primary-light); border: 1px solid #c7d2fe; border-radius: 6px; padding: 12px 16px; margin-bottom: 18px; }
+        .objectives-box h3 { font-size: 10pt; font-weight: 700; color: var(--primary); margin-bottom: 6px; }
+        .objectives-box ul { margin: 0; padding-left: 20px; }
+        .objectives-box li { margin-bottom: 3px; color: var(--text-medium); }
+
+        .terms-table { width: 100%; border-collapse: collapse; margin-bottom: 14px; font-size: 10pt; }
+        .terms-table th { background: var(--bg-light); text-align: left; padding: 8px 10px; border: 1px solid var(--border); font-weight: 600; color: var(--text-medium); }
+        .terms-table td { padding: 8px 10px; border: 1px solid var(--border); vertical-align: top; }
+        .terms-table td:first-child { font-weight: 600; color: var(--primary); width: 25%; }
+
+        .background-box { background: var(--bg-light); border: 1px solid var(--border); border-radius: 6px; padding: 12px 16px; margin-bottom: 18px; font-size: 10pt; color: var(--text-medium); }
+        .background-box strong { color: var(--text-dark); }
+
+        .data-table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 9pt; }
+        .data-table th { background: var(--primary); color: white; padding: 8px 10px; text-align: center; font-weight: 600; font-size: 9pt; }
+        .data-table td { padding: 8px 10px; border: 1px solid var(--border); text-align: center; }
+        .data-table tr:nth-child(even) td { background: var(--bg-light); }
+        .data-table .calc-row td { background: #fef9c3; height: 28px; }
+
+        .question { margin-bottom: 14px; page-break-inside: avoid; }
+        .question-number { font-weight: 700; color: var(--text-dark); }
+        .question-text { color: var(--text-dark); margin-bottom: 6px; }
+
+        .answer-lines { margin-top: 6px; }
+        .answer-line { border-bottom: 1px solid var(--text-light); height: 22px; margin-bottom: 4px; }
+
+        .mc-options { margin-top: 6px; margin-left: 20px; }
+        .mc-option { display: flex; align-items: center; margin-bottom: 4px; }
+        .mc-checkbox { width: 14px; height: 14px; border: 1px solid var(--text-light); border-radius: 2px; margin-right: 8px; flex-shrink: 0; }
+
+        .hint-box { background: #f0fdf4; border-left: 3px solid var(--success); padding: 8px 12px; margin: 10px 0; font-size: 9pt; font-style: italic; color: #166534; }
+        .hint-box strong { font-style: normal; }
+
+        .part-header { font-weight: 700; font-size: 10pt; color: var(--primary); text-transform: uppercase; margin: 16px 0 10px; padding-bottom: 4px; border-bottom: 1px solid var(--border); }
+
+        .calc-box { border: 1px solid var(--border); border-radius: 4px; padding: 12px; margin: 8px 0; min-height: 60px; background: var(--bg-light); }
+        .calc-label { font-size: 9pt; color: var(--text-light); margin-bottom: 4px; }
+        .calc-answer { margin-top: 10px; font-weight: 600; }
+
+        .footer { margin-top: 24px; padding-top: 10px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; font-size: 9pt; color: var(--text-light); }
+
+        .mb-sm { margin-bottom: 8px; }
+        .mb-md { margin-bottom: 14px; }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <div class="header">
+        <div class="header-left">
+            <h1>PFL Academy</h1>
+            <h2>Chapter 14.2: Scarcity, Opportunity Cost, and Incentives</h2>
+        </div>
+        <div class="header-right">
+            Student Activity Packet
+        </div>
+    </div>
+
+    <!-- THE CHALLENGE -->
+    <div class="section-header">The Challenge</div>
+    <div class="challenge-box">
+        <p>Sarah, 18, was deciding between Elite Private College ($55,000/year) and State University ($15,000/year). Simple analysis: Elite costs $160,000 more over four years. But Sarah calculated the FULL opportunity cost: Elite's total cost including foregone wages was $372,000, while State's was $252,000—a $120,000 difference. For engineering (her major), research showed the salary premium from Elite was only $5,000/year. Sarah chose State University and invested the $120,000 difference. By age 65, that investment grew to $1,800,000—far exceeding any salary premium from the "prestigious" school. Opportunity cost thinking transformed her decision.</p>
+        <p class="framing-question">What are you REALLY giving up when you make financial decisions? How do you calculate the true cost of your choices?</p>
+    </div>
+
+    <!-- LEARNING OBJECTIVES -->
+    <div class="objectives-box">
+        <h3>Learning Objectives</h3>
+        <ul>
+            <li>Define scarcity and explain why it's the fundamental economic problem.</li>
+            <li>Calculate opportunity costs for personal finance decisions.</li>
+            <li>Identify explicit and implicit costs in financial choices.</li>
+            <li>Analyze how incentives shape behavior in economic systems.</li>
+            <li>Apply opportunity cost analysis to major life decisions.</li>
+        </ul>
+    </div>
+
+    <!-- CORE CONCEPTS -->
+    <div class="section-header">Core Concepts</div>
+
+    <table class="terms-table">
+        <tr>
+            <th>Term</th>
+            <th>Definition</th>
+        </tr>
+        <tr>
+            <td>Scarcity</td>
+            <td>The fundamental economic problem: unlimited human wants exceed limited resources, forcing choices and trade-offs.</td>
+        </tr>
+        <tr>
+            <td>Opportunity Cost</td>
+            <td>The value of the next-best alternative forgone when making a choice—the TRUE cost of any decision.</td>
+        </tr>
+        <tr>
+            <td>Explicit Costs</td>
+            <td>Direct monetary payments required for a choice (tuition, car payment, groceries).</td>
+        </tr>
+        <tr>
+            <td>Implicit Costs</td>
+            <td>Indirect costs including time, foregone alternatives, and non-monetary sacrifices.</td>
+        </tr>
+        <tr>
+            <td>Incentive</td>
+            <td>Reward or penalty that motivates behavior—positive incentives encourage actions, negative incentives discourage them.</td>
+        </tr>
+    </table>
+
+    <div class="background-box">
+        <strong>Background:</strong> Every choice involves opportunity cost—the value of what you give up. When you spend $15,000 on a car, the opportunity cost isn't just money; it's whatever else you could have done with that $15,000—invest for retirement, pay down student loans, or start a business. Understanding opportunity cost transforms financial decisions by revealing the TRUE cost of every choice.
+    </div>
+
+    <!-- APPLY IT -->
+    <div class="section-header">Apply It</div>
+
+    <div class="part-header">Part A: College Opportunity Cost Calculation</div>
+    <p class="mb-sm">Calculate the FULL opportunity cost of attending college:</p>
+
+    <table class="data-table">
+        <tr>
+            <th>Cost Category</th>
+            <th>4-Year University</th>
+            <th>Work Immediately</th>
+        </tr>
+        <tr>
+            <td style="text-align: left; font-weight: 600;">Tuition (4 years)</td>
+            <td>$80,000</td>
+            <td>$0</td>
+        </tr>
+        <tr>
+            <td style="text-align: left; font-weight: 600;">Living Expenses (4 years)</td>
+            <td>$48,000</td>
+            <td>$48,000</td>
+        </tr>
+        <tr>
+            <td style="text-align: left; font-weight: 600;">Foregone Full-time Wages</td>
+            <td>$120,000 (4 × $30,000)</td>
+            <td>$0</td>
+        </tr>
+        <tr>
+            <td style="text-align: left; font-weight: 600;">Part-time Earnings During School</td>
+            <td>-$48,000</td>
+            <td>N/A</td>
+        </tr>
+        <tr class="calc-row">
+            <td style="text-align: left; font-weight: 600;">TOTAL OPPORTUNITY COST</td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">1.</span> Calculate the total opportunity cost of attending the 4-year university compared to working immediately. Show your work.</p>
+        <div class="calc-box">
+            <div class="calc-label">Explicit costs + Implicit costs (foregone wages minus part-time earnings):</div>
+        </div>
+        <div class="calc-answer">Total opportunity cost of college: $_____________</div>
+    </div>
+
+    <div class="hint-box">
+        <strong>Key Insight:</strong> College tuition ($80,000) is just part of the cost. The IMPLICIT costs (foregone wages) often exceed explicit costs!
+    </div>
+
+    <!-- PART B -->
+    <div class="part-header">Part B: Time Opportunity Cost</div>
+    <p class="mb-md">Marcus earns $36/hour but spends 6 hours on Saturday doing home maintenance to "save money."</p>
+
+    <table class="data-table">
+        <tr>
+            <th>Task</th>
+            <th>Hours</th>
+            <th>Cost to Hire</th>
+            <th>Marcus's Time Value</th>
+        </tr>
+        <tr>
+            <td style="text-align: left;">Lawn mowing</td>
+            <td>2</td>
+            <td>$40/week</td>
+            <td>$72 (2 × $36)</td>
+        </tr>
+        <tr>
+            <td style="text-align: left;">Gutter cleaning</td>
+            <td>1</td>
+            <td>$10/week avg</td>
+            <td>$36</td>
+        </tr>
+        <tr>
+            <td style="text-align: left;">Oil change</td>
+            <td>1</td>
+            <td>$10/week avg</td>
+            <td>$36</td>
+        </tr>
+        <tr>
+            <td style="text-align: left;">Pressure washing</td>
+            <td>2</td>
+            <td>$10/week avg</td>
+            <td>$72</td>
+        </tr>
+        <tr class="calc-row">
+            <td style="text-align: left; font-weight: 600;">TOTAL</td>
+            <td>6 hours</td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">2.</span> Calculate: Is Marcus actually "saving money" by doing these tasks himself? What's his net gain or loss?</p>
+        <div class="calc-box">
+            <div class="calc-label">Total cost to hire services vs. Value of Marcus's 6 hours:</div>
+        </div>
+        <div class="calc-answer">Net result: Marcus is _________ (gaining/losing) $_______ weekly</div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">3.</span> If Marcus instead used those 6 hours for consulting at $75/hour, what would his weekly net gain be (after paying for services)?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <!-- PART C -->
+    <div class="part-header">Part C: Incentive Analysis</div>
+    <p class="mb-md">Identify the incentive and predict the behavioral response:</p>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">4.</span> Employer offers 100% 401(k) match up to 6% of salary. What's the incentive and predicted response?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">5.</span> Credit card offers 2% cash back on all purchases. What's the incentive, and what's a potential unintended consequence?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <!-- CHECK YOUR UNDERSTANDING -->
+    <div class="section-header">Check Your Understanding</div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">1.</span> Why does scarcity force people to make choices?</p>
+        <div class="mc-options">
+            <div class="mc-option"><div class="mc-checkbox"></div> A. Because prices are too high</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> B. Because unlimited wants exceed limited resources</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> C. Because government restricts purchasing</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> D. Because people don't know what they want</div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">2.</span> What is the best definition of opportunity cost?</p>
+        <div class="mc-options">
+            <div class="mc-option"><div class="mc-checkbox"></div> A. The dollar price of something</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> B. The next-best alternative forgone when making a choice</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> C. The total of all possible alternatives</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> D. The interest rate on a loan</div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">3.</span> Explain the difference between explicit costs and implicit costs. Give an example of each for the decision to attend college.</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">4.</span> Why should "sunk costs" (money already spent) be ignored when making future decisions?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">5.</span> <strong>Reflection:</strong> Think of a major financial decision you're facing (college, car, job). What is the explicit cost? What is the implicit/opportunity cost? Does calculating this change your decision?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        <span>© PFL Academy | pflacademy.co</span>
+        <span>Chapter 14.2: Scarcity and Opportunity Cost</span>
+    </div>
+
+</body>
+</html>

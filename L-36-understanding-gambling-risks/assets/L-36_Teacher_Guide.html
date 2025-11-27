@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-36 Teacher Guide</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+        :root {
+            --primary: #059669;
+            --primary-light: #ecfdf5;
+            --primary-dark: #065f46;
+            --text-dark: #1e293b;
+            --text-medium: #475569;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --bg-light: #f8fafc;
+            --warning: #f59e0b;
+            --warning-light: #fef3c7;
+            --error: #dc2626;
+            --error-light: #fee2e2;
+            --success-light: #dcfce7;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+        @page { size: letter; margin: 0.5in; }
+
+        body { font-family: 'Open Sans', sans-serif; font-size: 10pt; line-height: 1.45; color: var(--text-dark); background: white; }
+
+        .header { background: var(--primary); color: white; padding: 14px 18px; border-radius: 6px; margin-bottom: 16px; }
+        .header h1 { font-size: 13pt; font-weight: 700; margin: 0; }
+        .header h2 { font-size: 10pt; font-weight: 400; margin: 3px 0 0; opacity: 0.9; }
+
+        .section-header { background: var(--primary-light); border-left: 4px solid var(--primary); padding: 7px 12px; font-size: 10pt; font-weight: 700; color: var(--primary-dark); text-transform: uppercase; letter-spacing: 0.5px; margin: 16px 0 10px; }
+
+        .overview-table { width: 100%; border-collapse: collapse; margin-bottom: 14px; }
+        .overview-table th { background: var(--bg-light); color: var(--text-light); font-size: 8pt; text-transform: uppercase; letter-spacing: 0.5px; text-align: center; padding: 6px 10px; border: 1px solid var(--border); width: 33%; }
+        .overview-table td { text-align: center; padding: 10px; border: 1px solid var(--border); font-weight: 600; color: var(--text-dark); font-size: 10pt; }
+
+        .flow-container { margin-bottom: 14px; }
+        .flow-item { display: flex; padding: 8px 0; border-bottom: 1px solid var(--border); page-break-inside: avoid; }
+        .flow-item:last-child { border-bottom: none; }
+        .flow-time { width: 65px; font-weight: 700; color: var(--primary); flex-shrink: 0; font-size: 10pt; }
+        .flow-content { flex: 1; }
+        .flow-title { font-weight: 700; color: var(--text-dark); margin-bottom: 3px; font-size: 10pt; }
+        .flow-content ul { margin: 0; padding-left: 16px; font-size: 9pt; color: var(--text-medium); }
+        .flow-content li { margin-bottom: 2px; }
+
+        .diff-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px; }
+        .diff-box { background: var(--bg-light); border: 1px solid var(--border); border-radius: 4px; padding: 10px 12px; }
+        .diff-title { font-weight: 700; color: var(--text-dark); margin-bottom: 6px; font-size: 9pt; }
+        .diff-box ul { margin: 0; padding-left: 16px; font-size: 9pt; color: var(--text-medium); }
+        .diff-box li { margin-bottom: 2px; }
+
+        .answer-key { page-break-before: always; }
+        .answer-block { margin-bottom: 12px; page-break-inside: avoid; }
+        .answer-title { font-weight: 700; color: var(--primary); font-size: 9pt; border-bottom: 1px solid #a7f3d0; padding-bottom: 3px; margin-bottom: 6px; }
+        .answer-item { margin-bottom: 5px; font-size: 9pt; color: var(--text-dark); }
+        .answer-item strong { color: var(--primary-dark); }
+
+        .calc-display { font-family: 'Courier New', monospace; background: var(--bg-light); padding: 8px 10px; border-radius: 4px; margin: 6px 0; font-size: 8.5pt; line-height: 1.5; white-space: pre-line; }
+        .answer-note { background: var(--warning-light); border-left: 3px solid var(--warning); padding: 6px 10px; font-size: 9pt; font-style: italic; color: #92400e; margin: 6px 0; }
+
+        .misconception-table { width: 100%; border-collapse: collapse; font-size: 9pt; margin-top: 10px; }
+        .misconception-table th { padding: 6px 10px; text-align: left; font-weight: 600; }
+        .misconception-table th:first-child { background: var(--error-light); color: #991b1b; border: 1px solid #fca5a5; width: 40%; }
+        .misconception-table th:last-child { background: var(--success-light); color: #166534; border: 1px solid #86efac; }
+        .misconception-table td { padding: 6px 10px; border: 1px solid var(--border); vertical-align: top; color: var(--text-medium); }
+
+        .footer { margin-top: 20px; padding-top: 8px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; font-size: 8pt; color: var(--text-light); }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>PFL Academy</h1>
+        <h2>Teacher Guide: Chapter 12.1 — Understanding the Risks of Gambling</h2>
+    </div>
+
+    <div class="section-header">Overview</div>
+    <table class="overview-table">
+        <tr><th>Time</th><th>Materials</th><th>Prerequisites</th></tr>
+        <tr><td>45-50 Minutes</td><td>Student Activity Packet, Calculator</td><td>Basic Probability Concepts</td></tr>
+    </table>
+
+    <div class="section-header">Lesson Flow</div>
+    <div class="flow-container">
+        <div class="flow-item">
+            <div class="flow-time">5 min</div>
+            <div class="flow-content">
+                <div class="flow-title">THE CHALLENGE</div>
+                <ul>
+                    <li>Read Marcus's poker night scenario aloud.</li>
+                    <li>Ask: "What does it mean when someone says gambling is entertainment, not investment?"</li>
+                    <li>Brainstorm: What types of gambling have students heard about or encountered?</li>
+                </ul>
+            </div>
+        </div>
+        <div class="flow-item">
+            <div class="flow-time">10 min</div>
+            <div class="flow-content">
+                <div class="flow-title">CORE CONCEPTS</div>
+                <ul>
+                    <li>Review probability basics: outcomes, events, and calculations.</li>
+                    <li>Explain independent vs. dependent events with concrete examples (coin flips vs. card draws).</li>
+                    <li>Introduce house edge concept—the mathematical guarantee of operator profit.</li>
+                    <li>Quick check: Have students calculate simple probabilities verbally.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="flow-item">
+            <div class="flow-time">25 min</div>
+            <div class="flow-content">
+                <div class="flow-title">APPLY IT</div>
+                <ul>
+                    <li><strong>Part A (8 min):</strong> Probability calculations. Work through table together, then students complete independently.</li>
+                    <li><strong>Part B (10 min):</strong> Expected value analysis. Walk through roulette calculation on board step-by-step.</li>
+                    <li><strong>Part C (7 min):</strong> House edge comparison. Discuss why lottery has highest edge despite popularity.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="flow-item">
+            <div class="flow-time">10 min</div>
+            <div class="flow-content">
+                <div class="flow-title">CHECK YOUR UNDERSTANDING</div>
+                <ul>
+                    <li>Complete in class or assign as homework.</li>
+                    <li>Review Q2 (roulette probability)—emphasize it doesn't change regardless of history.</li>
+                    <li>Discuss Q5 reflection on gambling as entertainment—no single right answer.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-header">Differentiation</div>
+    <div class="diff-grid">
+        <div class="diff-box">
+            <div class="diff-title">Support</div>
+            <ul>
+                <li>Create visual probability diagrams (pie charts showing outcomes).</li>
+                <li>Provide a step-by-step expected value calculation template.</li>
+                <li>Work through Part B calculation as a class on the board.</li>
+                <li>Use manipulatives (dice, coins, cards) for hands-on probability exploration.</li>
+            </ul>
+        </div>
+        <div class="diff-box">
+            <div class="diff-title">Extension</div>
+            <ul>
+                <li>Calculate breakeven point: How often would you need to win to overcome house edge?</li>
+                <li>Compare cost-per-hour of gambling vs. other entertainment (movies, bowling).</li>
+                <li>Research historical gambling scandals related to probability manipulation.</li>
+                <li>Analyze psychological factors that casinos use to encourage continued play.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="answer-key">
+        <div class="section-header">Answer Key</div>
+
+        <div class="answer-block">
+            <div class="answer-title">Part A: Probability Calculations</div>
+            <div class="calc-display">Probability Table Answers:
+Rolling a 6: 1/6 = 0.167 = 16.7%
+Drawing an ace: 4/52 = 0.077 = 7.7%
+Landing on red: 18/38 = 0.474 = 47.4%
+Flipping heads twice: 1/4 = 0.25 = 25%
+
+Q1: Independent events don't affect each other's probability (each roulette spin is fresh). Dependent events change probability after each occurrence (drawing cards changes deck composition). Confusing these leads to the gambler's fallacy.</div>
+        </div>
+
+        <div class="answer-block">
+            <div class="answer-title">Part B: Expected Value Analysis</div>
+            <div class="calc-display">Roulette Bet on Red ($10 bet):
+EV = (18/38 × $10) - (20/38 × $10)
+EV = $4.74 - $5.26 = -$0.52
+
+Q2 (100 bets of $10):
+Expected loss = 100 × $0.52 = $52
+
+House Edge Comparison (Expected Loss per $100):
+Blackjack: $100 × 0.5% = $0.50
+American Roulette: $100 × 5.26% = $5.26
+Slot Machines: $100 × 8% = $8.00
+State Lottery: $100 × 50% = $50.00
+
+Q3 ($500/month on slots):
+Monthly loss: $500 × 8% = $40
+Annual loss: $40 × 12 = $480</div>
+        </div>
+
+        <div class="answer-block">
+            <div class="answer-title">Check Your Understanding</div>
+            <div class="answer-item"><strong>CYU 1:</strong> B (Believing that past independent events affect future outcomes)</div>
+            <div class="answer-item"><strong>CYU 2:</strong> 18/38 = 47.4% (same as always—previous spins don't affect future outcomes)</div>
+            <div class="answer-item"><strong>CYU 3:</strong> EV = (1/10,000,000 × $5,000,000) - (9,999,999/10,000,000 × $2) = $0.50 - $2.00 = <strong>-$1.50</strong></div>
+            <div class="answer-item"><strong>CYU 4:</strong> Negative expected value means each bet loses money on average. Over many bets, these small losses accumulate. Individual players may win short-term, but the operator collects from all players, guaranteeing profit.</div>
+            <div class="answer-note">CYU 5: Accept thoughtful responses about setting budgets, expecting to lose, not chasing losses, and comparing gambling costs to other entertainment options.</div>
+        </div>
+
+        <div class="section-header">Common Misconceptions</div>
+        <table class="misconception-table">
+            <tr><th>Misconception</th><th>Clarification</th></tr>
+            <tr>
+                <td>"I'm due for a win after losing several times."</td>
+                <td>This is the gambler's fallacy. Independent events like roulette spins have no memory—each spin has the same probability regardless of past results.</td>
+            </tr>
+            <tr>
+                <td>"Skilled players can consistently beat the house."</td>
+                <td>While skill helps in some games (poker, blackjack), the house edge ensures long-term operator profit. Even skilled players face negative expected value on most games.</td>
+            </tr>
+            <tr>
+                <td>"A small house edge means the game is fair."</td>
+                <td>Even a 1% house edge means significant losses over time. Playing $100/hour with 1% edge costs $1/hour. Over hundreds of hours, this adds up substantially.</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="footer">
+        <span>&copy; PFL Academy | pflacademy.co</span>
+        <span>Teacher Guide: Chapter 12.1</span>
+    </div>
+
+</body>
+</html>

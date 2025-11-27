@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-47 Student Activity Packet</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+        :root {
+            --primary: #6366f1;
+            --primary-light: #eef2ff;
+            --accent: #f59e0b;
+            --accent-light: #fef3c7;
+            --success: #059669;
+            --text-dark: #1e293b;
+            --text-medium: #475569;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --bg-light: #f8fafc;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+        @page { size: letter; margin: 0.5in; }
+
+        body { font-family: 'Open Sans', sans-serif; font-size: 10.5pt; line-height: 1.5; color: var(--text-dark); background: white; }
+
+        .header { background: var(--primary); color: white; padding: 14px 18px; border-radius: 6px; margin-bottom: 18px; display: flex; justify-content: space-between; align-items: center; }
+        .header-left h1 { font-size: 13pt; font-weight: 700; margin: 0; }
+        .header-left h2 { font-size: 10pt; font-weight: 400; margin: 2px 0 0; opacity: 0.9; }
+        .header-right { font-size: 9pt; text-align: right; opacity: 0.9; }
+
+        .section-header { font-size: 11pt; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 2px solid var(--primary); padding-bottom: 4px; margin: 20px 0 12px; }
+
+        .challenge-box { background: var(--accent-light); border-left: 4px solid var(--accent); padding: 14px 16px; margin-bottom: 16px; border-radius: 0 6px 6px 0; }
+        .challenge-box p { font-style: italic; color: var(--text-dark); margin-bottom: 10px; }
+        .challenge-box .framing-question { font-weight: 600; font-style: normal; color: #92400e; }
+
+        .objectives-box { background: var(--primary-light); border: 1px solid #c7d2fe; border-radius: 6px; padding: 12px 16px; margin-bottom: 18px; }
+        .objectives-box h3 { font-size: 10pt; font-weight: 700; color: var(--primary); margin-bottom: 6px; }
+        .objectives-box ul { margin: 0; padding-left: 20px; }
+        .objectives-box li { margin-bottom: 3px; color: var(--text-medium); }
+
+        .terms-table { width: 100%; border-collapse: collapse; margin-bottom: 14px; font-size: 10pt; }
+        .terms-table th { background: var(--bg-light); text-align: left; padding: 8px 10px; border: 1px solid var(--border); font-weight: 600; color: var(--text-medium); }
+        .terms-table td { padding: 8px 10px; border: 1px solid var(--border); vertical-align: top; }
+        .terms-table td:first-child { font-weight: 600; color: var(--primary); width: 25%; }
+
+        .background-box { background: var(--bg-light); border: 1px solid var(--border); border-radius: 6px; padding: 12px 16px; margin-bottom: 18px; font-size: 10pt; color: var(--text-medium); }
+        .background-box strong { color: var(--text-dark); }
+
+        .data-table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 10pt; }
+        .data-table th { background: var(--primary); color: white; padding: 8px 10px; text-align: center; font-weight: 600; font-size: 9pt; }
+        .data-table td { padding: 8px 10px; border: 1px solid var(--border); text-align: center; }
+        .data-table tr:nth-child(even) td { background: var(--bg-light); }
+        .data-table .calc-row td { background: #fef9c3; height: 28px; }
+
+        .question { margin-bottom: 14px; page-break-inside: avoid; }
+        .question-number { font-weight: 700; color: var(--text-dark); }
+        .question-text { color: var(--text-dark); margin-bottom: 6px; }
+
+        .answer-lines { margin-top: 6px; }
+        .answer-line { border-bottom: 1px solid var(--text-light); height: 22px; margin-bottom: 4px; }
+
+        .mc-options { margin-top: 6px; margin-left: 20px; }
+        .mc-option { display: flex; align-items: center; margin-bottom: 4px; }
+        .mc-checkbox { width: 14px; height: 14px; border: 1px solid var(--text-light); border-radius: 2px; margin-right: 8px; flex-shrink: 0; }
+
+        .hint-box { background: #f0fdf4; border-left: 3px solid var(--success); padding: 8px 12px; margin: 10px 0; font-size: 9pt; font-style: italic; color: #166534; }
+        .hint-box strong { font-style: normal; }
+
+        .part-header { font-weight: 700; font-size: 10pt; color: var(--primary); text-transform: uppercase; margin: 16px 0 10px; padding-bottom: 4px; border-bottom: 1px solid var(--border); }
+
+        .calc-box { border: 1px solid var(--border); border-radius: 4px; padding: 12px; margin: 8px 0; min-height: 60px; background: var(--bg-light); }
+        .calc-label { font-size: 9pt; color: var(--text-light); margin-bottom: 4px; }
+        .calc-answer { margin-top: 10px; font-weight: 600; }
+
+        .footer { margin-top: 24px; padding-top: 10px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; font-size: 9pt; color: var(--text-light); }
+
+        .mb-sm { margin-bottom: 8px; }
+        .mb-md { margin-bottom: 14px; }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <div class="header">
+        <div class="header-left">
+            <h1>PFL Academy</h1>
+            <h2>Chapter 13.1: Introduction to Investment Types</h2>
+        </div>
+        <div class="header-right">
+            Student Activity Packet
+        </div>
+    </div>
+
+    <!-- THE CHALLENGE -->
+    <div class="section-header">The Challenge</div>
+    <div class="challenge-box">
+        <p>Priya, 24, landed her first full-time job earning $45,000 annually. Feeling overwhelmed by investment choices, she researched simple strategies. She decided to invest 15% of her gross income ($563/month) split between two low-cost index ETFs: 80% in a total stock market ETF and 20% in a total bond market ETF. Both charged expense ratios under 0.05%. Rather than trying to pick winning stocks or time the market, Priya committed to automated monthly contributions regardless of market conditions. By age 30, her disciplined approach and low fees had built a portfolio worth over $52,000 despite market volatility—all from a simple two-fund strategy.</p>
+        <p class="framing-question">How can understanding different investment types help you build wealth aligned with your financial goals and risk tolerance?</p>
+    </div>
+
+    <!-- LEARNING OBJECTIVES -->
+    <div class="objectives-box">
+        <h3>Learning Objectives</h3>
+        <ul>
+            <li>Analyze the characteristics and functions of major investment types including stocks, bonds, mutual funds, and ETFs.</li>
+            <li>Compare the risk-return profiles of different investment vehicles.</li>
+            <li>Evaluate how different investment types align with various financial goals and time horizons.</li>
+            <li>Calculate potential returns and assess risks associated with different investments.</li>
+            <li>Make informed investment decisions based on personal financial situation and objectives.</li>
+        </ul>
+    </div>
+
+    <!-- CORE CONCEPTS -->
+    <div class="section-header">Core Concepts</div>
+
+    <table class="terms-table">
+        <tr>
+            <th>Term</th>
+            <th>Definition</th>
+        </tr>
+        <tr>
+            <td>Stock (Equity)</td>
+            <td>Ownership shares in a company that entitle you to a portion of the company's assets and earnings; can increase in value and may pay dividends.</td>
+        </tr>
+        <tr>
+            <td>Bond (Fixed Income)</td>
+            <td>A loan you make to a government or corporation that pays regular interest for a specified period and returns your principal at maturity.</td>
+        </tr>
+        <tr>
+            <td>Mutual Fund</td>
+            <td>An investment vehicle that pools money from many investors to purchase a diversified portfolio of stocks, bonds, or other securities.</td>
+        </tr>
+        <tr>
+            <td>ETF</td>
+            <td>Exchange-Traded Fund—similar to a mutual fund but trades on exchanges like stocks; typically has lower fees and often tracks a market index.</td>
+        </tr>
+        <tr>
+            <td>Diversification</td>
+            <td>Spreading investments across different asset types, industries, and securities to reduce risk; "don't put all your eggs in one basket."</td>
+        </tr>
+    </table>
+
+    <div class="background-box">
+        <strong>Background:</strong> Building wealth through investing is one of the most powerful financial strategies available. The choice between stocks, bonds, or funds depends on your financial goals, time horizon, and tolerance for risk. Historically, the S&P 500 has averaged approximately 10% annual returns, but with substantial year-to-year volatility. Understanding these basic investment types empowers you to make choices aligned with your personal financial journey.
+    </div>
+
+    <!-- APPLY IT -->
+    <div class="section-header">Apply It</div>
+
+    <div class="part-header">Part A: Investment Type Comparison</div>
+    <p class="mb-sm">Compare the characteristics of four major investment types:</p>
+
+    <table class="data-table">
+        <tr>
+            <th>Characteristic</th>
+            <th>Stocks</th>
+            <th>Bonds</th>
+            <th>Mutual Funds</th>
+            <th>ETFs</th>
+        </tr>
+        <tr>
+            <td style="text-align: left; font-weight: 600;">Potential Return</td>
+            <td>High (10% avg)</td>
+            <td>Moderate (3-5%)</td>
+            <td>Varies by type</td>
+            <td>Varies by type</td>
+        </tr>
+        <tr>
+            <td style="text-align: left; font-weight: 600;">Risk Level</td>
+            <td>High volatility</td>
+            <td>Lower volatility</td>
+            <td>Diversified risk</td>
+            <td>Diversified risk</td>
+        </tr>
+        <tr>
+            <td style="text-align: left; font-weight: 600;">Typical Fees</td>
+            <td>Trade commission</td>
+            <td>Trade commission</td>
+            <td>0.5-1.5%</td>
+            <td>0.03-0.25%</td>
+        </tr>
+        <tr>
+            <td style="text-align: left; font-weight: 600;">Minimum Investment</td>
+            <td>Price of 1 share</td>
+            <td>$1,000+</td>
+            <td>Often $1,000+</td>
+            <td>Price of 1 share</td>
+        </tr>
+        <tr>
+            <td style="text-align: left; font-weight: 600;">Best For</td>
+            <td>Long-term growth</td>
+            <td>Stability/income</td>
+            <td>Diversification</td>
+            <td>Low-cost diversity</td>
+        </tr>
+    </table>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">1.</span> A 25-year-old saving for retirement 40 years away should emphasize which investment type? Explain your reasoning.</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">2.</span> Someone saving for a house down payment in 3 years might prefer which investment type? Why?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <!-- PART B -->
+    <div class="part-header">Part B: Fee Impact Analysis</div>
+    <p class="mb-md">Compare the long-term impact of investment fees on $500 invested monthly for 30 years at 8% return:</p>
+
+    <table class="data-table">
+        <tr>
+            <th>Fee Type</th>
+            <th>Expense Ratio</th>
+            <th>Annual Fee on $100,000</th>
+            <th>Value After 30 Years</th>
+        </tr>
+        <tr>
+            <td style="text-align: left; font-weight: 600;">Low-cost Index ETF</td>
+            <td>0.03%</td>
+            <td>$30</td>
+            <td>$733,904</td>
+        </tr>
+        <tr>
+            <td style="text-align: left; font-weight: 600;">Average Mutual Fund</td>
+            <td>0.75%</td>
+            <td>$750</td>
+            <td>$654,165</td>
+        </tr>
+        <tr>
+            <td style="text-align: left; font-weight: 600;">High-cost Active Fund</td>
+            <td>1.25%</td>
+            <td>$1,250</td>
+            <td>$600,430</td>
+        </tr>
+        <tr class="calc-row">
+            <td style="text-align: left; font-weight: 600;">Difference (Low vs High)</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">3.</span> Calculate the difference in final wealth between the low-cost ETF and the high-cost fund. How many years of $500 monthly contributions does this difference represent?</p>
+        <div class="calc-box">
+            <div class="calc-label">Show your calculations:</div>
+        </div>
+        <div class="calc-answer">Fee difference impact: $_____________ equals _____ years of contributions</div>
+    </div>
+
+    <div class="hint-box">
+        <strong>Insight:</strong> A 1% fee difference over 30 years costs you over $130,000 on the same contributions. Always check expense ratios before investing!
+    </div>
+
+    <!-- PART C -->
+    <div class="part-header">Part C: Portfolio Allocation Scenarios</div>
+    <p class="mb-md">Match these investors to the most appropriate portfolio allocation:</p>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">4.</span> Alex, 22, starting first job, building retirement savings, 40+ year horizon:</p>
+        <div class="mc-options">
+            <div class="mc-option"><div class="mc-checkbox"></div> A. 90% stocks / 10% bonds (aggressive growth)</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> B. 60% stocks / 40% bonds (balanced)</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> C. 30% stocks / 70% bonds (conservative)</div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">5.</span> Morgan, 58, retiring in 7 years, wants to protect accumulated wealth:</p>
+        <div class="mc-options">
+            <div class="mc-option"><div class="mc-checkbox"></div> A. 90% stocks / 10% bonds (aggressive growth)</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> B. 60% stocks / 40% bonds (balanced)</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> C. 40% stocks / 60% bonds (conservative)</div>
+        </div>
+    </div>
+
+    <!-- CHECK YOUR UNDERSTANDING -->
+    <div class="section-header">Check Your Understanding</div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">1.</span> Which investment type typically offers the highest long-term returns but with greater volatility?</p>
+        <div class="mc-options">
+            <div class="mc-option"><div class="mc-checkbox"></div> A. Government bonds</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> B. Stocks</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> C. Money market funds</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> D. Certificates of deposit</div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">2.</span> What is the primary advantage of ETFs over traditional mutual funds?</p>
+        <div class="mc-options">
+            <div class="mc-option"><div class="mc-checkbox"></div> A. ETFs always have higher returns</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> B. ETFs typically have lower fees and can be traded throughout the day</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> C. ETFs are guaranteed by the government</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> D. ETFs don't have any investment risk</div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">3.</span> Explain why diversification is often described as "the only free lunch in investing." How does spreading investments across asset types reduce risk?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">4.</span> Why do financial advisors typically recommend younger investors hold more stocks and older investors hold more bonds?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">5.</span> <strong>Reflection:</strong> Based on your current financial situation, time horizon, and risk tolerance, what investment allocation would you choose? What specific steps would you need to take to start investing?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        <span>© PFL Academy | pflacademy.co</span>
+        <span>Chapter 13.1: Introduction to Investment Types</span>
+    </div>
+
+</body>
+</html>

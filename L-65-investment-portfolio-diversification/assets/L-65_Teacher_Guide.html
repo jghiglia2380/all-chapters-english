@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-65 Teacher Guide</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+        :root {
+            --primary: #059669;
+            --primary-light: #ecfdf5;
+            --primary-dark: #065f46;
+            --text-dark: #1e293b;
+            --text-medium: #475569;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --bg-light: #f8fafc;
+            --warning: #f59e0b;
+            --warning-light: #fef3c7;
+            --error: #dc2626;
+            --error-light: #fee2e2;
+            --success-light: #dcfce7;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+        @page { size: letter; margin: 0.5in; }
+        body { font-family: 'Open Sans', sans-serif; font-size: 10pt; line-height: 1.45; color: var(--text-dark); background: white; }
+
+        .header { background: var(--primary); color: white; padding: 14px 18px; border-radius: 6px; margin-bottom: 16px; }
+        .header h1 { font-size: 13pt; font-weight: 700; margin: 0; }
+        .header h2 { font-size: 10pt; font-weight: 400; margin: 3px 0 0; opacity: 0.9; }
+
+        .section-header { background: var(--primary-light); border-left: 4px solid var(--primary); padding: 7px 12px; font-size: 10pt; font-weight: 700; color: var(--primary-dark); text-transform: uppercase; letter-spacing: 0.5px; margin: 16px 0 10px; }
+
+        .overview-table { width: 100%; border-collapse: collapse; margin-bottom: 14px; }
+        .overview-table th { background: var(--bg-light); color: var(--text-light); font-size: 8pt; text-transform: uppercase; letter-spacing: 0.5px; text-align: center; padding: 6px 10px; border: 1px solid var(--border); width: 33%; }
+        .overview-table td { text-align: center; padding: 10px; border: 1px solid var(--border); font-weight: 600; color: var(--text-dark); font-size: 10pt; }
+
+        .flow-container { margin-bottom: 14px; }
+        .flow-item { display: flex; padding: 8px 0; border-bottom: 1px solid var(--border); page-break-inside: avoid; }
+        .flow-item:last-child { border-bottom: none; }
+        .flow-time { width: 65px; font-weight: 700; color: var(--primary); flex-shrink: 0; font-size: 10pt; }
+        .flow-content { flex: 1; }
+        .flow-title { font-weight: 700; color: var(--text-dark); margin-bottom: 3px; font-size: 10pt; }
+        .flow-content ul { margin: 0; padding-left: 16px; font-size: 9pt; color: var(--text-medium); }
+        .flow-content li { margin-bottom: 2px; }
+
+        .diff-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px; }
+        .diff-box { background: var(--bg-light); border: 1px solid var(--border); border-radius: 4px; padding: 10px 12px; }
+        .diff-title { font-weight: 700; color: var(--text-dark); margin-bottom: 6px; font-size: 9pt; }
+        .diff-box ul { margin: 0; padding-left: 16px; font-size: 9pt; color: var(--text-medium); }
+        .diff-box li { margin-bottom: 2px; }
+
+        .answer-key { page-break-before: always; }
+        .answer-block { margin-bottom: 12px; page-break-inside: avoid; }
+        .answer-title { font-weight: 700; color: var(--primary); font-size: 9pt; border-bottom: 1px solid #a7f3d0; padding-bottom: 3px; margin-bottom: 6px; }
+        .answer-item { margin-bottom: 5px; font-size: 9pt; color: var(--text-dark); }
+        .answer-item strong { color: var(--primary-dark); }
+
+        .calc-display { font-family: 'Courier New', monospace; background: var(--bg-light); padding: 8px 10px; border-radius: 4px; margin: 6px 0; font-size: 8.5pt; line-height: 1.5; white-space: pre-line; }
+
+        .misconception-table { width: 100%; border-collapse: collapse; font-size: 9pt; margin-top: 10px; }
+        .misconception-table th { padding: 6px 10px; text-align: left; font-weight: 600; }
+        .misconception-table th:first-child { background: var(--error-light); color: #991b1b; border: 1px solid #fca5a5; width: 40%; }
+        .misconception-table th:last-child { background: var(--success-light); color: #166534; border: 1px solid #86efac; }
+        .misconception-table td { padding: 6px 10px; border: 1px solid var(--border); vertical-align: top; color: var(--text-medium); }
+
+        .footer { margin-top: 20px; padding-top: 8px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; font-size: 8pt; color: var(--text-light); }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>PFL Academy</h1>
+        <h2>Teacher Guide: Chapter 65 — Investment Portfolio Diversification</h2>
+    </div>
+
+    <div class="section-header">Overview</div>
+    <table class="overview-table">
+        <tr><th>Time</th><th>Materials</th><th>Prerequisites</th></tr>
+        <tr><td>45-50 Minutes</td><td>Student Activity Packet</td><td>L-47: Investment Types, L-64: Risk and Return</td></tr>
+    </table>
+
+    <div class="section-header">Lesson Flow</div>
+    <div class="flow-container">
+        <div class="flow-item">
+            <div class="flow-time">5 min</div>
+            <div class="flow-content">
+                <div class="flow-title">THE CHALLENGE</div>
+                <ul>
+                    <li>Read Destiny vs. Jordan story. Emphasize: Destiny had higher PEAK but lower ENDPOINT.</li>
+                    <li>Discussion: "Why did Destiny end up with less money even though she gained more initially?"</li>
+                    <li>Key insight: Diversification's true value is preventing catastrophic losses that force panic.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="flow-item">
+            <div class="flow-time">10 min</div>
+            <div class="flow-content">
+                <div class="flow-title">CORE CONCEPTS</div>
+                <ul>
+                    <li>Explain correlation scale: +1 to -1. Draw visual examples.</li>
+                    <li>Use "eggs in basket" analogy but make it mathematical.</li>
+                    <li>Quick check: "Which reduces risk more—two tech stocks or one stock plus bonds?"</li>
+                </ul>
+            </div>
+        </div>
+        <div class="flow-item">
+            <div class="flow-time">25-30 min</div>
+            <div class="flow-content">
+                <div class="flow-title">APPLY IT</div>
+                <ul>
+                    <li><strong>Part A (10 min):</strong> Correlation table analysis and 50/50 split calculation.</li>
+                    <li><strong>Part B (10 min):</strong> Age-appropriate allocations. Use "120 minus age" as guideline.</li>
+                    <li><strong>Part C (5-10 min):</strong> Rebalancing calculation—ensure students understand the sell/buy action.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="flow-item">
+            <div class="flow-time">10 min</div>
+            <div class="flow-content">
+                <div class="flow-title">CHECK YOUR UNDERSTANDING</div>
+                <ul>
+                    <li>Q3 calculation is important: shows diversified investor wins despite lower returns.</li>
+                    <li>Q5 personal reflection encourages honest risk assessment.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-header">Differentiation</div>
+    <div class="diff-grid">
+        <div class="diff-box">
+            <div class="diff-title">Support</div>
+            <ul>
+                <li>Focus on correlation concept with visual demonstrations.</li>
+                <li>Walk through 50/50 calculation step-by-step on board.</li>
+                <li>Use simplified age allocations: young = 90/10, mid = 70/30, pre-retire = 50/50.</li>
+            </ul>
+        </div>
+        <div class="diff-box">
+            <div class="diff-title">Extension</div>
+            <ul>
+                <li>Calculate portfolio variance using correlation coefficients.</li>
+                <li>Research actual asset class correlations during 2008 and 2020 crises.</li>
+                <li>Design a detailed 5-asset-class portfolio with rebalancing triggers.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="answer-key">
+        <div class="section-header">Answer Key</div>
+
+        <div class="answer-block">
+            <div class="answer-title">Part A: Correlation and Diversification</div>
+            <div class="answer-item"><strong>1.</strong> Two tech stocks have +0.85 correlation—they move almost together. When tech sector crashes, BOTH fall. Stocks + bonds have +0.15 correlation—when stocks fall, bonds often hold steady or rise. Different behavior = better protection.</div>
+            <div class="calc-display"><strong>2.</strong> 100% in A: $10,000 × -20% = -$2,000 loss
+50/50 split: ($5,000 × -20%) + ($5,000 × +10%) = -$1,000 + $500 = -$500 loss
+Diversification saved $1,500 (75% less loss)</div>
+        </div>
+
+        <div class="answer-block">
+            <div class="answer-title">Part B: Age-Appropriate Asset Allocation</div>
+            <div class="answer-item"><strong>Investor 1 (Age 25):</strong> ~90-95% stocks, 5-10% bonds. Long 40-year horizon allows high volatility acceptance. Time to recover from crashes. Maximize growth.</div>
+            <div class="answer-item"><strong>Investor 2 (Age 55):</strong> ~60-65% stocks, 35-40% bonds. Shorter horizon, protecting accumulated wealth. Still need some growth for 10+ years in retirement.</div>
+        </div>
+
+        <div class="answer-block">
+            <div class="answer-title">Part C: Rebalancing Scenario</div>
+            <div class="calc-display"><strong>3.</strong> Total: $84,000 + $30,900 = $114,900
+Stocks: $84,000 / $114,900 = 73%
+Bonds: $30,900 / $114,900 = 27%
+Drifted from 70/30 to 73/27
+
+To rebalance to 70/30:
+Target stocks: $114,900 × 70% = $80,430
+Target bonds: $114,900 × 30% = $34,470
+Action: Sell $3,570 stocks, buy $3,570 bonds</div>
+        </div>
+
+        <div class="answer-block">
+            <div class="answer-title">Check Your Understanding</div>
+            <div class="answer-item"><strong>1.</strong> B (Unsystematic risk)</div>
+            <div class="answer-item"><strong>2.</strong> Destiny's assets were highly correlated—when tech crashed, everything crashed together. No protection. Jordan had stocks AND bonds—when stocks fell, bonds buffered the loss, preventing panic.</div>
+            <div class="calc-display"><strong>3.</strong> Diversified (8% actual): $500/mo × 30 yrs ≈ $680,000
+Concentrated (5% actual due to behavioral errors): ≈ $400,000
+Diversified wins by ~$280,000 because you ACTUALLY stay invested.</div>
+            <div class="answer-item"><strong>4.</strong> Rebalancing forces selling assets that have risen (high prices) and buying those that have fallen (low prices). It feels wrong because we want to "let winners run" and avoid "throwing money at losers." But mechanically, it enforces discipline.</div>
+        </div>
+
+        <div class="section-header">Common Misconceptions</div>
+        <table class="misconception-table">
+            <tr><th>Misconception</th><th>Clarification</th></tr>
+            <tr><td>"Diversification means owning lots of different stocks."</td><td>True diversification requires DIFFERENT asset classes with low correlation. 50 tech stocks still crash together. Need stocks + bonds + international + real estate for real protection.</td></tr>
+            <tr><td>"Diversification reduces returns."</td><td>Diversification reduces VOLATILITY, not necessarily returns. More importantly, it enables you to actually ACHIEVE returns by preventing panic-selling.</td></tr>
+            <tr><td>"Young people don't need bonds."</td><td>Small bond allocation (10-15%) provides "dry powder" to rebalance into stocks during crashes, potentially improving returns while slightly reducing volatility.</td></tr>
+        </table>
+    </div>
+
+    <div class="footer">
+        <span>&copy; PFL Academy | pflacademy.co</span>
+        <span>Teacher Guide: Chapter 65</span>
+    </div>
+
+</body>
+</html>

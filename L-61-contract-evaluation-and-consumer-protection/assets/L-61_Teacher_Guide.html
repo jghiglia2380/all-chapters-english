@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-61 Teacher Guide</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+        :root {
+            --primary: #059669;
+            --primary-light: #ecfdf5;
+            --primary-dark: #065f46;
+            --text-dark: #1e293b;
+            --text-medium: #475569;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --bg-light: #f8fafc;
+            --warning: #f59e0b;
+            --warning-light: #fef3c7;
+            --error: #dc2626;
+            --error-light: #fee2e2;
+            --success-light: #dcfce7;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+
+        @page {
+            size: letter;
+            margin: 0.5in;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 10pt;
+            line-height: 1.45;
+            color: var(--text-dark);
+            background: white;
+        }
+
+        .header {
+            background: var(--primary);
+            color: white;
+            padding: 14px 18px;
+            border-radius: 6px;
+            margin-bottom: 16px;
+        }
+
+        .header h1 {
+            font-size: 13pt;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .header h2 {
+            font-size: 10pt;
+            font-weight: 400;
+            margin: 3px 0 0;
+            opacity: 0.9;
+        }
+
+        .section-header {
+            background: var(--primary-light);
+            border-left: 4px solid var(--primary);
+            padding: 7px 12px;
+            font-size: 10pt;
+            font-weight: 700;
+            color: var(--primary-dark);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin: 16px 0 10px;
+        }
+
+        .overview-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 14px;
+        }
+
+        .overview-table th {
+            background: var(--bg-light);
+            color: var(--text-light);
+            font-size: 8pt;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            text-align: center;
+            padding: 6px 10px;
+            border: 1px solid var(--border);
+            width: 33%;
+        }
+
+        .overview-table td {
+            text-align: center;
+            padding: 10px;
+            border: 1px solid var(--border);
+            font-weight: 600;
+            color: var(--text-dark);
+            font-size: 10pt;
+        }
+
+        .flow-container {
+            margin-bottom: 14px;
+        }
+
+        .flow-item {
+            display: flex;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border);
+            page-break-inside: avoid;
+        }
+
+        .flow-item:last-child {
+            border-bottom: none;
+        }
+
+        .flow-time {
+            width: 65px;
+            font-weight: 700;
+            color: var(--primary);
+            flex-shrink: 0;
+            font-size: 10pt;
+        }
+
+        .flow-content {
+            flex: 1;
+        }
+
+        .flow-title {
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 3px;
+            font-size: 10pt;
+        }
+
+        .flow-content ul {
+            margin: 0;
+            padding-left: 16px;
+            font-size: 9pt;
+            color: var(--text-medium);
+        }
+
+        .flow-content li {
+            margin-bottom: 2px;
+        }
+
+        .diff-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 14px;
+        }
+
+        .diff-box {
+            background: var(--bg-light);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 10px 12px;
+        }
+
+        .diff-title {
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 6px;
+            font-size: 9pt;
+        }
+
+        .diff-box ul {
+            margin: 0;
+            padding-left: 16px;
+            font-size: 9pt;
+            color: var(--text-medium);
+        }
+
+        .diff-box li {
+            margin-bottom: 2px;
+        }
+
+        .answer-key {
+            page-break-before: always;
+        }
+
+        .answer-block {
+            margin-bottom: 12px;
+            page-break-inside: avoid;
+        }
+
+        .answer-title {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 9pt;
+            border-bottom: 1px solid #a7f3d0;
+            padding-bottom: 3px;
+            margin-bottom: 6px;
+        }
+
+        .answer-item {
+            margin-bottom: 5px;
+            font-size: 9pt;
+            color: var(--text-dark);
+        }
+
+        .answer-item strong {
+            color: var(--primary-dark);
+        }
+
+        .calc-display {
+            font-family: 'Courier New', monospace;
+            background: var(--bg-light);
+            padding: 8px 10px;
+            border-radius: 4px;
+            margin: 6px 0;
+            font-size: 8.5pt;
+            line-height: 1.5;
+            white-space: pre-line;
+        }
+
+        .answer-note {
+            background: var(--warning-light);
+            border-left: 3px solid var(--warning);
+            padding: 6px 10px;
+            font-size: 9pt;
+            font-style: italic;
+            color: #92400e;
+            margin: 6px 0;
+        }
+
+        .misconception-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 9pt;
+            margin-top: 10px;
+        }
+
+        .misconception-table th {
+            padding: 6px 10px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .misconception-table th:first-child {
+            background: var(--error-light);
+            color: #991b1b;
+            border: 1px solid #fca5a5;
+            width: 40%;
+        }
+
+        .misconception-table th:last-child {
+            background: var(--success-light);
+            color: #166534;
+            border: 1px solid #86efac;
+        }
+
+        .misconception-table td {
+            padding: 6px 10px;
+            border: 1px solid var(--border);
+            vertical-align: top;
+            color: var(--text-medium);
+        }
+
+        .footer {
+            margin-top: 20px;
+            padding-top: 8px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            font-size: 8pt;
+            color: var(--text-light);
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <div class="header">
+        <h1>PFL Academy</h1>
+        <h2>Teacher Guide: Chapter 61 — Contract Evaluation and Consumer Protection</h2>
+    </div>
+
+    <!-- OVERVIEW -->
+    <div class="section-header">Overview</div>
+    <table class="overview-table">
+        <tr>
+            <th>Time</th>
+            <th>Materials</th>
+            <th>Prerequisites</th>
+        </tr>
+        <tr>
+            <td>45-50 Minutes</td>
+            <td>Student Activity Packet</td>
+            <td>L-60: Understanding Financial Contracts</td>
+        </tr>
+    </table>
+
+    <!-- LESSON FLOW -->
+    <div class="section-header">Lesson Flow</div>
+    <div class="flow-container">
+        <div class="flow-item">
+            <div class="flow-time">5 min</div>
+            <div class="flow-content">
+                <div class="flow-title">THE CHALLENGE</div>
+                <ul>
+                    <li>Read Taylor's apartment lease scenario aloud or have students read silently.</li>
+                    <li>Discussion: "Has anyone felt pressured to sign something quickly? What happened?"</li>
+                    <li>Emphasize: pressure to sign immediately is itself a red flag.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="flow-item">
+            <div class="flow-time">10 min</div>
+            <div class="flow-content">
+                <div class="flow-title">CORE CONCEPTS</div>
+                <ul>
+                    <li>Review the 5 key terms. Emphasize "mandatory arbitration" as a common rights-limiting clause.</li>
+                    <li>Read the Background paragraph together.</li>
+                    <li>Quick check: Ask for examples of automatic renewal traps (gym, streaming, subscriptions).</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="flow-item">
+            <div class="flow-time">25-30 min</div>
+            <div class="flow-content">
+                <div class="flow-title">APPLY IT</div>
+                <ul>
+                    <li><strong>Part A (10 min):</strong> Individual or pairs. Have students defend their classifications—is it "concerning" or a "red flag"?</li>
+                    <li><strong>Part B (10 min):</strong> True Cost Calculation. Ensure students add ALL fees. Common error: forgetting device payment isn't "free."</li>
+                    <li><strong>Part C (5-10 min):</strong> Consumer rights application. Discuss Marcus scenario—what makes advertising "deceptive"?</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="flow-item">
+            <div class="flow-time">10 min</div>
+            <div class="flow-content">
+                <div class="flow-title">CHECK YOUR UNDERSTANDING</div>
+                <ul>
+                    <li>Complete in class or assign as homework.</li>
+                    <li>Review Q3 (Calculation) and Q4 (cooling-off period) to assess practical knowledge.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- DIFFERENTIATION -->
+    <div class="section-header">Differentiation</div>
+    <div class="diff-grid">
+        <div class="diff-box">
+            <div class="diff-title">Support</div>
+            <ul>
+                <li>Pre-teach vocabulary (arbitration, liability) with real examples.</li>
+                <li>Walk through Part B calculation on the board together.</li>
+                <li>Provide a "red flag phrases" reference list.</li>
+                <li>Pair struggling students for Part A analysis.</li>
+            </ul>
+        </div>
+        <div class="diff-box">
+            <div class="diff-title">Extension</div>
+            <ul>
+                <li>Find a real contract (phone, streaming) and identify 5 concerning clauses.</li>
+                <li>Research your state's specific tenant protection laws.</li>
+                <li>Write a negotiation script for one problematic clause.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ANSWER KEY (new page) -->
+    <div class="answer-key">
+        <div class="section-header">Answer Key</div>
+
+        <div class="answer-block">
+            <div class="answer-title">Part A: Contract Clause Analysis</div>
+            <div class="answer-item"><strong>1. RED FLAG.</strong> $500 fee on $40/month membership is excessive (12.5 months of dues). 60-day mailed notice requirement creates cancellation barriers. Auto-renewal traps consumers.</div>
+            <div class="answer-item"><strong>2. CONCERNING/RED FLAG.</strong> One-sided modification rights with no consumer ability to reject changes. Company can raise prices or reduce service; consumer's only option is canceling (often with fees).</div>
+            <div class="answer-item"><strong>3. ACCEPTABLE.</strong> 24-hour notice is standard and often legally required. Emergency exception is reasonable. This balances landlord's legitimate needs with tenant privacy.</div>
+        </div>
+
+        <div class="answer-block">
+            <div class="answer-title">Part B: True Cost Calculation</div>
+            <div class="calc-display">True Monthly Cost:
+$39.99 + $35.00 + $1.46 + $3.50 + $2.75 = $82.70/month
+
+24-Month Total:
+$82.70 × 24 = $1,984.80
+
+vs. Advertised "$39.99/month" × 24 = $959.76
+Extra Charged: $1,984.80 - $959.76 = $1,025.04</div>
+            <div class="answer-item"><strong>4.</strong> Total 24-month cost: <strong>$1,984.80</strong> | Extra charged: <strong>$1,025.04</strong></div>
+            <div class="answer-item"><strong>5.</strong> 12 months × $82.70 = $992.40 + $350 ETF = <strong>$1,342.40</strong> total cost to exit early.</div>
+        </div>
+
+        <div class="answer-block">
+            <div class="answer-title">Part C: Consumer Rights Application</div>
+            <div class="answer-item"><strong>6.</strong> Deceptive advertising/FTC Act violation. "Cancel anytime" contradicts $200 fee. Marcus should: (1) File complaint with state Attorney General, (2) Dispute with bank/credit card, (3) Request documentation of advertising claim, (4) Check if state has gym membership protection laws.</div>
+            <div class="answer-note">Accept responses that identify the deception and propose reasonable action steps.</div>
+        </div>
+
+        <div class="answer-block">
+            <div class="answer-title">Check Your Understanding</div>
+            <div class="answer-item"><strong>1.</strong> B (Mandatory arbitration clause)</div>
+            <div class="answer-item"><strong>2.</strong> "As-is" disclaims all warranties—buyer accepts all risk for defects. Red flag because you have no recourse if product fails. May be acceptable for: clearly used items at significantly reduced prices where risk is understood and priced in.</div>
+            <div class="answer-item"><strong>3.</strong> $12.99 + $5.99 + $2.00 = $20.98/month × 12 = <strong>$251.76 per year</strong> (vs. advertised $155.88)</div>
+            <div class="answer-item"><strong>4.</strong> Federal 3-day cooling-off period for door-to-door sales. Jordan can cancel within 3 business days regardless of "all sales final" clause. Must provide written cancellation notice.</div>
+            <div class="answer-item"><strong>5.</strong> <em>Accept thoughtful responses identifying specific contract, relevant clauses (termination, fees, modification rights), negotiation priorities, and clear walk-away conditions.</em></div>
+        </div>
+
+        <!-- COMMON MISCONCEPTIONS -->
+        <div class="section-header">Common Misconceptions</div>
+        <table class="misconception-table">
+            <tr>
+                <th>Misconception</th>
+                <th>Clarification</th>
+            </tr>
+            <tr>
+                <td>"If I signed it, I'm stuck with it."</td>
+                <td>Some contract terms are unenforceable (unconscionable terms, violations of consumer protection laws). Cooling-off periods exist for certain sales. Courts can void unfair clauses.</td>
+            </tr>
+            <tr>
+                <td>"Contract terms aren't negotiable."</td>
+                <td>Many terms are negotiable, especially for significant agreements (leases, employment, major purchases). Companies present terms as "standard" but often have flexibility.</td>
+            </tr>
+            <tr>
+                <td>"Arbitration is the same as going to court."</td>
+                <td>Arbitration limits discovery, appeals, and often favors companies who are repeat users. Class action waivers prevent collective action on small claims.</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        <span>&copy; PFL Academy | pflacademy.co</span>
+        <span>Teacher Guide: Chapter 61</span>
+    </div>
+
+</body>
+</html>

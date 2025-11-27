@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-33 Teacher Guide</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+        :root {
+            --primary: #059669;
+            --primary-light: #ecfdf5;
+            --primary-dark: #065f46;
+            --text-dark: #1e293b;
+            --text-medium: #475569;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --bg-light: #f8fafc;
+            --warning: #f59e0b;
+            --warning-light: #fef3c7;
+            --error: #dc2626;
+            --error-light: #fee2e2;
+            --success-light: #dcfce7;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+
+        @page {
+            size: letter;
+            margin: 0.5in;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 10pt;
+            line-height: 1.45;
+            color: var(--text-dark);
+            background: white;
+        }
+
+        .header {
+            background: var(--primary);
+            color: white;
+            padding: 14px 18px;
+            border-radius: 6px;
+            margin-bottom: 16px;
+        }
+
+        .header h1 {
+            font-size: 13pt;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .header h2 {
+            font-size: 10pt;
+            font-weight: 400;
+            margin: 3px 0 0;
+            opacity: 0.9;
+        }
+
+        .section-header {
+            background: var(--primary-light);
+            border-left: 4px solid var(--primary);
+            padding: 7px 12px;
+            font-size: 10pt;
+            font-weight: 700;
+            color: var(--primary-dark);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin: 16px 0 10px;
+        }
+
+        .overview-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 14px;
+        }
+
+        .overview-table th {
+            background: var(--bg-light);
+            color: var(--text-light);
+            font-size: 8pt;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            text-align: center;
+            padding: 6px 10px;
+            border: 1px solid var(--border);
+            width: 33%;
+        }
+
+        .overview-table td {
+            text-align: center;
+            padding: 10px;
+            border: 1px solid var(--border);
+            font-weight: 600;
+            color: var(--text-dark);
+            font-size: 10pt;
+        }
+
+        .flow-container {
+            margin-bottom: 14px;
+        }
+
+        .flow-item {
+            display: flex;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border);
+            page-break-inside: avoid;
+        }
+
+        .flow-item:last-child {
+            border-bottom: none;
+        }
+
+        .flow-time {
+            width: 65px;
+            font-weight: 700;
+            color: var(--primary);
+            flex-shrink: 0;
+            font-size: 10pt;
+        }
+
+        .flow-content {
+            flex: 1;
+        }
+
+        .flow-title {
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 3px;
+            font-size: 10pt;
+        }
+
+        .flow-content ul {
+            margin: 0;
+            padding-left: 16px;
+            font-size: 9pt;
+            color: var(--text-medium);
+        }
+
+        .flow-content li {
+            margin-bottom: 2px;
+        }
+
+        .diff-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 14px;
+        }
+
+        .diff-box {
+            background: var(--bg-light);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 10px 12px;
+        }
+
+        .diff-title {
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 6px;
+            font-size: 9pt;
+        }
+
+        .diff-box ul {
+            margin: 0;
+            padding-left: 16px;
+            font-size: 9pt;
+            color: var(--text-medium);
+        }
+
+        .diff-box li {
+            margin-bottom: 2px;
+        }
+
+        .answer-key {
+            page-break-before: always;
+        }
+
+        .answer-block {
+            margin-bottom: 12px;
+            page-break-inside: avoid;
+        }
+
+        .answer-title {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 9pt;
+            border-bottom: 1px solid #a7f3d0;
+            padding-bottom: 3px;
+            margin-bottom: 6px;
+        }
+
+        .answer-item {
+            margin-bottom: 5px;
+            font-size: 9pt;
+            color: var(--text-dark);
+        }
+
+        .answer-item strong {
+            color: var(--primary-dark);
+        }
+
+        .calc-display {
+            font-family: 'Courier New', monospace;
+            background: var(--bg-light);
+            padding: 8px 10px;
+            border-radius: 4px;
+            margin: 6px 0;
+            font-size: 8.5pt;
+            line-height: 1.5;
+            white-space: pre-line;
+        }
+
+        .answer-note {
+            background: var(--warning-light);
+            border-left: 3px solid var(--warning);
+            padding: 6px 10px;
+            font-size: 9pt;
+            font-style: italic;
+            color: #92400e;
+            margin: 6px 0;
+        }
+
+        .misconception-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 9pt;
+            margin-top: 10px;
+        }
+
+        .misconception-table th {
+            padding: 6px 10px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .misconception-table th:first-child {
+            background: var(--error-light);
+            color: #991b1b;
+            border: 1px solid #fca5a5;
+            width: 40%;
+        }
+
+        .misconception-table th:last-child {
+            background: var(--success-light);
+            color: #166534;
+            border: 1px solid #86efac;
+        }
+
+        .misconception-table td {
+            padding: 6px 10px;
+            border: 1px solid var(--border);
+            vertical-align: top;
+            color: var(--text-medium);
+        }
+
+        .footer {
+            margin-top: 20px;
+            padding-top: 8px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            font-size: 8pt;
+            color: var(--text-light);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <div class="header">
+        <h1>PFL Academy</h1>
+        <h2>Teacher Guide: Chapter 7.1 — Understanding and Managing Risk</h2>
+    </div>
+
+    <!-- OVERVIEW -->
+    <div class="section-header">Overview</div>
+    <table class="overview-table">
+        <tr>
+            <th>Time</th>
+            <th>Materials</th>
+            <th>Prerequisites</th>
+        </tr>
+        <tr>
+            <td>45-50 Minutes</td>
+            <td>Student Activity Packet, Calculator</td>
+            <td>None</td>
+        </tr>
+    </table>
+
+    <!-- LESSON FLOW -->
+    <div class="section-header">Lesson Flow</div>
+    <div class="flow-container">
+        <div class="flow-item">
+            <div class="flow-time">5 min</div>
+            <div class="flow-content">
+                <div class="flow-title">THE CHALLENGE</div>
+                <ul>
+                    <li>Read Riley's car insurance scenario aloud.</li>
+                    <li>Discussion: "What factors would you consider when choosing insurance?"</li>
+                    <li>Brainstorm: List risks students face daily (driving, technology, health, etc.).</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="flow-item">
+            <div class="flow-time">10 min</div>
+            <div class="flow-content">
+                <div class="flow-title">CORE CONCEPTS</div>
+                <ul>
+                    <li>Review the four risk management strategies with real-world examples.</li>
+                    <li>Clarify difference between premium (ongoing cost) and deductible (cost when you have a claim).</li>
+                    <li>Quick check: Ask students to categorize examples into the four risk types.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="flow-item">
+            <div class="flow-time">25 min</div>
+            <div class="flow-content">
+                <div class="flow-title">APPLY IT</div>
+                <ul>
+                    <li><strong>Part A (10 min):</strong> Risk identification scenarios. Students work individually, then compare answers with a partner.</li>
+                    <li><strong>Part B (10 min):</strong> Insurance analysis. Walk through the table as a class, then have students calculate independently.</li>
+                    <li><strong>Part C (5 min):</strong> Personal risk assessment. Encourage honest reflection about their own situations.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="flow-item">
+            <div class="flow-time">10 min</div>
+            <div class="flow-content">
+                <div class="flow-title">CHECK YOUR UNDERSTANDING</div>
+                <ul>
+                    <li>Complete in class or assign as homework.</li>
+                    <li>Review Q3 calculation—common error is forgetting to annualize the premium.</li>
+                    <li>Q4 (Marcus basketball) is excellent for class discussion about balancing risk and reward.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- DIFFERENTIATION -->
+    <div class="section-header">Differentiation</div>
+    <div class="diff-grid">
+        <div class="diff-box">
+            <div class="diff-title">Support</div>
+            <ul>
+                <li>Create a visual chart of the four strategies with icons.</li>
+                <li>Provide a mnemonic: "ARAT" (Avoid, Reduce, Accept, Transfer).</li>
+                <li>Work through Part B calculations on the board together.</li>
+                <li>Pair struggling students with peers for scenario analysis.</li>
+            </ul>
+        </div>
+        <div class="diff-box">
+            <div class="diff-title">Extension</div>
+            <ul>
+                <li>Research actual auto insurance quotes online and compare.</li>
+                <li>Calculate break-even point: How many years without accidents before Option A saves money?</li>
+                <li>Explore how risk tolerance affects investment decisions (connect to future lessons).</li>
+                <li>Research different types of insurance (life, disability, umbrella).</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ANSWER KEY (new page) -->
+    <div class="answer-key">
+        <div class="section-header">Answer Key</div>
+
+        <div class="answer-block">
+            <div class="answer-title">Part A: Risk Identification and Strategy Selection</div>
+            <div class="answer-item"><strong>Scenario 1 (Smartphone):</strong> Property risk. Accept reasonable answers: TRANSFER (buy protection plan) for high-use essential device, or REDUCE (use protective case) + ACCEPT (self-insure) if $1,000 is affordable to replace.</div>
+            <div class="answer-item"><strong>Scenario 2 (Ice Storm):</strong> Personal risk (injury) + Property risk (car damage). Best strategy: AVOID—don't drive. The potential loss (serious injury, car damage) far outweighs the benefit (taking exam on time). Contact professor about alternatives.</div>
+            <div class="answer-item"><strong>Scenario 3 (Dog):</strong> Liability risk (dog could injure someone). Pet deposit = ACCEPTANCE (you're accepting some financial responsibility). Insurance = TRANSFER (shifting major liability to insurance company).</div>
+        </div>
+
+        <div class="answer-block">
+            <div class="answer-title">Part B: Insurance Coverage Analysis</div>
+            <div class="calc-display">5-Year Premium Totals:
+• Option A: $900 × 5 = $4,500
+• Option B: $1,320 × 5 = $6,600
+• Option C: $1,800 × 5 = $9,000
+
+Q4: If NO accidents, Option A costs least ($4,500)
+
+Q5: If car totaled in Year 2:
+Option A: 2 years × $900 = $1,800 + $12,000 (replace car) = $13,800
+Option B: 2 years × $1,320 = $2,640 + $500 (deductible) = $3,140
+
+Option B saves $10,660 if an accident occurs.</div>
+        </div>
+
+        <div class="answer-block">
+            <div class="answer-title">Part C & Check Your Understanding</div>
+            <div class="answer-item"><strong>Q6:</strong> Accept any reasonable personal risks and appropriate strategies.</div>
+            <div class="answer-item"><strong>CYU 1:</strong> D (Risk Transfer)</div>
+            <div class="answer-item"><strong>CYU 2:</strong> Premium = amount paid regularly (monthly/yearly) to maintain coverage. Example: $100/month for car insurance. Deductible = amount you pay out-of-pocket before insurance kicks in. Example: $500 deductible means you pay first $500 of a claim.</div>
+            <div class="answer-item"><strong>CYU 3:</strong> Annual premium: $200 × 12 = $2,400. Plus $1,000 deductible. Total: <strong>$3,400</strong> (Insurance pays remaining $4,000 of the $5,000 loss)</div>
+            <div class="answer-item"><strong>CYU 4:</strong> Marcus could: REDUCE (proper training, warm-ups, protective gear), TRANSFER (sports insurance through school), AVOID during injury recovery. He might not choose complete avoidance because the benefits (health, enjoyment, teamwork, college opportunities) outweigh the managed risks.</div>
+            <div class="answer-note">CYU 5: Accept thoughtful responses that identify specific risks and appropriate strategies with reasoning.</div>
+        </div>
+
+        <!-- COMMON MISCONCEPTIONS -->
+        <div class="section-header">Common Misconceptions</div>
+        <table class="misconception-table">
+            <tr>
+                <th>Misconception</th>
+                <th>Clarification</th>
+            </tr>
+            <tr>
+                <td>"Insurance is a waste if you never file a claim."</td>
+                <td>Insurance provides peace of mind and protection against catastrophic loss. It's like a seatbelt—you hope you never need it, but you're glad it's there if you do.</td>
+            </tr>
+            <tr>
+                <td>"The lowest premium is always the best choice."</td>
+                <td>Low premiums often mean high deductibles or limited coverage. Total cost (premium + potential out-of-pocket) matters more than premium alone.</td>
+            </tr>
+            <tr>
+                <td>"Risk avoidance is always the safest strategy."</td>
+                <td>Avoiding all risk means missing opportunities. Sometimes accepting or managing risk is necessary for growth, education, or financial advancement.</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        <span>&copy; PFL Academy | pflacademy.co</span>
+        <span>Teacher Guide: Chapter 7.1</span>
+    </div>
+
+</body>
+</html>

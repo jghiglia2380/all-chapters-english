@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-19 Student Activity Packet</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+        :root {
+            --primary: #6366f1;
+            --primary-light: #eef2ff;
+            --primary-dark: #4338ca;
+            --text-dark: #1e293b;
+            --text-medium: #475569;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --bg-light: #f8fafc;
+            --success: #10b981;
+            --warning: #f59e0b;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+        @page { size: letter; margin: 0.5in; }
+        body { font-family: 'Open Sans', sans-serif; font-size: 10pt; line-height: 1.5; color: var(--text-dark); background: white; }
+
+        .header { background: var(--primary); color: white; padding: 16px 20px; border-radius: 8px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; }
+        .header h1 { font-size: 18pt; font-weight: 700; }
+        .header-info { text-align: right; font-size: 9pt; }
+
+        .section-title { background: var(--primary-light); border-left: 4px solid var(--primary); padding: 8px 14px; font-size: 11pt; font-weight: 700; color: var(--primary-dark); margin: 20px 0 12px; }
+
+        .challenge-box { background: linear-gradient(135deg, #fef3c7, #fef9c3); border-left: 4px solid var(--warning); padding: 14px 18px; border-radius: 0 8px 8px 0; margin-bottom: 16px; }
+        .challenge-box p { margin: 0; font-size: 10pt; color: #92400e; }
+        .challenge-box strong { color: #78350f; }
+
+        .concept-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+        .concept-card { background: var(--bg-light); border: 1px solid var(--border); border-radius: 6px; padding: 12px; page-break-inside: avoid; }
+        .concept-card h4 { font-size: 10pt; font-weight: 700; color: var(--primary-dark); margin-bottom: 6px; }
+        .concept-card p { font-size: 9pt; color: var(--text-medium); margin: 0; }
+        .concept-card ul { font-size: 9pt; color: var(--text-medium); margin: 4px 0 0; padding-left: 16px; }
+        .concept-card li { margin-bottom: 3px; }
+
+        .data-table { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 9pt; }
+        .data-table th { background: var(--primary); color: white; padding: 8px 10px; text-align: left; font-weight: 600; }
+        .data-table td { padding: 8px 10px; border: 1px solid var(--border); }
+        .data-table tr:nth-child(even) { background: var(--bg-light); }
+
+        .activity-section { background: var(--bg-light); border: 1px solid var(--border); border-radius: 8px; padding: 16px; margin-bottom: 16px; page-break-inside: avoid; }
+        .activity-section h3 { font-size: 11pt; font-weight: 700; color: var(--primary-dark); margin-bottom: 10px; }
+
+        .response-area { background: white; border: 1px solid var(--border); border-radius: 4px; padding: 10px; min-height: 70px; margin: 8px 0; }
+        .response-area.large { min-height: 100px; }
+        .response-lines { border-bottom: 1px solid var(--border); height: 24px; margin-bottom: 4px; }
+
+        .hint-box { background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 6px; padding: 10px 12px; margin: 10px 0; font-size: 9pt; }
+        .hint-box strong { color: #166534; }
+
+        .compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 12px 0; }
+        .compare-column { background: white; border: 1px solid var(--border); border-radius: 6px; padding: 10px; }
+        .compare-column h5 { font-size: 9pt; font-weight: 700; color: var(--primary-dark); margin-bottom: 6px; text-align: center; }
+        .compare-column ul { font-size: 8pt; padding-left: 14px; margin: 0; color: var(--text-medium); }
+
+        .checkbox-item { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 6px; }
+        .checkbox { width: 14px; height: 14px; border: 2px solid var(--primary); border-radius: 3px; flex-shrink: 0; margin-top: 2px; }
+        .checkbox-label { font-size: 9pt; color: var(--text-dark); }
+
+        .calc-box { background: #f0f9ff; border: 1px solid #bae6fd; border-radius: 6px; padding: 12px; margin: 10px 0; }
+        .calc-box h5 { font-size: 9pt; font-weight: 700; color: #0369a1; margin-bottom: 8px; }
+
+        .page-break { page-break-before: always; }
+
+        .footer { margin-top: 24px; padding-top: 12px; border-top: 1px solid var(--border); text-align: center; font-size: 8pt; color: var(--text-light); }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Planning for Retirement</h1>
+        <div class="header-info">
+            Name: _______________________<br>
+            Date: _______________________
+        </div>
+    </div>
+
+    <div class="challenge-box">
+        <p><strong>The Challenge:</strong> Using the 50/30/20 budgeting rule, if you want to maximize contributions to a 401(k) ($23,000), a Traditional IRA ($7,000), and a Roth IRA ($7,000), how much would you need to earn annually to allocate these investments while keeping them at 20% of your total income? By the end of this packet, you'll calculate your target annual income.</p>
+    </div>
+
+    <div class="section-title">Core Concepts: Saving vs. Investing</div>
+
+    <div class="compare-grid">
+        <div class="compare-column">
+            <h5>SAVING</h5>
+            <ul>
+                <li>Short-term needs (1-3 years)</li>
+                <li>Lower risk</li>
+                <li>Lower returns (1-3%)</li>
+                <li>Goal: Preserve capital</li>
+                <li>Examples: Savings accounts, CDs</li>
+            </ul>
+        </div>
+        <div class="compare-column">
+            <h5>INVESTING</h5>
+            <ul>
+                <li>Long-term goals (3+ years)</li>
+                <li>Higher risk (varies)</li>
+                <li>Higher potential returns (7-10%)</li>
+                <li>Goal: Grow capital</li>
+                <li>Examples: Stocks, bonds, mutual funds</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="concept-grid">
+        <div class="concept-card">
+            <h4>Risk-Return Relationship</h4>
+            <ul>
+                <li>Higher potential returns = Higher risk</li>
+                <li>Lower risk = Lower potential returns</li>
+                <li>Time horizon affects appropriate risk level</li>
+            </ul>
+        </div>
+        <div class="concept-card">
+            <h4>Time Horizon Guidelines</h4>
+            <ul>
+                <li><strong>Short (1-3 yrs):</strong> Low-risk savings</li>
+                <li><strong>Medium (3-10 yrs):</strong> Mix of saving/conservative investing</li>
+                <li><strong>Long (10+ yrs):</strong> Can handle higher risk for growth</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section-title">Part A: Financial Products Comparison</div>
+
+    <table class="data-table">
+        <tr>
+            <th>Product</th>
+            <th>Risk Level</th>
+            <th>Typical Returns</th>
+            <th>Liquidity</th>
+            <th>Best Time Horizon</th>
+        </tr>
+        <tr>
+            <td><strong>High-Yield Savings</strong></td>
+            <td>Very Low</td>
+            <td>3-5% APY</td>
+            <td>High (immediate)</td>
+            <td>Short-term, Emergency fund</td>
+        </tr>
+        <tr>
+            <td><strong>Certificate of Deposit (CD)</strong></td>
+            <td>Low</td>
+            <td>4-5% APY</td>
+            <td>Low (early withdrawal penalty)</td>
+            <td>Short to Medium-term</td>
+        </tr>
+        <tr>
+            <td><strong>Corporate Bonds</strong></td>
+            <td>Moderate</td>
+            <td>4-7%</td>
+            <td>Moderate</td>
+            <td>Medium-term</td>
+        </tr>
+        <tr>
+            <td><strong>Index Funds</strong></td>
+            <td>Moderate-High</td>
+            <td>7-10% historically</td>
+            <td>High (but value fluctuates)</td>
+            <td>Long-term (10+ years)</td>
+        </tr>
+        <tr>
+            <td><strong>Individual Stocks</strong></td>
+            <td>High</td>
+            <td>Varies widely</td>
+            <td>High (but value fluctuates)</td>
+            <td>Long-term with diversification</td>
+        </tr>
+    </table>
+
+    <div class="activity-section">
+        <h3>Product Analysis Questions</h3>
+        <p style="font-size: 9pt; margin-bottom: 10px;"><strong>1.</strong> Which product would you recommend for an emergency fund? Why?</p>
+        <div class="response-area">
+            <div class="response-lines"></div>
+            <div class="response-lines"></div>
+        </div>
+
+        <p style="font-size: 9pt; margin: 12px 0 8px;"><strong>2.</strong> Why are index funds better suited for retirement than individual stocks?</p>
+        <div class="response-area">
+            <div class="response-lines"></div>
+            <div class="response-lines"></div>
+        </div>
+    </div>
+
+    <div class="section-title">Part B: Retirement Account Comparison</div>
+
+    <table class="data-table">
+        <tr>
+            <th>Account Type</th>
+            <th>Tax Treatment</th>
+            <th>2024 Max Contribution</th>
+            <th>Key Features</th>
+        </tr>
+        <tr>
+            <td><strong>Traditional 401(k)</strong></td>
+            <td>Pre-tax contributions; taxed at withdrawal</td>
+            <td>$23,000 ($30,500 if 50+)</td>
+            <td>Employer match possible; reduces current taxable income</td>
+        </tr>
+        <tr>
+            <td><strong>Roth 401(k)</strong></td>
+            <td>After-tax contributions; tax-free at withdrawal</td>
+            <td>$23,000 ($30,500 if 50+)</td>
+            <td>Tax-free growth; no taxes in retirement</td>
+        </tr>
+        <tr>
+            <td><strong>Traditional IRA</strong></td>
+            <td>May be tax-deductible; taxed at withdrawal</td>
+            <td>$7,000 ($8,000 if 50+)</td>
+            <td>Anyone can open; not tied to employer</td>
+        </tr>
+        <tr>
+            <td><strong>Roth IRA</strong></td>
+            <td>After-tax contributions; tax-free at withdrawal</td>
+            <td>$7,000 ($8,000 if 50+)</td>
+            <td>Tax-free growth; income limits apply</td>
+        </tr>
+        <tr>
+            <td><strong>Social Security</strong></td>
+            <td>Funded by payroll taxes; taxed partially</td>
+            <td>N/A (automatic payroll deduction)</td>
+            <td>Government benefit; based on work history</td>
+        </tr>
+    </table>
+
+    <div class="activity-section">
+        <h3>Account Comparison Questions</h3>
+        <p style="font-size: 9pt; margin-bottom: 10px;"><strong>3.</strong> If you expect to be in a HIGHER tax bracket in retirement, which type of account would benefit you more: Traditional or Roth? Explain why.</p>
+        <div class="response-area">
+            <div class="response-lines"></div>
+            <div class="response-lines"></div>
+            <div class="response-lines"></div>
+        </div>
+
+        <p style="font-size: 9pt; margin: 12px 0 8px;"><strong>4.</strong> Your employer offers a 401(k) match of 50% up to 6% of your salary. If you earn $50,000 and contribute 6%, how much does your employer add?</p>
+        <div class="response-area">
+            <div class="response-lines"></div>
+            <div class="response-lines"></div>
+        </div>
+
+        <div class="hint-box">
+            <strong>Employer Match = Free Money!</strong> If your employer matches contributions, always contribute at least enough to get the full match. It's an instant 50-100% return on your investment.
+        </div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <div class="section-title">Part C: The 50/30/20 Rule and Retirement</div>
+
+    <div class="activity-section">
+        <h3>Understanding the 50/30/20 Budget</h3>
+        <p style="font-size: 9pt; color: var(--text-medium); margin-bottom: 12px;">The 50/30/20 rule allocates your after-tax income: 50% for needs, 30% for wants, 20% for savings and investments.</p>
+
+        <div class="concept-grid">
+            <div class="concept-card">
+                <h4>50% - Needs</h4>
+                <ul>
+                    <li>Housing (rent/mortgage)</li>
+                    <li>Utilities, groceries, insurance</li>
+                    <li>Minimum debt payments</li>
+                    <li>Transportation basics</li>
+                </ul>
+            </div>
+            <div class="concept-card">
+                <h4>30% - Wants</h4>
+                <ul>
+                    <li>Entertainment, dining out</li>
+                    <li>Hobbies, subscriptions</li>
+                    <li>Travel, non-essential shopping</li>
+                    <li>Upgrades beyond basics</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="calc-box">
+            <h5>20% - Savings & Investments (Including Retirement)</h5>
+            <p style="font-size: 9pt; margin-bottom: 8px;">This 20% should cover: Emergency fund, retirement contributions, debt payoff beyond minimums, and other investing.</p>
+        </div>
+    </div>
+
+    <div class="section-title">Part D: Solve the Opening Challenge</div>
+
+    <div class="activity-section">
+        <h3>Calculate the Required Annual Income</h3>
+        <p style="font-size: 9pt; color: var(--text-medium); margin-bottom: 12px;">To maximize all retirement accounts while keeping contributions at 20% of income, calculate the target income.</p>
+
+        <div class="calc-box">
+            <h5>Step 1: Calculate Total Maximum Contributions</h5>
+            <p style="font-size: 9pt;">401(k) max: $23,000 + Traditional IRA max: $7,000 + Roth IRA max: $7,000</p>
+            <p style="font-size: 9pt; margin-top: 8px;"><strong>Total Maximum Contribution:</strong> $______________</p>
+        </div>
+
+        <div class="calc-box">
+            <h5>Step 2: Apply the 20% Rule</h5>
+            <p style="font-size: 9pt;">If the total contribution equals 20% of your income:</p>
+            <p style="font-size: 9pt; margin-top: 4px;">Total Contribution ÷ 0.20 = Required Annual Income</p>
+            <p style="font-size: 9pt; margin-top: 8px;"><strong>Calculation:</strong> $______________ ÷ 0.20 = $______________</p>
+        </div>
+
+        <p style="font-size: 9pt; margin: 12px 0 8px;"><strong>5.</strong> Your calculated target annual income to maximize all retirement contributions at 20%:</p>
+        <div class="response-area">
+            <div class="response-lines"></div>
+        </div>
+
+        <p style="font-size: 9pt; margin: 12px 0 8px;"><strong>6.</strong> Is this a realistic income for someone just starting their career? What alternatives might a young worker consider?</p>
+        <div class="response-area">
+            <div class="response-lines"></div>
+            <div class="response-lines"></div>
+            <div class="response-lines"></div>
+        </div>
+    </div>
+
+    <div class="section-title">Part E: Your Retirement Strategy</div>
+
+    <div class="activity-section">
+        <h3>Build Your Personalized Plan</h3>
+        <p style="font-size: 9pt; color: var(--text-medium); margin-bottom: 12px;">Design a retirement strategy based on your expected career and goals.</p>
+
+        <p style="font-size: 9pt; margin-bottom: 6px;"><strong>Expected starting salary:</strong> $______________</p>
+        <p style="font-size: 9pt; margin-bottom: 6px;"><strong>20% of that salary:</strong> $______________/year = $______________/month</p>
+
+        <p style="font-size: 9pt; margin: 12px 0 8px;"><strong>7.</strong> How would you allocate your 20% savings? Fill in your monthly plan:</p>
+        <table class="data-table">
+            <tr>
+                <th>Category</th>
+                <th>Monthly Amount</th>
+                <th>Reasoning</th>
+            </tr>
+            <tr>
+                <td>401(k) (if employer match)</td>
+                <td>$</td>
+                <td style="height: 40px;"></td>
+            </tr>
+            <tr>
+                <td>Roth IRA</td>
+                <td>$</td>
+                <td style="height: 40px;"></td>
+            </tr>
+            <tr>
+                <td>Emergency Fund</td>
+                <td>$</td>
+                <td style="height: 40px;"></td>
+            </tr>
+            <tr>
+                <td>Other</td>
+                <td>$</td>
+                <td style="height: 40px;"></td>
+            </tr>
+        </table>
+
+        <p style="font-size: 9pt; margin: 12px 0 8px;"><strong>8.</strong> Imagine yourself at age 65. Describe the lifestyle you envision and what steps you can start taking now.</p>
+        <div class="response-area large">
+            <div class="response-lines"></div>
+            <div class="response-lines"></div>
+            <div class="response-lines"></div>
+            <div class="response-lines"></div>
+        </div>
+    </div>
+
+    <div class="section-title">Check Your Understanding</div>
+
+    <div class="activity-section">
+        <p style="font-size: 9pt; margin-bottom: 8px;"><strong>1.</strong> Which of the following is the PRIMARY advantage of a Roth IRA over a Traditional IRA?</p>
+        <div class="checkbox-item"><div class="checkbox"></div><span class="checkbox-label">A. Higher contribution limits</span></div>
+        <div class="checkbox-item"><div class="checkbox"></div><span class="checkbox-label">B. Tax-free withdrawals in retirement</span></div>
+        <div class="checkbox-item"><div class="checkbox"></div><span class="checkbox-label">C. No income restrictions</span></div>
+        <div class="checkbox-item"><div class="checkbox"></div><span class="checkbox-label">D. Employer matching contributions</span></div>
+
+        <p style="font-size: 9pt; margin: 12px 0 8px;"><strong>2.</strong> Why should you "always get the employer match" on a 401(k)?</p>
+        <div class="response-area">
+            <div class="response-lines"></div>
+            <div class="response-lines"></div>
+        </div>
+
+        <p style="font-size: 9pt; margin: 12px 0 8px;"><strong>3.</strong> A 25-year-old starts contributing $500/month to retirement at 7% returns. A 35-year-old starts contributing $750/month at the same rate. Who will have more at age 65? Why?</p>
+        <div class="response-area">
+            <div class="response-lines"></div>
+            <div class="response-lines"></div>
+            <div class="response-lines"></div>
+        </div>
+    </div>
+
+    <div class="footer">
+        &copy; PFL Academy | pflacademy.co | Chapter 5.6: Planning for Retirement
+    </div>
+
+</body>
+</html>

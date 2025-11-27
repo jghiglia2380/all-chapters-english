@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-57 Student Activity Packet</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+        :root {
+            --primary: #6366f1;
+            --primary-light: #eef2ff;
+            --primary-dark: #4338ca;
+            --text-dark: #1e293b;
+            --text-medium: #475569;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --bg-light: #f8fafc;
+            --emerald: #059669;
+            --emerald-light: #ecfdf5;
+            --amber: #f59e0b;
+            --amber-light: #fef3c7;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+
+        @page {
+            size: letter;
+            margin: 0.5in;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 10pt;
+            line-height: 1.45;
+            color: var(--text-dark);
+            background: white;
+        }
+
+        .header {
+            background: var(--primary);
+            color: white;
+            padding: 14px 18px;
+            border-radius: 6px;
+            margin-bottom: 16px;
+        }
+
+        .header h1 {
+            font-size: 13pt;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .header h2 {
+            font-size: 10pt;
+            font-weight: 400;
+            margin: 3px 0 0;
+            opacity: 0.9;
+        }
+
+        .section-header {
+            background: var(--primary-light);
+            border-left: 4px solid var(--primary);
+            padding: 7px 12px;
+            font-size: 10pt;
+            font-weight: 700;
+            color: var(--primary-dark);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin: 16px 0 10px;
+        }
+
+        .challenge-box {
+            background: var(--amber-light);
+            border-left: 4px solid var(--amber);
+            padding: 12px 14px;
+            border-radius: 0 6px 6px 0;
+            margin-bottom: 14px;
+        }
+
+        .challenge-title {
+            font-weight: 700;
+            color: #92400e;
+            margin-bottom: 5px;
+            font-size: 10pt;
+        }
+
+        .challenge-box p {
+            color: #78350f;
+            font-size: 9pt;
+            margin: 0;
+        }
+
+        .objectives-box {
+            background: var(--emerald-light);
+            border: 1px solid #a7f3d0;
+            border-radius: 6px;
+            padding: 12px 14px;
+            margin-bottom: 14px;
+        }
+
+        .objectives-title {
+            font-weight: 700;
+            color: var(--emerald);
+            margin-bottom: 6px;
+            font-size: 9pt;
+            text-transform: uppercase;
+        }
+
+        .objectives-box ul {
+            margin: 0;
+            padding-left: 18px;
+            font-size: 9pt;
+            color: #065f46;
+        }
+
+        .objectives-box li {
+            margin-bottom: 3px;
+        }
+
+        .terms-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 14px;
+            font-size: 9pt;
+        }
+
+        .terms-table th {
+            background: var(--primary);
+            color: white;
+            padding: 7px 10px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .terms-table td {
+            padding: 7px 10px;
+            border: 1px solid var(--border);
+            vertical-align: top;
+        }
+
+        .terms-table tr:nth-child(even) {
+            background: var(--bg-light);
+        }
+
+        .term-name {
+            font-weight: 600;
+            color: var(--primary-dark);
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+            font-size: 9pt;
+        }
+
+        .data-table th {
+            background: var(--bg-light);
+            color: var(--text-dark);
+            padding: 6px 10px;
+            text-align: center;
+            font-weight: 600;
+            border: 1px solid var(--border);
+        }
+
+        .data-table td {
+            padding: 6px 10px;
+            border: 1px solid var(--border);
+        }
+
+        .background-box {
+            background: var(--bg-light);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 12px 14px;
+            margin-bottom: 14px;
+        }
+
+        .background-box h4 {
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 6px;
+            font-size: 10pt;
+        }
+
+        .background-box p {
+            font-size: 9pt;
+            color: var(--text-medium);
+            margin-bottom: 6px;
+        }
+
+        .scenario-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 12px;
+            margin-bottom: 12px;
+            page-break-inside: avoid;
+        }
+
+        .scenario-title {
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 6px;
+            font-size: 10pt;
+        }
+
+        .scenario-content {
+            font-size: 9pt;
+            color: var(--text-medium);
+            margin-bottom: 8px;
+        }
+
+        .answer-lines {
+            border-bottom: 1px solid var(--border);
+            min-height: 24px;
+            margin: 6px 0;
+        }
+
+        .answer-lines.tall {
+            min-height: 48px;
+        }
+
+        .mc-options {
+            list-style: none;
+            padding: 0;
+            margin: 8px 0;
+        }
+
+        .mc-options li {
+            padding: 5px 0 5px 24px;
+            position: relative;
+            font-size: 9pt;
+        }
+
+        .mc-options li:before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 6px;
+            width: 14px;
+            height: 14px;
+            border: 1.5px solid var(--border);
+            border-radius: 50%;
+        }
+
+        .hint-box {
+            background: #eff6ff;
+            border: 1px solid #bfdbfe;
+            border-radius: 4px;
+            padding: 8px 10px;
+            font-size: 8.5pt;
+            color: #1e40af;
+            margin: 8px 0;
+        }
+
+        .calc-box {
+            background: var(--bg-light);
+            border: 1px dashed var(--border);
+            border-radius: 4px;
+            padding: 10px;
+            margin: 8px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 9pt;
+        }
+
+        .part-header {
+            background: var(--primary-light);
+            padding: 6px 10px;
+            font-weight: 700;
+            color: var(--primary-dark);
+            font-size: 9pt;
+            border-radius: 4px;
+            margin: 12px 0 8px;
+        }
+
+        .footer {
+            margin-top: 20px;
+            padding-top: 8px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            font-size: 8pt;
+            color: var(--text-light);
+        }
+
+        .page-break {
+            page-break-before: always;
+        }
+
+        .five-cs-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin: 10px 0;
+        }
+
+        .five-cs-item {
+            background: var(--bg-light);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 10px;
+        }
+
+        .five-cs-item h5 {
+            font-weight: 700;
+            color: var(--primary-dark);
+            font-size: 9pt;
+            margin-bottom: 4px;
+        }
+
+        .five-cs-item p {
+            font-size: 8.5pt;
+            color: var(--text-medium);
+            margin: 0;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <div class="header">
+        <h1>PFL Academy</h1>
+        <h2>Chapter 57 — Loan Application Process and Requirements</h2>
+    </div>
+
+    <!-- THE CHALLENGE -->
+    <div class="challenge-box">
+        <div class="challenge-title">THE CHALLENGE</div>
+        <p>Marcus applied for a loan at 22% interest because he was unprepared—he didn't know his credit score, scrambled for documentation, and missed that he'd recently changed jobs. Carmen, applying for the same type of loan, got 5.8% because she prepared for 3 months, checked her credit, and had all documents ready. Over 5 years, the difference is nearly $2,000 in extra interest. Preparation pays—literally.</p>
+    </div>
+
+    <!-- LEARNING OBJECTIVES -->
+    <div class="objectives-box">
+        <div class="objectives-title">Learning Objectives</div>
+        <ul>
+            <li>Complete a comprehensive loan application with accuracy and required documentation</li>
+            <li>Understand how lenders evaluate creditworthiness using the "Five C's"</li>
+            <li>Analyze factors that increase or decrease likelihood of loan approval</li>
+            <li>Develop strategies to strengthen loan applications and improve approval odds</li>
+        </ul>
+    </div>
+
+    <!-- CORE CONCEPTS -->
+    <div class="section-header">Core Concepts</div>
+    <table class="terms-table">
+        <tr>
+            <th style="width: 25%;">Term</th>
+            <th>Definition</th>
+        </tr>
+        <tr>
+            <td class="term-name">Debt-to-Income Ratio (DTI)</td>
+            <td>Monthly debt payments ÷ Gross monthly income × 100%; lenders prefer below 36-43%</td>
+        </tr>
+        <tr>
+            <td class="term-name">Collateral</td>
+            <td>An asset (car, house) that secures a loan and can be seized if you don't repay; reduces lender risk</td>
+        </tr>
+        <tr>
+            <td class="term-name">Pre-approval</td>
+            <td>Preliminary evaluation where lender reviews finances and indicates willingness to lend up to a certain amount</td>
+        </tr>
+        <tr>
+            <td class="term-name">Hard Inquiry</td>
+            <td>When lender checks credit report during application; temporarily lowers score by a few points</td>
+        </tr>
+        <tr>
+            <td class="term-name">Loan-to-Value Ratio (LTV)</td>
+            <td>Loan amount ÷ Asset's value; lower LTV indicates less risk (e.g., $15K loan on $20K car = 75% LTV)</td>
+        </tr>
+        <tr>
+            <td class="term-name">Co-signer</td>
+            <td>Person with good credit who agrees to repay if borrower defaults; strengthens weak applications</td>
+        </tr>
+        <tr>
+            <td class="term-name">Underwriting</td>
+            <td>The detailed process lenders use to evaluate application, verify information, and decide approval/terms</td>
+        </tr>
+    </table>
+
+    <!-- THE FIVE C's -->
+    <div class="background-box">
+        <h4>The Five C's of Credit</h4>
+        <p>Lenders evaluate every application using these five factors. Weakness in any area affects approval odds or interest rate.</p>
+        <div class="five-cs-grid">
+            <div class="five-cs-item">
+                <h5>Character</h5>
+                <p>Credit history, payment track record. Score 740+ = best rates; below 620 = significant challenges.</p>
+            </div>
+            <div class="five-cs-item">
+                <h5>Capacity</h5>
+                <p>Ability to repay based on income and existing debts. DTI below 36% preferred.</p>
+            </div>
+            <div class="five-cs-item">
+                <h5>Capital</h5>
+                <p>Financial reserves—savings, down payment, emergency fund. Shows financial stability.</p>
+            </div>
+            <div class="five-cs-item">
+                <h5>Collateral</h5>
+                <p>Asset backing the loan. Lower LTV = less risk = better terms.</p>
+            </div>
+        </div>
+        <p style="margin-top: 6px;"><strong>Conditions:</strong> Loan purpose, economic environment, special circumstances. Lenders assess if loan makes sense.</p>
+    </div>
+
+    <!-- APPLY IT -->
+    <div class="section-header">Apply It</div>
+
+    <!-- Part A: DTI Calculation -->
+    <div class="part-header">Part A: Debt-to-Income Ratio Calculations</div>
+
+    <p style="font-size: 9pt; color: var(--text-medium); margin-bottom: 10px;">Calculate DTI for each applicant and determine if they meet lender requirements (below 36% = good, 36-43% = acceptable, above 43% = concerning).</p>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Applicant 1: Jordan</div>
+        <div class="scenario-content">Gross monthly income: $4,500. Monthly debts: Car payment $350, Student loans $220, Credit cards $80.</div>
+        <div class="calc-box">
+            Total monthly debt: $350 + $220 + $80 = $______<br>
+            DTI = $______ ÷ $4,500 × 100% = ______%
+        </div>
+        <p><strong>Assessment:</strong> ☐ Good (below 36%) ☐ Acceptable (36-43%) ☐ Concerning (above 43%)</p>
+    </div>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Applicant 2: Taylor</div>
+        <div class="scenario-content">Gross monthly income: $3,200. Monthly debts: Rent $900, Car payment $285, Student loans $180, Credit cards $150.</div>
+        <div class="calc-box">
+            Total monthly debt: $______ + $______ + $______ + $______ = $______<br>
+            DTI = $______ ÷ $3,200 × 100% = ______%
+        </div>
+        <p><strong>Assessment:</strong> ☐ Good ☐ Acceptable ☐ Concerning</p>
+        <p><strong>If Taylor wants a $300/month car loan, new DTI would be:</strong></p>
+        <div class="calc-box">
+            New total debt: $______ + $300 = $______<br>
+            New DTI: ______%
+        </div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- Part B: Five C's Evaluation -->
+    <div class="part-header">Part B: Evaluating Creditworthiness with the Five C's</div>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Borrower Profile: Alex</div>
+        <div class="scenario-content">
+            <strong>Seeking:</strong> $22,000 auto loan with $2,000 down (5-year term)<br>
+            <strong>Credit score:</strong> 680 (fair), no late payments in past 2 years but limited credit history<br>
+            <strong>Income:</strong> $52,000/year, employed 3 years at same company<br>
+            <strong>Existing debt:</strong> $8,000 student loan ($150/month), $500 credit card balance ($25/month)<br>
+            <strong>Savings:</strong> $3,500 in savings (including down payment), $800 in checking
+        </div>
+
+        <p style="font-size: 9pt; margin-top: 10px;"><strong>Rate each of the Five C's (1-10) and explain:</strong></p>
+
+        <table class="data-table">
+            <tr>
+                <th style="width: 100px;">Factor</th>
+                <th style="width: 60px;">Rating</th>
+                <th>Explanation</th>
+            </tr>
+            <tr>
+                <td><strong>Character</strong></td>
+                <td style="text-align: center;">/10</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><strong>Capacity</strong></td>
+                <td style="text-align: center;">/10</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><strong>Capital</strong></td>
+                <td style="text-align: center;">/10</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><strong>Collateral</strong></td>
+                <td style="text-align: center;">/10</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><strong>Conditions</strong></td>
+                <td style="text-align: center;">/10</td>
+                <td></td>
+            </tr>
+        </table>
+
+        <p><strong>Your lending decision:</strong> ☐ Approve ☐ Approve with conditions ☐ Deny</p>
+        <p><strong>If approve with conditions, what conditions?</strong></p>
+        <div class="answer-lines"></div>
+    </div>
+
+    <!-- Part C: Strengthening Applications -->
+    <div class="part-header">Part C: Application Improvement Strategies</div>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Scenario: Marcus's Weak Application</div>
+        <div class="scenario-content">Marcus (credit score 610, DTI 45%, $400 in savings, job for 3 months) was denied for a $15,000 personal loan. What should he do to improve his chances in 6-12 months?</div>
+
+        <p style="font-size: 9pt;"><strong>List 4 specific actions Marcus should take:</strong></p>
+        <ol style="font-size: 9pt; margin-left: 20px; margin-top: 8px;">
+            <li style="margin-bottom: 20px;"></li>
+            <li style="margin-bottom: 20px;"></li>
+            <li style="margin-bottom: 20px;"></li>
+            <li style="margin-bottom: 8px;"></li>
+        </ol>
+
+        <p><strong>Which improvement will have the BIGGEST impact on approval odds?</strong></p>
+        <div class="answer-lines"></div>
+    </div>
+
+    <!-- CHECK YOUR UNDERSTANDING -->
+    <div class="section-header">Check Your Understanding</div>
+
+    <p style="font-size: 9pt; margin-bottom: 12px;"><strong>1.</strong> Which of the Five C's is MOST affected by your credit score?</p>
+    <ul class="mc-options">
+        <li>A) Capacity</li>
+        <li>B) Character</li>
+        <li>C) Capital</li>
+        <li>D) Collateral</li>
+    </ul>
+
+    <p style="font-size: 9pt; margin-bottom: 12px;"><strong>2.</strong> Why do lenders calculate your debt-to-income ratio? What does a high DTI tell them about risk?</p>
+    <div class="answer-lines tall"></div>
+
+    <p style="font-size: 9pt; margin-bottom: 12px;"><strong>3.</strong> Calculate: Applicant earns $5,000/month gross and has monthly debts of $180 (student loan), $95 (credit card), and $425 (car payment). They want a mortgage that would add $1,200/month. What's their new DTI, and will most lenders approve?</p>
+    <div class="calc-box">
+        Current debt: $180 + $95 + $425 = $______<br>
+        With mortgage: $______ + $1,200 = $______<br>
+        New DTI: $______ ÷ $5,000 × 100% = ______%<br>
+        <strong>Approval likelihood:</strong>
+    </div>
+
+    <p style="font-size: 9pt; margin-bottom: 12px;"><strong>4.</strong> Why does getting pre-approved BEFORE car shopping give you negotiating power?</p>
+    <div class="answer-lines tall"></div>
+
+    <p style="font-size: 9pt; margin-bottom: 12px;"><strong>5.</strong> Think about a loan you might need in the next 2-5 years. Assess your current Five C's and identify your weakest area. What specific steps will you take to strengthen that area?</p>
+    <div class="answer-lines" style="min-height: 60px;"></div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        <span>© PFL Academy | pflacademy.co</span>
+        <span>Student Activity Packet: Chapter 57</span>
+    </div>
+
+</body>
+</html>

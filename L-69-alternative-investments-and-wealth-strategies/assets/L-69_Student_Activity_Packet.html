@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-69 Student Activity Packet</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+        :root {
+            --primary: #6366f1;
+            --primary-light: #eef2ff;
+            --accent: #f59e0b;
+            --accent-light: #fef3c7;
+            --success: #059669;
+            --text-dark: #1e293b;
+            --text-medium: #475569;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --bg-light: #f8fafc;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+        @page { size: letter; margin: 0.5in; }
+        body { font-family: 'Open Sans', sans-serif; font-size: 10.5pt; line-height: 1.5; color: var(--text-dark); background: white; }
+
+        .header { background: var(--primary); color: white; padding: 14px 18px; border-radius: 6px; margin-bottom: 18px; display: flex; justify-content: space-between; align-items: center; }
+        .header-left h1 { font-size: 13pt; font-weight: 700; margin: 0; }
+        .header-left h2 { font-size: 10pt; font-weight: 400; margin: 2px 0 0; opacity: 0.9; }
+        .header-right { font-size: 9pt; text-align: right; opacity: 0.9; }
+
+        .section-header { font-size: 11pt; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 2px solid var(--primary); padding-bottom: 4px; margin: 20px 0 12px; }
+
+        .challenge-box { background: var(--accent-light); border-left: 4px solid var(--accent); padding: 14px 16px; margin-bottom: 16px; border-radius: 0 6px 6px 0; }
+        .challenge-box p { font-style: italic; color: var(--text-dark); margin-bottom: 10px; }
+        .challenge-box .framing-question { font-weight: 600; font-style: normal; color: #92400e; }
+
+        .objectives-box { background: var(--primary-light); border: 1px solid #c7d2fe; border-radius: 6px; padding: 12px 16px; margin-bottom: 18px; }
+        .objectives-box h3 { font-size: 10pt; font-weight: 700; color: var(--primary); margin-bottom: 6px; }
+        .objectives-box ul { margin: 0; padding-left: 20px; }
+        .objectives-box li { margin-bottom: 3px; color: var(--text-medium); }
+
+        .terms-table { width: 100%; border-collapse: collapse; margin-bottom: 14px; font-size: 10pt; }
+        .terms-table th { background: var(--bg-light); text-align: left; padding: 8px 10px; border: 1px solid var(--border); font-weight: 600; color: var(--text-medium); }
+        .terms-table td { padding: 8px 10px; border: 1px solid var(--border); vertical-align: top; }
+        .terms-table td:first-child { font-weight: 600; color: var(--primary); width: 22%; }
+
+        .background-box { background: var(--bg-light); border: 1px solid var(--border); border-radius: 6px; padding: 12px 16px; margin-bottom: 18px; font-size: 10pt; color: var(--text-medium); }
+        .background-box strong { color: var(--text-dark); }
+
+        .scenario-card { background: white; border: 1px solid var(--border); border-radius: 6px; padding: 12px 14px; margin-bottom: 14px; page-break-inside: avoid; }
+        .scenario-title { font-weight: 700; color: var(--primary); margin-bottom: 6px; font-size: 10pt; }
+        .scenario-description { color: var(--text-medium); margin-bottom: 10px; font-size: 10pt; }
+
+        .response-line { display: flex; align-items: baseline; margin-bottom: 8px; }
+        .response-label { font-weight: 600; color: var(--text-dark); margin-right: 8px; white-space: nowrap; }
+        .response-blank { flex-grow: 1; border-bottom: 1px solid var(--text-light); min-height: 18px; }
+        .response-options { color: var(--text-light); font-size: 9pt; margin-left: 8px; white-space: nowrap; }
+
+        .data-table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 10pt; }
+        .data-table th { background: var(--primary); color: white; padding: 8px 10px; text-align: center; font-weight: 600; font-size: 9pt; }
+        .data-table td { padding: 8px 10px; border: 1px solid var(--border); text-align: center; }
+        .data-table tr:nth-child(even) td { background: var(--bg-light); }
+
+        .question { margin-bottom: 14px; page-break-inside: avoid; }
+        .question-number { font-weight: 700; color: var(--text-dark); }
+        .question-text { color: var(--text-dark); margin-bottom: 6px; }
+        .answer-lines { margin-top: 6px; }
+        .answer-line { border-bottom: 1px solid var(--text-light); height: 22px; margin-bottom: 4px; }
+
+        .calc-box { border: 1px solid var(--border); border-radius: 4px; padding: 12px; margin: 8px 0; min-height: 60px; background: var(--bg-light); }
+        .calc-label { font-size: 9pt; color: var(--text-light); margin-bottom: 4px; }
+        .calc-answer { margin-top: 10px; font-weight: 600; }
+
+        .mc-options { margin-top: 6px; margin-left: 20px; }
+        .mc-option { display: flex; align-items: center; margin-bottom: 4px; }
+        .mc-checkbox { width: 14px; height: 14px; border: 1px solid var(--text-light); border-radius: 2px; margin-right: 8px; flex-shrink: 0; }
+
+        .hint-box { background: #f0fdf4; border-left: 3px solid var(--success); padding: 8px 12px; margin: 10px 0; font-size: 9pt; font-style: italic; color: #166534; }
+        .hint-box strong { font-style: normal; }
+
+        .part-header { font-weight: 700; font-size: 10pt; color: var(--primary); text-transform: uppercase; margin: 16px 0 10px; padding-bottom: 4px; border-bottom: 1px solid var(--border); }
+
+        .footer { margin-top: 24px; padding-top: 10px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; font-size: 9pt; color: var(--text-light); }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="header-left">
+            <h1>PFL Academy</h1>
+            <h2>Chapter 69: Alternative Investments and Wealth Strategies</h2>
+        </div>
+        <div class="header-right">Student Activity Packet</div>
+    </div>
+
+    <div class="section-header">The Challenge</div>
+    <div class="challenge-box">
+        <p>Alex, age 22, heard about cryptocurrency from friends showing social media posts of their gains. Without understanding the risks, Alex invested $8,000—his entire savings—at a market peak. Within three months, the crypto market crashed 70%, reducing his $8,000 to $2,400. Alex panic-sold, locking in a $5,600 loss. That $8,000, had it been invested in a diversified stock index fund at age 22 and grown at 7% annually until age 65, would have become approximately $123,000. By chasing speculative gains, Alex lost both the principal and 43 years of compounding.</p>
+        <p class="framing-question">How can understanding alternative investments—their risks, returns, and role in portfolios—help you make informed decisions rather than following trends that could devastate your wealth-building?</p>
+    </div>
+
+    <div class="objectives-box">
+        <h3>Learning Objectives</h3>
+        <ul>
+            <li>Analyze alternative investment characteristics and their role in portfolio diversification.</li>
+            <li>Compare liquidity, risk, and return profiles of real estate, commodities, and cryptocurrency.</li>
+            <li>Make informed decisions about incorporating alternatives into personal financial plans.</li>
+        </ul>
+    </div>
+
+    <div class="section-header">Core Concepts</div>
+
+    <table class="terms-table">
+        <tr><th>Term</th><th>Definition</th></tr>
+        <tr><td>Alternative Investments</td><td>Asset classes beyond traditional stocks and bonds, including real estate, commodities, precious metals, cryptocurrency, and private equity.</td></tr>
+        <tr><td>Correlation</td><td>Degree to which investments move together. Low correlation (near 0 or negative) provides diversification benefits by reducing portfolio volatility.</td></tr>
+        <tr><td>REIT</td><td>Real Estate Investment Trust—a company that owns income-producing real estate, allowing investment without buying physical property.</td></tr>
+        <tr><td>Liquidity</td><td>How quickly an asset can be converted to cash without significant price loss. Alternatives are generally less liquid than stocks.</td></tr>
+        <tr><td>Inflation Hedge</td><td>An investment expected to maintain or increase value during rising prices, protecting purchasing power (e.g., gold, real estate).</td></tr>
+    </table>
+
+    <div class="background-box">
+        <strong>Background:</strong> Alternative investments can provide diversification benefits through <strong>low correlation</strong> with stocks—when stocks fall, some alternatives may hold steady or rise. However, they come with unique challenges: <strong>lower liquidity</strong>, higher complexity, and potentially higher risk. For most young investors, alternatives should be <strong>supplementary</strong> (10-20% of portfolio maximum) after establishing a strong foundation in emergency savings and traditional index fund investments.
+    </div>
+
+    <div class="section-header">Apply It</div>
+
+    <div class="part-header">Part A: Alternative Investment Comparison</div>
+
+    <table class="data-table">
+        <tr><th>Asset Type</th><th>Expected Return</th><th>Volatility</th><th>Liquidity</th><th>Correlation w/ Stocks</th></tr>
+        <tr><td style="text-align: left; font-weight: 600;">REITs</td><td>7-10%</td><td>Medium</td><td>High</td><td>Moderate (+0.6)</td></tr>
+        <tr><td style="text-align: left; font-weight: 600;">Gold/Precious Metals</td><td>4-6%</td><td>Medium</td><td>Medium</td><td>Low (+0.1)</td></tr>
+        <tr><td style="text-align: left; font-weight: 600;">Cryptocurrency</td><td>Uncertain</td><td>Very High</td><td>High</td><td>Variable</td></tr>
+        <tr><td style="text-align: left; font-weight: 600;">Direct Real Estate</td><td>6-12%</td><td>Low</td><td>Very Low</td><td>Low (+0.2)</td></tr>
+    </table>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">1.</span> Based on the table, which alternative provides the BEST diversification benefit (lowest correlation)? Which provides income AND appreciation potential?</p>
+        <div class="response-line"><span class="response-label">Best diversification:</span><span class="response-blank"></span></div>
+        <div class="response-line"><span class="response-label">Income + appreciation:</span><span class="response-blank"></span></div>
+    </div>
+
+    <div class="part-header">Part B: Real Estate Investment Paths</div>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Direct Property vs. REIT Comparison</div>
+        <div class="scenario-description">You have $50,000 to invest in real estate. Compare your options:</div>
+        <p style="font-size: 9pt; margin-bottom: 8px;"><strong>Option A - Rental Property:</strong> Down payment on $250,000 home, $2,000/month rent, $2,380/month expenses = -$380/month cash flow initially, but builds $115,000 equity over 5 years. Requires active management.</p>
+        <p style="font-size: 9pt; margin-bottom: 8px;"><strong>Option B - REIT Fund:</strong> Invest $50,000, 4.5% dividend yield ($2,250/year), 5% price appreciation, zero management, instant liquidity. Total value after 10 years: ~$96,000.</p>
+        <div class="response-line"><span class="response-label">Better for hands-off investor:</span><span class="response-blank"></span></div>
+        <div class="response-line"><span class="response-label">Better for building equity:</span><span class="response-blank"></span></div>
+        <div class="response-line"><span class="response-label">Your preference and why:</span><span class="response-blank"></span></div>
+    </div>
+
+    <div class="part-header">Part C: Cryptocurrency Risk Analysis</div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">2.</span> Bitcoin's historical volatility: 2017 (+1,318%), 2018 (-73%), 2021 (+1,100% to peak), 2022 (-76%). If you invested $1,000 in Bitcoin at the 2021 peak, what would it be worth after the 2022 crash?</p>
+        <div class="calc-box"><div class="calc-label">Calculate: $1,000 × (1 - 0.76) = </div></div>
+        <div class="calc-answer">Value after crash: $__________</div>
+    </div>
+
+    <div class="hint-box">
+        <strong>Rule of Thumb:</strong> Most financial advisors recommend cryptocurrency represent no more than 1-5% of an investment portfolio—only money you can afford to lose completely.
+    </div>
+
+    <div class="section-header">Check Your Understanding</div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">1.</span> The primary benefit of alternative investments in a portfolio is:</p>
+        <div class="mc-options">
+            <div class="mc-option"><div class="mc-checkbox"></div> A. Higher guaranteed returns than stocks</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> B. Lower volatility than any other asset</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> C. Diversification through low correlation with traditional assets</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> D. Complete protection against losses</div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">2.</span> Explain why alternative investments should typically be "supplementary" (10-20% max) rather than the core of a young investor's portfolio.</p>
+        <div class="answer-lines"><div class="answer-line"></div><div class="answer-line"></div></div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">3.</span> <strong>Calculation:</strong> If Alex's $8,000 had been invested in an index fund earning 7% annually for 43 years instead of lost to crypto speculation, what would it have grown to? Use: FV = PV × (1.07)^43</p>
+        <div class="calc-box"><div class="calc-label">Show calculation:</div></div>
+        <div class="calc-answer">Opportunity cost of speculation: $__________</div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">4.</span> What should be in place BEFORE investing in any alternative assets? List three prerequisites.</p>
+        <div class="answer-lines"><div class="answer-line"></div><div class="answer-line"></div></div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">5.</span> <strong>Reflection:</strong> Based on your risk tolerance, knowledge, and goals, what role (if any) would alternative investments play in YOUR portfolio? What percentage allocation? Which alternatives, if any, would you consider and why?</p>
+        <div class="answer-lines"><div class="answer-line"></div><div class="answer-line"></div><div class="answer-line"></div><div class="answer-line"></div></div>
+    </div>
+
+    <div class="footer">
+        <span>&copy; PFL Academy | pflacademy.co</span>
+        <span>Chapter 69: Alternative Investments and Wealth Strategies</span>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-16 Teacher Guide</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+        :root {
+            --primary: #059669;
+            --primary-light: #ecfdf5;
+            --primary-dark: #065f46;
+            --text-dark: #1e293b;
+            --text-medium: #475569;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --bg-light: #f8fafc;
+            --warning: #f59e0b;
+            --warning-light: #fef3c7;
+            --error: #dc2626;
+            --error-light: #fee2e2;
+            --success-light: #dcfce7;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+        @page { size: letter; margin: 0.5in; }
+        body { font-family: 'Open Sans', sans-serif; font-size: 10pt; line-height: 1.45; color: var(--text-dark); background: white; }
+
+        .header { background: var(--primary); color: white; padding: 14px 18px; border-radius: 6px; margin-bottom: 16px; }
+        .header h1 { font-size: 13pt; font-weight: 700; margin: 0; }
+        .header h2 { font-size: 10pt; font-weight: 400; margin: 3px 0 0; opacity: 0.9; }
+
+        .section-header { background: var(--primary-light); border-left: 4px solid var(--primary); padding: 7px 12px; font-size: 10pt; font-weight: 700; color: var(--primary-dark); text-transform: uppercase; letter-spacing: 0.5px; margin: 16px 0 10px; }
+
+        .overview-table { width: 100%; border-collapse: collapse; margin-bottom: 14px; }
+        .overview-table th { background: var(--bg-light); color: var(--text-light); font-size: 8pt; text-transform: uppercase; letter-spacing: 0.5px; text-align: center; padding: 6px 10px; border: 1px solid var(--border); width: 33%; }
+        .overview-table td { text-align: center; padding: 10px; border: 1px solid var(--border); font-weight: 600; color: var(--text-dark); font-size: 10pt; }
+
+        .flow-container { margin-bottom: 14px; }
+        .flow-item { display: flex; padding: 8px 0; border-bottom: 1px solid var(--border); page-break-inside: avoid; }
+        .flow-item:last-child { border-bottom: none; }
+        .flow-time { width: 65px; font-weight: 700; color: var(--primary); flex-shrink: 0; font-size: 10pt; }
+        .flow-content { flex: 1; }
+        .flow-title { font-weight: 700; color: var(--text-dark); margin-bottom: 3px; font-size: 10pt; }
+        .flow-content ul { margin: 0; padding-left: 16px; font-size: 9pt; color: var(--text-medium); }
+        .flow-content li { margin-bottom: 2px; }
+
+        .diff-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px; }
+        .diff-box { background: var(--bg-light); border: 1px solid var(--border); border-radius: 4px; padding: 10px 12px; }
+        .diff-title { font-weight: 700; color: var(--text-dark); margin-bottom: 6px; font-size: 9pt; }
+        .diff-box ul { margin: 0; padding-left: 16px; font-size: 9pt; color: var(--text-medium); }
+        .diff-box li { margin-bottom: 2px; }
+
+        .answer-key { page-break-before: always; }
+        .answer-block { margin-bottom: 12px; page-break-inside: avoid; }
+        .answer-title { font-weight: 700; color: var(--primary); font-size: 9pt; border-bottom: 1px solid #a7f3d0; padding-bottom: 3px; margin-bottom: 6px; }
+        .answer-item { margin-bottom: 5px; font-size: 9pt; color: var(--text-dark); }
+        .answer-item strong { color: var(--primary-dark); }
+
+        .calc-display { font-family: 'Courier New', monospace; background: var(--bg-light); padding: 8px 10px; border-radius: 4px; margin: 6px 0; font-size: 8.5pt; line-height: 1.5; white-space: pre-line; }
+        .answer-note { background: var(--warning-light); border-left: 3px solid var(--warning); padding: 6px 10px; font-size: 9pt; font-style: italic; color: #92400e; margin: 6px 0; }
+
+        .misconception-table { width: 100%; border-collapse: collapse; font-size: 9pt; margin-top: 10px; }
+        .misconception-table th { padding: 6px 10px; text-align: left; font-weight: 600; }
+        .misconception-table th:first-child { background: var(--error-light); color: #991b1b; border: 1px solid #fca5a5; width: 40%; }
+        .misconception-table th:last-child { background: var(--success-light); color: #166534; border: 1px solid #86efac; }
+        .misconception-table td { padding: 6px 10px; border: 1px solid var(--border); vertical-align: top; color: var(--text-medium); }
+
+        .footer { margin-top: 20px; padding-top: 8px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; font-size: 8pt; color: var(--text-light); }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>PFL Academy</h1>
+        <h2>Teacher Guide: Chapter 5.3 — Evaluating Saving and Investment Strategies</h2>
+    </div>
+
+    <div class="section-header">Overview</div>
+    <table class="overview-table">
+        <tr>
+            <th>Time</th>
+            <th>Materials</th>
+            <th>Prerequisites</th>
+        </tr>
+        <tr>
+            <td>45-50 Minutes</td>
+            <td>Student Activity Packet, Calculator</td>
+            <td>Chapters 5.1-5.2</td>
+        </tr>
+    </table>
+
+    <div class="section-header">Lesson Flow</div>
+    <div class="flow-container">
+        <div class="flow-item">
+            <div class="flow-time">5 min</div>
+            <div class="flow-content">
+                <div class="flow-title">THE CHALLENGE</div>
+                <ul>
+                    <li>Read Liam and Julia's scenarios. Ask: "Who would you advise to invest in stocks?"</li>
+                    <li>Highlight that same investment can be right for one person, wrong for another.</li>
+                    <li>Preview that time horizon is the key differentiator.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="flow-item">
+            <div class="flow-time">10 min</div>
+            <div class="flow-content">
+                <div class="flow-title">CORE CONCEPTS</div>
+                <ul>
+                    <li>Review the 5 key terms. Draw the risk-return spectrum on board.</li>
+                    <li>Explain that diversification reduces risk without necessarily reducing returns.</li>
+                    <li>Discuss liquidity: "How fast can you get cash without penalty?"</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="flow-item">
+            <div class="flow-time">25-28 min</div>
+            <div class="flow-content">
+                <div class="flow-title">APPLY IT</div>
+                <ul>
+                    <li><strong>Part A (12 min):</strong> Analysis of the comparison table. Work through scenarios together.</li>
+                    <li><strong>Part B (8 min):</strong> Growth projections—the difference after 40 years is dramatic.</li>
+                    <li><strong>Part C (5-8 min):</strong> Risk tolerance assessment. Emphasize no "right" answer.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="flow-item">
+            <div class="flow-time">10 min</div>
+            <div class="flow-content">
+                <div class="flow-title">CHECK YOUR UNDERSTANDING</div>
+                <ul>
+                    <li>Focus on Q2 (contrasting Liam and Julia) and Q4 (staying course during downturn).</li>
+                    <li>Connect back to compounding lesson: time heals market drops.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-header">Differentiation</div>
+    <div class="diff-grid">
+        <div class="diff-box">
+            <div class="diff-title">Support</div>
+            <ul>
+                <li>Create a simplified decision tree based on time horizon.</li>
+                <li>Color-code the comparison table by risk level.</li>
+                <li>Walk through the growth projection calculations step-by-step.</li>
+                <li>Pair students for scenario analysis.</li>
+            </ul>
+        </div>
+        <div class="diff-box">
+            <div class="diff-title">Extension</div>
+            <ul>
+                <li>Research actual mutual fund and stock returns over the past 10 years.</li>
+                <li>Create a personal investment strategy for multiple goals.</li>
+                <li>Analyze the impact of fees on long-term investment returns.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="answer-key">
+        <div class="section-header">Answer Key</div>
+
+        <div class="answer-block">
+            <div class="answer-title">Part A: Investment Vehicle Analysis</div>
+            <div class="answer-item"><strong>Liam:</strong> Best option: CD or savings account. Why NOT stocks: With only 18 months, the market could drop significantly right when he needs the money. He can't afford to lose principal. He should also: Save more monthly (needs $3,000 more; CD interest alone won't close gap).</div>
+            <div class="answer-item"><strong>Julia:</strong> Best option: Mutual Fund or Stock Index Fund. Why is risk acceptable: With 48 years, she has time to ride out multiple market cycles. Historically, markets recover from downturns given enough time.</div>
+        </div>
+
+        <div class="answer-block">
+            <div class="answer-title">Part B: Growth Projections</div>
+            <div class="calc-display">Difference Calculation:
+$45,259 (Stocks) - $1,489 (Savings) = $43,770 more
+
+With $50/month added for 40 years:
+$131,000 vs. $14,974 (one-time investment)
+Regular contributions dramatically increase final value.</div>
+            <div class="answer-item"><strong>1.</strong> $45,259 - $1,489 = <strong>$43,770 more</strong> with stock index</div>
+            <div class="answer-item"><strong>2.</strong> Regular contributions ($131,000) are nearly 9× more than the one-time investment ($14,974). Consistent investing has enormous impact.</div>
+        </div>
+
+        <div class="answer-block">
+            <div class="answer-title">Part C: Risk Tolerance Assessment</div>
+            <div class="answer-note">Risk tolerance responses vary. No wrong answers. Look for students to match their tolerance to appropriate investments: Conservative → CDs/Bonds; Moderate → Mixed Mutual Funds; Aggressive → Stock Funds.</div>
+        </div>
+
+        <div class="answer-block">
+            <div class="answer-title">Check Your Understanding</div>
+            <div class="answer-item"><strong>1.</strong> B (Higher potential returns typically come with higher risk)</div>
+            <div class="answer-item"><strong>2.</strong> Liam needs certainty in 18 months; a market drop could prevent his car purchase. Julia has 40+ years; short-term volatility won't affect her retirement if she stays invested.</div>
+            <div class="answer-item"><strong>3.</strong> $5,000 × 1.025 = <strong>$5,125</strong></div>
+            <div class="answer-item"><strong>4.</strong> No, she shouldn't sell. With 40+ years, she has plenty of time for recovery. Historically, markets have always recovered from downturns. Selling locks in losses.</div>
+            <div class="answer-item"><strong>5.</strong> <em>Accept thoughtful responses that identify a specific goal, time horizon, and appropriate vehicle with reasoning.</em></div>
+        </div>
+
+        <div class="section-header">Common Misconceptions</div>
+        <table class="misconception-table">
+            <tr>
+                <th>Misconception</th>
+                <th>Clarification</th>
+            </tr>
+            <tr>
+                <td>"Safe investments are always better."</td>
+                <td>For long-term goals, "safe" investments may actually be risky because they don't outpace inflation. Appropriate risk depends on time horizon.</td>
+            </tr>
+            <tr>
+                <td>"I should wait until the market is doing well to invest."</td>
+                <td>Timing the market is nearly impossible. Regular investing (dollar-cost averaging) means sometimes buying low, sometimes high—which averages out over time.</td>
+            </tr>
+            <tr>
+                <td>"Young people should be conservative investors."</td>
+                <td>Actually, young people can often afford MORE risk because they have time to recover from downturns. Conservative investing is more appropriate as you near your goal.</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="footer">
+        <span>© PFL Academy | pflacademy.co</span>
+        <span>Teacher Guide: Chapter 5.3</span>
+    </div>
+
+</body>
+</html>

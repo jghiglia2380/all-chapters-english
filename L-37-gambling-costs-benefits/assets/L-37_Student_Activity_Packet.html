@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-37 Student Activity Packet</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+        :root {
+            --primary: #6366f1;
+            --primary-light: #eef2ff;
+            --accent: #f59e0b;
+            --accent-light: #fef3c7;
+            --success: #059669;
+            --text-dark: #1e293b;
+            --text-medium: #475569;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --bg-light: #f8fafc;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+        @page { size: letter; margin: 0.5in; }
+
+        body { font-family: 'Open Sans', sans-serif; font-size: 10.5pt; line-height: 1.5; color: var(--text-dark); background: white; }
+
+        .header { background: var(--primary); color: white; padding: 14px 18px; border-radius: 6px; margin-bottom: 18px; display: flex; justify-content: space-between; align-items: center; }
+        .header-left h1 { font-size: 13pt; font-weight: 700; margin: 0; }
+        .header-left h2 { font-size: 10pt; font-weight: 400; margin: 2px 0 0; opacity: 0.9; }
+        .header-right { font-size: 9pt; text-align: right; opacity: 0.9; }
+
+        .section-header { font-size: 11pt; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 2px solid var(--primary); padding-bottom: 4px; margin: 20px 0 12px; }
+
+        .challenge-box { background: var(--accent-light); border-left: 4px solid var(--accent); padding: 14px 16px; margin-bottom: 16px; border-radius: 0 6px 6px 0; }
+        .challenge-box p { font-style: italic; color: var(--text-dark); margin-bottom: 10px; }
+        .challenge-box .framing-question { font-weight: 600; font-style: normal; color: #92400e; }
+
+        .objectives-box { background: var(--primary-light); border: 1px solid #c7d2fe; border-radius: 6px; padding: 12px 16px; margin-bottom: 18px; }
+        .objectives-box h3 { font-size: 10pt; font-weight: 700; color: var(--primary); margin-bottom: 6px; }
+        .objectives-box ul { margin: 0; padding-left: 20px; }
+        .objectives-box li { margin-bottom: 3px; color: var(--text-medium); }
+
+        .terms-table { width: 100%; border-collapse: collapse; margin-bottom: 14px; font-size: 10pt; }
+        .terms-table th { background: var(--bg-light); text-align: left; padding: 8px 10px; border: 1px solid var(--border); font-weight: 600; color: var(--text-medium); }
+        .terms-table td { padding: 8px 10px; border: 1px solid var(--border); vertical-align: top; }
+        .terms-table td:first-child { font-weight: 600; color: var(--primary); width: 25%; }
+
+        .background-box { background: var(--bg-light); border: 1px solid var(--border); border-radius: 6px; padding: 12px 16px; margin-bottom: 18px; font-size: 10pt; color: var(--text-medium); }
+        .background-box strong { color: var(--text-dark); }
+
+        .scenario-card { background: white; border: 1px solid var(--border); border-radius: 6px; padding: 12px 14px; margin-bottom: 14px; page-break-inside: avoid; }
+        .scenario-title { font-weight: 700; color: var(--primary); margin-bottom: 6px; font-size: 10pt; }
+        .scenario-description { color: var(--text-medium); margin-bottom: 10px; font-size: 10pt; }
+
+        .response-line { display: flex; align-items: baseline; margin-bottom: 8px; }
+        .response-label { font-weight: 600; color: var(--text-dark); margin-right: 8px; white-space: nowrap; }
+        .response-blank { flex-grow: 1; border-bottom: 1px solid var(--text-light); min-height: 18px; }
+
+        .data-table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 10pt; }
+        .data-table th { background: var(--primary); color: white; padding: 8px 10px; text-align: center; font-weight: 600; font-size: 9pt; }
+        .data-table td { padding: 8px 10px; border: 1px solid var(--border); text-align: center; }
+        .data-table tr:nth-child(even) td { background: var(--bg-light); }
+
+        .question { margin-bottom: 14px; page-break-inside: avoid; }
+        .question-number { font-weight: 700; color: var(--text-dark); }
+        .question-text { color: var(--text-dark); margin-bottom: 6px; }
+
+        .answer-lines { margin-top: 6px; }
+        .answer-line { border-bottom: 1px solid var(--text-light); height: 22px; margin-bottom: 4px; }
+
+        .calc-box { border: 1px solid var(--border); border-radius: 4px; padding: 12px; margin: 8px 0; min-height: 60px; background: var(--bg-light); }
+        .calc-label { font-size: 9pt; color: var(--text-light); margin-bottom: 4px; }
+        .calc-answer { margin-top: 10px; font-weight: 600; }
+
+        .mc-options { margin-top: 6px; margin-left: 20px; }
+        .mc-option { display: flex; align-items: center; margin-bottom: 4px; }
+        .mc-checkbox { width: 14px; height: 14px; border: 1px solid var(--text-light); border-radius: 2px; margin-right: 8px; flex-shrink: 0; }
+
+        .hint-box { background: #f0fdf4; border-left: 3px solid var(--success); padding: 8px 12px; margin: 10px 0; font-size: 9pt; font-style: italic; color: #166534; }
+        .hint-box strong { font-style: normal; }
+
+        .part-header { font-weight: 700; font-size: 10pt; color: var(--primary); text-transform: uppercase; margin: 16px 0 10px; padding-bottom: 4px; border-bottom: 1px solid var(--border); }
+
+        .footer { margin-top: 24px; padding-top: 10px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; font-size: 9pt; color: var(--text-light); }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="header-left">
+            <h1>PFL Academy</h1>
+            <h2>Chapter 12.2: The Costs and Benefits of Gambling</h2>
+        </div>
+        <div class="header-right">Student Activity Packet</div>
+    </div>
+
+    <div class="section-header">The Challenge</div>
+    <div class="challenge-box">
+        <p>Your city council is considering approving a new casino development. Supporters argue it will create 500 jobs and generate $8 million in annual tax revenue. Opponents worry about increased problem gambling and social costs. As a citizen preparing to speak at the public hearing, you need to analyze both sides and determine what conditions, if any, would make this development beneficial for your community.</p>
+        <p class="framing-question">How can communities balance the economic benefits of gambling with its potential social costs?</p>
+    </div>
+
+    <div class="objectives-box">
+        <h3>Learning Objectives</h3>
+        <ul>
+            <li>Understand gambling as entertainment with an expected cost, not as a way to make money.</li>
+            <li>Analyze the individual costs and benefits of gambling.</li>
+            <li>Evaluate community-level economic and social impacts of gambling.</li>
+            <li>Recognize warning signs of problem gambling.</li>
+            <li>Develop strategies for responsible gambling practices.</li>
+        </ul>
+    </div>
+
+    <div class="section-header">Core Concepts</div>
+
+    <table class="terms-table">
+        <tr><th>Term</th><th>Definition</th></tr>
+        <tr><td>Gambling as Entertainment</td><td>Viewing gambling as leisure with a cost (like movies or concerts), not as a way to make money.</td></tr>
+        <tr><td>Problem Gambling</td><td>Gambling behavior that disrupts personal, family, or work life; characterized by difficulty controlling gambling.</td></tr>
+        <tr><td>Regressive Taxation</td><td>A tax that takes a larger percentage from low-income earners; often applied to gambling revenue patterns.</td></tr>
+        <tr><td>Social Costs</td><td>Negative community effects such as increased crime, bankruptcy, and family problems related to gambling.</td></tr>
+        <tr><td>Responsible Gambling</td><td>Practices to prevent gambling-related harm: setting limits, never chasing losses, using discretionary funds only.</td></tr>
+    </table>
+
+    <div class="background-box">
+        <strong>Background:</strong> Gambling has both costs and benefits at individual and community levels. When approached as entertainment with clear limits, gambling can provide enjoyment without major negative consequences. However, problem gambling affects approximately 1-3% of adults and creates significant financial, emotional, and social costs. Communities must weigh economic benefits (jobs, tax revenue, tourism) against social costs (increased demand for services, regressive taxation effects) when making gambling policy decisions.
+    </div>
+
+    <div class="section-header">Apply It</div>
+
+    <div class="part-header">Part A: Entertainment Value Comparison</div>
+    <p style="margin-bottom: 14px;">Compare gambling to other entertainment activities to understand its true cost as recreation.</p>
+
+    <table class="data-table">
+        <tr>
+            <th>Activity</th>
+            <th>Average Cost</th>
+            <th>Duration</th>
+            <th>Cost per Hour</th>
+            <th>Financial Expectation</th>
+        </tr>
+        <tr>
+            <td style="text-align: left;">Movie Theater</td>
+            <td>$15</td>
+            <td>2 hours</td>
+            <td></td>
+            <td>100% loss</td>
+        </tr>
+        <tr>
+            <td style="text-align: left;">Concert</td>
+            <td>$100</td>
+            <td>3 hours</td>
+            <td></td>
+            <td>100% loss</td>
+        </tr>
+        <tr>
+            <td style="text-align: left;">Casino ($100 budget)</td>
+            <td>$100</td>
+            <td>4 hours</td>
+            <td></td>
+            <td>Expected loss with variance</td>
+        </tr>
+        <tr>
+            <td style="text-align: left;">Lottery ($10/week)</td>
+            <td>$520/year</td>
+            <td>Minimal</td>
+            <td>N/A</td>
+            <td>~50% expected loss</td>
+        </tr>
+    </table>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">1.</span> How does viewing gambling as "entertainment with a cost" rather than "a way to make money" change how someone should budget for it?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="part-header">Part B: Recreational vs. Problem Gambling</div>
+    <p style="margin-bottom: 14px;">Analyze the differences between healthy recreational gambling and problematic gambling behavior.</p>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Scenario: David vs. Mark</div>
+        <div class="scenario-description"><strong>David:</strong> Visits a casino every 2 months, sets aside $100 from entertainment budget, leaves when budget or 3-hour limit is reached, views losses as entertainment cost.</div>
+        <div class="scenario-description"><strong>Mark:</strong> Started with $200/month budget but now uses savings to "win back" losses, thinks about gambling at work, uses credit cards to fund gambling, lies about time spent.</div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">2.</span> List THREE warning signs that Mark's gambling has become problematic.</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="part-header">Part C: Community Impact Analysis</div>
+    <p style="margin-bottom: 14px;">Evaluate the costs and benefits of gambling at the community level.</p>
+
+    <table class="data-table">
+        <tr>
+            <th>Economic Benefits</th>
+            <th>Social/Economic Costs</th>
+        </tr>
+        <tr>
+            <td style="text-align: left;">Tax revenue for public services</td>
+            <td style="text-align: left;">Increased problem gambling treatment needs</td>
+        </tr>
+        <tr>
+            <td style="text-align: left;">Job creation (direct and indirect)</td>
+            <td style="text-align: left;">Higher bankruptcy rates</td>
+        </tr>
+        <tr>
+            <td style="text-align: left;">Tourism and hotel revenue</td>
+            <td style="text-align: left;">Regressive tax burden on lower-income residents</td>
+        </tr>
+        <tr>
+            <td style="text-align: left;">Infrastructure investment</td>
+            <td style="text-align: left;">Criminal justice system costs</td>
+        </tr>
+    </table>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">3.</span> Why is gambling revenue sometimes called a "regressive tax"?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="hint-box">
+        <strong>Hint:</strong> Consider who spends the largest percentage of their income on gambling. Studies show households earning under $30,000 spend proportionally more on lottery than those earning over $100,000.
+    </div>
+
+    <div class="section-header">Check Your Understanding</div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">1.</span> Which statement best describes the "entertainment approach" to gambling?</p>
+        <div class="mc-options">
+            <div class="mc-option"><div class="mc-checkbox"></div> A. Gambling is a reliable way to supplement income</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> B. Gambling is a leisure activity with an expected cost, like movies</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> C. Gambling should only be done when you can afford big losses</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> D. Gambling is always harmful and should be avoided</div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">2.</span> Which of the following is NOT a warning sign of problem gambling?</p>
+        <div class="mc-options">
+            <div class="mc-option"><div class="mc-checkbox"></div> A. Setting a budget and sticking to it</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> B. Chasing losses to "win back" money</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> C. Lying about time spent gambling</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> D. Borrowing money to fund gambling</div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">3.</span> <strong>Calculation:</strong> A city's casino generates $10 million in annual tax revenue. However, the city spends $2 million on problem gambling treatment, $1.5 million on increased social services, and $500,000 on law enforcement. What is the net financial benefit?</p>
+        <div class="calc-box"><div class="calc-label">Show your work:</div></div>
+        <div class="calc-answer">Net benefit: $_____________</div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">4.</span> List THREE responsible gambling practices that help keep gambling as safe entertainment.</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">5.</span> <strong>Reflection:</strong> Should your community approve a new casino development? What conditions or safeguards would you require to support it?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <span>&copy; PFL Academy | pflacademy.co</span>
+        <span>Chapter 12.2: The Costs and Benefits of Gambling</span>
+    </div>
+
+</body>
+</html>

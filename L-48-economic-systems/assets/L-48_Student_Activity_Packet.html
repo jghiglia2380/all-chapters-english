@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-48 Student Activity Packet</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+        :root {
+            --primary: #6366f1;
+            --primary-light: #eef2ff;
+            --accent: #f59e0b;
+            --accent-light: #fef3c7;
+            --success: #059669;
+            --text-dark: #1e293b;
+            --text-medium: #475569;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --bg-light: #f8fafc;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+        @page { size: letter; margin: 0.5in; }
+
+        body { font-family: 'Open Sans', sans-serif; font-size: 10.5pt; line-height: 1.5; color: var(--text-dark); background: white; }
+
+        .header { background: var(--primary); color: white; padding: 14px 18px; border-radius: 6px; margin-bottom: 18px; display: flex; justify-content: space-between; align-items: center; }
+        .header-left h1 { font-size: 13pt; font-weight: 700; margin: 0; }
+        .header-left h2 { font-size: 10pt; font-weight: 400; margin: 2px 0 0; opacity: 0.9; }
+        .header-right { font-size: 9pt; text-align: right; opacity: 0.9; }
+
+        .section-header { font-size: 11pt; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 2px solid var(--primary); padding-bottom: 4px; margin: 20px 0 12px; }
+
+        .challenge-box { background: var(--accent-light); border-left: 4px solid var(--accent); padding: 14px 16px; margin-bottom: 16px; border-radius: 0 6px 6px 0; }
+        .challenge-box p { font-style: italic; color: var(--text-dark); margin-bottom: 10px; }
+        .challenge-box .framing-question { font-weight: 600; font-style: normal; color: #92400e; }
+
+        .objectives-box { background: var(--primary-light); border: 1px solid #c7d2fe; border-radius: 6px; padding: 12px 16px; margin-bottom: 18px; }
+        .objectives-box h3 { font-size: 10pt; font-weight: 700; color: var(--primary); margin-bottom: 6px; }
+        .objectives-box ul { margin: 0; padding-left: 20px; }
+        .objectives-box li { margin-bottom: 3px; color: var(--text-medium); }
+
+        .terms-table { width: 100%; border-collapse: collapse; margin-bottom: 14px; font-size: 10pt; }
+        .terms-table th { background: var(--bg-light); text-align: left; padding: 8px 10px; border: 1px solid var(--border); font-weight: 600; color: var(--text-medium); }
+        .terms-table td { padding: 8px 10px; border: 1px solid var(--border); vertical-align: top; }
+        .terms-table td:first-child { font-weight: 600; color: var(--primary); width: 25%; }
+
+        .background-box { background: var(--bg-light); border: 1px solid var(--border); border-radius: 6px; padding: 12px 16px; margin-bottom: 18px; font-size: 10pt; color: var(--text-medium); }
+        .background-box strong { color: var(--text-dark); }
+
+        .data-table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 9pt; }
+        .data-table th { background: var(--primary); color: white; padding: 8px 10px; text-align: center; font-weight: 600; font-size: 9pt; }
+        .data-table td { padding: 8px 10px; border: 1px solid var(--border); text-align: center; }
+        .data-table tr:nth-child(even) td { background: var(--bg-light); }
+
+        .question { margin-bottom: 14px; page-break-inside: avoid; }
+        .question-number { font-weight: 700; color: var(--text-dark); }
+        .question-text { color: var(--text-dark); margin-bottom: 6px; }
+
+        .answer-lines { margin-top: 6px; }
+        .answer-line { border-bottom: 1px solid var(--text-light); height: 22px; margin-bottom: 4px; }
+
+        .mc-options { margin-top: 6px; margin-left: 20px; }
+        .mc-option { display: flex; align-items: center; margin-bottom: 4px; }
+        .mc-checkbox { width: 14px; height: 14px; border: 1px solid var(--text-light); border-radius: 2px; margin-right: 8px; flex-shrink: 0; }
+
+        .hint-box { background: #f0fdf4; border-left: 3px solid var(--success); padding: 8px 12px; margin: 10px 0; font-size: 9pt; font-style: italic; color: #166534; }
+        .hint-box strong { font-style: normal; }
+
+        .part-header { font-weight: 700; font-size: 10pt; color: var(--primary); text-transform: uppercase; margin: 16px 0 10px; padding-bottom: 4px; border-bottom: 1px solid var(--border); }
+
+        .footer { margin-top: 24px; padding-top: 10px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; font-size: 9pt; color: var(--text-light); }
+
+        .mb-sm { margin-bottom: 8px; }
+        .mb-md { margin-bottom: 14px; }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <div class="header">
+        <div class="header-left">
+            <h1>PFL Academy</h1>
+            <h2>Chapter 14.1: Economic Systems and Resource Allocation</h2>
+        </div>
+        <div class="header-right">
+            Student Activity Packet
+        </div>
+    </div>
+
+    <!-- THE CHALLENGE -->
+    <div class="section-header">The Challenge</div>
+    <div class="challenge-box">
+        <p>The Martinez family's story spans three generations and two economic systems. In 1960, Carlos Martinez fled Cuba after Castro's revolution nationalized his father's grocery business. Arriving in Miami with $300, Carlos worked two jobs, saved aggressively, and within five years opened a bodega. Over 30 years, he built a successful business worth $600,000. His daughter Elena expanded to three locations with 35 employees. Meanwhile, relatives who remained in Cuba faced dramatically different outcomes—earning $30-50 monthly in government jobs with no path to wealth accumulation. Same family, same work ethic, vastly different results. The economic system made all the difference.</p>
+        <p class="framing-question">How does your economic system determine your opportunities for career advancement, business ownership, and wealth building?</p>
+    </div>
+
+    <!-- LEARNING OBJECTIVES -->
+    <div class="objectives-box">
+        <h3>Learning Objectives</h3>
+        <ul>
+            <li>Define and compare capitalism, socialism, and mixed economies.</li>
+            <li>Explain the difference between command and market economic systems.</li>
+            <li>Understand how property rights function in different economic systems.</li>
+            <li>Analyze how resource allocation mechanisms work in various economies.</li>
+            <li>Evaluate how economic systems affect personal financial opportunities.</li>
+        </ul>
+    </div>
+
+    <!-- CORE CONCEPTS -->
+    <div class="section-header">Core Concepts</div>
+
+    <table class="terms-table">
+        <tr>
+            <th>Term</th>
+            <th>Definition</th>
+        </tr>
+        <tr>
+            <td>Capitalism</td>
+            <td>Economic system where private individuals and businesses own resources; prices determined by supply and demand; profit motive drives activity.</td>
+        </tr>
+        <tr>
+            <td>Socialism</td>
+            <td>Economic system where government owns most resources and makes centralized production and distribution decisions; emphasis on equality over efficiency.</td>
+        </tr>
+        <tr>
+            <td>Mixed Economy</td>
+            <td>System combining capitalism and socialism; most resources privately owned but government provides public goods, regulates markets, and redistributes some income.</td>
+        </tr>
+        <tr>
+            <td>Property Rights</td>
+            <td>Legal ownership and control over resources; foundation of market economies enabling exchange, investment, and wealth accumulation.</td>
+        </tr>
+        <tr>
+            <td>Market Allocation</td>
+            <td>Resource distribution determined by voluntary exchanges between buyers and sellers; prices signal scarcity and coordinate decisions.</td>
+        </tr>
+    </table>
+
+    <div class="background-box">
+        <strong>Background:</strong> Every society must answer fundamental economic questions: What should be produced? How? Who gets what is produced? Different economic systems answer these questions in dramatically different ways—and those answers profoundly affect your career prospects, business opportunities, and wealth-building potential. The United States operates as a mixed economy, blending market mechanisms with government intervention.
+    </div>
+
+    <!-- APPLY IT -->
+    <div class="section-header">Apply It</div>
+
+    <div class="part-header">Part A: Economic System Comparison</div>
+    <p class="mb-sm">Compare key features of different economic systems:</p>
+
+    <table class="data-table">
+        <tr>
+            <th>Feature</th>
+            <th>Capitalism (Market)</th>
+            <th>Socialism (Command)</th>
+            <th>Mixed Economy (USA)</th>
+        </tr>
+        <tr>
+            <td style="text-align: left; font-weight: 600;">Resource Ownership</td>
+            <td>85%+ private</td>
+            <td>90%+ government</td>
+            <td>75% private/25% govt</td>
+        </tr>
+        <tr>
+            <td style="text-align: left; font-weight: 600;">Price Setting</td>
+            <td>Market-determined</td>
+            <td>Government-set</td>
+            <td>Mostly market</td>
+        </tr>
+        <tr>
+            <td style="text-align: left; font-weight: 600;">Business Startup</td>
+            <td>$300, 1 day</td>
+            <td>Prohibited</td>
+            <td>$2,000-$10,000</td>
+        </tr>
+        <tr>
+            <td style="text-align: left; font-weight: 600;">Career Freedom</td>
+            <td>Complete choice</td>
+            <td>Government assigns</td>
+            <td>High freedom</td>
+        </tr>
+        <tr>
+            <td style="text-align: left; font-weight: 600;">Safety Net</td>
+            <td>Minimal</td>
+            <td>Extensive (low quality)</td>
+            <td>Moderate</td>
+        </tr>
+        <tr>
+            <td style="text-align: left; font-weight: 600;">GDP Per Capita</td>
+            <td>$65,000 (Singapore)</td>
+            <td>$9,500 (Cuba)</td>
+            <td>$70,000 (USA)</td>
+        </tr>
+    </table>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">1.</span> Based on this comparison, which system offers the most opportunity for an entrepreneur? Which provides the most security for workers? Explain.</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <!-- PART B -->
+    <div class="part-header">Part B: Property Rights Impact</div>
+    <p class="mb-md">Analyze how property rights affect financial decisions:</p>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">2.</span> You have $25,000 to start a coffee shop. With strong property rights (USA), you can sign contracts, get business loans, and keep profits. With weak property rights (failed state), your business could be seized or extorted. How does this affect your willingness to invest?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">3.</span> Explain why most mortgages and business loans are impossible in countries with weak property rights.</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="hint-box">
+        <strong>Key Insight:</strong> Property rights allow you to use assets as collateral for loans. Without foreclosure rights, lenders won't lend—eliminating homeownership and business expansion for most families.
+    </div>
+
+    <!-- PART C -->
+    <div class="part-header">Part C: Real-World Comparison</div>
+    <p class="mb-md">Compare outcomes of different systems in the same region:</p>
+
+    <table class="data-table">
+        <tr>
+            <th>Comparison</th>
+            <th>Market System</th>
+            <th>Command System</th>
+            <th>Difference</th>
+        </tr>
+        <tr>
+            <td style="text-align: left; font-weight: 600;">North vs. South Korea</td>
+            <td>$35,000 GDP/capita</td>
+            <td>$1,800 GDP/capita</td>
+            <td>19x higher</td>
+        </tr>
+        <tr>
+            <td style="text-align: left; font-weight: 600;">Chile vs. Venezuela (2023)</td>
+            <td>8% poverty rate</td>
+            <td>96% poverty rate</td>
+            <td>88 points lower</td>
+        </tr>
+        <tr>
+            <td style="text-align: left; font-weight: 600;">W. Germany vs. E. Germany (1990)</td>
+            <td>3x higher income</td>
+            <td>Base comparison</td>
+            <td>3x higher</td>
+        </tr>
+    </table>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">4.</span> These comparisons involve countries with similar cultures and histories but different economic systems. What does this suggest about the impact of economic systems on prosperity?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <!-- CHECK YOUR UNDERSTANDING -->
+    <div class="section-header">Check Your Understanding</div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">1.</span> In a market economy, how are most resource allocation decisions made?</p>
+        <div class="mc-options">
+            <div class="mc-option"><div class="mc-checkbox"></div> A. By government central planners</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> B. Through voluntary exchanges between buyers and sellers</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> C. By lottery system</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> D. By equal distribution to all citizens</div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">2.</span> Which statement best describes the United States economy?</p>
+        <div class="mc-options">
+            <div class="mc-option"><div class="mc-checkbox"></div> A. Pure capitalism with no government role</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> B. Mixed economy combining private ownership with government intervention</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> C. Socialist economy with government ownership</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> D. Traditional economy based on customs</div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">3.</span> Why are property rights considered the foundation of market economies? Give two specific examples of how they enable wealth building.</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">4.</span> What is the main trade-off between capitalism and socialism? Why might different people prefer different balances?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">5.</span> <strong>Reflection:</strong> Given the U.S. mixed economy, what financial opportunities are available to you that wouldn't exist in a command economy? How will you take advantage of these opportunities?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        <span>© PFL Academy | pflacademy.co</span>
+        <span>Chapter 14.1: Economic Systems</span>
+    </div>
+
+</body>
+</html>

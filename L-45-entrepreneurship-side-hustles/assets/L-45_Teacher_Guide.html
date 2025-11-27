@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-45 Teacher Guide</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+        :root {
+            --primary: #059669;
+            --primary-light: #ecfdf5;
+            --primary-dark: #065f46;
+            --text-dark: #1e293b;
+            --text-medium: #475569;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --bg-light: #f8fafc;
+            --warning: #f59e0b;
+            --warning-light: #fef3c7;
+            --error: #dc2626;
+            --error-light: #fee2e2;
+            --success-light: #dcfce7;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+        @page { size: letter; margin: 0.5in; }
+
+        body { font-family: 'Open Sans', sans-serif; font-size: 10pt; line-height: 1.45; color: var(--text-dark); background: white; }
+
+        .header { background: var(--primary); color: white; padding: 14px 18px; border-radius: 6px; margin-bottom: 16px; }
+        .header h1 { font-size: 13pt; font-weight: 700; margin: 0; }
+        .header h2 { font-size: 10pt; font-weight: 400; margin: 3px 0 0; opacity: 0.9; }
+
+        .section-header { background: var(--primary-light); border-left: 4px solid var(--primary); padding: 7px 12px; font-size: 10pt; font-weight: 700; color: var(--primary-dark); text-transform: uppercase; letter-spacing: 0.5px; margin: 16px 0 10px; }
+
+        .overview-table { width: 100%; border-collapse: collapse; margin-bottom: 14px; }
+        .overview-table th { background: var(--bg-light); color: var(--text-light); font-size: 8pt; text-transform: uppercase; letter-spacing: 0.5px; text-align: center; padding: 6px 10px; border: 1px solid var(--border); width: 33%; }
+        .overview-table td { text-align: center; padding: 10px; border: 1px solid var(--border); font-weight: 600; color: var(--text-dark); font-size: 10pt; }
+
+        .flow-container { margin-bottom: 14px; }
+        .flow-item { display: flex; padding: 8px 0; border-bottom: 1px solid var(--border); page-break-inside: avoid; }
+        .flow-item:last-child { border-bottom: none; }
+        .flow-time { width: 65px; font-weight: 700; color: var(--primary); flex-shrink: 0; font-size: 10pt; }
+        .flow-content { flex: 1; }
+        .flow-title { font-weight: 700; color: var(--text-dark); margin-bottom: 3px; font-size: 10pt; }
+        .flow-content ul { margin: 0; padding-left: 16px; font-size: 9pt; color: var(--text-medium); }
+        .flow-content li { margin-bottom: 2px; }
+
+        .diff-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px; }
+        .diff-box { background: var(--bg-light); border: 1px solid var(--border); border-radius: 4px; padding: 10px 12px; }
+        .diff-title { font-weight: 700; color: var(--text-dark); margin-bottom: 6px; font-size: 9pt; }
+        .diff-box ul { margin: 0; padding-left: 16px; font-size: 9pt; color: var(--text-medium); }
+        .diff-box li { margin-bottom: 2px; }
+
+        .answer-key { page-break-before: always; }
+        .answer-block { margin-bottom: 12px; page-break-inside: avoid; }
+        .answer-title { font-weight: 700; color: var(--primary); font-size: 9pt; border-bottom: 1px solid #a7f3d0; padding-bottom: 3px; margin-bottom: 6px; }
+        .answer-item { margin-bottom: 5px; font-size: 9pt; color: var(--text-dark); }
+        .answer-item strong { color: var(--primary-dark); }
+
+        .answer-note { background: var(--warning-light); border-left: 3px solid var(--warning); padding: 6px 10px; font-size: 9pt; font-style: italic; color: #92400e; margin: 6px 0; }
+
+        .misconception-table { width: 100%; border-collapse: collapse; font-size: 9pt; margin-top: 10px; }
+        .misconception-table th { padding: 6px 10px; text-align: left; font-weight: 600; }
+        .misconception-table th:first-child { background: var(--error-light); color: #991b1b; border: 1px solid #fca5a5; width: 40%; }
+        .misconception-table th:last-child { background: var(--success-light); color: #166534; border: 1px solid #86efac; }
+        .misconception-table td { padding: 6px 10px; border: 1px solid var(--border); vertical-align: top; color: var(--text-medium); }
+
+        .footer { margin-top: 20px; padding-top: 8px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; font-size: 8pt; color: var(--text-light); }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <div class="header">
+        <h1>PFL Academy</h1>
+        <h2>Teacher Guide: Chapter 15.5 — Entrepreneurship and Side Hustles</h2>
+    </div>
+
+    <!-- OVERVIEW -->
+    <div class="section-header">Overview</div>
+    <table class="overview-table">
+        <tr>
+            <th>Time</th>
+            <th>Materials</th>
+            <th>Prerequisites</th>
+        </tr>
+        <tr>
+            <td>45-50 Minutes</td>
+            <td>Student Activity Packet, Business Plan Builder</td>
+            <td>Chapter 15.4 (Interview Skills)</td>
+        </tr>
+    </table>
+
+    <!-- LESSON FLOW -->
+    <div class="section-header">Lesson Flow</div>
+    <div class="flow-container">
+        <div class="flow-item">
+            <div class="flow-time">5 min</div>
+            <div class="flow-content">
+                <div class="flow-title">THE CHALLENGE</div>
+                <ul>
+                    <li>Read Jordan's tutoring side hustle story aloud or have students read silently.</li>
+                    <li>Discussion prompt: "What problems do you see around you that people might pay to have solved?"</li>
+                    <li>Preview how side hustles can start small and grow based on real customer needs.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="flow-item">
+            <div class="flow-time">10 min</div>
+            <div class="flow-content">
+                <div class="flow-title">CORE CONCEPTS</div>
+                <ul>
+                    <li>Review the 5 key terms. Emphasize MVP—test before investing heavily.</li>
+                    <li>Discuss the difference between entrepreneurship (full business) and side hustle (alongside job).</li>
+                    <li>Quick check: Ask students to give examples of each business type (service, product, digital, platform).</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="flow-item">
+            <div class="flow-time">25-30 min</div>
+            <div class="flow-content">
+                <div class="flow-title">APPLY IT</div>
+                <ul>
+                    <li><strong>Part A (5-8 min):</strong> Review business types grid. Students identify which fits their skills. Discuss trade-offs of each type.</li>
+                    <li><strong>Part B (12-15 min):</strong> Opportunity Assessment. Give students time to brainstorm and evaluate an idea. Encourage realistic assessment.</li>
+                    <li><strong>Part C (5-8 min):</strong> Value Proposition writing. Walk through the template. Share examples aloud.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="flow-item">
+            <div class="flow-time">10 min</div>
+            <div class="flow-content">
+                <div class="flow-title">CHECK YOUR UNDERSTANDING</div>
+                <ul>
+                    <li>Complete in class or assign as homework.</li>
+                    <li>Review Q3 (problem-solving importance) and Q5 (personal reflection) for deeper understanding.</li>
+                    <li>Preview Day 2 Learning Lab: Developing complete business plans and financial projections.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- DIFFERENTIATION -->
+    <div class="section-header">Differentiation</div>
+    <div class="diff-grid">
+        <div class="diff-box">
+            <div class="diff-title">Support</div>
+            <ul>
+                <li>Provide a list of common side hustle ideas to spark thinking.</li>
+                <li>Offer sentence starters for the value proposition.</li>
+                <li>Allow students to work in pairs on opportunity assessment.</li>
+                <li>Create a simplified version with fewer evaluation criteria.</li>
+            </ul>
+        </div>
+        <div class="diff-box">
+            <div class="diff-title">Extension</div>
+            <ul>
+                <li>Research actual startup costs for their business idea.</li>
+                <li>Interview someone who runs a side hustle and report findings.</li>
+                <li>Create a basic financial projection for their business idea.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ANSWER KEY (new page) -->
+    <div class="answer-key">
+        <div class="section-header">Answer Key</div>
+
+        <div class="answer-block">
+            <div class="answer-title">Part A: Types of Side Hustles</div>
+            <div class="answer-item"><strong>1.</strong> Responses will vary. Look for: Logical connection between business type and student's actual skills/resources, awareness of trade-offs mentioned (e.g., service-based = low startup but time-limited income).</div>
+        </div>
+
+        <div class="answer-block">
+            <div class="answer-title">Part B & C: Opportunity Assessment and Value Proposition</div>
+            <div class="answer-note">Evaluate for: Clear problem identification (not just "I like this"), specific target customer (not "everyone"), realistic assessment of skills/resources needed, reasonable MVP that could actually test the idea, value proposition that follows the template structure and clearly communicates unique benefit.</div>
+        </div>
+
+        <div class="answer-block">
+            <div class="answer-title">Check Your Understanding</div>
+            <div class="answer-item"><strong>1.</strong> B (It lets you test assumptions and gather feedback before investing heavily)</div>
+            <div class="answer-item"><strong>2.</strong> B (It allows you to start without taking on debt or giving up ownership)</div>
+            <div class="answer-item"><strong>3.</strong> Identifying a specific problem is more important because: (1) Customers pay for solutions to their problems, not just good ideas, (2) It validates that there's actual demand/market, (3) It helps differentiate you from competitors, (4) It provides clear direction for product development.</div>
+            <div class="answer-item"><strong>4.</strong> Balancing strategies include: Dedicated time blocks, morning/evening routines, weekend work, task batching, automation tools, starting with manageable commitment (5-10 hrs/week), setting boundaries, realistic milestone setting.</div>
+            <div class="answer-item"><strong>5.</strong> <em>Responses will vary. Look for: Honest self-assessment, specific examples of strengths demonstrated, awareness of areas needing development, connection to entrepreneurial characteristics discussed (risk-taking, resilience, adaptability, resourcefulness, action orientation, continuous learning).</em></div>
+        </div>
+
+        <!-- COMMON MISCONCEPTIONS -->
+        <div class="section-header">Common Misconceptions</div>
+        <table class="misconception-table">
+            <tr>
+                <th>Misconception</th>
+                <th>Clarification</th>
+            </tr>
+            <tr>
+                <td>"I need a completely original idea to start a business."</td>
+                <td>Most successful businesses improve on existing solutions rather than inventing entirely new categories. Focus on solving problems better for a specific audience.</td>
+            </tr>
+            <tr>
+                <td>"I need a lot of money to start a side hustle."</td>
+                <td>Many successful side hustles start with minimal investment by leveraging existing skills and bootstrapping. Service-based businesses often require almost no startup capital.</td>
+            </tr>
+            <tr>
+                <td>"If my idea is good, customers will come automatically."</td>
+                <td>Even great products need marketing and customer discovery. Testing your idea with real potential customers before fully building it is essential.</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        <span>© PFL Academy | pflacademy.co</span>
+        <span>Teacher Guide: Chapter 15.5</span>
+    </div>
+
+</body>
+</html>

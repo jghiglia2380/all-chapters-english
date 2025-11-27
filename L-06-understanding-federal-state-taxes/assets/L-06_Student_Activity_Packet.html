@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-06 Student Activity Packet</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+        :root { --primary: #6366f1; --primary-light: #eef2ff; --accent: #f59e0b; --accent-light: #fef3c7; --success: #059669; --text-dark: #1e293b; --text-medium: #475569; --text-light: #64748b; --border: #e2e8f0; --bg-light: #f8fafc; }
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+        @page { size: letter; margin: 0.5in; }
+        body { font-family: 'Open Sans', sans-serif; font-size: 10.5pt; line-height: 1.5; color: var(--text-dark); background: white; }
+        .header { background: var(--primary); color: white; padding: 14px 18px; border-radius: 6px; margin-bottom: 18px; display: flex; justify-content: space-between; align-items: center; }
+        .header-left h1 { font-size: 13pt; font-weight: 700; margin: 0; }
+        .header-left h2 { font-size: 10pt; font-weight: 400; margin: 2px 0 0; opacity: 0.9; }
+        .header-right { font-size: 9pt; text-align: right; opacity: 0.9; }
+        .section-header { font-size: 11pt; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 2px solid var(--primary); padding-bottom: 4px; margin: 20px 0 12px; }
+        .challenge-box { background: var(--accent-light); border-left: 4px solid var(--accent); padding: 14px 16px; margin-bottom: 16px; border-radius: 0 6px 6px 0; }
+        .challenge-box p { font-style: italic; color: var(--text-dark); margin-bottom: 10px; }
+        .challenge-box .framing-question { font-weight: 600; font-style: normal; color: #92400e; }
+        .objectives-box { background: var(--primary-light); border: 1px solid #c7d2fe; border-radius: 6px; padding: 12px 16px; margin-bottom: 18px; }
+        .objectives-box h3 { font-size: 10pt; font-weight: 700; color: var(--primary); margin-bottom: 6px; }
+        .objectives-box ul { margin: 0; padding-left: 20px; }
+        .objectives-box li { margin-bottom: 3px; color: var(--text-medium); }
+        .terms-table { width: 100%; border-collapse: collapse; margin-bottom: 14px; font-size: 10pt; }
+        .terms-table th { background: var(--bg-light); text-align: left; padding: 8px 10px; border: 1px solid var(--border); font-weight: 600; color: var(--text-medium); }
+        .terms-table td { padding: 8px 10px; border: 1px solid var(--border); vertical-align: top; }
+        .terms-table td:first-child { font-weight: 600; color: var(--primary); width: 28%; }
+        .background-box { background: var(--bg-light); border: 1px solid var(--border); border-radius: 6px; padding: 12px 16px; margin-bottom: 18px; font-size: 10pt; color: var(--text-medium); }
+        .background-box strong { color: var(--text-dark); }
+        .scenario-card { background: white; border: 1px solid var(--border); border-radius: 6px; padding: 12px 14px; margin-bottom: 14px; page-break-inside: avoid; }
+        .scenario-title { font-weight: 700; color: var(--primary); margin-bottom: 6px; font-size: 10pt; }
+        .scenario-description { color: var(--text-medium); margin-bottom: 10px; font-size: 10pt; }
+        .response-line { display: flex; align-items: baseline; margin-bottom: 8px; }
+        .response-label { font-weight: 600; color: var(--text-dark); margin-right: 8px; white-space: nowrap; }
+        .response-blank { flex-grow: 1; border-bottom: 1px solid var(--text-light); min-height: 18px; }
+        .response-options { color: var(--text-light); font-size: 9pt; margin-left: 8px; white-space: nowrap; }
+        .data-table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 10pt; }
+        .data-table th { background: var(--primary); color: white; padding: 8px 10px; text-align: center; font-weight: 600; font-size: 9pt; }
+        .data-table td { padding: 8px 10px; border: 1px solid var(--border); text-align: center; }
+        .data-table tr:nth-child(even) td { background: var(--bg-light); }
+        .data-table .calc-row td { background: #fef9c3; height: 28px; }
+        .question { margin-bottom: 14px; page-break-inside: avoid; }
+        .question-number { font-weight: 700; color: var(--text-dark); }
+        .question-text { color: var(--text-dark); margin-bottom: 6px; }
+        .answer-lines { margin-top: 6px; }
+        .answer-line { border-bottom: 1px solid var(--text-light); height: 22px; margin-bottom: 4px; }
+        .calc-box { border: 1px solid var(--border); border-radius: 4px; padding: 12px; margin: 8px 0; min-height: 60px; background: var(--bg-light); }
+        .calc-label { font-size: 9pt; color: var(--text-light); margin-bottom: 4px; }
+        .calc-answer { margin-top: 10px; font-weight: 600; }
+        .mc-options { margin-top: 6px; margin-left: 20px; }
+        .mc-option { display: flex; align-items: center; margin-bottom: 4px; }
+        .mc-checkbox { width: 14px; height: 14px; border: 1px solid var(--text-light); border-radius: 2px; margin-right: 8px; flex-shrink: 0; }
+        .hint-box { background: #f0fdf4; border-left: 3px solid var(--success); padding: 8px 12px; margin: 10px 0; font-size: 9pt; font-style: italic; color: #166534; }
+        .hint-box strong { font-style: normal; }
+        .part-header { font-weight: 700; font-size: 10pt; color: var(--primary); text-transform: uppercase; margin: 16px 0 10px; padding-bottom: 4px; border-bottom: 1px solid var(--border); }
+        .footer { margin-top: 24px; padding-top: 10px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; font-size: 9pt; color: var(--text-light); }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-left">
+            <h1>PFL Academy</h1>
+            <h2>Chapter 2.1: Understanding Federal and State Taxes</h2>
+        </div>
+        <div class="header-right">Student Activity Packet</div>
+    </div>
+
+    <div class="section-header">The Challenge</div>
+    <div class="challenge-box">
+        <p>Mia and Liam both earn $70,000 annually, but Mia lives in California (with state income tax) while Liam lives in Texas (no state income tax). After federal and state income taxes, Mia's take-home pay is approximately $51,100, while Liam's is $54,900—a difference of $3,800. However, if both owned $300,000 homes, Liam would pay $3,180 more in property taxes, nearly eliminating his advantage.</p>
+        <p class="framing-question">How do different state tax structures create different financial advantages depending on individual circumstances?</p>
+    </div>
+
+    <div class="objectives-box">
+        <h3>Learning Objectives</h3>
+        <ul>
+            <li>Distinguish between federal and state taxes and their purposes.</li>
+            <li>Explain how progressive tax brackets work.</li>
+            <li>Compare tax structures across different states.</li>
+        </ul>
+    </div>
+
+    <div class="section-header">Core Concepts</div>
+    <table class="terms-table">
+        <tr><th>Term</th><th>Definition</th></tr>
+        <tr><td>Federal Income Tax</td><td>Tax collected by the federal government based on income, using progressive tax brackets.</td></tr>
+        <tr><td>Progressive Tax</td><td>System where higher-income earners pay a higher percentage of income in taxes.</td></tr>
+        <tr><td>Payroll Taxes (FICA)</td><td>Employment taxes that fund Social Security (6.2%) and Medicare (1.45%).</td></tr>
+        <tr><td>State Income Tax</td><td>Tax collected by states, varying from 0% (some states) to over 13% (highest brackets).</td></tr>
+        <tr><td>Tax Bracket</td><td>Income range subject to a specific tax rate in a progressive system.</td></tr>
+    </table>
+
+    <div class="background-box">
+        <strong>Background:</strong> The U.S. uses a progressive federal income tax system where rates increase with income—but only the income within each bracket is taxed at that bracket's rate. Seven states have no income tax: Alaska, Florida, Nevada, South Dakota, Tennessee, Texas, and Wyoming. States without income tax often rely more on sales taxes and property taxes. Payroll taxes (7.65% total) fund Social Security and Medicare regardless of which state you live in.
+    </div>
+
+    <div class="section-header">Apply It</div>
+    <div class="part-header">Part A: Tax Type Classification</div>
+    <p style="margin-bottom: 14px;">Classify each tax as PROGRESSIVE, REGRESSIVE, or PROPORTIONAL, and explain why.</p>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Tax 1: Federal Income Tax</div>
+        <div class="response-line"><span class="response-label">Type:</span><span class="response-blank"></span><span class="response-options">(Progressive / Regressive / Proportional)</span></div>
+        <div class="response-line"><span class="response-label">Why:</span><span class="response-blank"></span></div>
+    </div>
+    <div class="scenario-card">
+        <div class="scenario-title">Tax 2: Sales Tax (8% on all purchases)</div>
+        <div class="response-line"><span class="response-label">Type:</span><span class="response-blank"></span><span class="response-options">(Progressive / Regressive / Proportional)</span></div>
+        <div class="response-line"><span class="response-label">Why:</span><span class="response-blank"></span></div>
+    </div>
+    <div class="scenario-card">
+        <div class="scenario-title">Tax 3: Social Security Tax (6.2%)</div>
+        <div class="response-line"><span class="response-label">Type:</span><span class="response-blank"></span><span class="response-options">(Progressive / Regressive / Proportional)</span></div>
+        <div class="response-line"><span class="response-label">Why:</span><span class="response-blank"></span></div>
+    </div>
+
+    <div class="hint-box"><strong>Hint:</strong> Consider who pays a higher PERCENTAGE of their income. Progressive = higher earners pay higher %. Regressive = lower earners pay higher %. Proportional = everyone pays same %.</div>
+
+    <div class="part-header">Part B: State Tax Comparison</div>
+    <p style="margin-bottom: 14px;">Compare annual taxes for a $60,000 salary in two states.</p>
+
+    <table class="data-table">
+        <tr><th>Tax Type</th><th>California (Income Tax State)</th><th>Texas (No Income Tax State)</th></tr>
+        <tr><td style="text-align: left;">Federal Income Tax (approx)</td><td>$6,000</td><td>$6,000</td></tr>
+        <tr><td style="text-align: left;">State Income Tax</td><td>$2,400 (4% avg)</td><td>$0</td></tr>
+        <tr><td style="text-align: left;">Social Security + Medicare</td><td>$4,590 (7.65%)</td><td>$4,590 (7.65%)</td></tr>
+        <tr class="calc-row"><td style="text-align: left; font-weight: 600;">Total Taxes</td><td></td><td></td></tr>
+        <tr class="calc-row"><td style="text-align: left; font-weight: 600;">Take-Home Pay</td><td></td><td></td></tr>
+    </table>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">4.</span> How much more take-home pay does the Texas resident have? What might offset this advantage?</p>
+        <div class="answer-lines"><div class="answer-line"></div><div class="answer-line"></div></div>
+    </div>
+
+    <div class="part-header">Part C: Personal Application</div>
+    <div class="question">
+        <p class="question-text"><span class="question-number">5.</span> If you were choosing between job offers in California vs. Texas with identical salaries, what factors beyond state income tax would you consider?</p>
+        <div class="answer-lines"><div class="answer-line"></div><div class="answer-line"></div><div class="answer-line"></div></div>
+    </div>
+
+    <div class="section-header">Check Your Understanding</div>
+    <div class="question">
+        <p class="question-text"><span class="question-number">1.</span> FICA taxes fund which two programs?</p>
+        <div class="mc-options">
+            <div class="mc-option"><div class="mc-checkbox"></div> A. Federal income tax and state income tax</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> B. Social Security and Medicare</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> C. Property tax and sales tax</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> D. Education and transportation</div>
+        </div>
+    </div>
+    <div class="question">
+        <p class="question-text"><span class="question-number">2.</span> Explain why a sales tax is considered "regressive" even though everyone pays the same rate.</p>
+        <div class="answer-lines"><div class="answer-line"></div><div class="answer-line"></div></div>
+    </div>
+    <div class="question">
+        <p class="question-text"><span class="question-number">3.</span> <strong>Calculation:</strong> Alex earns $50,000 and falls into the 22% tax bracket. Using the simplified brackets below, calculate Alex's federal income tax. First $11,000 at 10%, next $33,725 at 12%, remainder at 22%.</p>
+        <div class="calc-box"><div class="calc-label">Show your work:</div></div>
+        <div class="calc-answer">Total Federal Tax: $_____________</div>
+    </div>
+    <div class="question">
+        <p class="question-text"><span class="question-number">4.</span> Mia moved from California to Texas to avoid state income tax. Under what circumstances might this move NOT result in significant tax savings?</p>
+        <div class="answer-lines"><div class="answer-line"></div><div class="answer-line"></div></div>
+    </div>
+    <div class="question">
+        <p class="question-text"><span class="question-number">5.</span> <strong>Reflection:</strong> How might understanding different state tax structures influence your decisions about where to live and work after graduation?</p>
+        <div class="answer-lines"><div class="answer-line"></div><div class="answer-line"></div><div class="answer-line"></div><div class="answer-line"></div></div>
+    </div>
+
+    <div class="footer">
+        <span>© PFL Academy | pflacademy.co</span>
+        <span>Chapter 2.1: Understanding Federal and State Taxes</span>
+    </div>
+</body>
+</html>

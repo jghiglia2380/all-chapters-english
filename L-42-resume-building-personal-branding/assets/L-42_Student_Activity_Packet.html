@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-42 Student Activity Packet</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+        :root {
+            --primary: #6366f1;
+            --primary-light: #eef2ff;
+            --accent: #f59e0b;
+            --accent-light: #fef3c7;
+            --success: #059669;
+            --text-dark: #1e293b;
+            --text-medium: #475569;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --bg-light: #f8fafc;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+
+        @page {
+            size: letter;
+            margin: 0.5in;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 10.5pt;
+            line-height: 1.5;
+            color: var(--text-dark);
+            background: white;
+        }
+
+        .header {
+            background: var(--primary);
+            color: white;
+            padding: 14px 18px;
+            border-radius: 6px;
+            margin-bottom: 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-left h1 {
+            font-size: 13pt;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .header-left h2 {
+            font-size: 10pt;
+            font-weight: 400;
+            margin: 2px 0 0;
+            opacity: 0.9;
+        }
+
+        .header-right {
+            font-size: 9pt;
+            text-align: right;
+            opacity: 0.9;
+        }
+
+        .section-header {
+            font-size: 11pt;
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 4px;
+            margin: 20px 0 12px;
+        }
+
+        .challenge-box {
+            background: var(--accent-light);
+            border-left: 4px solid var(--accent);
+            padding: 14px 16px;
+            margin-bottom: 16px;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .challenge-box p {
+            font-style: italic;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+        }
+
+        .challenge-box .framing-question {
+            font-weight: 600;
+            font-style: normal;
+            color: #92400e;
+        }
+
+        .objectives-box {
+            background: var(--primary-light);
+            border: 1px solid #c7d2fe;
+            border-radius: 6px;
+            padding: 12px 16px;
+            margin-bottom: 18px;
+        }
+
+        .objectives-box h3 {
+            font-size: 10pt;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 6px;
+        }
+
+        .objectives-box ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .objectives-box li {
+            margin-bottom: 3px;
+            color: var(--text-medium);
+        }
+
+        .terms-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 14px;
+            font-size: 10pt;
+        }
+
+        .terms-table th {
+            background: var(--bg-light);
+            text-align: left;
+            padding: 8px 10px;
+            border: 1px solid var(--border);
+            font-weight: 600;
+            color: var(--text-medium);
+        }
+
+        .terms-table td {
+            padding: 8px 10px;
+            border: 1px solid var(--border);
+            vertical-align: top;
+        }
+
+        .terms-table td:first-child {
+            font-weight: 600;
+            color: var(--primary);
+            width: 28%;
+        }
+
+        .background-box {
+            background: var(--bg-light);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 12px 16px;
+            margin-bottom: 18px;
+            font-size: 10pt;
+            color: var(--text-medium);
+        }
+
+        .background-box strong {
+            color: var(--text-dark);
+        }
+
+        .scenario-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 12px 14px;
+            margin-bottom: 14px;
+            page-break-inside: avoid;
+        }
+
+        .scenario-title {
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 6px;
+            font-size: 10pt;
+        }
+
+        .scenario-description {
+            color: var(--text-medium);
+            margin-bottom: 10px;
+            font-size: 10pt;
+        }
+
+        .response-line {
+            display: flex;
+            align-items: baseline;
+            margin-bottom: 8px;
+        }
+
+        .response-label {
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-right: 8px;
+            white-space: nowrap;
+        }
+
+        .response-blank {
+            flex-grow: 1;
+            border-bottom: 1px solid var(--text-light);
+            min-height: 18px;
+        }
+
+        .question {
+            margin-bottom: 14px;
+            page-break-inside: avoid;
+        }
+
+        .question-number {
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .question-text {
+            color: var(--text-dark);
+            margin-bottom: 6px;
+        }
+
+        .answer-lines {
+            margin-top: 6px;
+        }
+
+        .answer-line {
+            border-bottom: 1px solid var(--text-light);
+            height: 22px;
+            margin-bottom: 4px;
+        }
+
+        .mc-options {
+            margin-top: 6px;
+            margin-left: 20px;
+        }
+
+        .mc-option {
+            display: flex;
+            align-items: center;
+            margin-bottom: 4px;
+        }
+
+        .mc-checkbox {
+            width: 14px;
+            height: 14px;
+            border: 1px solid var(--text-light);
+            border-radius: 2px;
+            margin-right: 8px;
+            flex-shrink: 0;
+        }
+
+        .hint-box {
+            background: #f0fdf4;
+            border-left: 3px solid var(--success);
+            padding: 8px 12px;
+            margin: 10px 0;
+            font-size: 9pt;
+            font-style: italic;
+            color: #166534;
+        }
+
+        .hint-box strong {
+            font-style: normal;
+        }
+
+        .part-header {
+            font-weight: 700;
+            font-size: 10pt;
+            color: var(--primary);
+            text-transform: uppercase;
+            margin: 16px 0 10px;
+            padding-bottom: 4px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 14px;
+        }
+
+        .comparison-box {
+            background: var(--bg-light);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 12px;
+        }
+
+        .comparison-box h4 {
+            font-size: 10pt;
+            font-weight: 700;
+            color: #dc2626;
+            margin-bottom: 6px;
+        }
+
+        .comparison-box.good h4 {
+            color: var(--success);
+        }
+
+        .comparison-box p {
+            font-size: 9pt;
+            color: var(--text-medium);
+            font-style: italic;
+        }
+
+        .action-verbs-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap: 8px;
+            margin-bottom: 14px;
+            font-size: 9pt;
+        }
+
+        .action-verb-category {
+            background: var(--primary-light);
+            border-radius: 4px;
+            padding: 8px;
+        }
+
+        .action-verb-category h5 {
+            font-size: 9pt;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 4px;
+        }
+
+        .action-verb-category ul {
+            margin: 0;
+            padding-left: 14px;
+            color: var(--text-medium);
+        }
+
+        .action-verb-category li {
+            margin-bottom: 2px;
+        }
+
+        .footer {
+            margin-top: 24px;
+            padding-top: 10px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            font-size: 9pt;
+            color: var(--text-light);
+        }
+
+        .mb-sm { margin-bottom: 8px; }
+        .mb-md { margin-bottom: 14px; }
+        .mb-lg { margin-bottom: 20px; }
+
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <div class="header">
+        <div class="header-left">
+            <h1>PFL Academy</h1>
+            <h2>Chapter 15.2: Resume Building and Personal Branding</h2>
+        </div>
+        <div class="header-right">
+            Student Activity Packet
+        </div>
+    </div>
+
+    <!-- THE CHALLENGE -->
+    <div class="section-header">The Challenge</div>
+    <div class="challenge-box">
+        <p>Carlos applied to 12 programming internships without receiving a single interview call. His resume listed coursework and projects but used generic descriptions like "Worked on database project." After learning resume best practices, he transformed his bullet points to showcase specific achievements: "Developed a database application that reduced data retrieval time by 40%." Within three weeks of sending his revised resume, he received interview requests from 4 out of 7 companies—a dramatic improvement from his previous 0% response rate.</p>
+        <p class="framing-question">What makes the difference between a resume that gets passed over and one that gets you noticed by employers?</p>
+    </div>
+
+    <!-- LEARNING OBJECTIVES -->
+    <div class="objectives-box">
+        <h3>Learning Objectives</h3>
+        <ul>
+            <li>Identify the essential components of an effective resume.</li>
+            <li>Recognize the importance of personal branding in career development.</li>
+            <li>Develop strategies for highlighting skills and experiences in a resume format.</li>
+            <li>Understand how to tailor resumes for different career opportunities.</li>
+            <li>Create a framework for a personal brand that aligns with career goals.</li>
+        </ul>
+    </div>
+
+    <!-- CORE CONCEPTS -->
+    <div class="section-header">Core Concepts</div>
+
+    <table class="terms-table">
+        <tr>
+            <th>Term</th>
+            <th>Definition</th>
+        </tr>
+        <tr>
+            <td>Resume</td>
+            <td>A document that summarizes your education, work experience, skills, and achievements for potential employers.</td>
+        </tr>
+        <tr>
+            <td>Personal Brand</td>
+            <td>The unique combination of skills, experiences, and personality that defines your professional reputation.</td>
+        </tr>
+        <tr>
+            <td>Action Verbs</td>
+            <td>Strong, descriptive verbs that demonstrate accomplishments and responsibilities (e.g., Led, Analyzed, Created).</td>
+        </tr>
+        <tr>
+            <td>Quantifiable Achievements</td>
+            <td>Accomplishments expressed with specific numbers or percentages to show measurable impact.</td>
+        </tr>
+        <tr>
+            <td>Tailoring</td>
+            <td>Customizing your resume for specific job opportunities by highlighting relevant experiences and using keywords from the job description.</td>
+        </tr>
+    </table>
+
+    <div class="background-box">
+        <strong>Background:</strong> Your resume is often your first introduction to potential employers—it's your personal marketing document. An effective resume should be clear, concise, and tailored to the position you're seeking. Combined with a strong personal brand, your resume helps you stand out in competitive job markets by communicating your unique value proposition.
+    </div>
+
+    <!-- APPLY IT -->
+    <div class="section-header">Apply It</div>
+
+    <div class="part-header">Part A: Weak vs. Strong Resume Bullet Points</div>
+    <p class="mb-md">Compare these resume bullet points and identify what makes the "After" versions more effective.</p>
+
+    <div class="comparison-grid">
+        <div class="comparison-box">
+            <h4>Before (Weak)</h4>
+            <p>"Responsible for customer service"</p>
+        </div>
+        <div class="comparison-box good">
+            <h4>After (Strong)</h4>
+            <p>"Resolved 50+ customer inquiries daily, achieving 95% satisfaction rating"</p>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">1.</span> What two improvements make the "After" bullet point stronger?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="comparison-grid">
+        <div class="comparison-box">
+            <h4>Before (Weak)</h4>
+            <p>"Worked on social media for the club"</p>
+        </div>
+        <div class="comparison-box good">
+            <h4>After (Strong)</h4>
+            <p>"Managed Instagram account, growing followers from 200 to 800 in one semester"</p>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">2.</span> What specific elements make this bullet point demonstrate impact?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <!-- ACTION VERBS REFERENCE -->
+    <div class="part-header">Part B: Action Verb Reference</div>
+    <p class="mb-sm">Use these strong action verbs to begin your bullet points:</p>
+
+    <div class="action-verbs-grid">
+        <div class="action-verb-category">
+            <h5>Leadership</h5>
+            <ul>
+                <li>Led</li>
+                <li>Managed</li>
+                <li>Coordinated</li>
+                <li>Supervised</li>
+            </ul>
+        </div>
+        <div class="action-verb-category">
+            <h5>Achievement</h5>
+            <ul>
+                <li>Achieved</li>
+                <li>Improved</li>
+                <li>Increased</li>
+                <li>Reduced</li>
+            </ul>
+        </div>
+        <div class="action-verb-category">
+            <h5>Communication</h5>
+            <ul>
+                <li>Presented</li>
+                <li>Authored</li>
+                <li>Negotiated</li>
+                <li>Persuaded</li>
+            </ul>
+        </div>
+        <div class="action-verb-category">
+            <h5>Analysis</h5>
+            <ul>
+                <li>Analyzed</li>
+                <li>Evaluated</li>
+                <li>Researched</li>
+                <li>Assessed</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">3.</span> Rewrite this weak bullet point using an action verb and quantifiable achievement:</p>
+        <p style="font-style: italic; color: var(--text-light); margin-bottom: 6px;">Weak: "Was in charge of organizing the fundraiser event"</p>
+        <div class="response-line">
+            <span class="response-label">Strong:</span>
+            <span class="response-blank"></span>
+        </div>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <!-- PART C -->
+    <div class="part-header">Part C: Personal Brand Development</div>
+    <p class="mb-md">Begin developing your personal brand by answering these questions:</p>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Your Personal Brand Foundation</div>
+        <div class="response-line" style="margin-bottom: 12px;">
+            <span class="response-label">Top 3 Professional Strengths:</span>
+        </div>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+        <div class="response-line" style="margin-bottom: 12px; margin-top: 10px;">
+            <span class="response-label">What makes you unique in your field of interest?</span>
+        </div>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+        <div class="response-line" style="margin-bottom: 12px; margin-top: 10px;">
+            <span class="response-label">What problems are you passionate about solving?</span>
+        </div>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">4.</span> Draft a brief personal brand statement (2-3 sentences) that captures who you are professionally:</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="hint-box">
+        <strong>Example:</strong> "I'm a data analytics student who combines technical expertise with creative problem-solving to help organizations make data-driven decisions. I bridge the gap between technical and non-technical stakeholders through clear, actionable visualizations."
+    </div>
+
+    <!-- CHECK YOUR UNDERSTANDING -->
+    <div class="section-header">Check Your Understanding</div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">1.</span> Which of the following is the BEST example of a quantifiable achievement?</p>
+        <div class="mc-options">
+            <div class="mc-option"><div class="mc-checkbox"></div> A. Worked hard to improve sales</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> B. Helped the team with various tasks</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> C. Increased quarterly sales by 23% through targeted email campaigns</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> D. Was responsible for sales growth</div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">2.</span> Why is it important to tailor your resume for each job application?</p>
+        <div class="mc-options">
+            <div class="mc-option"><div class="mc-checkbox"></div> A. Employers only read resumes that are exactly one page</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> B. To highlight the skills and experiences most relevant to each specific position</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> C. To use different fonts for different industries</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> D. So that each resume has a unique design</div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">3.</span> Explain why "Managed a $5,000 budget" is a stronger resume statement than "Was in charge of money."</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">4.</span> What are two key elements of an effective personal brand?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">5.</span> <strong>Reflection:</strong> Think about a job, internship, or volunteer position you've held. Write one strong resume bullet point describing an achievement from that experience using an action verb and, if possible, a quantifiable result.</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        <span>© PFL Academy | pflacademy.co</span>
+        <span>Chapter 15.2: Resume Building and Personal Branding</span>
+    </div>
+
+</body>
+</html>

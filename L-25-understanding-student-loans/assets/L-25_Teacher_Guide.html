@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-25 Teacher Guide</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+        :root {
+            --primary: #059669;
+            --primary-light: #ecfdf5;
+            --primary-dark: #065f46;
+            --text-dark: #1e293b;
+            --text-medium: #475569;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --bg-light: #f8fafc;
+            --warning: #f59e0b;
+            --warning-light: #fef3c7;
+            --error: #dc2626;
+            --error-light: #fee2e2;
+            --success-light: #dcfce7;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+        @page { size: letter; margin: 0.5in; }
+        body { font-family: 'Open Sans', sans-serif; font-size: 10pt; line-height: 1.45; color: var(--text-dark); background: white; }
+
+        .header { background: var(--primary); color: white; padding: 14px 18px; border-radius: 6px; margin-bottom: 16px; }
+        .header h1 { font-size: 13pt; font-weight: 700; margin: 0; }
+        .header h2 { font-size: 10pt; font-weight: 400; margin: 3px 0 0; opacity: 0.9; }
+
+        .section-header { background: var(--primary-light); border-left: 4px solid var(--primary); padding: 7px 12px; font-size: 10pt; font-weight: 700; color: var(--primary-dark); text-transform: uppercase; letter-spacing: 0.5px; margin: 16px 0 10px; }
+
+        .overview-table { width: 100%; border-collapse: collapse; margin-bottom: 14px; }
+        .overview-table th { background: var(--bg-light); color: var(--text-light); font-size: 8pt; text-transform: uppercase; letter-spacing: 0.5px; text-align: center; padding: 6px 10px; border: 1px solid var(--border); width: 33%; }
+        .overview-table td { text-align: center; padding: 10px; border: 1px solid var(--border); font-weight: 600; color: var(--text-dark); font-size: 10pt; }
+
+        .flow-container { margin-bottom: 14px; }
+        .flow-item { display: flex; padding: 8px 0; border-bottom: 1px solid var(--border); page-break-inside: avoid; }
+        .flow-item:last-child { border-bottom: none; }
+        .flow-time { width: 65px; font-weight: 700; color: var(--primary); flex-shrink: 0; font-size: 10pt; }
+        .flow-content { flex: 1; }
+        .flow-title { font-weight: 700; color: var(--text-dark); margin-bottom: 3px; font-size: 10pt; }
+        .flow-content ul { margin: 0; padding-left: 16px; font-size: 9pt; color: var(--text-medium); }
+        .flow-content li { margin-bottom: 2px; }
+
+        .diff-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px; }
+        .diff-box { background: var(--bg-light); border: 1px solid var(--border); border-radius: 4px; padding: 10px 12px; }
+        .diff-title { font-weight: 700; color: var(--text-dark); margin-bottom: 6px; font-size: 9pt; }
+        .diff-box ul { margin: 0; padding-left: 16px; font-size: 9pt; color: var(--text-medium); }
+        .diff-box li { margin-bottom: 2px; }
+
+        .answer-key { page-break-before: always; }
+        .answer-block { margin-bottom: 12px; page-break-inside: avoid; }
+        .answer-title { font-weight: 700; color: var(--primary); font-size: 9pt; border-bottom: 1px solid #a7f3d0; padding-bottom: 3px; margin-bottom: 6px; }
+        .answer-item { margin-bottom: 5px; font-size: 9pt; color: var(--text-dark); }
+        .answer-item strong { color: var(--primary-dark); }
+
+        .calc-display { font-family: 'Courier New', monospace; background: var(--bg-light); padding: 8px 10px; border-radius: 4px; margin: 6px 0; font-size: 8.5pt; line-height: 1.5; white-space: pre-line; }
+        .answer-note { background: var(--warning-light); border-left: 3px solid var(--warning); padding: 6px 10px; font-size: 9pt; font-style: italic; color: #92400e; margin: 6px 0; }
+
+        .misconception-table { width: 100%; border-collapse: collapse; font-size: 9pt; margin-top: 10px; }
+        .misconception-table th { padding: 6px 10px; text-align: left; font-weight: 600; }
+        .misconception-table th:first-child { background: var(--error-light); color: #991b1b; border: 1px solid #fca5a5; width: 40%; }
+        .misconception-table th:last-child { background: var(--success-light); color: #166534; border: 1px solid #86efac; }
+        .misconception-table td { padding: 6px 10px; border: 1px solid var(--border); vertical-align: top; color: var(--text-medium); }
+
+        .footer { margin-top: 20px; padding-top: 8px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; font-size: 8pt; color: var(--text-light); }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>PFL Academy</h1>
+        <h2>Teacher Guide: Chapter 5.5 — Understanding Student Loans</h2>
+    </div>
+
+    <div class="section-header">Overview</div>
+    <table class="overview-table">
+        <tr><th>Time</th><th>Materials</th><th>Prerequisites</th></tr>
+        <tr><td>45-50 Minutes</td><td>Student Activity Packet, Calculator</td><td>Consumer Credit Legislation (L-24)</td></tr>
+    </table>
+
+    <div class="section-header">Lesson Flow</div>
+    <div class="flow-container">
+        <div class="flow-item">
+            <div class="flow-time">5 min</div>
+            <div class="flow-content">
+                <div class="flow-title">THE CHALLENGE</div>
+                <ul>
+                    <li>Read Alex and Jordan's contrasting scenarios.</li>
+                    <li>Ask: "What do you already know about student loans? Federal vs. private?"</li>
+                </ul>
+            </div>
+        </div>
+        <div class="flow-item">
+            <div class="flow-time">10 min</div>
+            <div class="flow-content">
+                <div class="flow-title">CORE CONCEPTS</div>
+                <ul>
+                    <li>Create a T-chart: Federal vs. Private loans.</li>
+                    <li>Explain FAFSA as the gateway to federal aid.</li>
+                    <li>Discuss income-driven repayment and loan forgiveness options.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="flow-item">
+            <div class="flow-time">25-30 min</div>
+            <div class="flow-content">
+                <div class="flow-title">APPLY IT</div>
+                <ul>
+                    <li><strong>Part A (8 min):</strong> Feature matching. Review answers as a class.</li>
+                    <li><strong>Part B (12 min):</strong> Cost comparison. Emphasize the $9,336 difference in interest.</li>
+                    <li><strong>Part C (10 min):</strong> Personal strategy development.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="flow-item">
+            <div class="flow-time">10 min</div>
+            <div class="flow-content">
+                <div class="flow-title">CHECK YOUR UNDERSTANDING</div>
+                <ul>
+                    <li>Review Q3 calculation together.</li>
+                    <li>Discuss Q5—connect to students' actual college plans.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-header">Differentiation</div>
+    <div class="diff-grid">
+        <div class="diff-box">
+            <div class="diff-title">Support</div>
+            <ul>
+                <li>Create a side-by-side comparison chart for reference.</li>
+                <li>Provide a FAFSA overview handout.</li>
+                <li>Walk through Part B calculations step-by-step.</li>
+            </ul>
+        </div>
+        <div class="diff-box">
+            <div class="diff-title">Extension</div>
+            <ul>
+                <li>Research Public Service Loan Forgiveness requirements.</li>
+                <li>Compare starting salaries for intended careers to loan amounts.</li>
+                <li>Create a 10-year repayment plan with budget projections.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="answer-key">
+        <div class="section-header">Answer Key</div>
+
+        <div class="answer-block">
+            <div class="answer-title">Part A: Federal vs. Private Loan Analysis</div>
+            <div class="answer-item"><strong>Fixed rates set by Congress:</strong> Federal</div>
+            <div class="answer-item"><strong>Requires credit check:</strong> Private (except Federal PLUS loans)</div>
+            <div class="answer-item"><strong>Income-driven repayment:</strong> Federal</div>
+            <div class="answer-item"><strong>May require co-signer:</strong> Private</div>
+            <div class="answer-item"><strong>Loan forgiveness available:</strong> Federal</div>
+        </div>
+
+        <div class="answer-block">
+            <div class="answer-title">Part B: Student Loan Cost Comparison</div>
+            <div class="calc-display">Total Repaid:
+• Federal (Standard): $30,000 + $8,184 = $38,184
+• Private (Good Credit): $30,000 + $11,760 = $41,760
+• Private (Fair Credit): $30,000 + $17,520 = $47,520</div>
+            <div class="answer-item"><strong>4.</strong> $47,520 − $38,184 = <strong>$9,336 more</strong> for fair credit private loans.</div>
+            <div class="answer-item"><strong>5.</strong> Monthly payments would increase significantly. Variable rates mean uncertainty—Jordan could face payment shock and struggle to budget.</div>
+        </div>
+
+        <div class="answer-block">
+            <div class="answer-title">Part C: Personal Borrowing Strategy</div>
+            <div class="answer-note">Good strategies include: work part-time during school, apply for scholarships/grants, attend community college first, live at home, choose in-state schools, take AP/dual-credit courses in high school.</div>
+        </div>
+
+        <div class="answer-block">
+            <div class="answer-title">Check Your Understanding</div>
+            <div class="answer-item"><strong>1.</strong> B (Federal student loans)</div>
+            <div class="answer-item"><strong>2.</strong> Any two: damaged credit (7+ years), wage garnishment (up to 15%), tax refund seizure, ineligibility for future federal aid, professional license restrictions.</div>
+            <div class="answer-item"><strong>3.</strong> $212 × 120 months = <strong>$25,440 total</strong>. Interest = $25,440 − $20,000 = <strong>$5,440</strong></div>
+            <div class="answer-item"><strong>4.</strong> Income-driven repayment caps payments at a percentage of discretionary income. With $35,000 salary, Alex's payment would be affordable and any remaining balance forgiven after 20-25 years.</div>
+            <div class="answer-item"><strong>5.</strong> <em>Responses should include specific strategies: scholarships, part-time work, community college, choosing affordable schools, and understanding loan terms before borrowing.</em></div>
+        </div>
+
+        <div class="section-header">Common Misconceptions</div>
+        <table class="misconception-table">
+            <tr><th>Misconception</th><th>Clarification</th></tr>
+            <tr><td>"Private loans are always cheaper because banks compete."</td><td>Federal loans have government-subsidized rates. Private loans vary by credit and can be much more expensive, especially for borrowers with fair credit.</td></tr>
+            <tr><td>"Student loans disappear in bankruptcy."</td><td>Student loans are extremely difficult to discharge in bankruptcy. Unlike other debts, they typically follow you until repaid.</td></tr>
+            <tr><td>"I should borrow the maximum to have spending money."</td><td>Only borrow what you need for educational expenses. Every dollar borrowed costs more to repay with interest.</td></tr>
+        </table>
+    </div>
+
+    <div class="footer">
+        <span>© PFL Academy | pflacademy.co</span>
+        <span>Teacher Guide: Chapter 5.5</span>
+    </div>
+
+</body>
+</html>

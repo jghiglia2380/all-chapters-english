@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-03 Student Activity Packet</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+        :root {
+            --primary: #6366f1;
+            --primary-light: #eef2ff;
+            --accent: #f59e0b;
+            --accent-light: #fef3c7;
+            --success: #059669;
+            --text-dark: #1e293b;
+            --text-medium: #475569;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --bg-light: #f8fafc;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+
+        @page {
+            size: letter;
+            margin: 0.5in;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 10.5pt;
+            line-height: 1.5;
+            color: var(--text-dark);
+            background: white;
+        }
+
+        .header {
+            background: var(--primary);
+            color: white;
+            padding: 14px 18px;
+            border-radius: 6px;
+            margin-bottom: 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-left h1 {
+            font-size: 13pt;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .header-left h2 {
+            font-size: 10pt;
+            font-weight: 400;
+            margin: 2px 0 0;
+            opacity: 0.9;
+        }
+
+        .header-right {
+            font-size: 9pt;
+            text-align: right;
+            opacity: 0.9;
+        }
+
+        .section-header {
+            font-size: 11pt;
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 4px;
+            margin: 20px 0 12px;
+        }
+
+        .challenge-box {
+            background: var(--accent-light);
+            border-left: 4px solid var(--accent);
+            padding: 14px 16px;
+            margin-bottom: 16px;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .challenge-box p {
+            font-style: italic;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+        }
+
+        .challenge-box .framing-question {
+            font-weight: 600;
+            font-style: normal;
+            color: #92400e;
+        }
+
+        .objectives-box {
+            background: var(--primary-light);
+            border: 1px solid #c7d2fe;
+            border-radius: 6px;
+            padding: 12px 16px;
+            margin-bottom: 18px;
+        }
+
+        .objectives-box h3 {
+            font-size: 10pt;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 6px;
+        }
+
+        .objectives-box ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .objectives-box li {
+            margin-bottom: 3px;
+            color: var(--text-medium);
+        }
+
+        .terms-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 14px;
+            font-size: 10pt;
+        }
+
+        .terms-table th {
+            background: var(--bg-light);
+            text-align: left;
+            padding: 8px 10px;
+            border: 1px solid var(--border);
+            font-weight: 600;
+            color: var(--text-medium);
+        }
+
+        .terms-table td {
+            padding: 8px 10px;
+            border: 1px solid var(--border);
+            vertical-align: top;
+        }
+
+        .terms-table td:first-child {
+            font-weight: 600;
+            color: var(--primary);
+            width: 25%;
+        }
+
+        .background-box {
+            background: var(--bg-light);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 12px 16px;
+            margin-bottom: 18px;
+            font-size: 10pt;
+            color: var(--text-medium);
+        }
+
+        .background-box strong {
+            color: var(--text-dark);
+        }
+
+        .scenario-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 12px 14px;
+            margin-bottom: 14px;
+            page-break-inside: avoid;
+        }
+
+        .scenario-title {
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 6px;
+            font-size: 10pt;
+        }
+
+        .scenario-description {
+            color: var(--text-medium);
+            margin-bottom: 10px;
+            font-size: 10pt;
+        }
+
+        .response-line {
+            display: flex;
+            align-items: baseline;
+            margin-bottom: 8px;
+        }
+
+        .response-label {
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-right: 8px;
+            white-space: nowrap;
+        }
+
+        .response-blank {
+            flex-grow: 1;
+            border-bottom: 1px solid var(--text-light);
+            min-height: 18px;
+        }
+
+        .response-options {
+            color: var(--text-light);
+            font-size: 9pt;
+            margin-left: 8px;
+            white-space: nowrap;
+        }
+
+        .because-lines {
+            margin-top: 6px;
+        }
+
+        .because-lines .response-line {
+            margin-bottom: 4px;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 12px 0;
+            font-size: 10pt;
+        }
+
+        .data-table th {
+            background: var(--primary);
+            color: white;
+            padding: 8px 10px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 9pt;
+        }
+
+        .data-table td {
+            padding: 8px 10px;
+            border: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .data-table tr:nth-child(even) td {
+            background: var(--bg-light);
+        }
+
+        .data-table .calc-row td {
+            background: #fef9c3;
+            height: 28px;
+        }
+
+        .question {
+            margin-bottom: 14px;
+            page-break-inside: avoid;
+        }
+
+        .question-number {
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .question-text {
+            color: var(--text-dark);
+            margin-bottom: 6px;
+        }
+
+        .answer-lines {
+            margin-top: 6px;
+        }
+
+        .answer-line {
+            border-bottom: 1px solid var(--text-light);
+            height: 22px;
+            margin-bottom: 4px;
+        }
+
+        .calc-box {
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 12px;
+            margin: 8px 0;
+            min-height: 60px;
+            background: var(--bg-light);
+        }
+
+        .calc-label {
+            font-size: 9pt;
+            color: var(--text-light);
+            margin-bottom: 4px;
+        }
+
+        .calc-answer {
+            margin-top: 10px;
+            font-weight: 600;
+        }
+
+        .mc-options {
+            margin-top: 6px;
+            margin-left: 20px;
+        }
+
+        .mc-option {
+            display: flex;
+            align-items: center;
+            margin-bottom: 4px;
+        }
+
+        .mc-checkbox {
+            width: 14px;
+            height: 14px;
+            border: 1px solid var(--text-light);
+            border-radius: 2px;
+            margin-right: 8px;
+            flex-shrink: 0;
+        }
+
+        .hint-box {
+            background: #f0fdf4;
+            border-left: 3px solid var(--success);
+            padding: 8px 12px;
+            margin: 10px 0;
+            font-size: 9pt;
+            font-style: italic;
+            color: #166534;
+        }
+
+        .hint-box strong {
+            font-style: normal;
+        }
+
+        .part-header {
+            font-weight: 700;
+            font-size: 10pt;
+            color: var(--primary);
+            text-transform: uppercase;
+            margin: 16px 0 10px;
+            padding-bottom: 4px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .footer {
+            margin-top: 24px;
+            padding-top: 10px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            font-size: 9pt;
+            color: var(--text-light);
+        }
+
+        .mb-sm { margin-bottom: 8px; }
+        .mb-md { margin-bottom: 14px; }
+        .mb-lg { margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="header-left">
+            <h1>PFL Academy</h1>
+            <h2>Chapter 1.3: Income and Taxes</h2>
+        </div>
+        <div class="header-right">
+            Student Activity Packet
+        </div>
+    </div>
+
+    <div class="section-header">The Challenge</div>
+    <div class="challenge-box">
+        <p>Maria earns a gross salary of $3,500 per month. After federal income tax (15%), state income tax (4%), Social Security (6.2%), Medicare (1.45%), health insurance ($180), and her 401(k) contribution (5%), her total deductions are $1,287.75. Her actual take-home pay is only $2,212.25—nearly 37% less than her gross income.</p>
+        <p class="framing-question">Why is it essential to understand the difference between gross income and net income when creating a personal budget?</p>
+    </div>
+
+    <div class="objectives-box">
+        <h3>Learning Objectives</h3>
+        <ul>
+            <li>Differentiate between gross income and net income.</li>
+            <li>Identify mandatory and voluntary deductions from a paycheck.</li>
+            <li>Calculate take-home pay after various deductions.</li>
+        </ul>
+    </div>
+
+    <div class="section-header">Core Concepts</div>
+
+    <table class="terms-table">
+        <tr>
+            <th>Term</th>
+            <th>Definition</th>
+        </tr>
+        <tr>
+            <td>Gross Income</td>
+            <td>The total amount of money earned before any deductions are taken out.</td>
+        </tr>
+        <tr>
+            <td>Net Income</td>
+            <td>The amount of money you actually receive after all deductions have been subtracted (take-home pay).</td>
+        </tr>
+        <tr>
+            <td>Mandatory Deductions</td>
+            <td>Required deductions including federal/state income taxes, Social Security, and Medicare.</td>
+        </tr>
+        <tr>
+            <td>Voluntary Deductions</td>
+            <td>Optional deductions such as retirement contributions (401k), health insurance, and other benefits.</td>
+        </tr>
+        <tr>
+            <td>W-4 Form</td>
+            <td>A tax form completed when starting a new job that determines how much tax is withheld from your paycheck.</td>
+        </tr>
+    </table>
+
+    <div class="background-box">
+        <strong>Background:</strong> The gap between what you earn and what you receive can be substantial—often 20-30% of your gross income or more. Mandatory deductions (federal/state taxes, Social Security at 6.2%, Medicare at 1.45%) are required by law. Voluntary deductions (retirement contributions, health insurance) are optional but often beneficial. Your W-4 form determines how much federal tax is withheld—too little means owing taxes later; too much means smaller paychecks now.
+    </div>
+
+    <div class="section-header">Apply It</div>
+
+    <div class="part-header">Part A: Deduction Classification</div>
+    <p class="mb-md">Classify each deduction as MANDATORY or VOLUNTARY and explain why.</p>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Deduction 1: Social Security (6.2%)</div>
+        <div class="response-line">
+            <span class="response-label">Type:</span>
+            <span class="response-blank"></span>
+            <span class="response-options">(Mandatory / Voluntary)</span>
+        </div>
+        <div class="response-line">
+            <span class="response-label">Why:</span>
+            <span class="response-blank"></span>
+        </div>
+    </div>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Deduction 2: 401(k) Retirement Contribution</div>
+        <div class="response-line">
+            <span class="response-label">Type:</span>
+            <span class="response-blank"></span>
+            <span class="response-options">(Mandatory / Voluntary)</span>
+        </div>
+        <div class="response-line">
+            <span class="response-label">Why:</span>
+            <span class="response-blank"></span>
+        </div>
+    </div>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Deduction 3: Federal Income Tax</div>
+        <div class="response-line">
+            <span class="response-label">Type:</span>
+            <span class="response-blank"></span>
+            <span class="response-options">(Mandatory / Voluntary)</span>
+        </div>
+        <div class="response-line">
+            <span class="response-label">Why:</span>
+            <span class="response-blank"></span>
+        </div>
+    </div>
+
+    <div class="hint-box">
+        <strong>Hint:</strong> Mandatory deductions are required by law. Voluntary deductions are choices you make about benefits—though choosing NOT to participate may mean missing valuable opportunities like employer matching.
+    </div>
+
+    <div class="part-header">Part B: Paycheck Calculation</div>
+    <p class="mb-md">Calculate the net income for this employee. Complete all rows.</p>
+
+    <table class="data-table">
+        <tr>
+            <th>Category</th>
+            <th>Rate/Amount</th>
+            <th>Deduction Amount</th>
+        </tr>
+        <tr>
+            <td style="text-align: left; font-weight: 600;">Gross Monthly Income</td>
+            <td>$4,000</td>
+            <td>—</td>
+        </tr>
+        <tr>
+            <td style="text-align: left;">Federal Income Tax</td>
+            <td>12%</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td style="text-align: left;">State Income Tax</td>
+            <td>5%</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td style="text-align: left;">Social Security</td>
+            <td>6.2%</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td style="text-align: left;">Medicare</td>
+            <td>1.45%</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td style="text-align: left;">Health Insurance</td>
+            <td>Flat</td>
+            <td>$200</td>
+        </tr>
+        <tr>
+            <td style="text-align: left;">401(k) Contribution</td>
+            <td>6%</td>
+            <td></td>
+        </tr>
+        <tr class="calc-row">
+            <td style="text-align: left; font-weight: 600;">Total Deductions</td>
+            <td>—</td>
+            <td></td>
+        </tr>
+        <tr class="calc-row">
+            <td style="text-align: left; font-weight: 600;">Net Monthly Income</td>
+            <td>—</td>
+            <td></td>
+        </tr>
+    </table>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">4.</span> What percentage of gross income goes to deductions? (Total Deductions ÷ Gross Income × 100)</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">5.</span> If this employee stopped contributing to their 401(k), how much MORE would their monthly take-home pay be? Is this a good trade-off? Why or why not?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="part-header">Part C: Personal Application</div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">6.</span> Jordan works part-time at $15/hour for 15 hours per week. What is Jordan's gross monthly income? (Assume 4 weeks per month)</p>
+        <div class="calc-box">
+            <div class="calc-label">Show your work:</div>
+        </div>
+        <div class="calc-answer">Gross Monthly Income: $______________</div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">7.</span> If Jordan's total deductions are approximately 18% of gross income, what is Jordan's estimated net monthly income?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="section-header">Check Your Understanding</div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">1.</span> FICA taxes fund which two programs?</p>
+        <div class="mc-options">
+            <div class="mc-option"><div class="mc-checkbox"></div> A. Medicare and Medicaid</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> B. Social Security and Medicare</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> C. Federal Income Tax and State Income Tax</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> D. 401(k) and Health Insurance</div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">2.</span> Explain why someone's gross income is not a reliable number to use when creating a monthly budget.</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">3.</span> <strong>Calculation:</strong> An employee has a gross monthly income of $3,000. Their mandatory deductions total 22% and voluntary deductions total 8%. What is their net monthly income?</p>
+        <div class="calc-box">
+            <div class="calc-label">Show your work:</div>
+        </div>
+        <div class="calc-answer">Answer: $_____________ net monthly income</div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">4.</span> Alex contributes 6% of his $40,000 salary to a 401(k) with a 3% employer match starting at age 22. Jamie waits until age 30 to start. By retirement, Alex has approximately $1.2 million while Jamie has $640,000. What does this example teach us about voluntary deductions?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">5.</span> <strong>Reflection:</strong> How will understanding net income versus gross income help you plan for both short-term expenses and long-term savings goals?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <span>© PFL Academy | pflacademy.co</span>
+        <span>Chapter 1.3: Income and Taxes</span>
+    </div>
+
+</body>
+</html>

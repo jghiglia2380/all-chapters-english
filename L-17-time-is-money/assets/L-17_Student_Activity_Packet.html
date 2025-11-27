@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-17 Student Activity Packet</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+        :root {
+            --primary: #6366f1;
+            --primary-light: #eef2ff;
+            --primary-dark: #4338ca;
+            --text-dark: #1e293b;
+            --text-medium: #475569;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --bg-light: #f8fafc;
+            --success: #10b981;
+            --warning: #f59e0b;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+        @page { size: letter; margin: 0.5in; }
+        body { font-family: 'Open Sans', sans-serif; font-size: 10pt; line-height: 1.5; color: var(--text-dark); background: white; }
+
+        .header { background: var(--primary); color: white; padding: 16px 20px; border-radius: 8px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; }
+        .header h1 { font-size: 18pt; font-weight: 700; }
+        .header-info { text-align: right; font-size: 9pt; }
+
+        .section-title { background: var(--primary-light); border-left: 4px solid var(--primary); padding: 8px 14px; font-size: 11pt; font-weight: 700; color: var(--primary-dark); margin: 20px 0 12px; }
+
+        .challenge-box { background: linear-gradient(135deg, #fef3c7, #fef9c3); border-left: 4px solid var(--warning); padding: 14px 18px; border-radius: 0 8px 8px 0; margin-bottom: 16px; }
+        .challenge-box p { margin: 0; font-size: 10pt; color: #92400e; }
+        .challenge-box strong { color: #78350f; }
+
+        .concept-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+        .concept-card { background: var(--bg-light); border: 1px solid var(--border); border-radius: 6px; padding: 12px; page-break-inside: avoid; }
+        .concept-card h4 { font-size: 10pt; font-weight: 700; color: var(--primary-dark); margin-bottom: 6px; }
+        .concept-card p { font-size: 9pt; color: var(--text-medium); margin: 0; }
+        .concept-card ul { font-size: 9pt; color: var(--text-medium); margin: 4px 0 0; padding-left: 16px; }
+        .concept-card li { margin-bottom: 3px; }
+
+        .scenario-card { background: var(--bg-light); border: 1px solid var(--border); border-radius: 8px; padding: 14px 16px; margin-bottom: 14px; page-break-inside: avoid; }
+        .scenario-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+        .scenario-icon { width: 36px; height: 36px; background: var(--primary-light); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 16pt; }
+        .scenario-name { font-weight: 700; color: var(--text-dark); font-size: 11pt; }
+        .scenario-details { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; font-size: 9pt; }
+        .scenario-detail { background: white; border: 1px solid var(--border); border-radius: 4px; padding: 6px 10px; }
+        .scenario-detail strong { color: var(--primary-dark); }
+
+        .data-table { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 9pt; }
+        .data-table th { background: var(--primary); color: white; padding: 8px 10px; text-align: left; font-weight: 600; }
+        .data-table td { padding: 8px 10px; border: 1px solid var(--border); }
+        .data-table tr:nth-child(even) { background: var(--bg-light); }
+
+        .activity-section { background: var(--bg-light); border: 1px solid var(--border); border-radius: 8px; padding: 16px; margin-bottom: 16px; page-break-inside: avoid; }
+        .activity-section h3 { font-size: 11pt; font-weight: 700; color: var(--primary-dark); margin-bottom: 10px; }
+
+        .response-area { background: white; border: 1px solid var(--border); border-radius: 4px; padding: 10px; min-height: 70px; margin: 8px 0; }
+        .response-area.large { min-height: 100px; }
+        .response-lines { border-bottom: 1px solid var(--border); height: 24px; margin-bottom: 4px; }
+
+        .hint-box { background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 6px; padding: 10px 12px; margin: 10px 0; font-size: 9pt; }
+        .hint-box strong { color: #166534; }
+
+        .compare-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin: 12px 0; }
+        .compare-column { background: white; border: 1px solid var(--border); border-radius: 6px; padding: 10px; text-align: center; }
+        .compare-column h5 { font-size: 9pt; font-weight: 700; color: var(--primary-dark); margin-bottom: 6px; }
+        .compare-column ul { font-size: 8pt; text-align: left; padding-left: 14px; margin: 0; color: var(--text-medium); }
+
+        .checkbox-item { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 6px; }
+        .checkbox { width: 14px; height: 14px; border: 2px solid var(--primary); border-radius: 3px; flex-shrink: 0; margin-top: 2px; }
+        .checkbox-label { font-size: 9pt; color: var(--text-dark); }
+
+        .page-break { page-break-before: always; }
+
+        .footer { margin-top: 24px; padding-top: 12px; border-top: 1px solid var(--border); text-align: center; font-size: 8pt; color: var(--text-light); }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Time is Money: Building Your Financial Strategy</h1>
+        <div class="header-info">
+            Name: _______________________<br>
+            Date: _______________________
+        </div>
+    </div>
+
+    <div class="challenge-box">
+        <p><strong>The Challenge:</strong> Alex is 25 years old with two goals: saving $15,000 for a car in 3 years, AND starting to build retirement savings for 40 years from now. Alex earns $45,000/year and can save $500/month. Should Alex use the same savings strategy for both goals? How would you advise Alex to divide the monthly savings and choose appropriate investment vehicles for each goal?</p>
+    </div>
+
+    <div class="section-title">Core Concepts: Time and Strategy</div>
+
+    <div class="concept-grid">
+        <div class="concept-card">
+            <h4>Time Horizon</h4>
+            <p>How long before you need the money determines your strategy:</p>
+            <ul>
+                <li><strong>Short-term (1-3 years):</strong> Favor safety and liquidity</li>
+                <li><strong>Medium-term (3-10 years):</strong> Balance growth and protection</li>
+                <li><strong>Long-term (10+ years):</strong> Focus on growth potential</li>
+            </ul>
+        </div>
+        <div class="concept-card">
+            <h4>Risk Tolerance</h4>
+            <p>Your comfort level with financial uncertainty:</p>
+            <ul>
+                <li><strong>Conservative:</strong> Protect principal first</li>
+                <li><strong>Moderate:</strong> Accept some risk for returns</li>
+                <li><strong>Aggressive:</strong> Maximum growth focus</li>
+            </ul>
+        </div>
+        <div class="concept-card">
+            <h4>Inflation Impact</h4>
+            <p>At 3% annual inflation:</p>
+            <ul>
+                <li>$100 today = $74 purchasing power in 10 years</li>
+                <li>Long-term investments must outpace inflation</li>
+                <li>Savings accounts often lose value to inflation</li>
+            </ul>
+        </div>
+        <div class="concept-card">
+            <h4>Asset Classes</h4>
+            <ul>
+                <li><strong>Fixed Income:</strong> Bonds, CDs, savings (lower risk/return)</li>
+                <li><strong>Equities:</strong> Stocks, mutual funds (higher risk/return)</li>
+                <li><strong>Diversification:</strong> Mix assets to reduce risk</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section-title">Strategy Matching Reference</div>
+
+    <table class="data-table">
+        <tr>
+            <th>Time Horizon</th>
+            <th>Appropriate Vehicles</th>
+            <th>Risk Level</th>
+            <th>Focus</th>
+        </tr>
+        <tr>
+            <td><strong>Short-Term</strong> (1-3 years)</td>
+            <td>High-yield savings, Money market, Short-term CDs</td>
+            <td>Very Low</td>
+            <td>Liquidity, Capital preservation</td>
+        </tr>
+        <tr>
+            <td><strong>Medium-Term</strong> (3-10 years)</td>
+            <td>Mix of CDs, Short-term bonds, Conservative stocks</td>
+            <td>Low to Moderate</td>
+            <td>Balance growth and preservation</td>
+        </tr>
+        <tr>
+            <td><strong>Long-Term</strong> (10+ years)</td>
+            <td>Diverse portfolio: Stocks, Bonds, Mutual funds, ETFs</td>
+            <td>Moderate to Aggressive</td>
+            <td>Growth that outpaces inflation</td>
+        </tr>
+    </table>
+
+    <div class="section-title">Part A: Contrasting Strategies Analysis</div>
+
+    <div class="scenario-card">
+        <div class="scenario-header">
+            <div class="scenario-icon">🚗</div>
+            <div class="scenario-name">Alex's Short-Term Strategy (Car in 3 Years)</div>
+        </div>
+        <div class="scenario-details">
+            <div class="scenario-detail"><strong>Goal:</strong> $15,000 for a car</div>
+            <div class="scenario-detail"><strong>Time Horizon:</strong> 3 years (Short-term)</div>
+            <div class="scenario-detail"><strong>Risk Tolerance:</strong> Conservative</div>
+            <div class="scenario-detail"><strong>Strategy:</strong> 60% High-yield savings, 40% Short-term CDs</div>
+        </div>
+    </div>
+
+    <div class="scenario-card">
+        <div class="scenario-header">
+            <div class="scenario-icon">🏖️</div>
+            <div class="scenario-name">Taylor's Long-Term Strategy (Retirement in 40 Years)</div>
+        </div>
+        <div class="scenario-details">
+            <div class="scenario-detail"><strong>Goal:</strong> Build retirement savings</div>
+            <div class="scenario-detail"><strong>Time Horizon:</strong> 40 years (Long-term)</div>
+            <div class="scenario-detail"><strong>Risk Tolerance:</strong> Moderately Aggressive</div>
+            <div class="scenario-detail"><strong>Strategy:</strong> 70% Stocks (index funds), 30% Bonds</div>
+        </div>
+    </div>
+
+    <div class="activity-section">
+        <h3>Compare the Two Strategies</h3>
+        <p style="font-size: 9pt; margin-bottom: 10px;"><strong>1.</strong> Why would Alex avoid investing in stocks for the car fund?</p>
+        <div class="response-area">
+            <div class="response-lines"></div>
+            <div class="response-lines"></div>
+            <div class="response-lines"></div>
+        </div>
+
+        <p style="font-size: 9pt; margin-bottom: 10px;"><strong>2.</strong> Why can Taylor afford to take more risk with retirement savings?</p>
+        <div class="response-area">
+            <div class="response-lines"></div>
+            <div class="response-lines"></div>
+            <div class="response-lines"></div>
+        </div>
+
+        <p style="font-size: 9pt; margin-bottom: 10px;"><strong>3.</strong> What would happen to Taylor's strategy if retirement were only 5 years away?</p>
+        <div class="response-area">
+            <div class="response-lines"></div>
+            <div class="response-lines"></div>
+        </div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <div class="section-title">Part B: Inflation Impact Calculator</div>
+
+    <div class="activity-section">
+        <h3>Calculate Inflation's Effect on Purchasing Power</h3>
+        <p style="font-size: 9pt; color: var(--text-medium); margin-bottom: 12px;">Use the formula: Future Value ÷ (1.03)^years = Today's Purchasing Power</p>
+
+        <table class="data-table">
+            <tr>
+                <th>Starting Amount</th>
+                <th>Years</th>
+                <th>At 3% Inflation, Purchasing Power Equals</th>
+            </tr>
+            <tr>
+                <td>$10,000</td>
+                <td>10 years</td>
+                <td>$10,000 ÷ 1.344 = $____________</td>
+            </tr>
+            <tr>
+                <td>$10,000</td>
+                <td>20 years</td>
+                <td>$10,000 ÷ 1.806 = $____________</td>
+            </tr>
+            <tr>
+                <td>$10,000</td>
+                <td>30 years</td>
+                <td>$10,000 ÷ 2.427 = $____________</td>
+            </tr>
+        </table>
+
+        <div class="hint-box">
+            <strong>Key Insight:</strong> If your investments earn less than inflation, you're actually losing purchasing power even though your account balance grows!
+        </div>
+
+        <p style="font-size: 9pt; margin: 12px 0 8px;"><strong>4.</strong> If a savings account pays 1% interest but inflation is 3%, what's happening to your money's real value?</p>
+        <div class="response-area">
+            <div class="response-lines"></div>
+            <div class="response-lines"></div>
+        </div>
+
+        <p style="font-size: 9pt; margin: 12px 0 8px;"><strong>5.</strong> Why does this make long-term "safe" savings accounts actually risky for retirement?</p>
+        <div class="response-area">
+            <div class="response-lines"></div>
+            <div class="response-lines"></div>
+        </div>
+    </div>
+
+    <div class="section-title">Part C: Build Alex's Dual Strategy</div>
+
+    <div class="activity-section">
+        <h3>Solve the Opening Challenge</h3>
+        <p style="font-size: 9pt; color: var(--text-medium); margin-bottom: 12px;">Alex has $500/month to save. Design strategies for BOTH goals: a car in 3 years AND retirement in 40 years.</p>
+
+        <div class="compare-grid">
+            <div class="compare-column">
+                <h5>Monthly Allocation</h5>
+                <p style="font-size: 9pt; margin-top: 8px;">Car Fund: $_________/month</p>
+                <p style="font-size: 9pt;">Retirement: $_________/month</p>
+                <p style="font-size: 8pt; color: var(--text-light);">(Must total $500)</p>
+            </div>
+            <div class="compare-column">
+                <h5>Car Fund Strategy</h5>
+                <p style="font-size: 9pt; margin-top: 8px;">Vehicle 1: __________________</p>
+                <p style="font-size: 9pt;">Vehicle 2: __________________</p>
+                <p style="font-size: 9pt;">Allocation: ______% / ______%</p>
+            </div>
+            <div class="compare-column">
+                <h5>Retirement Strategy</h5>
+                <p style="font-size: 9pt; margin-top: 8px;">Vehicle 1: __________________</p>
+                <p style="font-size: 9pt;">Vehicle 2: __________________</p>
+                <p style="font-size: 9pt;">Allocation: ______% / ______%</p>
+            </div>
+        </div>
+
+        <p style="font-size: 9pt; margin: 12px 0 8px;"><strong>6.</strong> Justify your car fund allocation and vehicle choices:</p>
+        <div class="response-area">
+            <div class="response-lines"></div>
+            <div class="response-lines"></div>
+            <div class="response-lines"></div>
+        </div>
+
+        <p style="font-size: 9pt; margin: 12px 0 8px;"><strong>7.</strong> Justify your retirement allocation and vehicle choices:</p>
+        <div class="response-area">
+            <div class="response-lines"></div>
+            <div class="response-lines"></div>
+            <div class="response-lines"></div>
+        </div>
+
+        <div class="hint-box">
+            <strong>Consider:</strong> At $417/month for 3 years at 4% APY, Alex would have approximately $15,600 for the car. This leaves $83/month for retirement—starting early is still valuable!
+        </div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <div class="section-title">Part D: Financial Strategy Blueprint</div>
+
+    <div class="activity-section">
+        <h3>Create Your Personal Blueprint</h3>
+        <p style="font-size: 9pt; color: var(--text-medium); margin-bottom: 12px;">Design a financial strategy for one of YOUR goals. Consider time horizon, risk tolerance, and inflation.</p>
+
+        <p style="font-size: 9pt; margin-bottom: 6px;"><strong>My Financial Goal:</strong></p>
+        <div class="response-area">
+            <div class="response-lines"></div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 12px 0;">
+            <div>
+                <p style="font-size: 9pt; margin-bottom: 6px;"><strong>Target Amount:</strong> $_______________</p>
+                <p style="font-size: 9pt; margin-bottom: 6px;"><strong>Time Horizon:</strong> _______ years</p>
+                <p style="font-size: 9pt; margin-bottom: 6px;"><strong>Monthly Savings Possible:</strong> $___________</p>
+            </div>
+            <div>
+                <p style="font-size: 9pt; margin-bottom: 6px;"><strong>My Risk Tolerance:</strong></p>
+                <div class="checkbox-item"><div class="checkbox"></div><span class="checkbox-label">Conservative</span></div>
+                <div class="checkbox-item"><div class="checkbox"></div><span class="checkbox-label">Moderate</span></div>
+                <div class="checkbox-item"><div class="checkbox"></div><span class="checkbox-label">Aggressive</span></div>
+            </div>
+        </div>
+
+        <p style="font-size: 9pt; margin: 12px 0 8px;"><strong>8.</strong> Based on my time horizon and risk tolerance, my strategy includes:</p>
+        <table class="data-table">
+            <tr>
+                <th>Investment Vehicle</th>
+                <th>Percentage</th>
+                <th>Why This Choice?</th>
+            </tr>
+            <tr>
+                <td style="height: 40px;"></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td style="height: 40px;"></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td style="height: 40px;"></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+
+        <p style="font-size: 9pt; margin: 12px 0 8px;"><strong>9.</strong> How will inflation affect my goal, and how does my strategy address this?</p>
+        <div class="response-area">
+            <div class="response-lines"></div>
+            <div class="response-lines"></div>
+            <div class="response-lines"></div>
+        </div>
+    </div>
+
+    <div class="section-title">Check Your Understanding</div>
+
+    <div class="activity-section">
+        <p style="font-size: 9pt; margin-bottom: 8px;"><strong>1.</strong> Which factor should MOST influence your choice between savings accounts and stock investments?</p>
+        <div class="checkbox-item"><div class="checkbox"></div><span class="checkbox-label">A. How much money you're starting with</span></div>
+        <div class="checkbox-item"><div class="checkbox"></div><span class="checkbox-label">B. How long until you need the money</span></div>
+        <div class="checkbox-item"><div class="checkbox"></div><span class="checkbox-label">C. What your friends are doing</span></div>
+        <div class="checkbox-item"><div class="checkbox"></div><span class="checkbox-label">D. Current stock market performance</span></div>
+
+        <p style="font-size: 9pt; margin: 12px 0 8px;"><strong>2.</strong> Why might keeping all your retirement savings in a savings account be risky?</p>
+        <div class="response-area">
+            <div class="response-lines"></div>
+            <div class="response-lines"></div>
+        </div>
+
+        <p style="font-size: 9pt; margin: 12px 0 8px;"><strong>3.</strong> Maya is 22 and starts investing $200/month in a diversified portfolio for retirement. Her friend Jordan waits until age 32 to start investing $400/month. Who will likely have more at age 65, and why?</p>
+        <div class="response-area">
+            <div class="response-lines"></div>
+            <div class="response-lines"></div>
+            <div class="response-lines"></div>
+        </div>
+
+        <p style="font-size: 9pt; margin: 12px 0 8px;"><strong>4.</strong> What does "diversification" mean, and why is it important?</p>
+        <div class="response-area">
+            <div class="response-lines"></div>
+            <div class="response-lines"></div>
+        </div>
+    </div>
+
+    <div class="footer">
+        &copy; PFL Academy | pflacademy.co | Chapter 5.4: Time is Money
+    </div>
+
+</body>
+</html>

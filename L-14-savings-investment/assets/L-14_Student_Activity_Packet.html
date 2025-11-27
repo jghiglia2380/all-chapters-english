@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-14 Student Activity Packet</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+        :root {
+            --primary: #6366f1;
+            --primary-light: #eef2ff;
+            --accent: #f59e0b;
+            --accent-light: #fef3c7;
+            --success: #059669;
+            --text-dark: #1e293b;
+            --text-medium: #475569;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --bg-light: #f8fafc;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+        @page { size: letter; margin: 0.5in; }
+        body { font-family: 'Open Sans', sans-serif; font-size: 10.5pt; line-height: 1.5; color: var(--text-dark); background: white; }
+
+        .header { background: var(--primary); color: white; padding: 14px 18px; border-radius: 6px; margin-bottom: 18px; display: flex; justify-content: space-between; align-items: center; }
+        .header-left h1 { font-size: 13pt; font-weight: 700; margin: 0; }
+        .header-left h2 { font-size: 10pt; font-weight: 400; margin: 2px 0 0; opacity: 0.9; }
+        .header-right { font-size: 9pt; text-align: right; opacity: 0.9; }
+
+        .section-header { font-size: 11pt; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 2px solid var(--primary); padding-bottom: 4px; margin: 20px 0 12px; }
+
+        .challenge-box { background: var(--accent-light); border-left: 4px solid var(--accent); padding: 14px 16px; margin-bottom: 16px; border-radius: 0 6px 6px 0; }
+        .challenge-box p { font-style: italic; color: var(--text-dark); margin-bottom: 10px; }
+        .challenge-box .framing-question { font-weight: 600; font-style: normal; color: #92400e; }
+
+        .objectives-box { background: var(--primary-light); border: 1px solid #c7d2fe; border-radius: 6px; padding: 12px 16px; margin-bottom: 18px; }
+        .objectives-box h3 { font-size: 10pt; font-weight: 700; color: var(--primary); margin-bottom: 6px; }
+        .objectives-box ul { margin: 0; padding-left: 20px; }
+        .objectives-box li { margin-bottom: 3px; color: var(--text-medium); }
+
+        .terms-table { width: 100%; border-collapse: collapse; margin-bottom: 14px; font-size: 10pt; }
+        .terms-table th { background: var(--bg-light); text-align: left; padding: 8px 10px; border: 1px solid var(--border); font-weight: 600; color: var(--text-medium); }
+        .terms-table td { padding: 8px 10px; border: 1px solid var(--border); vertical-align: top; }
+        .terms-table td:first-child { font-weight: 600; color: var(--primary); width: 25%; }
+
+        .background-box { background: var(--bg-light); border: 1px solid var(--border); border-radius: 6px; padding: 12px 16px; margin-bottom: 18px; font-size: 10pt; color: var(--text-medium); }
+        .background-box strong { color: var(--text-dark); }
+
+        .scenario-card { background: white; border: 1px solid var(--border); border-radius: 6px; padding: 12px 14px; margin-bottom: 14px; page-break-inside: avoid; }
+        .scenario-title { font-weight: 700; color: var(--primary); margin-bottom: 6px; font-size: 10pt; }
+        .scenario-description { color: var(--text-medium); margin-bottom: 10px; font-size: 10pt; }
+
+        .response-line { display: flex; align-items: baseline; margin-bottom: 8px; }
+        .response-label { font-weight: 600; color: var(--text-dark); margin-right: 8px; white-space: nowrap; }
+        .response-blank { flex-grow: 1; border-bottom: 1px solid var(--text-light); min-height: 18px; }
+        .response-options { color: var(--text-light); font-size: 9pt; margin-left: 8px; white-space: nowrap; }
+
+        .because-lines { margin-top: 6px; }
+        .because-lines .response-line { margin-bottom: 4px; }
+
+        .data-table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 10pt; }
+        .data-table th { background: var(--primary); color: white; padding: 8px 10px; text-align: center; font-weight: 600; font-size: 9pt; }
+        .data-table td { padding: 8px 10px; border: 1px solid var(--border); text-align: center; }
+        .data-table tr:nth-child(even) td { background: var(--bg-light); }
+        .data-table .calc-row td { background: #fef9c3; height: 28px; }
+
+        .question { margin-bottom: 14px; page-break-inside: avoid; }
+        .question-number { font-weight: 700; color: var(--text-dark); }
+        .question-text { color: var(--text-dark); margin-bottom: 6px; }
+
+        .answer-lines { margin-top: 6px; }
+        .answer-line { border-bottom: 1px solid var(--text-light); height: 22px; margin-bottom: 4px; }
+
+        .calc-box { border: 1px solid var(--border); border-radius: 4px; padding: 12px; margin: 8px 0; min-height: 60px; background: var(--bg-light); }
+        .calc-label { font-size: 9pt; color: var(--text-light); margin-bottom: 4px; }
+        .calc-answer { margin-top: 10px; font-weight: 600; }
+
+        .mc-options { margin-top: 6px; margin-left: 20px; }
+        .mc-option { display: flex; align-items: center; margin-bottom: 4px; }
+        .mc-checkbox { width: 14px; height: 14px; border: 1px solid var(--text-light); border-radius: 2px; margin-right: 8px; flex-shrink: 0; }
+
+        .hint-box { background: #f0fdf4; border-left: 3px solid var(--success); padding: 8px 12px; margin: 10px 0; font-size: 9pt; font-style: italic; color: #166534; }
+        .hint-box strong { font-style: normal; }
+
+        .part-header { font-weight: 700; font-size: 10pt; color: var(--primary); text-transform: uppercase; margin: 16px 0 10px; padding-bottom: 4px; border-bottom: 1px solid var(--border); }
+
+        .footer { margin-top: 24px; padding-top: 10px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; font-size: 9pt; color: var(--text-light); }
+
+        .mb-sm { margin-bottom: 8px; }
+        .mb-md { margin-bottom: 14px; }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="header-left">
+            <h1>PFL Academy</h1>
+            <h2>Chapter 5.1: Saving and Investing</h2>
+        </div>
+        <div class="header-right">
+            Student Activity Packet
+        </div>
+    </div>
+
+    <div class="section-header">The Challenge</div>
+    <div class="challenge-box">
+        <p>Elena received $2,000 as a graduation gift. She's trying to decide what to do with it: keep it in her checking account, put it in a savings account earning 0.5% interest, or invest it in a mutual fund that has historically returned 7% but could lose value. She needs to buy a car in about 5 years and also wants to start thinking about retirement.</p>
+        <p class="framing-question">How should Elena approach this decision, and why might different strategies be appropriate for different goals?</p>
+    </div>
+
+    <div class="objectives-box">
+        <h3>Learning Objectives</h3>
+        <ul>
+            <li>Differentiate between saving and investing strategies.</li>
+            <li>Apply the SMART framework to set effective financial goals.</li>
+            <li>Evaluate risk and reward in financial decisions.</li>
+        </ul>
+    </div>
+
+    <div class="section-header">Core Concepts</div>
+
+    <table class="terms-table">
+        <tr><th>Term</th><th>Definition</th></tr>
+        <tr><td>Saving</td><td>Setting aside money in safe, accessible accounts for short-term goals and emergencies.</td></tr>
+        <tr><td>Investing</td><td>Placing money in assets expected to grow in value over time, accepting some risk for potential higher returns.</td></tr>
+        <tr><td>Liquidity</td><td>How quickly and easily an asset can be converted to cash without losing value.</td></tr>
+        <tr><td>Risk Tolerance</td><td>Your comfort level with the possibility of losing money in exchange for potentially higher returns.</td></tr>
+        <tr><td>Opportunity Cost</td><td>What you give up when choosing one financial option over another.</td></tr>
+    </table>
+
+    <div class="background-box">
+        <strong>Background:</strong> Understanding the difference between saving and investing is fundamental to building wealth. Saving focuses on security and accessibility for short-term needs, while investing aims for growth over longer periods but involves more risk. The right approach depends on your goals, timeline, and comfort with risk. Most people need both strategies working together.
+    </div>
+
+    <div class="section-header">Apply It</div>
+
+    <div class="part-header">Part A: Saving vs. Investing Decision</div>
+    <p class="mb-md">For each goal, determine whether saving or investing is more appropriate and explain why.</p>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Goal 1: Emergency Fund</div>
+        <div class="scenario-description">Building a 3-month emergency fund ($6,000) to cover unexpected expenses like car repairs or medical bills.</div>
+        <div class="response-line">
+            <span class="response-label">Best approach:</span>
+            <span class="response-blank"></span>
+            <span class="response-options">(Saving / Investing)</span>
+        </div>
+        <div class="because-lines">
+            <div class="response-line">
+                <span class="response-label">Because:</span>
+                <span class="response-blank"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Goal 2: Retirement (40 Years Away)</div>
+        <div class="scenario-description">Starting to build wealth for retirement that won't be needed for 40 years.</div>
+        <div class="response-line">
+            <span class="response-label">Best approach:</span>
+            <span class="response-blank"></span>
+            <span class="response-options">(Saving / Investing)</span>
+        </div>
+        <div class="because-lines">
+            <div class="response-line">
+                <span class="response-label">Because:</span>
+                <span class="response-blank"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Goal 3: Vacation Next Summer</div>
+        <div class="scenario-description">Accumulating $1,500 for a vacation in 8 months.</div>
+        <div class="response-line">
+            <span class="response-label">Best approach:</span>
+            <span class="response-blank"></span>
+            <span class="response-options">(Saving / Investing)</span>
+        </div>
+        <div class="because-lines">
+            <div class="response-line">
+                <span class="response-label">Because:</span>
+                <span class="response-blank"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="hint-box">
+        <strong>Hint:</strong> Consider two key factors: (1) How soon will you need the money? (2) Can you afford to lose value temporarily?
+    </div>
+
+    <div class="part-header">Part B: Growth Comparison</div>
+    <p class="mb-md">Compare how $1,000 grows over time with different approaches. Complete the table.</p>
+
+    <table class="data-table">
+        <tr>
+            <th>Time Period</th>
+            <th>Checking (0%)</th>
+            <th>Savings (1%)</th>
+            <th>Investment (7%)</th>
+        </tr>
+        <tr>
+            <td style="text-align: left; font-weight: 600;">Starting Amount</td>
+            <td>$1,000</td>
+            <td>$1,000</td>
+            <td>$1,000</td>
+        </tr>
+        <tr>
+            <td style="text-align: left; font-weight: 600;">After 1 Year</td>
+            <td>$1,000</td>
+            <td>$1,010</td>
+            <td>$1,070</td>
+        </tr>
+        <tr class="calc-row">
+            <td style="text-align: left; font-weight: 600;">After 10 Years</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="calc-row">
+            <td style="text-align: left; font-weight: 600;">After 30 Years</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+
+    <p class="mb-sm" style="font-size: 9pt; color: var(--text-light);">Use these values: 10 years: Savings=$1,105, Investment=$1,967. 30 years: Savings=$1,348, Investment=$7,612</p>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">4.</span> How much MORE money would you have after 30 years by investing versus keeping money in savings?</p>
+        <div class="calc-box">
+            <div class="calc-label">Show your work:</div>
+        </div>
+        <div class="calc-answer">Answer: $_____________ more</div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">5.</span> What is the opportunity cost of keeping $1,000 in checking for 30 years instead of investing it?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="part-header">Part C: SMART Goal Setting</div>
+    <div class="question">
+        <p class="question-text"><span class="question-number">6.</span> Create a SMART financial goal for yourself. Fill in each component:</p>
+        <div class="response-line"><span class="response-label">Specific (What):</span><span class="response-blank"></span></div>
+        <div class="response-line"><span class="response-label">Measurable (How much):</span><span class="response-blank"></span></div>
+        <div class="response-line"><span class="response-label">Achievable (Realistic?):</span><span class="response-blank"></span></div>
+        <div class="response-line"><span class="response-label">Relevant (Why important):</span><span class="response-blank"></span></div>
+        <div class="response-line"><span class="response-label">Time-bound (When):</span><span class="response-blank"></span></div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">7.</span> Based on your SMART goal, should you save or invest for this goal? Why?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="section-header">Check Your Understanding</div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">1.</span> Which factor is MOST important when deciding between saving and investing?</p>
+        <div class="mc-options">
+            <div class="mc-option"><div class="mc-checkbox"></div> A. Current interest rates</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> B. Time horizon until you need the money</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> C. The stock market's current performance</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> D. Your bank's branch locations</div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">2.</span> Explain why someone with 40 years until retirement should prioritize investing over saving.</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">3.</span> <strong>Calculation:</strong> If Elena invests $2,000 and it grows at 7% annually, approximately how much will she have in 10 years? (Use 10-year value from table: multiply by 1.967)</p>
+        <div class="calc-box">
+            <div class="calc-label">Show your work:</div>
+        </div>
+        <div class="calc-answer">Answer: $_____________ </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">4.</span> Elena wants to buy a car in 5 years. Why might she choose to SAVE part of her $2,000 even though investing offers higher returns?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">5.</span> <strong>Reflection:</strong> Think about a financial goal you have. What factors would influence whether you save or invest for that goal? How does your risk tolerance affect your decision?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <span>© PFL Academy | pflacademy.co</span>
+        <span>Chapter 5.1: Saving and Investing</span>
+    </div>
+
+</body>
+</html>

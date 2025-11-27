@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-65 Student Activity Packet</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+        :root {
+            --primary: #6366f1;
+            --primary-light: #eef2ff;
+            --accent: #f59e0b;
+            --accent-light: #fef3c7;
+            --success: #059669;
+            --text-dark: #1e293b;
+            --text-medium: #475569;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --bg-light: #f8fafc;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+        @page { size: letter; margin: 0.5in; }
+        body { font-family: 'Open Sans', sans-serif; font-size: 10.5pt; line-height: 1.5; color: var(--text-dark); background: white; }
+
+        .header { background: var(--primary); color: white; padding: 14px 18px; border-radius: 6px; margin-bottom: 18px; display: flex; justify-content: space-between; align-items: center; }
+        .header-left h1 { font-size: 13pt; font-weight: 700; margin: 0; }
+        .header-left h2 { font-size: 10pt; font-weight: 400; margin: 2px 0 0; opacity: 0.9; }
+        .header-right { font-size: 9pt; text-align: right; opacity: 0.9; }
+
+        .section-header { font-size: 11pt; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 2px solid var(--primary); padding-bottom: 4px; margin: 20px 0 12px; }
+
+        .challenge-box { background: var(--accent-light); border-left: 4px solid var(--accent); padding: 14px 16px; margin-bottom: 16px; border-radius: 0 6px 6px 0; }
+        .challenge-box p { font-style: italic; color: var(--text-dark); margin-bottom: 10px; }
+        .challenge-box .framing-question { font-weight: 600; font-style: normal; color: #92400e; }
+
+        .objectives-box { background: var(--primary-light); border: 1px solid #c7d2fe; border-radius: 6px; padding: 12px 16px; margin-bottom: 18px; }
+        .objectives-box h3 { font-size: 10pt; font-weight: 700; color: var(--primary); margin-bottom: 6px; }
+        .objectives-box ul { margin: 0; padding-left: 20px; }
+        .objectives-box li { margin-bottom: 3px; color: var(--text-medium); }
+
+        .terms-table { width: 100%; border-collapse: collapse; margin-bottom: 14px; font-size: 10pt; }
+        .terms-table th { background: var(--bg-light); text-align: left; padding: 8px 10px; border: 1px solid var(--border); font-weight: 600; color: var(--text-medium); }
+        .terms-table td { padding: 8px 10px; border: 1px solid var(--border); vertical-align: top; }
+        .terms-table td:first-child { font-weight: 600; color: var(--primary); width: 25%; }
+
+        .background-box { background: var(--bg-light); border: 1px solid var(--border); border-radius: 6px; padding: 12px 16px; margin-bottom: 18px; font-size: 10pt; color: var(--text-medium); }
+        .background-box strong { color: var(--text-dark); }
+
+        .scenario-card { background: white; border: 1px solid var(--border); border-radius: 6px; padding: 12px 14px; margin-bottom: 14px; page-break-inside: avoid; }
+        .scenario-title { font-weight: 700; color: var(--primary); margin-bottom: 6px; font-size: 10pt; }
+        .scenario-description { color: var(--text-medium); margin-bottom: 10px; font-size: 10pt; }
+
+        .response-line { display: flex; align-items: baseline; margin-bottom: 8px; }
+        .response-label { font-weight: 600; color: var(--text-dark); margin-right: 8px; white-space: nowrap; }
+        .response-blank { flex-grow: 1; border-bottom: 1px solid var(--text-light); min-height: 18px; }
+        .response-options { color: var(--text-light); font-size: 9pt; margin-left: 8px; white-space: nowrap; }
+        .because-lines { margin-top: 6px; }
+        .because-lines .response-line { margin-bottom: 4px; }
+
+        .data-table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 10pt; }
+        .data-table th { background: var(--primary); color: white; padding: 8px 10px; text-align: center; font-weight: 600; font-size: 9pt; }
+        .data-table td { padding: 8px 10px; border: 1px solid var(--border); text-align: center; }
+        .data-table tr:nth-child(even) td { background: var(--bg-light); }
+
+        .question { margin-bottom: 14px; page-break-inside: avoid; }
+        .question-number { font-weight: 700; color: var(--text-dark); }
+        .question-text { color: var(--text-dark); margin-bottom: 6px; }
+        .answer-lines { margin-top: 6px; }
+        .answer-line { border-bottom: 1px solid var(--text-light); height: 22px; margin-bottom: 4px; }
+
+        .calc-box { border: 1px solid var(--border); border-radius: 4px; padding: 12px; margin: 8px 0; min-height: 60px; background: var(--bg-light); }
+        .calc-label { font-size: 9pt; color: var(--text-light); margin-bottom: 4px; }
+        .calc-answer { margin-top: 10px; font-weight: 600; }
+
+        .mc-options { margin-top: 6px; margin-left: 20px; }
+        .mc-option { display: flex; align-items: center; margin-bottom: 4px; }
+        .mc-checkbox { width: 14px; height: 14px; border: 1px solid var(--text-light); border-radius: 2px; margin-right: 8px; flex-shrink: 0; }
+
+        .hint-box { background: #f0fdf4; border-left: 3px solid var(--success); padding: 8px 12px; margin: 10px 0; font-size: 9pt; font-style: italic; color: #166534; }
+        .hint-box strong { font-style: normal; }
+
+        .part-header { font-weight: 700; font-size: 10pt; color: var(--primary); text-transform: uppercase; margin: 16px 0 10px; padding-bottom: 4px; border-bottom: 1px solid var(--border); }
+
+        .footer { margin-top: 24px; padding-top: 10px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; font-size: 9pt; color: var(--text-light); }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="header-left">
+            <h1>PFL Academy</h1>
+            <h2>Chapter 65: Investment Portfolio Diversification</h2>
+        </div>
+        <div class="header-right">Student Activity Packet</div>
+    </div>
+
+    <div class="section-header">The Challenge</div>
+    <div class="challenge-box">
+        <p>Destiny invested $25,000 entirely in five tech stocks and Bitcoin, convinced "traditional diversification is outdated." For three years, her strategy seemed brilliant—her portfolio grew to $95,000. Then tech crashed and crypto collapsed. Within six months, she was back to $38,000—a 60% loss from peak. Her friend Jordan, with a diversified 80/20 stock/bond portfolio, saw smaller gains but only lost 17% during the crash. Destiny panic-sold at the bottom; Jordan stayed invested and recovered. By age 35, Jordan had $74,000 while Destiny had $40,000.</p>
+        <p class="framing-question">How does diversification protect your wealth while still allowing you to achieve long-term growth?</p>
+    </div>
+
+    <div class="objectives-box">
+        <h3>Learning Objectives</h3>
+        <ul>
+            <li>Analyze how diversification reduces portfolio risk through correlation principles.</li>
+            <li>Construct balanced investment portfolios using appropriate asset allocation strategies.</li>
+            <li>Apply rebalancing strategies to maintain target allocation over time.</li>
+        </ul>
+    </div>
+
+    <div class="section-header">Core Concepts</div>
+
+    <table class="terms-table">
+        <tr><th>Term</th><th>Definition</th></tr>
+        <tr><td>Diversification</td><td>Spreading investments across different assets that don't move in lockstep to reduce risk.</td></tr>
+        <tr><td>Correlation</td><td>How two investments move together. +1.0 = perfect lockstep; -1.0 = opposite directions.</td></tr>
+        <tr><td>Asset Allocation</td><td>The percentage breakdown of your portfolio across stocks, bonds, and other assets.</td></tr>
+        <tr><td>Rebalancing</td><td>Periodically adjusting back to target allocation by selling overweight assets and buying underweight.</td></tr>
+        <tr><td>Target-Date Fund</td><td>A fund that automatically becomes more conservative as retirement approaches.</td></tr>
+    </table>
+
+    <div class="background-box">
+        <strong>Background:</strong> Diversification is the only "free lunch" in investing—you can reduce risk by 30-50% <strong>without</strong> sacrificing returns. When one investment falls 10% and another rises 5%, your combined portfolio only falls 2.5%. Research shows diversifying across 15-20 stocks eliminates 70% of company-specific risk. Adding bonds, international stocks, and real estate can reduce volatility by an additional 20-30%. The key: combine assets with <strong>low correlation</strong> (they don't move together). This mathematical principle—Modern Portfolio Theory—won Harry Markowitz a Nobel Prize.
+    </div>
+
+    <div class="section-header">Apply It</div>
+
+    <div class="part-header">Part A: Correlation and Diversification</div>
+
+    <table class="data-table">
+        <tr>
+            <th>Asset Combination</th>
+            <th>Correlation</th>
+            <th>Diversification Benefit</th>
+        </tr>
+        <tr><td style="text-align: left;">Tech Stock A + Tech Stock B</td><td>+0.85</td><td>Low</td></tr>
+        <tr><td style="text-align: left;">US Stocks + Bonds</td><td>+0.15</td><td>High</td></tr>
+        <tr><td style="text-align: left;">US Stocks + International Stocks</td><td>+0.70</td><td>Moderate</td></tr>
+        <tr><td style="text-align: left;">Stocks + Gold</td><td>-0.10</td><td>High</td></tr>
+    </table>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">1.</span> Based on the table, why does combining two tech stocks provide less diversification than combining stocks and bonds?</p>
+        <div class="answer-lines"><div class="answer-line"></div><div class="answer-line"></div></div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">2.</span> You have $10,000. Investment A drops 20% while Investment B rises 10%. Calculate your loss if: (a) 100% in A; (b) 50/50 split.</p>
+        <div class="calc-box"><div class="calc-label">Show your work:</div></div>
+        <div class="calc-answer">100% in A loss: $________ | 50/50 loss: $________</div>
+    </div>
+
+    <div class="hint-box">
+        <strong>Hint:</strong> Lower correlation = better diversification. Assets that move opposite directions (-0.10) provide better protection than those moving together (+0.85).
+    </div>
+
+    <div class="part-header">Part B: Age-Appropriate Asset Allocation</div>
+    <p style="margin-bottom: 12px;">Design appropriate allocations for each investor using the "120 minus age" guideline as a starting point.</p>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Investor 1: Age 25, 40 years to retirement</div>
+        <div class="response-line"><span class="response-label">Stocks:</span><span class="response-blank"></span><span class="response-options">%</span></div>
+        <div class="response-line"><span class="response-label">Bonds:</span><span class="response-blank"></span><span class="response-options">%</span></div>
+        <div class="because-lines"><div class="response-line"><span class="response-label">Rationale:</span><span class="response-blank"></span></div></div>
+    </div>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Investor 2: Age 55, 10 years to retirement</div>
+        <div class="response-line"><span class="response-label">Stocks:</span><span class="response-blank"></span><span class="response-options">%</span></div>
+        <div class="response-line"><span class="response-label">Bonds:</span><span class="response-blank"></span><span class="response-options">%</span></div>
+        <div class="because-lines"><div class="response-line"><span class="response-label">Rationale:</span><span class="response-blank"></span></div></div>
+    </div>
+
+    <div class="part-header">Part C: Rebalancing Scenario</div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">3.</span> Marcus starts with 70% stocks ($70,000) / 30% bonds ($30,000). After a great year, stocks rise 20% to $84,000 while bonds rise 3% to $30,900. What is his new allocation percentage, and what should he do to rebalance?</p>
+        <div class="calc-box"><div class="calc-label">Calculate new allocation:</div></div>
+        <div class="calc-answer">New allocation: ______% stocks / ______% bonds | Action: _____________________</div>
+    </div>
+
+    <div class="section-header">Check Your Understanding</div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">1.</span> Risk that can be eliminated through diversification is called:</p>
+        <div class="mc-options">
+            <div class="mc-option"><div class="mc-checkbox"></div> A. Systematic risk</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> B. Unsystematic risk</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> C. Market risk</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> D. Interest rate risk</div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">2.</span> Explain why Destiny's concentrated portfolio (5 tech stocks + Bitcoin) was riskier than Jordan's diversified portfolio, even when Destiny was initially making more money.</p>
+        <div class="answer-lines"><div class="answer-line"></div><div class="answer-line"></div></div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">3.</span> <strong>Calculation:</strong> $500/month invested for 30 years at 8% (diversified) vs. 10% (concentrated but behavioral errors reduce actual returns to 5%). Which accumulates more?</p>
+        <div class="calc-box"><div class="calc-label">Show calculations or estimates:</div></div>
+        <div class="calc-answer">Diversified (8%): $________ | Concentrated (5% actual): $________</div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">4.</span> Why does rebalancing force you to "buy low and sell high," and why does this feel counterintuitive to most investors?</p>
+        <div class="answer-lines"><div class="answer-line"></div><div class="answer-line"></div></div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">5.</span> <strong>Reflection:</strong> Design a diversified portfolio for yourself. What allocation feels comfortable enough that you'd stay invested through a 30% market crash? What rule would you follow for rebalancing?</p>
+        <div class="answer-lines"><div class="answer-line"></div><div class="answer-line"></div><div class="answer-line"></div><div class="answer-line"></div></div>
+    </div>
+
+    <div class="footer">
+        <span>&copy; PFL Academy | pflacademy.co</span>
+        <span>Chapter 65: Investment Portfolio Diversification</span>
+    </div>
+
+</body>
+</html>

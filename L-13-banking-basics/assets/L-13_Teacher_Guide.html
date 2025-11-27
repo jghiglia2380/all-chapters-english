@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-13 Teacher Guide</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+        :root {
+            --primary: #059669;
+            --primary-light: #ecfdf5;
+            --primary-dark: #065f46;
+            --text-dark: #1e293b;
+            --text-medium: #475569;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --bg-light: #f8fafc;
+            --warning: #f59e0b;
+            --warning-light: #fef3c7;
+            --error: #dc2626;
+            --error-light: #fee2e2;
+            --success-light: #dcfce7;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+
+        @page { size: letter; margin: 0.5in; }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 10pt;
+            line-height: 1.45;
+            color: var(--text-dark);
+            background: white;
+        }
+
+        .header {
+            background: var(--primary);
+            color: white;
+            padding: 14px 18px;
+            border-radius: 6px;
+            margin-bottom: 16px;
+        }
+
+        .header h1 { font-size: 13pt; font-weight: 700; margin: 0; }
+        .header h2 { font-size: 10pt; font-weight: 400; margin: 3px 0 0; opacity: 0.9; }
+
+        .section-header {
+            background: var(--primary-light);
+            border-left: 4px solid var(--primary);
+            padding: 7px 12px;
+            font-size: 10pt;
+            font-weight: 700;
+            color: var(--primary-dark);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin: 16px 0 10px;
+        }
+
+        .overview-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 14px;
+        }
+
+        .overview-table th {
+            background: var(--bg-light);
+            color: var(--text-light);
+            font-size: 8pt;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            text-align: center;
+            padding: 6px 10px;
+            border: 1px solid var(--border);
+            width: 33%;
+        }
+
+        .overview-table td {
+            text-align: center;
+            padding: 10px;
+            border: 1px solid var(--border);
+            font-weight: 600;
+            color: var(--text-dark);
+            font-size: 10pt;
+        }
+
+        .flow-container { margin-bottom: 14px; }
+
+        .flow-item {
+            display: flex;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border);
+            page-break-inside: avoid;
+        }
+
+        .flow-item:last-child { border-bottom: none; }
+
+        .flow-time {
+            width: 65px;
+            font-weight: 700;
+            color: var(--primary);
+            flex-shrink: 0;
+            font-size: 10pt;
+        }
+
+        .flow-content { flex: 1; }
+        .flow-title { font-weight: 700; color: var(--text-dark); margin-bottom: 3px; font-size: 10pt; }
+        .flow-content ul { margin: 0; padding-left: 16px; font-size: 9pt; color: var(--text-medium); }
+        .flow-content li { margin-bottom: 2px; }
+
+        .diff-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 14px;
+        }
+
+        .diff-box {
+            background: var(--bg-light);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 10px 12px;
+        }
+
+        .diff-title { font-weight: 700; color: var(--text-dark); margin-bottom: 6px; font-size: 9pt; }
+        .diff-box ul { margin: 0; padding-left: 16px; font-size: 9pt; color: var(--text-medium); }
+        .diff-box li { margin-bottom: 2px; }
+
+        .answer-key { page-break-before: always; }
+
+        .answer-block { margin-bottom: 12px; page-break-inside: avoid; }
+
+        .answer-title {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 9pt;
+            border-bottom: 1px solid #a7f3d0;
+            padding-bottom: 3px;
+            margin-bottom: 6px;
+        }
+
+        .answer-item { margin-bottom: 5px; font-size: 9pt; color: var(--text-dark); }
+        .answer-item strong { color: var(--primary-dark); }
+
+        .calc-display {
+            font-family: 'Courier New', monospace;
+            background: var(--bg-light);
+            padding: 8px 10px;
+            border-radius: 4px;
+            margin: 6px 0;
+            font-size: 8.5pt;
+            line-height: 1.5;
+            white-space: pre-line;
+        }
+
+        .answer-note {
+            background: var(--warning-light);
+            border-left: 3px solid var(--warning);
+            padding: 6px 10px;
+            font-size: 9pt;
+            font-style: italic;
+            color: #92400e;
+            margin: 6px 0;
+        }
+
+        .misconception-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 9pt;
+            margin-top: 10px;
+        }
+
+        .misconception-table th { padding: 6px 10px; text-align: left; font-weight: 600; }
+        .misconception-table th:first-child { background: var(--error-light); color: #991b1b; border: 1px solid #fca5a5; width: 40%; }
+        .misconception-table th:last-child { background: var(--success-light); color: #166534; border: 1px solid #86efac; }
+        .misconception-table td { padding: 6px 10px; border: 1px solid var(--border); vertical-align: top; color: var(--text-medium); }
+
+        .footer {
+            margin-top: 20px;
+            padding-top: 8px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            font-size: 8pt;
+            color: var(--text-light);
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <div class="header">
+        <h1>PFL Academy</h1>
+        <h2>Teacher Guide: Chapter 4.1 — Understanding and Using Banking Tools</h2>
+    </div>
+
+    <!-- OVERVIEW -->
+    <div class="section-header">Overview</div>
+    <table class="overview-table">
+        <tr>
+            <th>Time</th>
+            <th>Materials</th>
+            <th>Prerequisites</th>
+        </tr>
+        <tr>
+            <td>45-50 Minutes</td>
+            <td>Student Activity Packet, Calculator</td>
+            <td>Basic arithmetic skills</td>
+        </tr>
+    </table>
+
+    <!-- LESSON FLOW -->
+    <div class="section-header">Lesson Flow</div>
+    <div class="flow-container">
+        <div class="flow-item">
+            <div class="flow-time">5 min</div>
+            <div class="flow-content">
+                <div class="flow-title">THE CHALLENGE</div>
+                <ul>
+                    <li>Read Tyler's scenario aloud. Ask: "Can anyone already see what went wrong?"</li>
+                    <li>Discussion: "Has anyone experienced or know someone who got an overdraft fee?"</li>
+                    <li>Emphasize that this is a common, costly mistake that's easily preventable.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="flow-item">
+            <div class="flow-time">8 min</div>
+            <div class="flow-content">
+                <div class="flow-title">CORE CONCEPTS</div>
+                <ul>
+                    <li>Review the 5 key terms. Emphasize "pending transaction" as often overlooked.</li>
+                    <li>Read the Background paragraph together.</li>
+                    <li>Quick poll: "How do you currently track your spending?" (App, mental math, don't track)</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="flow-item">
+            <div class="flow-time">25-30 min</div>
+            <div class="flow-content">
+                <div class="flow-title">APPLY IT</div>
+                <ul>
+                    <li><strong>Part A (12 min):</strong> Check register practice. Walk through first transaction as a class. Watch for arithmetic errors.</li>
+                    <li><strong>Part B (8 min):</strong> Banking tool selection. Discuss why context matters for tool choice.</li>
+                    <li><strong>Part C (10 min):</strong> Fee awareness. Calculate annual fee impact to show real cost.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="flow-item">
+            <div class="flow-time">10 min</div>
+            <div class="flow-content">
+                <div class="flow-title">CHECK YOUR UNDERSTANDING</div>
+                <ul>
+                    <li>Complete in class or assign as homework.</li>
+                    <li>Emphasize Q5 (Reflection) as practical planning for their own lives.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- DIFFERENTIATION -->
+    <div class="section-header">Differentiation</div>
+    <div class="diff-grid">
+        <div class="diff-box">
+            <div class="diff-title">Support</div>
+            <ul>
+                <li>Provide calculators for all students.</li>
+                <li>Work through check register as a whole class activity.</li>
+                <li>Create a step-by-step guide: "First subtract payments, then add deposits."</li>
+                <li>Pair students for Part A calculations.</li>
+            </ul>
+        </div>
+        <div class="diff-box">
+            <div class="diff-title">Extension</div>
+            <ul>
+                <li>Calculate monthly budget with fixed expenses and variable income.</li>
+                <li>Research and compare mobile banking apps and their features.</li>
+                <li>Create a one-month spending tracker template.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ANSWER KEY (new page) -->
+    <div class="answer-key">
+        <div class="section-header">Answer Key</div>
+
+        <div class="answer-block">
+            <div class="answer-title">Part A: Check Register Practice</div>
+            <div class="calc-display">Check Register Balances:
+Mon: $450.00 (Starting)
+Tue: $450.00 - $200.00 = $250.00
+Wed: $250.00 - $85.00 = $165.00
+Thu: $165.00 + $150.00 = $315.00
+Fri (before rent): $315.00
+Fri (after rent): $315.00 - $400.00 = -$85.00
+Fri (after fee): -$85.00 - $35.00 = -$120.00</div>
+            <div class="answer-item"><strong>1.</strong> Balance before rent: <strong>$315.00</strong></div>
+            <div class="answer-item"><strong>2.</strong> Short by: $400 - $315 = <strong>$85.00</strong></div>
+            <div class="answer-item"><strong>3.</strong> Tyler could have: (1) Waited to make the deposit until after rent cleared, (2) Made a larger deposit, (3) Postponed a purchase, (4) Transferred money from savings, or (5) Contacted the landlord to delay the auto-debit.</div>
+        </div>
+
+        <div class="answer-block">
+            <div class="answer-title">Part B: Banking Tool Selection</div>
+            <div class="answer-item"><strong>1. Maya (Rent):</strong> Check. Provides paper record for landlord, creates proof of payment, and landlord doesn't accept digital.</div>
+            <div class="answer-item"><strong>2. Jordan (Lunch):</strong> Debit Card. Quick, convenient for small purchases at merchants that accept cards.</div>
+            <div class="answer-item"><strong>3. Alex (Roommate):</strong> Online Transfer. Instant, no paper needed, free between same-bank accounts, easy to track.</div>
+        </div>
+
+        <div class="answer-block">
+            <div class="answer-title">Part C: Fee Awareness</div>
+            <div class="answer-item"><strong>How to Avoid (accept reasonable answers):</strong></div>
+            <div class="answer-item">• Overdraft: Track transactions, set up alerts, link to savings for protection</div>
+            <div class="answer-item">• ATM Fees: Use in-network ATMs, get cash back at stores, choose bank with large network</div>
+            <div class="answer-item">• Maintenance: Choose no-fee accounts, meet direct deposit requirements, use credit unions</div>
+            <div class="answer-item">• Minimum Balance: Keep buffer in account, set up low-balance alerts, choose accounts without minimums</div>
+            <div class="calc-display">Annual Fee Calculation:
+$35 + $4 + $12 + $15 = $66 per month
+$66 × 12 = $792 per year</div>
+        </div>
+
+        <div class="answer-block">
+            <div class="answer-title">Check Your Understanding</div>
+            <div class="answer-item"><strong>1.</strong> B (To identify errors and unauthorized transactions)</div>
+            <div class="answer-item"><strong>2.</strong> Pending transactions may not be reflected yet. Checks written but not cashed, holds on deposits, or recently authorized transactions may not show in the balance.</div>
+            <div class="answer-item"><strong>3.</strong> $525 - $200 - $150 + $100 = <strong>$275</strong></div>
+            <div class="answer-item"><strong>4.</strong> Risk of overdraft because pending transactions aren't included in the online balance. She might think she has more money available than she actually does.</div>
+            <div class="answer-item"><strong>5.</strong> <em>Accept any reasonable system: banking app with alerts, spreadsheet, written register, budgeting app. Should include why it fits their lifestyle.</em></div>
+        </div>
+
+        <!-- COMMON MISCONCEPTIONS -->
+        <div class="section-header">Common Misconceptions</div>
+        <table class="misconception-table">
+            <tr>
+                <th>Misconception</th>
+                <th>Clarification</th>
+            </tr>
+            <tr>
+                <td>"My online balance shows what I can spend."</td>
+                <td>Online balance may not reflect pending transactions, outstanding checks, or recent debit card authorizations. Always track separately.</td>
+            </tr>
+            <tr>
+                <td>"Overdraft protection means I can't overdraw."</td>
+                <td>Overdraft protection prevents declined transactions but still charges fees. It's not free money—it's essentially a loan you pay for.</td>
+            </tr>
+            <tr>
+                <td>"Checks clear immediately when written."</td>
+                <td>Checks can take days to clear. Money may appear available but the check hasn't been cashed yet, leading to overdrafts.</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        <span>© PFL Academy | pflacademy.co</span>
+        <span>Teacher Guide: Chapter 4.1</span>
+    </div>
+
+</body>
+</html>

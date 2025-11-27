@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-26 Student Activity Packet</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+        :root {
+            --primary: #6366f1;
+            --primary-light: #eef2ff;
+            --accent: #f59e0b;
+            --accent-light: #fef3c7;
+            --success: #059669;
+            --text-dark: #1e293b;
+            --text-medium: #475569;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --bg-light: #f8fafc;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+        @page { size: letter; margin: 0.5in; }
+        body { font-family: 'Open Sans', sans-serif; font-size: 10.5pt; line-height: 1.5; color: var(--text-dark); background: white; }
+
+        .header { background: var(--primary); color: white; padding: 14px 18px; border-radius: 6px; margin-bottom: 18px; display: flex; justify-content: space-between; align-items: center; }
+        .header-left h1 { font-size: 13pt; font-weight: 700; margin: 0; }
+        .header-left h2 { font-size: 10pt; font-weight: 400; margin: 2px 0 0; opacity: 0.9; }
+        .header-right { font-size: 9pt; text-align: right; opacity: 0.9; }
+
+        .section-header { font-size: 11pt; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 2px solid var(--primary); padding-bottom: 4px; margin: 20px 0 12px; }
+
+        .challenge-box { background: var(--accent-light); border-left: 4px solid var(--accent); padding: 14px 16px; margin-bottom: 16px; border-radius: 0 6px 6px 0; }
+        .challenge-box p { font-style: italic; color: var(--text-dark); margin-bottom: 10px; }
+        .challenge-box .framing-question { font-weight: 600; font-style: normal; color: #92400e; }
+
+        .objectives-box { background: var(--primary-light); border: 1px solid #c7d2fe; border-radius: 6px; padding: 12px 16px; margin-bottom: 18px; }
+        .objectives-box h3 { font-size: 10pt; font-weight: 700; color: var(--primary); margin-bottom: 6px; }
+        .objectives-box ul { margin: 0; padding-left: 20px; }
+        .objectives-box li { margin-bottom: 3px; color: var(--text-medium); }
+
+        .terms-table { width: 100%; border-collapse: collapse; margin-bottom: 14px; font-size: 10pt; }
+        .terms-table th { background: var(--bg-light); text-align: left; padding: 8px 10px; border: 1px solid var(--border); font-weight: 600; color: var(--text-medium); }
+        .terms-table td { padding: 8px 10px; border: 1px solid var(--border); vertical-align: top; }
+        .terms-table td:first-child { font-weight: 600; color: var(--primary); width: 25%; }
+
+        .background-box { background: var(--bg-light); border: 1px solid var(--border); border-radius: 6px; padding: 12px 16px; margin-bottom: 18px; font-size: 10pt; color: var(--text-medium); }
+        .background-box strong { color: var(--text-dark); }
+
+        .scenario-card { background: white; border: 1px solid var(--border); border-radius: 6px; padding: 12px 14px; margin-bottom: 14px; page-break-inside: avoid; }
+        .scenario-title { font-weight: 700; color: var(--primary); margin-bottom: 6px; font-size: 10pt; }
+        .scenario-description { color: var(--text-medium); margin-bottom: 10px; font-size: 10pt; }
+
+        .response-line { display: flex; align-items: baseline; margin-bottom: 8px; }
+        .response-label { font-weight: 600; color: var(--text-dark); margin-right: 8px; white-space: nowrap; }
+        .response-blank { flex-grow: 1; border-bottom: 1px solid var(--text-light); min-height: 18px; }
+        .response-options { color: var(--text-light); font-size: 9pt; margin-left: 8px; white-space: nowrap; }
+
+        .because-lines { margin-top: 6px; }
+        .because-lines .response-line { margin-bottom: 4px; }
+
+        .data-table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 10pt; }
+        .data-table th { background: var(--primary); color: white; padding: 8px 10px; text-align: center; font-weight: 600; font-size: 9pt; }
+        .data-table td { padding: 8px 10px; border: 1px solid var(--border); text-align: center; }
+        .data-table tr:nth-child(even) td { background: var(--bg-light); }
+        .data-table .calc-row td { background: #fef9c3; height: 28px; }
+
+        .question { margin-bottom: 14px; page-break-inside: avoid; }
+        .question-number { font-weight: 700; color: var(--text-dark); }
+        .question-text { color: var(--text-dark); margin-bottom: 6px; }
+
+        .answer-lines { margin-top: 6px; }
+        .answer-line { border-bottom: 1px solid var(--text-light); height: 22px; margin-bottom: 4px; }
+
+        .calc-box { border: 1px solid var(--border); border-radius: 4px; padding: 12px; margin: 8px 0; min-height: 60px; background: var(--bg-light); }
+        .calc-label { font-size: 9pt; color: var(--text-light); margin-bottom: 4px; }
+        .calc-answer { margin-top: 10px; font-weight: 600; }
+
+        .mc-options { margin-top: 6px; margin-left: 20px; }
+        .mc-option { display: flex; align-items: center; margin-bottom: 4px; }
+        .mc-checkbox { width: 14px; height: 14px; border: 1px solid var(--text-light); border-radius: 2px; margin-right: 8px; flex-shrink: 0; }
+
+        .hint-box { background: #f0fdf4; border-left: 3px solid var(--success); padding: 8px 12px; margin: 10px 0; font-size: 9pt; font-style: italic; color: #166534; }
+        .hint-box strong { font-style: normal; }
+
+        .part-header { font-weight: 700; font-size: 10pt; color: var(--primary); text-transform: uppercase; margin: 16px 0 10px; padding-bottom: 4px; border-bottom: 1px solid var(--border); }
+
+        .footer { margin-top: 24px; padding-top: 10px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; font-size: 9pt; color: var(--text-light); }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="header-left">
+            <h1>PFL Academy</h1>
+            <h2>Chapter 6.1: Credit Card Use and Management</h2>
+        </div>
+        <div class="header-right">Student Activity Packet</div>
+    </div>
+
+    <div class="section-header">The Challenge</div>
+    <div class="challenge-box">
+        <p>James received a credit card with a $5,000 limit and quickly maxed it out on electronics, clothes, and dinners. Unable to pay the full balance, he started making only minimum payments. Two years later, James still owes $4,200 and has paid over $1,500 in interest alone—on purchases he barely remembers.</p>
+        <p class="framing-question">What mistakes did James make, and how could he have avoided this debt trap?</p>
+    </div>
+
+    <div class="objectives-box">
+        <h3>Learning Objectives</h3>
+        <ul>
+            <li>Understand how credit card interest and minimum payments work.</li>
+            <li>Calculate the true cost of carrying a credit card balance over time.</li>
+            <li>Develop responsible credit card usage strategies that build credit without creating debt.</li>
+        </ul>
+    </div>
+
+    <div class="section-header">Core Concepts</div>
+
+    <table class="terms-table">
+        <tr><th>Term</th><th>Definition</th></tr>
+        <tr><td>APR</td><td>Annual Percentage Rate; the yearly interest charged on unpaid credit card balances.</td></tr>
+        <tr><td>Minimum Payment</td><td>The smallest payment to keep your account in good standing—usually 1-3% of balance.</td></tr>
+        <tr><td>Grace Period</td><td>Time (usually 21-25 days) to pay your balance in full before interest is charged.</td></tr>
+        <tr><td>Credit Utilization</td><td>The percentage of available credit you're using; below 30% is recommended.</td></tr>
+        <tr><td>Cash Advance</td><td>Withdrawing cash from your credit card; has higher interest rates and no grace period.</td></tr>
+    </table>
+
+    <div class="background-box">
+        <strong>Background:</strong> Credit cards can be powerful financial tools when used wisely. Pay your balance in full each month, and you get a <strong>free short-term loan</strong> plus rewards and credit-building benefits. But carry a balance, and you'll pay 18-25% interest on every purchase. The minimum payment trap is real: paying only the minimum means most of your payment goes to interest, and it can take decades to pay off a balance. The key is using credit cards strategically—never spending more than you can afford to pay off monthly.
+    </div>
+
+    <div class="section-header">Apply It</div>
+
+    <div class="part-header">Part A: Credit Card Scenario Analysis</div>
+    <p style="margin-bottom: 14px;">For each scenario, predict the outcome and explain your reasoning.</p>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Scenario 1: Sarah's Strategy</div>
+        <div class="scenario-description">Sarah uses her credit card for all regular purchases, never charging more than $500/month on a $3,000 limit. She pays her balance in full every month before the due date.</div>
+        <div class="response-line">
+            <span class="response-label">Interest paid:</span>
+            <span class="response-blank"></span>
+            <span class="response-options">($0 / some / significant)</span>
+        </div>
+        <div class="response-line">
+            <span class="response-label">Credit score impact:</span>
+            <span class="response-blank"></span>
+            <span class="response-options">(positive / negative / neutral)</span>
+        </div>
+        <div class="because-lines">
+            <div class="response-line">
+                <span class="response-label">Because:</span>
+                <span class="response-blank"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Scenario 2: John's Minimum Payments</div>
+        <div class="scenario-description">John has a $2,000 balance at 18% APR. He makes only the $40 minimum payment each month and continues using the card for small purchases.</div>
+        <div class="response-line">
+            <span class="response-label">Time to pay off:</span>
+            <span class="response-blank"></span>
+            <span class="response-options">(months / years / decades)</span>
+        </div>
+        <div class="response-line">
+            <span class="response-label">Total interest paid:</span>
+            <span class="response-blank"></span>
+            <span class="response-options">(less than / equal to / more than balance)</span>
+        </div>
+        <div class="because-lines">
+            <div class="response-line">
+                <span class="response-label">Because:</span>
+                <span class="response-blank"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="hint-box">
+        <strong>Hint:</strong> The grace period only applies if you pay in full. Once you carry a balance, interest accrues immediately on new purchases.
+    </div>
+
+    <div class="part-header">Part B: Minimum Payment Math</div>
+    <p style="margin-bottom: 14px;">See the true cost of making only minimum payments on a $2,000 balance at 18% APR.</p>
+
+    <table class="data-table">
+        <tr>
+            <th>Payment Strategy</th>
+            <th>Monthly Payment</th>
+            <th>Time to Pay Off</th>
+            <th>Total Interest</th>
+        </tr>
+        <tr>
+            <td style="font-weight: 600;">Minimum only ($40)</td>
+            <td>$40</td>
+            <td>9+ years</td>
+            <td>$2,200+</td>
+        </tr>
+        <tr>
+            <td style="font-weight: 600;">Double minimum ($80)</td>
+            <td>$80</td>
+            <td>32 months</td>
+            <td>$523</td>
+        </tr>
+        <tr>
+            <td style="font-weight: 600;">Fixed $150/month</td>
+            <td>$150</td>
+            <td>15 months</td>
+            <td>$236</td>
+        </tr>
+        <tr class="calc-row">
+            <td style="font-weight: 600;">Interest Saved vs. Minimum</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">3.</span> How much interest would John save by paying $150/month instead of the minimum?</p>
+        <div class="calc-box"><div class="calc-label">Show your work:</div></div>
+        <div class="calc-answer">Interest saved: $____________</div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">4.</span> Why does paying the minimum cost MORE than the original balance in interest?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="part-header">Part C: Your Credit Card Strategy</div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">5.</span> List THREE rules you would follow to use a credit card responsibly.</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">6.</span> If you had a $1,000 credit limit, what maximum balance should you maintain to keep good credit utilization?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="section-header">Check Your Understanding</div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">1.</span> What happens if you pay your credit card balance in full during the grace period?</p>
+        <div class="mc-options">
+            <div class="mc-option"><div class="mc-checkbox"></div> A. You pay the APR rate on purchases</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> B. You pay no interest on purchases</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> C. Your credit limit decreases</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> D. You lose your rewards points</div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">2.</span> Explain why a cash advance is worse than a regular credit card purchase.</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">3.</span> <strong>Calculation:</strong> Sophia's credit limit is $2,500. What's the maximum balance she should carry to stay at 30% utilization?</p>
+        <div class="calc-box"><div class="calc-label">Show your work:</div></div>
+        <div class="calc-answer">Maximum balance: $____________</div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">4.</span> James (from The Challenge) maxed out his $5,000 card. What TWO specific mistakes did he make, and what should he have done differently?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">5.</span> <strong>Reflection:</strong> Some people say "cash is king" and credit cards are dangerous. Others say credit cards are powerful tools. What's your view, and how would you use credit cards responsibly?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <span>© PFL Academy | pflacademy.co</span>
+        <span>Chapter 6.1: Credit Card Use and Management</span>
+    </div>
+
+</body>
+</html>

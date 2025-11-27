@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-37 Teacher Guide</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+        :root {
+            --primary: #059669;
+            --primary-light: #ecfdf5;
+            --primary-dark: #065f46;
+            --text-dark: #1e293b;
+            --text-medium: #475569;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --bg-light: #f8fafc;
+            --warning: #f59e0b;
+            --warning-light: #fef3c7;
+            --error: #dc2626;
+            --error-light: #fee2e2;
+            --success-light: #dcfce7;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+        @page { size: letter; margin: 0.5in; }
+
+        body { font-family: 'Open Sans', sans-serif; font-size: 10pt; line-height: 1.45; color: var(--text-dark); background: white; }
+
+        .header { background: var(--primary); color: white; padding: 14px 18px; border-radius: 6px; margin-bottom: 16px; }
+        .header h1 { font-size: 13pt; font-weight: 700; margin: 0; }
+        .header h2 { font-size: 10pt; font-weight: 400; margin: 3px 0 0; opacity: 0.9; }
+
+        .section-header { background: var(--primary-light); border-left: 4px solid var(--primary); padding: 7px 12px; font-size: 10pt; font-weight: 700; color: var(--primary-dark); text-transform: uppercase; letter-spacing: 0.5px; margin: 16px 0 10px; }
+
+        .overview-table { width: 100%; border-collapse: collapse; margin-bottom: 14px; }
+        .overview-table th { background: var(--bg-light); color: var(--text-light); font-size: 8pt; text-transform: uppercase; letter-spacing: 0.5px; text-align: center; padding: 6px 10px; border: 1px solid var(--border); width: 33%; }
+        .overview-table td { text-align: center; padding: 10px; border: 1px solid var(--border); font-weight: 600; color: var(--text-dark); font-size: 10pt; }
+
+        .flow-container { margin-bottom: 14px; }
+        .flow-item { display: flex; padding: 8px 0; border-bottom: 1px solid var(--border); page-break-inside: avoid; }
+        .flow-item:last-child { border-bottom: none; }
+        .flow-time { width: 65px; font-weight: 700; color: var(--primary); flex-shrink: 0; font-size: 10pt; }
+        .flow-content { flex: 1; }
+        .flow-title { font-weight: 700; color: var(--text-dark); margin-bottom: 3px; font-size: 10pt; }
+        .flow-content ul { margin: 0; padding-left: 16px; font-size: 9pt; color: var(--text-medium); }
+        .flow-content li { margin-bottom: 2px; }
+
+        .diff-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px; }
+        .diff-box { background: var(--bg-light); border: 1px solid var(--border); border-radius: 4px; padding: 10px 12px; }
+        .diff-title { font-weight: 700; color: var(--text-dark); margin-bottom: 6px; font-size: 9pt; }
+        .diff-box ul { margin: 0; padding-left: 16px; font-size: 9pt; color: var(--text-medium); }
+        .diff-box li { margin-bottom: 2px; }
+
+        .answer-key { page-break-before: always; }
+        .answer-block { margin-bottom: 12px; page-break-inside: avoid; }
+        .answer-title { font-weight: 700; color: var(--primary); font-size: 9pt; border-bottom: 1px solid #a7f3d0; padding-bottom: 3px; margin-bottom: 6px; }
+        .answer-item { margin-bottom: 5px; font-size: 9pt; color: var(--text-dark); }
+        .answer-item strong { color: var(--primary-dark); }
+
+        .calc-display { font-family: 'Courier New', monospace; background: var(--bg-light); padding: 8px 10px; border-radius: 4px; margin: 6px 0; font-size: 8.5pt; line-height: 1.5; white-space: pre-line; }
+        .answer-note { background: var(--warning-light); border-left: 3px solid var(--warning); padding: 6px 10px; font-size: 9pt; font-style: italic; color: #92400e; margin: 6px 0; }
+
+        .misconception-table { width: 100%; border-collapse: collapse; font-size: 9pt; margin-top: 10px; }
+        .misconception-table th { padding: 6px 10px; text-align: left; font-weight: 600; }
+        .misconception-table th:first-child { background: var(--error-light); color: #991b1b; border: 1px solid #fca5a5; width: 40%; }
+        .misconception-table th:last-child { background: var(--success-light); color: #166534; border: 1px solid #86efac; }
+        .misconception-table td { padding: 6px 10px; border: 1px solid var(--border); vertical-align: top; color: var(--text-medium); }
+
+        .footer { margin-top: 20px; padding-top: 8px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; font-size: 8pt; color: var(--text-light); }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>PFL Academy</h1>
+        <h2>Teacher Guide: Chapter 12.2 — The Costs and Benefits of Gambling</h2>
+    </div>
+
+    <div class="section-header">Overview</div>
+    <table class="overview-table">
+        <tr><th>Time</th><th>Materials</th><th>Prerequisites</th></tr>
+        <tr><td>45-50 Minutes</td><td>Student Activity Packet, Calculator</td><td>L-36 Understanding Gambling Risks</td></tr>
+    </table>
+
+    <div class="section-header">Lesson Flow</div>
+    <div class="flow-container">
+        <div class="flow-item">
+            <div class="flow-time">5 min</div>
+            <div class="flow-content">
+                <div class="flow-title">THE CHALLENGE</div>
+                <ul>
+                    <li>Read the casino development scenario aloud.</li>
+                    <li>Ask: "What questions would you want answered before supporting or opposing this?"</li>
+                    <li>Note that this is a real decision many communities face—there's no simple answer.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="flow-item">
+            <div class="flow-time">10 min</div>
+            <div class="flow-content">
+                <div class="flow-title">CORE CONCEPTS</div>
+                <ul>
+                    <li>Emphasize the "entertainment approach"—gambling has a cost like movies or concerts.</li>
+                    <li>Review the spectrum from recreational gambling to problem gambling.</li>
+                    <li>Discuss community impacts: economic benefits vs. social costs.</li>
+                    <li>Quick check: Have students name one benefit and one cost of community gambling.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="flow-item">
+            <div class="flow-time">25 min</div>
+            <div class="flow-content">
+                <div class="flow-title">APPLY IT</div>
+                <ul>
+                    <li><strong>Part A (8 min):</strong> Entertainment comparison. Calculate cost per hour, discuss how gambling differs from other entertainment.</li>
+                    <li><strong>Part B (8 min):</strong> David vs. Mark comparison. Identify warning signs of problem gambling.</li>
+                    <li><strong>Part C (9 min):</strong> Community impact analysis. Discuss regressive taxation concept and net benefit calculation.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="flow-item">
+            <div class="flow-time">10 min</div>
+            <div class="flow-content">
+                <div class="flow-title">CHECK YOUR UNDERSTANDING</div>
+                <ul>
+                    <li>Complete in class or assign as homework.</li>
+                    <li>Review Q3 calculation carefully—this connects to policy analysis.</li>
+                    <li>Q5 reflection has no single right answer—emphasize reasoning over position.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-header">Differentiation</div>
+    <div class="diff-grid">
+        <div class="diff-box">
+            <div class="diff-title">Support</div>
+            <ul>
+                <li>Create a T-chart comparing recreational vs. problem gambling behaviors.</li>
+                <li>Provide a checklist of warning signs for students to reference.</li>
+                <li>Work through the cost-per-hour calculations as a class.</li>
+                <li>Use simple examples to explain regressive taxation.</li>
+            </ul>
+        </div>
+        <div class="diff-box">
+            <div class="diff-title">Extension</div>
+            <ul>
+                <li>Research your state's gambling revenue and how it's used.</li>
+                <li>Analyze a real casino proposal and its economic impact study.</li>
+                <li>Compare gambling policies across different countries.</li>
+                <li>Create a public service announcement about responsible gambling.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="answer-key">
+        <div class="section-header">Answer Key</div>
+
+        <div class="answer-block">
+            <div class="answer-title">Part A: Entertainment Value Comparison</div>
+            <div class="calc-display">Cost Per Hour Calculations:
+Movie: $15 / 2 hours = $7.50/hour
+Concert: $100 / 3 hours = $33.33/hour
+Casino: $100 / 4 hours = $25/hour
+
+Q1: Viewing gambling as entertainment means:
+- Budget from discretionary funds, not necessities
+- Set a fixed amount you're willing to lose
+- Stop when limit is reached (don't chase losses)
+- Expect to lose money; winnings are a bonus
+- Compare value to other entertainment options</div>
+        </div>
+
+        <div class="answer-block">
+            <div class="answer-title">Part B: Recreational vs. Problem Gambling</div>
+            <div class="answer-item"><strong>Q2 Warning signs in Mark:</strong></div>
+            <div class="calc-display">Any THREE of:
+- Using savings to "win back" losses (chasing losses)
+- Thinking about gambling during work
+- Using credit cards to fund gambling
+- Lying about time spent at casino
+- Exceeding his original $200/month budget
+- Prioritizing gambling over other activities</div>
+        </div>
+
+        <div class="answer-block">
+            <div class="answer-title">Part C & Check Your Understanding</div>
+            <div class="answer-item"><strong>Q3 Regressive taxation:</strong> Gambling revenue is "regressive" because lower-income households spend a higher percentage of their income on gambling than higher-income households. For example, a family earning $30,000 might spend $950/year (3.2%) while a family earning $100,000 spends $250/year (0.25%).</div>
+            <div class="answer-item"><strong>CYU 1:</strong> B (Gambling is a leisure activity with an expected cost, like movies)</div>
+            <div class="answer-item"><strong>CYU 2:</strong> A (Setting a budget and sticking to it is a SIGN of healthy gambling, not a warning sign)</div>
+            <div class="answer-item"><strong>CYU 3:</strong> $10M - ($2M + $1.5M + $0.5M) = $10M - $4M = <strong>$6 million net benefit</strong></div>
+            <div class="answer-item"><strong>CYU 4:</strong> Any THREE: Set a budget and stick to it, set time limits, use only discretionary funds, never chase losses, take regular breaks, don't gamble when upset, don't borrow money to gamble.</div>
+            <div class="answer-note">CYU 5: Accept thoughtful responses that weigh benefits against costs. Strong answers will include conditions like: funding for problem gambling treatment, advertising restrictions, strong regulation, portion of revenue for local services, self-exclusion programs.</div>
+        </div>
+
+        <div class="section-header">Common Misconceptions</div>
+        <table class="misconception-table">
+            <tr><th>Misconception</th><th>Clarification</th></tr>
+            <tr>
+                <td>"Gambling is always bad and should be prohibited."</td>
+                <td>Gambling can be safe entertainment when approached responsibly with clear limits. The key is viewing it as recreation with a cost, not as income or investment.</td>
+            </tr>
+            <tr>
+                <td>"Casino tax revenue is 'free money' for communities."</td>
+                <td>Gambling revenue comes with associated costs: problem gambling treatment, social services, law enforcement. Net benefit depends on the specific situation.</td>
+            </tr>
+            <tr>
+                <td>"Problem gambling only affects weak-willed people."</td>
+                <td>Problem gambling is influenced by many factors: genetics, mental health, life circumstances, and game design. Anyone can be vulnerable, especially during stressful periods.</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="footer">
+        <span>&copy; PFL Academy | pflacademy.co</span>
+        <span>Teacher Guide: Chapter 12.2</span>
+    </div>
+
+</body>
+</html>

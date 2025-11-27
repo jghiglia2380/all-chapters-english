@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-67 Student Activity Packet</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+        :root {
+            --primary: #6366f1;
+            --primary-light: #eef2ff;
+            --accent: #f59e0b;
+            --accent-light: #fef3c7;
+            --success: #059669;
+            --text-dark: #1e293b;
+            --text-medium: #475569;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --bg-light: #f8fafc;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+        @page { size: letter; margin: 0.5in; }
+        body { font-family: 'Open Sans', sans-serif; font-size: 10.5pt; line-height: 1.5; color: var(--text-dark); background: white; }
+
+        .header { background: var(--primary); color: white; padding: 14px 18px; border-radius: 6px; margin-bottom: 18px; display: flex; justify-content: space-between; align-items: center; }
+        .header-left h1 { font-size: 13pt; font-weight: 700; margin: 0; }
+        .header-left h2 { font-size: 10pt; font-weight: 400; margin: 2px 0 0; opacity: 0.9; }
+        .header-right { font-size: 9pt; text-align: right; opacity: 0.9; }
+
+        .section-header { font-size: 11pt; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 2px solid var(--primary); padding-bottom: 4px; margin: 20px 0 12px; }
+
+        .challenge-box { background: var(--accent-light); border-left: 4px solid var(--accent); padding: 14px 16px; margin-bottom: 16px; border-radius: 0 6px 6px 0; }
+        .challenge-box p { font-style: italic; color: var(--text-dark); margin-bottom: 10px; }
+        .challenge-box .framing-question { font-weight: 600; font-style: normal; color: #92400e; }
+
+        .objectives-box { background: var(--primary-light); border: 1px solid #c7d2fe; border-radius: 6px; padding: 12px 16px; margin-bottom: 18px; }
+        .objectives-box h3 { font-size: 10pt; font-weight: 700; color: var(--primary); margin-bottom: 6px; }
+        .objectives-box ul { margin: 0; padding-left: 20px; }
+        .objectives-box li { margin-bottom: 3px; color: var(--text-medium); }
+
+        .terms-table { width: 100%; border-collapse: collapse; margin-bottom: 14px; font-size: 10pt; }
+        .terms-table th { background: var(--bg-light); text-align: left; padding: 8px 10px; border: 1px solid var(--border); font-weight: 600; color: var(--text-medium); }
+        .terms-table td { padding: 8px 10px; border: 1px solid var(--border); vertical-align: top; }
+        .terms-table td:first-child { font-weight: 600; color: var(--primary); width: 22%; }
+
+        .background-box { background: var(--bg-light); border: 1px solid var(--border); border-radius: 6px; padding: 12px 16px; margin-bottom: 18px; font-size: 10pt; color: var(--text-medium); }
+        .background-box strong { color: var(--text-dark); }
+
+        .scenario-card { background: white; border: 1px solid var(--border); border-radius: 6px; padding: 12px 14px; margin-bottom: 14px; page-break-inside: avoid; }
+        .scenario-title { font-weight: 700; color: var(--primary); margin-bottom: 6px; font-size: 10pt; }
+        .scenario-description { color: var(--text-medium); margin-bottom: 10px; font-size: 10pt; }
+
+        .response-line { display: flex; align-items: baseline; margin-bottom: 8px; }
+        .response-label { font-weight: 600; color: var(--text-dark); margin-right: 8px; white-space: nowrap; }
+        .response-blank { flex-grow: 1; border-bottom: 1px solid var(--text-light); min-height: 18px; }
+        .response-options { color: var(--text-light); font-size: 9pt; margin-left: 8px; white-space: nowrap; }
+
+        .data-table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 10pt; }
+        .data-table th { background: var(--primary); color: white; padding: 8px 10px; text-align: center; font-weight: 600; font-size: 9pt; }
+        .data-table td { padding: 8px 10px; border: 1px solid var(--border); text-align: center; }
+        .data-table tr:nth-child(even) td { background: var(--bg-light); }
+
+        .question { margin-bottom: 14px; page-break-inside: avoid; }
+        .question-number { font-weight: 700; color: var(--text-dark); }
+        .question-text { color: var(--text-dark); margin-bottom: 6px; }
+        .answer-lines { margin-top: 6px; }
+        .answer-line { border-bottom: 1px solid var(--text-light); height: 22px; margin-bottom: 4px; }
+
+        .calc-box { border: 1px solid var(--border); border-radius: 4px; padding: 12px; margin: 8px 0; min-height: 60px; background: var(--bg-light); }
+        .calc-label { font-size: 9pt; color: var(--text-light); margin-bottom: 4px; }
+        .calc-answer { margin-top: 10px; font-weight: 600; }
+
+        .mc-options { margin-top: 6px; margin-left: 20px; }
+        .mc-option { display: flex; align-items: center; margin-bottom: 4px; }
+        .mc-checkbox { width: 14px; height: 14px; border: 1px solid var(--text-light); border-radius: 2px; margin-right: 8px; flex-shrink: 0; }
+
+        .hint-box { background: #f0fdf4; border-left: 3px solid var(--success); padding: 8px 12px; margin: 10px 0; font-size: 9pt; font-style: italic; color: #166534; }
+        .hint-box strong { font-style: normal; }
+
+        .part-header { font-weight: 700; font-size: 10pt; color: var(--primary); text-transform: uppercase; margin: 16px 0 10px; padding-bottom: 4px; border-bottom: 1px solid var(--border); }
+
+        .footer { margin-top: 24px; padding-top: 10px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; font-size: 9pt; color: var(--text-light); }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="header-left">
+            <h1>PFL Academy</h1>
+            <h2>Chapter 67: Investment Technology and Behavioral Investing</h2>
+        </div>
+        <div class="header-right">Student Activity Packet</div>
+    </div>
+
+    <div class="section-header">The Challenge</div>
+    <div class="challenge-box">
+        <p>In March 2020, Marcus watched his $18,000 portfolio crash to $11,880—a 34% loss in weeks. His brain screamed "SELL!" as friends panic-sold and news predicted disaster. But Marcus had written a rule: "Never sell based on short-term movements." He kept investing $300/month at discounted prices. By August, his portfolio hit $24,000—higher than before the crash. Friends who panic-sold locked in losses and missed the recovery entirely.</p>
+        <p class="framing-question">How can understanding behavioral biases and choosing the right investment technology help you avoid emotional decisions that destroy wealth?</p>
+    </div>
+
+    <div class="objectives-box">
+        <h3>Learning Objectives</h3>
+        <ul>
+            <li>Evaluate investment platforms (robo-advisors, brokerages, apps) and their appropriate use cases.</li>
+            <li>Analyze how behavioral biases (loss aversion, recency bias, herd mentality) cause poor decisions.</li>
+            <li>Apply strategies to counter emotional decision-making during market volatility.</li>
+        </ul>
+    </div>
+
+    <div class="section-header">Core Concepts</div>
+
+    <table class="terms-table">
+        <tr><th>Term</th><th>Definition</th></tr>
+        <tr><td>Robo-Advisor</td><td>Automated platform that builds and manages portfolios based on your goals; handles rebalancing. (0.25-0.50% fee)</td></tr>
+        <tr><td>Loss Aversion</td><td>Losses feel 2x more painful than equivalent gains feel good—causes holding losers too long, selling winners too early.</td></tr>
+        <tr><td>Recency Bias</td><td>Overweighting recent events; assuming current trends continue forever. Buy high after rises, sell low after drops.</td></tr>
+        <tr><td>Confirmation Bias</td><td>Seeking information that confirms existing beliefs while ignoring contradictory evidence.</td></tr>
+        <tr><td>Herd Mentality</td><td>Following the crowd even when it contradicts rational analysis—drives bubbles and panic selling.</td></tr>
+    </table>
+
+    <div class="background-box">
+        <strong>Background:</strong> Research shows the S&P 500 returned 10.7% annually from 1992-2021, but the <strong>average investor earned only 7.1%</strong>—a 3.6% gap caused almost entirely by behavioral biases. Investors buy high (after rallies) and sell low (after crashes). The right investment technology can help: <strong>robo-advisors</strong> automate discipline, preventing panic decisions. But technology alone isn't enough—you must understand your own biases and establish rules BEFORE market volatility hits. A pre-written rule like Marcus's can save you from decisions that feel right in the moment but destroy wealth long-term.
+    </div>
+
+    <div class="section-header">Apply It</div>
+
+    <div class="part-header">Part A: Platform Comparison</div>
+
+    <table class="data-table">
+        <tr><th>Platform Type</th><th>Annual Cost ($10k)</th><th>Best For</th><th>Watch Out For</th></tr>
+        <tr><td style="text-align: left; font-weight: 600;">Robo-Advisor</td><td>$35-$65</td><td>Hands-off investors</td><td>Less control</td></tr>
+        <tr><td style="text-align: left; font-weight: 600;">Online Brokerage</td><td>$5-$20 (fund fees)</td><td>DIY investors</td><td>Overtrading temptation</td></tr>
+        <tr><td style="text-align: left; font-weight: 600;">Investment App</td><td>$36-$144 (subscriptions)</td><td>Beginners, micro-investing</td><td>High % cost on small balances</td></tr>
+    </table>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Investor Profile: Keisha (Age 24)</div>
+        <div class="scenario-description">Just started working, $5,000 to invest, can add $200/month. Doesn't enjoy research, susceptible to FOMO when friends discuss hot stocks.</div>
+        <div class="response-line"><span class="response-label">Best platform:</span><span class="response-blank"></span></div>
+        <div class="response-line"><span class="response-label">Because:</span><span class="response-blank"></span></div>
+    </div>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Investor Profile: Derek (Age 35)</div>
+        <div class="scenario-description">Enjoys investment research, wants full control, $50,000 portfolio, disciplined about not overtrading.</div>
+        <div class="response-line"><span class="response-label">Best platform:</span><span class="response-blank"></span></div>
+        <div class="response-line"><span class="response-label">Because:</span><span class="response-blank"></span></div>
+    </div>
+
+    <div class="part-header">Part B: Behavioral Bias Identification</div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">1.</span> Match each scenario to its primary bias: (A) Loss Aversion (B) Recency Bias (C) Confirmation Bias (D) Herd Mentality</p>
+        <p style="font-size: 9.5pt; margin-top: 6px;">_____ After markets rose 30% last year, investor assumes continued gains and goes all-in on stocks.</p>
+        <p style="font-size: 9.5pt;">_____ Investor refuses to sell a stock down 40% because selling would "make the loss real."</p>
+        <p style="font-size: 9.5pt;">_____ Everyone at work is buying cryptocurrency, so investor buys without research.</p>
+        <p style="font-size: 9.5pt;">_____ Investor only reads positive news about their favorite stock, ignoring warning signs.</p>
+    </div>
+
+    <div class="part-header">Part C: Creating Behavioral Rules</div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">2.</span> Write THREE pre-commitment rules you would establish NOW (before experiencing market volatility) to prevent emotional decisions:</p>
+        <div class="answer-lines"><div class="answer-line"></div><div class="answer-line"></div><div class="answer-line"></div></div>
+    </div>
+
+    <div class="hint-box">
+        <strong>Example rules:</strong> "Never check portfolio more than monthly." "Continue monthly investments regardless of market conditions." "Never sell based on news headlines."
+    </div>
+
+    <div class="section-header">Check Your Understanding</div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">1.</span> The behavioral bias where losses feel twice as painful as equivalent gains feel good is called:</p>
+        <div class="mc-options">
+            <div class="mc-option"><div class="mc-checkbox"></div> A. Recency bias</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> B. Loss aversion</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> C. Confirmation bias</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> D. Herd mentality</div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">2.</span> Explain why the average investor (7.1% return) significantly underperforms the S&P 500 (10.7% return) over time, using behavioral bias concepts.</p>
+        <div class="answer-lines"><div class="answer-line"></div><div class="answer-line"></div></div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">3.</span> <strong>Calculation:</strong> Jasmine's confirmation bias caused her to hold a declining stock. If she had sold at $38/share (when warning signs appeared) instead of $25/share (eventual bottom), how much did bias cost her on 100 shares?</p>
+        <div class="calc-box"><div class="calc-label">Show your work:</div></div>
+        <div class="calc-answer">Cost of confirmation bias: $__________</div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">4.</span> Why might a robo-advisor help prevent behavioral mistakes better than a self-directed brokerage account?</p>
+        <div class="answer-lines"><div class="answer-line"></div><div class="answer-line"></div></div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">5.</span> <strong>Reflection:</strong> Which behavioral bias are you most susceptible to? What specific rule would you create to counter it? What investment platform seems best suited to your personality?</p>
+        <div class="answer-lines"><div class="answer-line"></div><div class="answer-line"></div><div class="answer-line"></div><div class="answer-line"></div></div>
+    </div>
+
+    <div class="footer">
+        <span>&copy; PFL Academy | pflacademy.co</span>
+        <span>Chapter 67: Investment Technology and Behavioral Investing</span>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-23 Student Activity Packet</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+        :root {
+            --primary: #6366f1;
+            --primary-light: #eef2ff;
+            --accent: #f59e0b;
+            --accent-light: #fef3c7;
+            --success: #059669;
+            --text-dark: #1e293b;
+            --text-medium: #475569;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --bg-light: #f8fafc;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+
+        @page {
+            size: letter;
+            margin: 0.5in;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 10.5pt;
+            line-height: 1.5;
+            color: var(--text-dark);
+            background: white;
+        }
+
+        .header {
+            background: var(--primary);
+            color: white;
+            padding: 14px 18px;
+            border-radius: 6px;
+            margin-bottom: 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-left h1 { font-size: 13pt; font-weight: 700; margin: 0; }
+        .header-left h2 { font-size: 10pt; font-weight: 400; margin: 2px 0 0; opacity: 0.9; }
+        .header-right { font-size: 9pt; text-align: right; opacity: 0.9; }
+
+        .section-header {
+            font-size: 11pt;
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 4px;
+            margin: 20px 0 12px;
+        }
+
+        .challenge-box {
+            background: var(--accent-light);
+            border-left: 4px solid var(--accent);
+            padding: 14px 16px;
+            margin-bottom: 16px;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .challenge-box p { font-style: italic; color: var(--text-dark); margin-bottom: 10px; }
+        .challenge-box .framing-question { font-weight: 600; font-style: normal; color: #92400e; }
+
+        .objectives-box {
+            background: var(--primary-light);
+            border: 1px solid #c7d2fe;
+            border-radius: 6px;
+            padding: 12px 16px;
+            margin-bottom: 18px;
+        }
+
+        .objectives-box h3 { font-size: 10pt; font-weight: 700; color: var(--primary); margin-bottom: 6px; }
+        .objectives-box ul { margin: 0; padding-left: 20px; }
+        .objectives-box li { margin-bottom: 3px; color: var(--text-medium); }
+
+        .terms-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 14px;
+            font-size: 10pt;
+        }
+
+        .terms-table th {
+            background: var(--bg-light);
+            text-align: left;
+            padding: 8px 10px;
+            border: 1px solid var(--border);
+            font-weight: 600;
+            color: var(--text-medium);
+        }
+
+        .terms-table td {
+            padding: 8px 10px;
+            border: 1px solid var(--border);
+            vertical-align: top;
+        }
+
+        .terms-table td:first-child { font-weight: 600; color: var(--primary); width: 25%; }
+
+        .background-box {
+            background: var(--bg-light);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 12px 16px;
+            margin-bottom: 18px;
+            font-size: 10pt;
+            color: var(--text-medium);
+        }
+
+        .background-box strong { color: var(--text-dark); }
+
+        .scenario-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 12px 14px;
+            margin-bottom: 14px;
+            page-break-inside: avoid;
+        }
+
+        .scenario-title { font-weight: 700; color: var(--primary); margin-bottom: 6px; font-size: 10pt; }
+        .scenario-description { color: var(--text-medium); margin-bottom: 10px; font-size: 10pt; }
+
+        .response-line { display: flex; align-items: baseline; margin-bottom: 8px; }
+        .response-label { font-weight: 600; color: var(--text-dark); margin-right: 8px; white-space: nowrap; }
+        .response-blank { flex-grow: 1; border-bottom: 1px solid var(--text-light); min-height: 18px; }
+        .response-options { color: var(--text-light); font-size: 9pt; margin-left: 8px; white-space: nowrap; }
+
+        .because-lines { margin-top: 6px; }
+        .because-lines .response-line { margin-bottom: 4px; }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 12px 0;
+            font-size: 10pt;
+        }
+
+        .data-table th {
+            background: var(--primary);
+            color: white;
+            padding: 8px 10px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 9pt;
+        }
+
+        .data-table td { padding: 8px 10px; border: 1px solid var(--border); text-align: center; }
+        .data-table tr:nth-child(even) td { background: var(--bg-light); }
+        .data-table .calc-row td { background: #fef9c3; height: 28px; }
+
+        .question { margin-bottom: 14px; page-break-inside: avoid; }
+        .question-number { font-weight: 700; color: var(--text-dark); }
+        .question-text { color: var(--text-dark); margin-bottom: 6px; }
+
+        .answer-lines { margin-top: 6px; }
+        .answer-line { border-bottom: 1px solid var(--text-light); height: 22px; margin-bottom: 4px; }
+
+        .calc-box {
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 12px;
+            margin: 8px 0;
+            min-height: 60px;
+            background: var(--bg-light);
+        }
+
+        .calc-label { font-size: 9pt; color: var(--text-light); margin-bottom: 4px; }
+        .calc-answer { margin-top: 10px; font-weight: 600; }
+
+        .mc-options { margin-top: 6px; margin-left: 20px; }
+        .mc-option { display: flex; align-items: center; margin-bottom: 4px; }
+        .mc-checkbox { width: 14px; height: 14px; border: 1px solid var(--text-light); border-radius: 2px; margin-right: 8px; flex-shrink: 0; }
+
+        .hint-box {
+            background: #f0fdf4;
+            border-left: 3px solid var(--success);
+            padding: 8px 12px;
+            margin: 10px 0;
+            font-size: 9pt;
+            font-style: italic;
+            color: #166534;
+        }
+
+        .hint-box strong { font-style: normal; }
+
+        .part-header {
+            font-weight: 700;
+            font-size: 10pt;
+            color: var(--primary);
+            text-transform: uppercase;
+            margin: 16px 0 10px;
+            padding-bottom: 4px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .footer {
+            margin-top: 24px;
+            padding-top: 10px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            font-size: 9pt;
+            color: var(--text-light);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="header-left">
+            <h1>PFL Academy</h1>
+            <h2>Chapter 5.3: Understanding Credit Scores</h2>
+        </div>
+        <div class="header-right">
+            Student Activity Packet
+        </div>
+    </div>
+
+    <div class="section-header">The Challenge</div>
+    <div class="challenge-box">
+        <p>Jason applied for three credit cards in one month, thinking he could compare offers. Each application triggered a hard inquiry, dropping his score by 25 points. Now a landlord has rejected his rental application because his score fell below their minimum requirement of 650.</p>
+        <p class="framing-question">How could Jason have compared credit offers without damaging his score, and what steps should he take now to rebuild it?</p>
+    </div>
+
+    <div class="objectives-box">
+        <h3>Learning Objectives</h3>
+        <ul>
+            <li>Identify the five factors that determine your FICO credit score and their relative weights.</li>
+            <li>Analyze how specific financial behaviors positively or negatively impact credit scores.</li>
+            <li>Develop a personal strategy for building and maintaining good credit.</li>
+        </ul>
+    </div>
+
+    <div class="section-header">Core Concepts</div>
+
+    <table class="terms-table">
+        <tr><th>Term</th><th>Definition</th></tr>
+        <tr><td>FICO Score</td><td>The most widely used credit score in the U.S., ranging from 300-850.</td></tr>
+        <tr><td>Payment History</td><td>Your record of on-time and late payments; accounts for 35% of your score.</td></tr>
+        <tr><td>Credit Utilization</td><td>The percentage of available credit you're using; accounts for 30% of your score.</td></tr>
+        <tr><td>Hard Inquiry</td><td>A credit check when you apply for new credit; temporarily lowers your score.</td></tr>
+        <tr><td>Credit Bureau</td><td>Companies (Equifax, Experian, TransUnion) that collect credit data and calculate scores.</td></tr>
+    </table>
+
+    <div class="background-box">
+        <strong>Background:</strong> Your credit score is a three-digit number that represents your creditworthiness—how likely you are to repay borrowed money. Lenders, landlords, insurers, and even employers use this score to make decisions about you. A higher score (700+) opens doors to lower interest rates, better rental options, and more financial opportunities. Building good credit takes time, but the benefits last a lifetime. Understanding what affects your score empowers you to take control of your financial future.
+    </div>
+
+    <div class="section-header">Apply It</div>
+
+    <div class="part-header">Part A: Credit Score Factor Analysis</div>
+    <p style="margin-bottom: 14px;">For each action, predict whether the credit score will increase, decrease, or stay the same.</p>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Scenario 1: Perfect Payment Record</div>
+        <div class="scenario-description">Maria has paid every bill on time for 24 consecutive months. She has a credit card, car loan, and student loan.</div>
+        <div class="response-line">
+            <span class="response-label">Score will:</span>
+            <span class="response-blank"></span>
+            <span class="response-options">(increase / decrease / stay the same)</span>
+        </div>
+        <div class="response-line">
+            <span class="response-label">Primary factor affected:</span>
+            <span class="response-blank"></span>
+        </div>
+    </div>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Scenario 2: Maxed Out Credit Card</div>
+        <div class="scenario-description">Kevin has a credit card with a $5,000 limit. He currently has a $4,800 balance (96% utilization).</div>
+        <div class="response-line">
+            <span class="response-label">Score will:</span>
+            <span class="response-blank"></span>
+            <span class="response-options">(increase / decrease / stay the same)</span>
+        </div>
+        <div class="response-line">
+            <span class="response-label">Primary factor affected:</span>
+            <span class="response-blank"></span>
+        </div>
+    </div>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Scenario 3: Closing Old Account</div>
+        <div class="scenario-description">Sophia closes her oldest credit card (10 years old) because she no longer uses it. She has two other cards that are 2 years old.</div>
+        <div class="response-line">
+            <span class="response-label">Score will:</span>
+            <span class="response-blank"></span>
+            <span class="response-options">(increase / decrease / stay the same)</span>
+        </div>
+        <div class="response-line">
+            <span class="response-label">Primary factor affected:</span>
+            <span class="response-blank"></span>
+        </div>
+    </div>
+
+    <div class="hint-box">
+        <strong>Hint:</strong> Remember the FICO score weights: Payment History (35%), Credit Utilization (30%), Length of History (15%), Credit Mix (10%), New Credit (10%).
+    </div>
+
+    <div class="part-header">Part B: Credit Score Interest Impact</div>
+    <p style="margin-bottom: 14px;">See how credit scores affect loan costs. Complete the missing calculations.</p>
+
+    <table class="data-table">
+        <tr>
+            <th>Credit Score Range</th>
+            <th>Auto Loan APR</th>
+            <th>Monthly Payment ($25,000 loan, 5 years)</th>
+            <th>Total Interest Paid</th>
+        </tr>
+        <tr>
+            <td style="font-weight: 600;">Excellent (750+)</td>
+            <td>4.5%</td>
+            <td>$466</td>
+            <td>$2,960</td>
+        </tr>
+        <tr>
+            <td style="font-weight: 600;">Good (700-749)</td>
+            <td>6.5%</td>
+            <td>$489</td>
+            <td>$4,340</td>
+        </tr>
+        <tr>
+            <td style="font-weight: 600;">Fair (650-699)</td>
+            <td>10.5%</td>
+            <td>$537</td>
+            <td>$7,220</td>
+        </tr>
+        <tr>
+            <td style="font-weight: 600;">Poor (below 650)</td>
+            <td>15.5%</td>
+            <td>$601</td>
+            <td>$11,060</td>
+        </tr>
+        <tr class="calc-row">
+            <td style="font-weight: 600;">Cost Difference (Poor vs. Excellent)</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">4.</span> How much more in total interest does someone with poor credit pay compared to someone with excellent credit?</p>
+        <div class="calc-box"><div class="calc-label">Show your work:</div></div>
+        <div class="calc-answer">Difference: $____________</div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">5.</span> If someone improves their score from 640 to 720 before buying a car, approximately how much would they save in interest?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="part-header">Part C: Personal Credit Plan</div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">6.</span> List THREE specific actions you can take in the next year to build or maintain good credit.</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">7.</span> Which FICO factor would be easiest for you to control? Which would be most challenging? Explain.</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="section-header">Check Your Understanding</div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">1.</span> Which factor has the greatest impact on your FICO credit score?</p>
+        <div class="mc-options">
+            <div class="mc-option"><div class="mc-checkbox"></div> A. Length of credit history (15%)</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> B. Payment history (35%)</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> C. Credit utilization (30%)</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> D. New credit inquiries (10%)</div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">2.</span> Explain why keeping credit utilization below 30% is important for your credit score.</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">3.</span> <strong>Calculation:</strong> If your credit limit is $2,000 and experts recommend keeping utilization below 30%, what is the maximum balance you should carry?</p>
+        <div class="calc-box"><div class="calc-label">Show your work:</div></div>
+        <div class="calc-answer">Maximum balance: $____________</div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">4.</span> Jason's score dropped 25 points from multiple credit applications. What should he have done differently, and how long will the hard inquiries affect his score?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">5.</span> <strong>Reflection:</strong> Your friend says credit scores don't matter because they plan to pay cash for everything. How would you explain why credit scores still matter even if you don't plan to borrow money?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <span>© PFL Academy | pflacademy.co</span>
+        <span>Chapter 5.3: Understanding Credit Scores</span>
+    </div>
+
+</body>
+</html>

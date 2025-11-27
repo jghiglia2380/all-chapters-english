@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-46 Teacher Guide</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+        :root {
+            --primary: #059669;
+            --primary-light: #ecfdf5;
+            --primary-dark: #065f46;
+            --text-dark: #1e293b;
+            --text-medium: #475569;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --bg-light: #f8fafc;
+            --warning: #f59e0b;
+            --warning-light: #fef3c7;
+            --error: #dc2626;
+            --error-light: #fee2e2;
+            --success-light: #dcfce7;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+        @page { size: letter; margin: 0.5in; }
+
+        body { font-family: 'Open Sans', sans-serif; font-size: 10pt; line-height: 1.45; color: var(--text-dark); background: white; }
+
+        .header { background: var(--primary); color: white; padding: 14px 18px; border-radius: 6px; margin-bottom: 16px; }
+        .header h1 { font-size: 13pt; font-weight: 700; margin: 0; }
+        .header h2 { font-size: 10pt; font-weight: 400; margin: 3px 0 0; opacity: 0.9; }
+
+        .section-header { background: var(--primary-light); border-left: 4px solid var(--primary); padding: 7px 12px; font-size: 10pt; font-weight: 700; color: var(--primary-dark); text-transform: uppercase; letter-spacing: 0.5px; margin: 16px 0 10px; }
+
+        .overview-table { width: 100%; border-collapse: collapse; margin-bottom: 14px; }
+        .overview-table th { background: var(--bg-light); color: var(--text-light); font-size: 8pt; text-transform: uppercase; letter-spacing: 0.5px; text-align: center; padding: 6px 10px; border: 1px solid var(--border); width: 33%; }
+        .overview-table td { text-align: center; padding: 10px; border: 1px solid var(--border); font-weight: 600; color: var(--text-dark); font-size: 10pt; }
+
+        .flow-container { margin-bottom: 14px; }
+        .flow-item { display: flex; padding: 8px 0; border-bottom: 1px solid var(--border); page-break-inside: avoid; }
+        .flow-item:last-child { border-bottom: none; }
+        .flow-time { width: 65px; font-weight: 700; color: var(--primary); flex-shrink: 0; font-size: 10pt; }
+        .flow-content { flex: 1; }
+        .flow-title { font-weight: 700; color: var(--text-dark); margin-bottom: 3px; font-size: 10pt; }
+        .flow-content ul { margin: 0; padding-left: 16px; font-size: 9pt; color: var(--text-medium); }
+        .flow-content li { margin-bottom: 2px; }
+
+        .diff-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px; }
+        .diff-box { background: var(--bg-light); border: 1px solid var(--border); border-radius: 4px; padding: 10px 12px; }
+        .diff-title { font-weight: 700; color: var(--text-dark); margin-bottom: 6px; font-size: 9pt; }
+        .diff-box ul { margin: 0; padding-left: 16px; font-size: 9pt; color: var(--text-medium); }
+        .diff-box li { margin-bottom: 2px; }
+
+        .answer-key { page-break-before: always; }
+        .answer-block { margin-bottom: 12px; page-break-inside: avoid; }
+        .answer-title { font-weight: 700; color: var(--primary); font-size: 9pt; border-bottom: 1px solid #a7f3d0; padding-bottom: 3px; margin-bottom: 6px; }
+        .answer-item { margin-bottom: 5px; font-size: 9pt; color: var(--text-dark); }
+        .answer-item strong { color: var(--primary-dark); }
+
+        .calc-display { font-family: 'Courier New', monospace; background: var(--bg-light); padding: 8px 10px; border-radius: 4px; margin: 6px 0; font-size: 8.5pt; line-height: 1.5; white-space: pre-line; }
+
+        .answer-note { background: var(--warning-light); border-left: 3px solid var(--warning); padding: 6px 10px; font-size: 9pt; font-style: italic; color: #92400e; margin: 6px 0; }
+
+        .misconception-table { width: 100%; border-collapse: collapse; font-size: 9pt; margin-top: 10px; }
+        .misconception-table th { padding: 6px 10px; text-align: left; font-weight: 600; }
+        .misconception-table th:first-child { background: var(--error-light); color: #991b1b; border: 1px solid #fca5a5; width: 40%; }
+        .misconception-table th:last-child { background: var(--success-light); color: #166534; border: 1px solid #86efac; }
+        .misconception-table td { padding: 6px 10px; border: 1px solid var(--border); vertical-align: top; color: var(--text-medium); }
+
+        .footer { margin-top: 20px; padding-top: 8px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; font-size: 8pt; color: var(--text-light); }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <div class="header">
+        <h1>PFL Academy</h1>
+        <h2>Teacher Guide: Chapter 12.1 — Automobile Finance</h2>
+    </div>
+
+    <!-- OVERVIEW -->
+    <div class="section-header">Overview</div>
+    <table class="overview-table">
+        <tr>
+            <th>Time</th>
+            <th>Materials</th>
+            <th>Prerequisites</th>
+        </tr>
+        <tr>
+            <td>45-50 Minutes</td>
+            <td>Student Activity Packet, Auto Finance Calculator</td>
+            <td>Basic math skills, understanding of percentages</td>
+        </tr>
+    </table>
+
+    <!-- LESSON FLOW -->
+    <div class="section-header">Lesson Flow</div>
+    <div class="flow-container">
+        <div class="flow-item">
+            <div class="flow-time">5 min</div>
+            <div class="flow-content">
+                <div class="flow-title">THE CHALLENGE</div>
+                <ul>
+                    <li>Read Taylor's vehicle financing comparison aloud or have students read silently.</li>
+                    <li>Discussion: "Why do you think car dealerships advertise monthly payments rather than total cost?"</li>
+                    <li>Preview how total cost analysis reveals the true financial picture.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="flow-item">
+            <div class="flow-time">10 min</div>
+            <div class="flow-content">
+                <div class="flow-title">CORE CONCEPTS</div>
+                <ul>
+                    <li>Review the 5 key terms. Emphasize depreciation—cars lose 20-30% value in year 1.</li>
+                    <li>Explain the concept of "equity" vs. "being underwater" on a loan.</li>
+                    <li>Quick check: Ask students to estimate what a $30,000 car might be worth after 5 years (~$12,000).</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="flow-item">
+            <div class="flow-time">25-30 min</div>
+            <div class="flow-content">
+                <div class="flow-title">APPLY IT</div>
+                <ul>
+                    <li><strong>Part A (15 min):</strong> Buy vs. Lease Comparison. Walk through the table together. Have students calculate totals. Key insight: leasing costs more AND leaves nothing.</li>
+                    <li><strong>Part B (10-15 min):</strong> Loan Term Analysis. Students compare 36/60/72 month options. Emphasize the $4,000+ difference in interest.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="flow-item">
+            <div class="flow-time">10 min</div>
+            <div class="flow-content">
+                <div class="flow-title">CHECK YOUR UNDERSTANDING</div>
+                <ul>
+                    <li>Complete in class or assign as homework.</li>
+                    <li>Review Q3 (total cost vs. monthly) and Q5 (personal application) for deeper understanding.</li>
+                    <li>Preview Day 2 Learning Lab: Building complete vehicle cost scenarios with real data.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- DIFFERENTIATION -->
+    <div class="section-header">Differentiation</div>
+    <div class="diff-grid">
+        <div class="diff-box">
+            <div class="diff-title">Support</div>
+            <ul>
+                <li>Pre-fill some calculations in the comparison table.</li>
+                <li>Provide a step-by-step calculation guide.</li>
+                <li>Allow calculator use for all problems.</li>
+                <li>Work through Part A as a whole-class activity.</li>
+            </ul>
+        </div>
+        <div class="diff-box">
+            <div class="diff-title">Extension</div>
+            <ul>
+                <li>Research actual vehicle prices and loan rates, then create custom scenarios.</li>
+                <li>Calculate opportunity cost: what $500/month invested for 30 years becomes.</li>
+                <li>Compare insurance costs for different vehicles and ownership scenarios.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ANSWER KEY (new page) -->
+    <div class="answer-key">
+        <div class="section-header">Answer Key</div>
+
+        <div class="answer-block">
+            <div class="answer-title">Part A: Buy vs. Lease Comparison</div>
+            <div class="calc-display">BUY:
+Total Paid = $7,000 (down) + $31,680 (payments) = $38,680
+Net Cost = $38,680 - $14,000 (resale) = $24,680
+
+LEASE:
+Total Paid = $4,000 (down payments) + $28,800 (payments) = $32,800
+Net Cost = $32,800 - $0 (nothing at end) = $32,800</div>
+            <div class="answer-item"><strong>1.</strong> BUY has lower net cost by $8,120 ($32,800 - $24,680)</div>
+            <div class="answer-item"><strong>2.</strong> 3 more years payment-free while leasing continues: 36 months × $400 = <strong>$14,400 saved</strong></div>
+        </div>
+
+        <div class="answer-block">
+            <div class="answer-title">Part B: Loan Term Impact Analysis</div>
+            <div class="answer-item"><strong>3.</strong> Extra interest for 72-month vs. 36-month: $6,328 - $2,224 = <strong>$4,104 more</strong></div>
+            <div class="answer-item"><strong>4.</strong> $282/month × 36 months × 1.11 growth factor ≈ <strong>$11,250</strong> (or accept $10,152 without growth factor)</div>
+        </div>
+
+        <div class="answer-block">
+            <div class="answer-title">Check Your Understanding</div>
+            <div class="answer-item"><strong>1.</strong> C ($16,000 - cars typically lose ~60% of value in 5 years, keeping 40%)</div>
+            <div class="answer-item"><strong>2.</strong> B (Years of payment-free driving while the car still has value)</div>
+            <div class="answer-item"><strong>3.</strong> Total cost includes: all payments, interest, depreciation, insurance, fuel, maintenance, and what the car is worth at the end. Monthly payment alone ignores loan length, interest total, and whether you have an asset at the end. A $300/month lease seems cheaper than $500 loan payment, but leaves you with nothing.</div>
+            <div class="answer-item"><strong>4.</strong> Situations where leasing might make sense: (1) Business use with tax deductions, (2) Need newest safety features for short-term, (3) Job requires always having a new reliable car, (4) Planning to relocate/uncertain about long-term vehicle needs, (5) Cannot afford down payment for purchase.</div>
+            <div class="answer-item"><strong>5.</strong> <em>Responses will vary. Look for: consideration of total cost (not just monthly), acknowledgment of opportunity cost, realistic assessment of personal situation, and alignment with stated financial goals.</em></div>
+        </div>
+
+        <!-- COMMON MISCONCEPTIONS -->
+        <div class="section-header">Common Misconceptions</div>
+        <table class="misconception-table">
+            <tr>
+                <th>Misconception</th>
+                <th>Clarification</th>
+            </tr>
+            <tr>
+                <td>"Lower monthly payment = better deal"</td>
+                <td>Lower payments often mean longer terms, more interest, and being "underwater" longer. Total cost and net cost after resale are better metrics.</td>
+            </tr>
+            <tr>
+                <td>"Leasing is always smarter because you're not paying for depreciation"</td>
+                <td>Lease payments ARE paying for depreciation plus interest. The difference is you don't own anything at the end and can't benefit from years of payment-free driving.</td>
+            </tr>
+            <tr>
+                <td>"New cars are more reliable so they cost less overall"</td>
+                <td>A 3-year-old certified pre-owned car has already lost most of its depreciation but still has years of reliable life. The "sweet spot" for value is often 2-4 years old.</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        <span>© PFL Academy | pflacademy.co</span>
+        <span>Teacher Guide: Chapter 12.1</span>
+    </div>
+
+</body>
+</html>

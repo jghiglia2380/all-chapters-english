@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-50 Teacher Guide</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+        :root {
+            --primary: #059669;
+            --primary-light: #ecfdf5;
+            --primary-dark: #065f46;
+            --text-dark: #1e293b;
+            --text-medium: #475569;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --bg-light: #f8fafc;
+            --warning: #f59e0b;
+            --warning-light: #fef3c7;
+            --error: #dc2626;
+            --error-light: #fee2e2;
+            --success-light: #dcfce7;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+        @page { size: letter; margin: 0.5in; }
+
+        body { font-family: 'Open Sans', sans-serif; font-size: 10pt; line-height: 1.45; color: var(--text-dark); background: white; }
+
+        .header { background: var(--primary); color: white; padding: 14px 18px; border-radius: 6px; margin-bottom: 16px; }
+        .header h1 { font-size: 13pt; font-weight: 700; margin: 0; }
+        .header h2 { font-size: 10pt; font-weight: 400; margin: 3px 0 0; opacity: 0.9; }
+
+        .section-header { background: var(--primary-light); border-left: 4px solid var(--primary); padding: 7px 12px; font-size: 10pt; font-weight: 700; color: var(--primary-dark); text-transform: uppercase; letter-spacing: 0.5px; margin: 16px 0 10px; }
+
+        .overview-table { width: 100%; border-collapse: collapse; margin-bottom: 14px; }
+        .overview-table th { background: var(--bg-light); color: var(--text-light); font-size: 8pt; text-transform: uppercase; letter-spacing: 0.5px; text-align: center; padding: 6px 10px; border: 1px solid var(--border); width: 33%; }
+        .overview-table td { text-align: center; padding: 10px; border: 1px solid var(--border); font-weight: 600; color: var(--text-dark); font-size: 10pt; }
+
+        .flow-container { margin-bottom: 14px; }
+        .flow-item { display: flex; padding: 8px 0; border-bottom: 1px solid var(--border); page-break-inside: avoid; }
+        .flow-item:last-child { border-bottom: none; }
+        .flow-time { width: 65px; font-weight: 700; color: var(--primary); flex-shrink: 0; font-size: 10pt; }
+        .flow-content { flex: 1; }
+        .flow-title { font-weight: 700; color: var(--text-dark); margin-bottom: 3px; font-size: 10pt; }
+        .flow-content ul { margin: 0; padding-left: 16px; font-size: 9pt; color: var(--text-medium); }
+        .flow-content li { margin-bottom: 2px; }
+
+        .diff-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px; }
+        .diff-box { background: var(--bg-light); border: 1px solid var(--border); border-radius: 4px; padding: 10px 12px; }
+        .diff-title { font-weight: 700; color: var(--text-dark); margin-bottom: 6px; font-size: 9pt; }
+        .diff-box ul { margin: 0; padding-left: 16px; font-size: 9pt; color: var(--text-medium); }
+        .diff-box li { margin-bottom: 2px; }
+
+        .answer-key { page-break-before: always; }
+        .answer-block { margin-bottom: 12px; page-break-inside: avoid; }
+        .answer-title { font-weight: 700; color: var(--primary); font-size: 9pt; border-bottom: 1px solid #a7f3d0; padding-bottom: 3px; margin-bottom: 6px; }
+        .answer-item { margin-bottom: 5px; font-size: 9pt; color: var(--text-dark); }
+        .answer-item strong { color: var(--primary-dark); }
+
+        .answer-note { background: var(--warning-light); border-left: 3px solid var(--warning); padding: 6px 10px; font-size: 9pt; font-style: italic; color: #92400e; margin: 6px 0; }
+
+        .misconception-table { width: 100%; border-collapse: collapse; font-size: 9pt; margin-top: 10px; }
+        .misconception-table th { padding: 6px 10px; text-align: left; font-weight: 600; }
+        .misconception-table th:first-child { background: var(--error-light); color: #991b1b; border: 1px solid #fca5a5; width: 40%; }
+        .misconception-table th:last-child { background: var(--success-light); color: #166534; border: 1px solid #86efac; }
+        .misconception-table td { padding: 6px 10px; border: 1px solid var(--border); vertical-align: top; color: var(--text-medium); }
+
+        .footer { margin-top: 20px; padding-top: 8px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; font-size: 8pt; color: var(--text-light); }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <div class="header">
+        <h1>PFL Academy</h1>
+        <h2>Teacher Guide: Chapter 14.3 — Supply and Demand in Personal Finance</h2>
+    </div>
+
+    <!-- OVERVIEW -->
+    <div class="section-header">Overview</div>
+    <table class="overview-table">
+        <tr>
+            <th>Time</th>
+            <th>Materials</th>
+            <th>Prerequisites</th>
+        </tr>
+        <tr>
+            <td>45-50 Minutes</td>
+            <td>Student Activity Packet, Market Analyzer Tool</td>
+            <td>L-48: Economic Systems, L-49: Scarcity</td>
+        </tr>
+    </table>
+
+    <!-- LESSON FLOW -->
+    <div class="section-header">Lesson Flow</div>
+    <div class="flow-container">
+        <div class="flow-item">
+            <div class="flow-time">5 min</div>
+            <div class="flow-content">
+                <div class="flow-title">THE CHALLENGE</div>
+                <ul>
+                    <li>Read the opening questions about price changes aloud.</li>
+                    <li>Discussion: "Can you think of other examples where prices change predictably?"</li>
+                    <li>Preview that supply and demand explains virtually ALL price changes.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="flow-item">
+            <div class="flow-time">10 min</div>
+            <div class="flow-content">
+                <div class="flow-title">CORE CONCEPTS</div>
+                <ul>
+                    <li>Review the 5 key terms. Use simple visual diagrams to show supply/demand curves.</li>
+                    <li>Emphasize the difference between "movement along a curve" (price change) and "shift of the curve" (other factors).</li>
+                    <li>Quick check: "If concert tickets cost $200 vs. $50, which price creates more demand?" (Law of demand)</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="flow-item">
+            <div class="flow-time">25-30 min</div>
+            <div class="flow-content">
+                <div class="flow-title">APPLY IT</div>
+                <ul>
+                    <li><strong>Part A (8 min):</strong> Market Equilibrium. Walk through the used car table. Identify equilibrium and discuss how surpluses/shortages self-correct.</li>
+                    <li><strong>Part B (8 min):</strong> Demand Shifters. Students categorize each scenario. Emphasize real-world applications (income changes, substitutes, expectations).</li>
+                    <li><strong>Part C (8 min):</strong> Supply Shifters. Students categorize supply changes. Connect to recent events (supply chain issues, inflation).</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="flow-item">
+            <div class="flow-time">10 min</div>
+            <div class="flow-content">
+                <div class="flow-title">CHECK YOUR UNDERSTANDING</div>
+                <ul>
+                    <li>Complete in class or assign as homework.</li>
+                    <li>Review Q3 (gas prices) and Q5 (personal application) for practical understanding.</li>
+                    <li>Preview Day 2 Learning Lab: Housing and labor market analysis, purchase timing strategies.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- DIFFERENTIATION -->
+    <div class="section-header">Differentiation</div>
+    <div class="diff-grid">
+        <div class="diff-box">
+            <div class="diff-title">Support</div>
+            <ul>
+                <li>Provide a graphic organizer with supply/demand curve visuals.</li>
+                <li>Use everyday examples: "Pizza prices at lunch vs. dinner."</li>
+                <li>Create a cheat sheet: "Income up = demand up, costs up = supply down."</li>
+                <li>Work through Part A as a whole-class activity.</li>
+            </ul>
+        </div>
+        <div class="diff-box">
+            <div class="diff-title">Extension</div>
+            <ul>
+                <li>Research how the Federal Reserve's actions affect supply and demand (interest rates).</li>
+                <li>Analyze a recent price spike (housing, used cars, gas) using supply/demand framework.</li>
+                <li>Calculate elasticity: How sensitive is demand for different goods to price changes?</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ANSWER KEY (new page) -->
+    <div class="answer-key">
+        <div class="section-header">Answer Key</div>
+
+        <div class="answer-block">
+            <div class="answer-title">Part A: Market Equilibrium Analysis</div>
+            <div class="answer-item"><strong>1.</strong> Equilibrium at <strong>$20,000</strong>—quantity demanded (300) equals quantity supplied (300). Market condition: EQUILIBRIUM (no shortage or surplus).</div>
+            <div class="answer-item"><strong>2.</strong> At $30,000, there's a surplus of 300 cars (sellers want 400, buyers want only 100). Sellers can't sell inventory, so they lower prices. Price falls toward equilibrium as unsold inventory accumulates.</div>
+        </div>
+
+        <div class="answer-block">
+            <div class="answer-title">Part B: Demand Shifters</div>
+            <div class="answer-item">• Income increases → Demand <strong>INCREASES (shifts right)</strong> → Prices rise</div>
+            <div class="answer-item">• Price of substitute increases → Demand <strong>INCREASES (shifts right)</strong> → Prices rise (consumers switch to this good)</div>
+            <div class="answer-item">• Population decreases → Demand <strong>DECREASES (shifts left)</strong> → Prices fall</div>
+            <div class="answer-item">• Expect prices to rise → Demand <strong>INCREASES (shifts right)</strong> → Prices rise (buy now before increase)</div>
+        </div>
+
+        <div class="answer-block">
+            <div class="answer-title">Part C: Supply Shifters</div>
+            <div class="answer-item">• Production costs increase → Supply <strong>DECREASES (shifts left)</strong> → Prices rise</div>
+            <div class="answer-item">• Technology makes production cheaper → Supply <strong>INCREASES (shifts right)</strong> → Prices fall</div>
+            <div class="answer-item">• Government adds regulations/taxes → Supply <strong>DECREASES (shifts left)</strong> → Prices rise</div>
+            <div class="answer-item">• More businesses enter market → Supply <strong>INCREASES (shifts right)</strong> → Prices fall</div>
+        </div>
+
+        <div class="answer-block">
+            <div class="answer-title">Check Your Understanding</div>
+            <div class="answer-item"><strong>1.</strong> B (Quantity demanded decreases—this is the law of demand)</div>
+            <div class="answer-item"><strong>2.</strong> B (Quantity demanded equals quantity supplied—market clears)</div>
+            <div class="answer-item"><strong>3.</strong> <strong>Demand shift.</strong> Summer brings more travel/driving (vacation season), shifting demand right. Supply stays relatively constant. Higher demand with same supply = higher prices.</div>
+            <div class="answer-item"><strong>4.</strong> <strong>Temporary demand spike.</strong> On Valentine's Day, demand for roses shifts dramatically right (everyone wants roses that day). Supply can't instantly increase (roses take time to grow). Huge demand increase + fixed supply = 3× price increase. A week later, demand returns to normal and prices fall.</div>
+            <div class="answer-item"><strong>5.</strong> <em>Responses will vary. Look for: identification of demand/supply patterns (e.g., buy cars at end of model year, winter coats in spring, fly on Tuesdays), estimated savings from strategic timing, and reasoning based on supply/demand concepts learned.</em></div>
+        </div>
+
+        <!-- COMMON MISCONCEPTIONS -->
+        <div class="section-header">Common Misconceptions</div>
+        <table class="misconception-table">
+            <tr>
+                <th>Misconception</th>
+                <th>Clarification</th>
+            </tr>
+            <tr>
+                <td>"Higher prices are always bad for consumers."</td>
+                <td>High prices signal scarcity and attract new supply. They're painful short-term but help markets self-correct. High prices during shortages prevent hoarding and ensure goods reach those who value them most.</td>
+            </tr>
+            <tr>
+                <td>"Supply and demand only applies to goods, not services or labor."</td>
+                <td>Supply and demand applies to EVERYTHING with a price—including wages (labor market), rent (housing market), interest rates (credit market), and stock prices (financial markets).</td>
+            </tr>
+            <tr>
+                <td>"Prices only change when sellers raise them."</td>
+                <td>Prices change due to shifts in supply OR demand. A seller might want to raise prices, but if demand is weak, they can't—buyers won't pay. Equilibrium is determined by both sides of the market.</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        <span>© PFL Academy | pflacademy.co</span>
+        <span>Teacher Guide: Chapter 14.3</span>
+    </div>
+
+</body>
+</html>

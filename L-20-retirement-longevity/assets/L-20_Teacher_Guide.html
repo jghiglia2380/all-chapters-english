@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-20 Teacher Guide</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+        :root {
+            --primary: #059669;
+            --primary-light: #ecfdf5;
+            --primary-dark: #065f46;
+            --text-dark: #1e293b;
+            --text-medium: #475569;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --bg-light: #f8fafc;
+            --warning: #f59e0b;
+            --warning-light: #fef3c7;
+            --error: #dc2626;
+            --error-light: #fee2e2;
+            --success-light: #dcfce7;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+        @page { size: letter; margin: 0.5in; }
+        body { font-family: 'Open Sans', sans-serif; font-size: 10pt; line-height: 1.45; color: var(--text-dark); background: white; }
+
+        .header { background: var(--primary); color: white; padding: 14px 18px; border-radius: 6px; margin-bottom: 16px; }
+        .header h1 { font-size: 13pt; font-weight: 700; margin: 0; }
+        .header h2 { font-size: 10pt; font-weight: 400; margin: 3px 0 0; opacity: 0.9; }
+
+        .section-header { background: var(--primary-light); border-left: 4px solid var(--primary); padding: 7px 12px; font-size: 10pt; font-weight: 700; color: var(--primary-dark); text-transform: uppercase; letter-spacing: 0.5px; margin: 16px 0 10px; }
+
+        .overview-table { width: 100%; border-collapse: collapse; margin-bottom: 14px; }
+        .overview-table th { background: var(--bg-light); color: var(--text-light); font-size: 8pt; text-transform: uppercase; letter-spacing: 0.5px; text-align: center; padding: 6px 10px; border: 1px solid var(--border); width: 33%; }
+        .overview-table td { text-align: center; padding: 10px; border: 1px solid var(--border); font-weight: 600; color: var(--text-dark); font-size: 10pt; }
+
+        .flow-container { margin-bottom: 14px; }
+        .flow-item { display: flex; padding: 8px 0; border-bottom: 1px solid var(--border); page-break-inside: avoid; }
+        .flow-item:last-child { border-bottom: none; }
+        .flow-time { width: 65px; font-weight: 700; color: var(--primary); flex-shrink: 0; font-size: 10pt; }
+        .flow-content { flex: 1; }
+        .flow-title { font-weight: 700; color: var(--text-dark); margin-bottom: 3px; font-size: 10pt; }
+        .flow-content ul { margin: 0; padding-left: 16px; font-size: 9pt; color: var(--text-medium); }
+        .flow-content li { margin-bottom: 2px; }
+
+        .diff-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px; }
+        .diff-box { background: var(--bg-light); border: 1px solid var(--border); border-radius: 4px; padding: 10px 12px; }
+        .diff-title { font-weight: 700; color: var(--text-dark); margin-bottom: 6px; font-size: 9pt; }
+        .diff-box ul { margin: 0; padding-left: 16px; font-size: 9pt; color: var(--text-medium); }
+        .diff-box li { margin-bottom: 2px; }
+
+        .answer-key { page-break-before: always; }
+        .answer-block { margin-bottom: 12px; page-break-inside: avoid; }
+        .answer-title { font-weight: 700; color: var(--primary); font-size: 9pt; border-bottom: 1px solid #a7f3d0; padding-bottom: 3px; margin-bottom: 6px; }
+        .answer-item { margin-bottom: 5px; font-size: 9pt; color: var(--text-dark); }
+        .answer-item strong { color: var(--primary-dark); }
+
+        .calc-display { font-family: 'Courier New', monospace; background: var(--bg-light); padding: 8px 10px; border-radius: 4px; margin: 6px 0; font-size: 8.5pt; line-height: 1.5; white-space: pre-line; }
+        .answer-note { background: var(--warning-light); border-left: 3px solid var(--warning); padding: 6px 10px; font-size: 9pt; font-style: italic; color: #92400e; margin: 6px 0; }
+
+        .misconception-table { width: 100%; border-collapse: collapse; font-size: 9pt; margin-top: 10px; }
+        .misconception-table th { padding: 6px 10px; text-align: left; font-weight: 600; }
+        .misconception-table th:first-child { background: var(--error-light); color: #991b1b; border: 1px solid #fca5a5; width: 40%; }
+        .misconception-table th:last-child { background: var(--success-light); color: #166534; border: 1px solid #86efac; }
+        .misconception-table td { padding: 6px 10px; border: 1px solid var(--border); vertical-align: top; color: var(--text-medium); }
+
+        .footer { margin-top: 20px; padding-top: 8px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; font-size: 8pt; color: var(--text-light); }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>PFL Academy</h1>
+        <h2>Teacher Guide: Chapter 6.2 — Longevity and Retirement Planning</h2>
+    </div>
+
+    <div class="section-header">Overview</div>
+    <table class="overview-table">
+        <tr>
+            <th>Time</th>
+            <th>Materials</th>
+            <th>Prerequisites</th>
+        </tr>
+        <tr>
+            <td>45-50 Minutes</td>
+            <td>Student Activity Packet, Calculator</td>
+            <td>Chapter 5 Series (Saving, Investing, Risk, Retirement)</td>
+        </tr>
+    </table>
+
+    <div class="section-header">Lesson Flow</div>
+    <div class="flow-container">
+        <div class="flow-item">
+            <div class="flow-time">5 min</div>
+            <div class="flow-content">
+                <div class="flow-title">THE CHALLENGE</div>
+                <ul>
+                    <li>Present Morgan vs. Jordan scenario. Ask: "Who do you think has more at 65?"</li>
+                    <li>Most students will guess Jordan (who invested 4× more). The actual answer surprises them.</li>
+                    <li>This counterintuitive result demonstrates why longevity planning starts NOW.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="flow-item">
+            <div class="flow-time">10 min</div>
+            <div class="flow-content">
+                <div class="flow-title">CORE CONCEPTS</div>
+                <ul>
+                    <li>Introduce longevity risk: "What if you live to 95? Would your savings last?"</li>
+                    <li>Discuss how life expectancy has changed—retirement could be 30 years, not 10-15.</li>
+                    <li>Connect to inflation: purchasing power doubles every ~24 years at 3% inflation.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="flow-item">
+            <div class="flow-time">25-28 min</div>
+            <div class="flow-content">
+                <div class="flow-title">APPLY IT</div>
+                <ul>
+                    <li><strong>Part A (8 min):</strong> Morgan vs. Jordan analysis. Key "aha moment" of the lesson.</li>
+                    <li><strong>Part B (6 min):</strong> Inflation calculator. Show how $50K becomes $100K+ needed over 25 years.</li>
+                    <li><strong>Part C (7 min):</strong> Strategy evaluation. Discuss pros/cons of each approach to shortfalls.</li>
+                    <li><strong>Part D (4 min):</strong> Life expectancy factors—make it personal and relevant.</li>
+                    <li><strong>Part E (3 min):</strong> Personal planning—transition from theory to action.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="flow-item">
+            <div class="flow-time">10 min</div>
+            <div class="flow-content">
+                <div class="flow-title">CHECK YOUR UNDERSTANDING</div>
+                <ul>
+                    <li>Focus on Q1 (defining longevity risk) and Q4 (why start early).</li>
+                    <li>Reinforce: The time to start is now, not "when I can afford it."</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-header">Differentiation</div>
+    <div class="diff-grid">
+        <div class="diff-box">
+            <div class="diff-title">Support</div>
+            <ul>
+                <li>Use a simple graph showing Morgan vs. Jordan growth curves over time.</li>
+                <li>Provide inflation calculation results rather than having students compute.</li>
+                <li>Focus on one strategy in Part C rather than all five.</li>
+                <li>Create a simplified "3 things to do in your 20s" takeaway.</li>
+            </ul>
+        </div>
+        <div class="diff-box">
+            <div class="diff-title">Extension</div>
+            <ul>
+                <li>Calculate exact retirement needs using multiple inflation scenarios.</li>
+                <li>Research life expectancy data for different countries/demographics.</li>
+                <li>Create a 50-year financial projection with changing contribution rates.</li>
+                <li>Analyze Social Security's sustainability given increasing longevity.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="answer-key">
+        <div class="section-header">Answer Key</div>
+
+        <div class="answer-block">
+            <div class="answer-title">Part A: Power of Starting Early</div>
+            <div class="calc-display">Morgan vs. Jordan Analysis:
+Morgan: $18,000 invested over 9 years → $243,000 at age 65
+Jordan: $70,000 invested over 35 years → $283,000 at age 65
+Difference: Only $40,000 despite 4× more invested!</div>
+            <div class="answer-item"><strong>1.</strong> Why Morgan ends up close to Jordan: Morgan's early investments had 43 years to compound (ages 22-65), while Jordan's later investments had fewer years each. Early dollars work harder because they have more time to multiply. The first $2,000 Morgan invested grew for 43 years; Jordan's first $2,000 only grew for 34 years.</div>
+            <div class="answer-item"><strong>2.</strong> If Morgan continued investing $2,000/year from 22 to 65 (44 years): Morgan would have approximately $580,000—more than double Jordan's amount. This demonstrates that early start PLUS consistency is the most powerful combination.</div>
+        </div>
+
+        <div class="answer-block">
+            <div class="answer-title">Part B: Inflation Impact</div>
+            <div class="calc-display">Inflation Calculations:
+$50,000 × 1.34 (10 years) = $67,000
+$50,000 × 2.09 (25 years) = $104,500
+
+Someone who needs $50,000/year at 65 will need $104,500/year at 90 to maintain the same lifestyle!</div>
+            <div class="answer-item"><strong>3.</strong> Needed at age 90: <strong>$104,500/year</strong> (or approximately double)</div>
+            <div class="answer-item"><strong>4.</strong> Problem with "safe" investments: Savings accounts might earn 1-3%, but if inflation runs at 3%, you're not growing real purchasing power. Over 25 years, you'd lose about half your real value. Retirement portfolios need growth investments to outpace inflation.</div>
+        </div>
+
+        <div class="answer-block">
+            <div class="answer-title">Part C: Strategy Evaluation</div>
+            <div class="answer-note">Strategy ratings are somewhat subjective. Look for students to justify their reasoning. Sample ratings below.</div>
+            <div class="answer-item"><strong>Delay Retirement:</strong> High effectiveness (4-5). Each year adds savings time and reduces years to fund. Best for: those approaching retirement who are healthy enough to work longer.</div>
+            <div class="answer-item"><strong>Increase Savings Rate:</strong> High effectiveness (5). Addresses the root cause. Best for: younger people with time for compounding, or anyone with room in their budget.</div>
+            <div class="answer-item"><strong>Part-Time Work:</strong> Moderate effectiveness (3). Supplements income but may not fully solve shortfalls. Best for: those who enjoy staying active and have marketable skills.</div>
+            <div class="answer-item"><strong>Downsize Housing:</strong> Moderate effectiveness (3-4). One-time boost plus ongoing savings. Best for: those with equity in larger homes they no longer need.</div>
+            <div class="answer-item"><strong>Relocate:</strong> Variable effectiveness (2-4). Depends on willingness to move away from family/community. Best for: flexible retirees with no geographic constraints.</div>
+            <div class="answer-item"><strong>5.</strong> Best for age 25: Increase savings rate. At 25, every dollar saved has 40 years to grow. Even small increases compound dramatically over time.</div>
+            <div class="answer-item"><strong>6.</strong> Best for age 55: Delay retirement (if possible) combined with increasing savings rate. With only 10-15 years left, the strategies with immediate impact work best.</div>
+        </div>
+
+        <div class="answer-block">
+            <div class="answer-title">Check Your Understanding</div>
+            <div class="answer-item"><strong>1.</strong> B (The risk of outliving your savings)</div>
+            <div class="answer-item"><strong>2.</strong> Why 22 beats 32: The money invested at 22 has 43 years to compound vs. 33 years for age-32 money. At 7% returns, $1 at age 22 becomes $18.34 at 65; $1 at age 32 becomes only $9.33. Starting 10 years earlier nearly doubles the growth per dollar.</div>
+            <div class="answer-item"><strong>3.</strong> Strategies for living 30 years instead of 20: Part-time work in early retirement, delay Social Security claiming to increase benefits, maintain some growth investments throughout retirement, downsize housing, reduce discretionary spending, relocate to lower-cost area. Multiple strategies may be needed.</div>
+            <div class="answer-item"><strong>4.</strong> Why start in teens/20s: Compounding requires TIME to work its magic. Starting at 20 gives 45+ years of growth. Starting at 45 gives only 20 years. The early years are worth far more per dollar than later years. Even $50/month at 20 beats $200/month at 40 over the long run.</div>
+        </div>
+
+        <div class="section-header">Common Misconceptions</div>
+        <table class="misconception-table">
+            <tr>
+                <th>Misconception</th>
+                <th>Clarification</th>
+            </tr>
+            <tr>
+                <td>"I'll only need my retirement savings for 10-15 years."</td>
+                <td>A 65-year-old today has a 25%+ chance of living past 90. Plan for 25-30 years of retirement, not 10-15. Underestimating longevity is one of the biggest retirement planning mistakes.</td>
+            </tr>
+            <tr>
+                <td>"I can catch up later when I earn more."</td>
+                <td>Math doesn't support this. As Morgan vs. Jordan shows, early dollars are worth FAR more than later dollars due to compounding time. You can't "catch up" on lost time—you can only start now.</td>
+            </tr>
+            <tr>
+                <td>"Inflation doesn't matter much for retirement."</td>
+                <td>Over 25 years, 3% inflation doubles prices. What costs $50,000/year at retirement costs $100,000/year 25 years later. Inflation is the "silent thief" that erodes retirement security.</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="footer">
+        <span>© PFL Academy | pflacademy.co</span>
+        <span>Teacher Guide: Chapter 6.2</span>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-61 Student Activity Packet</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+        :root {
+            --primary: #6366f1;
+            --primary-light: #eef2ff;
+            --accent: #f59e0b;
+            --accent-light: #fef3c7;
+            --success: #059669;
+            --text-dark: #1e293b;
+            --text-medium: #475569;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --bg-light: #f8fafc;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+
+        @page {
+            size: letter;
+            margin: 0.5in;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 10.5pt;
+            line-height: 1.5;
+            color: var(--text-dark);
+            background: white;
+        }
+
+        .header {
+            background: var(--primary);
+            color: white;
+            padding: 14px 18px;
+            border-radius: 6px;
+            margin-bottom: 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-left h1 {
+            font-size: 13pt;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .header-left h2 {
+            font-size: 10pt;
+            font-weight: 400;
+            margin: 2px 0 0;
+            opacity: 0.9;
+        }
+
+        .header-right {
+            font-size: 9pt;
+            text-align: right;
+            opacity: 0.9;
+        }
+
+        .section-header {
+            font-size: 11pt;
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 4px;
+            margin: 20px 0 12px;
+        }
+
+        .challenge-box {
+            background: var(--accent-light);
+            border-left: 4px solid var(--accent);
+            padding: 14px 16px;
+            margin-bottom: 16px;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .challenge-box p {
+            font-style: italic;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+        }
+
+        .challenge-box .framing-question {
+            font-weight: 600;
+            font-style: normal;
+            color: #92400e;
+        }
+
+        .objectives-box {
+            background: var(--primary-light);
+            border: 1px solid #c7d2fe;
+            border-radius: 6px;
+            padding: 12px 16px;
+            margin-bottom: 18px;
+        }
+
+        .objectives-box h3 {
+            font-size: 10pt;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 6px;
+        }
+
+        .objectives-box ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .objectives-box li {
+            margin-bottom: 3px;
+            color: var(--text-medium);
+        }
+
+        .terms-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 14px;
+            font-size: 10pt;
+        }
+
+        .terms-table th {
+            background: var(--bg-light);
+            text-align: left;
+            padding: 8px 10px;
+            border: 1px solid var(--border);
+            font-weight: 600;
+            color: var(--text-medium);
+        }
+
+        .terms-table td {
+            padding: 8px 10px;
+            border: 1px solid var(--border);
+            vertical-align: top;
+        }
+
+        .terms-table td:first-child {
+            font-weight: 600;
+            color: var(--primary);
+            width: 28%;
+        }
+
+        .background-box {
+            background: var(--bg-light);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 12px 16px;
+            margin-bottom: 18px;
+            font-size: 10pt;
+            color: var(--text-medium);
+        }
+
+        .background-box strong {
+            color: var(--text-dark);
+        }
+
+        .scenario-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 12px 14px;
+            margin-bottom: 14px;
+            page-break-inside: avoid;
+        }
+
+        .scenario-title {
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 6px;
+            font-size: 10pt;
+        }
+
+        .scenario-description {
+            color: var(--text-medium);
+            margin-bottom: 10px;
+            font-size: 10pt;
+        }
+
+        .response-line {
+            display: flex;
+            align-items: baseline;
+            margin-bottom: 8px;
+        }
+
+        .response-label {
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-right: 8px;
+            white-space: nowrap;
+        }
+
+        .response-blank {
+            flex-grow: 1;
+            border-bottom: 1px solid var(--text-light);
+            min-height: 18px;
+        }
+
+        .response-options {
+            color: var(--text-light);
+            font-size: 9pt;
+            margin-left: 8px;
+            white-space: nowrap;
+        }
+
+        .because-lines {
+            margin-top: 6px;
+        }
+
+        .because-lines .response-line {
+            margin-bottom: 4px;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 12px 0;
+            font-size: 10pt;
+        }
+
+        .data-table th {
+            background: var(--primary);
+            color: white;
+            padding: 8px 10px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 9pt;
+        }
+
+        .data-table td {
+            padding: 8px 10px;
+            border: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .data-table tr:nth-child(even) td {
+            background: var(--bg-light);
+        }
+
+        .data-table .calc-row td {
+            background: #fef9c3;
+            height: 28px;
+        }
+
+        .question {
+            margin-bottom: 14px;
+            page-break-inside: avoid;
+        }
+
+        .question-number {
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .question-text {
+            color: var(--text-dark);
+            margin-bottom: 6px;
+        }
+
+        .answer-lines {
+            margin-top: 6px;
+        }
+
+        .answer-line {
+            border-bottom: 1px solid var(--text-light);
+            height: 22px;
+            margin-bottom: 4px;
+        }
+
+        .calc-box {
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 12px;
+            margin: 8px 0;
+            min-height: 60px;
+            background: var(--bg-light);
+        }
+
+        .calc-label {
+            font-size: 9pt;
+            color: var(--text-light);
+            margin-bottom: 4px;
+        }
+
+        .calc-answer {
+            margin-top: 10px;
+            font-weight: 600;
+        }
+
+        .mc-options {
+            margin-top: 6px;
+            margin-left: 20px;
+        }
+
+        .mc-option {
+            display: flex;
+            align-items: center;
+            margin-bottom: 4px;
+        }
+
+        .mc-checkbox {
+            width: 14px;
+            height: 14px;
+            border: 1px solid var(--text-light);
+            border-radius: 2px;
+            margin-right: 8px;
+            flex-shrink: 0;
+        }
+
+        .hint-box {
+            background: #f0fdf4;
+            border-left: 3px solid var(--success);
+            padding: 8px 12px;
+            margin: 10px 0;
+            font-size: 9pt;
+            font-style: italic;
+            color: #166534;
+        }
+
+        .hint-box strong {
+            font-style: normal;
+        }
+
+        .part-header {
+            font-weight: 700;
+            font-size: 10pt;
+            color: var(--primary);
+            text-transform: uppercase;
+            margin: 16px 0 10px;
+            padding-bottom: 4px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .footer {
+            margin-top: 24px;
+            padding-top: 10px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            font-size: 9pt;
+            color: var(--text-light);
+        }
+
+        .mb-sm { margin-bottom: 8px; }
+        .mb-md { margin-bottom: 14px; }
+        .mb-lg { margin-bottom: 20px; }
+
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <div class="header">
+        <div class="header-left">
+            <h1>PFL Academy</h1>
+            <h2>Chapter 61: Contract Evaluation and Consumer Protection</h2>
+        </div>
+        <div class="header-right">
+            Student Activity Packet
+        </div>
+    </div>
+
+    <!-- THE CHALLENGE -->
+    <div class="section-header">The Challenge</div>
+    <div class="challenge-box">
+        <p>Taylor found an affordable apartment close to her new job, but the landlord pressured her to sign immediately. Instead of rushing, she took the lease home and discovered several concerning clauses: 90-day written notice for move-out (trapping tenants for extra year), landlord entry "at any time for any reason," and tenant liability for all repairs regardless of cause. By researching her state's tenant rights, Taylor negotiated amendments that protected her from thousands in potential unfair charges.</p>
+        <p class="framing-question">How can systematic contract evaluation protect you from unfair terms that could cost thousands of dollars?</p>
+    </div>
+
+    <!-- LEARNING OBJECTIVES -->
+    <div class="objectives-box">
+        <h3>Learning Objectives</h3>
+        <ul>
+            <li>Analyze contracts critically to identify favorable and unfavorable terms.</li>
+            <li>Evaluate consumer rights and legal protections in various contractual situations.</li>
+            <li>Apply contract evaluation strategies to real-world financial agreements.</li>
+        </ul>
+    </div>
+
+    <!-- CORE CONCEPTS -->
+    <div class="section-header">Core Concepts</div>
+
+    <table class="terms-table">
+        <tr>
+            <th>Term</th>
+            <th>Definition</th>
+        </tr>
+        <tr>
+            <td>Unfair Contract Terms</td>
+            <td>Clauses that create significant imbalance between parties' rights, often favoring the company while limiting consumer remedies.</td>
+        </tr>
+        <tr>
+            <td>Mandatory Arbitration</td>
+            <td>A provision requiring disputes be resolved through private arbitration rather than court, often limiting class action rights.</td>
+        </tr>
+        <tr>
+            <td>Automatic Renewal</td>
+            <td>Terms that cause agreements to renew automatically unless you actively cancel, sometimes with difficult cancellation procedures.</td>
+        </tr>
+        <tr>
+            <td>Limitation of Liability</td>
+            <td>Clauses that cap how much a company must pay if they harm you, sometimes to absurdly low amounts.</td>
+        </tr>
+        <tr>
+            <td>Consumer Protection Laws</td>
+            <td>Federal and state regulations that prohibit deceptive practices, mandate disclosures, and establish rights regardless of contract terms.</td>
+        </tr>
+    </table>
+
+    <div class="background-box">
+        <strong>Background:</strong> Contracts govern nearly every significant financial transaction—from apartment leases to phone plans, gym memberships to employment agreements. Most contracts are written by company lawyers to protect the company, not you. Understanding how to identify <strong>red flags</strong>, recognize <strong>unfair terms</strong>, and know your <strong>consumer rights</strong> empowers you to negotiate better agreements or walk away from bad deals. Remember: many terms presented as "standard" are actually negotiable, and some contract provisions are unenforceable even if you sign them.
+    </div>
+
+    <!-- APPLY IT -->
+    <div class="section-header">Apply It</div>
+
+    <div class="part-header">Part A: Contract Clause Analysis</div>
+    <p class="mb-md">For each contract clause, identify whether it's Acceptable, Concerning, or a Red Flag. Explain your reasoning.</p>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Clause 1: Gym Membership Cancellation</div>
+        <div class="scenario-description">"Membership requires 12-month commitment. Early termination requires $500 fee. Contract auto-renews annually unless canceled with 60-day written notice mailed to corporate headquarters."</div>
+        <div class="response-line">
+            <span class="response-label">This clause is:</span>
+            <span class="response-blank"></span>
+            <span class="response-options">(Acceptable / Concerning / Red Flag)</span>
+        </div>
+        <div class="because-lines">
+            <div class="response-line">
+                <span class="response-label">Because:</span>
+                <span class="response-blank"></span>
+            </div>
+            <div class="response-line">
+                <span class="response-blank" style="margin-left: 60px;"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Clause 2: Service Provider Modification Rights</div>
+        <div class="scenario-description">"Company may modify service terms, features, or pricing at any time with 30-day email notice. Continued use after notice constitutes acceptance of new terms."</div>
+        <div class="response-line">
+            <span class="response-label">This clause is:</span>
+            <span class="response-blank"></span>
+            <span class="response-options">(Acceptable / Concerning / Red Flag)</span>
+        </div>
+        <div class="because-lines">
+            <div class="response-line">
+                <span class="response-label">Because:</span>
+                <span class="response-blank"></span>
+            </div>
+            <div class="response-line">
+                <span class="response-blank" style="margin-left: 60px;"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Clause 3: Landlord Entry Rights</div>
+        <div class="scenario-description">"Landlord may enter premises with 24-hour notice for inspections, repairs, or showing to prospective tenants. Emergency entry requires no notice."</div>
+        <div class="response-line">
+            <span class="response-label">This clause is:</span>
+            <span class="response-blank"></span>
+            <span class="response-options">(Acceptable / Concerning / Red Flag)</span>
+        </div>
+        <div class="because-lines">
+            <div class="response-line">
+                <span class="response-label">Because:</span>
+                <span class="response-blank"></span>
+            </div>
+            <div class="response-line">
+                <span class="response-blank" style="margin-left: 60px;"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="hint-box">
+        <strong>Hint:</strong> Ask yourself—does this clause create fair obligations for both parties, or does it heavily favor the company while limiting your rights?
+    </div>
+
+    <!-- PART B -->
+    <div class="part-header">Part B: True Cost Calculation</div>
+    <p class="mb-md">Analyze the true cost of this cell phone contract versus the advertised price.</p>
+
+    <table class="data-table">
+        <tr>
+            <th>Fee Type</th>
+            <th>Advertised</th>
+            <th>Actual Contract Terms</th>
+            <th>Monthly Cost</th>
+        </tr>
+        <tr>
+            <td style="text-align: left; font-weight: 600;">Base Plan</td>
+            <td>"$39.99/month"</td>
+            <td>$39.99</td>
+            <td>$39.99</td>
+        </tr>
+        <tr>
+            <td style="text-align: left; font-weight: 600;">Device Payment</td>
+            <td>"Free phone!"</td>
+            <td>$35/month for 24 months</td>
+            <td>$35.00</td>
+        </tr>
+        <tr>
+            <td style="text-align: left; font-weight: 600;">Activation Fee</td>
+            <td>Not mentioned</td>
+            <td>$35 one-time</td>
+            <td>$1.46*</td>
+        </tr>
+        <tr>
+            <td style="text-align: left; font-weight: 600;">Administrative Fee</td>
+            <td>Not mentioned</td>
+            <td>$3.50/month</td>
+            <td>$3.50</td>
+        </tr>
+        <tr>
+            <td style="text-align: left; font-weight: 600;">Regulatory Fee</td>
+            <td>Not mentioned</td>
+            <td>$2.75/month</td>
+            <td>$2.75</td>
+        </tr>
+        <tr class="calc-row">
+            <td style="text-align: left; font-weight: 600;">True Monthly Cost</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+    <p style="font-size: 8pt; color: var(--text-light);">*Activation fee spread over 24-month contract</p>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">4.</span> What is the total 24-month contract cost? How much more than "$39.99/month" is actually charged?</p>
+        <div class="calc-box">
+            <div class="calc-label">Show your work:</div>
+        </div>
+        <div class="calc-answer">Total 24-month cost: $_____________ | Extra charged: $_____________</div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">5.</span> The contract includes a $350 early termination fee. If you want to leave after 12 months, what is your total cost (12 months paid + termination fee)?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <!-- PART C -->
+    <div class="part-header">Part C: Consumer Rights Application</div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">6.</span> Marcus signed a gym membership advertised as "Cancel anytime!" but discovered a $200 early termination fee in the fine print. What consumer protection principle might apply, and what should Marcus do?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">7.</span> Think about a contract you have or might sign soon (phone, streaming, lease). What are two specific clauses you would examine carefully, and what terms would you try to negotiate?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <!-- CHECK YOUR UNDERSTANDING -->
+    <div class="section-header">Check Your Understanding</div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">1.</span> A contract clause that requires all disputes go to private arbitration instead of court is called:</p>
+        <div class="mc-options">
+            <div class="mc-option"><div class="mc-checkbox"></div> A. Limitation of liability</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> B. Mandatory arbitration clause</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> C. Automatic renewal provision</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> D. Warranty disclaimer</div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">2.</span> Explain why "as-is" language in a contract is a red flag and when it might still be acceptable.</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">3.</span> <strong>Calculation:</strong> A streaming service costs $12.99/month advertised. The contract reveals a $5.99 "premium content fee" and $2.00 "platform fee" monthly. What is the actual annual cost?</p>
+        <div class="calc-box">
+            <div class="calc-label">Show your work:</div>
+        </div>
+        <div class="calc-answer">Answer: $_____________ per year</div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">4.</span> Jordan signed a home improvement contract during a door-to-door sales pitch but realized the next day the price was triple market rate. The contract says "all sales final." What federal consumer protection might help Jordan cancel this contract?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">5.</span> <strong>Reflection:</strong> Describe a contract you've signed or will sign soon. What terms would you examine most carefully? What would you negotiate? What conditions would make you walk away?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        <span>&copy; PFL Academy | pflacademy.co</span>
+        <span>Chapter 61: Contract Evaluation and Consumer Protection</span>
+    </div>
+
+</body>
+</html>

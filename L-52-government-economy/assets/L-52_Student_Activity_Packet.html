@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-52 Student Activity Packet</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+        :root {
+            --primary: #6366f1;
+            --primary-light: #eef2ff;
+            --accent: #f59e0b;
+            --accent-light: #fef3c7;
+            --success: #059669;
+            --text-dark: #1e293b;
+            --text-medium: #475569;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --bg-light: #f8fafc;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+
+        @page {
+            size: letter;
+            margin: 0.5in;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 10.5pt;
+            line-height: 1.5;
+            color: var(--text-dark);
+            background: white;
+        }
+
+        .header {
+            background: var(--primary);
+            color: white;
+            padding: 14px 18px;
+            border-radius: 6px;
+            margin-bottom: 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-left h1 {
+            font-size: 13pt;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .header-left h2 {
+            font-size: 10pt;
+            font-weight: 400;
+            margin: 2px 0 0;
+            opacity: 0.9;
+        }
+
+        .header-right {
+            font-size: 9pt;
+            text-align: right;
+            opacity: 0.9;
+        }
+
+        .section-header {
+            font-size: 11pt;
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 4px;
+            margin: 20px 0 12px;
+        }
+
+        .challenge-box {
+            background: var(--accent-light);
+            border-left: 4px solid var(--accent);
+            padding: 14px 16px;
+            margin-bottom: 16px;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .challenge-box p {
+            font-style: italic;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+        }
+
+        .challenge-box .framing-question {
+            font-weight: 600;
+            font-style: normal;
+            color: #92400e;
+        }
+
+        .objectives-box {
+            background: var(--primary-light);
+            border: 1px solid #c7d2fe;
+            border-radius: 6px;
+            padding: 12px 16px;
+            margin-bottom: 18px;
+        }
+
+        .objectives-box h3 {
+            font-size: 10pt;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 6px;
+        }
+
+        .objectives-box ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .objectives-box li {
+            margin-bottom: 3px;
+            color: var(--text-medium);
+        }
+
+        .terms-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 14px;
+            font-size: 10pt;
+        }
+
+        .terms-table th {
+            background: var(--bg-light);
+            text-align: left;
+            padding: 8px 10px;
+            border: 1px solid var(--border);
+            font-weight: 600;
+            color: var(--text-medium);
+        }
+
+        .terms-table td {
+            padding: 8px 10px;
+            border: 1px solid var(--border);
+            vertical-align: top;
+        }
+
+        .terms-table td:first-child {
+            font-weight: 600;
+            color: var(--primary);
+            width: 25%;
+        }
+
+        .background-box {
+            background: var(--bg-light);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 12px 16px;
+            margin-bottom: 18px;
+            font-size: 10pt;
+            color: var(--text-medium);
+        }
+
+        .background-box strong {
+            color: var(--text-dark);
+        }
+
+        .scenario-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 12px 14px;
+            margin-bottom: 14px;
+            page-break-inside: avoid;
+        }
+
+        .scenario-title {
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 6px;
+            font-size: 10pt;
+        }
+
+        .scenario-description {
+            color: var(--text-medium);
+            margin-bottom: 10px;
+            font-size: 10pt;
+        }
+
+        .response-line {
+            display: flex;
+            align-items: baseline;
+            margin-bottom: 8px;
+        }
+
+        .response-label {
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-right: 8px;
+            white-space: nowrap;
+        }
+
+        .response-blank {
+            flex-grow: 1;
+            border-bottom: 1px solid var(--text-light);
+            min-height: 18px;
+        }
+
+        .response-options {
+            color: var(--text-light);
+            font-size: 9pt;
+            margin-left: 8px;
+            white-space: nowrap;
+        }
+
+        .because-lines {
+            margin-top: 6px;
+        }
+
+        .because-lines .response-line {
+            margin-bottom: 4px;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 12px 0;
+            font-size: 10pt;
+        }
+
+        .data-table th {
+            background: var(--primary);
+            color: white;
+            padding: 8px 10px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 9pt;
+        }
+
+        .data-table td {
+            padding: 8px 10px;
+            border: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .data-table tr:nth-child(even) td {
+            background: var(--bg-light);
+        }
+
+        .data-table .calc-row td {
+            background: #fef9c3;
+            height: 28px;
+        }
+
+        .question {
+            margin-bottom: 14px;
+            page-break-inside: avoid;
+        }
+
+        .question-number {
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .question-text {
+            color: var(--text-dark);
+            margin-bottom: 6px;
+        }
+
+        .answer-lines {
+            margin-top: 6px;
+        }
+
+        .answer-line {
+            border-bottom: 1px solid var(--text-light);
+            height: 22px;
+            margin-bottom: 4px;
+        }
+
+        .calc-box {
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 12px;
+            margin: 8px 0;
+            min-height: 60px;
+            background: var(--bg-light);
+        }
+
+        .calc-label {
+            font-size: 9pt;
+            color: var(--text-light);
+            margin-bottom: 4px;
+        }
+
+        .calc-answer {
+            margin-top: 10px;
+            font-weight: 600;
+        }
+
+        .mc-options {
+            margin-top: 6px;
+            margin-left: 20px;
+        }
+
+        .mc-option {
+            display: flex;
+            align-items: center;
+            margin-bottom: 4px;
+        }
+
+        .mc-checkbox {
+            width: 14px;
+            height: 14px;
+            border: 1px solid var(--text-light);
+            border-radius: 2px;
+            margin-right: 8px;
+            flex-shrink: 0;
+        }
+
+        .hint-box {
+            background: #f0fdf4;
+            border-left: 3px solid var(--success);
+            padding: 8px 12px;
+            margin: 10px 0;
+            font-size: 9pt;
+            font-style: italic;
+            color: #166534;
+        }
+
+        .hint-box strong {
+            font-style: normal;
+        }
+
+        .part-header {
+            font-weight: 700;
+            font-size: 10pt;
+            color: var(--primary);
+            text-transform: uppercase;
+            margin: 16px 0 10px;
+            padding-bottom: 4px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .footer {
+            margin-top: 24px;
+            padding-top: 10px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            font-size: 9pt;
+            color: var(--text-light);
+        }
+
+        .mb-sm { margin-bottom: 8px; }
+        .mb-md { margin-bottom: 14px; }
+        .mb-lg { margin-bottom: 20px; }
+
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <div class="header">
+        <div class="header-left">
+            <h1>PFL Academy</h1>
+            <h2>Chapter 52: Government and the Economy - Personal Impact</h2>
+        </div>
+        <div class="header-right">
+            Student Activity Packet
+        </div>
+    </div>
+
+    <!-- THE CHALLENGE -->
+    <div class="section-header">The Challenge</div>
+    <div class="challenge-box">
+        <p>Malik is debating his friend about government's role in the economy. His friend says government should stay out of business entirely—let the free market decide everything. But Malik remembers his family's water being poisoned by factory runoff before environmental regulations existed. He also uses public roads daily and attended public schools. Meanwhile, his older brother is frustrated by occupational licensing that requires 1,500 hours of training to cut hair.</p>
+        <p class="framing-question">When should government intervene in markets, and when does it do more harm than good? How can you evaluate whether a policy's benefits exceed its costs?</p>
+    </div>
+
+    <!-- LEARNING OBJECTIVES -->
+    <div class="objectives-box">
+        <h3>Learning Objectives</h3>
+        <ul>
+            <li>Identify market failures that justify government intervention (monopoly, externalities, public goods, information asymmetry).</li>
+            <li>Analyze how government policies (taxes, subsidies, regulations) affect market outcomes.</li>
+            <li>Apply cost-benefit analysis to evaluate specific policies.</li>
+            <li>Recognize how government policies directly affect your personal finances.</li>
+        </ul>
+    </div>
+
+    <!-- CORE CONCEPTS -->
+    <div class="section-header">Core Concepts</div>
+
+    <table class="terms-table">
+        <tr>
+            <th>Term</th>
+            <th>Definition</th>
+        </tr>
+        <tr>
+            <td>Market Failure</td>
+            <td>When free markets fail to allocate resources efficiently, potentially justifying government intervention.</td>
+        </tr>
+        <tr>
+            <td>Externality</td>
+            <td>A cost or benefit affecting third parties not involved in a transaction (pollution = negative; vaccines = positive).</td>
+        </tr>
+        <tr>
+            <td>Public Good</td>
+            <td>A good that is non-excludable and non-rivalrous—everyone can use it, and one person's use doesn't reduce availability for others.</td>
+        </tr>
+        <tr>
+            <td>Subsidy</td>
+            <td>Government payment to encourage production or consumption, shifting supply right and lowering prices.</td>
+        </tr>
+        <tr>
+            <td>Price Control</td>
+            <td>Government-mandated maximum (ceiling) or minimum (floor) price, causing shortages or surpluses.</td>
+        </tr>
+    </table>
+
+    <div class="background-box">
+        <strong>Background:</strong> Every government policy has trade-offs. Taxes fund services but reduce disposable income. Regulations protect consumers but raise prices. Subsidies encourage certain activities but cost taxpayer money. Understanding when government intervention improves outcomes versus when it creates new problems is essential for being an informed citizen and making smart financial decisions.
+    </div>
+
+    <!-- APPLY IT -->
+    <div class="section-header">Apply It</div>
+
+    <div class="part-header">Part A: Market Failure Identification</div>
+    <p class="mb-md">For each situation, identify the market failure and whether government intervention is justified.</p>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Scenario 1: Factory Pollution</div>
+        <div class="scenario-description">A chemical plant dumps waste into a river, contaminating drinking water for downstream residents. The plant profits while others bear the health costs.</div>
+        <div class="response-line">
+            <span class="response-label">Market Failure Type:</span>
+            <span class="response-blank"></span>
+            <span class="response-options">(monopoly / externality / public good / info asymmetry)</span>
+        </div>
+        <div class="response-line">
+            <span class="response-label">Intervention Justified?</span>
+            <span class="response-blank"></span>
+            <span class="response-options">(Yes / No)</span>
+        </div>
+        <div class="because-lines">
+            <div class="response-line">
+                <span class="response-label">Best Solution:</span>
+                <span class="response-blank"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Scenario 2: National Defense</div>
+        <div class="scenario-description">The military protects all Americans, but private companies can't profit from defense because people would "free ride"—benefiting without paying.</div>
+        <div class="response-line">
+            <span class="response-label">Market Failure Type:</span>
+            <span class="response-blank"></span>
+            <span class="response-options">(monopoly / externality / public good / info asymmetry)</span>
+        </div>
+        <div class="response-line">
+            <span class="response-label">Intervention Justified?</span>
+            <span class="response-blank"></span>
+            <span class="response-options">(Yes / No)</span>
+        </div>
+        <div class="because-lines">
+            <div class="response-line">
+                <span class="response-label">Best Solution:</span>
+                <span class="response-blank"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Scenario 3: Used Car Sales</div>
+        <div class="scenario-description">A seller knows their car has hidden engine problems, but the buyer can't easily detect them. Buyers worry every car might be a "lemon" and won't pay fair prices.</div>
+        <div class="response-line">
+            <span class="response-label">Market Failure Type:</span>
+            <span class="response-blank"></span>
+            <span class="response-options">(monopoly / externality / public good / info asymmetry)</span>
+        </div>
+        <div class="response-line">
+            <span class="response-label">Intervention Justified?</span>
+            <span class="response-blank"></span>
+            <span class="response-options">(Yes / No)</span>
+        </div>
+        <div class="because-lines">
+            <div class="response-line">
+                <span class="response-label">Best Solution:</span>
+                <span class="response-blank"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Scenario 4: Local Utility Company</div>
+        <div class="scenario-description">One company provides all electricity in your area. Building competing power lines would be wasteful and impractical, so the company can charge whatever it wants.</div>
+        <div class="response-line">
+            <span class="response-label">Market Failure Type:</span>
+            <span class="response-blank"></span>
+            <span class="response-options">(monopoly / externality / public good / info asymmetry)</span>
+        </div>
+        <div class="response-line">
+            <span class="response-label">Intervention Justified?</span>
+            <span class="response-blank"></span>
+            <span class="response-options">(Yes / No)</span>
+        </div>
+        <div class="because-lines">
+            <div class="response-line">
+                <span class="response-label">Best Solution:</span>
+                <span class="response-blank"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="hint-box">
+        <strong>Hint:</strong> Externalities = third-party costs/benefits. Public goods = non-excludable, non-rivalrous. Info asymmetry = one party knows more.
+    </div>
+
+    <!-- PART B -->
+    <div class="part-header">Part B: Policy Impact Analysis</div>
+    <p class="mb-md">Analyze how government policies affect market prices and quantities. Use supply/demand thinking from L-50.</p>
+
+    <table class="data-table">
+        <tr>
+            <th>Policy</th>
+            <th>Effect on Supply/Demand</th>
+            <th>Effect on Price</th>
+            <th>Effect on Quantity</th>
+        </tr>
+        <tr>
+            <td style="text-align: left; font-weight: 600;">Tax on gasoline</td>
+            <td>Supply shifts ____</td>
+            <td>Price ____</td>
+            <td>Quantity ____</td>
+        </tr>
+        <tr>
+            <td style="text-align: left; font-weight: 600;">Subsidy for solar panels</td>
+            <td>Supply shifts ____</td>
+            <td>Price ____</td>
+            <td>Quantity ____</td>
+        </tr>
+        <tr>
+            <td style="text-align: left; font-weight: 600;">Rent control (price ceiling)</td>
+            <td>Creates ____</td>
+            <td>Price stays ____</td>
+            <td>Shortage of ____</td>
+        </tr>
+        <tr>
+            <td style="text-align: left; font-weight: 600;">Minimum wage (price floor)</td>
+            <td>Creates ____</td>
+            <td>Wage stays ____</td>
+            <td>Surplus of ____</td>
+        </tr>
+    </table>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">5.</span> The gas tax is $0.50/gallon. If you drive 10,000 miles/year at 25 MPG, how much do you pay annually in gas tax?</p>
+        <div class="calc-box">
+            <div class="calc-label">Show your work:</div>
+        </div>
+        <div class="calc-answer">Answer: $_____________ per year in gas tax</div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">6.</span> What do you get in return for gas taxes? List 3 government services funded by these taxes.</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <!-- PART C -->
+    <div class="part-header">Part C: Cost-Benefit Analysis</div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">7.</span> Should your state raise the minimum wage to $15/hour? Complete the cost-benefit analysis:</p>
+        <table class="data-table" style="font-size: 9pt;">
+            <tr>
+                <th>Benefits</th>
+                <th>Costs</th>
+            </tr>
+            <tr>
+                <td style="height: 50px; text-align: left; vertical-align: top;"></td>
+                <td style="text-align: left; vertical-align: top;"></td>
+            </tr>
+            <tr>
+                <td style="height: 50px; text-align: left; vertical-align: top;"></td>
+                <td style="text-align: left; vertical-align: top;"></td>
+            </tr>
+        </table>
+        <div class="response-line" style="margin-top: 10px;">
+            <span class="response-label">Your verdict:</span>
+            <span class="response-blank"></span>
+            <span class="response-options">(Support / Oppose / Modify)</span>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">8.</span> Identify one government regulation that affects your daily life. What market failure does it address? Do benefits exceed costs?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <!-- CHECK YOUR UNDERSTANDING -->
+    <div class="section-header">Check Your Understanding</div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">1.</span> A cost or benefit affecting parties not involved in a transaction is called:</p>
+        <div class="mc-options">
+            <div class="mc-option"><div class="mc-checkbox"></div> A. Public good</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> B. Externality</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> C. Market structure</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> D. Price control</div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">2.</span> Explain why private markets cannot efficiently provide national defense.</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">3.</span> <strong>Calculation:</strong> A pollution tax of $50/ton is imposed on a factory that emits 1,000 tons annually. The tax reduces emissions by 40%. Calculate the tax revenue and remaining emissions.</p>
+        <div class="calc-box">
+            <div class="calc-label">Show your work:</div>
+        </div>
+        <div class="calc-answer">Tax Revenue: $_____________ | Remaining Emissions: _____________ tons</div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">4.</span> Rent control sets apartment prices below market level. Why does this cause a housing shortage?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">5.</span> <strong>Reflection:</strong> Do you believe your state has too much, too little, or about the right amount of government intervention in the economy? Explain with specific examples.</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        <span>© PFL Academy | pflacademy.co</span>
+        <span>Chapter 52: Government and the Economy</span>
+    </div>
+
+</body>
+</html>

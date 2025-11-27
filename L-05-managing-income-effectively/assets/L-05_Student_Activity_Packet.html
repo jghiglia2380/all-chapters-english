@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-05 Student Activity Packet</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+        :root {
+            --primary: #6366f1;
+            --primary-light: #eef2ff;
+            --accent: #f59e0b;
+            --accent-light: #fef3c7;
+            --success: #059669;
+            --text-dark: #1e293b;
+            --text-medium: #475569;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --bg-light: #f8fafc;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+
+        @page {
+            size: letter;
+            margin: 0.5in;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 10.5pt;
+            line-height: 1.5;
+            color: var(--text-dark);
+            background: white;
+        }
+
+        .header {
+            background: var(--primary);
+            color: white;
+            padding: 14px 18px;
+            border-radius: 6px;
+            margin-bottom: 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-left h1 {
+            font-size: 13pt;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .header-left h2 {
+            font-size: 10pt;
+            font-weight: 400;
+            margin: 2px 0 0;
+            opacity: 0.9;
+        }
+
+        .header-right {
+            font-size: 9pt;
+            text-align: right;
+            opacity: 0.9;
+        }
+
+        .section-header {
+            font-size: 11pt;
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 4px;
+            margin: 20px 0 12px;
+        }
+
+        .challenge-box {
+            background: var(--accent-light);
+            border-left: 4px solid var(--accent);
+            padding: 14px 16px;
+            margin-bottom: 16px;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .challenge-box p {
+            font-style: italic;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+        }
+
+        .challenge-box .framing-question {
+            font-weight: 600;
+            font-style: normal;
+            color: #92400e;
+        }
+
+        .objectives-box {
+            background: var(--primary-light);
+            border: 1px solid #c7d2fe;
+            border-radius: 6px;
+            padding: 12px 16px;
+            margin-bottom: 18px;
+        }
+
+        .objectives-box h3 {
+            font-size: 10pt;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 6px;
+        }
+
+        .objectives-box ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .objectives-box li {
+            margin-bottom: 3px;
+            color: var(--text-medium);
+        }
+
+        .terms-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 14px;
+            font-size: 10pt;
+        }
+
+        .terms-table th {
+            background: var(--bg-light);
+            text-align: left;
+            padding: 8px 10px;
+            border: 1px solid var(--border);
+            font-weight: 600;
+            color: var(--text-medium);
+        }
+
+        .terms-table td {
+            padding: 8px 10px;
+            border: 1px solid var(--border);
+            vertical-align: top;
+        }
+
+        .terms-table td:first-child {
+            font-weight: 600;
+            color: var(--primary);
+            width: 25%;
+        }
+
+        .background-box {
+            background: var(--bg-light);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 12px 16px;
+            margin-bottom: 18px;
+            font-size: 10pt;
+            color: var(--text-medium);
+        }
+
+        .background-box strong {
+            color: var(--text-dark);
+        }
+
+        .scenario-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 12px 14px;
+            margin-bottom: 14px;
+            page-break-inside: avoid;
+        }
+
+        .scenario-title {
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 6px;
+            font-size: 10pt;
+        }
+
+        .scenario-description {
+            color: var(--text-medium);
+            margin-bottom: 10px;
+            font-size: 10pt;
+        }
+
+        .response-line {
+            display: flex;
+            align-items: baseline;
+            margin-bottom: 8px;
+        }
+
+        .response-label {
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-right: 8px;
+            white-space: nowrap;
+        }
+
+        .response-blank {
+            flex-grow: 1;
+            border-bottom: 1px solid var(--text-light);
+            min-height: 18px;
+        }
+
+        .response-options {
+            color: var(--text-light);
+            font-size: 9pt;
+            margin-left: 8px;
+            white-space: nowrap;
+        }
+
+        .because-lines {
+            margin-top: 6px;
+        }
+
+        .because-lines .response-line {
+            margin-bottom: 4px;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 12px 0;
+            font-size: 10pt;
+        }
+
+        .data-table th {
+            background: var(--primary);
+            color: white;
+            padding: 8px 10px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 9pt;
+        }
+
+        .data-table td {
+            padding: 8px 10px;
+            border: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .data-table tr:nth-child(even) td {
+            background: var(--bg-light);
+        }
+
+        .data-table .calc-row td {
+            background: #fef9c3;
+            height: 28px;
+        }
+
+        .question {
+            margin-bottom: 14px;
+            page-break-inside: avoid;
+        }
+
+        .question-number {
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .question-text {
+            color: var(--text-dark);
+            margin-bottom: 6px;
+        }
+
+        .answer-lines {
+            margin-top: 6px;
+        }
+
+        .answer-line {
+            border-bottom: 1px solid var(--text-light);
+            height: 22px;
+            margin-bottom: 4px;
+        }
+
+        .calc-box {
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 12px;
+            margin: 8px 0;
+            min-height: 60px;
+            background: var(--bg-light);
+        }
+
+        .calc-label {
+            font-size: 9pt;
+            color: var(--text-light);
+            margin-bottom: 4px;
+        }
+
+        .calc-answer {
+            margin-top: 10px;
+            font-weight: 600;
+        }
+
+        .mc-options {
+            margin-top: 6px;
+            margin-left: 20px;
+        }
+
+        .mc-option {
+            display: flex;
+            align-items: center;
+            margin-bottom: 4px;
+        }
+
+        .mc-checkbox {
+            width: 14px;
+            height: 14px;
+            border: 1px solid var(--text-light);
+            border-radius: 2px;
+            margin-right: 8px;
+            flex-shrink: 0;
+        }
+
+        .hint-box {
+            background: #f0fdf4;
+            border-left: 3px solid var(--success);
+            padding: 8px 12px;
+            margin: 10px 0;
+            font-size: 9pt;
+            font-style: italic;
+            color: #166534;
+        }
+
+        .hint-box strong {
+            font-style: normal;
+        }
+
+        .part-header {
+            font-weight: 700;
+            font-size: 10pt;
+            color: var(--primary);
+            text-transform: uppercase;
+            margin: 16px 0 10px;
+            padding-bottom: 4px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .footer {
+            margin-top: 24px;
+            padding-top: 10px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            font-size: 9pt;
+            color: var(--text-light);
+        }
+
+        .mb-sm { margin-bottom: 8px; }
+        .mb-md { margin-bottom: 14px; }
+        .mb-lg { margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="header-left">
+            <h1>PFL Academy</h1>
+            <h2>Chapter 1.5: Managing Your Income Effectively</h2>
+        </div>
+        <div class="header-right">
+            Student Activity Packet
+        </div>
+    </div>
+
+    <div class="section-header">The Challenge</div>
+    <div class="challenge-box">
+        <p>Casey earns $3,000/month and follows the 50/30/20 rule: $1,500 for needs, $900 for wants, and $600 for savings. Casey automates savings, tracks expenses weekly, and has built a 3-month emergency fund ($4,500). Taylor earns the same amount but has no budget, spends freely, accumulated $4,000 in credit card debt, and has no savings. Same income—very different outcomes.</p>
+        <p class="framing-question">Why does income management—not just income level—often determine financial outcomes?</p>
+    </div>
+
+    <div class="objectives-box">
+        <h3>Learning Objectives</h3>
+        <ul>
+            <li>Create a personal budget using the 50/30/20 rule.</li>
+            <li>Differentiate between financial needs and wants.</li>
+            <li>Understand the importance of emergency funds and savings.</li>
+        </ul>
+    </div>
+
+    <div class="section-header">Core Concepts</div>
+
+    <table class="terms-table">
+        <tr>
+            <th>Term</th>
+            <th>Definition</th>
+        </tr>
+        <tr>
+            <td>Budget</td>
+            <td>A plan that tracks income and expenses to guide financial decisions.</td>
+        </tr>
+        <tr>
+            <td>50/30/20 Rule</td>
+            <td>Budgeting framework: 50% for needs, 30% for wants, 20% for savings/debt repayment.</td>
+        </tr>
+        <tr>
+            <td>Needs</td>
+            <td>Essential expenses required for basic living (housing, utilities, groceries, transportation).</td>
+        </tr>
+        <tr>
+            <td>Wants</td>
+            <td>Non-essential expenses that enhance life but aren't required (entertainment, dining out).</td>
+        </tr>
+        <tr>
+            <td>Emergency Fund</td>
+            <td>Money set aside specifically for unexpected expenses (goal: 3-6 months of expenses).</td>
+        </tr>
+    </table>
+
+    <div class="background-box">
+        <strong>Background:</strong> Many people live paycheck to paycheck not because they don't earn enough, but because they lack income management strategies. The 50/30/20 rule provides a simple framework: 50% needs, 30% wants, 20% savings. The strategy "pay yourself first" means automatically setting aside savings before spending on anything else. Financial experts recommend an emergency fund of 3-6 months of essential expenses; even $500-$1,000 provides significant protection.
+    </div>
+
+    <div class="section-header">Apply It</div>
+
+    <div class="part-header">Part A: Needs vs. Wants Classification</div>
+    <p class="mb-md">Classify each expense and explain any that might be "borderline."</p>
+
+    <table class="data-table">
+        <tr>
+            <th>Expense</th>
+            <th>Need or Want?</th>
+            <th>Explanation (if borderline)</th>
+        </tr>
+        <tr>
+            <td style="text-align: left;">Rent payment</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td style="text-align: left;">Streaming services ($45/month)</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td style="text-align: left;">Basic cell phone plan</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td style="text-align: left;">Dining out with friends</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td style="text-align: left;">Groceries</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td style="text-align: left;">Latest iPhone upgrade</td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+
+    <div class="hint-box">
+        <strong>Hint:</strong> Some items are clearly needs or wants, but others depend on context. A cell phone may be a need, but the latest premium model is a want. Basic groceries are needs, but specialty gourmet items are wants.
+    </div>
+
+    <div class="part-header">Part B: Budget Allocation</div>
+    <p class="mb-md">Apply the 50/30/20 rule to this income scenario. Then critique the sample budget.</p>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">2.</span> Monthly net income: $2,400. Calculate the target amounts for each category:</p>
+    </div>
+
+    <table class="data-table">
+        <tr>
+            <th>Category</th>
+            <th>Percentage</th>
+            <th>Target Amount</th>
+        </tr>
+        <tr>
+            <td style="text-align: left;">Needs</td>
+            <td>50%</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td style="text-align: left;">Wants</td>
+            <td>30%</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td style="text-align: left;">Savings/Debt</td>
+            <td>20%</td>
+            <td></td>
+        </tr>
+    </table>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">3.</span> Alex has the same $2,400 income but spends: Needs $1,400, Wants $850, Savings $150. What's wrong with this budget, and what specific change would you recommend?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="part-header">Part C: Personal Application</div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">4.</span> List your top 3 monthly expenses. Classify each as a need or want:</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">5.</span> What is ONE "want" expense you could reduce to increase your savings? How much could you save monthly?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="section-header">Check Your Understanding</div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">1.</span> According to the 50/30/20 rule, what percentage should go toward savings and debt repayment?</p>
+        <div class="mc-options">
+            <div class="mc-option"><div class="mc-checkbox"></div> A. 50%</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> B. 30%</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> C. 20%</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> D. 10%</div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">2.</span> Explain why the line between "needs" and "wants" isn't always clear. Give one example of an expense that could be either.</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">3.</span> <strong>Calculation:</strong> Jamie earns $3,200/month and wants to build a $4,800 emergency fund (3 months of essential expenses). If Jamie saves 20% of income monthly, how long will it take to reach this goal?</p>
+        <div class="calc-box">
+            <div class="calc-label">Show your work:</div>
+        </div>
+        <div class="calc-answer">Answer: _____________ months</div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">4.</span> Casey and Taylor both earn $3,000/month. Casey has a 3-month emergency fund and no debt. Taylor has $4,000 in credit card debt and no savings. List TWO specific differences in their approaches that explain these different outcomes.</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">5.</span> <strong>Reflection:</strong> Do you currently follow a budget? What is ONE specific change you could implement immediately to improve your financial management?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <span>© PFL Academy | pflacademy.co</span>
+        <span>Chapter 1.5: Managing Your Income Effectively</span>
+    </div>
+
+</body>
+</html>

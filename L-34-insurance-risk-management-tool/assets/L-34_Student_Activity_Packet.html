@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-34 Student Activity Packet</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+        :root {
+            --primary: #6366f1;
+            --primary-light: #eef2ff;
+            --accent: #f59e0b;
+            --accent-light: #fef3c7;
+            --success: #059669;
+            --text-dark: #1e293b;
+            --text-medium: #475569;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --bg-light: #f8fafc;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+
+        @page { size: letter; margin: 0.5in; }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 10.5pt;
+            line-height: 1.5;
+            color: var(--text-dark);
+            background: white;
+        }
+
+        .header {
+            background: var(--primary);
+            color: white;
+            padding: 14px 18px;
+            border-radius: 6px;
+            margin-bottom: 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-left h1 { font-size: 13pt; font-weight: 700; margin: 0; }
+        .header-left h2 { font-size: 10pt; font-weight: 400; margin: 2px 0 0; opacity: 0.9; }
+        .header-right { font-size: 9pt; text-align: right; opacity: 0.9; }
+
+        .section-header {
+            font-size: 11pt;
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 4px;
+            margin: 20px 0 12px;
+        }
+
+        .challenge-box {
+            background: var(--accent-light);
+            border-left: 4px solid var(--accent);
+            padding: 14px 16px;
+            margin-bottom: 16px;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .challenge-box p { font-style: italic; color: var(--text-dark); margin-bottom: 10px; }
+        .challenge-box .framing-question { font-weight: 600; font-style: normal; color: #92400e; }
+
+        .objectives-box {
+            background: var(--primary-light);
+            border: 1px solid #c7d2fe;
+            border-radius: 6px;
+            padding: 12px 16px;
+            margin-bottom: 18px;
+        }
+
+        .objectives-box h3 { font-size: 10pt; font-weight: 700; color: var(--primary); margin-bottom: 6px; }
+        .objectives-box ul { margin: 0; padding-left: 20px; }
+        .objectives-box li { margin-bottom: 3px; color: var(--text-medium); }
+
+        .terms-table { width: 100%; border-collapse: collapse; margin-bottom: 14px; font-size: 10pt; }
+        .terms-table th { background: var(--bg-light); text-align: left; padding: 8px 10px; border: 1px solid var(--border); font-weight: 600; color: var(--text-medium); }
+        .terms-table td { padding: 8px 10px; border: 1px solid var(--border); vertical-align: top; }
+        .terms-table td:first-child { font-weight: 600; color: var(--primary); width: 25%; }
+
+        .background-box {
+            background: var(--bg-light);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 12px 16px;
+            margin-bottom: 18px;
+            font-size: 10pt;
+            color: var(--text-medium);
+        }
+
+        .background-box strong { color: var(--text-dark); }
+
+        .scenario-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 12px 14px;
+            margin-bottom: 14px;
+            page-break-inside: avoid;
+        }
+
+        .scenario-title { font-weight: 700; color: var(--primary); margin-bottom: 6px; font-size: 10pt; }
+        .scenario-description { color: var(--text-medium); margin-bottom: 10px; font-size: 10pt; }
+
+        .response-line { display: flex; align-items: baseline; margin-bottom: 8px; }
+        .response-label { font-weight: 600; color: var(--text-dark); margin-right: 8px; white-space: nowrap; }
+        .response-blank { flex-grow: 1; border-bottom: 1px solid var(--text-light); min-height: 18px; }
+        .response-options { color: var(--text-light); font-size: 9pt; margin-left: 8px; white-space: nowrap; }
+
+        .data-table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 10pt; }
+        .data-table th { background: var(--primary); color: white; padding: 8px 10px; text-align: center; font-weight: 600; font-size: 9pt; }
+        .data-table td { padding: 8px 10px; border: 1px solid var(--border); text-align: center; }
+        .data-table tr:nth-child(even) td { background: var(--bg-light); }
+        .data-table .calc-row td { background: #fef9c3; height: 28px; }
+
+        .question { margin-bottom: 14px; page-break-inside: avoid; }
+        .question-number { font-weight: 700; color: var(--text-dark); }
+        .question-text { color: var(--text-dark); margin-bottom: 6px; }
+
+        .answer-lines { margin-top: 6px; }
+        .answer-line { border-bottom: 1px solid var(--text-light); height: 22px; margin-bottom: 4px; }
+
+        .calc-box { border: 1px solid var(--border); border-radius: 4px; padding: 12px; margin: 8px 0; min-height: 60px; background: var(--bg-light); }
+        .calc-label { font-size: 9pt; color: var(--text-light); margin-bottom: 4px; }
+        .calc-answer { margin-top: 10px; font-weight: 600; }
+
+        .mc-options { margin-top: 6px; margin-left: 20px; }
+        .mc-option { display: flex; align-items: center; margin-bottom: 4px; }
+        .mc-checkbox { width: 14px; height: 14px; border: 1px solid var(--text-light); border-radius: 2px; margin-right: 8px; flex-shrink: 0; }
+
+        .hint-box { background: #f0fdf4; border-left: 3px solid var(--success); padding: 8px 12px; margin: 10px 0; font-size: 9pt; font-style: italic; color: #166534; }
+        .hint-box strong { font-style: normal; }
+
+        .part-header { font-weight: 700; font-size: 10pt; color: var(--primary); text-transform: uppercase; margin: 16px 0 10px; padding-bottom: 4px; border-bottom: 1px solid var(--border); }
+
+        .footer { margin-top: 24px; padding-top: 10px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; font-size: 9pt; color: var(--text-light); }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="header-left">
+            <h1>PFL Academy</h1>
+            <h2>Chapter 7.2: Insurance as a Risk Management Tool</h2>
+        </div>
+        <div class="header-right">Student Activity Packet</div>
+    </div>
+
+    <div class="section-header">The Challenge</div>
+    <div class="challenge-box">
+        <p>Sarah, a 28-year-old graphic designer, needs an appendectomy costing $20,000. Her health insurance has a $2,000 deductible and 80/20 co-insurance. She's confused about how much she'll actually pay and whether her insurance is worth the monthly premium.</p>
+        <p class="framing-question">How do insurance components like deductibles and co-insurance work together to determine your actual out-of-pocket costs?</p>
+    </div>
+
+    <div class="objectives-box">
+        <h3>Learning Objectives</h3>
+        <ul>
+            <li>Understand key insurance concepts: premiums, deductibles, coverage limits, and exclusions.</li>
+            <li>Identify different types of insurance and their specific purposes.</li>
+            <li>Apply this knowledge to make informed decisions about insurance needs.</li>
+        </ul>
+    </div>
+
+    <div class="section-header">Core Concepts</div>
+
+    <table class="terms-table">
+        <tr><th>Term</th><th>Definition</th></tr>
+        <tr><td>Premium</td><td>The amount paid regularly to maintain insurance coverage, regardless of claims filed.</td></tr>
+        <tr><td>Deductible</td><td>The amount you must pay out-of-pocket before your insurance coverage begins.</td></tr>
+        <tr><td>Co-insurance</td><td>A percentage of costs you share with the insurance company after meeting your deductible.</td></tr>
+        <tr><td>Coverage Limit</td><td>The maximum amount an insurance policy will pay for a covered loss.</td></tr>
+        <tr><td>Exclusion</td><td>Specific conditions or circumstances not covered by an insurance policy.</td></tr>
+    </table>
+
+    <div class="background-box">
+        <strong>Background:</strong> Insurance transfers financial risk from individuals to insurance companies. You pay regular premiums in exchange for protection against potentially devastating losses. Different types of insurance serve different purposes: <strong>health insurance</strong> covers medical expenses, <strong>auto insurance</strong> protects against vehicle-related losses, <strong>homeowner's/renter's insurance</strong> covers property damage and liability, and <strong>life insurance</strong> provides financial support to dependents. Understanding how these policies work helps you select appropriate coverage for your needs.
+    </div>
+
+    <div class="section-header">Apply It</div>
+
+    <div class="part-header">Part A: Insurance Type Matching</div>
+    <p style="margin-bottom: 14px;">Match each situation to the most appropriate type of insurance coverage.</p>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Scenario 1: New Homeowner</div>
+        <div class="scenario-description">You just purchased a home and want to protect it from potential damage, theft, and liability if someone is injured on your property.</div>
+        <div class="response-line">
+            <span class="response-label">Insurance type:</span>
+            <span class="response-blank"></span>
+            <span class="response-options">(health / auto / homeowner's / life / disability)</span>
+        </div>
+    </div>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Scenario 2: New Parent</div>
+        <div class="scenario-description">You're a 30-year-old parent with a young child and want to ensure your family has financial support if something happens to you during the next 20 years.</div>
+        <div class="response-line">
+            <span class="response-label">Insurance type:</span>
+            <span class="response-blank"></span>
+        </div>
+        <div class="response-line">
+            <span class="response-label">Specific product:</span>
+            <span class="response-blank"></span>
+            <span class="response-options">(term life / whole life / universal life)</span>
+        </div>
+    </div>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Scenario 3: Older Used Car</div>
+        <div class="scenario-description">You own an older car worth $3,000 and need the minimum legally required insurance. You're not concerned about damage to your own vehicle.</div>
+        <div class="response-line">
+            <span class="response-label">Coverage type needed:</span>
+            <span class="response-blank"></span>
+            <span class="response-options">(liability only / collision / comprehensive / full coverage)</span>
+        </div>
+    </div>
+
+    <div class="hint-box">
+        <strong>Hint:</strong> Term life insurance provides coverage for a specific period and is most cost-effective for temporary needs. Whole life provides permanent coverage with a cash value component.
+    </div>
+
+    <div class="part-header">Part B: Health Insurance Cost Calculation</div>
+    <p style="margin-bottom: 14px;">Calculate Sarah's out-of-pocket costs for her $20,000 appendectomy using her insurance details.</p>
+
+    <table class="data-table">
+        <tr>
+            <th>Insurance Feature</th>
+            <th>Sarah's Plan</th>
+            <th>Your Calculation</th>
+        </tr>
+        <tr>
+            <td style="text-align: left; font-weight: 600;">Total Medical Bill</td>
+            <td>$20,000</td>
+            <td>—</td>
+        </tr>
+        <tr>
+            <td style="text-align: left; font-weight: 600;">Annual Deductible</td>
+            <td>$2,000</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td style="text-align: left; font-weight: 600;">Remaining After Deductible</td>
+            <td>—</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td style="text-align: left; font-weight: 600;">Co-insurance Rate</td>
+            <td>80/20 (Sarah pays 20%)</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td style="text-align: left; font-weight: 600;">Sarah's Co-insurance Amount</td>
+            <td>—</td>
+            <td></td>
+        </tr>
+        <tr class="calc-row">
+            <td style="text-align: left; font-weight: 600;">Sarah's Total Out-of-Pocket</td>
+            <td>—</td>
+            <td></td>
+        </tr>
+        <tr class="calc-row">
+            <td style="text-align: left; font-weight: 600;">Insurance Pays</td>
+            <td>—</td>
+            <td></td>
+        </tr>
+    </table>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">4.</span> Show your step-by-step calculation for Sarah's total out-of-pocket expense:</p>
+        <div class="calc-box"><div class="calc-label">Show your work:</div></div>
+        <div class="calc-answer">Sarah's total: $_____________ | Insurance pays: $_____________</div>
+    </div>
+
+    <div class="part-header">Part C: Insurance Evaluation</div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">5.</span> Jordan, age 22, is choosing between employer health insurance ($200/month premium, $1,500 deductible) or staying on parents' plan (free) for 4 more years. What factors should Jordan consider?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="section-header">Check Your Understanding</div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">1.</span> Which of the following is NOT covered by a typical homeowner's insurance policy?</p>
+        <div class="mc-options">
+            <div class="mc-option"><div class="mc-checkbox"></div> A. Fire damage to the structure</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> B. Theft of personal belongings</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> C. Flood damage from a natural disaster</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> D. Liability if a guest is injured on property</div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">2.</span> Explain the difference between term life insurance and whole life insurance. When might each be appropriate?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">3.</span> <strong>Calculation:</strong> Marcus's auto liability insurance has limits of $100,000/$300,000. He causes an accident injuring two people: Person A has $120,000 in medical bills, Person B has $80,000. How much does insurance pay for each?</p>
+        <div class="calc-box"><div class="calc-label">Show your work:</div></div>
+        <div class="calc-answer">Person A receives: $_____________ | Person B receives: $_____________</div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">4.</span> A fire damages Aisha's apartment, destroying $15,000 worth of belongings. Her renter's insurance has a $500 deductible and $20,000 coverage limit. How much will she receive?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">5.</span> <strong>Reflection:</strong> Think about your family's current insurance coverage. Which type of insurance do you think is most important for your family's situation, and why?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <span>&copy; PFL Academy | pflacademy.co</span>
+        <span>Chapter 7.2: Insurance as a Risk Management Tool</span>
+    </div>
+
+</body>
+</html>

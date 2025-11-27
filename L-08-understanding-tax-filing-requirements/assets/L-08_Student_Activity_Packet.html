@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-08 Student Activity Packet</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+        :root { --primary: #6366f1; --primary-light: #eef2ff; --accent: #f59e0b; --accent-light: #fef3c7; --success: #059669; --text-dark: #1e293b; --text-medium: #475569; --text-light: #64748b; --border: #e2e8f0; --bg-light: #f8fafc; }
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+        @page { size: letter; margin: 0.5in; }
+        body { font-family: 'Open Sans', sans-serif; font-size: 10.5pt; line-height: 1.5; color: var(--text-dark); background: white; }
+        .header { background: var(--primary); color: white; padding: 14px 18px; border-radius: 6px; margin-bottom: 18px; display: flex; justify-content: space-between; align-items: center; }
+        .header-left h1 { font-size: 13pt; font-weight: 700; margin: 0; }
+        .header-left h2 { font-size: 10pt; font-weight: 400; margin: 2px 0 0; opacity: 0.9; }
+        .header-right { font-size: 9pt; text-align: right; opacity: 0.9; }
+        .section-header { font-size: 11pt; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 2px solid var(--primary); padding-bottom: 4px; margin: 20px 0 12px; }
+        .challenge-box { background: var(--accent-light); border-left: 4px solid var(--accent); padding: 14px 16px; margin-bottom: 16px; border-radius: 0 6px 6px 0; }
+        .challenge-box p { font-style: italic; color: var(--text-dark); margin-bottom: 10px; }
+        .challenge-box .framing-question { font-weight: 600; font-style: normal; color: #92400e; }
+        .objectives-box { background: var(--primary-light); border: 1px solid #c7d2fe; border-radius: 6px; padding: 12px 16px; margin-bottom: 18px; }
+        .objectives-box h3 { font-size: 10pt; font-weight: 700; color: var(--primary); margin-bottom: 6px; }
+        .objectives-box ul { margin: 0; padding-left: 20px; }
+        .objectives-box li { margin-bottom: 3px; color: var(--text-medium); }
+        .terms-table { width: 100%; border-collapse: collapse; margin-bottom: 14px; font-size: 10pt; }
+        .terms-table th { background: var(--bg-light); text-align: left; padding: 8px 10px; border: 1px solid var(--border); font-weight: 600; color: var(--text-medium); }
+        .terms-table td { padding: 8px 10px; border: 1px solid var(--border); vertical-align: top; }
+        .terms-table td:first-child { font-weight: 600; color: var(--primary); width: 25%; }
+        .background-box { background: var(--bg-light); border: 1px solid var(--border); border-radius: 6px; padding: 12px 16px; margin-bottom: 18px; font-size: 10pt; color: var(--text-medium); }
+        .background-box strong { color: var(--text-dark); }
+        .scenario-card { background: white; border: 1px solid var(--border); border-radius: 6px; padding: 12px 14px; margin-bottom: 14px; page-break-inside: avoid; }
+        .scenario-title { font-weight: 700; color: var(--primary); margin-bottom: 6px; font-size: 10pt; }
+        .scenario-description { color: var(--text-medium); margin-bottom: 10px; font-size: 10pt; }
+        .response-line { display: flex; align-items: baseline; margin-bottom: 8px; }
+        .response-label { font-weight: 600; color: var(--text-dark); margin-right: 8px; white-space: nowrap; }
+        .response-blank { flex-grow: 1; border-bottom: 1px solid var(--text-light); min-height: 18px; }
+        .response-options { color: var(--text-light); font-size: 9pt; margin-left: 8px; white-space: nowrap; }
+        .data-table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 9.5pt; }
+        .data-table th { background: var(--primary); color: white; padding: 8px 10px; text-align: left; font-weight: 600; font-size: 9pt; }
+        .data-table td { padding: 8px 10px; border: 1px solid var(--border); }
+        .data-table tr:nth-child(even) td { background: var(--bg-light); }
+        .question { margin-bottom: 14px; page-break-inside: avoid; }
+        .question-number { font-weight: 700; color: var(--text-dark); }
+        .question-text { color: var(--text-dark); margin-bottom: 6px; }
+        .answer-lines { margin-top: 6px; }
+        .answer-line { border-bottom: 1px solid var(--text-light); height: 22px; margin-bottom: 4px; }
+        .calc-box { border: 1px solid var(--border); border-radius: 4px; padding: 12px; margin: 8px 0; min-height: 60px; background: var(--bg-light); }
+        .calc-label { font-size: 9pt; color: var(--text-light); margin-bottom: 4px; }
+        .mc-options { margin-top: 6px; margin-left: 20px; }
+        .mc-option { display: flex; align-items: center; margin-bottom: 4px; }
+        .mc-checkbox { width: 14px; height: 14px; border: 1px solid var(--text-light); border-radius: 2px; margin-right: 8px; flex-shrink: 0; }
+        .hint-box { background: #f0fdf4; border-left: 3px solid var(--success); padding: 8px 12px; margin: 10px 0; font-size: 9pt; font-style: italic; color: #166534; }
+        .hint-box strong { font-style: normal; }
+        .part-header { font-weight: 700; font-size: 10pt; color: var(--primary); text-transform: uppercase; margin: 16px 0 10px; padding-bottom: 4px; border-bottom: 1px solid var(--border); }
+        .footer { margin-top: 24px; padding-top: 10px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; font-size: 9pt; color: var(--text-light); }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-left">
+            <h1>PFL Academy</h1>
+            <h2>Chapter 2.3: Understanding Tax Filing Requirements</h2>
+        </div>
+        <div class="header-right">Student Activity Packet</div>
+    </div>
+
+    <div class="section-header">The Challenge</div>
+    <div class="challenge-box">
+        <p>Ava earned $4,500 at her part-time job last year. Since she's below the $13,850 filing threshold, she assumed she didn't need to file taxes. But her employer withheld $450 in federal income tax from her paychecks. By not filing, Ava is leaving $450 on the table—money that's rightfully hers. Meanwhile, Ben earns $32,000 at his retail job plus $5,000 from freelance graphic design, but didn't realize his freelance income triggers additional filing requirements.</p>
+        <p class="framing-question">How do you determine if you need to file taxes, and when might filing benefit you even if it's not required?</p>
+    </div>
+
+    <div class="objectives-box">
+        <h3>Learning Objectives</h3>
+        <ul>
+            <li>Determine who needs to file a tax return based on income, age, and filing status.</li>
+            <li>Identify common tax forms including W-2s, 1099s, and Form 1040.</li>
+            <li>Recognize important tax deadlines and consequences of missing them.</li>
+        </ul>
+    </div>
+
+    <div class="section-header">Core Concepts</div>
+    <table class="terms-table">
+        <tr><th>Term</th><th>Definition</th></tr>
+        <tr><td>W-2 Form</td><td>Document from your employer reporting your annual wages and taxes withheld.</td></tr>
+        <tr><td>1099 Form</td><td>Reports income from non-employment sources (freelance work, interest, dividends).</td></tr>
+        <tr><td>Form 1040</td><td>The primary form individuals use to file their annual federal income tax return.</td></tr>
+        <tr><td>Filing Threshold</td><td>Minimum income level at which you're required to file a tax return.</td></tr>
+        <tr><td>Tax Refund</td><td>Money returned when your tax payments (withholding) exceed your actual tax liability.</td></tr>
+    </table>
+
+    <div class="background-box">
+        <strong>2023 Filing Thresholds:</strong> Single (under 65): $13,850 | Head of Household: $20,800 | Married Filing Jointly: $27,700. However, you MUST file if: self-employment income exceeds $400, you owe special taxes, or you received advance health insurance credits. You SHOULD file if taxes were withheld (to get a refund) or you qualify for refundable credits.
+    </div>
+
+    <div class="section-header">Apply It</div>
+    <div class="part-header">Part A: Who Needs to File?</div>
+    <p style="margin-bottom: 14px;">For each person, determine if they are REQUIRED to file, SHOULD file (beneficial), or DON'T NEED to file.</p>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Person 1: Ava (Age 17)</div>
+        <div class="scenario-description">Part-time barista. Earned $4,500. Employer withheld $450 in federal taxes. No other income.</div>
+        <div class="response-line"><span class="response-label">Filing Status:</span><span class="response-blank"></span><span class="response-options">(Required / Should / Don't Need)</span></div>
+        <div class="response-line"><span class="response-label">Why:</span><span class="response-blank"></span></div>
+    </div>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Person 2: Ben (Age 24)</div>
+        <div class="scenario-description">Full-time retail ($32,000) + freelance graphic design ($5,000). Receives both W-2 and 1099-NEC.</div>
+        <div class="response-line"><span class="response-label">Filing Status:</span><span class="response-blank"></span><span class="response-options">(Required / Should / Don't Need)</span></div>
+        <div class="response-line"><span class="response-label">Why:</span><span class="response-blank"></span></div>
+    </div>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Person 3: Maya (Age 22)</div>
+        <div class="scenario-description">Recent graduate. First job started in October. Total 2023 earnings: $11,500. Taxes withheld: $920.</div>
+        <div class="response-line"><span class="response-label">Filing Status:</span><span class="response-blank"></span><span class="response-options">(Required / Should / Don't Need)</span></div>
+        <div class="response-line"><span class="response-label">Why:</span><span class="response-blank"></span></div>
+    </div>
+
+    <div class="hint-box"><strong>Remember:</strong> Even if you're below the filing threshold, file to recover withheld taxes! Ava's $450 won't come back unless she files.</div>
+
+    <div class="part-header">Part B: Match the Tax Form</div>
+    <p style="margin-bottom: 14px;">Match each situation to the correct tax form they would receive.</p>
+
+    <table class="data-table">
+        <tr><th>Situation</th><th>Form (W-2 / 1099-NEC / 1099-INT / 1099-DIV)</th></tr>
+        <tr><td>1. Working as an employee at a restaurant</td><td style="width: 35%;"></td></tr>
+        <tr><td>2. Earning $200 interest from a savings account</td><td></td></tr>
+        <tr><td>3. Doing freelance photography ($2,500)</td><td></td></tr>
+        <tr><td>4. Receiving $150 in stock dividends</td><td></td></tr>
+    </table>
+
+    <div class="part-header">Part C: Deadline and Penalty Analysis</div>
+    <div class="scenario-card">
+        <div class="scenario-title">Scenario: Late Filing Consequences</div>
+        <div class="scenario-description">Chris owes $2,000 in taxes but files 3 months late without requesting an extension.</div>
+        <div class="question">
+            <p class="question-text">Calculate the penalties Chris will face:</p>
+            <div class="calc-box">
+                <div class="calc-label">Failure-to-file penalty: 5% per month × 3 months × $2,000 = $_______</div>
+                <div class="calc-label" style="margin-top: 8px;">Failure-to-pay penalty: 0.5% per month × 3 months × $2,000 = $_______</div>
+                <div class="calc-label" style="margin-top: 8px;"><strong>Total penalty: $_______</strong></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">4.</span> What could Chris have done differently to reduce or avoid these penalties?</p>
+        <div class="answer-lines"><div class="answer-line"></div><div class="answer-line"></div></div>
+    </div>
+
+    <div class="section-header">Check Your Understanding</div>
+    <div class="question">
+        <p class="question-text"><span class="question-number">1.</span> Which form reports your wages and taxes withheld from employment?</p>
+        <div class="mc-options">
+            <div class="mc-option"><div class="mc-checkbox"></div> A. Form 1040</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> B. W-2</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> C. 1099-NEC</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> D. Schedule C</div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">2.</span> Why should someone file a tax return even if their income is below the filing threshold?</p>
+        <div class="answer-lines"><div class="answer-line"></div><div class="answer-line"></div></div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">3.</span> A single person under 65 earned $12,000 in wages and $600 from freelance work. Are they required to file? Why?</p>
+        <div class="answer-lines"><div class="answer-line"></div><div class="answer-line"></div></div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">4.</span> What is the standard tax filing deadline, and what should you do if you can't file by that date?</p>
+        <div class="answer-lines"><div class="answer-line"></div><div class="answer-line"></div></div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">5.</span> <strong>Reflection:</strong> Based on your current situation (part-time job, no income yet, gig work), what tax forms do you expect to receive, and do you think you'll need to file? Why?</p>
+        <div class="answer-lines"><div class="answer-line"></div><div class="answer-line"></div><div class="answer-line"></div></div>
+    </div>
+
+    <div class="footer">
+        <span>© PFL Academy | pflacademy.co</span>
+        <span>Chapter 2.3: Understanding Tax Filing Requirements</span>
+    </div>
+</body>
+</html>

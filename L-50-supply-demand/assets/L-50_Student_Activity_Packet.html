@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-50 Student Activity Packet</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+        :root {
+            --primary: #6366f1;
+            --primary-light: #eef2ff;
+            --accent: #f59e0b;
+            --accent-light: #fef3c7;
+            --success: #059669;
+            --text-dark: #1e293b;
+            --text-medium: #475569;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --bg-light: #f8fafc;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+        @page { size: letter; margin: 0.5in; }
+
+        body { font-family: 'Open Sans', sans-serif; font-size: 10.5pt; line-height: 1.5; color: var(--text-dark); background: white; }
+
+        .header { background: var(--primary); color: white; padding: 14px 18px; border-radius: 6px; margin-bottom: 18px; display: flex; justify-content: space-between; align-items: center; }
+        .header-left h1 { font-size: 13pt; font-weight: 700; margin: 0; }
+        .header-left h2 { font-size: 10pt; font-weight: 400; margin: 2px 0 0; opacity: 0.9; }
+        .header-right { font-size: 9pt; text-align: right; opacity: 0.9; }
+
+        .section-header { font-size: 11pt; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 2px solid var(--primary); padding-bottom: 4px; margin: 20px 0 12px; }
+
+        .challenge-box { background: var(--accent-light); border-left: 4px solid var(--accent); padding: 14px 16px; margin-bottom: 16px; border-radius: 0 6px 6px 0; }
+        .challenge-box p { font-style: italic; color: var(--text-dark); margin-bottom: 10px; }
+        .challenge-box .framing-question { font-weight: 600; font-style: normal; color: #92400e; }
+
+        .objectives-box { background: var(--primary-light); border: 1px solid #c7d2fe; border-radius: 6px; padding: 12px 16px; margin-bottom: 18px; }
+        .objectives-box h3 { font-size: 10pt; font-weight: 700; color: var(--primary); margin-bottom: 6px; }
+        .objectives-box ul { margin: 0; padding-left: 20px; }
+        .objectives-box li { margin-bottom: 3px; color: var(--text-medium); }
+
+        .terms-table { width: 100%; border-collapse: collapse; margin-bottom: 14px; font-size: 10pt; }
+        .terms-table th { background: var(--bg-light); text-align: left; padding: 8px 10px; border: 1px solid var(--border); font-weight: 600; color: var(--text-medium); }
+        .terms-table td { padding: 8px 10px; border: 1px solid var(--border); vertical-align: top; }
+        .terms-table td:first-child { font-weight: 600; color: var(--primary); width: 25%; }
+
+        .background-box { background: var(--bg-light); border: 1px solid var(--border); border-radius: 6px; padding: 12px 16px; margin-bottom: 18px; font-size: 10pt; color: var(--text-medium); }
+        .background-box strong { color: var(--text-dark); }
+
+        .data-table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 9pt; }
+        .data-table th { background: var(--primary); color: white; padding: 8px 10px; text-align: center; font-weight: 600; font-size: 9pt; }
+        .data-table td { padding: 8px 10px; border: 1px solid var(--border); text-align: center; }
+        .data-table tr:nth-child(even) td { background: var(--bg-light); }
+        .data-table .calc-row td { background: #fef9c3; height: 28px; }
+
+        .question { margin-bottom: 14px; page-break-inside: avoid; }
+        .question-number { font-weight: 700; color: var(--text-dark); }
+        .question-text { color: var(--text-dark); margin-bottom: 6px; }
+
+        .answer-lines { margin-top: 6px; }
+        .answer-line { border-bottom: 1px solid var(--text-light); height: 22px; margin-bottom: 4px; }
+
+        .mc-options { margin-top: 6px; margin-left: 20px; }
+        .mc-option { display: flex; align-items: center; margin-bottom: 4px; }
+        .mc-checkbox { width: 14px; height: 14px; border: 1px solid var(--text-light); border-radius: 2px; margin-right: 8px; flex-shrink: 0; }
+
+        .hint-box { background: #f0fdf4; border-left: 3px solid var(--success); padding: 8px 12px; margin: 10px 0; font-size: 9pt; font-style: italic; color: #166534; }
+        .hint-box strong { font-style: normal; }
+
+        .part-header { font-weight: 700; font-size: 10pt; color: var(--primary); text-transform: uppercase; margin: 16px 0 10px; padding-bottom: 4px; border-bottom: 1px solid var(--border); }
+
+        .footer { margin-top: 24px; padding-top: 10px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; font-size: 9pt; color: var(--text-light); }
+
+        .mb-sm { margin-bottom: 8px; }
+        .mb-md { margin-bottom: 14px; }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <div class="header">
+        <div class="header-left">
+            <h1>PFL Academy</h1>
+            <h2>Chapter 14.3: Supply and Demand in Personal Finance</h2>
+        </div>
+        <div class="header-right">
+            Student Activity Packet
+        </div>
+    </div>
+
+    <!-- THE CHALLENGE -->
+    <div class="section-header">The Challenge</div>
+    <div class="challenge-box">
+        <p>Why does gas cost more in summer than winter? Why does rent cost more in some cities than others? Why did hand sanitizer prices spike during the pandemic? Why are airline tickets cheaper on Tuesdays? Why do roses cost triple on Valentine's Day? The answer to ALL of these questions is the same: Supply and Demand. Understanding these market forces will help you time purchases strategically, choose careers with strong demand, invest in appreciating assets, and avoid overpaying for goods and services.</p>
+        <p class="framing-question">How can understanding supply and demand help you make smarter financial decisions?</p>
+    </div>
+
+    <!-- LEARNING OBJECTIVES -->
+    <div class="objectives-box">
+        <h3>Learning Objectives</h3>
+        <ul>
+            <li>Explain the law of demand and law of supply.</li>
+            <li>Analyze how supply and demand curves determine market equilibrium prices.</li>
+            <li>Identify factors that shift supply and demand in real markets.</li>
+            <li>Predict how price changes affect markets relevant to personal finance.</li>
+        </ul>
+    </div>
+
+    <!-- CORE CONCEPTS -->
+    <div class="section-header">Core Concepts</div>
+
+    <table class="terms-table">
+        <tr>
+            <th>Term</th>
+            <th>Definition</th>
+        </tr>
+        <tr>
+            <td>Law of Demand</td>
+            <td>As price increases, quantity demanded decreases (and vice versa), all else being equal.</td>
+        </tr>
+        <tr>
+            <td>Law of Supply</td>
+            <td>As price increases, quantity supplied increases (and vice versa), all else being equal.</td>
+        </tr>
+        <tr>
+            <td>Equilibrium</td>
+            <td>The price where quantity demanded equals quantity supplied—the market "clears" with no shortage or surplus.</td>
+        </tr>
+        <tr>
+            <td>Demand Shift</td>
+            <td>Movement of the entire demand curve due to changes in income, preferences, population, or related goods.</td>
+        </tr>
+        <tr>
+            <td>Supply Shift</td>
+            <td>Movement of the entire supply curve due to changes in input costs, technology, regulations, or number of sellers.</td>
+        </tr>
+    </table>
+
+    <div class="background-box">
+        <strong>Background:</strong> Supply and demand curves show HOW prices reach their levels and WHY they change. Prices signal scarcity: high prices tell you something is scarce relative to demand; low prices indicate abundance. Understanding these forces helps you time purchases (buy when demand is low), choose careers (where demand exceeds supply), and avoid overpaying (recognize temporary price spikes).
+    </div>
+
+    <!-- APPLY IT -->
+    <div class="section-header">Apply It</div>
+
+    <div class="part-header">Part A: Market Equilibrium Analysis</div>
+    <p class="mb-sm">Analyze the used car market to find the equilibrium price:</p>
+
+    <table class="data-table">
+        <tr>
+            <th>Price</th>
+            <th>Quantity Demanded</th>
+            <th>Quantity Supplied</th>
+            <th>Market Condition</th>
+        </tr>
+        <tr>
+            <td>$30,000</td>
+            <td>100</td>
+            <td>400</td>
+            <td>Surplus (300 cars)</td>
+        </tr>
+        <tr>
+            <td>$25,000</td>
+            <td>200</td>
+            <td>300</td>
+            <td>Surplus (100 cars)</td>
+        </tr>
+        <tr class="calc-row">
+            <td><strong>$20,000</strong></td>
+            <td><strong>300</strong></td>
+            <td><strong>300</strong></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>$15,000</td>
+            <td>400</td>
+            <td>200</td>
+            <td>Shortage (200 cars)</td>
+        </tr>
+        <tr>
+            <td>$10,000</td>
+            <td>500</td>
+            <td>100</td>
+            <td>Shortage (400 cars)</td>
+        </tr>
+    </table>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">1.</span> At what price does the market reach equilibrium? What is the market condition at $20,000?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">2.</span> If sellers price cars at $30,000, what happens? How does the market self-correct?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <!-- PART B -->
+    <div class="part-header">Part B: Demand Shifters</div>
+    <p class="mb-md">Identify what happens to demand when each factor changes:</p>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">3.</span> For each scenario, indicate whether demand INCREASES (shifts right) or DECREASES (shifts left):</p>
+    </div>
+
+    <table class="data-table">
+        <tr>
+            <th>Scenario</th>
+            <th>Demand Shifts...</th>
+            <th>Price Effect</th>
+        </tr>
+        <tr>
+            <td style="text-align: left;">Income in the region increases</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td style="text-align: left;">Price of a substitute good increases</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td style="text-align: left;">Population decreases (people move away)</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td style="text-align: left;">Consumers expect prices to rise soon</td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+
+    <!-- PART C -->
+    <div class="part-header">Part C: Supply Shifters</div>
+    <p class="mb-md">Identify what happens to supply when each factor changes:</p>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">4.</span> For each scenario, indicate whether supply INCREASES (shifts right) or DECREASES (shifts left):</p>
+    </div>
+
+    <table class="data-table">
+        <tr>
+            <th>Scenario</th>
+            <th>Supply Shifts...</th>
+            <th>Price Effect</th>
+        </tr>
+        <tr>
+            <td style="text-align: left;">Production costs (materials, labor) increase</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td style="text-align: left;">New technology makes production cheaper</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td style="text-align: left;">Government adds new regulations and taxes</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td style="text-align: left;">More businesses enter the market</td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+
+    <div class="hint-box">
+        <strong>Personal Finance Application:</strong> When you see supply disruptions (factory closures, shipping delays), expect prices to rise temporarily. Stock up before disruptions or wait for supply to recover.
+    </div>
+
+    <!-- CHECK YOUR UNDERSTANDING -->
+    <div class="section-header">Check Your Understanding</div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">1.</span> According to the law of demand, when the price of a product increases:</p>
+        <div class="mc-options">
+            <div class="mc-option"><div class="mc-checkbox"></div> A. Quantity demanded increases</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> B. Quantity demanded decreases</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> C. Quantity supplied decreases</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> D. Supply shifts right</div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">2.</span> What happens at market equilibrium?</p>
+        <div class="mc-options">
+            <div class="mc-option"><div class="mc-checkbox"></div> A. Prices are at their highest point</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> B. Quantity demanded equals quantity supplied</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> C. Sellers make maximum profit</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> D. Buyers get the lowest possible price</div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">3.</span> Gas prices are typically higher in summer. Is this due to a change in supply or demand? Explain why this occurs.</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">4.</span> Using supply and demand, explain why roses cost 3× more on Valentine's Day than a week later.</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">5.</span> <strong>Reflection:</strong> Think of a major purchase you're planning (car, apartment, electronics). When would be the best time to buy based on supply and demand patterns? How much might you save by timing your purchase strategically?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        <span>© PFL Academy | pflacademy.co</span>
+        <span>Chapter 14.3: Supply and Demand</span>
+    </div>
+
+</body>
+</html>

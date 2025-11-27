@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-23 Teacher Guide</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+        :root {
+            --primary: #059669;
+            --primary-light: #ecfdf5;
+            --primary-dark: #065f46;
+            --text-dark: #1e293b;
+            --text-medium: #475569;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --bg-light: #f8fafc;
+            --warning: #f59e0b;
+            --warning-light: #fef3c7;
+            --error: #dc2626;
+            --error-light: #fee2e2;
+            --success-light: #dcfce7;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+        @page { size: letter; margin: 0.5in; }
+        body { font-family: 'Open Sans', sans-serif; font-size: 10pt; line-height: 1.45; color: var(--text-dark); background: white; }
+
+        .header { background: var(--primary); color: white; padding: 14px 18px; border-radius: 6px; margin-bottom: 16px; }
+        .header h1 { font-size: 13pt; font-weight: 700; margin: 0; }
+        .header h2 { font-size: 10pt; font-weight: 400; margin: 3px 0 0; opacity: 0.9; }
+
+        .section-header { background: var(--primary-light); border-left: 4px solid var(--primary); padding: 7px 12px; font-size: 10pt; font-weight: 700; color: var(--primary-dark); text-transform: uppercase; letter-spacing: 0.5px; margin: 16px 0 10px; }
+
+        .overview-table { width: 100%; border-collapse: collapse; margin-bottom: 14px; }
+        .overview-table th { background: var(--bg-light); color: var(--text-light); font-size: 8pt; text-transform: uppercase; letter-spacing: 0.5px; text-align: center; padding: 6px 10px; border: 1px solid var(--border); width: 33%; }
+        .overview-table td { text-align: center; padding: 10px; border: 1px solid var(--border); font-weight: 600; color: var(--text-dark); font-size: 10pt; }
+
+        .flow-container { margin-bottom: 14px; }
+        .flow-item { display: flex; padding: 8px 0; border-bottom: 1px solid var(--border); page-break-inside: avoid; }
+        .flow-item:last-child { border-bottom: none; }
+        .flow-time { width: 65px; font-weight: 700; color: var(--primary); flex-shrink: 0; font-size: 10pt; }
+        .flow-content { flex: 1; }
+        .flow-title { font-weight: 700; color: var(--text-dark); margin-bottom: 3px; font-size: 10pt; }
+        .flow-content ul { margin: 0; padding-left: 16px; font-size: 9pt; color: var(--text-medium); }
+        .flow-content li { margin-bottom: 2px; }
+
+        .diff-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px; }
+        .diff-box { background: var(--bg-light); border: 1px solid var(--border); border-radius: 4px; padding: 10px 12px; }
+        .diff-title { font-weight: 700; color: var(--text-dark); margin-bottom: 6px; font-size: 9pt; }
+        .diff-box ul { margin: 0; padding-left: 16px; font-size: 9pt; color: var(--text-medium); }
+        .diff-box li { margin-bottom: 2px; }
+
+        .answer-key { page-break-before: always; }
+        .answer-block { margin-bottom: 12px; page-break-inside: avoid; }
+        .answer-title { font-weight: 700; color: var(--primary); font-size: 9pt; border-bottom: 1px solid #a7f3d0; padding-bottom: 3px; margin-bottom: 6px; }
+        .answer-item { margin-bottom: 5px; font-size: 9pt; color: var(--text-dark); }
+        .answer-item strong { color: var(--primary-dark); }
+
+        .calc-display { font-family: 'Courier New', monospace; background: var(--bg-light); padding: 8px 10px; border-radius: 4px; margin: 6px 0; font-size: 8.5pt; line-height: 1.5; white-space: pre-line; }
+        .answer-note { background: var(--warning-light); border-left: 3px solid var(--warning); padding: 6px 10px; font-size: 9pt; font-style: italic; color: #92400e; margin: 6px 0; }
+
+        .misconception-table { width: 100%; border-collapse: collapse; font-size: 9pt; margin-top: 10px; }
+        .misconception-table th { padding: 6px 10px; text-align: left; font-weight: 600; }
+        .misconception-table th:first-child { background: var(--error-light); color: #991b1b; border: 1px solid #fca5a5; width: 40%; }
+        .misconception-table th:last-child { background: var(--success-light); color: #166534; border: 1px solid #86efac; }
+        .misconception-table td { padding: 6px 10px; border: 1px solid var(--border); vertical-align: top; color: var(--text-medium); }
+
+        .footer { margin-top: 20px; padding-top: 8px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; font-size: 8pt; color: var(--text-light); }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>PFL Academy</h1>
+        <h2>Teacher Guide: Chapter 5.3 — Understanding Credit Scores</h2>
+    </div>
+
+    <div class="section-header">Overview</div>
+    <table class="overview-table">
+        <tr><th>Time</th><th>Materials</th><th>Prerequisites</th></tr>
+        <tr><td>45-50 Minutes</td><td>Student Activity Packet, Calculator</td><td>Choosing the Right Credit Source (L-22)</td></tr>
+    </table>
+
+    <div class="section-header">Lesson Flow</div>
+    <div class="flow-container">
+        <div class="flow-item">
+            <div class="flow-time">5 min</div>
+            <div class="flow-content">
+                <div class="flow-title">THE CHALLENGE</div>
+                <ul>
+                    <li>Read Jason's scenario aloud—emphasize the unintended consequences.</li>
+                    <li>Discussion: "What do you know about credit scores? Has anyone checked theirs?"</li>
+                </ul>
+            </div>
+        </div>
+        <div class="flow-item">
+            <div class="flow-time">10 min</div>
+            <div class="flow-content">
+                <div class="flow-title">CORE CONCEPTS</div>
+                <ul>
+                    <li>Review the 5 key terms with the FICO breakdown percentages.</li>
+                    <li>Draw the FICO pie chart on the board (35/30/15/10/10).</li>
+                    <li>Explain hard vs. soft inquiries—checking your own score is free and safe.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="flow-item">
+            <div class="flow-time">25-30 min</div>
+            <div class="flow-content">
+                <div class="flow-title">APPLY IT</div>
+                <ul>
+                    <li><strong>Part A (10 min):</strong> Scenario analysis. Ensure students identify the correct FICO factor.</li>
+                    <li><strong>Part B (10 min):</strong> Interest impact calculation. Emphasize the $8,100 difference over 5 years.</li>
+                    <li><strong>Part C (5-10 min):</strong> Personal credit plan. Encourage realistic, actionable steps.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="flow-item">
+            <div class="flow-time">10 min</div>
+            <div class="flow-content">
+                <div class="flow-title">CHECK YOUR UNDERSTANDING</div>
+                <ul>
+                    <li>Review Q3 calculation together (30% of $2,000 = $600).</li>
+                    <li>Discuss Q5—credit affects rentals, insurance, even some jobs.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-header">Differentiation</div>
+    <div class="diff-grid">
+        <div class="diff-box">
+            <div class="diff-title">Support</div>
+            <ul>
+                <li>Provide a FICO factor reference card with percentages.</li>
+                <li>Walk through Part B calculations on the board.</li>
+                <li>Pair students for scenario analysis.</li>
+            </ul>
+        </div>
+        <div class="diff-box">
+            <div class="diff-title">Extension</div>
+            <ul>
+                <li>Research the difference between FICO and VantageScore.</li>
+                <li>Calculate mortgage interest differences across score ranges.</li>
+                <li>Investigate credit score requirements for various apartments in your area.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="answer-key">
+        <div class="section-header">Answer Key</div>
+
+        <div class="answer-block">
+            <div class="answer-title">Part A: Credit Score Factor Analysis</div>
+            <div class="answer-item"><strong>1. INCREASE.</strong> Payment history (35%) is the largest factor. 24 months of on-time payments significantly boosts scores.</div>
+            <div class="answer-item"><strong>2. DECREASE.</strong> Credit utilization (30%) at 96% is extremely high. Experts recommend below 30%, ideally below 10%.</div>
+            <div class="answer-item"><strong>3. DECREASE.</strong> Length of credit history (15%) is shortened. Average age drops from ~5 years to 2 years. Also increases utilization ratio.</div>
+        </div>
+
+        <div class="answer-block">
+            <div class="answer-title">Part B: Credit Score Interest Impact</div>
+            <div class="calc-display">Cost Difference (Poor vs. Excellent):
+• Monthly payment: $601 - $466 = $135/month more
+• Total interest: $11,060 - $2,960 = $8,100 more</div>
+            <div class="answer-item"><strong>4.</strong> $11,060 − $2,960 = <strong>$8,100 more</strong> in interest for poor credit.</div>
+            <div class="answer-item"><strong>5.</strong> Moving from Fair (650-699) to Good (700-749): $7,220 − $4,340 = approximately <strong>$2,880 saved</strong>.</div>
+        </div>
+
+        <div class="answer-block">
+            <div class="answer-title">Part C: Personal Credit Plan</div>
+            <div class="answer-note">Good responses include: pay all bills on time, keep credit utilization low, don't close old accounts, limit new credit applications, become an authorized user on parent's account, get a secured credit card.</div>
+        </div>
+
+        <div class="answer-block">
+            <div class="answer-title">Check Your Understanding</div>
+            <div class="answer-item"><strong>1.</strong> B (Payment history at 35%)</div>
+            <div class="answer-item"><strong>2.</strong> High utilization signals to lenders that you may be overextended financially. Below 30% shows responsible credit management and ability to pay.</div>
+            <div class="answer-item"><strong>3.</strong> $2,000 × 0.30 = <strong>$600 maximum balance</strong></div>
+            <div class="answer-item"><strong>4.</strong> Jason should have used pre-qualification tools (soft inquiries) to compare offers without affecting his score. Hard inquiries typically affect scores for 12 months and remain on reports for 2 years.</div>
+            <div class="answer-item"><strong>5.</strong> <em>Credit scores affect: rental applications, insurance premiums, utility deposits, cell phone contracts, and some employment decisions. Even without borrowing, credit impacts daily life.</em></div>
+        </div>
+
+        <div class="section-header">Common Misconceptions</div>
+        <table class="misconception-table">
+            <tr><th>Misconception</th><th>Clarification</th></tr>
+            <tr><td>"Checking my own credit hurts my score."</td><td>Checking your own credit is a soft inquiry with no impact. Only hard inquiries (applying for credit) affect your score.</td></tr>
+            <tr><td>"I should close unused credit cards."</td><td>Closing accounts can hurt your score by shortening credit history and increasing utilization ratio. Keep old accounts open but inactive.</td></tr>
+            <tr><td>"I need to carry a balance to build credit."</td><td>You build credit by using your card and paying it off completely. Carrying a balance just costs you interest without extra score benefit.</td></tr>
+        </table>
+    </div>
+
+    <div class="footer">
+        <span>© PFL Academy | pflacademy.co</span>
+        <span>Teacher Guide: Chapter 5.3</span>
+    </div>
+
+</body>
+</html>

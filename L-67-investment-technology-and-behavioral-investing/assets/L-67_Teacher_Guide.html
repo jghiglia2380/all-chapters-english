@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-67 Teacher Guide</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+        :root {
+            --primary: #059669;
+            --primary-light: #ecfdf5;
+            --primary-dark: #065f46;
+            --text-dark: #1e293b;
+            --text-medium: #475569;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --bg-light: #f8fafc;
+            --warning: #f59e0b;
+            --warning-light: #fef3c7;
+            --error: #dc2626;
+            --error-light: #fee2e2;
+            --success-light: #dcfce7;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+        @page { size: letter; margin: 0.5in; }
+        body { font-family: 'Open Sans', sans-serif; font-size: 10pt; line-height: 1.45; color: var(--text-dark); background: white; }
+
+        .header { background: var(--primary); color: white; padding: 14px 18px; border-radius: 6px; margin-bottom: 16px; }
+        .header h1 { font-size: 13pt; font-weight: 700; margin: 0; }
+        .header h2 { font-size: 10pt; font-weight: 400; margin: 3px 0 0; opacity: 0.9; }
+
+        .section-header { background: var(--primary-light); border-left: 4px solid var(--primary); padding: 7px 12px; font-size: 10pt; font-weight: 700; color: var(--primary-dark); text-transform: uppercase; letter-spacing: 0.5px; margin: 16px 0 10px; }
+
+        .overview-table { width: 100%; border-collapse: collapse; margin-bottom: 14px; }
+        .overview-table th { background: var(--bg-light); color: var(--text-light); font-size: 8pt; text-transform: uppercase; letter-spacing: 0.5px; text-align: center; padding: 6px 10px; border: 1px solid var(--border); width: 33%; }
+        .overview-table td { text-align: center; padding: 10px; border: 1px solid var(--border); font-weight: 600; color: var(--text-dark); font-size: 10pt; }
+
+        .flow-container { margin-bottom: 14px; }
+        .flow-item { display: flex; padding: 8px 0; border-bottom: 1px solid var(--border); page-break-inside: avoid; }
+        .flow-item:last-child { border-bottom: none; }
+        .flow-time { width: 65px; font-weight: 700; color: var(--primary); flex-shrink: 0; font-size: 10pt; }
+        .flow-content { flex: 1; }
+        .flow-title { font-weight: 700; color: var(--text-dark); margin-bottom: 3px; font-size: 10pt; }
+        .flow-content ul { margin: 0; padding-left: 16px; font-size: 9pt; color: var(--text-medium); }
+        .flow-content li { margin-bottom: 2px; }
+
+        .diff-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px; }
+        .diff-box { background: var(--bg-light); border: 1px solid var(--border); border-radius: 4px; padding: 10px 12px; }
+        .diff-title { font-weight: 700; color: var(--text-dark); margin-bottom: 6px; font-size: 9pt; }
+        .diff-box ul { margin: 0; padding-left: 16px; font-size: 9pt; color: var(--text-medium); }
+        .diff-box li { margin-bottom: 2px; }
+
+        .answer-key { page-break-before: always; }
+        .answer-block { margin-bottom: 12px; page-break-inside: avoid; }
+        .answer-title { font-weight: 700; color: var(--primary); font-size: 9pt; border-bottom: 1px solid #a7f3d0; padding-bottom: 3px; margin-bottom: 6px; }
+        .answer-item { margin-bottom: 5px; font-size: 9pt; color: var(--text-dark); }
+        .answer-item strong { color: var(--primary-dark); }
+
+        .calc-display { font-family: 'Courier New', monospace; background: var(--bg-light); padding: 8px 10px; border-radius: 4px; margin: 6px 0; font-size: 8.5pt; line-height: 1.5; white-space: pre-line; }
+
+        .misconception-table { width: 100%; border-collapse: collapse; font-size: 9pt; margin-top: 10px; }
+        .misconception-table th { padding: 6px 10px; text-align: left; font-weight: 600; }
+        .misconception-table th:first-child { background: var(--error-light); color: #991b1b; border: 1px solid #fca5a5; width: 40%; }
+        .misconception-table th:last-child { background: var(--success-light); color: #166534; border: 1px solid #86efac; }
+        .misconception-table td { padding: 6px 10px; border: 1px solid var(--border); vertical-align: top; color: var(--text-medium); }
+
+        .footer { margin-top: 20px; padding-top: 8px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; font-size: 8pt; color: var(--text-light); }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>PFL Academy</h1>
+        <h2>Teacher Guide: Chapter 67 — Investment Technology and Behavioral Investing</h2>
+    </div>
+
+    <div class="section-header">Overview</div>
+    <table class="overview-table">
+        <tr><th>Time</th><th>Materials</th><th>Prerequisites</th></tr>
+        <tr><td>45-50 Minutes</td><td>Student Activity Packet</td><td>L-47: Investment Types, L-64: Risk and Return</td></tr>
+    </table>
+
+    <div class="section-header">Lesson Flow</div>
+    <div class="flow-container">
+        <div class="flow-item">
+            <div class="flow-time">5 min</div>
+            <div class="flow-content">
+                <div class="flow-title">THE CHALLENGE</div>
+                <ul>
+                    <li>Read Marcus's pandemic panic story—emphasize his pre-written rule saved him.</li>
+                    <li>Discussion: "How did it feel to keep investing when everything was crashing?"</li>
+                    <li>Key insight: The rule was written BEFORE the crisis, not during.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="flow-item">
+            <div class="flow-time">10 min</div>
+            <div class="flow-content">
+                <div class="flow-title">CORE CONCEPTS</div>
+                <ul>
+                    <li>Cover the 3.6% behavioral gap—this is the "wow" statistic.</li>
+                    <li>Walk through each bias with relatable examples students can connect to.</li>
+                    <li>Quick check: "Which bias drives FOMO investing?" (Herd mentality + recency)</li>
+                </ul>
+            </div>
+        </div>
+        <div class="flow-item">
+            <div class="flow-time">25-30 min</div>
+            <div class="flow-content">
+                <div class="flow-title">APPLY IT</div>
+                <ul>
+                    <li><strong>Part A (10 min):</strong> Platform matching—discuss why personality matters for platform choice.</li>
+                    <li><strong>Part B (5 min):</strong> Bias identification—ensure students can recognize each bias.</li>
+                    <li><strong>Part C (10 min):</strong> Creating rules—this is the actionable takeaway.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="flow-item">
+            <div class="flow-time">10 min</div>
+            <div class="flow-content">
+                <div class="flow-title">CHECK YOUR UNDERSTANDING</div>
+                <ul>
+                    <li>Q3 calculation shows real cost of confirmation bias.</li>
+                    <li>Q5 personal reflection is crucial—honest self-assessment prevents future mistakes.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-header">Differentiation</div>
+    <div class="diff-grid">
+        <div class="diff-box">
+            <div class="diff-title">Support</div>
+            <ul>
+                <li>Use simple bias summaries: "Loss aversion = hate losing more than love winning."</li>
+                <li>Provide behavioral rule templates for Part C.</li>
+                <li>Focus on just 2-3 biases rather than all four.</li>
+            </ul>
+        </div>
+        <div class="diff-box">
+            <div class="diff-title">Extension</div>
+            <ul>
+                <li>Research Daniel Kahneman's prospect theory and Nobel Prize work.</li>
+                <li>Compare actual robo-advisor features and fees (Betterment vs. Wealthfront).</li>
+                <li>Design a complete "Investment Policy Statement" with bias-countering rules.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="answer-key">
+        <div class="section-header">Answer Key</div>
+
+        <div class="answer-block">
+            <div class="answer-title">Part A: Platform Comparison</div>
+            <div class="answer-item"><strong>Keisha:</strong> Robo-advisor. Automation prevents FOMO-driven decisions. She doesn't enjoy research, so DIY would lead to poor choices or neglect. Modest fee is worth behavioral guardrails.</div>
+            <div class="answer-item"><strong>Derek:</strong> Online brokerage. He enjoys research and is disciplined. Lower costs (fund fees only). Full control matches his preference and personality.</div>
+        </div>
+
+        <div class="answer-block">
+            <div class="answer-title">Part B: Behavioral Bias Identification</div>
+            <div class="answer-item"><strong>B</strong> - After markets rose 30%... assumes gains continue = <strong>Recency Bias</strong></div>
+            <div class="answer-item"><strong>A</strong> - Refuses to sell stock down 40% = <strong>Loss Aversion</strong></div>
+            <div class="answer-item"><strong>D</strong> - Everyone at work buying crypto = <strong>Herd Mentality</strong></div>
+            <div class="answer-item"><strong>C</strong> - Only reads positive news = <strong>Confirmation Bias</strong></div>
+        </div>
+
+        <div class="answer-block">
+            <div class="answer-title">Part C: Creating Behavioral Rules</div>
+            <div class="answer-item">Accept rules that are: (1) Specific and actionable, (2) Written in advance, (3) Address specific bias vulnerabilities. Examples: "Invest same amount monthly regardless of headlines." "Never sell within 48 hours of market drop." "Review investments only quarterly."</div>
+        </div>
+
+        <div class="answer-block">
+            <div class="answer-title">Check Your Understanding</div>
+            <div class="answer-item"><strong>1.</strong> B (Loss aversion)</div>
+            <div class="answer-item"><strong>2.</strong> Recency bias causes buying after rallies (high) and selling after crashes (low). Loss aversion causes panic selling during downturns. Herd mentality amplifies both behaviors. Result: systematically buying high, selling low.</div>
+            <div class="calc-display"><strong>3.</strong> Sold at $25 instead of $38:
+Loss per share: $38 - $25 = $13
+100 shares × $13 = $1,300 cost of confirmation bias</div>
+            <div class="answer-item"><strong>4.</strong> Robo-advisors automate rebalancing and remove the "sell" button during panic. They make it harder to act on emotional impulses. Automation creates friction that prevents rash decisions.</div>
+        </div>
+
+        <div class="section-header">Common Misconceptions</div>
+        <table class="misconception-table">
+            <tr><th>Misconception</th><th>Clarification</th></tr>
+            <tr><td>"Smart people don't have behavioral biases."</td><td>Biases are hardwired into human psychology—even Nobel Prize-winning economists exhibit them. Awareness helps but doesn't eliminate biases; systems and rules are required.</td></tr>
+            <tr><td>"I'll be able to stay calm during a crash."</td><td>Everyone thinks this until they experience 30%+ losses. Pre-written rules and automation are essential because you CAN'T trust your future panicked self.</td></tr>
+            <tr><td>"Robo-advisors are only for beginners."</td><td>Many sophisticated investors use robo-advisors specifically for behavioral guardrails. Automation prevents even experienced investors from making emotional mistakes.</td></tr>
+        </table>
+    </div>
+
+    <div class="footer">
+        <span>&copy; PFL Academy | pflacademy.co</span>
+        <span>Teacher Guide: Chapter 67</span>
+    </div>
+
+</body>
+</html>

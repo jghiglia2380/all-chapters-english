@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-66 Teacher Guide</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+        :root {
+            --primary: #059669;
+            --primary-light: #ecfdf5;
+            --primary-dark: #065f46;
+            --text-dark: #1e293b;
+            --text-medium: #475569;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --bg-light: #f8fafc;
+            --warning: #f59e0b;
+            --warning-light: #fef3c7;
+            --error: #dc2626;
+            --error-light: #fee2e2;
+            --success-light: #dcfce7;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+        @page { size: letter; margin: 0.5in; }
+        body { font-family: 'Open Sans', sans-serif; font-size: 10pt; line-height: 1.45; color: var(--text-dark); background: white; }
+
+        .header { background: var(--primary); color: white; padding: 14px 18px; border-radius: 6px; margin-bottom: 16px; }
+        .header h1 { font-size: 13pt; font-weight: 700; margin: 0; }
+        .header h2 { font-size: 10pt; font-weight: 400; margin: 3px 0 0; opacity: 0.9; }
+
+        .section-header { background: var(--primary-light); border-left: 4px solid var(--primary); padding: 7px 12px; font-size: 10pt; font-weight: 700; color: var(--primary-dark); text-transform: uppercase; letter-spacing: 0.5px; margin: 16px 0 10px; }
+
+        .overview-table { width: 100%; border-collapse: collapse; margin-bottom: 14px; }
+        .overview-table th { background: var(--bg-light); color: var(--text-light); font-size: 8pt; text-transform: uppercase; letter-spacing: 0.5px; text-align: center; padding: 6px 10px; border: 1px solid var(--border); width: 33%; }
+        .overview-table td { text-align: center; padding: 10px; border: 1px solid var(--border); font-weight: 600; color: var(--text-dark); font-size: 10pt; }
+
+        .flow-container { margin-bottom: 14px; }
+        .flow-item { display: flex; padding: 8px 0; border-bottom: 1px solid var(--border); page-break-inside: avoid; }
+        .flow-item:last-child { border-bottom: none; }
+        .flow-time { width: 65px; font-weight: 700; color: var(--primary); flex-shrink: 0; font-size: 10pt; }
+        .flow-content { flex: 1; }
+        .flow-title { font-weight: 700; color: var(--text-dark); margin-bottom: 3px; font-size: 10pt; }
+        .flow-content ul { margin: 0; padding-left: 16px; font-size: 9pt; color: var(--text-medium); }
+        .flow-content li { margin-bottom: 2px; }
+
+        .diff-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px; }
+        .diff-box { background: var(--bg-light); border: 1px solid var(--border); border-radius: 4px; padding: 10px 12px; }
+        .diff-title { font-weight: 700; color: var(--text-dark); margin-bottom: 6px; font-size: 9pt; }
+        .diff-box ul { margin: 0; padding-left: 16px; font-size: 9pt; color: var(--text-medium); }
+        .diff-box li { margin-bottom: 2px; }
+
+        .answer-key { page-break-before: always; }
+        .answer-block { margin-bottom: 12px; page-break-inside: avoid; }
+        .answer-title { font-weight: 700; color: var(--primary); font-size: 9pt; border-bottom: 1px solid #a7f3d0; padding-bottom: 3px; margin-bottom: 6px; }
+        .answer-item { margin-bottom: 5px; font-size: 9pt; color: var(--text-dark); }
+        .answer-item strong { color: var(--primary-dark); }
+
+        .calc-display { font-family: 'Courier New', monospace; background: var(--bg-light); padding: 8px 10px; border-radius: 4px; margin: 6px 0; font-size: 8.5pt; line-height: 1.5; white-space: pre-line; }
+
+        .misconception-table { width: 100%; border-collapse: collapse; font-size: 9pt; margin-top: 10px; }
+        .misconception-table th { padding: 6px 10px; text-align: left; font-weight: 600; }
+        .misconception-table th:first-child { background: var(--error-light); color: #991b1b; border: 1px solid #fca5a5; width: 40%; }
+        .misconception-table th:last-child { background: var(--success-light); color: #166534; border: 1px solid #86efac; }
+        .misconception-table td { padding: 6px 10px; border: 1px solid var(--border); vertical-align: top; color: var(--text-medium); }
+
+        .footer { margin-top: 20px; padding-top: 8px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; font-size: 8pt; color: var(--text-light); }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>PFL Academy</h1>
+        <h2>Teacher Guide: Chapter 66 — Understanding Financial Markets</h2>
+    </div>
+
+    <div class="section-header">Overview</div>
+    <table class="overview-table">
+        <tr><th>Time</th><th>Materials</th><th>Prerequisites</th></tr>
+        <tr><td>45-50 Minutes</td><td>Student Activity Packet</td><td>L-47: Investment Types</td></tr>
+    </table>
+
+    <div class="section-header">Lesson Flow</div>
+    <div class="flow-container">
+        <div class="flow-item">
+            <div class="flow-time">5 min</div>
+            <div class="flow-content">
+                <div class="flow-title">THE CHALLENGE</div>
+                <ul>
+                    <li>Contrast Sofia's smart limit order vs. Marcus's costly market order mistake.</li>
+                    <li>Discussion: "What did Marcus do wrong? How could he have protected himself?"</li>
+                    <li>Preview: Small execution costs compound to significant wealth differences.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="flow-item">
+            <div class="flow-time">10 min</div>
+            <div class="flow-content">
+                <div class="flow-title">CORE CONCEPTS</div>
+                <ul>
+                    <li>Draw bid-ask spread visually on board: buyers line up at bid, sellers at ask.</li>
+                    <li>Demonstrate: "You always BUY at ask (higher) and SELL at bid (lower)."</li>
+                    <li>Quick check: "If bid is $50 and ask is $50.10, what do you pay to buy? Receive to sell?"</li>
+                </ul>
+            </div>
+        </div>
+        <div class="flow-item">
+            <div class="flow-time">25-30 min</div>
+            <div class="flow-content">
+                <div class="flow-title">APPLY IT</div>
+                <ul>
+                    <li><strong>Part A (10 min):</strong> Stock quote analysis. Ensure students understand liquidity indicators.</li>
+                    <li><strong>Part B (10 min):</strong> Order type scenarios—when to use market vs. limit.</li>
+                    <li><strong>Part C (10 min):</strong> Trading cost comparison—this is the "aha" moment.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="flow-item">
+            <div class="flow-time">10 min</div>
+            <div class="flow-content">
+                <div class="flow-title">CHECK YOUR UNDERSTANDING</div>
+                <ul>
+                    <li>Q3 calculation shows long-term impact of trading costs.</li>
+                    <li>Q5 personal strategy development is important for practical application.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-header">Differentiation</div>
+    <div class="diff-grid">
+        <div class="diff-box">
+            <div class="diff-title">Support</div>
+            <ul>
+                <li>Create visual diagram: "Bid = what buyers offer, Ask = what sellers want."</li>
+                <li>Use simple rule: "Narrow spread = good, wide spread = expensive."</li>
+                <li>Walk through Part C calculation step-by-step.</li>
+            </ul>
+        </div>
+        <div class="diff-box">
+            <div class="diff-title">Extension</div>
+            <ul>
+                <li>Research actual bid-ask spreads for familiar companies (Apple vs. penny stock).</li>
+                <li>Calculate market impact of larger orders on illiquid stocks.</li>
+                <li>Compare brokerage platforms' order routing and execution quality.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="answer-key">
+        <div class="section-header">Answer Key</div>
+
+        <div class="answer-block">
+            <div class="answer-title">Part A: Reading Stock Quotes</div>
+            <div class="answer-item"><strong>1.</strong> Price paid: <strong>$142.60</strong> (the ask price). Spread: $142.60 - $142.55 = <strong>$0.05</strong>. Liquidity: <strong>HIGH</strong> (8.2M volume, narrow $0.05 spread).</div>
+            <div class="calc-display"><strong>2.</strong> Buy at ask: 100 × $142.60 = $14,260
+Sell at bid: 100 × $142.55 = $14,255
+Spread cost: $14,260 - $14,255 = $5 loss</div>
+        </div>
+
+        <div class="answer-block">
+            <div class="answer-title">Part B: Order Type Scenarios</div>
+            <div class="answer-item"><strong>Scenario 1:</strong> Market order. Spread is only $0.01 (minimal cost), and urgency requires guaranteed execution.</div>
+            <div class="answer-item"><strong>Scenario 2:</strong> Limit order. Wide $0.35 spread means market order would be expensive. Place limit order between bid and ask; wait for better execution.</div>
+        </div>
+
+        <div class="answer-block">
+            <div class="answer-title">Part C: Trading Cost Analysis</div>
+            <div class="calc-display"><strong>3.</strong> Active Trader: 100 trades × $0.15 spread × 50 shares = $750/year
+Buy-and-Hold: 4 trades × $0.02 spread × 200 shares = $16/year
+Active trader pays 47x more in spread costs!</div>
+        </div>
+
+        <div class="answer-block">
+            <div class="answer-title">Check Your Understanding</div>
+            <div class="answer-item"><strong>1.</strong> B (Execution only, not price)</div>
+            <div class="answer-item"><strong>2.</strong> Markets were closed Sunday. His market order queued for Monday open. Overnight bad news caused price to gap down. A limit order would have prevented execution at the unfavorable price.</div>
+            <div class="calc-display"><strong>3.</strong> $750/year at 7% for 30 years:
+FV = $750 × [(1.07^30 - 1) / 0.07] ≈ $75,000-$80,000 lost wealth</div>
+            <div class="answer-item"><strong>4.</strong> "Commission-free" doesn't mean free. Wide bid-ask spreads on small-cap stocks, payment for order flow, and frequent trading still created substantial hidden costs. Commission was zero but spread costs were high.</div>
+        </div>
+
+        <div class="section-header">Common Misconceptions</div>
+        <table class="misconception-table">
+            <tr><th>Misconception</th><th>Clarification</th></tr>
+            <tr><td>"Commission-free means no trading costs."</td><td>Bid-ask spreads, payment for order flow, and market impact are hidden costs that exist even with $0 commissions.</td></tr>
+            <tr><td>"Market orders always execute at the price I see."</td><td>Prices can change between when you submit and when the order executes, especially during volatility or when markets are closed.</td></tr>
+            <tr><td>"Professional traders use market orders for speed."</td><td>Professionals almost exclusively use limit orders to control execution price. Speed matters less than avoiding slippage.</td></tr>
+        </table>
+    </div>
+
+    <div class="footer">
+        <span>&copy; PFL Academy | pflacademy.co</span>
+        <span>Teacher Guide: Chapter 66</span>
+    </div>
+
+</body>
+</html>

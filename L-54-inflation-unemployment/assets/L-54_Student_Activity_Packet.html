@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-54 Student Activity Packet</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+        :root {
+            --primary: #6366f1;
+            --primary-light: #eef2ff;
+            --primary-dark: #4338ca;
+            --text-dark: #1e293b;
+            --text-medium: #475569;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --bg-light: #f8fafc;
+            --emerald: #059669;
+            --emerald-light: #ecfdf5;
+            --amber: #f59e0b;
+            --amber-light: #fef3c7;
+            --red: #dc2626;
+            --red-light: #fee2e2;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+
+        @page {
+            size: letter;
+            margin: 0.5in;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 10pt;
+            line-height: 1.45;
+            color: var(--text-dark);
+            background: white;
+        }
+
+        .header {
+            background: var(--primary);
+            color: white;
+            padding: 14px 18px;
+            border-radius: 6px;
+            margin-bottom: 16px;
+        }
+
+        .header h1 {
+            font-size: 13pt;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .header h2 {
+            font-size: 10pt;
+            font-weight: 400;
+            margin: 3px 0 0;
+            opacity: 0.9;
+        }
+
+        .section-header {
+            background: var(--primary-light);
+            border-left: 4px solid var(--primary);
+            padding: 7px 12px;
+            font-size: 10pt;
+            font-weight: 700;
+            color: var(--primary-dark);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin: 16px 0 10px;
+        }
+
+        .challenge-box {
+            background: var(--amber-light);
+            border-left: 4px solid var(--amber);
+            padding: 12px 14px;
+            border-radius: 0 6px 6px 0;
+            margin-bottom: 14px;
+        }
+
+        .challenge-title {
+            font-weight: 700;
+            color: #92400e;
+            margin-bottom: 5px;
+            font-size: 10pt;
+        }
+
+        .challenge-box p {
+            color: #78350f;
+            font-size: 9pt;
+            margin: 0;
+        }
+
+        .objectives-box {
+            background: var(--emerald-light);
+            border: 1px solid #a7f3d0;
+            border-radius: 6px;
+            padding: 12px 14px;
+            margin-bottom: 14px;
+        }
+
+        .objectives-title {
+            font-weight: 700;
+            color: var(--emerald);
+            margin-bottom: 6px;
+            font-size: 9pt;
+            text-transform: uppercase;
+        }
+
+        .objectives-box ul {
+            margin: 0;
+            padding-left: 18px;
+            font-size: 9pt;
+            color: #065f46;
+        }
+
+        .objectives-box li {
+            margin-bottom: 3px;
+        }
+
+        .terms-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 14px;
+            font-size: 9pt;
+        }
+
+        .terms-table th {
+            background: var(--primary);
+            color: white;
+            padding: 7px 10px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .terms-table td {
+            padding: 7px 10px;
+            border: 1px solid var(--border);
+            vertical-align: top;
+        }
+
+        .terms-table tr:nth-child(even) {
+            background: var(--bg-light);
+        }
+
+        .term-name {
+            font-weight: 600;
+            color: var(--primary-dark);
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+            font-size: 9pt;
+        }
+
+        .data-table th {
+            background: var(--bg-light);
+            color: var(--text-dark);
+            padding: 6px 10px;
+            text-align: center;
+            font-weight: 600;
+            border: 1px solid var(--border);
+        }
+
+        .data-table td {
+            padding: 6px 10px;
+            border: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .background-box {
+            background: var(--bg-light);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 12px 14px;
+            margin-bottom: 14px;
+        }
+
+        .background-box h4 {
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 6px;
+            font-size: 10pt;
+        }
+
+        .background-box p {
+            font-size: 9pt;
+            color: var(--text-medium);
+            margin-bottom: 6px;
+        }
+
+        .scenario-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 12px;
+            margin-bottom: 12px;
+            page-break-inside: avoid;
+        }
+
+        .scenario-title {
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 6px;
+            font-size: 10pt;
+        }
+
+        .scenario-content {
+            font-size: 9pt;
+            color: var(--text-medium);
+            margin-bottom: 8px;
+        }
+
+        .answer-lines {
+            border-bottom: 1px solid var(--border);
+            min-height: 24px;
+            margin: 6px 0;
+        }
+
+        .answer-lines.tall {
+            min-height: 48px;
+        }
+
+        .mc-options {
+            list-style: none;
+            padding: 0;
+            margin: 8px 0;
+        }
+
+        .mc-options li {
+            padding: 5px 0 5px 24px;
+            position: relative;
+            font-size: 9pt;
+        }
+
+        .mc-options li:before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 6px;
+            width: 14px;
+            height: 14px;
+            border: 1.5px solid var(--border);
+            border-radius: 50%;
+        }
+
+        .hint-box {
+            background: #eff6ff;
+            border: 1px solid #bfdbfe;
+            border-radius: 4px;
+            padding: 8px 10px;
+            font-size: 8.5pt;
+            color: #1e40af;
+            margin: 8px 0;
+        }
+
+        .calc-box {
+            background: var(--bg-light);
+            border: 1px dashed var(--border);
+            border-radius: 4px;
+            padding: 10px;
+            margin: 8px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 9pt;
+        }
+
+        .part-header {
+            background: var(--primary-light);
+            padding: 6px 10px;
+            font-weight: 700;
+            color: var(--primary-dark);
+            font-size: 9pt;
+            border-radius: 4px;
+            margin: 12px 0 8px;
+        }
+
+        .footer {
+            margin-top: 20px;
+            padding-top: 8px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            font-size: 8pt;
+            color: var(--text-light);
+        }
+
+        .page-break {
+            page-break-before: always;
+        }
+
+        .formula-box {
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            border-radius: 4px;
+            padding: 10px;
+            margin: 8px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 9pt;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin: 10px 0;
+        }
+
+        .comparison-item {
+            background: var(--bg-light);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 10px;
+        }
+
+        .comparison-item h5 {
+            font-weight: 600;
+            font-size: 9pt;
+            margin-bottom: 4px;
+            color: var(--primary-dark);
+        }
+
+        .comparison-item p {
+            font-size: 8.5pt;
+            color: var(--text-medium);
+            margin: 0;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <div class="header">
+        <h1>PFL Academy</h1>
+        <h2>Chapter 54 — Inflation, Unemployment, and Personal Finance</h2>
+    </div>
+
+    <!-- THE CHALLENGE -->
+    <div class="challenge-box">
+        <div class="challenge-title">THE CHALLENGE</div>
+        <p>Your parents tell you about college costing $400/year in 1970. Today it's $10,000+. Movie tickets were $1.50; now they're $12. A median home was $23,000; now it's $420,000. Meanwhile, the 2020 COVID recession saw 1 in 7 Americans unemployed. Understanding inflation and unemployment isn't just academic—these forces will shape your salary, job prospects, and purchasing power throughout your life.</p>
+    </div>
+
+    <!-- LEARNING OBJECTIVES -->
+    <div class="objectives-box">
+        <div class="objectives-title">Learning Objectives</div>
+        <ul>
+            <li>Explain inflation and how it's measured using the Consumer Price Index (CPI)</li>
+            <li>Analyze causes of inflation: demand-pull, cost-push, and monetary inflation</li>
+            <li>Identify types of unemployment: frictional, structural, and cyclical</li>
+            <li>Understand the Phillips Curve trade-off between inflation and unemployment</li>
+        </ul>
+    </div>
+
+    <!-- CORE CONCEPTS -->
+    <div class="section-header">Core Concepts</div>
+    <table class="terms-table">
+        <tr>
+            <th style="width: 25%;">Term</th>
+            <th>Definition</th>
+        </tr>
+        <tr>
+            <td class="term-name">Inflation</td>
+            <td>Sustained increase in the general level of prices over time, reducing purchasing power of money</td>
+        </tr>
+        <tr>
+            <td class="term-name">Consumer Price Index (CPI)</td>
+            <td>Average price of a "basket" of goods and services typical consumers buy; used to measure inflation</td>
+        </tr>
+        <tr>
+            <td class="term-name">Demand-Pull Inflation</td>
+            <td>"Too much money chasing too few goods" - aggregate demand exceeds supply, driving prices up</td>
+        </tr>
+        <tr>
+            <td class="term-name">Cost-Push Inflation</td>
+            <td>Production costs increase (oil, wages, materials), businesses pass costs to consumers</td>
+        </tr>
+        <tr>
+            <td class="term-name">Frictional Unemployment</td>
+            <td>Temporary unemployment while transitioning between jobs; normal and healthy part of economy</td>
+        </tr>
+        <tr>
+            <td class="term-name">Structural Unemployment</td>
+            <td>Skills don't match available jobs; requires retraining or relocation (e.g., automation displacing workers)</td>
+        </tr>
+        <tr>
+            <td class="term-name">Cyclical Unemployment</td>
+            <td>Unemployment due to economic recession/downturn; temporary until economy recovers</td>
+        </tr>
+        <tr>
+            <td class="term-name">Phillips Curve</td>
+            <td>Inverse relationship between inflation and unemployment: low unemployment → high inflation; high unemployment → low inflation</td>
+        </tr>
+    </table>
+
+    <!-- BACKGROUND -->
+    <div class="background-box">
+        <h4>Why This Matters</h4>
+        <p><strong>Inflation erodes your purchasing power:</strong> If your salary grows 2% but inflation is 3%, you're getting POORER even though your paycheck is bigger. Your $50,000 salary needs to become $90,568 over 30 years just to maintain the same purchasing power at 2% inflation.</p>
+        <p><strong>Unemployment affects your career:</strong> Graduating during a recession (like 2009 or 2020) can mean lower lifetime earnings. The type of unemployment matters—frictional is temporary, but structural may require complete career changes.</p>
+        <p><strong>The trade-off is real:</strong> The Fed can't achieve both low inflation AND low unemployment simultaneously. Understanding this helps you navigate economic conditions and protect your finances.</p>
+    </div>
+
+    <!-- APPLY IT -->
+    <div class="section-header">Apply It</div>
+
+    <!-- Part A: Inflation Identification -->
+    <div class="part-header">Part A: Inflation Type Identification</div>
+
+    <p style="font-size: 9pt; color: var(--text-medium); margin-bottom: 10px;">For each scenario, identify the TYPE of inflation (Demand-Pull, Cost-Push, or Monetary) and explain your reasoning.</p>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Scenario 1: COVID Stimulus</div>
+        <div class="scenario-content">In 2021, the government sent $5 trillion in stimulus checks. Consumers suddenly had extra money and spent heavily on goods (cars, appliances, homes). Factories that closed during COVID couldn't keep up with demand. Prices rose 8.5%.</div>
+        <p><strong>Inflation Type:</strong></p>
+        <div class="answer-lines"></div>
+        <p><strong>Explain your reasoning:</strong></p>
+        <div class="answer-lines tall"></div>
+    </div>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Scenario 2: 1970s Oil Crisis</div>
+        <div class="scenario-content">OPEC imposed an oil embargo, quadrupling oil prices. Since everything uses energy (manufacturing, transportation, heating), costs rose across all industries. Businesses raised prices to maintain profits.</div>
+        <p><strong>Inflation Type:</strong></p>
+        <div class="answer-lines"></div>
+        <p><strong>Explain your reasoning:</strong></p>
+        <div class="answer-lines tall"></div>
+    </div>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Scenario 3: Zimbabwe 2008</div>
+        <div class="scenario-content">The government printed massive amounts of money to pay debts. Inflation hit 79.6 BILLION percent per month. Prices doubled every 24 hours. People needed wheelbarrows of cash to buy bread.</div>
+        <p><strong>Inflation Type:</strong></p>
+        <div class="answer-lines"></div>
+        <p><strong>Explain your reasoning:</strong></p>
+        <div class="answer-lines tall"></div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- Part B: Unemployment Classification -->
+    <div class="part-header">Part B: Unemployment Type Classification</div>
+
+    <p style="font-size: 9pt; color: var(--text-medium); margin-bottom: 10px;">Classify each person's unemployment as Frictional, Structural, or Cyclical. Recommend a strategy.</p>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Person 1: Marcus</div>
+        <div class="scenario-content">Marcus quit his accounting job to find a better opportunity with more growth potential. He's been searching for 6 weeks and has two interviews scheduled.</div>
+        <p><strong>Type:</strong> <span style="display: inline-block; width: 150px; border-bottom: 1px solid var(--border);"></span> <strong>Expected duration:</strong> <span style="display: inline-block; width: 100px; border-bottom: 1px solid var(--border);"></span></p>
+        <p><strong>Recommended strategy:</strong></p>
+        <div class="answer-lines"></div>
+    </div>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Person 2: Linda</div>
+        <div class="scenario-content">Linda worked as a travel agent for 20 years. When online booking sites eliminated most travel agency jobs, she was laid off. Her skills don't match current job openings.</div>
+        <p><strong>Type:</strong> <span style="display: inline-block; width: 150px; border-bottom: 1px solid var(--border);"></span> <strong>Expected duration:</strong> <span style="display: inline-block; width: 100px; border-bottom: 1px solid var(--border);"></span></p>
+        <p><strong>Recommended strategy:</strong></p>
+        <div class="answer-lines"></div>
+    </div>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Person 3: James</div>
+        <div class="scenario-content">James was a construction worker during the 2008 housing crash. With no new homes being built, thousands of construction workers were laid off. He had excellent skills but no projects needed them.</div>
+        <p><strong>Type:</strong> <span style="display: inline-block; width: 150px; border-bottom: 1px solid var(--border);"></span> <strong>Expected duration:</strong> <span style="display: inline-block; width: 100px; border-bottom: 1px solid var(--border);"></span></p>
+        <p><strong>Recommended strategy:</strong></p>
+        <div class="answer-lines"></div>
+    </div>
+
+    <!-- Part C: Purchasing Power Calculations -->
+    <div class="part-header">Part C: Inflation Impact Calculations</div>
+
+    <div class="formula-box">
+        <strong>Real Value Formula:</strong><br>
+        Real Value = Nominal Value ÷ (1 + Inflation Rate)^Years<br><br>
+        <strong>Inflation Rate Formula:</strong><br>
+        Inflation Rate = (CPI this year − CPI last year) ÷ CPI last year × 100%
+    </div>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Calculation 1: Eroding Savings</div>
+        <div class="scenario-content">You hide $5,000 under your mattress (earning 0%). After 10 years with 3% inflation, what is it worth in today's purchasing power?</div>
+        <div class="calc-box">
+            Real Value = $5,000 ÷ (1.03)^10 = $5,000 ÷ _______ = $_______
+        </div>
+        <p><strong>How much purchasing power did you lose?</strong> $__________</p>
+    </div>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Calculation 2: Salary Reality Check</div>
+        <div class="scenario-content">Your $50,000 salary gets a 2% raise each year. But inflation is 4% per year. After 5 years, what's your REAL purchasing power compared to today?</div>
+        <div class="calc-box">
+            Nominal salary year 5: $50,000 × (1.02)^5 = $_______<br>
+            Inflation factor: (1.04)^5 = _______<br>
+            Real salary: $_______ ÷ _______ = $_______
+        </div>
+        <p><strong>Are you richer or poorer in real terms?</strong></p>
+        <div class="answer-lines"></div>
+    </div>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Calculation 3: CPI Inflation Rate</div>
+        <div class="scenario-content">CPI in 2022 was 292. CPI in 2023 was 305. What was the inflation rate?</div>
+        <div class="calc-box">
+            Inflation Rate = (305 − 292) ÷ 292 × 100% = _______%
+        </div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- CHECK YOUR UNDERSTANDING -->
+    <div class="section-header">Check Your Understanding</div>
+
+    <p style="font-size: 9pt; margin-bottom: 12px;"><strong>1.</strong> Which type of inflation results from oil price shocks that increase production costs across the economy?</p>
+    <ul class="mc-options">
+        <li>A) Demand-pull inflation</li>
+        <li>B) Cost-push inflation</li>
+        <li>C) Monetary inflation</li>
+        <li>D) Structural inflation</li>
+    </ul>
+
+    <p style="font-size: 9pt; margin-bottom: 12px;"><strong>2.</strong> What is the "natural rate of unemployment" and why can't unemployment be zero?</p>
+    <div class="answer-lines tall"></div>
+
+    <p style="font-size: 9pt; margin-bottom: 12px;"><strong>3.</strong> The Fed targets 2% inflation. If prices are rising at 7%, what policy tools would the Fed use, and how would this affect unemployment?</p>
+    <div class="hint-box">Hint: Review the Phillips Curve trade-off and monetary policy tools from L-53.</div>
+    <div class="answer-lines tall"></div>
+
+    <p style="font-size: 9pt; margin-bottom: 12px;"><strong>4.</strong> Calculate: If your starting salary is $40,000 with 3% annual raises, and inflation averages 2.5%, what is your REAL salary after 10 years?</p>
+    <div class="calc-box">
+        Nominal salary year 10: $40,000 × (1.03)^10 = $40,000 × 1.344 = $_______<br>
+        Inflation adjustment: (1.025)^10 = _______<br>
+        Real salary: $_______ ÷ _______ = $_______
+    </div>
+
+    <p style="font-size: 9pt; margin-bottom: 12px;"><strong>5.</strong> You're graduating during a recession with 9% unemployment. Describe three specific strategies you would use to find employment, and explain why each is effective during cyclical unemployment.</p>
+    <div class="answer-lines" style="min-height: 72px;"></div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        <span>© PFL Academy | pflacademy.co</span>
+        <span>Student Activity Packet: Chapter 54</span>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-01 Student Activity Packet</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+        :root {
+            --primary: #6366f1;
+            --primary-light: #eef2ff;
+            --accent: #f59e0b;
+            --accent-light: #fef3c7;
+            --success: #059669;
+            --text-dark: #1e293b;
+            --text-medium: #475569;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --bg-light: #f8fafc;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+
+        @page {
+            size: letter;
+            margin: 0.5in;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 10.5pt;
+            line-height: 1.5;
+            color: var(--text-dark);
+            background: white;
+        }
+
+        .header {
+            background: var(--primary);
+            color: white;
+            padding: 14px 18px;
+            border-radius: 6px;
+            margin-bottom: 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-left h1 {
+            font-size: 13pt;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .header-left h2 {
+            font-size: 10pt;
+            font-weight: 400;
+            margin: 2px 0 0;
+            opacity: 0.9;
+        }
+
+        .header-right {
+            font-size: 9pt;
+            text-align: right;
+            opacity: 0.9;
+        }
+
+        .section-header {
+            font-size: 11pt;
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 4px;
+            margin: 20px 0 12px;
+        }
+
+        .challenge-box {
+            background: var(--accent-light);
+            border-left: 4px solid var(--accent);
+            padding: 14px 16px;
+            margin-bottom: 16px;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .challenge-box p {
+            font-style: italic;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+        }
+
+        .challenge-box .framing-question {
+            font-weight: 600;
+            font-style: normal;
+            color: #92400e;
+        }
+
+        .objectives-box {
+            background: var(--primary-light);
+            border: 1px solid #c7d2fe;
+            border-radius: 6px;
+            padding: 12px 16px;
+            margin-bottom: 18px;
+        }
+
+        .objectives-box h3 {
+            font-size: 10pt;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 6px;
+        }
+
+        .objectives-box ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .objectives-box li {
+            margin-bottom: 3px;
+            color: var(--text-medium);
+        }
+
+        .terms-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 14px;
+            font-size: 10pt;
+        }
+
+        .terms-table th {
+            background: var(--bg-light);
+            text-align: left;
+            padding: 8px 10px;
+            border: 1px solid var(--border);
+            font-weight: 600;
+            color: var(--text-medium);
+        }
+
+        .terms-table td {
+            padding: 8px 10px;
+            border: 1px solid var(--border);
+            vertical-align: top;
+        }
+
+        .terms-table td:first-child {
+            font-weight: 600;
+            color: var(--primary);
+            width: 25%;
+        }
+
+        .background-box {
+            background: var(--bg-light);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 12px 16px;
+            margin-bottom: 18px;
+            font-size: 10pt;
+            color: var(--text-medium);
+        }
+
+        .background-box strong {
+            color: var(--text-dark);
+        }
+
+        .scenario-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 12px 14px;
+            margin-bottom: 14px;
+            page-break-inside: avoid;
+        }
+
+        .scenario-title {
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 6px;
+            font-size: 10pt;
+        }
+
+        .scenario-description {
+            color: var(--text-medium);
+            margin-bottom: 10px;
+            font-size: 10pt;
+        }
+
+        .response-line {
+            display: flex;
+            align-items: baseline;
+            margin-bottom: 8px;
+        }
+
+        .response-label {
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-right: 8px;
+            white-space: nowrap;
+        }
+
+        .response-blank {
+            flex-grow: 1;
+            border-bottom: 1px solid var(--text-light);
+            min-height: 18px;
+        }
+
+        .response-options {
+            color: var(--text-light);
+            font-size: 9pt;
+            margin-left: 8px;
+            white-space: nowrap;
+        }
+
+        .because-lines {
+            margin-top: 6px;
+        }
+
+        .because-lines .response-line {
+            margin-bottom: 4px;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 12px 0;
+            font-size: 10pt;
+        }
+
+        .data-table th {
+            background: var(--primary);
+            color: white;
+            padding: 8px 10px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 9pt;
+        }
+
+        .data-table td {
+            padding: 8px 10px;
+            border: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .data-table tr:nth-child(even) td {
+            background: var(--bg-light);
+        }
+
+        .data-table .calc-row td {
+            background: #fef9c3;
+            height: 28px;
+        }
+
+        .question {
+            margin-bottom: 14px;
+            page-break-inside: avoid;
+        }
+
+        .question-number {
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .question-text {
+            color: var(--text-dark);
+            margin-bottom: 6px;
+        }
+
+        .answer-lines {
+            margin-top: 6px;
+        }
+
+        .answer-line {
+            border-bottom: 1px solid var(--text-light);
+            height: 22px;
+            margin-bottom: 4px;
+        }
+
+        .calc-box {
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 12px;
+            margin: 8px 0;
+            min-height: 60px;
+            background: var(--bg-light);
+        }
+
+        .calc-label {
+            font-size: 9pt;
+            color: var(--text-light);
+            margin-bottom: 4px;
+        }
+
+        .calc-answer {
+            margin-top: 10px;
+            font-weight: 600;
+        }
+
+        .mc-options {
+            margin-top: 6px;
+            margin-left: 20px;
+        }
+
+        .mc-option {
+            display: flex;
+            align-items: center;
+            margin-bottom: 4px;
+        }
+
+        .mc-checkbox {
+            width: 14px;
+            height: 14px;
+            border: 1px solid var(--text-light);
+            border-radius: 2px;
+            margin-right: 8px;
+            flex-shrink: 0;
+        }
+
+        .hint-box {
+            background: #f0fdf4;
+            border-left: 3px solid var(--success);
+            padding: 8px 12px;
+            margin: 10px 0;
+            font-size: 9pt;
+            font-style: italic;
+            color: #166534;
+        }
+
+        .hint-box strong {
+            font-style: normal;
+        }
+
+        .part-header {
+            font-weight: 700;
+            font-size: 10pt;
+            color: var(--primary);
+            text-transform: uppercase;
+            margin: 16px 0 10px;
+            padding-bottom: 4px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .footer {
+            margin-top: 24px;
+            padding-top: 10px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            font-size: 9pt;
+            color: var(--text-light);
+        }
+
+        .mb-sm { margin-bottom: 8px; }
+        .mb-md { margin-bottom: 14px; }
+        .mb-lg { margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="header-left">
+            <h1>PFL Academy</h1>
+            <h2>Chapter 1.1: Jobs vs. Careers</h2>
+        </div>
+        <div class="header-right">
+            Student Activity Packet
+        </div>
+    </div>
+
+    <div class="section-header">The Challenge</div>
+    <div class="challenge-box">
+        <p>Maya worked at a fast-food restaurant during high school, making minimum wage with irregular hours. While the job provided spending money, it offered no benefits, limited skill development, and no path to advancement. After graduation, Maya enrolled in a community college nursing program. Although she earned less during her education, within five years she had become a registered nurse earning more than three times her previous hourly wage, with excellent benefits and clear opportunities for advancement.</p>
+        <p class="framing-question">How did Maya's decision to invest in a career path rather than continuing in a series of jobs change her long-term financial outlook?</p>
+    </div>
+
+    <div class="objectives-box">
+        <h3>Learning Objectives</h3>
+        <ul>
+            <li>Differentiate between a job and a career based on growth potential and financial outcomes.</li>
+            <li>Identify how career paths affect long-term earning potential and financial stability.</li>
+            <li>Evaluate personal interests and skills in relation to potential career paths.</li>
+        </ul>
+    </div>
+
+    <div class="section-header">Core Concepts</div>
+
+    <table class="terms-table">
+        <tr>
+            <th>Term</th>
+            <th>Definition</th>
+        </tr>
+        <tr>
+            <td>Job</td>
+            <td>A position of employment that provides immediate income but may have limited growth potential.</td>
+        </tr>
+        <tr>
+            <td>Career</td>
+            <td>A sequence of related jobs in a particular field that provides growth, advancement, and increasing compensation over time.</td>
+        </tr>
+        <tr>
+            <td>Career Path</td>
+            <td>A strategic progression of jobs, education, and skill acquisition that leads toward specific professional goals.</td>
+        </tr>
+        <tr>
+            <td>Career Capital</td>
+            <td>The accumulated skills, experiences, knowledge, and connections that increase your value in the workplace.</td>
+        </tr>
+    </table>
+
+    <div class="background-box">
+        <strong>Background:</strong> The choices you make about education and work can affect your earning potential for decades. While jobs provide immediate income, careers offer pathways to growth, advancement, and long-term financial stability. Workers with career-focused planning earn substantially more over their lifetimes than those who move between unrelated jobs. Career capital—the skills, experiences, and connections you build—becomes one of your most valuable financial assets, opening doors to better opportunities.
+    </div>
+
+    <div class="section-header">Apply It</div>
+
+    <div class="part-header">Part A: Job vs. Career Analysis</div>
+    <p class="mb-md">For each scenario, determine whether the person is in a "job" or building a "career." Explain your reasoning.</p>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Scenario 1: Restaurant Worker</div>
+        <div class="scenario-description">Alex works part-time at different restaurants each year, wherever the pay is slightly better. They have no interest in food service management and take no training courses. After four years, they're still making close to minimum wage.</div>
+        <div class="response-line">
+            <span class="response-label">This is a:</span>
+            <span class="response-blank"></span>
+            <span class="response-options">(job / career)</span>
+        </div>
+        <div class="because-lines">
+            <div class="response-line">
+                <span class="response-label">Because:</span>
+                <span class="response-blank"></span>
+            </div>
+            <div class="response-line">
+                <span class="response-blank" style="margin-left: 60px;"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Scenario 2: IT Professional</div>
+        <div class="scenario-description">Jordan started as a help desk technician after earning an IT certification. They're now studying for advanced certifications, have been promoted to network administrator, and their company is paying for additional training. Their salary has increased 40% in three years.</div>
+        <div class="response-line">
+            <span class="response-label">This is a:</span>
+            <span class="response-blank"></span>
+            <span class="response-options">(job / career)</span>
+        </div>
+        <div class="because-lines">
+            <div class="response-line">
+                <span class="response-label">Because:</span>
+                <span class="response-blank"></span>
+            </div>
+            <div class="response-line">
+                <span class="response-blank" style="margin-left: 60px;"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Scenario 3: Retail Supervisor</div>
+        <div class="scenario-description">Sam started as a cashier but expressed interest in management. The company put them through leadership training, and Sam is now an assistant store manager pursuing a business degree part-time. The company offers tuition reimbursement and a path to store manager.</div>
+        <div class="response-line">
+            <span class="response-label">This is a:</span>
+            <span class="response-blank"></span>
+            <span class="response-options">(job / career)</span>
+        </div>
+        <div class="because-lines">
+            <div class="response-line">
+                <span class="response-label">Because:</span>
+                <span class="response-blank"></span>
+            </div>
+            <div class="response-line">
+                <span class="response-blank" style="margin-left: 60px;"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="hint-box">
+        <strong>Hint:</strong> A career involves intentional growth, skill building, and advancement. A job is primarily about earning immediate income without a strategic plan for progression.
+    </div>
+
+    <div class="part-header">Part B: Financial Impact Comparison</div>
+    <p class="mb-md">Compare the 10-year financial outcomes for two different paths. Complete the calculations.</p>
+
+    <table class="data-table">
+        <tr>
+            <th>Factor</th>
+            <th>Path A: Series of Jobs<br>(No advancement focus)</th>
+            <th>Path B: Career Path<br>(Strategic growth)</th>
+        </tr>
+        <tr>
+            <td style="text-align: left; font-weight: 600;">Starting Hourly Wage</td>
+            <td>$12.00</td>
+            <td>$14.00</td>
+        </tr>
+        <tr>
+            <td style="text-align: left; font-weight: 600;">Wage After 5 Years</td>
+            <td>$14.00</td>
+            <td>$22.00</td>
+        </tr>
+        <tr>
+            <td style="text-align: left; font-weight: 600;">Wage After 10 Years</td>
+            <td>$15.50</td>
+            <td>$32.00</td>
+        </tr>
+        <tr class="calc-row">
+            <td style="text-align: left; font-weight: 600;">Annual Salary Year 10<br>(wage × 2,080 hrs)</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="calc-row">
+            <td style="text-align: left; font-weight: 600;">Difference in Year 10</td>
+            <td colspan="2"></td>
+        </tr>
+    </table>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">4.</span> How much more per year does the career path earn in Year 10 compared to the job path?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">5.</span> What types of "career capital" might the person on Path B have built that explains their higher earnings?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">6.</span> What are TWO financial benefits (beyond salary) that career paths typically offer that jobs may not?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="part-header">Part C: Personal Application</div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">7.</span> Identify a career field that interests you. What is the typical entry-level position, and what might a mid-career position look like 10 years later?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">8.</span> What specific steps could you take in the next 1-2 years to begin building career capital in that field?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="section-header">Check Your Understanding</div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">1.</span> The accumulated skills, experiences, and professional connections that increase your value to employers is called:</p>
+        <div class="mc-options">
+            <div class="mc-option"><div class="mc-checkbox"></div> A. Job security</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> B. Career capital</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> C. Work experience</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> D. Employment history</div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">2.</span> Explain the main difference between a job and a career in terms of long-term financial outcomes.</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">3.</span> <strong>Calculation:</strong> Carlos started at $18/hour and received 8% raises annually for 3 years. What is his hourly wage after 3 years? (Round to nearest cent)</p>
+        <div class="calc-box">
+            <div class="calc-label">Show your work:</div>
+        </div>
+        <div class="calc-answer">Answer: $_____________ per hour</div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">4.</span> Maya chose to earn less money during nursing school rather than continue working full-time at the restaurant. How does this "short-term sacrifice" relate to building a career?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">5.</span> <strong>Reflection:</strong> Consider your own interests, skills, and values. What careers might align with these aspects of yourself while providing the financial future you want? What is one step you could take now to explore that path?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <span>© PFL Academy | pflacademy.co</span>
+        <span>Chapter 1.1: Jobs vs. Careers</span>
+    </div>
+
+</body>
+</html>

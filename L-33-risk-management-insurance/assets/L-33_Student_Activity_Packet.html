@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-33 Student Activity Packet</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+        :root {
+            --primary: #6366f1;
+            --primary-light: #eef2ff;
+            --accent: #f59e0b;
+            --accent-light: #fef3c7;
+            --success: #059669;
+            --text-dark: #1e293b;
+            --text-medium: #475569;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --bg-light: #f8fafc;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+
+        @page {
+            size: letter;
+            margin: 0.5in;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 10.5pt;
+            line-height: 1.5;
+            color: var(--text-dark);
+            background: white;
+        }
+
+        .header {
+            background: var(--primary);
+            color: white;
+            padding: 14px 18px;
+            border-radius: 6px;
+            margin-bottom: 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-left h1 {
+            font-size: 13pt;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .header-left h2 {
+            font-size: 10pt;
+            font-weight: 400;
+            margin: 2px 0 0;
+            opacity: 0.9;
+        }
+
+        .header-right {
+            font-size: 9pt;
+            text-align: right;
+            opacity: 0.9;
+        }
+
+        .section-header {
+            font-size: 11pt;
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 4px;
+            margin: 20px 0 12px;
+        }
+
+        .challenge-box {
+            background: var(--accent-light);
+            border-left: 4px solid var(--accent);
+            padding: 14px 16px;
+            margin-bottom: 16px;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .challenge-box p {
+            font-style: italic;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+        }
+
+        .challenge-box .framing-question {
+            font-weight: 600;
+            font-style: normal;
+            color: #92400e;
+        }
+
+        .objectives-box {
+            background: var(--primary-light);
+            border: 1px solid #c7d2fe;
+            border-radius: 6px;
+            padding: 12px 16px;
+            margin-bottom: 18px;
+        }
+
+        .objectives-box h3 {
+            font-size: 10pt;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 6px;
+        }
+
+        .objectives-box ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .objectives-box li {
+            margin-bottom: 3px;
+            color: var(--text-medium);
+        }
+
+        .terms-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 14px;
+            font-size: 10pt;
+        }
+
+        .terms-table th {
+            background: var(--bg-light);
+            text-align: left;
+            padding: 8px 10px;
+            border: 1px solid var(--border);
+            font-weight: 600;
+            color: var(--text-medium);
+        }
+
+        .terms-table td {
+            padding: 8px 10px;
+            border: 1px solid var(--border);
+            vertical-align: top;
+        }
+
+        .terms-table td:first-child {
+            font-weight: 600;
+            color: var(--primary);
+            width: 25%;
+        }
+
+        .background-box {
+            background: var(--bg-light);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 12px 16px;
+            margin-bottom: 18px;
+            font-size: 10pt;
+            color: var(--text-medium);
+        }
+
+        .background-box strong {
+            color: var(--text-dark);
+        }
+
+        .scenario-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 12px 14px;
+            margin-bottom: 14px;
+            page-break-inside: avoid;
+        }
+
+        .scenario-title {
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 6px;
+            font-size: 10pt;
+        }
+
+        .scenario-description {
+            color: var(--text-medium);
+            margin-bottom: 10px;
+            font-size: 10pt;
+        }
+
+        .response-line {
+            display: flex;
+            align-items: baseline;
+            margin-bottom: 8px;
+        }
+
+        .response-label {
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-right: 8px;
+            white-space: nowrap;
+        }
+
+        .response-blank {
+            flex-grow: 1;
+            border-bottom: 1px solid var(--text-light);
+            min-height: 18px;
+        }
+
+        .response-options {
+            color: var(--text-light);
+            font-size: 9pt;
+            margin-left: 8px;
+            white-space: nowrap;
+        }
+
+        .because-lines {
+            margin-top: 6px;
+        }
+
+        .because-lines .response-line {
+            margin-bottom: 4px;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 12px 0;
+            font-size: 10pt;
+        }
+
+        .data-table th {
+            background: var(--primary);
+            color: white;
+            padding: 8px 10px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 9pt;
+        }
+
+        .data-table td {
+            padding: 8px 10px;
+            border: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .data-table tr:nth-child(even) td {
+            background: var(--bg-light);
+        }
+
+        .data-table .calc-row td {
+            background: #fef9c3;
+            height: 28px;
+        }
+
+        .question {
+            margin-bottom: 14px;
+            page-break-inside: avoid;
+        }
+
+        .question-number {
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .question-text {
+            color: var(--text-dark);
+            margin-bottom: 6px;
+        }
+
+        .answer-lines {
+            margin-top: 6px;
+        }
+
+        .answer-line {
+            border-bottom: 1px solid var(--text-light);
+            height: 22px;
+            margin-bottom: 4px;
+        }
+
+        .calc-box {
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 12px;
+            margin: 8px 0;
+            min-height: 60px;
+            background: var(--bg-light);
+        }
+
+        .calc-label {
+            font-size: 9pt;
+            color: var(--text-light);
+            margin-bottom: 4px;
+        }
+
+        .calc-answer {
+            margin-top: 10px;
+            font-weight: 600;
+        }
+
+        .mc-options {
+            margin-top: 6px;
+            margin-left: 20px;
+        }
+
+        .mc-option {
+            display: flex;
+            align-items: center;
+            margin-bottom: 4px;
+        }
+
+        .mc-checkbox {
+            width: 14px;
+            height: 14px;
+            border: 1px solid var(--text-light);
+            border-radius: 2px;
+            margin-right: 8px;
+            flex-shrink: 0;
+        }
+
+        .hint-box {
+            background: #f0fdf4;
+            border-left: 3px solid var(--success);
+            padding: 8px 12px;
+            margin: 10px 0;
+            font-size: 9pt;
+            font-style: italic;
+            color: #166534;
+        }
+
+        .hint-box strong {
+            font-style: normal;
+        }
+
+        .part-header {
+            font-weight: 700;
+            font-size: 10pt;
+            color: var(--primary);
+            text-transform: uppercase;
+            margin: 16px 0 10px;
+            padding-bottom: 4px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .footer {
+            margin-top: 24px;
+            padding-top: 10px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            font-size: 9pt;
+            color: var(--text-light);
+        }
+
+        .mb-sm { margin-bottom: 8px; }
+        .mb-md { margin-bottom: 14px; }
+        .mb-lg { margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <div class="header">
+        <div class="header-left">
+            <h1>PFL Academy</h1>
+            <h2>Chapter 7.1: Understanding and Managing Risk</h2>
+        </div>
+        <div class="header-right">
+            Student Activity Packet
+        </div>
+    </div>
+
+    <!-- THE CHALLENGE -->
+    <div class="section-header">The Challenge</div>
+    <div class="challenge-box">
+        <p>Riley just bought her first car, a used vehicle worth $8,000. She needs to decide what insurance coverage to purchase. She could get minimum liability insurance for $75/month, or comprehensive coverage for $150/month with a $500 deductible. She also installed an anti-theft device that qualifies her for a discount.</p>
+        <p class="framing-question">How can understanding risk management strategies help Riley make the best insurance decision for her situation?</p>
+    </div>
+
+    <!-- LEARNING OBJECTIVES -->
+    <div class="objectives-box">
+        <h3>Learning Objectives</h3>
+        <ul>
+            <li>Define risk and categorize different types of risk (personal, property, liability, financial).</li>
+            <li>Compare the four main risk management strategies: avoidance, reduction, acceptance, and transfer.</li>
+            <li>Apply appropriate risk management strategies to various scenarios.</li>
+        </ul>
+    </div>
+
+    <!-- CORE CONCEPTS -->
+    <div class="section-header">Core Concepts</div>
+
+    <table class="terms-table">
+        <tr>
+            <th>Term</th>
+            <th>Definition</th>
+        </tr>
+        <tr>
+            <td>Risk</td>
+            <td>The possibility of loss or gain in any situation where the outcome is uncertain.</td>
+        </tr>
+        <tr>
+            <td>Risk Avoidance</td>
+            <td>Eliminating the possibility of loss by avoiding the activity entirely.</td>
+        </tr>
+        <tr>
+            <td>Risk Reduction</td>
+            <td>Taking steps to minimize the chance or impact of potential loss.</td>
+        </tr>
+        <tr>
+            <td>Risk Transfer</td>
+            <td>Shifting the financial responsibility for loss to another party, typically through insurance.</td>
+        </tr>
+        <tr>
+            <td>Deductible</td>
+            <td>The amount you must pay out-of-pocket before insurance coverage begins.</td>
+        </tr>
+    </table>
+
+    <div class="background-box">
+        <strong>Background:</strong> Risk is an unavoidable part of life, but understanding how to manage it empowers better decision-making. The four main strategies are: <strong>Avoidance</strong> (don't do the risky activity), <strong>Reduction</strong> (take precautions like wearing seatbelts), <strong>Acceptance</strong> (pay for small losses yourself), and <strong>Transfer</strong> (buy insurance for major risks). The right strategy depends on the likelihood of loss, the potential impact, and your financial resources. Insurance works best for high-impact, low-probability events.
+    </div>
+
+    <!-- APPLY IT -->
+    <div class="section-header">Apply It</div>
+
+    <div class="part-header">Part A: Risk Identification and Strategy Selection</div>
+    <p class="mb-md">For each scenario, identify the type of risk and select the most appropriate management strategy.</p>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Scenario 1: Smartphone Protection</div>
+        <div class="scenario-description">You just bought a new smartphone for $1,000. You use it constantly for school, work, and entertainment. You're deciding whether to buy a $150/year protection plan with a $50 deductible, or simply be careful with it.</div>
+        <div class="response-line">
+            <span class="response-label">Type of risk:</span>
+            <span class="response-blank"></span>
+            <span class="response-options">(personal / property / liability / financial)</span>
+        </div>
+        <div class="response-line">
+            <span class="response-label">Best strategy:</span>
+            <span class="response-blank"></span>
+            <span class="response-options">(avoid / reduce / accept / transfer)</span>
+        </div>
+        <div class="because-lines">
+            <div class="response-line">
+                <span class="response-label">Because:</span>
+                <span class="response-blank"></span>
+            </div>
+            <div class="response-line">
+                <span class="response-blank" style="margin-left: 60px;"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Scenario 2: Severe Weather Driving</div>
+        <div class="scenario-description">A major ice storm is forecast for tomorrow morning. You have an important exam at 8 AM, but the roads are expected to be very dangerous until afternoon.</div>
+        <div class="response-line">
+            <span class="response-label">Type of risk:</span>
+            <span class="response-blank"></span>
+            <span class="response-options">(personal / property / liability / financial)</span>
+        </div>
+        <div class="response-line">
+            <span class="response-label">Best strategy:</span>
+            <span class="response-blank"></span>
+            <span class="response-options">(avoid / reduce / accept / transfer)</span>
+        </div>
+        <div class="because-lines">
+            <div class="response-line">
+                <span class="response-label">Because:</span>
+                <span class="response-blank"></span>
+            </div>
+            <div class="response-line">
+                <span class="response-blank" style="margin-left: 60px;"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Scenario 3: Dog Ownership</div>
+        <div class="scenario-description">You want to adopt a large dog breed. Your landlord requires an additional $500 pet deposit, and your renter's insurance has a $100,000 liability coverage that includes pet-related incidents.</div>
+        <div class="response-line">
+            <span class="response-label">Primary risk type:</span>
+            <span class="response-blank"></span>
+            <span class="response-options">(personal / property / liability / financial)</span>
+        </div>
+        <div class="response-line">
+            <span class="response-label">Strategy used (pet deposit):</span>
+            <span class="response-blank"></span>
+        </div>
+        <div class="response-line">
+            <span class="response-label">Strategy used (insurance):</span>
+            <span class="response-blank"></span>
+        </div>
+    </div>
+
+    <div class="hint-box">
+        <strong>Hint:</strong> Many real-world situations use multiple risk management strategies together. A driver might reduce risk (wear seatbelt) AND transfer risk (buy insurance).
+    </div>
+
+    <!-- PART B -->
+    <div class="part-header">Part B: Insurance Coverage Analysis</div>
+    <p class="mb-md">Compare auto insurance options for a vehicle worth $12,000. Annual premiums and potential costs are shown.</p>
+
+    <table class="data-table">
+        <tr>
+            <th>Coverage Type</th>
+            <th>Option A (Minimum)</th>
+            <th>Option B (Standard)</th>
+            <th>Option C (Premium)</th>
+        </tr>
+        <tr>
+            <td style="text-align: left; font-weight: 600;">Monthly Premium</td>
+            <td>$75</td>
+            <td>$110</td>
+            <td>$150</td>
+        </tr>
+        <tr>
+            <td style="text-align: left; font-weight: 600;">Annual Cost</td>
+            <td>$900</td>
+            <td>$1,320</td>
+            <td>$1,800</td>
+        </tr>
+        <tr>
+            <td style="text-align: left; font-weight: 600;">Collision Coverage</td>
+            <td>None</td>
+            <td>$500 deductible</td>
+            <td>$250 deductible</td>
+        </tr>
+        <tr>
+            <td style="text-align: left; font-weight: 600;">If Car Totaled (your cost)</td>
+            <td>$12,000</td>
+            <td>$500</td>
+            <td>$250</td>
+        </tr>
+        <tr class="calc-row">
+            <td style="text-align: left; font-weight: 600;">5-Year Premium Total</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">4.</span> Calculate the 5-year premium total for each option. Which option costs the least if you have NO accidents over 5 years?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">5.</span> If your car is totaled in Year 2, what would be your total cost (premiums paid + out-of-pocket) with Option A vs. Option B?</p>
+        <div class="calc-box">
+            <div class="calc-label">Show your work:</div>
+        </div>
+        <div class="calc-answer">Option A total: $___________ | Option B total: $___________</div>
+    </div>
+
+    <!-- PART C -->
+    <div class="part-header">Part C: Personal Risk Assessment</div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">6.</span> List ONE risk you currently face in each category. Then identify which strategy you currently use (or should use) to manage it.</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <!-- CHECK YOUR UNDERSTANDING -->
+    <div class="section-header">Check Your Understanding</div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">1.</span> Which risk management strategy involves purchasing insurance?</p>
+        <div class="mc-options">
+            <div class="mc-option"><div class="mc-checkbox"></div> A. Risk Avoidance</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> B. Risk Reduction</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> C. Risk Acceptance</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> D. Risk Transfer</div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">2.</span> Explain the difference between a premium and a deductible. Give an example of each.</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">3.</span> <strong>Calculation:</strong> An insurance policy has a $200 monthly premium and a $1,000 deductible. If you have a covered loss of $5,000, how much total do you pay (annual premium + deductible)?</p>
+        <div class="calc-box">
+            <div class="calc-label">Show your work:</div>
+        </div>
+        <div class="calc-answer">Answer: $_____________ total out-of-pocket</div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">4.</span> Marcus is deciding whether to join the school basketball team. He loves basketball but is worried about injuries. Which risk management strategies could he use, and why might he choose NOT to use risk avoidance?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">5.</span> <strong>Reflection:</strong> Think about a significant financial decision you or your family might face. What risks are associated with it, and which risk management strategies would be most appropriate? Why?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        <span>&copy; PFL Academy | pflacademy.co</span>
+        <span>Chapter 7.1: Understanding and Managing Risk</span>
+    </div>
+
+</body>
+</html>

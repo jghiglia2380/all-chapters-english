@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-53 Teacher Guide</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+        :root {
+            --primary: #059669;
+            --primary-light: #ecfdf5;
+            --primary-dark: #065f46;
+            --text-dark: #1e293b;
+            --text-medium: #475569;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --bg-light: #f8fafc;
+            --warning: #f59e0b;
+            --warning-light: #fef3c7;
+            --error: #dc2626;
+            --error-light: #fee2e2;
+            --success-light: #dcfce7;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+
+        @page {
+            size: letter;
+            margin: 0.5in;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 10pt;
+            line-height: 1.45;
+            color: var(--text-dark);
+            background: white;
+        }
+
+        .header {
+            background: var(--primary);
+            color: white;
+            padding: 14px 18px;
+            border-radius: 6px;
+            margin-bottom: 16px;
+        }
+
+        .header h1 {
+            font-size: 13pt;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .header h2 {
+            font-size: 10pt;
+            font-weight: 400;
+            margin: 3px 0 0;
+            opacity: 0.9;
+        }
+
+        .section-header {
+            background: var(--primary-light);
+            border-left: 4px solid var(--primary);
+            padding: 7px 12px;
+            font-size: 10pt;
+            font-weight: 700;
+            color: var(--primary-dark);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin: 16px 0 10px;
+        }
+
+        .overview-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 14px;
+        }
+
+        .overview-table th {
+            background: var(--bg-light);
+            color: var(--text-light);
+            font-size: 8pt;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            text-align: center;
+            padding: 6px 10px;
+            border: 1px solid var(--border);
+            width: 33%;
+        }
+
+        .overview-table td {
+            text-align: center;
+            padding: 10px;
+            border: 1px solid var(--border);
+            font-weight: 600;
+            color: var(--text-dark);
+            font-size: 10pt;
+        }
+
+        .flow-container {
+            margin-bottom: 14px;
+        }
+
+        .flow-item {
+            display: flex;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border);
+            page-break-inside: avoid;
+        }
+
+        .flow-item:last-child {
+            border-bottom: none;
+        }
+
+        .flow-time {
+            width: 65px;
+            font-weight: 700;
+            color: var(--primary);
+            flex-shrink: 0;
+            font-size: 10pt;
+        }
+
+        .flow-content {
+            flex: 1;
+        }
+
+        .flow-title {
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 3px;
+            font-size: 10pt;
+        }
+
+        .flow-content ul {
+            margin: 0;
+            padding-left: 16px;
+            font-size: 9pt;
+            color: var(--text-medium);
+        }
+
+        .flow-content li {
+            margin-bottom: 2px;
+        }
+
+        .diff-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 14px;
+        }
+
+        .diff-box {
+            background: var(--bg-light);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 10px 12px;
+        }
+
+        .diff-title {
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 6px;
+            font-size: 9pt;
+        }
+
+        .diff-box ul {
+            margin: 0;
+            padding-left: 16px;
+            font-size: 9pt;
+            color: var(--text-medium);
+        }
+
+        .diff-box li {
+            margin-bottom: 2px;
+        }
+
+        .answer-key {
+            page-break-before: always;
+        }
+
+        .answer-block {
+            margin-bottom: 12px;
+            page-break-inside: avoid;
+        }
+
+        .answer-title {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 9pt;
+            border-bottom: 1px solid #a7f3d0;
+            padding-bottom: 3px;
+            margin-bottom: 6px;
+        }
+
+        .answer-item {
+            margin-bottom: 5px;
+            font-size: 9pt;
+            color: var(--text-dark);
+        }
+
+        .answer-item strong {
+            color: var(--primary-dark);
+        }
+
+        .calc-display {
+            font-family: 'Courier New', monospace;
+            background: var(--bg-light);
+            padding: 8px 10px;
+            border-radius: 4px;
+            margin: 6px 0;
+            font-size: 8.5pt;
+            line-height: 1.5;
+            white-space: pre-line;
+        }
+
+        .answer-note {
+            background: var(--warning-light);
+            border-left: 3px solid var(--warning);
+            padding: 6px 10px;
+            font-size: 9pt;
+            font-style: italic;
+            color: #92400e;
+            margin: 6px 0;
+        }
+
+        .misconception-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 9pt;
+            margin-top: 10px;
+        }
+
+        .misconception-table th {
+            padding: 6px 10px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .misconception-table th:first-child {
+            background: var(--error-light);
+            color: #991b1b;
+            border: 1px solid #fca5a5;
+            width: 40%;
+        }
+
+        .misconception-table th:last-child {
+            background: var(--success-light);
+            color: #166534;
+            border: 1px solid #86efac;
+        }
+
+        .misconception-table td {
+            padding: 6px 10px;
+            border: 1px solid var(--border);
+            vertical-align: top;
+            color: var(--text-medium);
+        }
+
+        .footer {
+            margin-top: 20px;
+            padding-top: 8px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            font-size: 8pt;
+            color: var(--text-light);
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <div class="header">
+        <h1>PFL Academy</h1>
+        <h2>Teacher Guide: Chapter 53 — Fiscal and Monetary Policy</h2>
+    </div>
+
+    <!-- OVERVIEW -->
+    <div class="section-header">Overview</div>
+    <table class="overview-table">
+        <tr>
+            <th>Time</th>
+            <th>Materials</th>
+            <th>Prerequisites</th>
+        </tr>
+        <tr>
+            <td>45-50 Minutes</td>
+            <td>Student Activity Packet</td>
+            <td>L-50 Supply & Demand, L-52 Government's Economic Role</td>
+        </tr>
+    </table>
+
+    <!-- LESSON FLOW -->
+    <div class="section-header">Lesson Flow</div>
+    <div class="flow-container">
+        <div class="flow-item">
+            <div class="flow-time">5 min</div>
+            <div class="flow-content">
+                <div class="flow-title">THE CHALLENGE</div>
+                <ul>
+                    <li>Read the 2008/2022 crisis comparison—brings abstract policy into concrete recent history.</li>
+                    <li>Discussion: "Has anyone in your family been affected by recession or high inflation?"</li>
+                    <li>Connect to students: "These policies affect your ability to get jobs, buy homes, and save money."</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="flow-item">
+            <div class="flow-time">10 min</div>
+            <div class="flow-content">
+                <div class="flow-title">CORE CONCEPTS</div>
+                <ul>
+                    <li>Draw the fiscal/monetary policy comparison on board: Who controls each? What tools?</li>
+                    <li>Emphasize: Expansionary = stimulate (recession), Contractionary = cool (inflation).</li>
+                    <li>Quick check: "If unemployment is 10%, what should Fed do to interest rates?"</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="flow-item">
+            <div class="flow-time">25-30 min</div>
+            <div class="flow-content">
+                <div class="flow-title">APPLY IT</div>
+                <ul>
+                    <li><strong>Part A (10 min):</strong> Policy Response Analysis. Ensure students match policy type to economic condition.</li>
+                    <li><strong>Part B (10 min):</strong> Interest Rate Calculations. Help with math—focus on understanding the magnitude of impact.</li>
+                    <li><strong>Part C (10 min):</strong> Policy Trade-offs. Encourage both sides—no "right answer" on stimulus debate.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="flow-item">
+            <div class="flow-time">10 min</div>
+            <div class="flow-content">
+                <div class="flow-title">CHECK YOUR UNDERSTANDING</div>
+                <ul>
+                    <li>Complete in class or assign as homework.</li>
+                    <li>Review Q3 (multiplier calculation) and Q5 (home purchase timing).</li>
+                    <li>Use Q4 to discuss the stimulus-inflation connection (very timely in 2024).</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- DIFFERENTIATION -->
+    <div class="section-header">Differentiation</div>
+    <div class="diff-grid">
+        <div class="diff-box">
+            <div class="diff-title">Support</div>
+            <ul>
+                <li>Provide a T-chart: "Recession = Expansionary" vs. "Inflation = Contractionary."</li>
+                <li>Pre-calculate the interest rate differences for Part B.</li>
+                <li>Use visual diagrams showing money flow (Fed → banks → you).</li>
+                <li>Partner struggling students for the trade-off analysis.</li>
+            </ul>
+        </div>
+        <div class="diff-box">
+            <div class="diff-title">Extension</div>
+            <ul>
+                <li>Research current Fed policy and predict next interest rate decision.</li>
+                <li>Calculate total cost of a 30-year mortgage at different rates.</li>
+                <li>Compare 2008 and 2020 stimulus responses—which was more effective?</li>
+                <li>Analyze whether current debt levels are sustainable.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ANSWER KEY (new page) -->
+    <div class="answer-key">
+        <div class="section-header">Answer Key</div>
+
+        <div class="answer-block">
+            <div class="answer-title">Part A: Policy Response Analysis</div>
+            <div class="answer-item"><strong>Scenario 1 (Recession):</strong> EXPANSIONARY fiscal (increase spending, cut taxes) + EXPANSIONARY monetary (lower interest rates). Goal: create jobs, boost GDP.</div>
+            <div class="answer-item"><strong>Scenario 2 (Inflation):</strong> CONTRACTIONARY fiscal (reduce spending, raise taxes—rarely used) + CONTRACTIONARY monetary (raise interest rates). Goal: reduce demand, cool prices.</div>
+            <div class="answer-item"><strong>Scenario 3 (Stable):</strong> NEUTRAL both. Economy is at target—no need to stimulate or cool. Maintain current course.</div>
+        </div>
+
+        <div class="answer-block">
+            <div class="answer-title">Part B: Interest Rates and Personal Finances</div>
+            <div class="calc-display">Mortgage: $1,996 - $1,265 = $731/month difference
+Car Loan: $495 - $449 = $46/month difference
+Savings: $700 - $300 = $400/year difference</div>
+            <div class="answer-item"><strong>4.</strong> Borrowers prefer LOW rates. Save $731/month = $8,772/year on mortgage.</div>
+            <div class="answer-item"><strong>5.</strong> Savers prefer HIGH rates. Earn $400 more per year on $10,000.</div>
+            <div class="answer-item"><strong>6.</strong> Young people are typically NET BORROWERS (student loans, first home, car). High rates hurt them more than help.</div>
+        </div>
+
+        <div class="answer-block">
+            <div class="answer-title">Part C: Policy Trade-offs</div>
+            <div class="answer-note">COVID stimulus analysis should include: Benefits (prevented economic collapse, supported families/businesses, fast recovery) and Costs (contributed to inflation, added to national debt, some fraud/waste). "Worth it" is debatable—evaluate reasoning quality.</div>
+            <div class="answer-item"><strong>8.</strong> Rate increases: BENEFIT savers, retirees on fixed income, inflation-conscious consumers. HARM borrowers (mortgages more expensive), businesses (higher financing costs), job seekers (economic slowdown).</div>
+        </div>
+
+        <div class="answer-block">
+            <div class="answer-title">Check Your Understanding</div>
+            <div class="answer-item"><strong>1.</strong> C (Interest rates)</div>
+            <div class="answer-item"><strong>2.</strong> Fed raises rates to fight inflation. High inflation erodes everyone's purchasing power—your $100 buys less each month. The temporary pain of higher borrowing costs prevents the permanent damage of runaway inflation.</div>
+            <div class="answer-item"><strong>3.</strong> $500 billion × 1.5 multiplier = <strong>$750 billion</strong> total GDP impact.</div>
+            <div class="answer-item"><strong>4.</strong> Expansionary policy increases aggregate demand. If supply can't keep up (supply chains, labor shortages), prices rise. Money chases same amount of goods = inflation. This is what happened 2021-2022.</div>
+            <div class="answer-item"><strong>5.</strong> <em>Should mention: watching Fed announcements, interest rate forecasts, inflation trends. Consider waiting for lower rates, but weigh against home price increases. Understand that timing the market is difficult.</em></div>
+        </div>
+
+        <!-- COMMON MISCONCEPTIONS -->
+        <div class="section-header">Common Misconceptions</div>
+        <table class="misconception-table">
+            <tr>
+                <th>Misconception</th>
+                <th>Clarification</th>
+            </tr>
+            <tr>
+                <td>"The Fed controls the economy."</td>
+                <td>Fed influences interest rates, which affect spending/borrowing. But Congress controls fiscal policy, and market forces are powerful. No single entity "controls" the economy.</td>
+            </tr>
+            <tr>
+                <td>"Low interest rates are always good."</td>
+                <td>Good for borrowers, bad for savers. Low rates can fuel asset bubbles and inflation. The "right" rate depends on economic conditions.</td>
+            </tr>
+            <tr>
+                <td>"Stimulus always works."</td>
+                <td>Depends on timing, amount, and economic conditions. Can help in recession but may cause inflation if economy already at capacity. Has time lags.</td>
+            </tr>
+            <tr>
+                <td>"National debt will cause collapse."</td>
+                <td>Debt is a concern but not immediate crisis. US can borrow at low rates. Issue is sustainable growth—if economy grows faster than debt, it's manageable.</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        <span>© PFL Academy | pflacademy.co</span>
+        <span>Teacher Guide: Chapter 53</span>
+    </div>
+
+</body>
+</html>

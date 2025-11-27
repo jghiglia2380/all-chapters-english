@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-02 Student Activity Packet</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+        :root {
+            --primary: #6366f1;
+            --primary-light: #eef2ff;
+            --accent: #f59e0b;
+            --accent-light: #fef3c7;
+            --success: #059669;
+            --text-dark: #1e293b;
+            --text-medium: #475569;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --bg-light: #f8fafc;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+
+        @page {
+            size: letter;
+            margin: 0.5in;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 10.5pt;
+            line-height: 1.5;
+            color: var(--text-dark);
+            background: white;
+        }
+
+        .header {
+            background: var(--primary);
+            color: white;
+            padding: 14px 18px;
+            border-radius: 6px;
+            margin-bottom: 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-left h1 {
+            font-size: 13pt;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .header-left h2 {
+            font-size: 10pt;
+            font-weight: 400;
+            margin: 2px 0 0;
+            opacity: 0.9;
+        }
+
+        .header-right {
+            font-size: 9pt;
+            text-align: right;
+            opacity: 0.9;
+        }
+
+        .section-header {
+            font-size: 11pt;
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 4px;
+            margin: 20px 0 12px;
+        }
+
+        .challenge-box {
+            background: var(--accent-light);
+            border-left: 4px solid var(--accent);
+            padding: 14px 16px;
+            margin-bottom: 16px;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .challenge-box p {
+            font-style: italic;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+        }
+
+        .challenge-box .framing-question {
+            font-weight: 600;
+            font-style: normal;
+            color: #92400e;
+        }
+
+        .objectives-box {
+            background: var(--primary-light);
+            border: 1px solid #c7d2fe;
+            border-radius: 6px;
+            padding: 12px 16px;
+            margin-bottom: 18px;
+        }
+
+        .objectives-box h3 {
+            font-size: 10pt;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 6px;
+        }
+
+        .objectives-box ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .objectives-box li {
+            margin-bottom: 3px;
+            color: var(--text-medium);
+        }
+
+        .terms-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 14px;
+            font-size: 10pt;
+        }
+
+        .terms-table th {
+            background: var(--bg-light);
+            text-align: left;
+            padding: 8px 10px;
+            border: 1px solid var(--border);
+            font-weight: 600;
+            color: var(--text-medium);
+        }
+
+        .terms-table td {
+            padding: 8px 10px;
+            border: 1px solid var(--border);
+            vertical-align: top;
+        }
+
+        .terms-table td:first-child {
+            font-weight: 600;
+            color: var(--primary);
+            width: 25%;
+        }
+
+        .background-box {
+            background: var(--bg-light);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 12px 16px;
+            margin-bottom: 18px;
+            font-size: 10pt;
+            color: var(--text-medium);
+        }
+
+        .background-box strong {
+            color: var(--text-dark);
+        }
+
+        .scenario-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 12px 14px;
+            margin-bottom: 14px;
+            page-break-inside: avoid;
+        }
+
+        .scenario-title {
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 6px;
+            font-size: 10pt;
+        }
+
+        .scenario-description {
+            color: var(--text-medium);
+            margin-bottom: 10px;
+            font-size: 10pt;
+        }
+
+        .response-line {
+            display: flex;
+            align-items: baseline;
+            margin-bottom: 8px;
+        }
+
+        .response-label {
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-right: 8px;
+            white-space: nowrap;
+        }
+
+        .response-blank {
+            flex-grow: 1;
+            border-bottom: 1px solid var(--text-light);
+            min-height: 18px;
+        }
+
+        .response-options {
+            color: var(--text-light);
+            font-size: 9pt;
+            margin-left: 8px;
+            white-space: nowrap;
+        }
+
+        .because-lines {
+            margin-top: 6px;
+        }
+
+        .because-lines .response-line {
+            margin-bottom: 4px;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 12px 0;
+            font-size: 10pt;
+        }
+
+        .data-table th {
+            background: var(--primary);
+            color: white;
+            padding: 8px 10px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 9pt;
+        }
+
+        .data-table td {
+            padding: 8px 10px;
+            border: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .data-table tr:nth-child(even) td {
+            background: var(--bg-light);
+        }
+
+        .data-table .calc-row td {
+            background: #fef9c3;
+            height: 28px;
+        }
+
+        .question {
+            margin-bottom: 14px;
+            page-break-inside: avoid;
+        }
+
+        .question-number {
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .question-text {
+            color: var(--text-dark);
+            margin-bottom: 6px;
+        }
+
+        .answer-lines {
+            margin-top: 6px;
+        }
+
+        .answer-line {
+            border-bottom: 1px solid var(--text-light);
+            height: 22px;
+            margin-bottom: 4px;
+        }
+
+        .calc-box {
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 12px;
+            margin: 8px 0;
+            min-height: 60px;
+            background: var(--bg-light);
+        }
+
+        .calc-label {
+            font-size: 9pt;
+            color: var(--text-light);
+            margin-bottom: 4px;
+        }
+
+        .calc-answer {
+            margin-top: 10px;
+            font-weight: 600;
+        }
+
+        .mc-options {
+            margin-top: 6px;
+            margin-left: 20px;
+        }
+
+        .mc-option {
+            display: flex;
+            align-items: center;
+            margin-bottom: 4px;
+        }
+
+        .mc-checkbox {
+            width: 14px;
+            height: 14px;
+            border: 1px solid var(--text-light);
+            border-radius: 2px;
+            margin-right: 8px;
+            flex-shrink: 0;
+        }
+
+        .hint-box {
+            background: #f0fdf4;
+            border-left: 3px solid var(--success);
+            padding: 8px 12px;
+            margin: 10px 0;
+            font-size: 9pt;
+            font-style: italic;
+            color: #166534;
+        }
+
+        .hint-box strong {
+            font-style: normal;
+        }
+
+        .part-header {
+            font-weight: 700;
+            font-size: 10pt;
+            color: var(--primary);
+            text-transform: uppercase;
+            margin: 16px 0 10px;
+            padding-bottom: 4px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .footer {
+            margin-top: 24px;
+            padding-top: 10px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            font-size: 9pt;
+            color: var(--text-light);
+        }
+
+        .mb-sm { margin-bottom: 8px; }
+        .mb-md { margin-bottom: 14px; }
+        .mb-lg { margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="header-left">
+            <h1>PFL Academy</h1>
+            <h2>Chapter 1.2: Paying for Post-Secondary Education</h2>
+        </div>
+        <div class="header-right">
+            Student Activity Packet
+        </div>
+    </div>
+
+    <div class="section-header">The Challenge</div>
+    <div class="challenge-box">
+        <p>Jordan, a high school senior with strong academics and leadership experience, created a systematic approach to financing education. By dedicating 5 hours weekly to scholarship applications starting junior year, Jordan secured $22,000 in scholarships from various sources and qualified for a $3,500 Pell Grant. This proactive strategy covered approximately 85% of first-year university costs, requiring only a small federal loan to cover the remainder.</p>
+        <p class="framing-question">How can strategic planning and prioritizing non-debt funding sources minimize the financial burden of post-secondary education?</p>
+    </div>
+
+    <div class="objectives-box">
+        <h3>Learning Objectives</h3>
+        <ul>
+            <li>Differentiate between scholarships, grants, loans, and work-study programs.</li>
+            <li>Explain the purpose and process of completing the FAFSA.</li>
+            <li>Create a balanced financial plan that prioritizes non-debt financing options.</li>
+        </ul>
+    </div>
+
+    <div class="section-header">Core Concepts</div>
+
+    <table class="terms-table">
+        <tr>
+            <th>Term</th>
+            <th>Definition</th>
+        </tr>
+        <tr>
+            <td>Scholarships</td>
+            <td>Merit-based financial awards that do not need to be repaid, typically based on academic, athletic, or leadership achievements.</td>
+        </tr>
+        <tr>
+            <td>Grants</td>
+            <td>Need-based financial aid that does not require repayment, often awarded based on family financial need.</td>
+        </tr>
+        <tr>
+            <td>FAFSA</td>
+            <td>Free Application for Federal Student Aid—the form that determines eligibility for federal grants, loans, and work-study.</td>
+        </tr>
+        <tr>
+            <td>Federal Loans</td>
+            <td>Government-backed loans with lower interest rates and flexible repayment options compared to private loans.</td>
+        </tr>
+        <tr>
+            <td>Work-Study</td>
+            <td>Part-time employment opportunities for students with financial need, often located on campus.</td>
+        </tr>
+    </table>
+
+    <div class="background-box">
+        <strong>Background:</strong> Student loan debt in the United States exceeds $1.75 trillion, affecting over 43 million Americans. The most effective approach to financing education follows a strategic priority: start with "free money" (scholarships and grants), consider work opportunities, explore federal loans if needed, and use private loans only as a last resort. Completing the FAFSA early—after October 1st each year—is essential to maximizing financial aid opportunities.
+    </div>
+
+    <div class="section-header">Apply It</div>
+
+    <div class="part-header">Part A: Funding Source Analysis</div>
+    <p class="mb-md">For each scenario, identify the BEST funding source and explain your reasoning.</p>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Scenario 1: High-Achieving Student</div>
+        <div class="scenario-description">Mia has a 3.9 GPA, is class president, and her family earns $120,000 annually. She needs $15,000 for her first year at a state university.</div>
+        <div class="response-line">
+            <span class="response-label">Primary funding source:</span>
+            <span class="response-blank"></span>
+        </div>
+        <div class="response-line">
+            <span class="response-label">Secondary source:</span>
+            <span class="response-blank"></span>
+        </div>
+        <div class="because-lines">
+            <div class="response-line">
+                <span class="response-label">Reasoning:</span>
+                <span class="response-blank"></span>
+            </div>
+            <div class="response-line">
+                <span class="response-blank" style="margin-left: 75px;"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Scenario 2: Low-Income Student</div>
+        <div class="scenario-description">David's family earns $32,000 annually. He has average grades but strong community involvement. He's been accepted to a community college with $8,000 annual costs.</div>
+        <div class="response-line">
+            <span class="response-label">Primary funding source:</span>
+            <span class="response-blank"></span>
+        </div>
+        <div class="response-line">
+            <span class="response-label">Secondary source:</span>
+            <span class="response-blank"></span>
+        </div>
+        <div class="because-lines">
+            <div class="response-line">
+                <span class="response-label">Reasoning:</span>
+                <span class="response-blank"></span>
+            </div>
+            <div class="response-line">
+                <span class="response-blank" style="margin-left: 75px;"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Scenario 3: Middle-Income Student</div>
+        <div class="scenario-description">Sarah's family earns $75,000, which is too high for need-based grants but not enough to pay full tuition. She needs $20,000 for a nursing program and wants hands-on experience.</div>
+        <div class="response-line">
+            <span class="response-label">Best strategy:</span>
+            <span class="response-blank"></span>
+        </div>
+        <div class="because-lines">
+            <div class="response-line">
+                <span class="response-label">Reasoning:</span>
+                <span class="response-blank"></span>
+            </div>
+            <div class="response-line">
+                <span class="response-blank" style="margin-left: 75px;"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="hint-box">
+        <strong>Hint:</strong> Consider both what the student qualifies for (merit vs. need-based) and the funding priority order: scholarships/grants first, then work, then federal loans, then private loans.
+    </div>
+
+    <div class="part-header">Part B: Loan Comparison</div>
+    <p class="mb-md">Compare federal and private loan options. Complete the calculations for a $10,000 loan.</p>
+
+    <table class="data-table">
+        <tr>
+            <th>Factor</th>
+            <th>Federal Subsidized Loan</th>
+            <th>Private Loan</th>
+        </tr>
+        <tr>
+            <td style="text-align: left; font-weight: 600;">Interest Rate</td>
+            <td>5.50%</td>
+            <td>9.50%</td>
+        </tr>
+        <tr>
+            <td style="text-align: left; font-weight: 600;">Interest While in School</td>
+            <td>Government pays</td>
+            <td>Accrues immediately</td>
+        </tr>
+        <tr>
+            <td style="text-align: left; font-weight: 600;">Repayment Term</td>
+            <td>10 years</td>
+            <td>10 years</td>
+        </tr>
+        <tr>
+            <td style="text-align: left; font-weight: 600;">Monthly Payment</td>
+            <td>$108</td>
+            <td>$129</td>
+        </tr>
+        <tr class="calc-row">
+            <td style="text-align: left; font-weight: 600;">Total Repaid<br>(payment × 120 months)</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="calc-row">
+            <td style="text-align: left; font-weight: 600;">Total Interest Paid<br>(Total - $10,000)</td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">4.</span> How much more in TOTAL would you pay with a private loan compared to a federal subsidized loan?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">5.</span> Why should federal loans be prioritized over private loans? List TWO specific advantages.</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="part-header">Part C: Personal Application</div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">6.</span> What type of post-secondary education are you considering, and what is the estimated annual cost? (Use $15,000 for community college, $25,000 for state university, $50,000 for private university as estimates)</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">7.</span> Based on your situation, what THREE funding sources would you prioritize, and why?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="section-header">Check Your Understanding</div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">1.</span> The form that determines eligibility for federal financial aid including grants, loans, and work-study is called:</p>
+        <div class="mc-options">
+            <div class="mc-option"><div class="mc-checkbox"></div> A. CSS Profile</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> B. FAFSA</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> C. SAR</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> D. EFC Form</div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">2.</span> Explain the difference between a scholarship and a grant. When might a student qualify for one but not the other?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">3.</span> <strong>Calculation:</strong> Casey takes out $5,500 per year in federal loans for 4 years. At a 5% interest rate with a 10-year repayment, her monthly payment will be $233. What is the total amount Casey will repay?</p>
+        <div class="calc-box">
+            <div class="calc-label">Show your work:</div>
+        </div>
+        <div class="calc-answer">Answer: $_____________ total repaid</div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">4.</span> Casey started at community college for $4,000/year instead of going directly to a 4-year university at $20,000/year. How much did she save in her first two years, and how does this strategy relate to minimizing student debt?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">5.</span> <strong>Reflection:</strong> What steps can you take NOW (while still in high school) to maximize your non-debt funding opportunities for post-secondary education?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <span>© PFL Academy | pflacademy.co</span>
+        <span>Chapter 1.2: Paying for Post-Secondary Education</span>
+    </div>
+
+</body>
+</html>

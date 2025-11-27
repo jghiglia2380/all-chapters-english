@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-59 Student Activity Packet: Understanding Local Tax Structures</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+        :root {
+            --primary: #6366f1;
+            --primary-light: #eef2ff;
+            --primary-dark: #4338ca;
+            --text-dark: #1e293b;
+            --text-medium: #475569;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --bg-light: #f8fafc;
+            --warning: #f59e0b;
+            --warning-light: #fef3c7;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+
+        @page {
+            size: letter;
+            margin: 0.5in;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 10pt;
+            line-height: 1.45;
+            color: var(--text-dark);
+            background: white;
+        }
+
+        .header {
+            background: var(--primary);
+            color: white;
+            padding: 14px 18px;
+            border-radius: 6px;
+            margin-bottom: 16px;
+        }
+
+        .header h1 {
+            font-size: 13pt;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .header h2 {
+            font-size: 10pt;
+            font-weight: 400;
+            margin: 3px 0 0;
+            opacity: 0.9;
+        }
+
+        .section-header {
+            background: var(--primary-light);
+            border-left: 4px solid var(--primary);
+            padding: 7px 12px;
+            font-size: 10pt;
+            font-weight: 700;
+            color: var(--primary-dark);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin: 16px 0 10px;
+        }
+
+        .challenge-box {
+            background: linear-gradient(135deg, var(--primary-light) 0%, #fff 100%);
+            border: 1px solid var(--primary);
+            border-radius: 6px;
+            padding: 12px 14px;
+            margin-bottom: 14px;
+        }
+
+        .challenge-title {
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 6px;
+            font-size: 10pt;
+        }
+
+        .challenge-box p {
+            font-size: 9.5pt;
+            color: var(--text-medium);
+            margin-bottom: 6px;
+        }
+
+        .objectives-box {
+            background: var(--bg-light);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 12px 14px;
+            margin-bottom: 14px;
+        }
+
+        .objectives-title {
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+            font-size: 10pt;
+        }
+
+        .objectives-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .objectives-list li {
+            position: relative;
+            padding-left: 22px;
+            margin-bottom: 5px;
+            font-size: 9pt;
+            color: var(--text-medium);
+        }
+
+        .objectives-list li::before {
+            content: "□";
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .terms-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 14px;
+            font-size: 9pt;
+        }
+
+        .terms-table th {
+            background: var(--primary);
+            color: white;
+            padding: 8px 10px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 9pt;
+        }
+
+        .terms-table td {
+            padding: 8px 10px;
+            border: 1px solid var(--border);
+            vertical-align: top;
+        }
+
+        .terms-table tr:nth-child(even) {
+            background: var(--bg-light);
+        }
+
+        .terms-table td:first-child {
+            font-weight: 600;
+            color: var(--primary-dark);
+            width: 28%;
+        }
+
+        .background-box {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 12px 14px;
+            margin-bottom: 14px;
+        }
+
+        .background-box h4 {
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 6px;
+            font-size: 10pt;
+        }
+
+        .background-box p {
+            font-size: 9pt;
+            color: var(--text-medium);
+            margin-bottom: 6px;
+        }
+
+        .part-header {
+            background: var(--primary);
+            color: white;
+            padding: 6px 12px;
+            font-size: 10pt;
+            font-weight: 700;
+            border-radius: 4px 4px 0 0;
+            margin-top: 14px;
+        }
+
+        .part-content {
+            border: 1px solid var(--border);
+            border-top: none;
+            border-radius: 0 0 4px 4px;
+            padding: 12px;
+            margin-bottom: 12px;
+        }
+
+        .scenario-card {
+            background: var(--bg-light);
+            border-left: 3px solid var(--primary);
+            padding: 10px 12px;
+            margin-bottom: 10px;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .scenario-title {
+            font-weight: 700;
+            color: var(--primary-dark);
+            font-size: 9pt;
+            margin-bottom: 4px;
+        }
+
+        .scenario-card p, .scenario-card li {
+            font-size: 9pt;
+            color: var(--text-medium);
+            margin-bottom: 4px;
+        }
+
+        .answer-line {
+            border-bottom: 1px solid var(--border);
+            min-height: 18px;
+            margin: 6px 0;
+        }
+
+        .answer-box {
+            border: 1px solid var(--border);
+            min-height: 50px;
+            margin: 6px 0;
+            border-radius: 4px;
+            padding: 6px;
+        }
+
+        .mc-question {
+            margin-bottom: 12px;
+        }
+
+        .mc-question p {
+            font-size: 9.5pt;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 6px;
+        }
+
+        .mc-options {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .mc-options li {
+            position: relative;
+            padding: 5px 8px 5px 28px;
+            margin-bottom: 4px;
+            background: var(--bg-light);
+            border-radius: 4px;
+            font-size: 9pt;
+            color: var(--text-medium);
+        }
+
+        .mc-options li::before {
+            content: attr(data-letter);
+            position: absolute;
+            left: 8px;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .hint-box {
+            background: var(--warning-light);
+            border-left: 3px solid var(--warning);
+            padding: 8px 12px;
+            font-size: 9pt;
+            font-style: italic;
+            color: #92400e;
+            margin: 10px 0;
+        }
+
+        .calc-box {
+            font-family: 'Courier New', monospace;
+            background: var(--bg-light);
+            padding: 10px;
+            border-radius: 4px;
+            margin: 8px 0;
+            font-size: 9pt;
+            border: 1px solid var(--border);
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+            font-size: 9pt;
+        }
+
+        .data-table th, .data-table td {
+            border: 1px solid var(--border);
+            padding: 6px 10px;
+            text-align: center;
+        }
+
+        .data-table th {
+            background: var(--primary-light);
+            color: var(--primary-dark);
+            font-weight: 600;
+        }
+
+        .data-table tr:nth-child(even) {
+            background: var(--bg-light);
+        }
+
+        .footer {
+            margin-top: 20px;
+            padding-top: 8px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            font-size: 8pt;
+            color: var(--text-light);
+        }
+
+        .page-break {
+            page-break-before: always;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <div class="header">
+        <h1>PFL Academy</h1>
+        <h2>Chapter 59: Understanding Local Tax Structures — Student Activity Packet</h2>
+    </div>
+
+    <!-- CHALLENGE -->
+    <div class="challenge-box">
+        <div class="challenge-title">The Challenge: The Hidden Costs of Where You Live</div>
+        <p>Two apartments with identical rent prices can have vastly different true costs. A seemingly affordable home can become financially stressful once property taxes are added. Why? <strong>Local taxes.</strong></p>
+        <p>Local taxes fund your schools, police, fire departments, roads, parks, and libraries. They vary dramatically—even between neighboring towns. A home in City A might cost $500 more per month in property taxes than the same home across the city line.</p>
+        <p><strong>Your Goal:</strong> Learn to calculate your total local tax burden and make informed decisions about where to live based on the complete financial picture.</p>
+    </div>
+
+    <!-- OBJECTIVES -->
+    <div class="objectives-box">
+        <div class="objectives-title">Learning Objectives</div>
+        <ul class="objectives-list">
+            <li>Analyze different types of local taxes and their purposes in funding services</li>
+            <li>Calculate property tax obligations using assessed value and millage rates</li>
+            <li>Evaluate how local tax structures vary across jurisdictions</li>
+            <li>Compare tax rates and services to make informed residency decisions</li>
+            <li>Interpret property tax bills and understand exemptions and appeals</li>
+        </ul>
+    </div>
+
+    <!-- TERMS TABLE -->
+    <div class="section-header">Core Concepts</div>
+    <table class="terms-table">
+        <tr>
+            <th>Term</th>
+            <th>Definition</th>
+        </tr>
+        <tr>
+            <td>Property Tax</td>
+            <td>Tax on real estate (land and buildings) based on assessed value; primary revenue source for local governments</td>
+        </tr>
+        <tr>
+            <td>Assessed Value</td>
+            <td>Value assigned by assessor for tax purposes; often a percentage of market value</td>
+        </tr>
+        <tr>
+            <td>Millage Rate</td>
+            <td>Tax per $1,000 of assessed value. 1 mill = $1 per $1,000. A 25-mill rate = $25 per $1,000</td>
+        </tr>
+        <tr>
+            <td>Local Sales Tax</td>
+            <td>Additional sales tax added by cities/counties on top of state sales tax</td>
+        </tr>
+        <tr>
+            <td>Homestead Exemption</td>
+            <td>Reduction in assessed value for primary residence, reducing tax burden for homeowners</td>
+        </tr>
+        <tr>
+            <td>Special Assessment</td>
+            <td>Charge on properties for local improvements (sidewalks, sewers) that benefit those properties</td>
+        </tr>
+        <tr>
+            <td>Tax Cap</td>
+            <td>Legal limit on how much property taxes can increase annually (not all states have these)</td>
+        </tr>
+    </table>
+
+    <!-- BACKGROUND -->
+    <div class="background-box">
+        <h4>Why Local Taxes Matter for Your Finances</h4>
+        <p><strong>Housing affordability:</strong> Property taxes can add $300-$1,000+ to monthly housing costs. A $1,500 mortgage might cost $2,000+ with taxes included.</p>
+        <p><strong>Renters pay indirectly:</strong> Landlords factor property taxes into rent. High-tax areas typically have higher rents.</p>
+        <p><strong>Location decisions:</strong> A $5,000 raise might leave you with LESS money if you move to a high-tax area. Always compare after-tax cost of living.</p>
+        <p><strong>Service quality:</strong> Higher taxes often (but not always) mean better schools, safer neighborhoods, and more amenities. The key is finding good value.</p>
+    </div>
+
+    <!-- PART A -->
+    <div class="part-header">Part A: Property Tax Calculation (15 minutes)</div>
+    <div class="part-content">
+
+        <p style="font-size: 9pt; margin-bottom: 10px;"><strong>Instructions:</strong> Calculate property taxes for three different homes using the provided rates.</p>
+
+        <div class="scenario-card">
+            <div class="scenario-title">The Property Tax Formula</div>
+            <div class="calc-box">
+Market Value × Assessment Ratio = Assessed Value
+Assessed Value − Exemptions = Taxable Value
+Taxable Value × Millage Rate ÷ 1000 = Annual Tax
+            </div>
+        </div>
+
+        <p style="font-size: 9pt; font-weight: 600; margin: 10px 0 6px;">Given Information:</p>
+        <table class="data-table">
+            <tr>
+                <th>Jurisdiction</th>
+                <th>Assessment Ratio</th>
+                <th>Homestead Exemption</th>
+                <th>Total Millage Rate</th>
+            </tr>
+            <tr>
+                <td>Riverside City</td>
+                <td>100% of market value</td>
+                <td>$25,000</td>
+                <td>42 mills</td>
+            </tr>
+            <tr>
+                <td>Oak Grove Township</td>
+                <td>85% of market value</td>
+                <td>$15,000</td>
+                <td>35 mills</td>
+            </tr>
+            <tr>
+                <td>Rural County</td>
+                <td>100% of market value</td>
+                <td>$50,000</td>
+                <td>22 mills</td>
+            </tr>
+        </table>
+
+        <p style="font-size: 9pt; font-weight: 600; margin: 12px 0 6px;">Calculate for a $300,000 Home:</p>
+
+        <div class="scenario-card">
+            <div class="scenario-title">Home in Riverside City</div>
+            <div class="calc-box">
+Market Value: $300,000
+Assessed Value (100%): $300,000
+Less Homestead Exemption: −$25,000
+Taxable Value: $_____________
+× Millage Rate (42 mills): × 0.042
+Annual Property Tax: $_____________
+Monthly Property Tax: $_____________
+            </div>
+        </div>
+
+        <div class="scenario-card">
+            <div class="scenario-title">Home in Oak Grove Township</div>
+            <div class="calc-box">
+Market Value: $300,000
+Assessed Value (85%): $_____________
+Less Homestead Exemption: −$15,000
+Taxable Value: $_____________
+× Millage Rate (35 mills): × 0.035
+Annual Property Tax: $_____________
+Monthly Property Tax: $_____________
+            </div>
+        </div>
+
+        <div class="scenario-card">
+            <div class="scenario-title">Home in Rural County</div>
+            <div class="calc-box">
+Market Value: $300,000
+Assessed Value (100%): $300,000
+Less Homestead Exemption: −$50,000
+Taxable Value: $_____________
+× Millage Rate (22 mills): × 0.022
+Annual Property Tax: $_____________
+Monthly Property Tax: $_____________
+            </div>
+        </div>
+
+        <p style="font-size: 9pt; font-weight: 600; margin: 10px 0 6px;">Comparison Analysis:</p>
+        <p style="font-size: 9pt; color: var(--text-medium);">Difference between highest and lowest annual property tax: $_____________</p>
+        <p style="font-size: 9pt; color: var(--text-medium);">Monthly difference: $_____________</p>
+
+        <div class="hint-box">
+            <strong>Key Insight:</strong> A $300,000 home can cost hundreds of dollars more per month depending on location. Always factor property taxes into housing affordability!
+        </div>
+    </div>
+
+    <!-- PAGE BREAK -->
+    <div class="page-break"></div>
+
+    <!-- PART B -->
+    <div class="part-header">Part B: Decoding a Property Tax Bill (12 minutes)</div>
+    <div class="part-content">
+
+        <p style="font-size: 9pt; margin-bottom: 10px;"><strong>Instructions:</strong> Analyze the following property tax bill to understand where your tax dollars go.</p>
+
+        <div class="scenario-card">
+            <div class="scenario-title">Sample Property Tax Bill</div>
+            <p><strong>Property Address:</strong> 456 Oak Street, Maple Heights</p>
+            <p><strong>Market Value:</strong> $275,000 | <strong>Assessed Value:</strong> $247,500 (90%)</p>
+            <p><strong>Homestead Exemption Applied:</strong> $20,000 | <strong>Taxable Value:</strong> $227,500</p>
+        </div>
+
+        <table class="data-table">
+            <tr>
+                <th>Taxing Authority</th>
+                <th>Millage Rate</th>
+                <th>Tax Amount</th>
+                <th>% of Total</th>
+            </tr>
+            <tr>
+                <td>School District</td>
+                <td>22.5 mills</td>
+                <td>$5,118.75</td>
+                <td>_______%</td>
+            </tr>
+            <tr>
+                <td>County Government</td>
+                <td>8.0 mills</td>
+                <td>$1,820.00</td>
+                <td>_______%</td>
+            </tr>
+            <tr>
+                <td>City/Municipal</td>
+                <td>6.5 mills</td>
+                <td>$1,478.75</td>
+                <td>_______%</td>
+            </tr>
+            <tr>
+                <td>Fire District</td>
+                <td>2.0 mills</td>
+                <td>$455.00</td>
+                <td>_______%</td>
+            </tr>
+            <tr>
+                <td>Library</td>
+                <td>1.0 mill</td>
+                <td>$227.50</td>
+                <td>_______%</td>
+            </tr>
+            <tr>
+                <td><strong>TOTAL</strong></td>
+                <td><strong>40.0 mills</strong></td>
+                <td><strong>$9,100.00</strong></td>
+                <td><strong>100%</strong></td>
+            </tr>
+        </table>
+
+        <p style="font-size: 9pt; font-weight: 600; margin: 12px 0 6px;">Analysis Questions:</p>
+
+        <p style="font-size: 9pt; color: var(--text-medium);">1. What percentage of the property tax goes to schools?</p>
+        <div class="answer-line"></div>
+
+        <p style="font-size: 9pt; color: var(--text-medium);">2. What is the monthly property tax payment for this home?</p>
+        <div class="answer-line"></div>
+
+        <p style="font-size: 9pt; color: var(--text-medium);">3. If the homestead exemption were increased to $40,000, what would be the new annual tax? (Show your work)</p>
+        <div class="calc-box">
+New Taxable Value: $247,500 − $40,000 = $_______
+New Annual Tax: $_______ × 0.040 = $_______
+Annual Savings: $_______
+        </div>
+
+        <p style="font-size: 9pt; color: var(--text-medium);">4. If the market value increases by $50,000 next year, what would the new annual tax be? (Assume same assessment ratio and millage rate)</p>
+        <div class="calc-box">
+New Market Value: $325,000
+New Assessed Value (90%): $_______
+Less Homestead: −$20,000
+New Taxable Value: $_______
+New Annual Tax: $_______
+Increase: $_______
+        </div>
+    </div>
+
+    <!-- PAGE BREAK -->
+    <div class="page-break"></div>
+
+    <!-- PART C -->
+    <div class="part-header">Part C: Location Comparison for Housing Decision (15 minutes)</div>
+    <div class="part-content">
+
+        <p style="font-size: 9pt; margin-bottom: 10px;"><strong>Scenario:</strong> You earn $65,000 annually and are comparing two locations to buy a $280,000 home. Analyze the total cost of living in each location.</p>
+
+        <table class="data-table">
+            <tr>
+                <th></th>
+                <th>Downtown Metro</th>
+                <th>Suburban Haven</th>
+            </tr>
+            <tr>
+                <td><strong>Property Tax (annual)</strong></td>
+                <td>$7,840</td>
+                <td>$4,200</td>
+            </tr>
+            <tr>
+                <td><strong>Combined Sales Tax</strong></td>
+                <td>9.25%</td>
+                <td>7.00%</td>
+            </tr>
+            <tr>
+                <td><strong>School Rating</strong></td>
+                <td>8/10</td>
+                <td>9/10</td>
+            </tr>
+            <tr>
+                <td><strong>Commute Time</strong></td>
+                <td>15 minutes</td>
+                <td>35 minutes</td>
+            </tr>
+            <tr>
+                <td><strong>Public Transit</strong></td>
+                <td>Excellent</td>
+                <td>Limited</td>
+            </tr>
+        </table>
+
+        <p style="font-size: 9pt; font-weight: 600; margin: 12px 0 6px;">Calculate the Annual Tax Differences:</p>
+
+        <div class="calc-box">
+Property Tax Difference (annual): $7,840 − $4,200 = $_______ more in Downtown Metro
+Property Tax Difference (monthly): $_______
+
+If you spend $18,000/year on taxable purchases:
+Downtown Metro sales tax: $18,000 × 9.25% = $_______
+Suburban Haven sales tax: $18,000 × 7.00% = $_______
+Annual sales tax difference: $_______
+
+Total annual local tax difference: $_______
+        </div>
+
+        <p style="font-size: 9pt; font-weight: 600; margin: 12px 0 6px;">Consider the Trade-offs:</p>
+
+        <p style="font-size: 9pt; color: var(--text-medium);">What benefits does Downtown Metro offer that might justify higher taxes?</p>
+        <div class="answer-box"></div>
+
+        <p style="font-size: 9pt; color: var(--text-medium);">What does Suburban Haven offer despite lower taxes?</p>
+        <div class="answer-box"></div>
+
+        <p style="font-size: 9pt; color: var(--text-medium);">If you commute 5 days/week, how much extra time per year do you spend commuting in Suburban Haven?</p>
+        <div class="calc-box">
+Extra commute time per day: 35 − 15 = 20 minutes each way × 2 = 40 min/day
+Per week: 40 × 5 = 200 minutes = _______ hours
+Per year (50 weeks): _______ hours
+        </div>
+
+        <p style="font-size: 9pt; font-weight: 600; margin: 10px 0 6px;">Your Decision:</p>
+        <p style="font-size: 9pt; color: var(--text-medium);">Which location would you choose and why? Consider taxes, time, and quality of life.</p>
+        <div class="answer-box" style="min-height: 60px;"></div>
+    </div>
+
+    <!-- CHECK YOUR UNDERSTANDING -->
+    <div class="section-header">Check Your Understanding</div>
+
+    <div class="mc-question">
+        <p>1. A home has a market value of $240,000 in a jurisdiction that assesses at 80% of market value with a 30-mill tax rate. What is the annual property tax?</p>
+        <ul class="mc-options">
+            <li data-letter="A">$5,760</li>
+            <li data-letter="B">$7,200</li>
+            <li data-letter="C">$4,800</li>
+            <li data-letter="D">$6,400</li>
+        </ul>
+    </div>
+
+    <div class="mc-question">
+        <p>2. What does a millage rate of 45 mills mean?</p>
+        <ul class="mc-options">
+            <li data-letter="A">You pay $45 in total property tax annually</li>
+            <li data-letter="B">You pay $45 for every $1,000 of assessed value</li>
+            <li data-letter="C">Your property tax increases 45% each year</li>
+            <li data-letter="D">45% of your home value is taxed</li>
+        </ul>
+    </div>
+
+    <div class="mc-question">
+        <p>3. Which of these is NOT typically funded by local property taxes?</p>
+        <ul class="mc-options">
+            <li data-letter="A">Public schools</li>
+            <li data-letter="B">Local fire departments</li>
+            <li data-letter="C">Social Security benefits</li>
+            <li data-letter="D">Public libraries</li>
+        </ul>
+    </div>
+
+    <div class="mc-question">
+        <p>4. A homestead exemption reduces your property taxes by:</p>
+        <ul class="mc-options">
+            <li data-letter="A">Lowering the millage rate applied to your home</li>
+            <li data-letter="B">Reducing the assessed value subject to taxation</li>
+            <li data-letter="C">Eliminating property taxes for first-time buyers</li>
+            <li data-letter="D">Capping annual tax increases</li>
+        </ul>
+    </div>
+
+    <div class="mc-question">
+        <p>5. Short Answer: Your friend says, "I'm renting, so I don't have to worry about property taxes." Explain why this statement is not entirely accurate.</p>
+        <div class="answer-box" style="min-height: 60px;"></div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        <span>© PFL Academy | pflacademy.co</span>
+        <span>Chapter 59: Understanding Local Tax Structures</span>
+    </div>
+
+</body>
+</html>

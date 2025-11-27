@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-27 Teacher Guide</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+        :root {
+            --primary: #059669;
+            --primary-light: #ecfdf5;
+            --primary-dark: #065f46;
+            --text-dark: #1e293b;
+            --text-medium: #475569;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --bg-light: #f8fafc;
+            --warning: #f59e0b;
+            --warning-light: #fef3c7;
+            --error: #dc2626;
+            --error-light: #fee2e2;
+            --success-light: #dcfce7;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+        @page { size: letter; margin: 0.5in; }
+        body { font-family: 'Open Sans', sans-serif; font-size: 10pt; line-height: 1.45; color: var(--text-dark); background: white; }
+
+        .header { background: var(--primary); color: white; padding: 14px 18px; border-radius: 6px; margin-bottom: 16px; }
+        .header h1 { font-size: 13pt; font-weight: 700; margin: 0; }
+        .header h2 { font-size: 10pt; font-weight: 400; margin: 3px 0 0; opacity: 0.9; }
+
+        .section-header { background: var(--primary-light); border-left: 4px solid var(--primary); padding: 7px 12px; font-size: 10pt; font-weight: 700; color: var(--primary-dark); text-transform: uppercase; letter-spacing: 0.5px; margin: 16px 0 10px; }
+
+        .overview-table { width: 100%; border-collapse: collapse; margin-bottom: 14px; }
+        .overview-table th { background: var(--bg-light); color: var(--text-light); font-size: 8pt; text-transform: uppercase; letter-spacing: 0.5px; text-align: center; padding: 6px 10px; border: 1px solid var(--border); width: 33%; }
+        .overview-table td { text-align: center; padding: 10px; border: 1px solid var(--border); font-weight: 600; color: var(--text-dark); font-size: 10pt; }
+
+        .flow-container { margin-bottom: 14px; }
+        .flow-item { display: flex; padding: 8px 0; border-bottom: 1px solid var(--border); page-break-inside: avoid; }
+        .flow-item:last-child { border-bottom: none; }
+        .flow-time { width: 65px; font-weight: 700; color: var(--primary); flex-shrink: 0; font-size: 10pt; }
+        .flow-content { flex: 1; }
+        .flow-title { font-weight: 700; color: var(--text-dark); margin-bottom: 3px; font-size: 10pt; }
+        .flow-content ul { margin: 0; padding-left: 16px; font-size: 9pt; color: var(--text-medium); }
+        .flow-content li { margin-bottom: 2px; }
+
+        .diff-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px; }
+        .diff-box { background: var(--bg-light); border: 1px solid var(--border); border-radius: 4px; padding: 10px 12px; }
+        .diff-title { font-weight: 700; color: var(--text-dark); margin-bottom: 6px; font-size: 9pt; }
+        .diff-box ul { margin: 0; padding-left: 16px; font-size: 9pt; color: var(--text-medium); }
+        .diff-box li { margin-bottom: 2px; }
+
+        .answer-key { page-break-before: always; }
+        .answer-block { margin-bottom: 12px; page-break-inside: avoid; }
+        .answer-title { font-weight: 700; color: var(--primary); font-size: 9pt; border-bottom: 1px solid #a7f3d0; padding-bottom: 3px; margin-bottom: 6px; }
+        .answer-item { margin-bottom: 5px; font-size: 9pt; color: var(--text-dark); }
+        .answer-item strong { color: var(--primary-dark); }
+
+        .answer-note { background: var(--warning-light); border-left: 3px solid var(--warning); padding: 6px 10px; font-size: 9pt; font-style: italic; color: #92400e; margin: 6px 0; }
+
+        .misconception-table { width: 100%; border-collapse: collapse; font-size: 9pt; margin-top: 10px; }
+        .misconception-table th { padding: 6px 10px; text-align: left; font-weight: 600; }
+        .misconception-table th:first-child { background: var(--error-light); color: #991b1b; border: 1px solid #fca5a5; width: 40%; }
+        .misconception-table th:last-child { background: var(--success-light); color: #166534; border: 1px solid #86efac; }
+        .misconception-table td { padding: 6px 10px; border: 1px solid var(--border); vertical-align: top; color: var(--text-medium); }
+
+        .footer { margin-top: 20px; padding-top: 8px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; font-size: 8pt; color: var(--text-light); }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>PFL Academy</h1>
+        <h2>Teacher Guide: Chapter 6.2 — Online Shopping</h2>
+    </div>
+
+    <div class="section-header">Overview</div>
+    <table class="overview-table">
+        <tr><th>Time</th><th>Materials</th><th>Prerequisites</th></tr>
+        <tr><td>45-50 Minutes</td><td>Student Activity Packet</td><td>Credit Card Management (L-26)</td></tr>
+    </table>
+
+    <div class="section-header">Lesson Flow</div>
+    <div class="flow-container">
+        <div class="flow-item">
+            <div class="flow-time">5 min</div>
+            <div class="flow-content">
+                <div class="flow-title">THE CHALLENGE</div>
+                <ul>
+                    <li>Read Mike's scam story—emphasize the emotional pull of "great deals."</li>
+                    <li>Ask: "Have you or anyone you know ever encountered a suspicious website?"</li>
+                </ul>
+            </div>
+        </div>
+        <div class="flow-item">
+            <div class="flow-time">10 min</div>
+            <div class="flow-content">
+                <div class="flow-title">CORE CONCEPTS</div>
+                <ul>
+                    <li>Demonstrate HTTPS vs. HTTP in browser address bar.</li>
+                    <li>Show students how to verify a padlock icon.</li>
+                    <li>Discuss why credit cards offer better fraud protection than debit.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="flow-item">
+            <div class="flow-time">25-30 min</div>
+            <div class="flow-content">
+                <div class="flow-title">APPLY IT</div>
+                <ul>
+                    <li><strong>Part A (12 min):</strong> Website evaluation. Discuss red flags as a class.</li>
+                    <li><strong>Part B (8 min):</strong> Online vs. in-store comparison.</li>
+                    <li><strong>Part C (10 min):</strong> Personal security checklist creation.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="flow-item">
+            <div class="flow-time">10 min</div>
+            <div class="flow-content">
+                <div class="flow-title">CHECK YOUR UNDERSTANDING</div>
+                <ul>
+                    <li>Review Q2—credit card fraud protection vs. debit.</li>
+                    <li>Discuss Q5 reflection on personal shopping habits.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-header">Differentiation</div>
+    <div class="diff-grid">
+        <div class="diff-box">
+            <div class="diff-title">Support</div>
+            <ul>
+                <li>Create a visual checklist poster for secure websites.</li>
+                <li>Provide screenshots of secure vs. insecure sites.</li>
+                <li>Work through Website 1 evaluation as a whole class.</li>
+            </ul>
+        </div>
+        <div class="diff-box">
+            <div class="diff-title">Extension</div>
+            <ul>
+                <li>Research recent online shopping scams in the news.</li>
+                <li>Compare prices for a product across 5 different retailers.</li>
+                <li>Create a guide for helping family members shop safely online.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="answer-key">
+        <div class="section-header">Answer Key</div>
+
+        <div class="answer-block">
+            <div class="answer-title">Part A: Website Security Evaluation</div>
+            <div class="answer-item"><strong>Website 1: NO.</strong> Red flags: No HTTPS, unrealistic prices (60% off), no contact info, only wire/gift card payments, newly registered domain. This is a scam.</div>
+            <div class="answer-item"><strong>Website 2: YES.</strong> Security features: HTTPS, established company, multiple payment options, customer reviews, clear return policy.</div>
+            <div class="answer-item"><strong>Website 3: PROCEED WITH CAUTION.</strong> Has good security features (HTTPS, credit cards, return policy, verifiable address) but limited reviews. Recommendation: verify address, start with small purchase, use credit card for protection.</div>
+        </div>
+
+        <div class="answer-block">
+            <div class="answer-title">Part B: Online vs. In-Store Comparison</div>
+            <div class="answer-item"><strong>4. Online advantages:</strong> Convenience (24/7), price comparison, wider selection, customer reviews, home delivery, no salespeople pressure.</div>
+            <div class="answer-item"><strong>In-store advantages:</strong> Immediate possession, physical inspection, try before buying, no shipping costs/delays, easier returns, personal assistance.</div>
+            <div class="answer-item"><strong>5.</strong> Responses vary. Generally: clothes/shoes benefit from in-store (fit), electronics can be online (price comparison), groceries depend on preference.</div>
+        </div>
+
+        <div class="answer-block">
+            <div class="answer-title">Part C: Protection Strategies</div>
+            <div class="answer-note">Good checklist items: HTTPS/padlock verified, researched retailer reviews, verified contact information, checked for realistic pricing, using credit card (not debit), saved confirmation email, reviewed return policy, not using public Wi-Fi.</div>
+        </div>
+
+        <div class="answer-block">
+            <div class="answer-title">Check Your Understanding</div>
+            <div class="answer-item"><strong>1.</strong> C (Only accepts wire transfers or gift cards)</div>
+            <div class="answer-item"><strong>2.</strong> Credit cards have federal fraud protection limiting liability to $50. With debit cards, money is taken directly from your account and recovering it takes longer. Credit cards also offer chargeback rights.</div>
+            <div class="answer-item"><strong>3.</strong> Separate email keeps spam/phishing away from main account. Saved confirmations provide proof of purchase for disputes and tracking.</div>
+            <div class="answer-item"><strong>4.</strong> (1) Check for HTTPS and padlock, (2) Research the website/read reviews, (3) Be suspicious of 40% below retail pricing, (4) Verify contact information exists, (5) Use credit card instead of other methods.</div>
+            <div class="answer-item"><strong>5.</strong> <em>Responses should include specific security practices and clear dealbreakers (no HTTPS, only gift card payments, unrealistic prices, no contact info).</em></div>
+        </div>
+
+        <div class="section-header">Common Misconceptions</div>
+        <table class="misconception-table">
+            <tr><th>Misconception</th><th>Clarification</th></tr>
+            <tr><td>"Big discounts mean great deals."</td><td>Prices 40-60% below retail are often scams. If it seems too good to be true, it probably is.</td></tr>
+            <tr><td>"Any website with a professional look is safe."</td><td>Scammers create professional-looking sites. Always verify HTTPS, contact info, and payment options regardless of appearance.</td></tr>
+            <tr><td>"Debit cards are just as safe as credit cards online."</td><td>Credit cards offer better fraud protection. With debit, money leaves your account immediately and is harder to recover.</td></tr>
+        </table>
+    </div>
+
+    <div class="footer">
+        <span>© PFL Academy | pflacademy.co</span>
+        <span>Teacher Guide: Chapter 6.2</span>
+    </div>
+
+</body>
+</html>

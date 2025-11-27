@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-40 Teacher Guide</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+        :root {
+            --primary: #059669;
+            --primary-light: #ecfdf5;
+            --primary-dark: #065f46;
+            --text-dark: #1e293b;
+            --text-medium: #475569;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --bg-light: #f8fafc;
+            --warning: #f59e0b;
+            --warning-light: #fef3c7;
+            --error: #dc2626;
+            --error-light: #fee2e2;
+            --success-light: #dcfce7;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+        @page { size: letter; margin: 0.5in; }
+
+        body { font-family: 'Open Sans', sans-serif; font-size: 10pt; line-height: 1.45; color: var(--text-dark); background: white; }
+
+        .header { background: var(--primary); color: white; padding: 14px 18px; border-radius: 6px; margin-bottom: 16px; }
+        .header h1 { font-size: 13pt; font-weight: 700; margin: 0; }
+        .header h2 { font-size: 10pt; font-weight: 400; margin: 3px 0 0; opacity: 0.9; }
+
+        .section-header { background: var(--primary-light); border-left: 4px solid var(--primary); padding: 7px 12px; font-size: 10pt; font-weight: 700; color: var(--primary-dark); text-transform: uppercase; letter-spacing: 0.5px; margin: 16px 0 10px; }
+
+        .overview-table { width: 100%; border-collapse: collapse; margin-bottom: 14px; }
+        .overview-table th { background: var(--bg-light); color: var(--text-light); font-size: 8pt; text-transform: uppercase; letter-spacing: 0.5px; text-align: center; padding: 6px 10px; border: 1px solid var(--border); width: 33%; }
+        .overview-table td { text-align: center; padding: 10px; border: 1px solid var(--border); font-weight: 600; color: var(--text-dark); font-size: 10pt; }
+
+        .flow-container { margin-bottom: 14px; }
+        .flow-item { display: flex; padding: 8px 0; border-bottom: 1px solid var(--border); page-break-inside: avoid; }
+        .flow-item:last-child { border-bottom: none; }
+        .flow-time { width: 65px; font-weight: 700; color: var(--primary); flex-shrink: 0; font-size: 10pt; }
+        .flow-content { flex: 1; }
+        .flow-title { font-weight: 700; color: var(--text-dark); margin-bottom: 3px; font-size: 10pt; }
+        .flow-content ul { margin: 0; padding-left: 16px; font-size: 9pt; color: var(--text-medium); }
+        .flow-content li { margin-bottom: 2px; }
+
+        .diff-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px; }
+        .diff-box { background: var(--bg-light); border: 1px solid var(--border); border-radius: 4px; padding: 10px 12px; }
+        .diff-title { font-weight: 700; color: var(--text-dark); margin-bottom: 6px; font-size: 9pt; }
+        .diff-box ul { margin: 0; padding-left: 16px; font-size: 9pt; color: var(--text-medium); }
+        .diff-box li { margin-bottom: 2px; }
+
+        .answer-key { page-break-before: always; }
+        .answer-block { margin-bottom: 12px; page-break-inside: avoid; }
+        .answer-title { font-weight: 700; color: var(--primary); font-size: 9pt; border-bottom: 1px solid #a7f3d0; padding-bottom: 3px; margin-bottom: 6px; }
+        .answer-item { margin-bottom: 5px; font-size: 9pt; color: var(--text-dark); }
+        .answer-item strong { color: var(--primary-dark); }
+
+        .calc-display { font-family: 'Courier New', monospace; background: var(--bg-light); padding: 8px 10px; border-radius: 4px; margin: 6px 0; font-size: 8.5pt; line-height: 1.5; white-space: pre-line; }
+        .answer-note { background: var(--warning-light); border-left: 3px solid var(--warning); padding: 6px 10px; font-size: 9pt; font-style: italic; color: #92400e; margin: 6px 0; }
+
+        .misconception-table { width: 100%; border-collapse: collapse; font-size: 9pt; margin-top: 10px; }
+        .misconception-table th { padding: 6px 10px; text-align: left; font-weight: 600; }
+        .misconception-table th:first-child { background: var(--error-light); color: #991b1b; border: 1px solid #fca5a5; width: 40%; }
+        .misconception-table th:last-child { background: var(--success-light); color: #166534; border: 1px solid #86efac; }
+        .misconception-table td { padding: 6px 10px; border: 1px solid var(--border); vertical-align: top; color: var(--text-medium); }
+
+        .footer { margin-top: 20px; padding-top: 8px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; font-size: 8pt; color: var(--text-light); }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>PFL Academy</h1>
+        <h2>Teacher Guide: Chapter 14.2 — Checking Out Charitable Groups</h2>
+    </div>
+
+    <div class="section-header">Overview</div>
+    <table class="overview-table">
+        <tr><th>Time</th><th>Materials</th><th>Prerequisites</th></tr>
+        <tr><td>45-50 Minutes</td><td>Student Activity Packet, Calculator</td><td>L-39 Charitable Giving Basics</td></tr>
+    </table>
+
+    <div class="section-header">Lesson Flow</div>
+    <div class="flow-container">
+        <div class="flow-item">
+            <div class="flow-time">5 min</div>
+            <div class="flow-content">
+                <div class="flow-title">THE CHALLENGE</div>
+                <ul>
+                    <li>Read Maria's scenario. Discuss the two legitimate charities AND the suspicious phone call.</li>
+                    <li>Ask: "How would you know if a charity is trustworthy?"</li>
+                    <li>Note that even well-intentioned donors can be deceived without proper research.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="flow-item">
+            <div class="flow-time">10 min</div>
+            <div class="flow-content">
+                <div class="flow-title">CORE CONCEPTS</div>
+                <ul>
+                    <li>Introduce the four main charity evaluation tools and their purposes.</li>
+                    <li>Explain Form 990 and what information it contains.</li>
+                    <li>Walk through the PACED decision-making model.</li>
+                    <li>Quick check: Have students name two red flags for fraudulent charities.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="flow-item">
+            <div class="flow-time">25 min</div>
+            <div class="flow-content">
+                <div class="flow-title">APPLY IT</div>
+                <ul>
+                    <li><strong>Part A (5 min):</strong> Evaluation tools matching. Review each tool's purpose.</li>
+                    <li><strong>Part B (12 min):</strong> PACED decision. Emphasize there's no single right answer—values matter.</li>
+                    <li><strong>Part C (8 min):</strong> Red flags identification. Share real examples of charity scams.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="flow-item">
+            <div class="flow-time">10 min</div>
+            <div class="flow-content">
+                <div class="flow-title">CHECK YOUR UNDERSTANDING</div>
+                <ul>
+                    <li>Complete in class or assign as homework.</li>
+                    <li>Review Q4—higher program expense isn't always better (research quality matters).</li>
+                    <li>Q5 reflection practices real-world protective behavior.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-header">Differentiation</div>
+    <div class="diff-grid">
+        <div class="diff-box">
+            <div class="diff-title">Support</div>
+            <ul>
+                <li>Provide a PACED worksheet template with prompts for each step.</li>
+                <li>Create a visual "red flags checklist" for students to reference.</li>
+                <li>Walk through a sample charity evaluation as a class.</li>
+                <li>Provide sentence starters for written responses.</li>
+            </ul>
+        </div>
+        <div class="diff-box">
+            <div class="diff-title">Extension</div>
+            <ul>
+                <li>Research a real charity and present findings to the class.</li>
+                <li>Compare local vs. national charity effectiveness.</li>
+                <li>Create a consumer protection guide for charitable giving.</li>
+                <li>Investigate a reported charity scam and analyze how it worked.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="answer-key">
+        <div class="section-header">Answer Key</div>
+
+        <div class="answer-block">
+            <div class="answer-title">Part A & B: Evaluation Tools and PACED</div>
+            <div class="calc-display">Part A matches are provided in the table.
+
+Q1 PACED Analysis (accept either choice with reasoning):
+
+EcoAction might be better if Maria values:
+- Higher program expense ratio (82% vs. 75%)
+- Local, visible impact
+- Longer track record (15 years)
+- Strong financial health
+
+Green Planet Alliance might be better if Maria values:
+- Detailed impact measurement
+- Global systemic change
+- Professional research approach
+- Transparent outcome reporting
+
+Key insight: Values and priorities determine the "best" choice.</div>
+        </div>
+
+        <div class="answer-block">
+            <div class="answer-title">Part C & Check Your Understanding</div>
+            <div class="answer-item"><strong>Q2 Red Flags:</strong> Any FOUR of: pressure for immediate donations, refuses to provide detailed information, names similar to well-known organizations, no tax ID or proof of 501(c)(3) status, no financial transparency, vague mission, unusually high administrative costs, no physical address, new/hastily created website.</div>
+            <div class="answer-item"><strong>CYU 1:</strong> B (The percentage of funds going directly to programs vs. overhead)</div>
+            <div class="answer-item"><strong>CYU 2:</strong> C (Being new is not a red flag; many legitimate charities are young. The other options ARE legitimate concerns.)</div>
+            <div class="answer-item"><strong>CYU 3:</strong> Form 990 contains: revenue sources, expenses/program costs, assets and liabilities, executive compensation, mission and program activities.</div>
+            <div class="answer-item"><strong>CYU 4:</strong> A lower program expense ratio might be justified by: better impact measurement, research-based approaches, advocacy that creates systemic change, professional staff for complex issues, or transparency about how overhead improves outcomes.</div>
+            <div class="answer-note">CYU 5: Good responses include: don't give credit card info immediately, ask for website and tax ID, research on Charity Navigator/GuideStar, verify 501(c)(3) status, check for name similarity to known organizations, never respond to pressure tactics, donate directly through official website if verified.</div>
+        </div>
+
+        <div class="section-header">Common Misconceptions</div>
+        <table class="misconception-table">
+            <tr><th>Misconception</th><th>Clarification</th></tr>
+            <tr>
+                <td>"The lowest overhead percentage is always the best charity."</td>
+                <td>Extremely low overhead can indicate underinvestment in staff, research, or impact measurement. What matters is results, not just efficiency ratios.</td>
+            </tr>
+            <tr>
+                <td>"If they called me, they must be legitimate."</td>
+                <td>Phone solicitation is a common scam tactic. Legitimate charities rarely pressure for immediate donations. Always research independently before giving.</td>
+            </tr>
+            <tr>
+                <td>"I can trust charities with names I recognize."</td>
+                <td>Scammers deliberately use names similar to well-known organizations (e.g., "American Cancer Fund" vs. "American Cancer Society"). Always verify the exact organization.</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="footer">
+        <span>&copy; PFL Academy | pflacademy.co</span>
+        <span>Teacher Guide: Chapter 14.2</span>
+    </div>
+
+</body>
+</html>

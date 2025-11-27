@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-55 Student Activity Packet</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+        :root {
+            --primary: #6366f1;
+            --primary-light: #eef2ff;
+            --primary-dark: #4338ca;
+            --text-dark: #1e293b;
+            --text-medium: #475569;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --bg-light: #f8fafc;
+            --emerald: #059669;
+            --emerald-light: #ecfdf5;
+            --amber: #f59e0b;
+            --amber-light: #fef3c7;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+
+        @page {
+            size: letter;
+            margin: 0.5in;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 10pt;
+            line-height: 1.45;
+            color: var(--text-dark);
+            background: white;
+        }
+
+        .header {
+            background: var(--primary);
+            color: white;
+            padding: 14px 18px;
+            border-radius: 6px;
+            margin-bottom: 16px;
+        }
+
+        .header h1 {
+            font-size: 13pt;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .header h2 {
+            font-size: 10pt;
+            font-weight: 400;
+            margin: 3px 0 0;
+            opacity: 0.9;
+        }
+
+        .section-header {
+            background: var(--primary-light);
+            border-left: 4px solid var(--primary);
+            padding: 7px 12px;
+            font-size: 10pt;
+            font-weight: 700;
+            color: var(--primary-dark);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin: 16px 0 10px;
+        }
+
+        .challenge-box {
+            background: var(--amber-light);
+            border-left: 4px solid var(--amber);
+            padding: 12px 14px;
+            border-radius: 0 6px 6px 0;
+            margin-bottom: 14px;
+        }
+
+        .challenge-title {
+            font-weight: 700;
+            color: #92400e;
+            margin-bottom: 5px;
+            font-size: 10pt;
+        }
+
+        .challenge-box p {
+            color: #78350f;
+            font-size: 9pt;
+            margin: 0;
+        }
+
+        .objectives-box {
+            background: var(--emerald-light);
+            border: 1px solid #a7f3d0;
+            border-radius: 6px;
+            padding: 12px 14px;
+            margin-bottom: 14px;
+        }
+
+        .objectives-title {
+            font-weight: 700;
+            color: var(--emerald);
+            margin-bottom: 6px;
+            font-size: 9pt;
+            text-transform: uppercase;
+        }
+
+        .objectives-box ul {
+            margin: 0;
+            padding-left: 18px;
+            font-size: 9pt;
+            color: #065f46;
+        }
+
+        .objectives-box li {
+            margin-bottom: 3px;
+        }
+
+        .terms-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 14px;
+            font-size: 9pt;
+        }
+
+        .terms-table th {
+            background: var(--primary);
+            color: white;
+            padding: 7px 10px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .terms-table td {
+            padding: 7px 10px;
+            border: 1px solid var(--border);
+            vertical-align: top;
+        }
+
+        .terms-table tr:nth-child(even) {
+            background: var(--bg-light);
+        }
+
+        .term-name {
+            font-weight: 600;
+            color: var(--primary-dark);
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+            font-size: 9pt;
+        }
+
+        .data-table th {
+            background: var(--bg-light);
+            color: var(--text-dark);
+            padding: 6px 10px;
+            text-align: center;
+            font-weight: 600;
+            border: 1px solid var(--border);
+        }
+
+        .data-table td {
+            padding: 6px 10px;
+            border: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .background-box {
+            background: var(--bg-light);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 12px 14px;
+            margin-bottom: 14px;
+        }
+
+        .background-box h4 {
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 6px;
+            font-size: 10pt;
+        }
+
+        .background-box p {
+            font-size: 9pt;
+            color: var(--text-medium);
+            margin-bottom: 6px;
+        }
+
+        .scenario-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 12px;
+            margin-bottom: 12px;
+            page-break-inside: avoid;
+        }
+
+        .scenario-title {
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 6px;
+            font-size: 10pt;
+        }
+
+        .scenario-content {
+            font-size: 9pt;
+            color: var(--text-medium);
+            margin-bottom: 8px;
+        }
+
+        .answer-lines {
+            border-bottom: 1px solid var(--border);
+            min-height: 24px;
+            margin: 6px 0;
+        }
+
+        .answer-lines.tall {
+            min-height: 48px;
+        }
+
+        .mc-options {
+            list-style: none;
+            padding: 0;
+            margin: 8px 0;
+        }
+
+        .mc-options li {
+            padding: 5px 0 5px 24px;
+            position: relative;
+            font-size: 9pt;
+        }
+
+        .mc-options li:before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 6px;
+            width: 14px;
+            height: 14px;
+            border: 1.5px solid var(--border);
+            border-radius: 50%;
+        }
+
+        .hint-box {
+            background: #eff6ff;
+            border: 1px solid #bfdbfe;
+            border-radius: 4px;
+            padding: 8px 10px;
+            font-size: 8.5pt;
+            color: #1e40af;
+            margin: 8px 0;
+        }
+
+        .calc-box {
+            background: var(--bg-light);
+            border: 1px dashed var(--border);
+            border-radius: 4px;
+            padding: 10px;
+            margin: 8px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 9pt;
+        }
+
+        .part-header {
+            background: var(--primary-light);
+            padding: 6px 10px;
+            font-weight: 700;
+            color: var(--primary-dark);
+            font-size: 9pt;
+            border-radius: 4px;
+            margin: 12px 0 8px;
+        }
+
+        .footer {
+            margin-top: 20px;
+            padding-top: 8px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            font-size: 8pt;
+            color: var(--text-light);
+        }
+
+        .page-break {
+            page-break-before: always;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <div class="header">
+        <h1>PFL Academy</h1>
+        <h2>Chapter 55 — International Trade and Economic Development</h2>
+    </div>
+
+    <!-- THE CHALLENGE -->
+    <div class="challenge-box">
+        <div class="challenge-title">THE CHALLENGE</div>
+        <p>Check the tags on your clothes. Your shirt is probably from Vietnam, pants from Bangladesh, shoes from China. Your iPhone has parts from 43 countries. This is globalization—and it affects the prices you pay, the jobs available, and your career prospects. Should we trade freely with other countries, or protect American jobs with tariffs?</p>
+    </div>
+
+    <!-- LEARNING OBJECTIVES -->
+    <div class="objectives-box">
+        <div class="objectives-title">Learning Objectives</div>
+        <ul>
+            <li>Explain comparative advantage and why countries trade</li>
+            <li>Analyze benefits and costs of international trade</li>
+            <li>Understand tariffs, quotas, and trade policies</li>
+            <li>Explain how exchange rates affect trade and travel</li>
+        </ul>
+    </div>
+
+    <!-- CORE CONCEPTS -->
+    <div class="section-header">Core Concepts</div>
+    <table class="terms-table">
+        <tr>
+            <th style="width: 28%;">Term</th>
+            <th>Definition</th>
+        </tr>
+        <tr>
+            <td class="term-name">Comparative Advantage</td>
+            <td>A country's ability to produce a good at lower opportunity cost than another country; explains why trade benefits both parties</td>
+        </tr>
+        <tr>
+            <td class="term-name">Absolute Advantage</td>
+            <td>Ability to produce more of a good using the same resources (doesn't mean you should produce everything yourself)</td>
+        </tr>
+        <tr>
+            <td class="term-name">Tariff</td>
+            <td>Tax on imported goods; protects domestic producers but raises consumer prices</td>
+        </tr>
+        <tr>
+            <td class="term-name">Quota</td>
+            <td>Limit on the quantity of imports; restricts supply and raises prices</td>
+        </tr>
+        <tr>
+            <td class="term-name">Exchange Rate</td>
+            <td>Price of one currency in terms of another (e.g., $1 = €0.92 or $1 = ¥150)</td>
+        </tr>
+        <tr>
+            <td class="term-name">Trade Deficit</td>
+            <td>When a country imports more than it exports; the US runs a trade deficit with many countries</td>
+        </tr>
+        <tr>
+            <td class="term-name">Free Trade Agreement</td>
+            <td>Treaty reducing/eliminating tariffs between countries (e.g., USMCA with Mexico and Canada)</td>
+        </tr>
+    </table>
+
+    <!-- BACKGROUND -->
+    <div class="background-box">
+        <h4>Why Trade Matters to You</h4>
+        <p><strong>Lower Prices:</strong> Trade saves the average American household $10,000-15,000/year through lower prices. Your $800 iPhone would cost $2,500 if made entirely in the US. A T-shirt would cost $50 instead of $10.</p>
+        <p><strong>More Choices:</strong> Bananas year-round, cars from Germany, electronics from Asia, wines from around the world—all available because of trade.</p>
+        <p><strong>But Some Jobs Lost:</strong> US manufacturing jobs fell from 17.7 million (1990) to 12.8 million (2024). Trade creates winners (consumers, exporters) and losers (displaced workers in import-competing industries).</p>
+    </div>
+
+    <!-- APPLY IT -->
+    <div class="section-header">Apply It</div>
+
+    <!-- Part A: Comparative Advantage -->
+    <div class="part-header">Part A: Understanding Comparative Advantage</div>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Scenario: Two Countries</div>
+        <div class="scenario-content">Country A can produce 100 computers or 50 cars per day. Country B can produce 40 computers or 40 cars per day. Country A has absolute advantage in BOTH goods. Should Country A produce everything?</div>
+
+        <table class="data-table">
+            <tr>
+                <th>Country</th>
+                <th>Computers/Day</th>
+                <th>Cars/Day</th>
+                <th>Opportunity Cost of 1 Computer</th>
+                <th>Opportunity Cost of 1 Car</th>
+            </tr>
+            <tr>
+                <td><strong>Country A</strong></td>
+                <td>100</td>
+                <td>50</td>
+                <td>_____ cars</td>
+                <td>_____ computers</td>
+            </tr>
+            <tr>
+                <td><strong>Country B</strong></td>
+                <td>40</td>
+                <td>40</td>
+                <td>_____ cars</td>
+                <td>_____ computers</td>
+            </tr>
+        </table>
+
+        <div class="hint-box">
+            Hint: Opportunity cost of 1 computer = Cars given up ÷ Computers gained. For Country A: 50÷100 = 0.5 cars
+        </div>
+
+        <p><strong>Which country has comparative advantage in computers?</strong></p>
+        <div class="answer-lines"></div>
+
+        <p><strong>Which country has comparative advantage in cars?</strong></p>
+        <div class="answer-lines"></div>
+
+        <p><strong>Optimal trade arrangement (who produces what):</strong></p>
+        <div class="answer-lines tall"></div>
+    </div>
+
+    <!-- Part B: Trade Policy Analysis -->
+    <div class="part-header">Part B: Trade Policy Analysis</div>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Scenario: 25% Tariff on Imported Cars</div>
+        <div class="scenario-content">The government imposes a 25% tariff on all imported cars to protect domestic auto workers. A foreign car that costs $30,000 to import now costs $30,000 + 25% tariff = $37,500.</div>
+
+        <p><strong>Complete the analysis:</strong></p>
+
+        <table class="data-table">
+            <tr>
+                <th>Stakeholder</th>
+                <th>Impact (+/-)</th>
+                <th>Explanation</th>
+            </tr>
+            <tr>
+                <td>Car Buyers</td>
+                <td style="width: 80px;"></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Domestic Auto Workers</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Domestic Car Companies</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Foreign Countries</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Government Revenue</td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+
+        <p><strong>Potential retaliation from foreign countries:</strong></p>
+        <div class="answer-lines"></div>
+
+        <p><strong>Your verdict—is this tariff good policy? Why or why not?</strong></p>
+        <div class="answer-lines tall"></div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- Part C: Exchange Rate Calculations -->
+    <div class="part-header">Part C: Exchange Rate Impact</div>
+
+    <p style="font-size: 9pt; color: var(--text-medium); margin-bottom: 10px;">Calculate how exchange rates affect prices. Use these rates: $1 = €0.92 (Euro), $1 = ¥150 (Japanese Yen)</p>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Calculation 1: European Travel</div>
+        <div class="scenario-content">Your hotel in Paris costs €120/night. How much is that in dollars?</div>
+        <div class="calc-box">
+            €120 ÷ 0.92 = $________
+        </div>
+        <p><strong>If the dollar strengthens to $1 = €1.00, the same hotel costs:</strong></p>
+        <div class="calc-box">
+            €120 ÷ 1.00 = $________
+        </div>
+        <p><strong>You save $_______ per night with a stronger dollar.</strong></p>
+    </div>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Calculation 2: Japanese Import</div>
+        <div class="scenario-content">You want to buy a Japanese motorcycle listed at ¥600,000.</div>
+        <div class="calc-box">
+            Current price: ¥600,000 ÷ 150 = $________
+        </div>
+        <p><strong>If the dollar weakens to $1 = ¥120, the same motorcycle costs:</strong></p>
+        <div class="calc-box">
+            ¥600,000 ÷ 120 = $________
+        </div>
+        <p><strong>Cost increase: $_______ (______% more)</strong></p>
+    </div>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Calculation 3: US Export</div>
+        <div class="scenario-content">A US company sells software for $500. A European buyer currently pays:</div>
+        <div class="calc-box">
+            $500 × 0.92 = €________
+        </div>
+        <p><strong>If dollar strengthens to $1 = €1.00:</strong></p>
+        <div class="calc-box">
+            $500 × 1.00 = €________
+        </div>
+        <p><strong>Effect on US exports:</strong> When dollar strengthens, US products become ________ expensive for foreigners, so exports ________ (increase/decrease).</p>
+    </div>
+
+    <!-- CHECK YOUR UNDERSTANDING -->
+    <div class="section-header">Check Your Understanding</div>
+
+    <p style="font-size: 9pt; margin-bottom: 12px;"><strong>1.</strong> Which best explains why the US imports clothing from Bangladesh even though we could make it here?</p>
+    <ul class="mc-options">
+        <li>A) Bangladesh has absolute advantage in clothing production</li>
+        <li>B) Bangladesh has comparative advantage (lower opportunity cost) in clothing</li>
+        <li>C) US consumers prefer foreign-made clothing</li>
+        <li>D) The US lacks the technology to make clothing</li>
+    </ul>
+
+    <p style="font-size: 9pt; margin-bottom: 12px;"><strong>2.</strong> A tariff on imported steel would BENEFIT which group and HURT which group?</p>
+    <div class="answer-lines tall"></div>
+
+    <p style="font-size: 9pt; margin-bottom: 12px;"><strong>3.</strong> The exchange rate changes from $1 = €0.85 to $1 = €0.95. What happened to the dollar, and how does this affect American tourists in Europe?</p>
+    <div class="answer-lines tall"></div>
+
+    <p style="font-size: 9pt; margin-bottom: 12px;"><strong>4.</strong> Why do economists generally support free trade even though it causes job losses in some industries?</p>
+    <div class="hint-box">Hint: Consider total benefits vs. concentrated costs, and who gains more.</div>
+    <div class="answer-lines tall"></div>
+
+    <p style="font-size: 9pt; margin-bottom: 12px;"><strong>5.</strong> How will globalization affect YOUR career plans? Identify one threat and one opportunity.</p>
+    <div class="answer-lines" style="min-height: 60px;"></div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        <span>© PFL Academy | pflacademy.co</span>
+        <span>Student Activity Packet: Chapter 55</span>
+    </div>
+
+</body>
+</html>

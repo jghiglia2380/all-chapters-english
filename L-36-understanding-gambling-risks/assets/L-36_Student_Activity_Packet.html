@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-36 Student Activity Packet</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+        :root {
+            --primary: #6366f1;
+            --primary-light: #eef2ff;
+            --accent: #f59e0b;
+            --accent-light: #fef3c7;
+            --success: #059669;
+            --text-dark: #1e293b;
+            --text-medium: #475569;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --bg-light: #f8fafc;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+        @page { size: letter; margin: 0.5in; }
+
+        body { font-family: 'Open Sans', sans-serif; font-size: 10.5pt; line-height: 1.5; color: var(--text-dark); background: white; }
+
+        .header { background: var(--primary); color: white; padding: 14px 18px; border-radius: 6px; margin-bottom: 18px; display: flex; justify-content: space-between; align-items: center; }
+        .header-left h1 { font-size: 13pt; font-weight: 700; margin: 0; }
+        .header-left h2 { font-size: 10pt; font-weight: 400; margin: 2px 0 0; opacity: 0.9; }
+        .header-right { font-size: 9pt; text-align: right; opacity: 0.9; }
+
+        .section-header { font-size: 11pt; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 2px solid var(--primary); padding-bottom: 4px; margin: 20px 0 12px; }
+
+        .challenge-box { background: var(--accent-light); border-left: 4px solid var(--accent); padding: 14px 16px; margin-bottom: 16px; border-radius: 0 6px 6px 0; }
+        .challenge-box p { font-style: italic; color: var(--text-dark); margin-bottom: 10px; }
+        .challenge-box .framing-question { font-weight: 600; font-style: normal; color: #92400e; }
+
+        .objectives-box { background: var(--primary-light); border: 1px solid #c7d2fe; border-radius: 6px; padding: 12px 16px; margin-bottom: 18px; }
+        .objectives-box h3 { font-size: 10pt; font-weight: 700; color: var(--primary); margin-bottom: 6px; }
+        .objectives-box ul { margin: 0; padding-left: 20px; }
+        .objectives-box li { margin-bottom: 3px; color: var(--text-medium); }
+
+        .terms-table { width: 100%; border-collapse: collapse; margin-bottom: 14px; font-size: 10pt; }
+        .terms-table th { background: var(--bg-light); text-align: left; padding: 8px 10px; border: 1px solid var(--border); font-weight: 600; color: var(--text-medium); }
+        .terms-table td { padding: 8px 10px; border: 1px solid var(--border); vertical-align: top; }
+        .terms-table td:first-child { font-weight: 600; color: var(--primary); width: 25%; }
+
+        .background-box { background: var(--bg-light); border: 1px solid var(--border); border-radius: 6px; padding: 12px 16px; margin-bottom: 18px; font-size: 10pt; color: var(--text-medium); }
+        .background-box strong { color: var(--text-dark); }
+
+        .scenario-card { background: white; border: 1px solid var(--border); border-radius: 6px; padding: 12px 14px; margin-bottom: 14px; page-break-inside: avoid; }
+        .scenario-title { font-weight: 700; color: var(--primary); margin-bottom: 6px; font-size: 10pt; }
+        .scenario-description { color: var(--text-medium); margin-bottom: 10px; font-size: 10pt; }
+
+        .response-line { display: flex; align-items: baseline; margin-bottom: 8px; }
+        .response-label { font-weight: 600; color: var(--text-dark); margin-right: 8px; white-space: nowrap; }
+        .response-blank { flex-grow: 1; border-bottom: 1px solid var(--text-light); min-height: 18px; }
+
+        .data-table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 10pt; }
+        .data-table th { background: var(--primary); color: white; padding: 8px 10px; text-align: center; font-weight: 600; font-size: 9pt; }
+        .data-table td { padding: 8px 10px; border: 1px solid var(--border); text-align: center; }
+        .data-table tr:nth-child(even) td { background: var(--bg-light); }
+        .data-table .calc-row td { background: #fef9c3; height: 28px; }
+
+        .question { margin-bottom: 14px; page-break-inside: avoid; }
+        .question-number { font-weight: 700; color: var(--text-dark); }
+        .question-text { color: var(--text-dark); margin-bottom: 6px; }
+
+        .answer-lines { margin-top: 6px; }
+        .answer-line { border-bottom: 1px solid var(--text-light); height: 22px; margin-bottom: 4px; }
+
+        .calc-box { border: 1px solid var(--border); border-radius: 4px; padding: 12px; margin: 8px 0; min-height: 60px; background: var(--bg-light); }
+        .calc-label { font-size: 9pt; color: var(--text-light); margin-bottom: 4px; }
+        .calc-answer { margin-top: 10px; font-weight: 600; }
+
+        .mc-options { margin-top: 6px; margin-left: 20px; }
+        .mc-option { display: flex; align-items: center; margin-bottom: 4px; }
+        .mc-checkbox { width: 14px; height: 14px; border: 1px solid var(--text-light); border-radius: 2px; margin-right: 8px; flex-shrink: 0; }
+
+        .hint-box { background: #f0fdf4; border-left: 3px solid var(--success); padding: 8px 12px; margin: 10px 0; font-size: 9pt; font-style: italic; color: #166534; }
+        .hint-box strong { font-style: normal; }
+
+        .part-header { font-weight: 700; font-size: 10pt; color: var(--primary); text-transform: uppercase; margin: 16px 0 10px; padding-bottom: 4px; border-bottom: 1px solid var(--border); }
+
+        .footer { margin-top: 24px; padding-top: 10px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; font-size: 9pt; color: var(--text-light); }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="header-left">
+            <h1>PFL Academy</h1>
+            <h2>Chapter 12.1: Understanding the Risks of Gambling</h2>
+        </div>
+        <div class="header-right">Student Activity Packet</div>
+    </div>
+
+    <div class="section-header">The Challenge</div>
+    <div class="challenge-box">
+        <p>Marcus and his friends are organizing a weekly poker night with a $20 buy-in. After hearing about a friend who "won big" at the casino last weekend, some members want to raise the stakes. Marcus has been learning about probability in school and wants to make sure everyone understands what they're getting into. He needs to calculate the expected outcomes and explain why gambling is best viewed as entertainment with a cost, not as a way to make money.</p>
+        <p class="framing-question">How can understanding probability and expected value help you make more informed decisions about gambling activities?</p>
+    </div>
+
+    <div class="objectives-box">
+        <h3>Learning Objectives</h3>
+        <ul>
+            <li>Calculate probability in various gambling scenarios.</li>
+            <li>Distinguish between independent and dependent events.</li>
+            <li>Explain the concept of house edge and how it ensures profits for operators.</li>
+            <li>Calculate expected value to determine potential financial outcomes.</li>
+            <li>Recognize the gambler's fallacy and other common misconceptions.</li>
+        </ul>
+    </div>
+
+    <div class="section-header">Core Concepts</div>
+
+    <table class="terms-table">
+        <tr><th>Term</th><th>Definition</th></tr>
+        <tr><td>Probability</td><td>The likelihood of a specific event occurring, expressed as a number between 0 and 1 (or 0% to 100%).</td></tr>
+        <tr><td>Independent Events</td><td>Events where the outcome of one does not influence the outcome of another (e.g., coin flips).</td></tr>
+        <tr><td>Dependent Events</td><td>Events where the outcome of one affects the probability of the next (e.g., card draws without replacement).</td></tr>
+        <tr><td>House Edge</td><td>The mathematical advantage a game has over players, ensuring profit for the operator.</td></tr>
+        <tr><td>Expected Value</td><td>The average amount a player can expect to win or lose over time per bet.</td></tr>
+        <tr><td>Gambler's Fallacy</td><td>The mistaken belief that past events influence future outcomes in independent events.</td></tr>
+    </table>
+
+    <div class="background-box">
+        <strong>Background:</strong> Gambling involves risking money on uncertain outcomes. The mathematics behind gambling—probability, house edge, and expected value—show that most gambling activities result in losses for players over time. Understanding these concepts helps you view gambling realistically: as entertainment with a cost, not as a way to make money. The house edge ensures operators profit in the long run, and common fallacies lead people to make irrational decisions.
+    </div>
+
+    <div class="section-header">Apply It</div>
+
+    <div class="part-header">Part A: Probability Calculations</div>
+    <p style="margin-bottom: 14px;">Calculate the probability for each gambling scenario using the formula: Probability = Favorable outcomes / Total outcomes</p>
+
+    <table class="data-table">
+        <tr>
+            <th>Scenario</th>
+            <th>Favorable Outcomes</th>
+            <th>Total Outcomes</th>
+            <th>Probability (Decimal)</th>
+            <th>Probability (%)</th>
+        </tr>
+        <tr>
+            <td style="text-align: left;">Rolling a 6 on a die</td>
+            <td>1</td>
+            <td>6</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td style="text-align: left;">Drawing an ace from a deck</td>
+            <td>4</td>
+            <td>52</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td style="text-align: left;">Landing on red (American roulette)</td>
+            <td>18</td>
+            <td>38</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td style="text-align: left;">Flipping heads twice in a row</td>
+            <td>1</td>
+            <td>4</td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">1.</span> Why is it important to distinguish between independent events (like roulette spins) and dependent events (like drawing cards without replacement)?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="part-header">Part B: Expected Value Analysis</div>
+    <p style="margin-bottom: 14px;">Calculate the expected value for each gambling scenario using: EV = (P(win) x Amount won) - (P(lose) x Amount lost)</p>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Scenario: Roulette Bet on Red ($10 bet)</div>
+        <div class="scenario-description">In American roulette, there are 38 spaces (18 red, 18 black, 2 green). A winning bet pays even money ($10 wins $10).</div>
+        <div class="calc-box">
+            <div class="calc-label">Show your calculation:</div>
+        </div>
+        <div class="response-line">
+            <span class="response-label">Expected Value per $10 bet:</span>
+            <span class="response-blank"></span>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">2.</span> If you placed 100 bets of $10 each on red, what would be your expected total loss?</p>
+        <div class="calc-box"><div class="calc-label">Calculation:</div></div>
+        <div class="calc-answer">Expected total loss: $_____________</div>
+    </div>
+
+    <div class="hint-box">
+        <strong>Hint:</strong> Expected Value formula: EV = (18/38 x $10) - (20/38 x $10). The negative result shows the house advantage.
+    </div>
+
+    <div class="part-header">Part C: House Edge Comparison</div>
+    <p style="margin-bottom: 14px;">Compare the house edge across different gambling activities to understand which games cost players the most.</p>
+
+    <table class="data-table">
+        <tr>
+            <th>Game</th>
+            <th>House Edge</th>
+            <th>Expected Loss per $100 Bet</th>
+        </tr>
+        <tr>
+            <td style="text-align: left;">Blackjack (basic strategy)</td>
+            <td>0.5%</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td style="text-align: left;">American Roulette</td>
+            <td>5.26%</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td style="text-align: left;">Slot Machines (average)</td>
+            <td>8%</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td style="text-align: left;">State Lottery</td>
+            <td>50%</td>
+            <td></td>
+        </tr>
+    </table>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">3.</span> If someone gambled $500 per month on slot machines (8% house edge), what would their expected annual loss be?</p>
+        <div class="answer-lines"><div class="answer-line"></div></div>
+    </div>
+
+    <div class="section-header">Check Your Understanding</div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">1.</span> What is the gambler's fallacy?</p>
+        <div class="mc-options">
+            <div class="mc-option"><div class="mc-checkbox"></div> A. Believing that a game has no house edge</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> B. Believing that past independent events affect future outcomes</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> C. Believing that skill can overcome all random games</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> D. Believing that the house always loses</div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">2.</span> In roulette, the ball has landed on black 8 times in a row. What is the probability it will land on red next?</p>
+        <div class="answer-lines"><div class="answer-line"></div></div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">3.</span> <strong>Calculation:</strong> A lottery ticket costs $2 and has a 1 in 10,000,000 chance of winning $5,000,000. What is the expected value of the ticket?</p>
+        <div class="calc-box"><div class="calc-label">Show your work:</div></div>
+        <div class="calc-answer">Expected Value: $_____________</div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">4.</span> Why does a negative expected value mean "the house always wins" in the long run?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">5.</span> <strong>Reflection:</strong> How does viewing gambling as "paid entertainment" rather than a "money-making opportunity" help someone make better financial decisions?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <span>&copy; PFL Academy | pflacademy.co</span>
+        <span>Chapter 12.1: Understanding the Risks of Gambling</span>
+    </div>
+
+</body>
+</html>

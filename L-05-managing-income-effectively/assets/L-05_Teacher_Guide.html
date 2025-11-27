@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-05 Teacher Guide</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+        :root {
+            --primary: #059669;
+            --primary-light: #ecfdf5;
+            --primary-dark: #065f46;
+            --text-dark: #1e293b;
+            --text-medium: #475569;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --bg-light: #f8fafc;
+            --warning: #f59e0b;
+            --warning-light: #fef3c7;
+            --error: #dc2626;
+            --error-light: #fee2e2;
+            --success-light: #dcfce7;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+
+        @page {
+            size: letter;
+            margin: 0.5in;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 10pt;
+            line-height: 1.45;
+            color: var(--text-dark);
+            background: white;
+        }
+
+        .header {
+            background: var(--primary);
+            color: white;
+            padding: 14px 18px;
+            border-radius: 6px;
+            margin-bottom: 16px;
+        }
+
+        .header h1 {
+            font-size: 13pt;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .header h2 {
+            font-size: 10pt;
+            font-weight: 400;
+            margin: 3px 0 0;
+            opacity: 0.9;
+        }
+
+        .section-header {
+            background: var(--primary-light);
+            border-left: 4px solid var(--primary);
+            padding: 7px 12px;
+            font-size: 10pt;
+            font-weight: 700;
+            color: var(--primary-dark);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin: 16px 0 10px;
+        }
+
+        .overview-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 14px;
+        }
+
+        .overview-table th {
+            background: var(--bg-light);
+            color: var(--text-light);
+            font-size: 8pt;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            text-align: center;
+            padding: 6px 10px;
+            border: 1px solid var(--border);
+            width: 33%;
+        }
+
+        .overview-table td {
+            text-align: center;
+            padding: 10px;
+            border: 1px solid var(--border);
+            font-weight: 600;
+            color: var(--text-dark);
+            font-size: 10pt;
+        }
+
+        .flow-container {
+            margin-bottom: 14px;
+        }
+
+        .flow-item {
+            display: flex;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border);
+            page-break-inside: avoid;
+        }
+
+        .flow-item:last-child {
+            border-bottom: none;
+        }
+
+        .flow-time {
+            width: 65px;
+            font-weight: 700;
+            color: var(--primary);
+            flex-shrink: 0;
+            font-size: 10pt;
+        }
+
+        .flow-content {
+            flex: 1;
+        }
+
+        .flow-title {
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 3px;
+            font-size: 10pt;
+        }
+
+        .flow-content ul {
+            margin: 0;
+            padding-left: 16px;
+            font-size: 9pt;
+            color: var(--text-medium);
+        }
+
+        .flow-content li {
+            margin-bottom: 2px;
+        }
+
+        .diff-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 14px;
+        }
+
+        .diff-box {
+            background: var(--bg-light);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 10px 12px;
+        }
+
+        .diff-title {
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 6px;
+            font-size: 9pt;
+        }
+
+        .diff-box ul {
+            margin: 0;
+            padding-left: 16px;
+            font-size: 9pt;
+            color: var(--text-medium);
+        }
+
+        .diff-box li {
+            margin-bottom: 2px;
+        }
+
+        .answer-key {
+            page-break-before: always;
+        }
+
+        .answer-block {
+            margin-bottom: 12px;
+            page-break-inside: avoid;
+        }
+
+        .answer-title {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 9pt;
+            border-bottom: 1px solid #a7f3d0;
+            padding-bottom: 3px;
+            margin-bottom: 6px;
+        }
+
+        .answer-item {
+            margin-bottom: 5px;
+            font-size: 9pt;
+            color: var(--text-dark);
+        }
+
+        .answer-item strong {
+            color: var(--primary-dark);
+        }
+
+        .calc-display {
+            font-family: 'Courier New', monospace;
+            background: var(--bg-light);
+            padding: 8px 10px;
+            border-radius: 4px;
+            margin: 6px 0;
+            font-size: 8.5pt;
+            line-height: 1.5;
+            white-space: pre-line;
+        }
+
+        .answer-note {
+            background: var(--warning-light);
+            border-left: 3px solid var(--warning);
+            padding: 6px 10px;
+            font-size: 9pt;
+            font-style: italic;
+            color: #92400e;
+            margin: 6px 0;
+        }
+
+        .misconception-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 9pt;
+            margin-top: 10px;
+        }
+
+        .misconception-table th {
+            padding: 6px 10px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .misconception-table th:first-child {
+            background: var(--error-light);
+            color: #991b1b;
+            border: 1px solid #fca5a5;
+            width: 40%;
+        }
+
+        .misconception-table th:last-child {
+            background: var(--success-light);
+            color: #166534;
+            border: 1px solid #86efac;
+        }
+
+        .misconception-table td {
+            padding: 6px 10px;
+            border: 1px solid var(--border);
+            vertical-align: top;
+            color: var(--text-medium);
+        }
+
+        .footer {
+            margin-top: 20px;
+            padding-top: 8px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            font-size: 8pt;
+            color: var(--text-light);
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <div class="header">
+        <h1>PFL Academy</h1>
+        <h2>Teacher Guide: Chapter 1.5 — Managing Your Income Effectively</h2>
+    </div>
+
+    <!-- OVERVIEW -->
+    <div class="section-header">Overview</div>
+    <table class="overview-table">
+        <tr>
+            <th>Time</th>
+            <th>Materials</th>
+            <th>Prerequisites</th>
+        </tr>
+        <tr>
+            <td>45-50 Minutes</td>
+            <td>Student Activity Packet, Calculator</td>
+            <td>L-03 Income and Taxes</td>
+        </tr>
+    </table>
+
+    <!-- LESSON FLOW -->
+    <div class="section-header">Lesson Flow</div>
+    <div class="flow-container">
+        <div class="flow-item">
+            <div class="flow-time">5 min</div>
+            <div class="flow-content">
+                <div class="flow-title">THE CHALLENGE</div>
+                <ul>
+                    <li>Read Casey and Taylor's contrasting scenarios.</li>
+                    <li>Discussion: "Why do you think two people with the same income can have such different financial situations?"</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="flow-item">
+            <div class="flow-time">10 min</div>
+            <div class="flow-content">
+                <div class="flow-title">CORE CONCEPTS</div>
+                <ul>
+                    <li>Write 50/30/20 on the board. Unpack each category with examples.</li>
+                    <li>Create needs vs. wants T-chart with student input.</li>
+                    <li>Discuss "pay yourself first" concept and why automatic savings works.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="flow-item">
+            <div class="flow-time">25-30 min</div>
+            <div class="flow-content">
+                <div class="flow-title">APPLY IT</div>
+                <ul>
+                    <li><strong>Part A (10 min):</strong> Classification activity. Encourage discussion on borderline items.</li>
+                    <li><strong>Part B (10 min):</strong> Budget calculations and critique. Check math on percentage calculations.</li>
+                    <li><strong>Part C (5-10 min):</strong> Personal application. Connect to students' actual spending patterns.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="flow-item">
+            <div class="flow-time">10 min</div>
+            <div class="flow-content">
+                <div class="flow-title">CHECK YOUR UNDERSTANDING</div>
+                <ul>
+                    <li>Complete in class or assign as homework.</li>
+                    <li>Review Q4 (Casey vs. Taylor) to reinforce that systems matter more than willpower.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- DIFFERENTIATION -->
+    <div class="section-header">Differentiation</div>
+    <div class="diff-grid">
+        <div class="diff-box">
+            <div class="diff-title">Support</div>
+            <ul>
+                <li>Provide a visual pie chart of 50/30/20 breakdown.</li>
+                <li>Pre-sort example expenses into needs/wants categories.</li>
+                <li>Walk through Part B calculations step-by-step as a class.</li>
+                <li>Use smaller numbers for calculations if needed.</li>
+            </ul>
+        </div>
+        <div class="diff-box">
+            <div class="diff-title">Extension</div>
+            <ul>
+                <li>Research alternative budgeting methods (envelope system, zero-based budgeting).</li>
+                <li>Calculate how compound interest affects emergency fund growth over 5 years.</li>
+                <li>Create a detailed monthly budget with actual local living costs.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ANSWER KEY (new page) -->
+    <div class="answer-key">
+        <div class="section-header">Answer Key</div>
+
+        <div class="answer-block">
+            <div class="answer-title">Part A: Needs vs. Wants Classification</div>
+            <div class="answer-item"><strong>Rent payment:</strong> NEED. Essential for shelter.</div>
+            <div class="answer-item"><strong>Streaming services ($45/month):</strong> WANT. Entertainment; could be reduced or eliminated.</div>
+            <div class="answer-item"><strong>Basic cell phone plan:</strong> NEED (borderline). Basic communication is needed today; premium plans are wants.</div>
+            <div class="answer-item"><strong>Dining out with friends:</strong> WANT. Can prepare food at home for less.</div>
+            <div class="answer-item"><strong>Groceries:</strong> NEED. Food is essential; specialty items could be wants.</div>
+            <div class="answer-item"><strong>Latest iPhone upgrade:</strong> WANT. Current phone works; upgrade is discretionary.</div>
+        </div>
+
+        <div class="answer-block">
+            <div class="answer-title">Part B: Budget Allocation</div>
+            <div class="calc-display">$2,400 monthly income:
+• Needs (50%): $2,400 × 0.50 = $1,200
+• Wants (30%): $2,400 × 0.30 = $720
+• Savings (20%): $2,400 × 0.20 = $480</div>
+            <div class="answer-item"><strong>3. Alex's Budget Problem:</strong> Wants are $130 over (35% vs 30%), Savings are $330 under (6% vs 20%). Recommendation: Reduce wants by $170 (dining out, entertainment) and redirect to savings to reach the 20% target.</div>
+        </div>
+
+        <div class="answer-block">
+            <div class="answer-title">Part C: Personal Application</div>
+            <div class="answer-note">Responses will vary. Look for honest classification of expenses and realistic identification of reducible wants. Even small reductions ($20-50/month) are meaningful starting points.</div>
+        </div>
+
+        <div class="answer-block">
+            <div class="answer-title">Check Your Understanding</div>
+            <div class="answer-item"><strong>1.</strong> C (20%)</div>
+            <div class="answer-item"><strong>2.</strong> Context matters: A cell phone is a need for communication/safety, but the latest premium model is a want. Basic groceries are needs, but specialty/gourmet items are wants. The base item may be necessary, but upgrades are discretionary.</div>
+            <div class="calc-display">Jamie's Emergency Fund:
+Monthly savings: $3,200 × 0.20 = $640
+Time to reach $4,800: $4,800 ÷ $640 = 7.5 months</div>
+            <div class="answer-item"><strong>3.</strong> Answer: <strong>7.5 months</strong> (or 8 months rounded up)</div>
+            <div class="answer-item"><strong>4.</strong> Two differences: (1) Casey follows a structured budget (50/30/20) while Taylor has no plan; (2) Casey automates savings ("pay yourself first") while Taylor only saves what's left (nothing); (3) Casey tracks expenses weekly while Taylor doesn't track at all.</div>
+            <div class="answer-item"><strong>5.</strong> <em>Should include honest self-assessment and ONE specific, actionable change (e.g., "set up automatic $50 transfer to savings" or "track all spending for one week").</em></div>
+        </div>
+
+        <!-- COMMON MISCONCEPTIONS -->
+        <div class="section-header">Common Misconceptions</div>
+        <table class="misconception-table">
+            <tr>
+                <th>Misconception</th>
+                <th>Clarification</th>
+            </tr>
+            <tr>
+                <td>"I don't make enough money to budget."</td>
+                <td>Budgeting is MORE important with limited income. It ensures essential needs are covered first and prevents overdrafts or debt. The 50/30/20 percentages work at any income level.</td>
+            </tr>
+            <tr>
+                <td>"I'll save what's left at the end of the month."</td>
+                <td>This rarely works—there's usually nothing "left." Pay yourself first by automating savings when income arrives. Treat savings like a bill that must be paid.</td>
+            </tr>
+            <tr>
+                <td>"A budget means I can't have any fun."</td>
+                <td>The 50/30/20 rule allocates 30% specifically for wants and fun! Budgeting isn't about restriction—it's about intentional spending aligned with your priorities.</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        <span>© PFL Academy | pflacademy.co</span>
+        <span>Teacher Guide: Chapter 1.5</span>
+    </div>
+
+</body>
+</html>

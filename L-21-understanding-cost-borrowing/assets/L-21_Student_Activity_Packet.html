@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-21 Student Activity Packet</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+        :root {
+            --primary: #6366f1;
+            --primary-light: #eef2ff;
+            --accent: #f59e0b;
+            --accent-light: #fef3c7;
+            --success: #059669;
+            --text-dark: #1e293b;
+            --text-medium: #475569;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --bg-light: #f8fafc;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+
+        @page {
+            size: letter;
+            margin: 0.5in;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 10.5pt;
+            line-height: 1.5;
+            color: var(--text-dark);
+            background: white;
+        }
+
+        .header {
+            background: var(--primary);
+            color: white;
+            padding: 14px 18px;
+            border-radius: 6px;
+            margin-bottom: 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-left h1 {
+            font-size: 13pt;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .header-left h2 {
+            font-size: 10pt;
+            font-weight: 400;
+            margin: 2px 0 0;
+            opacity: 0.9;
+        }
+
+        .header-right {
+            font-size: 9pt;
+            text-align: right;
+            opacity: 0.9;
+        }
+
+        .section-header {
+            font-size: 11pt;
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 4px;
+            margin: 20px 0 12px;
+        }
+
+        .challenge-box {
+            background: var(--accent-light);
+            border-left: 4px solid var(--accent);
+            padding: 14px 16px;
+            margin-bottom: 16px;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .challenge-box p {
+            font-style: italic;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+        }
+
+        .challenge-box .framing-question {
+            font-weight: 600;
+            font-style: normal;
+            color: #92400e;
+        }
+
+        .objectives-box {
+            background: var(--primary-light);
+            border: 1px solid #c7d2fe;
+            border-radius: 6px;
+            padding: 12px 16px;
+            margin-bottom: 18px;
+        }
+
+        .objectives-box h3 {
+            font-size: 10pt;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 6px;
+        }
+
+        .objectives-box ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .objectives-box li {
+            margin-bottom: 3px;
+            color: var(--text-medium);
+        }
+
+        .terms-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 14px;
+            font-size: 10pt;
+        }
+
+        .terms-table th {
+            background: var(--bg-light);
+            text-align: left;
+            padding: 8px 10px;
+            border: 1px solid var(--border);
+            font-weight: 600;
+            color: var(--text-medium);
+        }
+
+        .terms-table td {
+            padding: 8px 10px;
+            border: 1px solid var(--border);
+            vertical-align: top;
+        }
+
+        .terms-table td:first-child {
+            font-weight: 600;
+            color: var(--primary);
+            width: 25%;
+        }
+
+        .background-box {
+            background: var(--bg-light);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 12px 16px;
+            margin-bottom: 18px;
+            font-size: 10pt;
+            color: var(--text-medium);
+        }
+
+        .background-box strong {
+            color: var(--text-dark);
+        }
+
+        .scenario-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 12px 14px;
+            margin-bottom: 14px;
+            page-break-inside: avoid;
+        }
+
+        .scenario-title {
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 6px;
+            font-size: 10pt;
+        }
+
+        .scenario-description {
+            color: var(--text-medium);
+            margin-bottom: 10px;
+            font-size: 10pt;
+        }
+
+        .response-line {
+            display: flex;
+            align-items: baseline;
+            margin-bottom: 8px;
+        }
+
+        .response-label {
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-right: 8px;
+            white-space: nowrap;
+        }
+
+        .response-blank {
+            flex-grow: 1;
+            border-bottom: 1px solid var(--text-light);
+            min-height: 18px;
+        }
+
+        .response-options {
+            color: var(--text-light);
+            font-size: 9pt;
+            margin-left: 8px;
+            white-space: nowrap;
+        }
+
+        .because-lines {
+            margin-top: 6px;
+        }
+
+        .because-lines .response-line {
+            margin-bottom: 4px;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 12px 0;
+            font-size: 10pt;
+        }
+
+        .data-table th {
+            background: var(--primary);
+            color: white;
+            padding: 8px 10px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 9pt;
+        }
+
+        .data-table td {
+            padding: 8px 10px;
+            border: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .data-table tr:nth-child(even) td {
+            background: var(--bg-light);
+        }
+
+        .data-table .calc-row td {
+            background: #fef9c3;
+            height: 28px;
+        }
+
+        .question {
+            margin-bottom: 14px;
+            page-break-inside: avoid;
+        }
+
+        .question-number {
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .question-text {
+            color: var(--text-dark);
+            margin-bottom: 6px;
+        }
+
+        .answer-lines {
+            margin-top: 6px;
+        }
+
+        .answer-line {
+            border-bottom: 1px solid var(--text-light);
+            height: 22px;
+            margin-bottom: 4px;
+        }
+
+        .calc-box {
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 12px;
+            margin: 8px 0;
+            min-height: 60px;
+            background: var(--bg-light);
+        }
+
+        .calc-label {
+            font-size: 9pt;
+            color: var(--text-light);
+            margin-bottom: 4px;
+        }
+
+        .calc-answer {
+            margin-top: 10px;
+            font-weight: 600;
+        }
+
+        .mc-options {
+            margin-top: 6px;
+            margin-left: 20px;
+        }
+
+        .mc-option {
+            display: flex;
+            align-items: center;
+            margin-bottom: 4px;
+        }
+
+        .mc-checkbox {
+            width: 14px;
+            height: 14px;
+            border: 1px solid var(--text-light);
+            border-radius: 2px;
+            margin-right: 8px;
+            flex-shrink: 0;
+        }
+
+        .hint-box {
+            background: #f0fdf4;
+            border-left: 3px solid var(--success);
+            padding: 8px 12px;
+            margin: 10px 0;
+            font-size: 9pt;
+            font-style: italic;
+            color: #166534;
+        }
+
+        .hint-box strong {
+            font-style: normal;
+        }
+
+        .part-header {
+            font-weight: 700;
+            font-size: 10pt;
+            color: var(--primary);
+            text-transform: uppercase;
+            margin: 16px 0 10px;
+            padding-bottom: 4px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .footer {
+            margin-top: 24px;
+            padding-top: 10px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            font-size: 9pt;
+            color: var(--text-light);
+        }
+
+        .mb-sm { margin-bottom: 8px; }
+        .mb-md { margin-bottom: 14px; }
+        .mb-lg { margin-bottom: 20px; }
+
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <div class="header">
+        <div class="header-left">
+            <h1>PFL Academy</h1>
+            <h2>Chapter 5.1: Understanding the Cost of Borrowing</h2>
+        </div>
+        <div class="header-right">
+            Student Activity Packet
+        </div>
+    </div>
+
+    <!-- THE CHALLENGE -->
+    <div class="section-header">The Challenge</div>
+    <div class="challenge-box">
+        <p>Julia is starting college and has been offered two student loan options: a federal loan at 4.5% interest with deferred payments until after graduation, and a private loan at 6.8% interest requiring immediate partial payments. For a $10,000 loan, this difference could mean paying thousands more over the life of the loan.</p>
+        <p class="framing-question">How can Julia determine which loan will actually cost her less money in the long run?</p>
+    </div>
+
+    <!-- LEARNING OBJECTIVES -->
+    <div class="objectives-box">
+        <h3>Learning Objectives</h3>
+        <ul>
+            <li>Calculate the true cost of borrowing using interest rates, fees, and loan terms.</li>
+            <li>Compare secured and unsecured credit options to determine when each is appropriate.</li>
+            <li>Evaluate borrowing decisions by analyzing total cost versus immediate benefits.</li>
+        </ul>
+    </div>
+
+    <!-- CORE CONCEPTS -->
+    <div class="section-header">Core Concepts</div>
+
+    <table class="terms-table">
+        <tr>
+            <th>Term</th>
+            <th>Definition</th>
+        </tr>
+        <tr>
+            <td>Principal</td>
+            <td>The original amount of money borrowed before interest is added.</td>
+        </tr>
+        <tr>
+            <td>Interest Rate</td>
+            <td>The percentage charged by a lender for borrowing money, usually expressed annually.</td>
+        </tr>
+        <tr>
+            <td>APR</td>
+            <td>Annual Percentage Rate; the total yearly cost of borrowing including interest and fees.</td>
+        </tr>
+        <tr>
+            <td>Secured Credit</td>
+            <td>A loan backed by collateral (like a car or house) that the lender can take if you default.</td>
+        </tr>
+        <tr>
+            <td>Unsecured Credit</td>
+            <td>A loan not backed by collateral; typically has higher interest rates due to increased lender risk.</td>
+        </tr>
+    </table>
+
+    <div class="background-box">
+        <strong>Background:</strong> Every time you borrow money, you agree to pay back more than you received. The difference—called interest—is the cost of using someone else's money. Understanding how interest compounds over time is essential for making smart borrowing decisions. A small difference in interest rates can translate to hundreds or even thousands of dollars over the life of a loan. By comparing the <strong>total cost</strong> of different borrowing options, not just the monthly payment, you can make decisions that protect your long-term financial health.
+    </div>
+
+    <!-- APPLY IT -->
+    <div class="section-header">Apply It</div>
+
+    <div class="part-header">Part A: Loan Type Analysis</div>
+    <p class="mb-md">For each borrowing scenario, identify the best loan type and explain your reasoning.</p>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Scenario 1: First Car Purchase</div>
+        <div class="scenario-description">Marcus, 19, needs a reliable car for his new job. He has $2,000 saved and is considering a $12,000 used car. His bank offers auto loans at 6.5% for 48 months.</div>
+        <div class="response-line">
+            <span class="response-label">Best loan type:</span>
+            <span class="response-blank"></span>
+            <span class="response-options">(secured / unsecured)</span>
+        </div>
+        <div class="because-lines">
+            <div class="response-line">
+                <span class="response-label">Because:</span>
+                <span class="response-blank"></span>
+            </div>
+            <div class="response-line">
+                <span class="response-blank" style="margin-left: 60px;"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Scenario 2: Emergency Medical Bill</div>
+        <div class="scenario-description">Alicia received an unexpected $3,000 medical bill. She has no savings and needs to pay within 30 days. Her credit card charges 18% APR, while a personal loan offers 12% APR over 24 months.</div>
+        <div class="response-line">
+            <span class="response-label">Best option:</span>
+            <span class="response-blank"></span>
+            <span class="response-options">(credit card / personal loan)</span>
+        </div>
+        <div class="because-lines">
+            <div class="response-line">
+                <span class="response-label">Because:</span>
+                <span class="response-blank"></span>
+            </div>
+            <div class="response-line">
+                <span class="response-blank" style="margin-left: 60px;"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Scenario 3: College Funding Gap</div>
+        <div class="scenario-description">Tyler needs $8,000 more for tuition after scholarships. He's offered a federal student loan at 4.5% (payments deferred) or a private loan at 7.2% with a $200 origination fee.</div>
+        <div class="response-line">
+            <span class="response-label">Best option:</span>
+            <span class="response-blank"></span>
+            <span class="response-options">(federal / private)</span>
+        </div>
+        <div class="because-lines">
+            <div class="response-line">
+                <span class="response-label">Because:</span>
+                <span class="response-blank"></span>
+            </div>
+            <div class="response-line">
+                <span class="response-blank" style="margin-left: 60px;"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="hint-box">
+        <strong>Hint:</strong> Consider both the interest rate AND total cost over the life of the loan. A lower monthly payment doesn't always mean a better deal.
+    </div>
+
+    <!-- PART B -->
+    <div class="part-header">Part B: Total Cost Comparison</div>
+    <p class="mb-md">Compare the total cost of a $10,000 loan under different scenarios. Complete the calculations.</p>
+
+    <table class="data-table">
+        <tr>
+            <th>Loan Type</th>
+            <th>Interest Rate</th>
+            <th>Term</th>
+            <th>Monthly Payment</th>
+            <th>Total Interest</th>
+        </tr>
+        <tr>
+            <td style="text-align: left; font-weight: 600;">Federal Student Loan</td>
+            <td>4.5%</td>
+            <td>10 years</td>
+            <td>$104</td>
+            <td>$2,480</td>
+        </tr>
+        <tr>
+            <td style="text-align: left; font-weight: 600;">Credit Card (min. payments)</td>
+            <td>18%</td>
+            <td>~28 years</td>
+            <td>$150*</td>
+            <td>$15,432</td>
+        </tr>
+        <tr>
+            <td style="text-align: left; font-weight: 600;">Auto Loan (secured)</td>
+            <td>6%</td>
+            <td>5 years</td>
+            <td>$193</td>
+            <td>$1,580</td>
+        </tr>
+        <tr class="calc-row">
+            <td style="text-align: left; font-weight: 600;">Total Cost (Principal + Interest)</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+    <p style="font-size: 9pt; color: var(--text-light); margin-top: -8px;">*Minimum payment decreases over time</p>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">4.</span> How much more would you pay in total using a credit card versus a federal student loan for the same $10,000?</p>
+        <div class="calc-box">
+            <div class="calc-label">Show your work:</div>
+        </div>
+        <div class="calc-answer">Difference: $____________</div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">5.</span> Why does the credit card cost so much more even though the monthly payment starts higher?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <!-- PART C -->
+    <div class="part-header">Part C: Personal Application</div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">6.</span> Describe a situation in your future where borrowing money might be a smart decision. What would make it worthwhile?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">7.</span> What THREE factors would you evaluate before taking out any loan?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <!-- CHECK YOUR UNDERSTANDING -->
+    <div class="section-header">Check Your Understanding</div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">1.</span> The total yearly cost of borrowing, including both interest and fees, is called the:</p>
+        <div class="mc-options">
+            <div class="mc-option"><div class="mc-checkbox"></div> A. Principal</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> B. Interest rate</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> C. Annual Percentage Rate (APR)</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> D. Collateral value</div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">2.</span> Explain why secured loans typically have lower interest rates than unsecured loans.</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">3.</span> <strong>Calculation:</strong> Ravi borrows $5,000 at 8% interest for 3 years. His monthly payment is $157. What is the total amount he will pay back, and how much is interest?</p>
+        <div class="calc-box">
+            <div class="calc-label">Show your work:</div>
+        </div>
+        <div class="calc-answer">Total paid: $____________  Interest paid: $____________</div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">4.</span> Julia chose a 4.5% federal loan over a 6.8% private loan for her $10,000 education expense. If both loans have 10-year terms, approximately how much did she save by choosing the federal option?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">5.</span> <strong>Reflection:</strong> Think about someone you know who has borrowed money (for a car, house, or education). Based on what you learned today, what advice would you give them about evaluating borrowing options? What questions should they ask before signing?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        <span>© PFL Academy | pflacademy.co</span>
+        <span>Chapter 5.1: Understanding the Cost of Borrowing</span>
+    </div>
+
+</body>
+</html>

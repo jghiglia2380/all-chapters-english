@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-59 Teacher Guide</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+        :root {
+            --primary: #059669;
+            --primary-light: #ecfdf5;
+            --primary-dark: #065f46;
+            --text-dark: #1e293b;
+            --text-medium: #475569;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --bg-light: #f8fafc;
+            --warning: #f59e0b;
+            --warning-light: #fef3c7;
+            --error: #dc2626;
+            --error-light: #fee2e2;
+            --success-light: #dcfce7;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+
+        @page {
+            size: letter;
+            margin: 0.5in;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 10pt;
+            line-height: 1.45;
+            color: var(--text-dark);
+            background: white;
+        }
+
+        .header {
+            background: var(--primary);
+            color: white;
+            padding: 14px 18px;
+            border-radius: 6px;
+            margin-bottom: 16px;
+        }
+
+        .header h1 {
+            font-size: 13pt;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .header h2 {
+            font-size: 10pt;
+            font-weight: 400;
+            margin: 3px 0 0;
+            opacity: 0.9;
+        }
+
+        .section-header {
+            background: var(--primary-light);
+            border-left: 4px solid var(--primary);
+            padding: 7px 12px;
+            font-size: 10pt;
+            font-weight: 700;
+            color: var(--primary-dark);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin: 16px 0 10px;
+        }
+
+        .overview-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 14px;
+        }
+
+        .overview-table th {
+            background: var(--bg-light);
+            color: var(--text-light);
+            font-size: 8pt;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            text-align: center;
+            padding: 6px 10px;
+            border: 1px solid var(--border);
+            width: 33%;
+        }
+
+        .overview-table td {
+            text-align: center;
+            padding: 10px;
+            border: 1px solid var(--border);
+            font-weight: 600;
+            color: var(--text-dark);
+            font-size: 10pt;
+        }
+
+        .flow-container {
+            margin-bottom: 14px;
+        }
+
+        .flow-item {
+            display: flex;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border);
+            page-break-inside: avoid;
+        }
+
+        .flow-item:last-child {
+            border-bottom: none;
+        }
+
+        .flow-time {
+            width: 65px;
+            font-weight: 700;
+            color: var(--primary);
+            flex-shrink: 0;
+            font-size: 10pt;
+        }
+
+        .flow-content {
+            flex: 1;
+        }
+
+        .flow-title {
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 3px;
+            font-size: 10pt;
+        }
+
+        .flow-content ul {
+            margin: 0;
+            padding-left: 16px;
+            font-size: 9pt;
+            color: var(--text-medium);
+        }
+
+        .flow-content li {
+            margin-bottom: 2px;
+        }
+
+        .diff-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 14px;
+        }
+
+        .diff-box {
+            background: var(--bg-light);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 10px 12px;
+        }
+
+        .diff-title {
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 6px;
+            font-size: 9pt;
+        }
+
+        .diff-box ul {
+            margin: 0;
+            padding-left: 16px;
+            font-size: 9pt;
+            color: var(--text-medium);
+        }
+
+        .diff-box li {
+            margin-bottom: 2px;
+        }
+
+        .answer-key {
+            page-break-before: always;
+        }
+
+        .answer-block {
+            margin-bottom: 12px;
+            page-break-inside: avoid;
+        }
+
+        .answer-title {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 9pt;
+            border-bottom: 1px solid #a7f3d0;
+            padding-bottom: 3px;
+            margin-bottom: 6px;
+        }
+
+        .answer-item {
+            margin-bottom: 5px;
+            font-size: 9pt;
+            color: var(--text-dark);
+        }
+
+        .answer-item strong {
+            color: var(--primary-dark);
+        }
+
+        .calc-display {
+            font-family: 'Courier New', monospace;
+            background: var(--bg-light);
+            padding: 8px 10px;
+            border-radius: 4px;
+            margin: 6px 0;
+            font-size: 8.5pt;
+            line-height: 1.5;
+            white-space: pre-line;
+        }
+
+        .answer-note {
+            background: var(--warning-light);
+            border-left: 3px solid var(--warning);
+            padding: 6px 10px;
+            font-size: 9pt;
+            font-style: italic;
+            color: #92400e;
+            margin: 6px 0;
+        }
+
+        .misconception-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 9pt;
+            margin-top: 10px;
+        }
+
+        .misconception-table th {
+            padding: 6px 10px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .misconception-table th:first-child {
+            background: var(--error-light);
+            color: #991b1b;
+            border: 1px solid #fca5a5;
+            width: 40%;
+        }
+
+        .misconception-table th:last-child {
+            background: var(--success-light);
+            color: #166534;
+            border: 1px solid #86efac;
+        }
+
+        .misconception-table td {
+            padding: 6px 10px;
+            border: 1px solid var(--border);
+            vertical-align: top;
+            color: var(--text-medium);
+        }
+
+        .footer {
+            margin-top: 20px;
+            padding-top: 8px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            font-size: 8pt;
+            color: var(--text-light);
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <div class="header">
+        <h1>PFL Academy</h1>
+        <h2>Teacher Guide: Chapter 59 — Understanding Local Tax Structures</h2>
+    </div>
+
+    <!-- OVERVIEW -->
+    <div class="section-header">Overview</div>
+    <table class="overview-table">
+        <tr>
+            <th>Time</th>
+            <th>Materials</th>
+            <th>Prerequisites</th>
+        </tr>
+        <tr>
+            <td>45-50 Minutes</td>
+            <td>Student Activity Packet, Calculator</td>
+            <td>L-3 Income & Taxes, L-6 Federal/State Taxes helpful</td>
+        </tr>
+    </table>
+
+    <!-- LESSON FLOW -->
+    <div class="section-header">Lesson Flow</div>
+    <div class="flow-container">
+        <div class="flow-item">
+            <div class="flow-time">5 min</div>
+            <div class="flow-content">
+                <div class="flow-title">THE CHALLENGE</div>
+                <ul>
+                    <li>Ask: "Does anyone know what their parents pay in property taxes?" (Most won't know.)</li>
+                    <li>Reveal: Property taxes can add $300-$1,000+ monthly to housing costs.</li>
+                    <li>Connection: Even renters pay indirectly—landlords factor taxes into rent.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="flow-item">
+            <div class="flow-time">10 min</div>
+            <div class="flow-content">
+                <div class="flow-title">CORE CONCEPTS</div>
+                <ul>
+                    <li>Define key terms: assessed value, millage rate, homestead exemption.</li>
+                    <li>Key formula: Market Value → Assessed Value → Exemptions → Millage Rate = Tax.</li>
+                    <li>Explain what property taxes fund: schools (50-60%), police/fire, roads, parks.</li>
+                    <li>Note: Millage rate explanation—1 mill = $1 per $1,000 of assessed value.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="flow-item">
+            <div class="flow-time">25-30 min</div>
+            <div class="flow-content">
+                <div class="flow-title">APPLY IT</div>
+                <ul>
+                    <li><strong>Part A (15 min):</strong> Property tax calculations. Walk through Riverside City example, then have students complete Oak Grove and Rural County independently.</li>
+                    <li><strong>Part B (12 min):</strong> Tax bill analysis. Students decode where tax dollars go. Emphasize schools receive largest share.</li>
+                    <li><strong>Part C (15 min):</strong> Location comparison. Real-world decision-making—balance taxes vs. services vs. time.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="flow-item">
+            <div class="flow-time">10 min</div>
+            <div class="flow-content">
+                <div class="flow-title">CHECK YOUR UNDERSTANDING</div>
+                <ul>
+                    <li>Q1 tests the full calculation process.</li>
+                    <li>Q3 connects to civics—local vs. federal funding.</li>
+                    <li>Q5 addresses renter misconception—critical for most students.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- DIFFERENTIATION -->
+    <div class="section-header">Differentiation</div>
+    <div class="diff-grid">
+        <div class="diff-box">
+            <div class="diff-title">Support</div>
+            <ul>
+                <li>Provide formula cards showing calculation steps.</li>
+                <li>Pre-calculate assessed values—have students only apply millage rate.</li>
+                <li>Work through Part A first example as a class.</li>
+                <li>Use round numbers: "45 mills = $45 per $1,000."</li>
+            </ul>
+        </div>
+        <div class="diff-box">
+            <div class="diff-title">Extension</div>
+            <ul>
+                <li>Research actual millage rates in your local area.</li>
+                <li>Compare property tax systems across different states (some have no income tax but high property tax).</li>
+                <li>Calculate the impact of proposed school levy increases.</li>
+                <li>Analyze a real property tax bill from local government website.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ANSWER KEY (new page) -->
+    <div class="answer-key">
+        <div class="section-header">Answer Key</div>
+
+        <div class="answer-block">
+            <div class="answer-title">Part A: Property Tax Calculations ($300,000 Home)</div>
+            <div class="calc-display">RIVERSIDE CITY:
+Assessed Value: $300,000 (100%)
+Less Homestead: −$25,000
+Taxable Value: $275,000
+× 42 mills (0.042): $11,550/year
+Monthly: $962.50
+
+OAK GROVE TOWNSHIP:
+Assessed Value: $300,000 × 85% = $255,000
+Less Homestead: −$15,000
+Taxable Value: $240,000
+× 35 mills (0.035): $8,400/year
+Monthly: $700.00
+
+RURAL COUNTY:
+Assessed Value: $300,000 (100%)
+Less Homestead: −$50,000
+Taxable Value: $250,000
+× 22 mills (0.022): $5,500/year
+Monthly: $458.33
+
+Highest vs. Lowest: $11,550 − $5,500 = $6,050/year difference
+Monthly difference: $504.17</div>
+            <div class="answer-note">Key teaching point: Same $300,000 home costs $500/month MORE in Riverside City vs. Rural County in property taxes alone. This dramatically affects housing affordability.</div>
+        </div>
+
+        <div class="answer-block">
+            <div class="answer-title">Part B: Tax Bill Analysis</div>
+            <div class="answer-item"><strong>Percentage breakdown:</strong> Schools: 56.3%, County: 20.0%, City: 16.2%, Fire: 5.0%, Library: 2.5%</div>
+            <div class="answer-item"><strong>Monthly payment:</strong> $9,100 ÷ 12 = $758.33/month</div>
+            <div class="calc-display">With $40,000 Homestead Exemption:
+New Taxable Value: $247,500 − $40,000 = $207,500
+New Annual Tax: $207,500 × 0.040 = $8,300
+Annual Savings: $9,100 − $8,300 = $800
+
+With $50,000 Market Value Increase:
+New Market Value: $325,000
+New Assessed Value: $325,000 × 90% = $292,500
+New Taxable Value: $292,500 − $20,000 = $272,500
+New Annual Tax: $272,500 × 0.040 = $10,900
+Increase: $10,900 − $9,100 = $1,800/year ($150/month)</div>
+        </div>
+
+        <div class="answer-block">
+            <div class="answer-title">Part C: Location Comparison</div>
+            <div class="calc-display">Property Tax Difference: $7,840 − $4,200 = $3,640/year more in Downtown Metro
+Monthly difference: $303.33
+
+Sales Tax on $18,000 purchases:
+Downtown Metro: $18,000 × 9.25% = $1,665
+Suburban Haven: $18,000 × 7.00% = $1,260
+Difference: $405/year
+
+Total Annual Tax Difference: $3,640 + $405 = $4,045
+
+Extra Commute Time (Suburban Haven):
+Per day: 40 minutes extra
+Per week: 200 minutes = 3.33 hours
+Per year (50 weeks): 167 hours = ~7 full days</div>
+            <div class="answer-item"><strong>Downtown Metro benefits:</strong> Less commute time (167 hours/year saved), better public transit, closer to amenities.</div>
+            <div class="answer-item"><strong>Suburban Haven benefits:</strong> $4,045/year in tax savings, better schools (9/10 vs. 8/10), likely more space.</div>
+            <div class="answer-note">There's no single "right" answer. The exercise teaches students to quantify trade-offs and make informed decisions based on their priorities.</div>
+        </div>
+
+        <div class="answer-block">
+            <div class="answer-title">Check Your Understanding</div>
+            <div class="answer-item"><strong>1.</strong> A ($5,760). Calculation: $240,000 × 80% = $192,000 assessed value. $192,000 × 30 mills = $192,000 × 0.030 = $5,760.</div>
+            <div class="answer-item"><strong>2.</strong> B (You pay $45 for every $1,000 of assessed value). This is the definition of millage.</div>
+            <div class="answer-item"><strong>3.</strong> C (Social Security benefits). Social Security is funded by federal payroll taxes, not local property taxes.</div>
+            <div class="answer-item"><strong>4.</strong> B (Reducing the assessed value subject to taxation). Homestead exemptions subtract from assessed value before applying millage rate.</div>
+            <div class="answer-item"><strong>5.</strong> Renters DO pay property taxes indirectly. Landlords include property taxes in their costs and factor this into rent calculations. High property tax areas typically have higher rents. While renters don't receive a tax bill, they're still paying—the costs are just embedded in their rent.</div>
+        </div>
+
+        <!-- COMMON MISCONCEPTIONS -->
+        <div class="section-header">Common Misconceptions</div>
+        <table class="misconception-table">
+            <tr>
+                <th>Misconception</th>
+                <th>Clarification</th>
+            </tr>
+            <tr>
+                <td>"Renters don't pay property taxes."</td>
+                <td>Renters pay indirectly through rent. Landlords factor property taxes into rental prices. High-tax areas = higher rents.</td>
+            </tr>
+            <tr>
+                <td>"Assessed value = market value."</td>
+                <td>Many jurisdictions assess at less than 100% of market value. A $300,000 home might be assessed at $255,000 (85%). Always check the assessment ratio.</td>
+            </tr>
+            <tr>
+                <td>"Higher taxes always mean better services."</td>
+                <td>Not necessarily. Some communities are more efficient. Others carry legacy debt or pension obligations. Research service quality independently.</td>
+            </tr>
+            <tr>
+                <td>"I can't appeal my property assessment."</td>
+                <td>You absolutely can. If comparable homes sold for less than your assessed value, you have grounds to appeal. This can save hundreds annually.</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        <span>© PFL Academy | pflacademy.co</span>
+        <span>Teacher Guide: Chapter 59</span>
+    </div>
+
+</body>
+</html>

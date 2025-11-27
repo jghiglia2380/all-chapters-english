@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-39 Student Activity Packet</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+        :root {
+            --primary: #6366f1;
+            --primary-light: #eef2ff;
+            --accent: #f59e0b;
+            --accent-light: #fef3c7;
+            --success: #059669;
+            --text-dark: #1e293b;
+            --text-medium: #475569;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --bg-light: #f8fafc;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+        @page { size: letter; margin: 0.5in; }
+
+        body { font-family: 'Open Sans', sans-serif; font-size: 10.5pt; line-height: 1.5; color: var(--text-dark); background: white; }
+
+        .header { background: var(--primary); color: white; padding: 14px 18px; border-radius: 6px; margin-bottom: 18px; display: flex; justify-content: space-between; align-items: center; }
+        .header-left h1 { font-size: 13pt; font-weight: 700; margin: 0; }
+        .header-left h2 { font-size: 10pt; font-weight: 400; margin: 2px 0 0; opacity: 0.9; }
+        .header-right { font-size: 9pt; text-align: right; opacity: 0.9; }
+
+        .section-header { font-size: 11pt; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 2px solid var(--primary); padding-bottom: 4px; margin: 20px 0 12px; }
+
+        .challenge-box { background: var(--accent-light); border-left: 4px solid var(--accent); padding: 14px 16px; margin-bottom: 16px; border-radius: 0 6px 6px 0; }
+        .challenge-box p { font-style: italic; color: var(--text-dark); margin-bottom: 10px; }
+        .challenge-box .framing-question { font-weight: 600; font-style: normal; color: #92400e; }
+
+        .objectives-box { background: var(--primary-light); border: 1px solid #c7d2fe; border-radius: 6px; padding: 12px 16px; margin-bottom: 18px; }
+        .objectives-box h3 { font-size: 10pt; font-weight: 700; color: var(--primary); margin-bottom: 6px; }
+        .objectives-box ul { margin: 0; padding-left: 20px; }
+        .objectives-box li { margin-bottom: 3px; color: var(--text-medium); }
+
+        .terms-table { width: 100%; border-collapse: collapse; margin-bottom: 14px; font-size: 10pt; }
+        .terms-table th { background: var(--bg-light); text-align: left; padding: 8px 10px; border: 1px solid var(--border); font-weight: 600; color: var(--text-medium); }
+        .terms-table td { padding: 8px 10px; border: 1px solid var(--border); vertical-align: top; }
+        .terms-table td:first-child { font-weight: 600; color: var(--primary); width: 25%; }
+
+        .background-box { background: var(--bg-light); border: 1px solid var(--border); border-radius: 6px; padding: 12px 16px; margin-bottom: 18px; font-size: 10pt; color: var(--text-medium); }
+        .background-box strong { color: var(--text-dark); }
+
+        .scenario-card { background: white; border: 1px solid var(--border); border-radius: 6px; padding: 12px 14px; margin-bottom: 14px; page-break-inside: avoid; }
+        .scenario-title { font-weight: 700; color: var(--primary); margin-bottom: 6px; font-size: 10pt; }
+        .scenario-description { color: var(--text-medium); margin-bottom: 10px; font-size: 10pt; }
+
+        .response-line { display: flex; align-items: baseline; margin-bottom: 8px; }
+        .response-label { font-weight: 600; color: var(--text-dark); margin-right: 8px; white-space: nowrap; }
+        .response-blank { flex-grow: 1; border-bottom: 1px solid var(--text-light); min-height: 18px; }
+
+        .data-table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 10pt; }
+        .data-table th { background: var(--primary); color: white; padding: 8px 10px; text-align: center; font-weight: 600; font-size: 9pt; }
+        .data-table td { padding: 8px 10px; border: 1px solid var(--border); text-align: center; }
+        .data-table tr:nth-child(even) td { background: var(--bg-light); }
+
+        .question { margin-bottom: 14px; page-break-inside: avoid; }
+        .question-number { font-weight: 700; color: var(--text-dark); }
+        .question-text { color: var(--text-dark); margin-bottom: 6px; }
+
+        .answer-lines { margin-top: 6px; }
+        .answer-line { border-bottom: 1px solid var(--text-light); height: 22px; margin-bottom: 4px; }
+
+        .calc-box { border: 1px solid var(--border); border-radius: 4px; padding: 12px; margin: 8px 0; min-height: 60px; background: var(--bg-light); }
+        .calc-label { font-size: 9pt; color: var(--text-light); margin-bottom: 4px; }
+        .calc-answer { margin-top: 10px; font-weight: 600; }
+
+        .mc-options { margin-top: 6px; margin-left: 20px; }
+        .mc-option { display: flex; align-items: center; margin-bottom: 4px; }
+        .mc-checkbox { width: 14px; height: 14px; border: 1px solid var(--text-light); border-radius: 2px; margin-right: 8px; flex-shrink: 0; }
+
+        .hint-box { background: #f0fdf4; border-left: 3px solid var(--success); padding: 8px 12px; margin: 10px 0; font-size: 9pt; font-style: italic; color: #166534; }
+        .hint-box strong { font-style: normal; }
+
+        .part-header { font-weight: 700; font-size: 10pt; color: var(--primary); text-transform: uppercase; margin: 16px 0 10px; padding-bottom: 4px; border-bottom: 1px solid var(--border); }
+
+        .footer { margin-top: 24px; padding-top: 10px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; font-size: 9pt; color: var(--text-light); }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="header-left">
+            <h1>PFL Academy</h1>
+            <h2>Chapter 14.1: Charitable Giving and Financial Planning</h2>
+        </div>
+        <div class="header-right">Student Activity Packet</div>
+    </div>
+
+    <div class="section-header">The Challenge</div>
+    <div class="challenge-box">
+        <p>Sarah earns $3,500 monthly and wants to support educational programs for underprivileged children. With student loan payments and a tight budget, she wonders if she can afford to give. She's considering volunteering her graphic design skills, making small monthly donations, or donating gently-used items. How can she create a giving plan that aligns with her values without compromising her financial stability?</p>
+        <p class="framing-question">How can you make meaningful contributions to causes you care about regardless of your current financial situation?</p>
+    </div>
+
+    <div class="objectives-box">
+        <h3>Learning Objectives</h3>
+        <ul>
+            <li>Understand various forms of charitable giving (monetary, in-kind, volunteering, planned giving).</li>
+            <li>Learn how to incorporate charitable giving into financial planning.</li>
+            <li>Explore personal and societal benefits of charitable giving.</li>
+            <li>Reflect on non-monetary ways to contribute to your community.</li>
+        </ul>
+    </div>
+
+    <div class="section-header">Core Concepts</div>
+
+    <table class="terms-table">
+        <tr><th>Term</th><th>Definition</th></tr>
+        <tr><td>Monetary Donation</td><td>Financial contributions made to a charitable organization (one-time, recurring, matching).</td></tr>
+        <tr><td>In-Kind Donation</td><td>Contributions of goods or services instead of money (clothing, pro bono services).</td></tr>
+        <tr><td>Volunteerism</td><td>Donating time or skills to support causes without financial compensation.</td></tr>
+        <tr><td>Planned Giving</td><td>Charitable contributions through long-term financial planning (bequests, trusts, endowments).</td></tr>
+        <tr><td>Tax Deduction</td><td>Reduction in taxable income based on eligible charitable donations (must itemize to claim).</td></tr>
+    </table>
+
+    <div class="background-box">
+        <strong>Background:</strong> Charitable giving allows individuals to support causes they care about while potentially receiving tax benefits. Beyond financial contributions, giving back through volunteering and in-kind donations creates positive community impact and personal fulfillment. A thoughtful giving plan balances generosity with financial stability—ensuring basic needs, emergency savings, and debt payments are met before allocating funds to charitable causes.
+    </div>
+
+    <div class="section-header">Apply It</div>
+
+    <div class="part-header">Part A: Forms of Charitable Giving</div>
+    <p style="margin-bottom: 14px;">Match each scenario to the most appropriate form of charitable giving.</p>
+
+    <table class="data-table">
+        <tr>
+            <th>Scenario</th>
+            <th>Type of Giving</th>
+        </tr>
+        <tr>
+            <td style="text-align: left;">A graphic designer creates a free logo for a nonprofit.</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td style="text-align: left;">Someone sets up $50 monthly auto-payments to a charity.</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td style="text-align: left;">A retired teacher tutors students at a library after school.</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td style="text-align: left;">Someone includes a charity in their will.</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td style="text-align: left;">Donating professional clothing to a job training program.</td>
+            <td></td>
+        </tr>
+    </table>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">1.</span> Which form of giving might have the greatest impact for someone with limited money but specialized skills?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="part-header">Part B: Charitable Giving Budget</div>
+    <p style="margin-bottom: 14px;">Help Sarah incorporate charitable giving into her monthly budget.</p>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Sarah's Current Monthly Budget</div>
+        <table class="data-table" style="margin-top: 10px;">
+            <tr><th>Category</th><th>Amount</th></tr>
+            <tr><td style="text-align: left;">Income</td><td>$3,500</td></tr>
+            <tr><td style="text-align: left;">Housing</td><td>$1,200</td></tr>
+            <tr><td style="text-align: left;">Utilities</td><td>$150</td></tr>
+            <tr><td style="text-align: left;">Food</td><td>$400</td></tr>
+            <tr><td style="text-align: left;">Transportation</td><td>$300</td></tr>
+            <tr><td style="text-align: left;">Student Loans</td><td>$500</td></tr>
+            <tr><td style="text-align: left;">Savings</td><td>$350</td></tr>
+            <tr><td style="text-align: left;">Entertainment</td><td>$200</td></tr>
+            <tr><td style="text-align: left;">Miscellaneous</td><td>$400</td></tr>
+        </table>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">2.</span> If Sarah allocates 2% of her income to charitable giving, how much is that monthly and annually?</p>
+        <div class="response-line">
+            <span class="response-label">Monthly:</span>
+            <span class="response-blank"></span>
+            <span class="response-label" style="margin-left: 20px;">Annual:</span>
+            <span class="response-blank"></span>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">3.</span> Which budget categories could Sarah reduce to fund her charitable giving? Suggest specific amounts.</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="hint-box">
+        <strong>Hint:</strong> Many financial advisors suggest starting with 1-3% of income for charitable giving and increasing as finances allow.
+    </div>
+
+    <div class="part-header">Part C: Non-Monetary Contributions</div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">4.</span> List THREE ways a person with limited money but available time could contribute to their community.</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="section-header">Check Your Understanding</div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">1.</span> Which of the following is NOT a form of in-kind donation?</p>
+        <div class="mc-options">
+            <div class="mc-option"><div class="mc-checkbox"></div> A. Donating canned goods to a food bank</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> B. Setting up a recurring monthly payment to a charity</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> C. Providing free legal advice to a nonprofit</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> D. Donating a car to a vocational training program</div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">2.</span> To claim a tax deduction for charitable donations, you must:</p>
+        <div class="mc-options">
+            <div class="mc-option"><div class="mc-checkbox"></div> A. Donate at least $1,000</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> B. Itemize deductions on your tax return</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> C. Donate only to religious organizations</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> D. Use automatic payments</div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">3.</span> <strong>Calculation:</strong> Alex earns $50,000 annually and donates $2,500 to charity. If Alex itemizes and is in the 22% tax bracket, what is the tax savings from the donation?</p>
+        <div class="calc-box"><div class="calc-label">Show your work:</div></div>
+        <div class="calc-answer">Tax savings: $_____________</div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">4.</span> What should you prioritize BEFORE allocating money to charitable giving?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">5.</span> <strong>Reflection:</strong> Describe one cause you care about and create a realistic plan for how you could contribute to it in the next year, considering your current resources and skills.</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <span>&copy; PFL Academy | pflacademy.co</span>
+        <span>Chapter 14.1: Charitable Giving and Financial Planning</span>
+    </div>
+
+</body>
+</html>

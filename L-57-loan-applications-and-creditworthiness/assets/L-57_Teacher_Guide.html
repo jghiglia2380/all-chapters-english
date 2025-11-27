@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-57 Teacher Guide</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+        :root {
+            --primary: #059669;
+            --primary-light: #ecfdf5;
+            --primary-dark: #065f46;
+            --text-dark: #1e293b;
+            --text-medium: #475569;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --bg-light: #f8fafc;
+            --warning: #f59e0b;
+            --warning-light: #fef3c7;
+            --error: #dc2626;
+            --error-light: #fee2e2;
+            --success-light: #dcfce7;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+
+        @page {
+            size: letter;
+            margin: 0.5in;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 10pt;
+            line-height: 1.45;
+            color: var(--text-dark);
+            background: white;
+        }
+
+        .header {
+            background: var(--primary);
+            color: white;
+            padding: 14px 18px;
+            border-radius: 6px;
+            margin-bottom: 16px;
+        }
+
+        .header h1 {
+            font-size: 13pt;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .header h2 {
+            font-size: 10pt;
+            font-weight: 400;
+            margin: 3px 0 0;
+            opacity: 0.9;
+        }
+
+        .section-header {
+            background: var(--primary-light);
+            border-left: 4px solid var(--primary);
+            padding: 7px 12px;
+            font-size: 10pt;
+            font-weight: 700;
+            color: var(--primary-dark);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin: 16px 0 10px;
+        }
+
+        .overview-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 14px;
+        }
+
+        .overview-table th {
+            background: var(--bg-light);
+            color: var(--text-light);
+            font-size: 8pt;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            text-align: center;
+            padding: 6px 10px;
+            border: 1px solid var(--border);
+            width: 33%;
+        }
+
+        .overview-table td {
+            text-align: center;
+            padding: 10px;
+            border: 1px solid var(--border);
+            font-weight: 600;
+            color: var(--text-dark);
+            font-size: 10pt;
+        }
+
+        .flow-container {
+            margin-bottom: 14px;
+        }
+
+        .flow-item {
+            display: flex;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border);
+            page-break-inside: avoid;
+        }
+
+        .flow-item:last-child {
+            border-bottom: none;
+        }
+
+        .flow-time {
+            width: 65px;
+            font-weight: 700;
+            color: var(--primary);
+            flex-shrink: 0;
+            font-size: 10pt;
+        }
+
+        .flow-content {
+            flex: 1;
+        }
+
+        .flow-title {
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 3px;
+            font-size: 10pt;
+        }
+
+        .flow-content ul {
+            margin: 0;
+            padding-left: 16px;
+            font-size: 9pt;
+            color: var(--text-medium);
+        }
+
+        .flow-content li {
+            margin-bottom: 2px;
+        }
+
+        .diff-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 14px;
+        }
+
+        .diff-box {
+            background: var(--bg-light);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 10px 12px;
+        }
+
+        .diff-title {
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 6px;
+            font-size: 9pt;
+        }
+
+        .diff-box ul {
+            margin: 0;
+            padding-left: 16px;
+            font-size: 9pt;
+            color: var(--text-medium);
+        }
+
+        .diff-box li {
+            margin-bottom: 2px;
+        }
+
+        .answer-key {
+            page-break-before: always;
+        }
+
+        .answer-block {
+            margin-bottom: 12px;
+            page-break-inside: avoid;
+        }
+
+        .answer-title {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 9pt;
+            border-bottom: 1px solid #a7f3d0;
+            padding-bottom: 3px;
+            margin-bottom: 6px;
+        }
+
+        .answer-item {
+            margin-bottom: 5px;
+            font-size: 9pt;
+            color: var(--text-dark);
+        }
+
+        .answer-item strong {
+            color: var(--primary-dark);
+        }
+
+        .calc-display {
+            font-family: 'Courier New', monospace;
+            background: var(--bg-light);
+            padding: 8px 10px;
+            border-radius: 4px;
+            margin: 6px 0;
+            font-size: 8.5pt;
+            line-height: 1.5;
+            white-space: pre-line;
+        }
+
+        .answer-note {
+            background: var(--warning-light);
+            border-left: 3px solid var(--warning);
+            padding: 6px 10px;
+            font-size: 9pt;
+            font-style: italic;
+            color: #92400e;
+            margin: 6px 0;
+        }
+
+        .misconception-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 9pt;
+            margin-top: 10px;
+        }
+
+        .misconception-table th {
+            padding: 6px 10px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .misconception-table th:first-child {
+            background: var(--error-light);
+            color: #991b1b;
+            border: 1px solid #fca5a5;
+            width: 40%;
+        }
+
+        .misconception-table th:last-child {
+            background: var(--success-light);
+            color: #166534;
+            border: 1px solid #86efac;
+        }
+
+        .misconception-table td {
+            padding: 6px 10px;
+            border: 1px solid var(--border);
+            vertical-align: top;
+            color: var(--text-medium);
+        }
+
+        .footer {
+            margin-top: 20px;
+            padding-top: 8px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            font-size: 8pt;
+            color: var(--text-light);
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <div class="header">
+        <h1>PFL Academy</h1>
+        <h2>Teacher Guide: Chapter 57 — Loan Application Process and Requirements</h2>
+    </div>
+
+    <!-- OVERVIEW -->
+    <div class="section-header">Overview</div>
+    <table class="overview-table">
+        <tr>
+            <th>Time</th>
+            <th>Materials</th>
+            <th>Prerequisites</th>
+        </tr>
+        <tr>
+            <td>45-50 Minutes</td>
+            <td>Student Activity Packet, Calculator</td>
+            <td>L-56 Record Keeping, Understanding of credit scores helpful</td>
+        </tr>
+    </table>
+
+    <!-- LESSON FLOW -->
+    <div class="section-header">Lesson Flow</div>
+    <div class="flow-container">
+        <div class="flow-item">
+            <div class="flow-time">5 min</div>
+            <div class="flow-content">
+                <div class="flow-title">THE CHALLENGE</div>
+                <ul>
+                    <li>Contrast Carmen (prepared, got 5.8% rate) vs. Marcus (unprepared, got 22% rate).</li>
+                    <li>Calculate the difference: ~$2,000 in extra interest over 5 years.</li>
+                    <li>Key insight: Same loan, VASTLY different outcomes based on preparation.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="flow-item">
+            <div class="flow-time">10 min</div>
+            <div class="flow-content">
+                <div class="flow-title">CORE CONCEPTS</div>
+                <ul>
+                    <li>Introduce the Five C's framework—write on board with simple definitions.</li>
+                    <li>Explain DTI calculation with simple example: $500 debt ÷ $2,000 income = 25%.</li>
+                    <li>Key thresholds: Below 36% good, 36-43% acceptable, above 43% problematic.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="flow-item">
+            <div class="flow-time">25-30 min</div>
+            <div class="flow-content">
+                <div class="flow-title">APPLY IT</div>
+                <ul>
+                    <li><strong>Part A (10 min):</strong> DTI calculations. Walk through Jordan's example, then have students complete Taylor's independently.</li>
+                    <li><strong>Part B (10 min):</strong> Five C's evaluation. Students play "loan officer" role—encourage realistic assessment.</li>
+                    <li><strong>Part C (5 min):</strong> Improvement strategies. Brainstorm what Marcus should do—connect to actionable steps.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="flow-item">
+            <div class="flow-time">10 min</div>
+            <div class="flow-content">
+                <div class="flow-title">CHECK YOUR UNDERSTANDING</div>
+                <ul>
+                    <li>Q3 tests DTI calculation with new mortgage payment—most realistic scenario.</li>
+                    <li>Q4 (pre-approval power) is critical practical knowledge.</li>
+                    <li>Q5 asks students to self-assess—great for personal reflection.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- DIFFERENTIATION -->
+    <div class="section-header">Differentiation</div>
+    <div class="diff-grid">
+        <div class="diff-box">
+            <div class="diff-title">Support</div>
+            <ul>
+                <li>Provide DTI formula card: Total Monthly Debts ÷ Gross Monthly Income × 100%</li>
+                <li>Pre-fill first DTI example as demonstration.</li>
+                <li>For Five C's evaluation, provide sentence starters for explanations.</li>
+                <li>Work through Alex's profile as a class before independent work.</li>
+            </ul>
+        </div>
+        <div class="diff-box">
+            <div class="diff-title">Extension</div>
+            <ul>
+                <li>Calculate total interest paid at different rates (5% vs 10% vs 20% on same loan).</li>
+                <li>Research actual documentation requirements for a specific loan type.</li>
+                <li>Create a 12-month creditworthiness improvement plan for a weak borrower profile.</li>
+                <li>Compare terms offered by different lenders for same borrower profile.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ANSWER KEY (new page) -->
+    <div class="answer-key">
+        <div class="section-header">Answer Key</div>
+
+        <div class="answer-block">
+            <div class="answer-title">Part A: DTI Calculations</div>
+            <div class="calc-display">Jordan:
+Total monthly debt: $350 + $220 + $80 = $650
+DTI = $650 ÷ $4,500 × 100% = 14.4%
+Assessment: GOOD (well below 36%)
+
+Taylor:
+Total monthly debt: $900 + $285 + $180 + $150 = $1,515
+DTI = $1,515 ÷ $3,200 × 100% = 47.3%
+Assessment: CONCERNING (above 43%)
+
+Taylor with new $300 car loan:
+New total debt: $1,515 + $300 = $1,815
+New DTI: $1,815 ÷ $3,200 × 100% = 56.7%
+This DTI is FAR too high—loan would likely be denied.</div>
+        </div>
+
+        <div class="answer-block">
+            <div class="answer-title">Part B: Five C's Evaluation (Alex)</div>
+            <div class="answer-item"><strong>Character (6/10):</strong> Credit score 680 is fair, no recent negatives, but limited history reduces confidence.</div>
+            <div class="answer-item"><strong>Capacity (8/10):</strong> DTI calculation: $175/mo existing debt. Adding ~$400 car payment = $575/$4,333/mo = 13.3% DTI. Excellent capacity.</div>
+            <div class="answer-item"><strong>Capital (5/10):</strong> Only $3,500 savings total with $2,000 down leaves $1,500 reserve—less than one month of payments. Weak.</div>
+            <div class="answer-item"><strong>Collateral (7/10):</strong> Car serves as collateral. LTV = $22,000/$24,000 = 91.7%—higher than ideal but acceptable for auto loan.</div>
+            <div class="answer-item"><strong>Conditions (7/10):</strong> Auto loan is reasonable purpose, stable employment supports application.</div>
+            <div class="answer-note">Reasonable decisions: Approve at standard-to-higher rate given fair credit and limited reserves; OR approve with conditions (require larger down payment to improve LTV and reserves).</div>
+        </div>
+
+        <div class="answer-block">
+            <div class="answer-title">Part C: Marcus Improvement Strategies</div>
+            <div class="answer-item">1. Build credit score: Pay all bills on time for 6+ months, reduce credit utilization below 30%.</div>
+            <div class="answer-item">2. Reduce DTI: Pay off smaller debts, avoid new debt, potentially increase income.</div>
+            <div class="answer-item">3. Build savings: Create emergency fund + down payment over 6-12 months.</div>
+            <div class="answer-item">4. Maintain job stability: Stay at current job for at least 1-2 years to demonstrate employment stability.</div>
+            <div class="answer-item"><strong>Biggest impact:</strong> Reducing DTI from 45% to under 36% OR building credit score above 650. Both significantly improve approval odds.</div>
+        </div>
+
+        <div class="answer-block">
+            <div class="answer-title">Check Your Understanding</div>
+            <div class="answer-item"><strong>1.</strong> B (Character). Credit score is the primary measure of your repayment character/history.</div>
+            <div class="answer-item"><strong>2.</strong> DTI measures ability to afford the new payment. High DTI = too much income already committed to debt = higher risk of default because less buffer for unexpected expenses.</div>
+            <div class="answer-item"><strong>3.</strong> Current debt: $180 + $95 + $425 = $700. With mortgage: $700 + $1,200 = $1,900. New DTI: $1,900 ÷ $5,000 = 38%. This is in the ACCEPTABLE range (36-43%), but borderline. Most lenders would approve but might require compensating factors (higher down payment, strong credit score).</div>
+            <div class="answer-item"><strong>4.</strong> Pre-approval shows sellers you're serious with financing ready (competitive advantage), clarifies your budget, lets you negotiate from strength (can walk away from dealer financing if rates are worse), and identifies issues early.</div>
+            <div class="answer-item"><strong>5.</strong> <em>Answers will vary. Look for honest self-assessment of Five C's and specific, actionable improvement steps (not vague like "improve credit" but specific like "pay credit card balance below 30% of limit by September").</em></div>
+        </div>
+
+        <!-- COMMON MISCONCEPTIONS -->
+        <div class="section-header">Common Misconceptions</div>
+        <table class="misconception-table">
+            <tr>
+                <th>Misconception</th>
+                <th>Clarification</th>
+            </tr>
+            <tr>
+                <td>"My credit score is the only thing that matters."</td>
+                <td>Credit score (Character) is ONE of five factors. Someone with 800 score but 60% DTI will struggle. All Five C's matter.</td>
+            </tr>
+            <tr>
+                <td>"Checking my credit hurts my score."</td>
+                <td>YOU checking your own credit (soft inquiry) doesn't affect score. Only lenders checking for applications (hard inquiries) have small, temporary impact.</td>
+            </tr>
+            <tr>
+                <td>"Higher income means automatic approval."</td>
+                <td>Income affects Capacity, but high income with high debt still means high DTI. Lenders care about what percentage of income is available, not raw income amount.</td>
+            </tr>
+            <tr>
+                <td>"I should apply everywhere to find best rate."</td>
+                <td>Multiple applications create multiple hard inquiries. Exception: Rate shopping for same loan type within 14-45 days often counts as single inquiry. Better: get pre-approved, THEN compare.</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        <span>© PFL Academy | pflacademy.co</span>
+        <span>Teacher Guide: Chapter 57</span>
+    </div>
+
+</body>
+</html>

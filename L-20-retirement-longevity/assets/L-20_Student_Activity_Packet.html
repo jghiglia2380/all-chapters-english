@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-20 Student Activity Packet</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+        :root {
+            --primary: #6366f1;
+            --primary-light: #eef2ff;
+            --primary-dark: #4338ca;
+            --text-dark: #1e293b;
+            --text-medium: #475569;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --bg-light: #f8fafc;
+            --success: #10b981;
+            --warning: #f59e0b;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+        @page { size: letter; margin: 0.5in; }
+        body { font-family: 'Open Sans', sans-serif; font-size: 10pt; line-height: 1.5; color: var(--text-dark); background: white; }
+
+        .header { background: var(--primary); color: white; padding: 16px 20px; border-radius: 8px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; }
+        .header h1 { font-size: 18pt; font-weight: 700; }
+        .header-info { text-align: right; font-size: 9pt; }
+
+        .section-title { background: var(--primary-light); border-left: 4px solid var(--primary); padding: 8px 14px; font-size: 11pt; font-weight: 700; color: var(--primary-dark); margin: 20px 0 12px; }
+
+        .challenge-box { background: linear-gradient(135deg, #fef3c7, #fef9c3); border-left: 4px solid var(--warning); padding: 14px 18px; border-radius: 0 8px 8px 0; margin-bottom: 16px; }
+        .challenge-box p { margin: 0; font-size: 10pt; color: #92400e; }
+        .challenge-box strong { color: #78350f; }
+
+        .concept-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+        .concept-card { background: var(--bg-light); border: 1px solid var(--border); border-radius: 6px; padding: 12px; page-break-inside: avoid; }
+        .concept-card h4 { font-size: 10pt; font-weight: 700; color: var(--primary-dark); margin-bottom: 6px; }
+        .concept-card p { font-size: 9pt; color: var(--text-medium); margin: 0; }
+        .concept-card ul { font-size: 9pt; color: var(--text-medium); margin: 4px 0 0; padding-left: 16px; }
+        .concept-card li { margin-bottom: 3px; }
+
+        .scenario-card { background: var(--bg-light); border: 1px solid var(--border); border-radius: 8px; padding: 14px 16px; margin-bottom: 14px; page-break-inside: avoid; }
+        .scenario-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+        .scenario-icon { width: 36px; height: 36px; background: var(--primary-light); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 16pt; }
+        .scenario-name { font-weight: 700; color: var(--text-dark); font-size: 11pt; }
+        .scenario-details { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; font-size: 9pt; }
+        .scenario-detail { background: white; border: 1px solid var(--border); border-radius: 4px; padding: 6px 10px; }
+        .scenario-detail strong { color: var(--primary-dark); }
+
+        .data-table { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 9pt; }
+        .data-table th { background: var(--primary); color: white; padding: 8px 10px; text-align: left; font-weight: 600; }
+        .data-table td { padding: 8px 10px; border: 1px solid var(--border); }
+        .data-table tr:nth-child(even) { background: var(--bg-light); }
+
+        .activity-section { background: var(--bg-light); border: 1px solid var(--border); border-radius: 8px; padding: 16px; margin-bottom: 16px; page-break-inside: avoid; }
+        .activity-section h3 { font-size: 11pt; font-weight: 700; color: var(--primary-dark); margin-bottom: 10px; }
+
+        .response-area { background: white; border: 1px solid var(--border); border-radius: 4px; padding: 10px; min-height: 70px; margin: 8px 0; }
+        .response-area.large { min-height: 100px; }
+        .response-lines { border-bottom: 1px solid var(--border); height: 24px; margin-bottom: 4px; }
+
+        .hint-box { background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 6px; padding: 10px 12px; margin: 10px 0; font-size: 9pt; }
+        .hint-box strong { color: #166534; }
+
+        .calc-box { background: #f0f9ff; border: 1px solid #bae6fd; border-radius: 6px; padding: 12px; margin: 10px 0; }
+        .calc-box h5 { font-size: 9pt; font-weight: 700; color: #0369a1; margin-bottom: 8px; }
+
+        .checkbox-item { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 6px; }
+        .checkbox { width: 14px; height: 14px; border: 2px solid var(--primary); border-radius: 3px; flex-shrink: 0; margin-top: 2px; }
+        .checkbox-label { font-size: 9pt; color: var(--text-dark); }
+
+        .page-break { page-break-before: always; }
+
+        .footer { margin-top: 24px; padding-top: 12px; border-top: 1px solid var(--border); text-align: center; font-size: 8pt; color: var(--text-light); }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Longevity and Retirement Planning</h1>
+        <div class="header-info">
+            Name: _______________________<br>
+            Date: _______________________
+        </div>
+    </div>
+
+    <div class="challenge-box">
+        <p><strong>The Challenge:</strong> Morgan starts investing $2,000/year at age 22 and stops at age 30 (9 years, $18,000 total). Jordan starts at age 31 and invests $2,000/year until age 65 (35 years, $70,000 total). At 7% annual returns, who has more at age 65? This surprising answer reveals why longevity planning must start NOW.</p>
+    </div>
+
+    <div class="section-title">Core Concepts: Planning for Longer Lives</div>
+
+    <div class="concept-grid">
+        <div class="concept-card">
+            <h4>Life Expectancy Impact</h4>
+            <ul>
+                <li>A 65-year-old today may live into their 90s</li>
+                <li>Retirement could last 25-30+ years</li>
+                <li>More years = more savings needed</li>
+                <li>Healthcare costs increase with age</li>
+            </ul>
+        </div>
+        <div class="concept-card">
+            <h4>Longevity Risk</h4>
+            <p>The risk of outliving your savings. Contributing factors:</p>
+            <ul>
+                <li>Longer retirement periods</li>
+                <li>Inflation eroding purchasing power</li>
+                <li>Rising healthcare costs</li>
+                <li>Underestimating life expectancy</li>
+            </ul>
+        </div>
+        <div class="concept-card">
+            <h4>Inflation Over Time</h4>
+            <p>At 3% annual inflation:</p>
+            <ul>
+                <li>$100 today = $181 in 20 years</li>
+                <li>$100 today = $243 in 30 years</li>
+                <li>$100 today = $326 in 40 years</li>
+            </ul>
+        </div>
+        <div class="concept-card">
+            <h4>Time Horizon Advantage</h4>
+            <p>Starting early is powerful because:</p>
+            <ul>
+                <li>Compounding builds exponentially</li>
+                <li>Small early amounts beat large late amounts</li>
+                <li>You can weather market volatility</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section-title">Part A: The Power of Starting Early</div>
+
+    <div class="scenario-card">
+        <div class="scenario-header">
+            <div class="scenario-icon">👤</div>
+            <div class="scenario-name">Morgan: The Early Starter</div>
+        </div>
+        <div class="scenario-details">
+            <div class="scenario-detail"><strong>Start Age:</strong> 22</div>
+            <div class="scenario-detail"><strong>Stop Age:</strong> 30 (stops contributing)</div>
+            <div class="scenario-detail"><strong>Annual Contribution:</strong> $2,000</div>
+            <div class="scenario-detail"><strong>Total Invested:</strong> $18,000 over 9 years</div>
+        </div>
+    </div>
+
+    <div class="scenario-card">
+        <div class="scenario-header">
+            <div class="scenario-icon">👤</div>
+            <div class="scenario-name">Jordan: The Late Starter</div>
+        </div>
+        <div class="scenario-details">
+            <div class="scenario-detail"><strong>Start Age:</strong> 31</div>
+            <div class="scenario-detail"><strong>Stop Age:</strong> 65 (continuous)</div>
+            <div class="scenario-detail"><strong>Annual Contribution:</strong> $2,000</div>
+            <div class="scenario-detail"><strong>Total Invested:</strong> $70,000 over 35 years</div>
+        </div>
+    </div>
+
+    <div class="activity-section">
+        <h3>Compare the Outcomes (at 7% average annual return)</h3>
+        <table class="data-table">
+            <tr>
+                <th>Person</th>
+                <th>Years Investing</th>
+                <th>Total Contributed</th>
+                <th>Value at Age 65</th>
+            </tr>
+            <tr>
+                <td><strong>Morgan</strong></td>
+                <td>9 years (age 22-30), then 35 years growth</td>
+                <td>$18,000</td>
+                <td>≈ $243,000</td>
+            </tr>
+            <tr>
+                <td><strong>Jordan</strong></td>
+                <td>35 years (age 31-65)</td>
+                <td>$70,000</td>
+                <td>≈ $283,000</td>
+            </tr>
+        </table>
+
+        <div class="hint-box">
+            <strong>Key Insight:</strong> Jordan invested nearly 4× more money than Morgan ($70,000 vs $18,000), yet the final amounts are relatively close. Morgan's money had more time to compound!
+        </div>
+
+        <p style="font-size: 9pt; margin: 12px 0 8px;"><strong>1.</strong> Why does Morgan end up with nearly as much as Jordan despite investing so much less?</p>
+        <div class="response-area">
+            <div class="response-lines"></div>
+            <div class="response-lines"></div>
+            <div class="response-lines"></div>
+        </div>
+
+        <p style="font-size: 9pt; margin: 12px 0 8px;"><strong>2.</strong> What would happen if Morgan CONTINUED investing $2,000/year from 22 to 65?</p>
+        <div class="response-area">
+            <div class="response-lines"></div>
+            <div class="response-lines"></div>
+        </div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <div class="section-title">Part B: Longevity Planning Challenges</div>
+
+    <div class="activity-section">
+        <h3>Calculate Inflation's Impact on Retirement</h3>
+        <p style="font-size: 9pt; color: var(--text-medium); margin-bottom: 12px;">Use the Rule of 72: Money doubles approximately every 72 ÷ inflation rate years.</p>
+
+        <div class="calc-box">
+            <h5>At 3% Inflation: 72 ÷ 3 = 24 years for prices to double</h5>
+            <p style="font-size: 9pt;">If someone retires at 65 and lives to 90 (25 years), prices will more than double during their retirement.</p>
+        </div>
+
+        <table class="data-table">
+            <tr>
+                <th>Retirement Year</th>
+                <th>Starting Annual Need</th>
+                <th>After 10 Years (3% inflation)</th>
+                <th>After 25 Years (3% inflation)</th>
+            </tr>
+            <tr>
+                <td>Year 1</td>
+                <td>$50,000</td>
+                <td>$50,000 × 1.34 = $__________</td>
+                <td>$50,000 × 2.09 = $__________</td>
+            </tr>
+        </table>
+
+        <p style="font-size: 9pt; margin: 12px 0 8px;"><strong>3.</strong> If someone needs $50,000/year at retirement age 65, how much will they need at age 90 to maintain the same lifestyle?</p>
+        <div class="response-area">
+            <div class="response-lines"></div>
+        </div>
+
+        <p style="font-size: 9pt; margin: 12px 0 8px;"><strong>4.</strong> Why does this create a problem for people who keep all their retirement savings in "safe" investments like savings accounts?</p>
+        <div class="response-area">
+            <div class="response-lines"></div>
+            <div class="response-lines"></div>
+        </div>
+    </div>
+
+    <div class="section-title">Part C: Strategies to Address Longevity Risk</div>
+
+    <div class="activity-section">
+        <h3>Evaluate Retirement Shortfall Strategies</h3>
+        <p style="font-size: 9pt; color: var(--text-medium); margin-bottom: 12px;">For each strategy, rate its effectiveness (1-5) and explain when it would be most useful.</p>
+
+        <table class="data-table">
+            <tr>
+                <th style="width: 25%;">Strategy</th>
+                <th style="width: 35%;">Description</th>
+                <th style="width: 15%;">Your Rating (1-5)</th>
+                <th style="width: 25%;">Best For...</th>
+            </tr>
+            <tr>
+                <td><strong>Delay Retirement</strong></td>
+                <td>Work 2-5 more years; more savings time, fewer retirement years to fund</td>
+                <td style="height: 50px;"></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><strong>Increase Savings Rate</strong></td>
+                <td>Boost contributions by reducing current spending</td>
+                <td style="height: 50px;"></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><strong>Part-Time Work in Retirement</strong></td>
+                <td>Supplement retirement income with flexible work</td>
+                <td style="height: 50px;"></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><strong>Downsize Housing</strong></td>
+                <td>Move to smaller/cheaper home to reduce expenses</td>
+                <td style="height: 50px;"></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><strong>Relocate to Lower-Cost Area</strong></td>
+                <td>Move to area with lower cost of living</td>
+                <td style="height: 50px;"></td>
+                <td></td>
+            </tr>
+        </table>
+
+        <p style="font-size: 9pt; margin: 12px 0 8px;"><strong>5.</strong> Which strategy do you think is most effective for someone who starts planning at age 25? Why?</p>
+        <div class="response-area">
+            <div class="response-lines"></div>
+            <div class="response-lines"></div>
+        </div>
+
+        <p style="font-size: 9pt; margin: 12px 0 8px;"><strong>6.</strong> Which strategy might be best for someone who realizes at age 55 they haven't saved enough? Why?</p>
+        <div class="response-area">
+            <div class="response-lines"></div>
+            <div class="response-lines"></div>
+        </div>
+    </div>
+
+    <div class="section-title">Part D: Life Expectancy Factors</div>
+
+    <div class="activity-section">
+        <h3>Factors Affecting How Long You'll Live</h3>
+        <p style="font-size: 9pt; color: var(--text-medium); margin-bottom: 12px;">Understanding these factors helps you plan realistically.</p>
+
+        <div class="concept-grid">
+            <div class="concept-card">
+                <h4>Factors Within Your Control</h4>
+                <ul>
+                    <li>Diet and nutrition</li>
+                    <li>Exercise and physical activity</li>
+                    <li>Smoking and alcohol use</li>
+                    <li>Stress management</li>
+                    <li>Healthcare habits</li>
+                </ul>
+            </div>
+            <div class="concept-card">
+                <h4>Factors Partially in Control</h4>
+                <ul>
+                    <li>Access to healthcare</li>
+                    <li>Environmental quality</li>
+                    <li>Income/education level</li>
+                    <li>Geographic location</li>
+                    <li>Social connections</li>
+                </ul>
+            </div>
+        </div>
+
+        <p style="font-size: 9pt; margin: 12px 0 8px;"><strong>7.</strong> Based on your family history and lifestyle choices, do you expect to live longer or shorter than average? How should this affect your retirement planning?</p>
+        <div class="response-area large">
+            <div class="response-lines"></div>
+            <div class="response-lines"></div>
+            <div class="response-lines"></div>
+            <div class="response-lines"></div>
+        </div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <div class="section-title">Part E: Your Longevity Plan</div>
+
+    <div class="activity-section">
+        <h3>Create Your Early-Start Strategy</h3>
+        <p style="font-size: 9pt; color: var(--text-medium); margin-bottom: 12px;">Design a plan that accounts for potentially living 25-30 years in retirement.</p>
+
+        <p style="font-size: 9pt; margin-bottom: 6px;"><strong>Expected retirement age:</strong> _______</p>
+        <p style="font-size: 9pt; margin-bottom: 6px;"><strong>Expected life expectancy:</strong> _______</p>
+        <p style="font-size: 9pt; margin-bottom: 12px;"><strong>Retirement duration:</strong> _______ years</p>
+
+        <p style="font-size: 9pt; margin: 10px 0 8px;"><strong>8.</strong> What three specific actions will you take in your 20s to prepare for a potentially 30-year retirement?</p>
+        <div class="response-area large">
+            <div class="response-lines"></div>
+            <div class="response-lines"></div>
+            <div class="response-lines"></div>
+            <div class="response-lines"></div>
+        </div>
+
+        <p style="font-size: 9pt; margin: 12px 0 8px;"><strong>9.</strong> How will you adjust your investment strategy throughout your life to balance growth and protection as you age?</p>
+        <div class="response-area">
+            <div class="response-lines"></div>
+            <div class="response-lines"></div>
+            <div class="response-lines"></div>
+        </div>
+    </div>
+
+    <div class="section-title">Check Your Understanding</div>
+
+    <div class="activity-section">
+        <p style="font-size: 9pt; margin-bottom: 8px;"><strong>1.</strong> What is "longevity risk" in retirement planning?</p>
+        <div class="checkbox-item"><div class="checkbox"></div><span class="checkbox-label">A. The risk of dying too young</span></div>
+        <div class="checkbox-item"><div class="checkbox"></div><span class="checkbox-label">B. The risk of outliving your savings</span></div>
+        <div class="checkbox-item"><div class="checkbox"></div><span class="checkbox-label">C. The risk of stock market crashes</span></div>
+        <div class="checkbox-item"><div class="checkbox"></div><span class="checkbox-label">D. The risk of high inflation</span></div>
+
+        <p style="font-size: 9pt; margin: 12px 0 8px;"><strong>2.</strong> Why is starting retirement savings at 22 better than starting at 32, even if you save the same monthly amount?</p>
+        <div class="response-area">
+            <div class="response-lines"></div>
+            <div class="response-lines"></div>
+        </div>
+
+        <p style="font-size: 9pt; margin: 12px 0 8px;"><strong>3.</strong> If someone plans for a 20-year retirement but lives 30 years, what strategies could help them avoid running out of money?</p>
+        <div class="response-area">
+            <div class="response-lines"></div>
+            <div class="response-lines"></div>
+            <div class="response-lines"></div>
+        </div>
+
+        <p style="font-size: 9pt; margin: 12px 0 8px;"><strong>4.</strong> In your own words, explain why retirement planning should start in your teens or early 20s rather than your 40s or 50s.</p>
+        <div class="response-area">
+            <div class="response-lines"></div>
+            <div class="response-lines"></div>
+        </div>
+    </div>
+
+    <div class="footer">
+        &copy; PFL Academy | pflacademy.co | Chapter 6.2: Longevity and Retirement Planning
+    </div>
+
+</body>
+</html>

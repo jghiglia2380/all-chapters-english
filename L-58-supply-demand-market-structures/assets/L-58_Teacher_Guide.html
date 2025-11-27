@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-58 Teacher Guide</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+        :root {
+            --primary: #059669;
+            --primary-light: #ecfdf5;
+            --primary-dark: #065f46;
+            --text-dark: #1e293b;
+            --text-medium: #475569;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --bg-light: #f8fafc;
+            --warning: #f59e0b;
+            --warning-light: #fef3c7;
+            --error: #dc2626;
+            --error-light: #fee2e2;
+            --success-light: #dcfce7;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+
+        @page {
+            size: letter;
+            margin: 0.5in;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 10pt;
+            line-height: 1.45;
+            color: var(--text-dark);
+            background: white;
+        }
+
+        .header {
+            background: var(--primary);
+            color: white;
+            padding: 14px 18px;
+            border-radius: 6px;
+            margin-bottom: 16px;
+        }
+
+        .header h1 {
+            font-size: 13pt;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .header h2 {
+            font-size: 10pt;
+            font-weight: 400;
+            margin: 3px 0 0;
+            opacity: 0.9;
+        }
+
+        .section-header {
+            background: var(--primary-light);
+            border-left: 4px solid var(--primary);
+            padding: 7px 12px;
+            font-size: 10pt;
+            font-weight: 700;
+            color: var(--primary-dark);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin: 16px 0 10px;
+        }
+
+        .overview-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 14px;
+        }
+
+        .overview-table th {
+            background: var(--bg-light);
+            color: var(--text-light);
+            font-size: 8pt;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            text-align: center;
+            padding: 6px 10px;
+            border: 1px solid var(--border);
+            width: 33%;
+        }
+
+        .overview-table td {
+            text-align: center;
+            padding: 10px;
+            border: 1px solid var(--border);
+            font-weight: 600;
+            color: var(--text-dark);
+            font-size: 10pt;
+        }
+
+        .flow-container {
+            margin-bottom: 14px;
+        }
+
+        .flow-item {
+            display: flex;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border);
+            page-break-inside: avoid;
+        }
+
+        .flow-item:last-child {
+            border-bottom: none;
+        }
+
+        .flow-time {
+            width: 65px;
+            font-weight: 700;
+            color: var(--primary);
+            flex-shrink: 0;
+            font-size: 10pt;
+        }
+
+        .flow-content {
+            flex: 1;
+        }
+
+        .flow-title {
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 3px;
+            font-size: 10pt;
+        }
+
+        .flow-content ul {
+            margin: 0;
+            padding-left: 16px;
+            font-size: 9pt;
+            color: var(--text-medium);
+        }
+
+        .flow-content li {
+            margin-bottom: 2px;
+        }
+
+        .diff-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 14px;
+        }
+
+        .diff-box {
+            background: var(--bg-light);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 10px 12px;
+        }
+
+        .diff-title {
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 6px;
+            font-size: 9pt;
+        }
+
+        .diff-box ul {
+            margin: 0;
+            padding-left: 16px;
+            font-size: 9pt;
+            color: var(--text-medium);
+        }
+
+        .diff-box li {
+            margin-bottom: 2px;
+        }
+
+        .answer-key {
+            page-break-before: always;
+        }
+
+        .answer-block {
+            margin-bottom: 12px;
+            page-break-inside: avoid;
+        }
+
+        .answer-title {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 9pt;
+            border-bottom: 1px solid #a7f3d0;
+            padding-bottom: 3px;
+            margin-bottom: 6px;
+        }
+
+        .answer-item {
+            margin-bottom: 5px;
+            font-size: 9pt;
+            color: var(--text-dark);
+        }
+
+        .answer-item strong {
+            color: var(--primary-dark);
+        }
+
+        .calc-display {
+            font-family: 'Courier New', monospace;
+            background: var(--bg-light);
+            padding: 8px 10px;
+            border-radius: 4px;
+            margin: 6px 0;
+            font-size: 8.5pt;
+            line-height: 1.5;
+            white-space: pre-line;
+        }
+
+        .answer-note {
+            background: var(--warning-light);
+            border-left: 3px solid var(--warning);
+            padding: 6px 10px;
+            font-size: 9pt;
+            font-style: italic;
+            color: #92400e;
+            margin: 6px 0;
+        }
+
+        .misconception-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 9pt;
+            margin-top: 10px;
+        }
+
+        .misconception-table th {
+            padding: 6px 10px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .misconception-table th:first-child {
+            background: var(--error-light);
+            color: #991b1b;
+            border: 1px solid #fca5a5;
+            width: 40%;
+        }
+
+        .misconception-table th:last-child {
+            background: var(--success-light);
+            color: #166534;
+            border: 1px solid #86efac;
+        }
+
+        .misconception-table td {
+            padding: 6px 10px;
+            border: 1px solid var(--border);
+            vertical-align: top;
+            color: var(--text-medium);
+        }
+
+        .footer {
+            margin-top: 20px;
+            padding-top: 8px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            font-size: 8pt;
+            color: var(--text-light);
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <div class="header">
+        <h1>PFL Academy</h1>
+        <h2>Teacher Guide: Chapter 58 — Supply, Demand, and Market Structures</h2>
+    </div>
+
+    <!-- OVERVIEW -->
+    <div class="section-header">Overview</div>
+    <table class="overview-table">
+        <tr>
+            <th>Time</th>
+            <th>Materials</th>
+            <th>Prerequisites</th>
+        </tr>
+        <tr>
+            <td>45-50 Minutes</td>
+            <td>Student Activity Packet, Calculator</td>
+            <td>L-49 Opportunity Cost, L-50 Supply & Demand basics helpful</td>
+        </tr>
+    </table>
+
+    <!-- LESSON FLOW -->
+    <div class="section-header">Lesson Flow</div>
+    <div class="flow-container">
+        <div class="flow-item">
+            <div class="flow-time">5 min</div>
+            <div class="flow-content">
+                <div class="flow-title">THE CHALLENGE</div>
+                <ul>
+                    <li>Ask students: "Why does coffee cost $3 here but $6 downtown?" Start with price variation they experience.</li>
+                    <li>Introduce the two key frameworks: supply/demand dynamics AND market structure.</li>
+                    <li>Key insight: Understanding these forces = making smarter purchasing decisions.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="flow-item">
+            <div class="flow-time">10 min</div>
+            <div class="flow-content">
+                <div class="flow-title">CORE CONCEPTS</div>
+                <ul>
+                    <li>Review supply and demand curves—focus on shift vs. movement along curve.</li>
+                    <li>Introduce market structures: Perfect Competition → Oligopoly → Monopoly spectrum.</li>
+                    <li>Key distinction: In competitive markets, shop around. In monopolies, find alternatives.</li>
+                    <li>Define consumer surplus: "The deal you get" = willingness to pay minus actual price.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="flow-item">
+            <div class="flow-time">25-30 min</div>
+            <div class="flow-content">
+                <div class="flow-title">APPLY IT</div>
+                <ul>
+                    <li><strong>Part A (15 min):</strong> Supply-demand shift scenarios. Have students predict price/quantity changes, then discuss purchasing strategies.</li>
+                    <li><strong>Part B (15 min):</strong> Market structure analysis. Calculate cost difference between competition and monopoly. Identify real markets.</li>
+                    <li><strong>Part C (15 min):</strong> Strategic purchase planning. Apply frameworks to a real purchase students are considering.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="flow-item">
+            <div class="flow-time">10 min</div>
+            <div class="flow-content">
+                <div class="flow-title">CHECK YOUR UNDERSTANDING</div>
+                <ul>
+                    <li>Q3 (inelastic demand) is crucial—connects to budget planning and emergency funds.</li>
+                    <li>Q4 (oligopoly pricing) explains why wireless carriers have similar prices.</li>
+                    <li>Q5 (apartment timing) applies all concepts to a major life decision.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- DIFFERENTIATION -->
+    <div class="section-header">Differentiation</div>
+    <div class="diff-grid">
+        <div class="diff-box">
+            <div class="diff-title">Support</div>
+            <ul>
+                <li>Provide supply/demand curve visual reference card.</li>
+                <li>Pre-identify the market structure for Part B examples.</li>
+                <li>Work through smartphone scenario together before independent work.</li>
+                <li>Use simple rule: Supply ↓ or Demand ↑ = Price ↑ (and vice versa).</li>
+            </ul>
+        </div>
+        <div class="diff-box">
+            <div class="diff-title">Extension</div>
+            <ul>
+                <li>Calculate consumer surplus graphically using demand curve triangles.</li>
+                <li>Research a recent supply shock (chip shortage) and trace price effects.</li>
+                <li>Compare pricing strategies across countries with different market structures.</li>
+                <li>Analyze a company's annual report for market structure language.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ANSWER KEY (new page) -->
+    <div class="answer-key">
+        <div class="section-header">Answer Key</div>
+
+        <div class="answer-block">
+            <div class="answer-title">Part A: Supply and Demand Shifts</div>
+            <div class="answer-item"><strong>Scenario 1 (Smartphone):</strong> DEMAND shifts RIGHT. Price INCREASES. Quantity INCREASES. Strategy: Buy before demand surge if possible, or wait for initial hype to settle.</div>
+            <div class="answer-item"><strong>Scenario 2 (Coffee):</strong> SUPPLY shifts LEFT. Price INCREASES. Quantity DECREASES. Expect higher coffee prices for 6-12 months until supply recovers.</div>
+            <div class="answer-item"><strong>Scenario 3 (Television):</strong> SUPPLY shifts RIGHT. Price DECREASES. Quantity INCREASES. Wait to buy—prices will fall as technology spreads through industry.</div>
+            <div class="answer-item"><strong>Scenario 4 (Housing):</strong> DEMAND shifts LEFT. Price DECREASES. Good news for renters—more apartments available at lower prices. Bad for landlords.</div>
+            <div class="answer-note">Key teaching point: Students should connect these predictions to actual purchasing strategies—the analysis only matters if it changes behavior.</div>
+        </div>
+
+        <div class="answer-block">
+            <div class="answer-title">Part B: Market Structure Analysis</div>
+            <div class="calc-display">Annual cost difference calculation:
+Monopoly: $89 × 12 = $1,068
+Perfect Competition: $27 × 12 = $324
+Difference: $1,068 - $324 = $744/year
+
+This is what monopoly power costs consumers!</div>
+            <div class="answer-item"><strong>Water utility:</strong> Monopoly—single provider with government-granted exclusive rights (natural monopoly).</div>
+            <div class="answer-item"><strong>Wireless phone:</strong> Oligopoly—4 major carriers (AT&T, Verizon, T-Mobile, sometimes regional). Note similar pricing.</div>
+            <div class="answer-item"><strong>Gasoline:</strong> Near-perfect competition locally—many stations, identical product, prices closely tracked.</div>
+            <div class="answer-item"><strong>Online retail:</strong> Closer to competition—many sellers, easy comparison, though Amazon has significant market power.</div>
+            <div class="answer-item"><strong>Airlines:</strong> Oligopoly—often only 3-4 carriers serve each city. Prices often similar.</div>
+            <div class="answer-item"><strong>Best market for comparison shopping:</strong> Perfect competition (gasoline, groceries, online retail)—prices vary significantly, and shopping around pays off.</div>
+            <div class="answer-item"><strong>Monopoly strategies:</strong> Find substitutes (streaming vs. cable), ask about unadvertised discounts, consider alternatives (5G vs. cable internet), advocate for regulation.</div>
+        </div>
+
+        <div class="answer-block">
+            <div class="answer-title">Part C: Strategic Purchase Planning</div>
+            <div class="answer-note">Answers will vary based on student's chosen product. Look for: (1) Correct market structure identification, (2) Reasonable seasonal/timing patterns, (3) Logical negotiation strategies based on market type. Example for used car included in packet.</div>
+        </div>
+
+        <div class="answer-block">
+            <div class="answer-title">Check Your Understanding</div>
+            <div class="answer-item"><strong>1.</strong> B (Prices increase because supply decreases). Orange crop damage reduces supply, shifting supply curve left, raising equilibrium price.</div>
+            <div class="answer-item"><strong>2.</strong> C (Perfect competition). Many sellers competing drives prices toward cost, maximizing consumer surplus.</div>
+            <div class="answer-item"><strong>3.</strong> B (Small supply disruptions cause large price swings). Inelastic demand means quantity doesn't fall much when prices rise, so prices must rise MORE to restore equilibrium.</div>
+            <div class="answer-item"><strong>4.</strong> B (Each firm watches competitors and avoids price wars). Oligopolists are interdependent—cutting prices triggers retaliation, hurting all firms.</div>
+            <div class="answer-item"><strong>5.</strong> WORST: July-August (peak student demand, limited supply available). BEST: October-November or January (after semester rush). Reasoning: Student demand creates seasonal peak in summer; searching off-peak means more options and lower prices.</div>
+        </div>
+
+        <!-- COMMON MISCONCEPTIONS -->
+        <div class="section-header">Common Misconceptions</div>
+        <table class="misconception-table">
+            <tr>
+                <th>Misconception</th>
+                <th>Clarification</th>
+            </tr>
+            <tr>
+                <td>"More competition always means lower prices."</td>
+                <td>Generally true, but more competition can also mean more product differentiation, advertising costs, and innovation that can keep prices from falling to cost. Perfect competition with identical products produces lowest prices.</td>
+            </tr>
+            <tr>
+                <td>"Monopolies are always illegal."</td>
+                <td>Natural monopolies (utilities) are often legal and even regulated. Being a monopoly isn't illegal—using monopoly power to harm competition is. Many monopolies exist through innovation or patents.</td>
+            </tr>
+            <tr>
+                <td>"Price increases are always bad for consumers."</td>
+                <td>Price increases signal scarcity and encourage conservation of scarce resources. They also incentivize new supply. After a hurricane, higher gas prices encourage people to buy less and motivate suppliers to increase shipments.</td>
+            </tr>
+            <tr>
+                <td>"If I wait, prices always come down."</td>
+                <td>Not always! If supply is decreasing or demand is growing, prices may continue rising. Understanding current trends matters—waiting only helps if supply is increasing or demand is falling.</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        <span>© PFL Academy | pflacademy.co</span>
+        <span>Teacher Guide: Chapter 58</span>
+    </div>
+
+</body>
+</html>

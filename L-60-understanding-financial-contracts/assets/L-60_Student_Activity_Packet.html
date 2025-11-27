@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-60 Student Activity Packet: Understanding Financial Contracts</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+        :root {
+            --primary: #6366f1;
+            --primary-light: #eef2ff;
+            --primary-dark: #4338ca;
+            --text-dark: #1e293b;
+            --text-medium: #475569;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --bg-light: #f8fafc;
+            --warning: #f59e0b;
+            --warning-light: #fef3c7;
+            --error: #dc2626;
+            --error-light: #fee2e2;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+
+        @page {
+            size: letter;
+            margin: 0.5in;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 10pt;
+            line-height: 1.45;
+            color: var(--text-dark);
+            background: white;
+        }
+
+        .header {
+            background: var(--primary);
+            color: white;
+            padding: 14px 18px;
+            border-radius: 6px;
+            margin-bottom: 16px;
+        }
+
+        .header h1 {
+            font-size: 13pt;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .header h2 {
+            font-size: 10pt;
+            font-weight: 400;
+            margin: 3px 0 0;
+            opacity: 0.9;
+        }
+
+        .section-header {
+            background: var(--primary-light);
+            border-left: 4px solid var(--primary);
+            padding: 7px 12px;
+            font-size: 10pt;
+            font-weight: 700;
+            color: var(--primary-dark);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin: 16px 0 10px;
+        }
+
+        .challenge-box {
+            background: linear-gradient(135deg, var(--primary-light) 0%, #fff 100%);
+            border: 1px solid var(--primary);
+            border-radius: 6px;
+            padding: 12px 14px;
+            margin-bottom: 14px;
+        }
+
+        .challenge-title {
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 6px;
+            font-size: 10pt;
+        }
+
+        .challenge-box p {
+            font-size: 9.5pt;
+            color: var(--text-medium);
+            margin-bottom: 6px;
+        }
+
+        .objectives-box {
+            background: var(--bg-light);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 12px 14px;
+            margin-bottom: 14px;
+        }
+
+        .objectives-title {
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+            font-size: 10pt;
+        }
+
+        .objectives-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .objectives-list li {
+            position: relative;
+            padding-left: 22px;
+            margin-bottom: 5px;
+            font-size: 9pt;
+            color: var(--text-medium);
+        }
+
+        .objectives-list li::before {
+            content: "□";
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .terms-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 14px;
+            font-size: 9pt;
+        }
+
+        .terms-table th {
+            background: var(--primary);
+            color: white;
+            padding: 8px 10px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 9pt;
+        }
+
+        .terms-table td {
+            padding: 8px 10px;
+            border: 1px solid var(--border);
+            vertical-align: top;
+        }
+
+        .terms-table tr:nth-child(even) {
+            background: var(--bg-light);
+        }
+
+        .terms-table td:first-child {
+            font-weight: 600;
+            color: var(--primary-dark);
+            width: 28%;
+        }
+
+        .background-box {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 12px 14px;
+            margin-bottom: 14px;
+        }
+
+        .background-box h4 {
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 6px;
+            font-size: 10pt;
+        }
+
+        .background-box p {
+            font-size: 9pt;
+            color: var(--text-medium);
+            margin-bottom: 6px;
+        }
+
+        .part-header {
+            background: var(--primary);
+            color: white;
+            padding: 6px 12px;
+            font-size: 10pt;
+            font-weight: 700;
+            border-radius: 4px 4px 0 0;
+            margin-top: 14px;
+        }
+
+        .part-content {
+            border: 1px solid var(--border);
+            border-top: none;
+            border-radius: 0 0 4px 4px;
+            padding: 12px;
+            margin-bottom: 12px;
+        }
+
+        .scenario-card {
+            background: var(--bg-light);
+            border-left: 3px solid var(--primary);
+            padding: 10px 12px;
+            margin-bottom: 10px;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .scenario-title {
+            font-weight: 700;
+            color: var(--primary-dark);
+            font-size: 9pt;
+            margin-bottom: 4px;
+        }
+
+        .scenario-card p, .scenario-card li {
+            font-size: 9pt;
+            color: var(--text-medium);
+            margin-bottom: 4px;
+        }
+
+        .red-flag-box {
+            background: var(--error-light);
+            border-left: 3px solid var(--error);
+            padding: 8px 12px;
+            margin: 8px 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .red-flag-box p {
+            font-size: 9pt;
+            color: #991b1b;
+            margin: 0;
+        }
+
+        .answer-line {
+            border-bottom: 1px solid var(--border);
+            min-height: 18px;
+            margin: 6px 0;
+        }
+
+        .answer-box {
+            border: 1px solid var(--border);
+            min-height: 50px;
+            margin: 6px 0;
+            border-radius: 4px;
+            padding: 6px;
+        }
+
+        .mc-question {
+            margin-bottom: 12px;
+        }
+
+        .mc-question p {
+            font-size: 9.5pt;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 6px;
+        }
+
+        .mc-options {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .mc-options li {
+            position: relative;
+            padding: 5px 8px 5px 28px;
+            margin-bottom: 4px;
+            background: var(--bg-light);
+            border-radius: 4px;
+            font-size: 9pt;
+            color: var(--text-medium);
+        }
+
+        .mc-options li::before {
+            content: attr(data-letter);
+            position: absolute;
+            left: 8px;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .hint-box {
+            background: var(--warning-light);
+            border-left: 3px solid var(--warning);
+            padding: 8px 12px;
+            font-size: 9pt;
+            font-style: italic;
+            color: #92400e;
+            margin: 10px 0;
+        }
+
+        .calc-box {
+            font-family: 'Courier New', monospace;
+            background: var(--bg-light);
+            padding: 10px;
+            border-radius: 4px;
+            margin: 8px 0;
+            font-size: 9pt;
+            border: 1px solid var(--border);
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+            font-size: 9pt;
+        }
+
+        .data-table th, .data-table td {
+            border: 1px solid var(--border);
+            padding: 6px 10px;
+            text-align: left;
+        }
+
+        .data-table th {
+            background: var(--primary-light);
+            color: var(--primary-dark);
+            font-weight: 600;
+        }
+
+        .data-table tr:nth-child(even) {
+            background: var(--bg-light);
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 6px;
+            font-size: 9pt;
+        }
+
+        .checklist-item input[type="checkbox"] {
+            margin-right: 8px;
+            margin-top: 2px;
+        }
+
+        .footer {
+            margin-top: 20px;
+            padding-top: 8px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            font-size: 8pt;
+            color: var(--text-light);
+        }
+
+        .page-break {
+            page-break-before: always;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <div class="header">
+        <h1>PFL Academy</h1>
+        <h2>Chapter 60: Understanding Financial Contracts — Student Activity Packet</h2>
+    </div>
+
+    <!-- CHALLENGE -->
+    <div class="challenge-box">
+        <div class="challenge-title">The Challenge: What Are You Really Agreeing To?</div>
+        <p>Only 7% of people read end-user agreements before clicking "I agree." Yet these contracts can cost you thousands of dollars in unexpected fees, lock you into unfavorable obligations, and give up important rights.</p>
+        <p>A student who didn't read her apartment lease discovered she owed <strong>$3,800</strong> in termination penalties when she got a job offer in another city. A man who signed a "free" phone contract found he'd owe <strong>$1,150</strong> to cancel early.</p>
+        <p><strong>Your Goal:</strong> Develop contract literacy to identify essential elements, spot red flags, and protect your financial interests before signing.</p>
+    </div>
+
+    <!-- OBJECTIVES -->
+    <div class="objectives-box">
+        <div class="objectives-title">Learning Objectives</div>
+        <ul class="objectives-list">
+            <li>Identify the five essential elements that make a contract legally binding</li>
+            <li>Interpret common legal terminology and contract clauses</li>
+            <li>Analyze contract terms to understand rights, obligations, and potential risks</li>
+            <li>Evaluate the financial implications of different contract types</li>
+            <li>Apply contract literacy skills to protect personal interests</li>
+        </ul>
+    </div>
+
+    <!-- TERMS TABLE -->
+    <div class="section-header">Core Concepts</div>
+    <table class="terms-table">
+        <tr>
+            <th>Term</th>
+            <th>Definition</th>
+        </tr>
+        <tr>
+            <td>Contract</td>
+            <td>Legally enforceable agreement requiring: offer, acceptance, consideration, capacity, and legality</td>
+        </tr>
+        <tr>
+            <td>Consideration</td>
+            <td>Something of value exchanged between parties (money, services, goods, or promises)</td>
+        </tr>
+        <tr>
+            <td>Capacity</td>
+            <td>Legal ability to contract: 18+ years old, mentally competent, not under duress</td>
+        </tr>
+        <tr>
+            <td>Breach of Contract</td>
+            <td>Failure to fulfill contract obligations; can result in legal remedies and penalties</td>
+        </tr>
+        <tr>
+            <td>Fine Print</td>
+            <td>Often-overlooked clauses containing important fees, penalties, and limitations</td>
+        </tr>
+        <tr>
+            <td>Arbitration Clause</td>
+            <td>Requires disputes be resolved through private arbitration, not courts</td>
+        </tr>
+        <tr>
+            <td>Automatic Renewal</td>
+            <td>Contract continues unless you actively cancel, often requiring advance notice</td>
+        </tr>
+    </table>
+
+    <!-- BACKGROUND -->
+    <div class="background-box">
+        <h4>The Five Essential Elements of a Valid Contract</h4>
+        <p><strong>1. Offer:</strong> A clear proposal to do or provide something specific</p>
+        <p><strong>2. Acceptance:</strong> Unconditional agreement to the offer's terms</p>
+        <p><strong>3. Consideration:</strong> Each party exchanges something of value</p>
+        <p><strong>4. Capacity:</strong> Parties are legally able to contract (age, mental competence, no duress)</p>
+        <p><strong>5. Legality:</strong> The contract's purpose must be legal</p>
+    </div>
+
+    <!-- PART A -->
+    <div class="part-header">Part A: Identifying Contract Elements (12 minutes)</div>
+    <div class="part-content">
+
+        <p style="font-size: 9pt; margin-bottom: 10px;"><strong>Instructions:</strong> Read each contract excerpt and identify the essential elements present.</p>
+
+        <div class="scenario-card">
+            <div class="scenario-title">Contract Excerpt 1: Gym Membership Agreement</div>
+            <p style="font-style: italic; font-size: 8.5pt; background: white; padding: 8px; border-radius: 4px; margin: 6px 0;">"I, the undersigned member, agree to pay FitLife Gym $49.95 per month for a 12-month membership period beginning on the date of enrollment. In exchange, FitLife Gym agrees to provide access to all gym facilities during operating hours. Member must be at least 18 years of age. This agreement may be cancelled within 72 hours of signing without penalty."</p>
+        </div>
+
+        <table class="data-table">
+            <tr>
+                <th>Element</th>
+                <th>Present? (Y/N)</th>
+                <th>Evidence from Contract</th>
+            </tr>
+            <tr>
+                <td>Offer</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Acceptance</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Consideration</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Capacity</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Legality</td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+
+        <p style="font-size: 9pt; color: var(--text-medium);">Is this a valid, enforceable contract? Why or why not?</p>
+        <div class="answer-line"></div>
+
+        <div class="scenario-card">
+            <div class="scenario-title">Contract Excerpt 2: Car Sale Between Friends</div>
+            <p style="font-style: italic; font-size: 8.5pt; background: white; padding: 8px; border-radius: 4px; margin: 6px 0;">"I promise to sell my 2018 Honda Civic to Mike for $12,000. Mike promises to pay me in full within 30 days. Vehicle will be transferred upon receipt of payment."</p>
+        </div>
+
+        <table class="data-table">
+            <tr>
+                <th>Element</th>
+                <th>Present? (Y/N)</th>
+                <th>Evidence from Contract</th>
+            </tr>
+            <tr>
+                <td>Offer</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Acceptance</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Consideration</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Capacity</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Legality</td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+
+        <p style="font-size: 9pt; color: var(--text-medium);">What's missing from this contract that could cause problems?</p>
+        <div class="answer-line"></div>
+    </div>
+
+    <!-- PAGE BREAK -->
+    <div class="page-break"></div>
+
+    <!-- PART B -->
+    <div class="part-header">Part B: Red Flag Identification (15 minutes)</div>
+    <div class="part-content">
+
+        <p style="font-size: 9pt; margin-bottom: 10px;"><strong>Instructions:</strong> Read each contract clause and identify potential red flags. Rate each from 1 (minor concern) to 5 (major red flag).</p>
+
+        <div class="scenario-card">
+            <div class="scenario-title">Clause 1: Automatic Renewal</div>
+            <p style="font-style: italic; font-size: 8.5pt; background: white; padding: 8px; border-radius: 4px; margin: 6px 0;">"This agreement shall automatically renew for successive one-year terms unless Member provides written notice of cancellation at least 60 days prior to the renewal date. Renewal will occur at the then-current membership rate."</p>
+        </div>
+
+        <p style="font-size: 9pt;"><strong>Red flag rating (1-5):</strong> _____ </p>
+        <p style="font-size: 9pt; color: var(--text-medium);">Potential problems with this clause:</p>
+        <div class="answer-line"></div>
+
+        <div class="scenario-card">
+            <div class="scenario-title">Clause 2: Arbitration Requirement</div>
+            <p style="font-style: italic; font-size: 8.5pt; background: white; padding: 8px; border-radius: 4px; margin: 6px 0;">"Any dispute arising from this agreement shall be resolved through binding arbitration. Customer waives all rights to participate in class action lawsuits and agrees that disputes will be arbitrated on an individual basis only."</p>
+        </div>
+
+        <p style="font-size: 9pt;"><strong>Red flag rating (1-5):</strong> _____ </p>
+        <p style="font-size: 9pt; color: var(--text-medium);">What rights are you giving up?</p>
+        <div class="answer-line"></div>
+
+        <div class="scenario-card">
+            <div class="scenario-title">Clause 3: Unilateral Modification</div>
+            <p style="font-style: italic; font-size: 8.5pt; background: white; padding: 8px; border-radius: 4px; margin: 6px 0;">"Provider reserves the right to modify these terms at any time. Continued use of services after modifications are posted constitutes acceptance of new terms."</p>
+        </div>
+
+        <p style="font-size: 9pt;"><strong>Red flag rating (1-5):</strong> _____ </p>
+        <p style="font-size: 9pt; color: var(--text-medium);">Why is this problematic?</p>
+        <div class="answer-line"></div>
+
+        <div class="scenario-card">
+            <div class="scenario-title">Clause 4: Early Termination Penalty</div>
+            <p style="font-style: italic; font-size: 8.5pt; background: white; padding: 8px; border-radius: 4px; margin: 6px 0;">"Tenant may terminate this lease early upon 60 days written notice and payment of an early termination fee equal to two (2) months' rent plus forfeiture of security deposit."</p>
+        </div>
+
+        <p style="font-size: 9pt;"><strong>Red flag rating (1-5):</strong> _____ </p>
+        <p style="font-size: 9pt; color: var(--text-medium);">If rent is $1,200/month and deposit is $1,200, what's the total early termination cost?</p>
+        <div class="calc-box">
+Two months' rent: $1,200 × 2 = $_______
+Plus forfeited deposit: $_______
+Total early termination cost: $_______
+        </div>
+
+        <div class="red-flag-box">
+            <p><strong>Red Flag Summary:</strong> Common contract red flags include: automatic renewal, arbitration requirements, unilateral modification rights, excessive penalties, liability waivers, and vague termination procedures. Always calculate the WORST-CASE cost before signing!</p>
+        </div>
+    </div>
+
+    <!-- PAGE BREAK -->
+    <div class="page-break"></div>
+
+    <!-- PART C -->
+    <div class="part-header">Part C: Contract Comparison Challenge (15 minutes)</div>
+    <div class="part-content">
+
+        <p style="font-size: 9pt; margin-bottom: 10px;"><strong>Scenario:</strong> You need a cell phone plan. Compare these three options and determine which is best for your situation.</p>
+
+        <table class="data-table">
+            <tr>
+                <th></th>
+                <th>Plan A</th>
+                <th>Plan B</th>
+                <th>Plan C</th>
+            </tr>
+            <tr>
+                <td><strong>Monthly cost</strong></td>
+                <td>$80</td>
+                <td>$55</td>
+                <td>$70</td>
+            </tr>
+            <tr>
+                <td><strong>Contract length</strong></td>
+                <td>2 years (24 months)</td>
+                <td>No contract</td>
+                <td>1 year (12 months)</td>
+            </tr>
+            <tr>
+                <td><strong>Phone included?</strong></td>
+                <td>"Free" $950 phone (financed)</td>
+                <td>No, bring your own</td>
+                <td>$200 subsidy on phone</td>
+            </tr>
+            <tr>
+                <td><strong>Early termination fee</strong></td>
+                <td>$350 + remaining phone balance</td>
+                <td>$0</td>
+                <td>$150</td>
+            </tr>
+            <tr>
+                <td><strong>Auto-renewal?</strong></td>
+                <td>Yes, to 2-year term</td>
+                <td>No</td>
+                <td>Converts to month-to-month</td>
+            </tr>
+        </table>
+
+        <p style="font-size: 9pt; font-weight: 600; margin: 12px 0 6px;">Calculate Total 24-Month Cost (if you stay full term):</p>
+
+        <div class="calc-box">
+Plan A: $80 × 24 = $_______ (phone "included")
+Plan B: $55 × 24 = $_______ + $400 phone purchase = $_______
+Plan C: $70 × 12 = $840 + $70 × 12 (month-to-month) = $_______ + ($600 phone − $200 subsidy) = $_______
+        </div>
+
+        <p style="font-size: 9pt; font-weight: 600; margin: 12px 0 6px;">Calculate Cost If You Leave After 10 Months:</p>
+
+        <div class="calc-box">
+Plan A: $80 × 10 = $800 + $350 ETF + $_____ remaining phone balance = $_______
+Plan B: $55 × 10 = $550 + $400 phone = $_______
+Plan C: $70 × 10 = $700 + $150 ETF + $400 phone cost = $_______
+        </div>
+
+        <p style="font-size: 9pt; font-weight: 600; margin: 10px 0 6px;">Analysis Questions:</p>
+
+        <p style="font-size: 9pt; color: var(--text-medium);">Which plan is cheapest over 24 months?</p>
+        <div class="answer-line"></div>
+
+        <p style="font-size: 9pt; color: var(--text-medium);">Which plan is cheapest if you might leave after 10 months?</p>
+        <div class="answer-line"></div>
+
+        <p style="font-size: 9pt; color: var(--text-medium);">Which plan would you choose and why?</p>
+        <div class="answer-box"></div>
+
+        <div class="hint-box">
+            <strong>Key Insight:</strong> "Free" usually isn't free. The $950 phone in Plan A is financed into your payments and owed if you leave early. Plan B's flexibility costs more monthly but gives maximum freedom.</div>
+    </div>
+
+    <!-- CHECK YOUR UNDERSTANDING -->
+    <div class="section-header">Check Your Understanding</div>
+
+    <div class="mc-question">
+        <p>1. Which element is NOT required for a valid contract?</p>
+        <ul class="mc-options">
+            <li data-letter="A">Consideration (exchange of value)</li>
+            <li data-letter="B">Notarization (notary signature)</li>
+            <li data-letter="C">Capacity (legal ability to contract)</li>
+            <li data-letter="D">Acceptance (agreement to terms)</li>
+        </ul>
+    </div>
+
+    <div class="mc-question">
+        <p>2. An arbitration clause in a contract typically:</p>
+        <ul class="mc-options">
+            <li data-letter="A">Increases your legal remedies if something goes wrong</li>
+            <li data-letter="B">Requires disputes to be settled privately, not in court</li>
+            <li data-letter="C">Allows you to sue for unlimited damages</li>
+            <li data-letter="D">Has no effect on your legal rights</li>
+        </ul>
+    </div>
+
+    <div class="mc-question">
+        <p>3. "Unilateral modification rights" in a contract means:</p>
+        <ul class="mc-options">
+            <li data-letter="A">Both parties must agree to any changes</li>
+            <li data-letter="B">One party can change the terms without the other's consent</li>
+            <li data-letter="C">The contract cannot be modified once signed</li>
+            <li data-letter="D">Modifications require court approval</li>
+        </ul>
+    </div>
+
+    <div class="mc-question">
+        <p>4. A 16-year-old signs a gym membership contract. This contract is:</p>
+        <ul class="mc-options">
+            <li data-letter="A">Fully valid and enforceable</li>
+            <li data-letter="B">Voidable by the minor (they can cancel it)</li>
+            <li data-letter="C">Automatically void from the start</li>
+            <li data-letter="D">Only valid if a parent co-signs</li>
+        </ul>
+    </div>
+
+    <div class="mc-question">
+        <p>5. Short Answer: You find a great apartment and the landlord wants you to sign the lease immediately, saying "another applicant is very interested." What should you do, and why?</p>
+        <div class="answer-box" style="min-height: 60px;"></div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        <span>© PFL Academy | pflacademy.co</span>
+        <span>Chapter 60: Understanding Financial Contracts</span>
+    </div>
+
+</body>
+</html>

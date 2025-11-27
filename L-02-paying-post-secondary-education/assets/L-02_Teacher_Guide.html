@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-02 Teacher Guide</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+        :root {
+            --primary: #059669;
+            --primary-light: #ecfdf5;
+            --primary-dark: #065f46;
+            --text-dark: #1e293b;
+            --text-medium: #475569;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --bg-light: #f8fafc;
+            --warning: #f59e0b;
+            --warning-light: #fef3c7;
+            --error: #dc2626;
+            --error-light: #fee2e2;
+            --success-light: #dcfce7;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+
+        @page {
+            size: letter;
+            margin: 0.5in;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 10pt;
+            line-height: 1.45;
+            color: var(--text-dark);
+            background: white;
+        }
+
+        .header {
+            background: var(--primary);
+            color: white;
+            padding: 14px 18px;
+            border-radius: 6px;
+            margin-bottom: 16px;
+        }
+
+        .header h1 {
+            font-size: 13pt;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .header h2 {
+            font-size: 10pt;
+            font-weight: 400;
+            margin: 3px 0 0;
+            opacity: 0.9;
+        }
+
+        .section-header {
+            background: var(--primary-light);
+            border-left: 4px solid var(--primary);
+            padding: 7px 12px;
+            font-size: 10pt;
+            font-weight: 700;
+            color: var(--primary-dark);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin: 16px 0 10px;
+        }
+
+        .overview-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 14px;
+        }
+
+        .overview-table th {
+            background: var(--bg-light);
+            color: var(--text-light);
+            font-size: 8pt;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            text-align: center;
+            padding: 6px 10px;
+            border: 1px solid var(--border);
+            width: 33%;
+        }
+
+        .overview-table td {
+            text-align: center;
+            padding: 10px;
+            border: 1px solid var(--border);
+            font-weight: 600;
+            color: var(--text-dark);
+            font-size: 10pt;
+        }
+
+        .flow-container {
+            margin-bottom: 14px;
+        }
+
+        .flow-item {
+            display: flex;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border);
+            page-break-inside: avoid;
+        }
+
+        .flow-item:last-child {
+            border-bottom: none;
+        }
+
+        .flow-time {
+            width: 65px;
+            font-weight: 700;
+            color: var(--primary);
+            flex-shrink: 0;
+            font-size: 10pt;
+        }
+
+        .flow-content {
+            flex: 1;
+        }
+
+        .flow-title {
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 3px;
+            font-size: 10pt;
+        }
+
+        .flow-content ul {
+            margin: 0;
+            padding-left: 16px;
+            font-size: 9pt;
+            color: var(--text-medium);
+        }
+
+        .flow-content li {
+            margin-bottom: 2px;
+        }
+
+        .diff-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 14px;
+        }
+
+        .diff-box {
+            background: var(--bg-light);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 10px 12px;
+        }
+
+        .diff-title {
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 6px;
+            font-size: 9pt;
+        }
+
+        .diff-box ul {
+            margin: 0;
+            padding-left: 16px;
+            font-size: 9pt;
+            color: var(--text-medium);
+        }
+
+        .diff-box li {
+            margin-bottom: 2px;
+        }
+
+        .answer-key {
+            page-break-before: always;
+        }
+
+        .answer-block {
+            margin-bottom: 12px;
+            page-break-inside: avoid;
+        }
+
+        .answer-title {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 9pt;
+            border-bottom: 1px solid #a7f3d0;
+            padding-bottom: 3px;
+            margin-bottom: 6px;
+        }
+
+        .answer-item {
+            margin-bottom: 5px;
+            font-size: 9pt;
+            color: var(--text-dark);
+        }
+
+        .answer-item strong {
+            color: var(--primary-dark);
+        }
+
+        .calc-display {
+            font-family: 'Courier New', monospace;
+            background: var(--bg-light);
+            padding: 8px 10px;
+            border-radius: 4px;
+            margin: 6px 0;
+            font-size: 8.5pt;
+            line-height: 1.5;
+            white-space: pre-line;
+        }
+
+        .answer-note {
+            background: var(--warning-light);
+            border-left: 3px solid var(--warning);
+            padding: 6px 10px;
+            font-size: 9pt;
+            font-style: italic;
+            color: #92400e;
+            margin: 6px 0;
+        }
+
+        .misconception-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 9pt;
+            margin-top: 10px;
+        }
+
+        .misconception-table th {
+            padding: 6px 10px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .misconception-table th:first-child {
+            background: var(--error-light);
+            color: #991b1b;
+            border: 1px solid #fca5a5;
+            width: 40%;
+        }
+
+        .misconception-table th:last-child {
+            background: var(--success-light);
+            color: #166534;
+            border: 1px solid #86efac;
+        }
+
+        .misconception-table td {
+            padding: 6px 10px;
+            border: 1px solid var(--border);
+            vertical-align: top;
+            color: var(--text-medium);
+        }
+
+        .footer {
+            margin-top: 20px;
+            padding-top: 8px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            font-size: 8pt;
+            color: var(--text-light);
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <div class="header">
+        <h1>PFL Academy</h1>
+        <h2>Teacher Guide: Chapter 1.2 — Paying for Post-Secondary Education</h2>
+    </div>
+
+    <!-- OVERVIEW -->
+    <div class="section-header">Overview</div>
+    <table class="overview-table">
+        <tr>
+            <th>Time</th>
+            <th>Materials</th>
+            <th>Prerequisites</th>
+        </tr>
+        <tr>
+            <td>45-50 Minutes</td>
+            <td>Student Activity Packet, Calculator</td>
+            <td>Basic Math Skills</td>
+        </tr>
+    </table>
+
+    <!-- LESSON FLOW -->
+    <div class="section-header">Lesson Flow</div>
+    <div class="flow-container">
+        <div class="flow-item">
+            <div class="flow-time">5 min</div>
+            <div class="flow-content">
+                <div class="flow-title">THE CHALLENGE</div>
+                <ul>
+                    <li>Read Jordan's scholarship strategy scenario aloud.</li>
+                    <li>Discussion: "What funding sources have you or your family researched for college?"</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="flow-item">
+            <div class="flow-time">10 min</div>
+            <div class="flow-content">
+                <div class="flow-title">CORE CONCEPTS</div>
+                <ul>
+                    <li>Review 5 key terms. Emphasize "free money" (scholarships/grants) vs. debt (loans).</li>
+                    <li>Read Background paragraph; discuss the $1.75 trillion student debt statistic.</li>
+                    <li>Quick check: Ask students to rank funding sources from most to least desirable.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="flow-item">
+            <div class="flow-time">25-30 min</div>
+            <div class="flow-content">
+                <div class="flow-title">APPLY IT</div>
+                <ul>
+                    <li><strong>Part A (10 min):</strong> Individual or pairs. Check that students correctly identify merit-based vs. need-based qualifications.</li>
+                    <li><strong>Part B (10 min):</strong> Loan calculations. Walk through multiplication (payment × 120 months) if needed.</li>
+                    <li><strong>Part C (5-10 min):</strong> Personal application. Encourage realistic self-assessment of funding options.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="flow-item">
+            <div class="flow-time">10 min</div>
+            <div class="flow-content">
+                <div class="flow-title">CHECK YOUR UNDERSTANDING</div>
+                <ul>
+                    <li>Complete in class or assign as homework.</li>
+                    <li>Review Q3 (Loan calculation) and Q4 (Cost-saving strategy) for deeper understanding.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- DIFFERENTIATION -->
+    <div class="section-header">Differentiation</div>
+    <div class="diff-grid">
+        <div class="diff-box">
+            <div class="diff-title">Support</div>
+            <ul>
+                <li>Pre-teach vocabulary (FAFSA, subsidized, interest) before starting.</li>
+                <li>Provide a funding priority pyramid visual (scholarships at top, private loans at bottom).</li>
+                <li>Walk through Part B calculations step-by-step on the board.</li>
+                <li>Pair students for scenario analysis in Part A.</li>
+            </ul>
+        </div>
+        <div class="diff-box">
+            <div class="diff-title">Extension</div>
+            <ul>
+                <li>Research actual scholarship opportunities in your community or field of interest.</li>
+                <li>Calculate the 20-year cost difference between federal and private loans.</li>
+                <li>Create a 4-year education financing plan with specific funding sources.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ANSWER KEY (new page) -->
+    <div class="answer-key">
+        <div class="section-header">Answer Key</div>
+
+        <div class="answer-block">
+            <div class="answer-title">Part A: Funding Source Analysis</div>
+            <div class="answer-item"><strong>1. Mia:</strong> Primary: Merit-based scholarships (high GPA, leadership). Secondary: Federal unsubsidized loans (family income likely too high for need-based aid). Reasoning: Strong academics qualify her for merit awards; income disqualifies her from most need-based aid.</div>
+            <div class="answer-item"><strong>2. David:</strong> Primary: Pell Grant (low family income). Secondary: Work-study program. Reasoning: Low income qualifies him for need-based grants; community college costs may be fully covered by grants and part-time work.</div>
+            <div class="answer-item"><strong>3. Sarah:</strong> Best strategy: Combination of nursing-specific scholarships, work-study at a hospital for relevant experience, and federal subsidized loans for remaining costs. Reasoning: Middle income limits grant eligibility, but career-specific scholarships and work experience add value beyond just funding.</div>
+        </div>
+
+        <div class="answer-block">
+            <div class="answer-title">Part B: Loan Comparison</div>
+            <div class="calc-display">Federal Subsidized Loan:
+Total Repaid: $108 × 120 = $12,960
+Total Interest: $12,960 - $10,000 = $2,960
+
+Private Loan:
+Total Repaid: $129 × 120 = $15,480
+Total Interest: $15,480 - $10,000 = $5,480</div>
+            <div class="answer-item"><strong>4.</strong> Private loan costs <strong>$2,520 more</strong> than federal subsidized ($15,480 - $12,960).</div>
+            <div class="answer-item"><strong>5.</strong> Federal loan advantages: (1) Lower interest rates, (2) Government pays interest while in school (subsidized), (3) Income-driven repayment options, (4) Loan forgiveness programs available, (5) Deferment/forbearance options.</div>
+        </div>
+
+        <div class="answer-block">
+            <div class="answer-title">Part C: Personal Application</div>
+            <div class="answer-note">Responses will vary. Look for: realistic cost estimates for chosen education path, logical prioritization of funding sources based on personal circumstances (academic record, family income), and understanding that free money should be prioritized over loans.</div>
+        </div>
+
+        <div class="answer-block">
+            <div class="answer-title">Check Your Understanding</div>
+            <div class="answer-item"><strong>1.</strong> B (FAFSA)</div>
+            <div class="answer-item"><strong>2.</strong> Scholarships are merit-based (academic, athletic, leadership achievements); grants are need-based (family financial situation). A high-achieving student from a wealthy family would qualify for scholarships but not need-based grants.</div>
+            <div class="answer-item"><strong>3.</strong> $233 × 120 months = <strong>$27,960 total repaid</strong></div>
+            <div class="answer-item"><strong>4.</strong> Savings: 2 years × ($20,000 - $4,000) = <strong>$32,000 saved</strong>. This strategy minimizes debt by getting the same credits at lower cost before transferring.</div>
+            <div class="answer-item"><strong>5.</strong> <em>Should include specific actions: research scholarships now, maintain strong GPA, build extracurricular involvement, complete FAFSA early (after Oct 1), explore work opportunities, save money from part-time jobs.</em></div>
+        </div>
+
+        <!-- COMMON MISCONCEPTIONS -->
+        <div class="section-header">Common Misconceptions</div>
+        <table class="misconception-table">
+            <tr>
+                <th>Misconception</th>
+                <th>Clarification</th>
+            </tr>
+            <tr>
+                <td>"I won't qualify for financial aid because my family makes too much."</td>
+                <td>Everyone should complete the FAFSA. Unsubsidized federal loans are available regardless of income, and many merit-based scholarships don't consider family finances.</td>
+            </tr>
+            <tr>
+                <td>"Scholarships are only for straight-A students or athletes."</td>
+                <td>Thousands of scholarships exist for community service, specific majors, hobbies, heritage, career interests, and more. Small scholarships add up significantly.</td>
+            </tr>
+            <tr>
+                <td>"All student loans are the same."</td>
+                <td>Federal and private loans differ dramatically in interest rates, repayment flexibility, and forgiveness options. Federal loans should always be explored first.</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        <span>© PFL Academy | pflacademy.co</span>
+        <span>Teacher Guide: Chapter 1.2</span>
+    </div>
+
+</body>
+</html>

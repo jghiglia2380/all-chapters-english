@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-54 Teacher Guide</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+        :root {
+            --primary: #059669;
+            --primary-light: #ecfdf5;
+            --primary-dark: #065f46;
+            --text-dark: #1e293b;
+            --text-medium: #475569;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --bg-light: #f8fafc;
+            --warning: #f59e0b;
+            --warning-light: #fef3c7;
+            --error: #dc2626;
+            --error-light: #fee2e2;
+            --success-light: #dcfce7;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+
+        @page {
+            size: letter;
+            margin: 0.5in;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 10pt;
+            line-height: 1.45;
+            color: var(--text-dark);
+            background: white;
+        }
+
+        .header {
+            background: var(--primary);
+            color: white;
+            padding: 14px 18px;
+            border-radius: 6px;
+            margin-bottom: 16px;
+        }
+
+        .header h1 {
+            font-size: 13pt;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .header h2 {
+            font-size: 10pt;
+            font-weight: 400;
+            margin: 3px 0 0;
+            opacity: 0.9;
+        }
+
+        .section-header {
+            background: var(--primary-light);
+            border-left: 4px solid var(--primary);
+            padding: 7px 12px;
+            font-size: 10pt;
+            font-weight: 700;
+            color: var(--primary-dark);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin: 16px 0 10px;
+        }
+
+        .overview-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 14px;
+        }
+
+        .overview-table th {
+            background: var(--bg-light);
+            color: var(--text-light);
+            font-size: 8pt;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            text-align: center;
+            padding: 6px 10px;
+            border: 1px solid var(--border);
+            width: 33%;
+        }
+
+        .overview-table td {
+            text-align: center;
+            padding: 10px;
+            border: 1px solid var(--border);
+            font-weight: 600;
+            color: var(--text-dark);
+            font-size: 10pt;
+        }
+
+        .flow-container {
+            margin-bottom: 14px;
+        }
+
+        .flow-item {
+            display: flex;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border);
+            page-break-inside: avoid;
+        }
+
+        .flow-item:last-child {
+            border-bottom: none;
+        }
+
+        .flow-time {
+            width: 65px;
+            font-weight: 700;
+            color: var(--primary);
+            flex-shrink: 0;
+            font-size: 10pt;
+        }
+
+        .flow-content {
+            flex: 1;
+        }
+
+        .flow-title {
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 3px;
+            font-size: 10pt;
+        }
+
+        .flow-content ul {
+            margin: 0;
+            padding-left: 16px;
+            font-size: 9pt;
+            color: var(--text-medium);
+        }
+
+        .flow-content li {
+            margin-bottom: 2px;
+        }
+
+        .diff-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 14px;
+        }
+
+        .diff-box {
+            background: var(--bg-light);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 10px 12px;
+        }
+
+        .diff-title {
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 6px;
+            font-size: 9pt;
+        }
+
+        .diff-box ul {
+            margin: 0;
+            padding-left: 16px;
+            font-size: 9pt;
+            color: var(--text-medium);
+        }
+
+        .diff-box li {
+            margin-bottom: 2px;
+        }
+
+        .answer-key {
+            page-break-before: always;
+        }
+
+        .answer-block {
+            margin-bottom: 12px;
+            page-break-inside: avoid;
+        }
+
+        .answer-title {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 9pt;
+            border-bottom: 1px solid #a7f3d0;
+            padding-bottom: 3px;
+            margin-bottom: 6px;
+        }
+
+        .answer-item {
+            margin-bottom: 5px;
+            font-size: 9pt;
+            color: var(--text-dark);
+        }
+
+        .answer-item strong {
+            color: var(--primary-dark);
+        }
+
+        .calc-display {
+            font-family: 'Courier New', monospace;
+            background: var(--bg-light);
+            padding: 8px 10px;
+            border-radius: 4px;
+            margin: 6px 0;
+            font-size: 8.5pt;
+            line-height: 1.5;
+            white-space: pre-line;
+        }
+
+        .answer-note {
+            background: var(--warning-light);
+            border-left: 3px solid var(--warning);
+            padding: 6px 10px;
+            font-size: 9pt;
+            font-style: italic;
+            color: #92400e;
+            margin: 6px 0;
+        }
+
+        .misconception-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 9pt;
+            margin-top: 10px;
+        }
+
+        .misconception-table th {
+            padding: 6px 10px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .misconception-table th:first-child {
+            background: var(--error-light);
+            color: #991b1b;
+            border: 1px solid #fca5a5;
+            width: 40%;
+        }
+
+        .misconception-table th:last-child {
+            background: var(--success-light);
+            color: #166534;
+            border: 1px solid #86efac;
+        }
+
+        .misconception-table td {
+            padding: 6px 10px;
+            border: 1px solid var(--border);
+            vertical-align: top;
+            color: var(--text-medium);
+        }
+
+        .footer {
+            margin-top: 20px;
+            padding-top: 8px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            font-size: 8pt;
+            color: var(--text-light);
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <div class="header">
+        <h1>PFL Academy</h1>
+        <h2>Teacher Guide: Chapter 54 — Inflation, Unemployment, and Personal Finance</h2>
+    </div>
+
+    <!-- OVERVIEW -->
+    <div class="section-header">Overview</div>
+    <table class="overview-table">
+        <tr>
+            <th>Time</th>
+            <th>Materials</th>
+            <th>Prerequisites</th>
+        </tr>
+        <tr>
+            <td>45-50 Minutes</td>
+            <td>Student Activity Packet</td>
+            <td>L-50 Supply & Demand, L-53 Fiscal & Monetary Policy</td>
+        </tr>
+    </table>
+
+    <!-- LESSON FLOW -->
+    <div class="section-header">Lesson Flow</div>
+    <div class="flow-container">
+        <div class="flow-item">
+            <div class="flow-time">5 min</div>
+            <div class="flow-content">
+                <div class="flow-title">THE CHALLENGE</div>
+                <ul>
+                    <li>Present 1970 vs. 2024 price comparison—make it personal and tangible.</li>
+                    <li>Discussion: "Has your family mentioned how prices have changed since they were your age?"</li>
+                    <li>Connect to students: "These forces affect your salary, ability to buy a home, and job prospects."</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="flow-item">
+            <div class="flow-time">10 min</div>
+            <div class="flow-content">
+                <div class="flow-title">CORE CONCEPTS</div>
+                <ul>
+                    <li>Draw the three inflation types on board: Demand-Pull (too much money), Cost-Push (production costs), Monetary (too much printing).</li>
+                    <li>Explain unemployment types with relatable examples: Frictional (between jobs), Structural (skills obsolete), Cyclical (recession).</li>
+                    <li>Introduce Phillips Curve: "Can't have both low unemployment AND low inflation—Fed must balance."</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="flow-item">
+            <div class="flow-time">25-30 min</div>
+            <div class="flow-content">
+                <div class="flow-title">APPLY IT</div>
+                <ul>
+                    <li><strong>Part A (8 min):</strong> Inflation Type Identification. Ensure students distinguish demand-side from supply-side causes.</li>
+                    <li><strong>Part B (8 min):</strong> Unemployment Classification. Focus on different strategies for each type—especially structural requiring retraining.</li>
+                    <li><strong>Part C (9 min):</strong> Calculations. Help with math—emphasize that raises below inflation = pay CUT in real terms.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="flow-item">
+            <div class="flow-time">10 min</div>
+            <div class="flow-content">
+                <div class="flow-title">CHECK YOUR UNDERSTANDING</div>
+                <ul>
+                    <li>Complete in class or assign as homework.</li>
+                    <li>Review Q4 (real salary calculation) and Q5 (recession job strategies).</li>
+                    <li>Use Q3 to connect back to L-53 fiscal/monetary policy—full circle.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- DIFFERENTIATION -->
+    <div class="section-header">Differentiation</div>
+    <div class="diff-grid">
+        <div class="diff-box">
+            <div class="diff-title">Support</div>
+            <ul>
+                <li>Provide visual diagram: Inflation Types with arrows showing cause → effect.</li>
+                <li>Pre-calculate the exponent values for Part C (1.03^10 = 1.344, etc.).</li>
+                <li>Use concrete examples: "If a hamburger costs $5 now, what will it cost in 10 years?"</li>
+                <li>Partner struggling students for unemployment classification scenarios.</li>
+            </ul>
+        </div>
+        <div class="diff-box">
+            <div class="diff-title">Extension</div>
+            <ul>
+                <li>Research current Fed policy and predict next interest rate decision based on inflation data.</li>
+                <li>Calculate how much salary they'll need at age 50 to maintain current purchasing power.</li>
+                <li>Analyze the 1970s stagflation crisis and compare to 2021-2023.</li>
+                <li>Create an investment strategy to beat inflation over 30 years.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ANSWER KEY (new page) -->
+    <div class="answer-key">
+        <div class="section-header">Answer Key</div>
+
+        <div class="answer-block">
+            <div class="answer-title">Part A: Inflation Type Identification</div>
+            <div class="answer-item"><strong>Scenario 1 (COVID Stimulus):</strong> DEMAND-PULL. Government stimulus increased consumer demand (people had extra money) while supply was constrained (factories closed). Too much money chasing too few goods.</div>
+            <div class="answer-item"><strong>Scenario 2 (Oil Crisis):</strong> COST-PUSH. Oil prices increased production costs across all industries. Businesses raised prices to cover higher costs—supply-side shock.</div>
+            <div class="answer-item"><strong>Scenario 3 (Zimbabwe):</strong> MONETARY. Government printed excessive money to pay debts. Money supply grew faster than economic output, making each dollar worth less.</div>
+        </div>
+
+        <div class="answer-block">
+            <div class="answer-title">Part B: Unemployment Classification</div>
+            <div class="answer-item"><strong>Marcus:</strong> FRICTIONAL. Voluntary job transition, expected 1-3 months. Strategy: Network aggressively, be selective but not too picky, negotiate strongly (economy healthy).</div>
+            <div class="answer-item"><strong>Linda:</strong> STRUCTURAL. Skills obsolete due to technology, may take months to years. Strategy: Assess transferable skills, retrain in growing field (tech, healthcare), consider relocation, take temporary work while training.</div>
+            <div class="answer-item"><strong>James:</strong> CYCLICAL. Economy-wide recession, construction halted, until recession ends. Strategy: File unemployment, take gig work, expand geographic search, upskill during downtime, consider going back to school.</div>
+        </div>
+
+        <div class="answer-block">
+            <div class="answer-title">Part C: Inflation Calculations</div>
+            <div class="calc-display">Calculation 1: Eroding Savings
+Real Value = $5,000 ÷ (1.03)^10 = $5,000 ÷ 1.344 = $3,720
+Lost purchasing power: $5,000 - $3,720 = $1,280 (26% loss)
+
+Calculation 2: Salary Reality Check
+Nominal year 5: $50,000 × (1.02)^5 = $55,204
+Inflation factor: (1.04)^5 = 1.217
+Real salary: $55,204 ÷ 1.217 = $45,361
+Result: POORER—lost $4,639 in real purchasing power (9.3% pay cut!)
+
+Calculation 3: CPI Inflation Rate
+(305 - 292) ÷ 292 × 100% = 4.45%</div>
+        </div>
+
+        <div class="answer-block">
+            <div class="answer-title">Check Your Understanding</div>
+            <div class="answer-item"><strong>1.</strong> B (Cost-push inflation)</div>
+            <div class="answer-item"><strong>2.</strong> Natural rate (~4-5%) includes frictional (people between jobs) and structural (skills mismatch). Can't be zero because: 1) There will always be people transitioning jobs, 2) Technology constantly changes skill requirements, 3) Below natural rate causes labor shortages → wage inflation.</div>
+            <div class="answer-item"><strong>3.</strong> Fed raises interest rates (contractionary monetary policy), reduces money supply. Higher rates discourage borrowing/spending → demand falls → inflation falls. Trade-off: Higher unemployment as economy slows. Phillips Curve: fighting inflation causes unemployment.</div>
+            <div class="answer-item"><strong>4.</strong> Nominal: $40,000 × 1.344 = $53,760. Inflation: 1.280. Real: $53,760 ÷ 1.280 = <strong>$42,000</strong>. (Gaining purchasing power because raises > inflation)</div>
+            <div class="answer-item"><strong>5.</strong> <em>Should mention: 1) Lower expectations temporarily (take job below skill level to stay employed), 2) Network aggressively (70% of jobs through connections, more important when hiring slow), 3) Upskill during downtime (emerge more valuable when economy recovers). Quality of reasoning matters.</em></div>
+        </div>
+
+        <!-- COMMON MISCONCEPTIONS -->
+        <div class="section-header">Common Misconceptions</div>
+        <table class="misconception-table">
+            <tr>
+                <th>Misconception</th>
+                <th>Clarification</th>
+            </tr>
+            <tr>
+                <td>"Inflation is always bad."</td>
+                <td>Moderate inflation (2%) is healthy—encourages spending and investment. Deflation (falling prices) often signals recession and can be worse. The Fed targets 2%, not 0%.</td>
+            </tr>
+            <tr>
+                <td>"A bigger number paycheck means I'm richer."</td>
+                <td>Only REAL wages (adjusted for inflation) measure purchasing power. 5% raise with 7% inflation = 2% pay cut in real terms.</td>
+            </tr>
+            <tr>
+                <td>"Unemployment is unemployment—all the same."</td>
+                <td>Types require different solutions. Frictional is healthy (job transitions). Structural needs retraining. Cyclical needs stimulus. Wrong treatment makes things worse.</td>
+            </tr>
+            <tr>
+                <td>"The government can eliminate both inflation and unemployment."</td>
+                <td>Phillips Curve shows they move inversely. Fighting inflation (raise rates) causes higher unemployment. Fighting unemployment (lower rates) causes higher inflation. Must balance.</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        <span>© PFL Academy | pflacademy.co</span>
+        <span>Teacher Guide: Chapter 54</span>
+    </div>
+
+</body>
+</html>

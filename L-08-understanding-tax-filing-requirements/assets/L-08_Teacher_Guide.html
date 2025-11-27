@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-08 Teacher Guide</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+        :root { --primary: #059669; --primary-light: #ecfdf5; --primary-dark: #065f46; --text-dark: #1e293b; --text-medium: #475569; --text-light: #64748b; --border: #e2e8f0; --bg-light: #f8fafc; --warning: #f59e0b; --warning-light: #fef3c7; --error-light: #fee2e2; --success-light: #dcfce7; }
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+        @page { size: letter; margin: 0.5in; }
+        body { font-family: 'Open Sans', sans-serif; font-size: 10pt; line-height: 1.45; color: var(--text-dark); background: white; }
+        .header { background: var(--primary); color: white; padding: 14px 18px; border-radius: 6px; margin-bottom: 16px; }
+        .header h1 { font-size: 13pt; font-weight: 700; margin: 0; }
+        .header h2 { font-size: 10pt; font-weight: 400; margin: 3px 0 0; opacity: 0.9; }
+        .section-header { background: var(--primary-light); border-left: 4px solid var(--primary); padding: 7px 12px; font-size: 10pt; font-weight: 700; color: var(--primary-dark); text-transform: uppercase; letter-spacing: 0.5px; margin: 16px 0 10px; }
+        .overview-table { width: 100%; border-collapse: collapse; margin-bottom: 14px; }
+        .overview-table th { background: var(--bg-light); color: var(--text-light); font-size: 8pt; text-transform: uppercase; letter-spacing: 0.5px; text-align: center; padding: 6px 10px; border: 1px solid var(--border); width: 33%; }
+        .overview-table td { text-align: center; padding: 10px; border: 1px solid var(--border); font-weight: 600; color: var(--text-dark); font-size: 10pt; }
+        .flow-container { margin-bottom: 14px; }
+        .flow-item { display: flex; padding: 8px 0; border-bottom: 1px solid var(--border); page-break-inside: avoid; }
+        .flow-item:last-child { border-bottom: none; }
+        .flow-time { width: 65px; font-weight: 700; color: var(--primary); flex-shrink: 0; font-size: 10pt; }
+        .flow-content { flex: 1; }
+        .flow-title { font-weight: 700; color: var(--text-dark); margin-bottom: 3px; font-size: 10pt; }
+        .flow-content ul { margin: 0; padding-left: 16px; font-size: 9pt; color: var(--text-medium); }
+        .flow-content li { margin-bottom: 2px; }
+        .diff-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px; }
+        .diff-box { background: var(--bg-light); border: 1px solid var(--border); border-radius: 4px; padding: 10px 12px; }
+        .diff-title { font-weight: 700; color: var(--text-dark); margin-bottom: 6px; font-size: 9pt; }
+        .diff-box ul { margin: 0; padding-left: 16px; font-size: 9pt; color: var(--text-medium); }
+        .diff-box li { margin-bottom: 2px; }
+        .answer-key { page-break-before: always; }
+        .answer-block { margin-bottom: 12px; page-break-inside: avoid; }
+        .answer-title { font-weight: 700; color: var(--primary); font-size: 9pt; border-bottom: 1px solid #a7f3d0; padding-bottom: 3px; margin-bottom: 6px; }
+        .answer-item { margin-bottom: 5px; font-size: 9pt; color: var(--text-dark); }
+        .answer-item strong { color: var(--primary-dark); }
+        .calc-display { font-family: 'Courier New', monospace; background: var(--bg-light); padding: 8px 10px; border-radius: 4px; margin: 6px 0; font-size: 8.5pt; line-height: 1.5; white-space: pre-line; }
+        .answer-note { background: var(--warning-light); border-left: 3px solid var(--warning); padding: 6px 10px; font-size: 9pt; font-style: italic; color: #92400e; margin: 6px 0; }
+        .misconception-table { width: 100%; border-collapse: collapse; font-size: 9pt; margin-top: 10px; }
+        .misconception-table th { padding: 6px 10px; text-align: left; font-weight: 600; }
+        .misconception-table th:first-child { background: var(--error-light); color: #991b1b; border: 1px solid #fca5a5; width: 40%; }
+        .misconception-table th:last-child { background: var(--success-light); color: #166534; border: 1px solid #86efac; }
+        .misconception-table td { padding: 6px 10px; border: 1px solid var(--border); vertical-align: top; color: var(--text-medium); }
+        .footer { margin-top: 20px; padding-top: 8px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; font-size: 8pt; color: var(--text-light); }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>PFL Academy</h1>
+        <h2>Teacher Guide: Chapter 2.3 — Understanding Tax Filing Requirements</h2>
+    </div>
+
+    <div class="section-header">Overview</div>
+    <table class="overview-table">
+        <tr><th>Time</th><th>Materials</th><th>Prerequisites</th></tr>
+        <tr><td>45-50 Minutes</td><td>Student Activity Packet, Sample Tax Forms (W-2, 1099)</td><td>L-06 & L-07 Tax Basics</td></tr>
+    </table>
+
+    <div class="section-header">Lesson Flow</div>
+    <div class="flow-container">
+        <div class="flow-item">
+            <div class="flow-time">5 min</div>
+            <div class="flow-content">
+                <div class="flow-title">THE CHALLENGE</div>
+                <ul>
+                    <li>Read Ava and Ben's scenarios.</li>
+                    <li>Discussion: "Has anyone had taxes withheld from a paycheck? Did you file to get it back?"</li>
+                </ul>
+            </div>
+        </div>
+        <div class="flow-item">
+            <div class="flow-time">10 min</div>
+            <div class="flow-content">
+                <div class="flow-title">CORE CONCEPTS</div>
+                <ul>
+                    <li>Display 2023 filing thresholds. Emphasize the $400 self-employment trigger.</li>
+                    <li>Show sample W-2 and 1099 forms. Identify key fields on each.</li>
+                    <li>Explain the difference between "required to file" vs. "should file to get refund."</li>
+                    <li>Cover April 15 deadline and extension process.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="flow-item">
+            <div class="flow-time">25-30 min</div>
+            <div class="flow-content">
+                <div class="flow-title">APPLY IT</div>
+                <ul>
+                    <li><strong>Part A (10 min):</strong> Filing determination. Emphasize Ava's situation—she SHOULD file even though not required.</li>
+                    <li><strong>Part B (8 min):</strong> Form matching. Quick check of understanding different income types.</li>
+                    <li><strong>Part C (7-12 min):</strong> Penalty calculations. Reinforce the cost of procrastination.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="flow-item">
+            <div class="flow-time">10 min</div>
+            <div class="flow-content">
+                <div class="flow-title">CHECK YOUR UNDERSTANDING</div>
+                <ul>
+                    <li>Complete in class or assign as homework.</li>
+                    <li>Review Q3 (self-employment trigger) to ensure students understand the $400 rule.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-header">Differentiation</div>
+    <div class="diff-grid">
+        <div class="diff-box">
+            <div class="diff-title">Support</div>
+            <ul>
+                <li>Provide a decision flowchart: "Do I need to file?"</li>
+                <li>Use highlighted sample forms with key fields circled.</li>
+                <li>Create a filing threshold reference card.</li>
+                <li>Walk through penalty calculation as a class before individual work.</li>
+            </ul>
+        </div>
+        <div class="diff-box">
+            <div class="diff-title">Extension</div>
+            <ul>
+                <li>Research what "Schedule C" requires for self-employment income.</li>
+                <li>Calculate the true cost of late filing including interest over time.</li>
+                <li>Explore free tax filing resources (IRS Free File, VITA programs).</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="answer-key">
+        <div class="section-header">Answer Key</div>
+
+        <div class="answer-block">
+            <div class="answer-title">Part A: Who Needs to File?</div>
+            <div class="answer-item"><strong>Ava:</strong> SHOULD file. Income ($4,500) is below threshold ($13,850), so not required. But filing will recover the $450 in withheld taxes as a refund.</div>
+            <div class="answer-item"><strong>Ben:</strong> REQUIRED. Two reasons: (1) Total income $37,000 exceeds threshold, and (2) Self-employment income $5,000 exceeds $400 trigger. Must file Schedule C and Schedule SE for self-employment tax.</div>
+            <div class="answer-item"><strong>Maya:</strong> SHOULD file. Income $11,500 is below threshold, so not required. But filing will recover the $920 withheld. At her income level, she likely owes minimal or no tax.</div>
+        </div>
+
+        <div class="answer-block">
+            <div class="answer-title">Part B: Match the Tax Form</div>
+            <div class="answer-item"><strong>1.</strong> W-2 (employee wages)</div>
+            <div class="answer-item"><strong>2.</strong> 1099-INT (interest income)</div>
+            <div class="answer-item"><strong>3.</strong> 1099-NEC (non-employee compensation/freelance)</div>
+            <div class="answer-item"><strong>4.</strong> 1099-DIV (dividend income)</div>
+        </div>
+
+        <div class="answer-block">
+            <div class="answer-title">Part C: Deadline and Penalty Analysis</div>
+            <div class="calc-display">Chris's Penalties:
+Failure-to-file: 5% × 3 months × $2,000 = $300
+Failure-to-pay: 0.5% × 3 months × $2,000 = $30
+TOTAL PENALTY: $330
+
+Plus interest on the unpaid amount (compounded daily)</div>
+            <div class="answer-item"><strong>4.</strong> Chris could have: (1) Filed on time even if couldn't pay—failure-to-file penalty is 10× higher than failure-to-pay; (2) Requested an extension (Form 4868) for more time to file; (3) Set up an IRS payment plan for the taxes owed.</div>
+        </div>
+
+        <div class="answer-block">
+            <div class="answer-title">Check Your Understanding</div>
+            <div class="answer-item"><strong>1.</strong> B (W-2)</div>
+            <div class="answer-item"><strong>2.</strong> To recover taxes withheld from paychecks (refund), claim refundable tax credits like EITC, prevent identity theft by filing first, and establish a filing history.</div>
+            <div class="answer-item"><strong>3.</strong> YES, required. Even though wage income ($12,000) is below threshold, self-employment income ($600) exceeds the $400 trigger for self-employment tax.</div>
+            <div class="answer-item"><strong>4.</strong> April 15 (adjusted if weekend/holiday). If you can't file, request an automatic extension using Form 4868 for until October 15. Note: Extension is to file, not to pay—taxes still due April 15.</div>
+            <div class="answer-item"><strong>5.</strong> <em>Responses vary. Look for: identification of likely W-2 (employment) or 1099-NEC (gig work), awareness of filing threshold vs. should-file scenarios, understanding of refund opportunity.</em></div>
+        </div>
+
+        <div class="section-header">Common Misconceptions</div>
+        <table class="misconception-table">
+            <tr><th>Misconception</th><th>Clarification</th></tr>
+            <tr><td>"I made under the threshold, so I don't need to do anything."</td><td>If taxes were withheld, you're leaving money on the table! File to claim your refund. Also, any self-employment income over $400 requires filing regardless of total income.</td></tr>
+            <tr><td>"An extension means I don't owe anything until October."</td><td>An extension is only to FILE, not to PAY. Taxes owed are still due April 15. Interest and failure-to-pay penalties accrue on unpaid amounts.</td></tr>
+            <tr><td>"I only need to report income if I receive a form for it."</td><td>ALL income is taxable and must be reported, whether or not you receive a W-2 or 1099. Cash payments, tips, and small gig earnings all count.</td></tr>
+        </table>
+    </div>
+
+    <div class="footer">
+        <span>© PFL Academy | pflacademy.co</span>
+        <span>Teacher Guide: Chapter 2.3</span>
+    </div>
+</body>
+</html>

@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-27 Student Activity Packet</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+        :root {
+            --primary: #6366f1;
+            --primary-light: #eef2ff;
+            --accent: #f59e0b;
+            --accent-light: #fef3c7;
+            --success: #059669;
+            --text-dark: #1e293b;
+            --text-medium: #475569;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --bg-light: #f8fafc;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+        @page { size: letter; margin: 0.5in; }
+        body { font-family: 'Open Sans', sans-serif; font-size: 10.5pt; line-height: 1.5; color: var(--text-dark); background: white; }
+
+        .header { background: var(--primary); color: white; padding: 14px 18px; border-radius: 6px; margin-bottom: 18px; display: flex; justify-content: space-between; align-items: center; }
+        .header-left h1 { font-size: 13pt; font-weight: 700; margin: 0; }
+        .header-left h2 { font-size: 10pt; font-weight: 400; margin: 2px 0 0; opacity: 0.9; }
+        .header-right { font-size: 9pt; text-align: right; opacity: 0.9; }
+
+        .section-header { font-size: 11pt; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 2px solid var(--primary); padding-bottom: 4px; margin: 20px 0 12px; }
+
+        .challenge-box { background: var(--accent-light); border-left: 4px solid var(--accent); padding: 14px 16px; margin-bottom: 16px; border-radius: 0 6px 6px 0; }
+        .challenge-box p { font-style: italic; color: var(--text-dark); margin-bottom: 10px; }
+        .challenge-box .framing-question { font-weight: 600; font-style: normal; color: #92400e; }
+
+        .objectives-box { background: var(--primary-light); border: 1px solid #c7d2fe; border-radius: 6px; padding: 12px 16px; margin-bottom: 18px; }
+        .objectives-box h3 { font-size: 10pt; font-weight: 700; color: var(--primary); margin-bottom: 6px; }
+        .objectives-box ul { margin: 0; padding-left: 20px; }
+        .objectives-box li { margin-bottom: 3px; color: var(--text-medium); }
+
+        .terms-table { width: 100%; border-collapse: collapse; margin-bottom: 14px; font-size: 10pt; }
+        .terms-table th { background: var(--bg-light); text-align: left; padding: 8px 10px; border: 1px solid var(--border); font-weight: 600; color: var(--text-medium); }
+        .terms-table td { padding: 8px 10px; border: 1px solid var(--border); vertical-align: top; }
+        .terms-table td:first-child { font-weight: 600; color: var(--primary); width: 22%; }
+
+        .background-box { background: var(--bg-light); border: 1px solid var(--border); border-radius: 6px; padding: 12px 16px; margin-bottom: 18px; font-size: 10pt; color: var(--text-medium); }
+        .background-box strong { color: var(--text-dark); }
+
+        .scenario-card { background: white; border: 1px solid var(--border); border-radius: 6px; padding: 12px 14px; margin-bottom: 14px; page-break-inside: avoid; }
+        .scenario-title { font-weight: 700; color: var(--primary); margin-bottom: 6px; font-size: 10pt; }
+        .scenario-description { color: var(--text-medium); margin-bottom: 10px; font-size: 10pt; }
+
+        .response-line { display: flex; align-items: baseline; margin-bottom: 8px; }
+        .response-label { font-weight: 600; color: var(--text-dark); margin-right: 8px; white-space: nowrap; }
+        .response-blank { flex-grow: 1; border-bottom: 1px solid var(--text-light); min-height: 18px; }
+        .response-options { color: var(--text-light); font-size: 9pt; margin-left: 8px; white-space: nowrap; }
+
+        .because-lines { margin-top: 6px; }
+        .because-lines .response-line { margin-bottom: 4px; }
+
+        .question { margin-bottom: 14px; page-break-inside: avoid; }
+        .question-number { font-weight: 700; color: var(--text-dark); }
+        .question-text { color: var(--text-dark); margin-bottom: 6px; }
+
+        .answer-lines { margin-top: 6px; }
+        .answer-line { border-bottom: 1px solid var(--text-light); height: 22px; margin-bottom: 4px; }
+
+        .mc-options { margin-top: 6px; margin-left: 20px; }
+        .mc-option { display: flex; align-items: center; margin-bottom: 4px; }
+        .mc-checkbox { width: 14px; height: 14px; border: 1px solid var(--text-light); border-radius: 2px; margin-right: 8px; flex-shrink: 0; }
+
+        .hint-box { background: #f0fdf4; border-left: 3px solid var(--success); padding: 8px 12px; margin: 10px 0; font-size: 9pt; font-style: italic; color: #166534; }
+        .hint-box strong { font-style: normal; }
+
+        .part-header { font-weight: 700; font-size: 10pt; color: var(--primary); text-transform: uppercase; margin: 16px 0 10px; padding-bottom: 4px; border-bottom: 1px solid var(--border); }
+
+        .footer { margin-top: 24px; padding-top: 10px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; font-size: 9pt; color: var(--text-light); }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="header-left">
+            <h1>PFL Academy</h1>
+            <h2>Chapter 6.2: Online Shopping</h2>
+        </div>
+        <div class="header-right">Student Activity Packet</div>
+    </div>
+
+    <div class="section-header">The Challenge</div>
+    <div class="challenge-box">
+        <p>Mike found a popular gaming console on an unfamiliar website for 40% below retail price. Excited by the deal, he purchased it without researching the site. After payment, he received only an automated email. The console never arrived, and when he tried to contact customer service, the website had disappeared. He lost $300 before his credit card company helped him dispute the charge.</p>
+        <p class="framing-question">What warning signs did Mike miss, and how could he have protected himself from this scam?</p>
+    </div>
+
+    <div class="objectives-box">
+        <h3>Learning Objectives</h3>
+        <ul>
+            <li>Identify the benefits and risks of online shopping compared to in-store purchases.</li>
+            <li>Evaluate website security features to determine if a retailer is trustworthy.</li>
+            <li>Apply strategies to protect personal and financial information when shopping online.</li>
+        </ul>
+    </div>
+
+    <div class="section-header">Core Concepts</div>
+
+    <table class="terms-table">
+        <tr><th>Term</th><th>Definition</th></tr>
+        <tr><td>HTTPS</td><td>Secure website protocol; look for "https://" and a padlock icon in the address bar.</td></tr>
+        <tr><td>Phishing</td><td>Fraudulent attempts to steal information by impersonating legitimate businesses.</td></tr>
+        <tr><td>Digital Wallet</td><td>An electronic service (Apple Pay, PayPal) that adds a security layer to payments.</td></tr>
+        <tr><td>Encryption</td><td>Converting data into code to prevent unauthorized access during transmission.</td></tr>
+        <tr><td>Two-Factor Authentication</td><td>Extra security requiring two forms of verification to access accounts.</td></tr>
+    </table>
+
+    <div class="background-box">
+        <strong>Background:</strong> Online shopping offers unmatched convenience—comparing prices, reading reviews, and shopping 24/7 from anywhere. But this convenience comes with risks: scam websites, identity theft, and lost packages. The key to safe online shopping is verification: checking that websites are secure (HTTPS), researching unfamiliar retailers, using protected payment methods (credit cards over debit), and <strong>trusting your instincts</strong> when deals seem too good to be true.
+    </div>
+
+    <div class="section-header">Apply It</div>
+
+    <div class="part-header">Part A: Website Security Evaluation</div>
+    <p style="margin-bottom: 14px;">For each website scenario, determine if it's safe to shop there and explain your reasoning.</p>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Website 1: BargainTech-Deals.net</div>
+        <div class="scenario-description">URL shows "http://" (no padlock). Prices are 60% below retail. No physical address or phone number listed. Only accepts wire transfers or gift cards. Website was registered 2 weeks ago.</div>
+        <div class="response-line">
+            <span class="response-label">Safe to shop?</span>
+            <span class="response-blank"></span>
+            <span class="response-options">(yes / no / proceed with caution)</span>
+        </div>
+        <div class="because-lines">
+            <div class="response-line">
+                <span class="response-label">Red flags:</span>
+                <span class="response-blank"></span>
+            </div>
+            <div class="response-line">
+                <span class="response-blank" style="margin-left: 70px;"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Website 2: Amazon.com</div>
+        <div class="scenario-description">URL shows "https://" with padlock. Established company with verifiable contact info. Multiple payment options including credit cards. Customer reviews and seller ratings visible. Clear return policy.</div>
+        <div class="response-line">
+            <span class="response-label">Safe to shop?</span>
+            <span class="response-blank"></span>
+            <span class="response-options">(yes / no / proceed with caution)</span>
+        </div>
+        <div class="because-lines">
+            <div class="response-line">
+                <span class="response-label">Security features:</span>
+                <span class="response-blank"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Website 3: Local Boutique Website</div>
+        <div class="scenario-description">URL shows "https://" with padlock. Small business you've never heard of. Has physical address you can verify. Accepts major credit cards. Limited reviews (only 12). Return policy clearly stated.</div>
+        <div class="response-line">
+            <span class="response-label">Safe to shop?</span>
+            <span class="response-blank"></span>
+            <span class="response-options">(yes / no / proceed with caution)</span>
+        </div>
+        <div class="because-lines">
+            <div class="response-line">
+                <span class="response-label">Recommendation:</span>
+                <span class="response-blank"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="hint-box">
+        <strong>Hint:</strong> Legitimate sites have HTTPS, verifiable contact info, multiple payment options, and realistic prices. Too-good-to-be-true deals are often scams.
+    </div>
+
+    <div class="part-header">Part B: Online vs. In-Store Comparison</div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">4.</span> List THREE advantages of online shopping and THREE advantages of in-store shopping.</p>
+        <div class="answer-lines">
+            <p style="font-size: 9pt; margin-bottom: 4px;"><strong>Online:</strong></p>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <p style="font-size: 9pt; margin-bottom: 4px; margin-top: 8px;"><strong>In-Store:</strong></p>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">5.</span> For which type of purchase would you choose online vs. in-store? Explain your reasoning.</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="part-header">Part C: Protection Strategies</div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">6.</span> Create your personal online shopping security checklist (list at least 4 items you'd verify before purchasing).</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="section-header">Check Your Understanding</div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">1.</span> Which of the following is a sign that a website may NOT be secure?</p>
+        <div class="mc-options">
+            <div class="mc-option"><div class="mc-checkbox"></div> A. The URL begins with "https://"</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> B. A padlock icon appears in the address bar</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> C. The site only accepts wire transfers or gift cards</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> D. Customer reviews are displayed</div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">2.</span> Why is it generally safer to pay with a credit card rather than a debit card when shopping online?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">3.</span> Thomas uses a separate email for online shopping and saves all confirmation emails. Why are these smart practices?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">4.</span> What THREE things should Mike (from The Challenge) have done differently before making his purchase?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">5.</span> <strong>Reflection:</strong> Describe your approach to online shopping. What steps do you take (or will you start taking) to protect yourself? What would make you decide NOT to complete a purchase?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <span>© PFL Academy | pflacademy.co</span>
+        <span>Chapter 6.2: Online Shopping</span>
+    </div>
+
+</body>
+</html>

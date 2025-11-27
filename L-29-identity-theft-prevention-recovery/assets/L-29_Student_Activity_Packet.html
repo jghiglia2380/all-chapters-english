@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-29 Student Activity Packet</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+        :root {
+            --primary: #6366f1;
+            --primary-light: #eef2ff;
+            --accent: #f59e0b;
+            --accent-light: #fef3c7;
+            --success: #059669;
+            --text-dark: #1e293b;
+            --text-medium: #475569;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --bg-light: #f8fafc;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+        @page { size: letter; margin: 0.5in; }
+        body { font-family: 'Open Sans', sans-serif; font-size: 10.5pt; line-height: 1.5; color: var(--text-dark); background: white; }
+
+        .header { background: var(--primary); color: white; padding: 14px 18px; border-radius: 6px; margin-bottom: 18px; display: flex; justify-content: space-between; align-items: center; }
+        .header-left h1 { font-size: 13pt; font-weight: 700; margin: 0; }
+        .header-left h2 { font-size: 10pt; font-weight: 400; margin: 2px 0 0; opacity: 0.9; }
+        .header-right { font-size: 9pt; text-align: right; opacity: 0.9; }
+
+        .section-header { font-size: 11pt; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 2px solid var(--primary); padding-bottom: 4px; margin: 20px 0 12px; }
+
+        .challenge-box { background: var(--accent-light); border-left: 4px solid var(--accent); padding: 14px 16px; margin-bottom: 16px; border-radius: 0 6px 6px 0; }
+        .challenge-box p { font-style: italic; color: var(--text-dark); margin-bottom: 10px; }
+        .challenge-box .framing-question { font-weight: 600; font-style: normal; color: #92400e; }
+
+        .objectives-box { background: var(--primary-light); border: 1px solid #c7d2fe; border-radius: 6px; padding: 12px 16px; margin-bottom: 18px; }
+        .objectives-box h3 { font-size: 10pt; font-weight: 700; color: var(--primary); margin-bottom: 6px; }
+        .objectives-box ul { margin: 0; padding-left: 20px; }
+        .objectives-box li { margin-bottom: 3px; color: var(--text-medium); }
+
+        .terms-table { width: 100%; border-collapse: collapse; margin-bottom: 14px; font-size: 10pt; }
+        .terms-table th { background: var(--bg-light); text-align: left; padding: 8px 10px; border: 1px solid var(--border); font-weight: 600; color: var(--text-medium); }
+        .terms-table td { padding: 8px 10px; border: 1px solid var(--border); vertical-align: top; }
+        .terms-table td:first-child { font-weight: 600; color: var(--primary); width: 22%; }
+
+        .background-box { background: var(--bg-light); border: 1px solid var(--border); border-radius: 6px; padding: 12px 16px; margin-bottom: 18px; font-size: 10pt; color: var(--text-medium); }
+        .background-box strong { color: var(--text-dark); }
+
+        .scenario-card { background: white; border: 1px solid var(--border); border-radius: 6px; padding: 12px 14px; margin-bottom: 14px; page-break-inside: avoid; }
+        .scenario-title { font-weight: 700; color: var(--primary); margin-bottom: 6px; font-size: 10pt; }
+        .scenario-description { color: var(--text-medium); margin-bottom: 10px; font-size: 10pt; }
+
+        .response-line { display: flex; align-items: baseline; margin-bottom: 8px; }
+        .response-label { font-weight: 600; color: var(--text-dark); margin-right: 8px; white-space: nowrap; }
+        .response-blank { flex-grow: 1; border-bottom: 1px solid var(--text-light); min-height: 18px; }
+        .response-options { color: var(--text-light); font-size: 9pt; margin-left: 8px; white-space: nowrap; }
+
+        .because-lines { margin-top: 6px; }
+        .because-lines .response-line { margin-bottom: 4px; }
+
+        .question { margin-bottom: 14px; page-break-inside: avoid; }
+        .question-number { font-weight: 700; color: var(--text-dark); }
+        .question-text { color: var(--text-dark); margin-bottom: 6px; }
+
+        .answer-lines { margin-top: 6px; }
+        .answer-line { border-bottom: 1px solid var(--text-light); height: 22px; margin-bottom: 4px; }
+
+        .mc-options { margin-top: 6px; margin-left: 20px; }
+        .mc-option { display: flex; align-items: center; margin-bottom: 4px; }
+        .mc-checkbox { width: 14px; height: 14px; border: 1px solid var(--text-light); border-radius: 2px; margin-right: 8px; flex-shrink: 0; }
+
+        .hint-box { background: #f0fdf4; border-left: 3px solid var(--success); padding: 8px 12px; margin: 10px 0; font-size: 9pt; font-style: italic; color: #166534; }
+        .hint-box strong { font-style: normal; }
+
+        .part-header { font-weight: 700; font-size: 10pt; color: var(--primary); text-transform: uppercase; margin: 16px 0 10px; padding-bottom: 4px; border-bottom: 1px solid var(--border); }
+
+        .data-table { width: 100%; border-collapse: collapse; margin-bottom: 14px; font-size: 9.5pt; }
+        .data-table th { background: var(--bg-light); padding: 8px 10px; border: 1px solid var(--border); font-weight: 600; color: var(--text-dark); text-align: left; }
+        .data-table td { padding: 8px 10px; border: 1px solid var(--border); vertical-align: top; }
+        .data-table tr:nth-child(even) { background: #fafafa; }
+
+        .footer { margin-top: 24px; padding-top: 10px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; font-size: 9pt; color: var(--text-light); }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="header-left">
+            <h1>PFL Academy</h1>
+            <h2>Chapter 6.4: Identity Theft Prevention and Recovery</h2>
+        </div>
+        <div class="header-right">Student Activity Packet</div>
+    </div>
+
+    <div class="section-header">The Challenge</div>
+    <div class="challenge-box">
+        <p>Maria checked her credit card statement online and noticed several large purchases she didn't make—electronics ordered from across the country and shipped to an unfamiliar address. The charges totaled nearly $3,000. She didn't know how her information was stolen or what steps she needed to take to protect herself.</p>
+        <p class="framing-question">What should Maria do immediately, and how could she have prevented this from happening?</p>
+    </div>
+
+    <div class="objectives-box">
+        <h3>Learning Objectives</h3>
+        <ul>
+            <li>Identify different tactics used by identity thieves and how they operate.</li>
+            <li>Evaluate strategies for protecting your personal information from theft.</li>
+            <li>Explain the step-by-step process for responding to identity theft.</li>
+        </ul>
+    </div>
+
+    <div class="section-header">Core Concepts</div>
+
+    <table class="terms-table">
+        <tr><th>Term</th><th>Definition</th></tr>
+        <tr><td>Identity Theft</td><td>Fraudulent acquisition and use of a person's private identifying information, usually for financial gain.</td></tr>
+        <tr><td>Credit Freeze</td><td>A security measure that restricts access to your credit report, making it harder for thieves to open accounts in your name.</td></tr>
+        <tr><td>Fraud Alert</td><td>A notice placed on your credit report that alerts creditors you may be a victim of fraud.</td></tr>
+        <tr><td>Data Breach</td><td>When information is stolen from a system without authorization, potentially exposing personal data.</td></tr>
+        <tr><td>Skimming</td><td>Illegal copying of information from the magnetic strip of a credit or ATM card using a device.</td></tr>
+    </table>
+
+    <div class="background-box">
+        <strong>Background:</strong> Identity theft affects millions of Americans annually, with losses reaching billions of dollars. Beyond immediate financial impacts, victims face damaged credit scores and time-consuming recovery processes—the FTC estimates 200+ hours over 6 months to resolve. Thieves use both digital methods (phishing, data breaches, malware) and physical methods (mail theft, dumpster diving, skimming) to steal information. Understanding these tactics and implementing preventive measures significantly reduces your vulnerability.
+    </div>
+
+    <div class="section-header">Apply It</div>
+
+    <div class="part-header">Part A: Identity Theft Tactics Analysis</div>
+    <p style="margin-bottom: 14px;">For each method, identify the type of theft and explain how to protect yourself.</p>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Scenario 1: The Suspicious Email</div>
+        <div class="scenario-description">You receive an email appearing to be from your bank asking you to verify your account by clicking a link and entering your username, password, and Social Security number. The email warns your account will be frozen if you don't respond within 24 hours.</div>
+        <div class="response-line">
+            <span class="response-label">Type of theft tactic:</span>
+            <span class="response-blank"></span>
+            <span class="response-options">(phishing / skimming / dumpster diving)</span>
+        </div>
+        <div class="because-lines">
+            <div class="response-line">
+                <span class="response-label">Protection:</span>
+                <span class="response-blank"></span>
+            </div>
+            <div class="response-line">
+                <span class="response-blank" style="margin-left: 70px;"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Scenario 2: The Gas Station</div>
+        <div class="scenario-description">After using your debit card at a gas pump, you notice fraudulent charges on your account days later. The gas station later announced that thieves had installed hidden devices on their card readers.</div>
+        <div class="response-line">
+            <span class="response-label">Type of theft tactic:</span>
+            <span class="response-blank"></span>
+            <span class="response-options">(phishing / skimming / social engineering)</span>
+        </div>
+        <div class="because-lines">
+            <div class="response-line">
+                <span class="response-label">Protection:</span>
+                <span class="response-blank"></span>
+            </div>
+            <div class="response-line">
+                <span class="response-blank" style="margin-left: 70px;"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Scenario 3: The Discarded Documents</div>
+        <div class="scenario-description">David threw away his old bank statements and pre-approved credit card offers without shredding them. A month later, someone opened a credit card in his name using information from those documents.</div>
+        <div class="response-line">
+            <span class="response-label">Type of theft tactic:</span>
+            <span class="response-blank"></span>
+            <span class="response-options">(data breach / dumpster diving / mail theft)</span>
+        </div>
+        <div class="because-lines">
+            <div class="response-line">
+                <span class="response-label">Protection:</span>
+                <span class="response-blank"></span>
+            </div>
+            <div class="response-line">
+                <span class="response-blank" style="margin-left: 70px;"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="hint-box">
+        <strong>Hint:</strong> Identity thieves use both high-tech (phishing, malware, data breaches) and low-tech (mail theft, dumpster diving, skimming) methods. Protection requires addressing both.
+    </div>
+
+    <div class="part-header">Part B: Warning Signs Comparison</div>
+
+    <table class="data-table">
+        <tr>
+            <th>Warning Sign</th>
+            <th>What It Could Mean</th>
+            <th>Immediate Action to Take</th>
+        </tr>
+        <tr>
+            <td>Unexpected credit denial</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Bills/statements stop arriving</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Unfamiliar accounts on credit report</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Collection calls for unknown debts</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>IRS notice of duplicate tax return</td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+
+    <div class="part-header">Part C: Recovery Action Plan</div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">4.</span> Put these identity theft recovery steps in the correct order (1-6):</p>
+        <div class="mc-options">
+            <div class="mc-option"><div class="mc-checkbox"></div> File a report with the FTC at IdentityTheft.gov</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> Place a fraud alert with a credit bureau</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> Call affected companies to close/freeze accounts</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> Continue monitoring credit reports and statements</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> File a police report if needed</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> Change all passwords and PINs</div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">5.</span> Create your personal identity protection checklist. List THREE specific actions you will take to protect yourself.</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="section-header">Check Your Understanding</div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">1.</span> What is the MOST important difference between a credit freeze and a fraud alert?</p>
+        <div class="mc-options">
+            <div class="mc-option"><div class="mc-checkbox"></div> A. A credit freeze costs money; fraud alerts are free</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> B. A credit freeze blocks new credit inquiries; a fraud alert warns creditors to verify identity</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> C. A fraud alert removes fraudulent accounts; a credit freeze does not</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> D. They are the same thing with different names</div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">2.</span> Why would an identity thief file a tax return in someone else's name?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">3.</span> Maria (from The Challenge) discovered fraudulent charges. List the FIRST THREE actions she should take, in order.</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">4.</span> Explain why regularly checking your credit report from all three bureaus (Equifax, Experian, TransUnion) is important.</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">5.</span> <strong>Reflection:</strong> Which identity theft protection measure do you think is most commonly overlooked by people your age? Why might people neglect this precaution, and what could be the consequences?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <span>© PFL Academy | pflacademy.co</span>
+        <span>Chapter 6.4: Identity Theft Prevention and Recovery</span>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-56 Teacher Guide</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+        :root {
+            --primary: #059669;
+            --primary-light: #ecfdf5;
+            --primary-dark: #065f46;
+            --text-dark: #1e293b;
+            --text-medium: #475569;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --bg-light: #f8fafc;
+            --warning: #f59e0b;
+            --warning-light: #fef3c7;
+            --error: #dc2626;
+            --error-light: #fee2e2;
+            --success-light: #dcfce7;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+
+        @page {
+            size: letter;
+            margin: 0.5in;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 10pt;
+            line-height: 1.45;
+            color: var(--text-dark);
+            background: white;
+        }
+
+        .header {
+            background: var(--primary);
+            color: white;
+            padding: 14px 18px;
+            border-radius: 6px;
+            margin-bottom: 16px;
+        }
+
+        .header h1 {
+            font-size: 13pt;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .header h2 {
+            font-size: 10pt;
+            font-weight: 400;
+            margin: 3px 0 0;
+            opacity: 0.9;
+        }
+
+        .section-header {
+            background: var(--primary-light);
+            border-left: 4px solid var(--primary);
+            padding: 7px 12px;
+            font-size: 10pt;
+            font-weight: 700;
+            color: var(--primary-dark);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin: 16px 0 10px;
+        }
+
+        .overview-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 14px;
+        }
+
+        .overview-table th {
+            background: var(--bg-light);
+            color: var(--text-light);
+            font-size: 8pt;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            text-align: center;
+            padding: 6px 10px;
+            border: 1px solid var(--border);
+            width: 33%;
+        }
+
+        .overview-table td {
+            text-align: center;
+            padding: 10px;
+            border: 1px solid var(--border);
+            font-weight: 600;
+            color: var(--text-dark);
+            font-size: 10pt;
+        }
+
+        .flow-container {
+            margin-bottom: 14px;
+        }
+
+        .flow-item {
+            display: flex;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border);
+            page-break-inside: avoid;
+        }
+
+        .flow-item:last-child {
+            border-bottom: none;
+        }
+
+        .flow-time {
+            width: 65px;
+            font-weight: 700;
+            color: var(--primary);
+            flex-shrink: 0;
+            font-size: 10pt;
+        }
+
+        .flow-content {
+            flex: 1;
+        }
+
+        .flow-title {
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 3px;
+            font-size: 10pt;
+        }
+
+        .flow-content ul {
+            margin: 0;
+            padding-left: 16px;
+            font-size: 9pt;
+            color: var(--text-medium);
+        }
+
+        .flow-content li {
+            margin-bottom: 2px;
+        }
+
+        .diff-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 14px;
+        }
+
+        .diff-box {
+            background: var(--bg-light);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 10px 12px;
+        }
+
+        .diff-title {
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 6px;
+            font-size: 9pt;
+        }
+
+        .diff-box ul {
+            margin: 0;
+            padding-left: 16px;
+            font-size: 9pt;
+            color: var(--text-medium);
+        }
+
+        .diff-box li {
+            margin-bottom: 2px;
+        }
+
+        .answer-key {
+            page-break-before: always;
+        }
+
+        .answer-block {
+            margin-bottom: 12px;
+            page-break-inside: avoid;
+        }
+
+        .answer-title {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 9pt;
+            border-bottom: 1px solid #a7f3d0;
+            padding-bottom: 3px;
+            margin-bottom: 6px;
+        }
+
+        .answer-item {
+            margin-bottom: 5px;
+            font-size: 9pt;
+            color: var(--text-dark);
+        }
+
+        .answer-item strong {
+            color: var(--primary-dark);
+        }
+
+        .calc-display {
+            font-family: 'Courier New', monospace;
+            background: var(--bg-light);
+            padding: 8px 10px;
+            border-radius: 4px;
+            margin: 6px 0;
+            font-size: 8.5pt;
+            line-height: 1.5;
+            white-space: pre-line;
+        }
+
+        .answer-note {
+            background: var(--warning-light);
+            border-left: 3px solid var(--warning);
+            padding: 6px 10px;
+            font-size: 9pt;
+            font-style: italic;
+            color: #92400e;
+            margin: 6px 0;
+        }
+
+        .misconception-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 9pt;
+            margin-top: 10px;
+        }
+
+        .misconception-table th {
+            padding: 6px 10px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .misconception-table th:first-child {
+            background: var(--error-light);
+            color: #991b1b;
+            border: 1px solid #fca5a5;
+            width: 40%;
+        }
+
+        .misconception-table th:last-child {
+            background: var(--success-light);
+            color: #166534;
+            border: 1px solid #86efac;
+        }
+
+        .misconception-table td {
+            padding: 6px 10px;
+            border: 1px solid var(--border);
+            vertical-align: top;
+            color: var(--text-medium);
+        }
+
+        .footer {
+            margin-top: 20px;
+            padding-top: 8px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            font-size: 8pt;
+            color: var(--text-light);
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <div class="header">
+        <h1>PFL Academy</h1>
+        <h2>Teacher Guide: Chapter 56 — Financial Record Keeping and Account Reconciliation</h2>
+    </div>
+
+    <!-- OVERVIEW -->
+    <div class="section-header">Overview</div>
+    <table class="overview-table">
+        <tr>
+            <th>Time</th>
+            <th>Materials</th>
+            <th>Prerequisites</th>
+        </tr>
+        <tr>
+            <td>45-50 Minutes</td>
+            <td>Student Activity Packet, Calculator</td>
+            <td>Basic math skills, L-3 Income Management helpful</td>
+        </tr>
+    </table>
+
+    <!-- LESSON FLOW -->
+    <div class="section-header">Lesson Flow</div>
+    <div class="flow-container">
+        <div class="flow-item">
+            <div class="flow-time">5 min</div>
+            <div class="flow-content">
+                <div class="flow-title">THE CHALLENGE</div>
+                <ul>
+                    <li>Read Marcus's overdraft cascade story—$210 in fees from one forgotten check.</li>
+                    <li>Ask: "Has anyone ever been surprised by an overdraft or mysterious charge?"</li>
+                    <li>Key point: Banking apps show what the bank knows, not what you've committed to spend.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="flow-item">
+            <div class="flow-time">10 min</div>
+            <div class="flow-content">
+                <div class="flow-title">CORE CONCEPTS</div>
+                <ul>
+                    <li>Distinguish "available balance" (bank's view) from "actual available" (your records).</li>
+                    <li>Explain outstanding transactions—checks written but not cashed, auto-pays scheduled.</li>
+                    <li>Demo the reconciliation process: statement balance + deposits not credited − outstanding payments = register balance.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="flow-item">
+            <div class="flow-time">25-30 min</div>
+            <div class="flow-content">
+                <div class="flow-title">APPLY IT</div>
+                <ul>
+                    <li><strong>Part A (10 min):</strong> Checkbook register practice. Walk through first 2-3 transactions together, then have students complete independently.</li>
+                    <li><strong>Part B (10 min):</strong> Reconciliation practice. This is where students learn why their register differs from statement.</li>
+                    <li><strong>Part C (5 min):</strong> Error detection. Finding the $35 calculation error teaches careful review.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="flow-item">
+            <div class="flow-time">10 min</div>
+            <div class="flow-content">
+                <div class="flow-title">CHECK YOUR UNDERSTANDING</div>
+                <ul>
+                    <li>Q1 tests real-world application—"how much can you actually spend?"</li>
+                    <li>Q3 (fraud detection) is critical—discuss small test charges preceding larger theft.</li>
+                    <li>Q5 asks for personal commitment to record-keeping system.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- DIFFERENTIATION -->
+    <div class="section-header">Differentiation</div>
+    <div class="diff-grid">
+        <div class="diff-box">
+            <div class="diff-title">Support</div>
+            <ul>
+                <li>Pre-fill the first few register entries as examples.</li>
+                <li>Provide a reconciliation formula card students can reference.</li>
+                <li>Work through Part B together as a class before independent work.</li>
+                <li>Use color-coding: green for deposits, red for withdrawals.</li>
+            </ul>
+        </div>
+        <div class="diff-box">
+            <div class="diff-title">Extension</div>
+            <ul>
+                <li>Create a more complex scenario with multiple outstanding transactions.</li>
+                <li>Have students research and compare financial tracking apps (Mint, YNAB, etc.).</li>
+                <li>Calculate annual cost of poor record keeping (average household overdraft fees).</li>
+                <li>Design a personal tracking system and present to class.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ANSWER KEY (new page) -->
+    <div class="answer-key">
+        <div class="section-header">Answer Key</div>
+
+        <div class="answer-block">
+            <div class="answer-title">Part A: Checkbook Register Practice</div>
+            <div class="calc-display">Starting Balance: $1,245.80
+3/1 - Rent: $1,245.80 - $825.00 = $420.80
+3/3 - Paycheck: $420.80 + $1,450.00 = $1,870.80
+3/5 - Groceries: $1,870.80 - $87.43 = $1,783.37
+3/7 - ATM: $1,783.37 - $80.00 = $1,703.37
+3/9 - Car Insurance: $1,703.37 - $156.00 = $1,547.37
+3/12 - Gas: $1,547.37 - $45.67 = $1,501.70
+3/14 - Transfer: $1,501.70 + $200.00 = $1,701.70
+3/15 - Electric: $1,701.70 - $98.25 = $1,603.45
+
+Final Register Balance: $1,603.45</div>
+        </div>
+
+        <div class="answer-block">
+            <div class="answer-title">Part B: Statement Reconciliation</div>
+            <div class="calc-display">Bank Statement Ending Balance: $1,703.45
+ADD: Deposits not yet credited: $0
+SUBTRACT: Outstanding checks/payments:
+  Check #406: $98.25
+
+ADJUSTED BANK BALANCE: $1,703.45 - $98.25 = $1,605.20
+
+Wait—this should equal $1,603.45...
+Actually: $1,703.45 - $98.25 = $1,605.20 ≠ $1,603.45
+
+DISCREPANCY: $1.75 difference
+Possible causes: Rounding error, bank fee not recorded, transaction amount slightly different</div>
+            <div class="answer-note">Note: If students get $1,605.20, there's a $1.75 discrepancy built in. Discuss that real reconciliations often have small differences to investigate. The exercise teaches the PROCESS even if numbers don't match perfectly.</div>
+        </div>
+
+        <div class="answer-block">
+            <div class="answer-title">Part C: Error Detection</div>
+            <div class="answer-item"><strong>Error location:</strong> 3/6 Restaurant transaction. Register shows $537.55 - $34.70 = $537.85, which is WRONG. Should be $502.85.</div>
+            <div class="answer-item"><strong>Correct final balance:</strong> $392.85 (matches bank statement)</div>
+            <div class="answer-item"><strong>The error:</strong> Amy added instead of subtracting, or made a calculation error that resulted in +$35 instead of the correct subtraction.</div>
+        </div>
+
+        <div class="answer-block">
+            <div class="answer-title">Check Your Understanding</div>
+            <div class="answer-item"><strong>1.</strong> C ($70). Start with $450, subtract outstanding check ($200) and scheduled auto-pay ($180). Only $70 is truly available.</div>
+            <div class="answer-item"><strong>2.</strong> Cleared balance = only transactions the bank has processed. Available balance = cleared balance adjusted for pending transactions and holds. Neither reflects checks you've written that haven't been deposited yet.</div>
+            <div class="answer-item"><strong>3.</strong> Contact bank's fraud department immediately. This pattern (small test charges) indicates criminals verifying stolen card info before making larger purchases. Request new card, dispute charges, set up fraud alerts.</div>
+            <div class="answer-item"><strong>4.</strong> Overdraft fees: 4 × $35 = $140. Total impact: $140 in fees + whatever overdraft balance must be covered. The $150 check still cleared, so total cost of the mistake: $140 in avoidable fees.</div>
+            <div class="answer-item"><strong>5.</strong> <em>Should include: specific tracking method chosen (app, spreadsheet, paper), reconciliation frequency (daily, weekly, monthly), and strategy for tracking outstanding transactions before spending.</em></div>
+        </div>
+
+        <!-- COMMON MISCONCEPTIONS -->
+        <div class="section-header">Common Misconceptions</div>
+        <table class="misconception-table">
+            <tr>
+                <th>Misconception</th>
+                <th>Clarification</th>
+            </tr>
+            <tr>
+                <td>"My banking app shows my real balance."</td>
+                <td>Banking apps show what the bank knows—not checks you've written that haven't cleared, not auto-pays scheduled, not holds from gas stations or hotels. Your ACTUAL available may be much less.</td>
+            </tr>
+            <tr>
+                <td>"Checkbook balancing is outdated."</td>
+                <td>The CONCEPT matters more than the tool. Whether you use paper, spreadsheet, or app, you must track committed funds independently of what your bank shows.</td>
+            </tr>
+            <tr>
+                <td>"Small unauthorized charges aren't worth worrying about."</td>
+                <td>Small charges are often TEST transactions by fraudsters. Report immediately—larger charges typically follow within days if test succeeds.</td>
+            </tr>
+            <tr>
+                <td>"Overdraft protection is free safety net."</td>
+                <td>Overdraft fees are $30-$35 EACH. Banks may process transactions large-to-small to maximize fees. Better protection: maintain your own records and buffer.</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        <span>© PFL Academy | pflacademy.co</span>
+        <span>Teacher Guide: Chapter 56</span>
+    </div>
+
+</body>
+</html>

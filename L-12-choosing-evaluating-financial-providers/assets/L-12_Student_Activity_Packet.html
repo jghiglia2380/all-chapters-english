@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-12 Student Activity Packet</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+        :root {
+            --primary: #6366f1;
+            --primary-light: #eef2ff;
+            --accent: #f59e0b;
+            --accent-light: #fef3c7;
+            --success: #059669;
+            --text-dark: #1e293b;
+            --text-medium: #475569;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --bg-light: #f8fafc;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+
+        @page {
+            size: letter;
+            margin: 0.5in;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 10.5pt;
+            line-height: 1.5;
+            color: var(--text-dark);
+            background: white;
+        }
+
+        .header {
+            background: var(--primary);
+            color: white;
+            padding: 14px 18px;
+            border-radius: 6px;
+            margin-bottom: 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-left h1 {
+            font-size: 13pt;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .header-left h2 {
+            font-size: 10pt;
+            font-weight: 400;
+            margin: 2px 0 0;
+            opacity: 0.9;
+        }
+
+        .header-right {
+            font-size: 9pt;
+            text-align: right;
+            opacity: 0.9;
+        }
+
+        .section-header {
+            font-size: 11pt;
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 4px;
+            margin: 20px 0 12px;
+        }
+
+        .challenge-box {
+            background: var(--accent-light);
+            border-left: 4px solid var(--accent);
+            padding: 14px 16px;
+            margin-bottom: 16px;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .challenge-box p {
+            font-style: italic;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+        }
+
+        .challenge-box .framing-question {
+            font-weight: 600;
+            font-style: normal;
+            color: #92400e;
+        }
+
+        .objectives-box {
+            background: var(--primary-light);
+            border: 1px solid #c7d2fe;
+            border-radius: 6px;
+            padding: 12px 16px;
+            margin-bottom: 18px;
+        }
+
+        .objectives-box h3 {
+            font-size: 10pt;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 6px;
+        }
+
+        .objectives-box ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .objectives-box li {
+            margin-bottom: 3px;
+            color: var(--text-medium);
+        }
+
+        .terms-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 14px;
+            font-size: 10pt;
+        }
+
+        .terms-table th {
+            background: var(--bg-light);
+            text-align: left;
+            padding: 8px 10px;
+            border: 1px solid var(--border);
+            font-weight: 600;
+            color: var(--text-medium);
+        }
+
+        .terms-table td {
+            padding: 8px 10px;
+            border: 1px solid var(--border);
+            vertical-align: top;
+        }
+
+        .terms-table td:first-child {
+            font-weight: 600;
+            color: var(--primary);
+            width: 28%;
+        }
+
+        .background-box {
+            background: var(--bg-light);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 12px 16px;
+            margin-bottom: 18px;
+            font-size: 10pt;
+            color: var(--text-medium);
+        }
+
+        .background-box strong {
+            color: var(--text-dark);
+        }
+
+        .scenario-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 12px 14px;
+            margin-bottom: 14px;
+            page-break-inside: avoid;
+        }
+
+        .scenario-title {
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 6px;
+            font-size: 10pt;
+        }
+
+        .scenario-description {
+            color: var(--text-medium);
+            margin-bottom: 10px;
+            font-size: 10pt;
+        }
+
+        .response-line {
+            display: flex;
+            align-items: baseline;
+            margin-bottom: 8px;
+        }
+
+        .response-label {
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-right: 8px;
+            white-space: nowrap;
+        }
+
+        .response-blank {
+            flex-grow: 1;
+            border-bottom: 1px solid var(--text-light);
+            min-height: 18px;
+        }
+
+        .response-options {
+            color: var(--text-light);
+            font-size: 9pt;
+            margin-left: 8px;
+            white-space: nowrap;
+        }
+
+        .because-lines {
+            margin-top: 6px;
+        }
+
+        .because-lines .response-line {
+            margin-bottom: 4px;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 12px 0;
+            font-size: 10pt;
+        }
+
+        .data-table th {
+            background: var(--primary);
+            color: white;
+            padding: 8px 10px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 9pt;
+        }
+
+        .data-table td {
+            padding: 8px 10px;
+            border: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .data-table tr:nth-child(even) td {
+            background: var(--bg-light);
+        }
+
+        .data-table .calc-row td {
+            background: #fef9c3;
+            height: 28px;
+        }
+
+        .question {
+            margin-bottom: 14px;
+            page-break-inside: avoid;
+        }
+
+        .question-number {
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .question-text {
+            color: var(--text-dark);
+            margin-bottom: 6px;
+        }
+
+        .answer-lines {
+            margin-top: 6px;
+        }
+
+        .answer-line {
+            border-bottom: 1px solid var(--text-light);
+            height: 22px;
+            margin-bottom: 4px;
+        }
+
+        .calc-box {
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 12px;
+            margin: 8px 0;
+            min-height: 60px;
+            background: var(--bg-light);
+        }
+
+        .calc-label {
+            font-size: 9pt;
+            color: var(--text-light);
+            margin-bottom: 4px;
+        }
+
+        .calc-answer {
+            margin-top: 10px;
+            font-weight: 600;
+        }
+
+        .mc-options {
+            margin-top: 6px;
+            margin-left: 20px;
+        }
+
+        .mc-option {
+            display: flex;
+            align-items: center;
+            margin-bottom: 4px;
+        }
+
+        .mc-checkbox {
+            width: 14px;
+            height: 14px;
+            border: 1px solid var(--text-light);
+            border-radius: 2px;
+            margin-right: 8px;
+            flex-shrink: 0;
+        }
+
+        .hint-box {
+            background: #f0fdf4;
+            border-left: 3px solid var(--success);
+            padding: 8px 12px;
+            margin: 10px 0;
+            font-size: 9pt;
+            font-style: italic;
+            color: #166534;
+        }
+
+        .hint-box strong {
+            font-style: normal;
+        }
+
+        .part-header {
+            font-weight: 700;
+            font-size: 10pt;
+            color: var(--primary);
+            text-transform: uppercase;
+            margin: 16px 0 10px;
+            padding-bottom: 4px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .footer {
+            margin-top: 24px;
+            padding-top: 10px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            font-size: 9pt;
+            color: var(--text-light);
+        }
+
+        .mb-sm { margin-bottom: 8px; }
+        .mb-md { margin-bottom: 14px; }
+        .mb-lg { margin-bottom: 20px; }
+
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <div class="header">
+        <div class="header-left">
+            <h1>PFL Academy</h1>
+            <h2>Chapter 3.2: Choosing and Evaluating Financial Service Providers</h2>
+        </div>
+        <div class="header-right">
+            Student Activity Packet
+        </div>
+    </div>
+
+    <!-- THE CHALLENGE -->
+    <div class="section-header">The Challenge</div>
+    <div class="challenge-box">
+        <p>Sophia is starting college and needs her first bank account. She's deciding between an online bank offering no fees and 1.5% APY on savings, and a local credit union with personalized service and 0.8% APY. The online bank has no branches, while the credit union has limited ATM access. Sophia isn't sure which factors matter most for her situation.</p>
+        <p class="framing-question">What factors should Sophia consider when choosing between these financial service providers, and how might the "best" choice differ for different people?</p>
+    </div>
+
+    <!-- LEARNING OBJECTIVES -->
+    <div class="objectives-box">
+        <h3>Learning Objectives</h3>
+        <ul>
+            <li>Identify key factors to consider when choosing a financial institution.</li>
+            <li>Compare financial service providers in terms of fees, interest rates, and services.</li>
+            <li>Evaluate which type of financial institution best serves different needs.</li>
+        </ul>
+    </div>
+
+    <!-- CORE CONCEPTS -->
+    <div class="section-header">Core Concepts</div>
+
+    <table class="terms-table">
+        <tr>
+            <th>Term</th>
+            <th>Definition</th>
+        </tr>
+        <tr>
+            <td>Annual Percentage Yield (APY)</td>
+            <td>The effective annual rate of return on savings accounts, accounting for compound interest.</td>
+        </tr>
+        <tr>
+            <td>Overdraft Fee</td>
+            <td>A charge for spending more money than is available in your account.</td>
+        </tr>
+        <tr>
+            <td>Account Maintenance Fee</td>
+            <td>Regular monthly or annual charges for maintaining an account.</td>
+        </tr>
+        <tr>
+            <td>Robo-Advisor</td>
+            <td>A digital platform providing automated investment management services at lower cost than human advisors.</td>
+        </tr>
+        <tr>
+            <td>Mobile Banking</td>
+            <td>Banking services accessed through smartphone applications, allowing transactions without visiting a branch.</td>
+        </tr>
+    </table>
+
+    <div class="background-box">
+        <strong>Background:</strong> Choosing the right financial service provider can significantly impact your financial health. Different providers offer varying fee structures, interest rates, accessibility options, and services. By understanding these differences and evaluating how they align with your personal needs and goals, you can make informed decisions that save money and provide the services you need throughout different life stages.
+    </div>
+
+    <!-- APPLY IT -->
+    <div class="section-header">Apply It</div>
+
+    <div class="part-header">Part A: Provider Evaluation</div>
+    <p class="mb-md">For each scenario, identify the most important factors to consider and recommend a provider type.</p>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Scenario 1: Sophia's First Account</div>
+        <div class="scenario-description">Sophia is a college student with limited income who needs basic banking services. She rarely uses cash and does most transactions online. She wants to start building savings.</div>
+        <div class="response-line">
+            <span class="response-label">Most important factor:</span>
+            <span class="response-blank"></span>
+            <span class="response-options">(Fees / APY / Branch Access / Services)</span>
+        </div>
+        <div class="response-line">
+            <span class="response-label">Recommended provider:</span>
+            <span class="response-blank"></span>
+            <span class="response-options">(Online Bank / Credit Union / Traditional Bank)</span>
+        </div>
+        <div class="because-lines">
+            <div class="response-line">
+                <span class="response-label">Because:</span>
+                <span class="response-blank"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Scenario 2: Ethan's Car Loan</div>
+        <div class="scenario-description">Ethan needs a $15,000 auto loan. His bank offers 4.5% interest, a credit union offers 3.2%, and an online lender offers 3.9%. The credit union requires membership through his employer.</div>
+        <div class="response-line">
+            <span class="response-label">Most important factor:</span>
+            <span class="response-blank"></span>
+            <span class="response-options">(Interest Rate / Convenience / Relationship / Speed)</span>
+        </div>
+        <div class="response-line">
+            <span class="response-label">Recommended provider:</span>
+            <span class="response-blank"></span>
+        </div>
+        <div class="because-lines">
+            <div class="response-line">
+                <span class="response-label">Because:</span>
+                <span class="response-blank"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Scenario 3: Mia's Investment Start</div>
+        <div class="scenario-description">Mia has $1,000 to start investing. She's comparing a traditional brokerage with a financial advisor (1.2% annual fee) versus a robo-advisor (0.25% fee). She's new to investing and wants some guidance.</div>
+        <div class="response-line">
+            <span class="response-label">Most important factor:</span>
+            <span class="response-blank"></span>
+            <span class="response-options">(Fees / Guidance / Minimum Balance / Services)</span>
+        </div>
+        <div class="response-line">
+            <span class="response-label">Recommended provider:</span>
+            <span class="response-blank"></span>
+        </div>
+        <div class="because-lines">
+            <div class="response-line">
+                <span class="response-label">Because:</span>
+                <span class="response-blank"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="hint-box">
+        <strong>Hint:</strong> Consider both immediate costs and long-term impact. Sometimes paying slightly more for better service or guidance can be worthwhile, especially when learning.
+    </div>
+
+    <!-- PART B -->
+    <div class="part-header">Part B: Fee and Interest Rate Impact</div>
+    <p class="mb-md">Calculate the long-term impact of different provider choices. Complete the table and analysis.</p>
+
+    <table class="data-table">
+        <tr>
+            <th>Factor</th>
+            <th>Traditional Bank</th>
+            <th>Credit Union</th>
+            <th>Online Bank</th>
+        </tr>
+        <tr>
+            <td style="text-align: left; font-weight: 600;">Auto Loan Rate (5 yr)</td>
+            <td>4.5%</td>
+            <td>3.2%</td>
+            <td>3.9%</td>
+        </tr>
+        <tr>
+            <td style="text-align: left; font-weight: 600;">Monthly Payment ($15,000)</td>
+            <td>$279</td>
+            <td>$271</td>
+            <td>$275</td>
+        </tr>
+        <tr class="calc-row">
+            <td style="text-align: left; font-weight: 600;">Total Paid Over 5 Years</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="calc-row">
+            <td style="text-align: left; font-weight: 600;">Total Interest Paid</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">4.</span> How much would Ethan save in interest by choosing the credit union over his current bank?</p>
+        <div class="calc-box">
+            <div class="calc-label">Show your work:</div>
+        </div>
+        <div class="calc-answer">Answer: $_____________ saved</div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">5.</span> If Ethan couldn't join the credit union, what would be his next best option? How much would that save compared to his bank?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <!-- PART C -->
+    <div class="part-header">Part C: Personal Financial Profile</div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">6.</span> List three features that are most important to YOU when choosing a financial service provider, ranked from most to least important.</p>
+        <div class="answer-lines">
+            <div class="response-line"><span class="response-label">1.</span><span class="response-blank"></span></div>
+            <div class="response-line"><span class="response-label">2.</span><span class="response-blank"></span></div>
+            <div class="response-line"><span class="response-label">3.</span><span class="response-blank"></span></div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">7.</span> How might your priorities change in 10 years? What services might become more important?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <!-- CHECK YOUR UNDERSTANDING -->
+    <div class="section-header">Check Your Understanding</div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">1.</span> Which factor would typically be MOST important when choosing a provider for an emergency fund?</p>
+        <div class="mc-options">
+            <div class="mc-option"><div class="mc-checkbox"></div> A. Highest possible APY</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> B. Lowest loan rates</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> C. Easy access with no withdrawal penalties</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> D. Investment options available</div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">2.</span> Explain why online banks can typically offer higher APY rates than traditional banks.</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">3.</span> <strong>Calculation:</strong> A robo-advisor charges 0.25% annually. A traditional advisor charges 1.2% annually. On a $10,000 investment, how much more would you pay the traditional advisor over 5 years (assuming the balance stays constant)?</p>
+        <div class="calc-box">
+            <div class="calc-label">Show your work:</div>
+        </div>
+        <div class="calc-answer">Answer: $_____________ more over 5 years</div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">4.</span> Sophia chose an online bank but now needs to deposit a large cash gift. What challenge might she face, and how could she solve it?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">5.</span> <strong>Reflection:</strong> Think about a financial goal you have (short-term or long-term). What type of financial service provider would best help you achieve this goal? What specific features would you look for?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        <span>© PFL Academy | pflacademy.co</span>
+        <span>Chapter 3.2: Choosing and Evaluating Financial Service Providers</span>
+    </div>
+
+</body>
+</html>

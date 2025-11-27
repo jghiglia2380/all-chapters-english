@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-32 Student Activity Packet</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+        :root {
+            --primary: #6366f1;
+            --primary-light: #eef2ff;
+            --accent: #f59e0b;
+            --accent-light: #fef3c7;
+            --success: #059669;
+            --text-dark: #1e293b;
+            --text-medium: #475569;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --bg-light: #f8fafc;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+
+        @page {
+            size: letter;
+            margin: 0.5in;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 10.5pt;
+            line-height: 1.5;
+            color: var(--text-dark);
+            background: white;
+        }
+
+        .header {
+            background: var(--primary);
+            color: white;
+            padding: 14px 18px;
+            border-radius: 6px;
+            margin-bottom: 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-left h1 {
+            font-size: 13pt;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .header-left h2 {
+            font-size: 10pt;
+            font-weight: 400;
+            margin: 2px 0 0;
+            opacity: 0.9;
+        }
+
+        .header-right {
+            font-size: 9pt;
+            text-align: right;
+            opacity: 0.9;
+        }
+
+        .section-header {
+            font-size: 11pt;
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 4px;
+            margin: 20px 0 12px;
+        }
+
+        .challenge-box {
+            background: var(--accent-light);
+            border-left: 4px solid var(--accent);
+            padding: 14px 16px;
+            margin-bottom: 16px;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .challenge-box p {
+            font-style: italic;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+        }
+
+        .challenge-box .framing-question {
+            font-weight: 600;
+            font-style: normal;
+            color: #92400e;
+        }
+
+        .objectives-box {
+            background: var(--primary-light);
+            border: 1px solid #c7d2fe;
+            border-radius: 6px;
+            padding: 12px 16px;
+            margin-bottom: 18px;
+        }
+
+        .objectives-box h3 {
+            font-size: 10pt;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 6px;
+        }
+
+        .objectives-box ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .objectives-box li {
+            margin-bottom: 3px;
+            color: var(--text-medium);
+        }
+
+        .terms-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 14px;
+            font-size: 10pt;
+        }
+
+        .terms-table th {
+            background: var(--bg-light);
+            text-align: left;
+            padding: 8px 10px;
+            border: 1px solid var(--border);
+            font-weight: 600;
+            color: var(--text-medium);
+        }
+
+        .terms-table td {
+            padding: 8px 10px;
+            border: 1px solid var(--border);
+            vertical-align: top;
+        }
+
+        .terms-table td:first-child {
+            font-weight: 600;
+            color: var(--primary);
+            width: 25%;
+        }
+
+        .background-box {
+            background: var(--bg-light);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 12px 16px;
+            margin-bottom: 18px;
+            font-size: 10pt;
+            color: var(--text-medium);
+        }
+
+        .background-box strong {
+            color: var(--text-dark);
+        }
+
+        .scenario-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 12px 14px;
+            margin-bottom: 14px;
+            page-break-inside: avoid;
+        }
+
+        .scenario-title {
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 6px;
+            font-size: 10pt;
+        }
+
+        .scenario-description {
+            color: var(--text-medium);
+            margin-bottom: 10px;
+            font-size: 10pt;
+        }
+
+        .response-line {
+            display: flex;
+            align-items: baseline;
+            margin-bottom: 8px;
+        }
+
+        .response-label {
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-right: 8px;
+            white-space: nowrap;
+        }
+
+        .response-blank {
+            flex-grow: 1;
+            border-bottom: 1px solid var(--text-light);
+            min-height: 18px;
+        }
+
+        .response-options {
+            color: var(--text-light);
+            font-size: 9pt;
+            margin-left: 8px;
+            white-space: nowrap;
+        }
+
+        .because-lines {
+            margin-top: 6px;
+        }
+
+        .because-lines .response-line {
+            margin-bottom: 4px;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 12px 0;
+            font-size: 10pt;
+        }
+
+        .data-table th {
+            background: var(--primary);
+            color: white;
+            padding: 8px 10px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 9pt;
+        }
+
+        .data-table td {
+            padding: 8px 10px;
+            border: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .data-table tr:nth-child(even) td {
+            background: var(--bg-light);
+        }
+
+        .data-table .calc-row td {
+            background: #fef9c3;
+            height: 28px;
+        }
+
+        .question {
+            margin-bottom: 14px;
+            page-break-inside: avoid;
+        }
+
+        .question-number {
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .question-text {
+            color: var(--text-dark);
+            margin-bottom: 6px;
+        }
+
+        .answer-lines {
+            margin-top: 6px;
+        }
+
+        .answer-line {
+            border-bottom: 1px solid var(--text-light);
+            height: 22px;
+            margin-bottom: 4px;
+        }
+
+        .calc-box {
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 12px;
+            margin: 8px 0;
+            min-height: 60px;
+            background: var(--bg-light);
+        }
+
+        .calc-label {
+            font-size: 9pt;
+            color: var(--text-light);
+            margin-bottom: 4px;
+        }
+
+        .calc-answer {
+            margin-top: 10px;
+            font-weight: 600;
+        }
+
+        .mc-options {
+            margin-top: 6px;
+            margin-left: 20px;
+        }
+
+        .mc-option {
+            display: flex;
+            align-items: center;
+            margin-bottom: 4px;
+        }
+
+        .mc-checkbox {
+            width: 14px;
+            height: 14px;
+            border: 1px solid var(--text-light);
+            border-radius: 2px;
+            margin-right: 8px;
+            flex-shrink: 0;
+        }
+
+        .hint-box {
+            background: #f0fdf4;
+            border-left: 3px solid var(--success);
+            padding: 8px 12px;
+            margin: 10px 0;
+            font-size: 9pt;
+            font-style: italic;
+            color: #166534;
+        }
+
+        .hint-box strong {
+            font-style: normal;
+        }
+
+        .part-header {
+            font-weight: 700;
+            font-size: 10pt;
+            color: var(--primary);
+            text-transform: uppercase;
+            margin: 16px 0 10px;
+            padding-bottom: 4px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .footer {
+            margin-top: 24px;
+            padding-top: 10px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            font-size: 9pt;
+            color: var(--text-light);
+        }
+
+        .mb-sm { margin-bottom: 8px; }
+        .mb-md { margin-bottom: 14px; }
+        .mb-lg { margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <div class="header">
+        <div class="header-left">
+            <h1>PFL Academy</h1>
+            <h2>Chapter 6.2: Understanding Homeownership</h2>
+        </div>
+        <div class="header-right">
+            Student Activity Packet
+        </div>
+    </div>
+
+    <!-- THE CHALLENGE -->
+    <div class="section-header">The Challenge</div>
+    <div class="challenge-box">
+        <p>Maria, a 26-year-old with $48,000 annual income, wants to stop renting and start building equity. She has $8,000 saved, a credit score of 680, and $25,000 in student loans. She's looking at homes around $180,000 in her mid-sized city but is confused about which mortgage type would work best for her situation.</p>
+        <p class="framing-question">How can understanding different mortgage options and the true costs of homeownership help Maria decide if she's ready to buy?</p>
+    </div>
+
+    <!-- LEARNING OBJECTIVES -->
+    <div class="objectives-box">
+        <h3>Learning Objectives</h3>
+        <ul>
+            <li>Compare different types of mortgages and their advantages and disadvantages.</li>
+            <li>Calculate the true costs of homeownership beyond the purchase price.</li>
+            <li>Evaluate whether homeownership aligns with your financial goals and situation.</li>
+        </ul>
+    </div>
+
+    <!-- CORE CONCEPTS -->
+    <div class="section-header">Core Concepts</div>
+
+    <table class="terms-table">
+        <tr>
+            <th>Term</th>
+            <th>Definition</th>
+        </tr>
+        <tr>
+            <td>Mortgage</td>
+            <td>A loan specifically for purchasing real estate, where the property serves as collateral.</td>
+        </tr>
+        <tr>
+            <td>Down Payment</td>
+            <td>An initial, upfront payment toward the purchase of a home, typically 3-20% of the price.</td>
+        </tr>
+        <tr>
+            <td>PMI</td>
+            <td>Private Mortgage Insurance required when down payment is less than 20%, protecting the lender.</td>
+        </tr>
+        <tr>
+            <td>Escrow</td>
+            <td>An account managed by the lender to collect and pay property taxes and insurance.</td>
+        </tr>
+        <tr>
+            <td>Closing Costs</td>
+            <td>Fees and expenses (2-5% of purchase price) paid at the closing of a real estate transaction.</td>
+        </tr>
+    </table>
+
+    <div class="background-box">
+        <strong>Background:</strong> Buying a home is one of the most significant financial decisions most people make. Beyond the purchase price, homeownership involves upfront costs (down payment, closing costs), ongoing expenses (mortgage payment, property taxes, insurance, maintenance), and financial benefits (building equity, potential appreciation). Different mortgage types serve different situations: FHA loans help first-time buyers with lower down payments, VA loans benefit veterans with no down payment, and conventional loans work well for buyers with stronger financial profiles.
+    </div>
+
+    <!-- APPLY IT -->
+    <div class="section-header">Apply It</div>
+
+    <div class="part-header">Part A: Mortgage Option Comparison</div>
+    <p class="mb-md">Compare these mortgage options for a $250,000 home purchase. Determine which option has the lowest initial cost, lowest monthly payment, and best long-term value.</p>
+
+    <table class="data-table">
+        <tr>
+            <th>Factor</th>
+            <th>Conventional<br>(10% down)</th>
+            <th>FHA<br>(3.5% down)</th>
+            <th>VA<br>(0% down)</th>
+        </tr>
+        <tr>
+            <td style="text-align: left; font-weight: 600;">Down Payment Amount</td>
+            <td>$25,000</td>
+            <td>$8,750</td>
+            <td>$0</td>
+        </tr>
+        <tr>
+            <td style="text-align: left; font-weight: 600;">Loan Amount</td>
+            <td>$225,000</td>
+            <td>$241,250</td>
+            <td>$250,000</td>
+        </tr>
+        <tr>
+            <td style="text-align: left; font-weight: 600;">Interest Rate</td>
+            <td>4.25%</td>
+            <td>4.0%</td>
+            <td>4.5%</td>
+        </tr>
+        <tr>
+            <td style="text-align: left; font-weight: 600;">Monthly P&I Payment</td>
+            <td>$1,107</td>
+            <td>$1,152</td>
+            <td>$1,267</td>
+        </tr>
+        <tr>
+            <td style="text-align: left; font-weight: 600;">Monthly PMI/MIP</td>
+            <td>$94</td>
+            <td>$141</td>
+            <td>$0</td>
+        </tr>
+        <tr class="calc-row">
+            <td style="text-align: left; font-weight: 600;">Total Monthly (P&I + Insurance)</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="calc-row">
+            <td style="text-align: left; font-weight: 600;">Total Interest Over 30 Years</td>
+            <td>$173,520</td>
+            <td>$173,400</td>
+            <td>$206,120</td>
+        </tr>
+    </table>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">1.</span> Which mortgage option requires the lowest upfront cost? Which has the lowest total monthly payment?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">2.</span> The VA loan has no PMI but a higher interest rate. Over 30 years, how much more total interest does the VA loan cost compared to the FHA loan?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="hint-box">
+        <strong>Hint:</strong> The lowest down payment isn't always the best deal. Consider how PMI affects your monthly payment and how long you'll be paying it.
+    </div>
+
+    <!-- PART B -->
+    <div class="part-header">Part B: True Cost of Homeownership</div>
+    <p class="mb-md">Calculate the complete costs for buying and owning a $280,000 home.</p>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Home Purchase Details</div>
+        <div class="scenario-description">Purchase price: $280,000 | Down payment: 10% ($28,000) | Closing costs: 3% | Property tax: 1.2%/year | Insurance: $1,200/year | HOA: $250/month | Maintenance: 1%/year</div>
+        <div class="response-line">
+            <span class="response-label">Total upfront costs (down + closing):</span>
+            <span class="response-blank"></span>
+        </div>
+        <div class="response-line">
+            <span class="response-label">Annual property taxes:</span>
+            <span class="response-blank"></span>
+        </div>
+        <div class="response-line">
+            <span class="response-label">Annual maintenance budget:</span>
+            <span class="response-blank"></span>
+        </div>
+        <div class="because-lines">
+            <div class="response-line">
+                <span class="response-label">Monthly costs beyond mortgage (taxes + ins + HOA + maint):</span>
+                <span class="response-blank"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">3.</span> If the mortgage payment (P&I) is $1,276/month, what is the total monthly housing cost including all expenses listed above?</p>
+        <div class="calc-box">
+            <div class="calc-label">Show your work:</div>
+        </div>
+        <div class="calc-answer">Answer: $_____________ per month</div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">4.</span> The 30% rule suggests housing shouldn't exceed 30% of gross income. What annual income would someone need to afford this home?</p>
+        <div class="calc-box">
+            <div class="calc-label">Show your work:</div>
+        </div>
+        <div class="calc-answer">Answer: $_____________ annual income needed</div>
+    </div>
+
+    <!-- PART C -->
+    <div class="part-header">Part C: Rent vs. Buy Decision</div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">5.</span> James can rent a comparable home for $1,800/month or buy for the costs calculated above. List TWO financial advantages of buying and TWO advantages of renting for his situation.</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">6.</span> If James plans to move for a new job in 2 years, would you recommend renting or buying? Why?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <!-- CHECK YOUR UNDERSTANDING -->
+    <div class="section-header">Check Your Understanding</div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">1.</span> Which type of mortgage typically requires the highest down payment?</p>
+        <div class="mc-options">
+            <div class="mc-option"><div class="mc-checkbox"></div> A. FHA Loan</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> B. VA Loan</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> C. Conventional Loan</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> D. USDA Loan</div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">2.</span> Explain what PMI is and how a homebuyer can avoid paying it.</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">3.</span> <strong>Calculation:</strong> A home costs $200,000. Closing costs are 4% and the down payment is 5%. How much cash does the buyer need at closing?</p>
+        <div class="calc-box">
+            <div class="calc-label">Show your work:</div>
+        </div>
+        <div class="calc-answer">Answer: $_____________ cash needed at closing</div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">4.</span> Maria from the challenge has $8,000 saved for a $180,000 home. FHA requires 3.5% down plus 3% closing costs. Does she have enough? If not, how much more does she need?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">5.</span> <strong>Reflection:</strong> What THREE financial factors would you need to have in place before you would consider buying a home? Why is each important?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        <span>&copy; PFL Academy | pflacademy.co</span>
+        <span>Chapter 6.2: Understanding Homeownership</span>
+    </div>
+
+</body>
+</html>

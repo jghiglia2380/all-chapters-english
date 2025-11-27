@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-51 Student Activity Packet</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+        :root {
+            --primary: #6366f1;       /* Indigo - PFL Academy brand */
+            --primary-light: #eef2ff;
+            --accent: #f59e0b;        /* Amber for Challenge */
+            --accent-light: #fef3c7;
+            --success: #059669;       /* Emerald for answers */
+            --text-dark: #1e293b;
+            --text-medium: #475569;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --bg-light: #f8fafc;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+
+        @page {
+            size: letter;
+            margin: 0.5in;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 10.5pt;
+            line-height: 1.5;
+            color: var(--text-dark);
+            background: white;
+        }
+
+        /* --- Header --- */
+        .header {
+            background: var(--primary);
+            color: white;
+            padding: 14px 18px;
+            border-radius: 6px;
+            margin-bottom: 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-left h1 {
+            font-size: 13pt;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .header-left h2 {
+            font-size: 10pt;
+            font-weight: 400;
+            margin: 2px 0 0;
+            opacity: 0.9;
+        }
+
+        .header-right {
+            font-size: 9pt;
+            text-align: right;
+            opacity: 0.9;
+        }
+
+        /* --- Section Headers --- */
+        .section-header {
+            font-size: 11pt;
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 4px;
+            margin: 20px 0 12px;
+        }
+
+        /* --- The Challenge Box --- */
+        .challenge-box {
+            background: var(--accent-light);
+            border-left: 4px solid var(--accent);
+            padding: 14px 16px;
+            margin-bottom: 16px;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .challenge-box p {
+            font-style: italic;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+        }
+
+        .challenge-box .framing-question {
+            font-weight: 600;
+            font-style: normal;
+            color: #92400e;
+        }
+
+        /* --- Learning Objectives Box --- */
+        .objectives-box {
+            background: var(--primary-light);
+            border: 1px solid #c7d2fe;
+            border-radius: 6px;
+            padding: 12px 16px;
+            margin-bottom: 18px;
+        }
+
+        .objectives-box h3 {
+            font-size: 10pt;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 6px;
+        }
+
+        .objectives-box ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .objectives-box li {
+            margin-bottom: 3px;
+            color: var(--text-medium);
+        }
+
+        /* --- Key Terms Table --- */
+        .terms-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 14px;
+            font-size: 10pt;
+        }
+
+        .terms-table th {
+            background: var(--bg-light);
+            text-align: left;
+            padding: 8px 10px;
+            border: 1px solid var(--border);
+            font-weight: 600;
+            color: var(--text-medium);
+        }
+
+        .terms-table td {
+            padding: 8px 10px;
+            border: 1px solid var(--border);
+            vertical-align: top;
+        }
+
+        .terms-table td:first-child {
+            font-weight: 600;
+            color: var(--primary);
+            width: 25%;
+        }
+
+        /* --- Background Box --- */
+        .background-box {
+            background: var(--bg-light);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 12px 16px;
+            margin-bottom: 18px;
+            font-size: 10pt;
+            color: var(--text-medium);
+        }
+
+        .background-box strong {
+            color: var(--text-dark);
+        }
+
+        /* --- Scenario Cards --- */
+        .scenario-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 12px 14px;
+            margin-bottom: 14px;
+            page-break-inside: avoid;
+        }
+
+        .scenario-title {
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 6px;
+            font-size: 10pt;
+        }
+
+        .scenario-description {
+            color: var(--text-medium);
+            margin-bottom: 10px;
+            font-size: 10pt;
+        }
+
+        .response-line {
+            display: flex;
+            align-items: baseline;
+            margin-bottom: 8px;
+        }
+
+        .response-label {
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-right: 8px;
+            white-space: nowrap;
+        }
+
+        .response-blank {
+            flex-grow: 1;
+            border-bottom: 1px solid var(--text-light);
+            min-height: 18px;
+        }
+
+        .response-options {
+            color: var(--text-light);
+            font-size: 9pt;
+            margin-left: 8px;
+            white-space: nowrap;
+        }
+
+        .because-lines {
+            margin-top: 6px;
+        }
+
+        .because-lines .response-line {
+            margin-bottom: 4px;
+        }
+
+        /* --- Data Table --- */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 12px 0;
+            font-size: 10pt;
+        }
+
+        .data-table th {
+            background: var(--primary);
+            color: white;
+            padding: 8px 10px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 9pt;
+        }
+
+        .data-table td {
+            padding: 8px 10px;
+            border: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .data-table tr:nth-child(even) td {
+            background: var(--bg-light);
+        }
+
+        .data-table .calc-row td {
+            background: #fef9c3;
+            height: 28px;
+        }
+
+        /* --- Questions --- */
+        .question {
+            margin-bottom: 14px;
+            page-break-inside: avoid;
+        }
+
+        .question-number {
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .question-text {
+            color: var(--text-dark);
+            margin-bottom: 6px;
+        }
+
+        .answer-lines {
+            margin-top: 6px;
+        }
+
+        .answer-line {
+            border-bottom: 1px solid var(--text-light);
+            height: 22px;
+            margin-bottom: 4px;
+        }
+
+        /* --- Calculation Box --- */
+        .calc-box {
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 12px;
+            margin: 8px 0;
+            min-height: 60px;
+            background: var(--bg-light);
+        }
+
+        .calc-label {
+            font-size: 9pt;
+            color: var(--text-light);
+            margin-bottom: 4px;
+        }
+
+        .calc-answer {
+            margin-top: 10px;
+            font-weight: 600;
+        }
+
+        /* --- Multiple Choice --- */
+        .mc-options {
+            margin-top: 6px;
+            margin-left: 20px;
+        }
+
+        .mc-option {
+            display: flex;
+            align-items: center;
+            margin-bottom: 4px;
+        }
+
+        .mc-checkbox {
+            width: 14px;
+            height: 14px;
+            border: 1px solid var(--text-light);
+            border-radius: 2px;
+            margin-right: 8px;
+            flex-shrink: 0;
+        }
+
+        /* --- Hint Box --- */
+        .hint-box {
+            background: #f0fdf4;
+            border-left: 3px solid var(--success);
+            padding: 8px 12px;
+            margin: 10px 0;
+            font-size: 9pt;
+            font-style: italic;
+            color: #166534;
+        }
+
+        .hint-box strong {
+            font-style: normal;
+        }
+
+        /* --- Part Headers --- */
+        .part-header {
+            font-weight: 700;
+            font-size: 10pt;
+            color: var(--primary);
+            text-transform: uppercase;
+            margin: 16px 0 10px;
+            padding-bottom: 4px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        /* --- Footer --- */
+        .footer {
+            margin-top: 24px;
+            padding-top: 10px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            font-size: 9pt;
+            color: var(--text-light);
+        }
+
+        /* --- Utilities --- */
+        .mb-sm { margin-bottom: 8px; }
+        .mb-md { margin-bottom: 14px; }
+        .mb-lg { margin-bottom: 20px; }
+
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <div class="header">
+        <div class="header-left">
+            <h1>PFL Academy</h1>
+            <h2>Chapter 51: Market Structures and Consumer Choice</h2>
+        </div>
+        <div class="header-right">
+            Student Activity Packet
+        </div>
+    </div>
+
+    <!-- THE CHALLENGE -->
+    <div class="section-header">The Challenge</div>
+    <div class="challenge-box">
+        <p>Eliana noticed something strange: her electricity bill was $180/month with only one provider available, but she could choose from five different coffee shops within walking distance, each with different prices. Her phone plan came from one of just three major carriers, and they all charged similar rates. Meanwhile, at the farmers market, twelve different vendors competed for her produce purchases with nearly identical prices.</p>
+        <p class="framing-question">Why do some markets have lots of competition and similar prices, while others have few sellers with more pricing power? How can Eliana use this knowledge to make smarter spending decisions?</p>
+    </div>
+
+    <!-- LEARNING OBJECTIVES -->
+    <div class="objectives-box">
+        <h3>Learning Objectives</h3>
+        <ul>
+            <li>Identify the four main market structures: perfect competition, monopolistic competition, oligopoly, and monopoly.</li>
+            <li>Analyze how market structure affects pricing, quality, and consumer choices.</li>
+            <li>Apply consumer strategies appropriate to each market structure.</li>
+            <li>Recognize market structures in everyday purchases to make better financial decisions.</li>
+        </ul>
+    </div>
+
+    <!-- CORE CONCEPTS -->
+    <div class="section-header">Core Concepts</div>
+
+    <table class="terms-table">
+        <tr>
+            <th>Term</th>
+            <th>Definition</th>
+        </tr>
+        <tr>
+            <td>Perfect Competition</td>
+            <td>A market with many sellers offering identical products, where no single seller can influence the price.</td>
+        </tr>
+        <tr>
+            <td>Monopolistic Competition</td>
+            <td>A market with many sellers offering differentiated products, giving each some pricing power.</td>
+        </tr>
+        <tr>
+            <td>Oligopoly</td>
+            <td>A market dominated by a few large sellers with significant barriers to entry and interdependent pricing.</td>
+        </tr>
+        <tr>
+            <td>Monopoly</td>
+            <td>A market with a single seller and no close substitutes, giving maximum pricing power.</td>
+        </tr>
+        <tr>
+            <td>Consumer Surplus</td>
+            <td>The benefit consumers receive when they pay less than the maximum price they were willing to pay.</td>
+        </tr>
+    </table>
+
+    <div class="background-box">
+        <strong>Background:</strong> The number of sellers and level of competition creates four distinct <strong>market structures</strong>, each with different implications for your wallet and choices. As competition decreases (from perfect competition to monopoly), seller power increases and consumer surplus typically decreases. Understanding these structures helps you adjust your shopping strategy—knowing when to shop on price alone, when to negotiate, and when you're simply stuck paying what the seller demands.
+    </div>
+
+    <!-- APPLY IT -->
+    <div class="section-header">Apply It</div>
+
+    <div class="part-header">Part A: Market Structure Identification</div>
+    <p class="mb-md">For each market, identify the structure and explain how it affects you as a consumer.</p>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Scenario 1: Gasoline Stations</div>
+        <div class="scenario-description">All gas stations on the same corner charge nearly identical prices ($3.89, $3.91, $3.89). One station's gas is chemically identical to another's. Any station charging significantly more would lose all customers.</div>
+        <div class="response-line">
+            <span class="response-label">Market Structure:</span>
+            <span class="response-blank"></span>
+            <span class="response-options">(perfect competition / monopolistic / oligopoly / monopoly)</span>
+        </div>
+        <div class="because-lines">
+            <div class="response-line">
+                <span class="response-label">Consumer Strategy:</span>
+                <span class="response-blank"></span>
+            </div>
+            <div class="response-line">
+                <span class="response-blank" style="margin-left: 110px;"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Scenario 2: Cell Phone Carriers</div>
+        <div class="scenario-description">Only 3-4 major carriers dominate the market (AT&T, Verizon, T-Mobile). Starting a new carrier would require billions in infrastructure. All carriers offer similar plans at similar prices, and when one raises fees, others typically follow.</div>
+        <div class="response-line">
+            <span class="response-label">Market Structure:</span>
+            <span class="response-blank"></span>
+            <span class="response-options">(perfect competition / monopolistic / oligopoly / monopoly)</span>
+        </div>
+        <div class="because-lines">
+            <div class="response-line">
+                <span class="response-label">Consumer Strategy:</span>
+                <span class="response-blank"></span>
+            </div>
+            <div class="response-line">
+                <span class="response-blank" style="margin-left: 110px;"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Scenario 3: Coffee Shops</div>
+        <div class="scenario-description">Your neighborhood has Starbucks, Dunkin', and three local cafes. Each offers similar coffee but with different atmospheres, prices, and experiences. Starbucks charges $5 for a latte that costs $3.50 at the local shop.</div>
+        <div class="response-line">
+            <span class="response-label">Market Structure:</span>
+            <span class="response-blank"></span>
+            <span class="response-options">(perfect competition / monopolistic / oligopoly / monopoly)</span>
+        </div>
+        <div class="because-lines">
+            <div class="response-line">
+                <span class="response-label">Consumer Strategy:</span>
+                <span class="response-blank"></span>
+            </div>
+            <div class="response-line">
+                <span class="response-blank" style="margin-left: 110px;"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Scenario 4: Electricity Provider</div>
+        <div class="scenario-description">There is only one electric company in your area. Building a competing power grid would cost billions and duplicate infrastructure unnecessarily. The company's rates are regulated by the state public utility commission.</div>
+        <div class="response-line">
+            <span class="response-label">Market Structure:</span>
+            <span class="response-blank"></span>
+            <span class="response-options">(perfect competition / monopolistic / oligopoly / monopoly)</span>
+        </div>
+        <div class="because-lines">
+            <div class="response-line">
+                <span class="response-label">Consumer Strategy:</span>
+                <span class="response-blank"></span>
+            </div>
+            <div class="response-line">
+                <span class="response-blank" style="margin-left: 110px;"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="hint-box">
+        <strong>Hint:</strong> Ask yourself: How many sellers are there? Are the products identical or differentiated? Can new competitors easily enter the market?
+    </div>
+
+    <!-- PART B -->
+    <div class="part-header">Part B: Consumer Surplus Comparison</div>
+    <p class="mb-md">Compare how market structure affects what you pay. The table shows monthly streaming service costs under different market conditions.</p>
+
+    <table class="data-table">
+        <tr>
+            <th>Factor</th>
+            <th>Perfect Competition<br>(Many identical services)</th>
+            <th>Oligopoly<br>(5 major services)</th>
+            <th>Monopoly<br>(1 provider)</th>
+        </tr>
+        <tr>
+            <td style="text-align: left; font-weight: 600;">Monthly Price</td>
+            <td>$8</td>
+            <td>$15</td>
+            <td>$25</td>
+        </tr>
+        <tr>
+            <td style="text-align: left; font-weight: 600;">Content Library</td>
+            <td>Same content</td>
+            <td>Differentiated</td>
+            <td>All content</td>
+        </tr>
+        <tr class="calc-row">
+            <td style="text-align: left; font-weight: 600;">Annual Cost (×12)</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="calc-row">
+            <td style="text-align: left; font-weight: 600;">5-Year Cost</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">5.</span> How much more would a consumer pay over 5 years in a monopoly market compared to perfect competition?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">6.</span> Why can a monopoly charge $25/month when competitive markets charge only $8 for similar entertainment value?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">7.</span> In the current oligopoly streaming market, what TWO strategies could you use to reduce your entertainment costs?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <!-- PART C -->
+    <div class="part-header">Part C: Personal Market Analysis</div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">8.</span> List your three biggest monthly expenses. For each, identify the market structure and rate your consumer power (Low/Medium/High).</p>
+        <table class="data-table" style="font-size: 9pt;">
+            <tr>
+                <th>Expense</th>
+                <th>Monthly Cost</th>
+                <th>Market Structure</th>
+                <th>Your Power</th>
+            </tr>
+            <tr>
+                <td style="height: 35px;"></td>
+                <td>$</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td style="height: 35px;"></td>
+                <td>$</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td style="height: 35px;"></td>
+                <td>$</td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">9.</span> Based on your analysis, where do you have the least control over prices? What specific strategy could help you save money in that market?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <!-- CHECK YOUR UNDERSTANDING -->
+    <div class="section-header">Check Your Understanding</div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">1.</span> A market with many sellers offering differentiated products is called:</p>
+        <div class="mc-options">
+            <div class="mc-option"><div class="mc-checkbox"></div> A. Perfect competition</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> B. Monopolistic competition</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> C. Oligopoly</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> D. Monopoly</div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">2.</span> Explain why consumer surplus is highest in perfect competition and lowest in monopoly markets.</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">3.</span> <strong>Calculation:</strong> A gym membership costs $30/month in a competitive market and $55/month in a monopoly market. How much would a consumer save per year in the competitive market?</p>
+        <div class="calc-box">
+            <div class="calc-label">Show your work:</div>
+        </div>
+        <div class="calc-answer">Answer: $_____________ saved per year</div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">4.</span> DeShawn wants to switch phone carriers but notices all three major providers charge the same $85/month for similar plans. What market structure is this, and what strategy should he use?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">5.</span> <strong>Reflection:</strong> Identify one purchase where understanding market structure could have helped you get a better deal. What market structure was it, and what would you do differently?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        <span>© PFL Academy | pflacademy.co</span>
+        <span>Chapter 51: Market Structures and Consumer Choice</span>
+    </div>
+
+</body>
+</html>

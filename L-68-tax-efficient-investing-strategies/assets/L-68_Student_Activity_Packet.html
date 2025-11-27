@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-68 Student Activity Packet</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+        :root {
+            --primary: #6366f1;
+            --primary-light: #eef2ff;
+            --accent: #f59e0b;
+            --accent-light: #fef3c7;
+            --success: #059669;
+            --text-dark: #1e293b;
+            --text-medium: #475569;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --bg-light: #f8fafc;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+        @page { size: letter; margin: 0.5in; }
+        body { font-family: 'Open Sans', sans-serif; font-size: 10.5pt; line-height: 1.5; color: var(--text-dark); background: white; }
+
+        .header { background: var(--primary); color: white; padding: 14px 18px; border-radius: 6px; margin-bottom: 18px; display: flex; justify-content: space-between; align-items: center; }
+        .header-left h1 { font-size: 13pt; font-weight: 700; margin: 0; }
+        .header-left h2 { font-size: 10pt; font-weight: 400; margin: 2px 0 0; opacity: 0.9; }
+        .header-right { font-size: 9pt; text-align: right; opacity: 0.9; }
+
+        .section-header { font-size: 11pt; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 2px solid var(--primary); padding-bottom: 4px; margin: 20px 0 12px; }
+
+        .challenge-box { background: var(--accent-light); border-left: 4px solid var(--accent); padding: 14px 16px; margin-bottom: 16px; border-radius: 0 6px 6px 0; }
+        .challenge-box p { font-style: italic; color: var(--text-dark); margin-bottom: 10px; }
+        .challenge-box .framing-question { font-weight: 600; font-style: normal; color: #92400e; }
+
+        .objectives-box { background: var(--primary-light); border: 1px solid #c7d2fe; border-radius: 6px; padding: 12px 16px; margin-bottom: 18px; }
+        .objectives-box h3 { font-size: 10pt; font-weight: 700; color: var(--primary); margin-bottom: 6px; }
+        .objectives-box ul { margin: 0; padding-left: 20px; }
+        .objectives-box li { margin-bottom: 3px; color: var(--text-medium); }
+
+        .terms-table { width: 100%; border-collapse: collapse; margin-bottom: 14px; font-size: 10pt; }
+        .terms-table th { background: var(--bg-light); text-align: left; padding: 8px 10px; border: 1px solid var(--border); font-weight: 600; color: var(--text-medium); }
+        .terms-table td { padding: 8px 10px; border: 1px solid var(--border); vertical-align: top; }
+        .terms-table td:first-child { font-weight: 600; color: var(--primary); width: 22%; }
+
+        .background-box { background: var(--bg-light); border: 1px solid var(--border); border-radius: 6px; padding: 12px 16px; margin-bottom: 18px; font-size: 10pt; color: var(--text-medium); }
+        .background-box strong { color: var(--text-dark); }
+
+        .scenario-card { background: white; border: 1px solid var(--border); border-radius: 6px; padding: 12px 14px; margin-bottom: 14px; page-break-inside: avoid; }
+        .scenario-title { font-weight: 700; color: var(--primary); margin-bottom: 6px; font-size: 10pt; }
+        .scenario-description { color: var(--text-medium); margin-bottom: 10px; font-size: 10pt; }
+
+        .response-line { display: flex; align-items: baseline; margin-bottom: 8px; }
+        .response-label { font-weight: 600; color: var(--text-dark); margin-right: 8px; white-space: nowrap; }
+        .response-blank { flex-grow: 1; border-bottom: 1px solid var(--text-light); min-height: 18px; }
+        .response-options { color: var(--text-light); font-size: 9pt; margin-left: 8px; white-space: nowrap; }
+
+        .data-table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 10pt; }
+        .data-table th { background: var(--primary); color: white; padding: 8px 10px; text-align: center; font-weight: 600; font-size: 9pt; }
+        .data-table td { padding: 8px 10px; border: 1px solid var(--border); text-align: center; }
+        .data-table tr:nth-child(even) td { background: var(--bg-light); }
+
+        .question { margin-bottom: 14px; page-break-inside: avoid; }
+        .question-number { font-weight: 700; color: var(--text-dark); }
+        .question-text { color: var(--text-dark); margin-bottom: 6px; }
+        .answer-lines { margin-top: 6px; }
+        .answer-line { border-bottom: 1px solid var(--text-light); height: 22px; margin-bottom: 4px; }
+
+        .calc-box { border: 1px solid var(--border); border-radius: 4px; padding: 12px; margin: 8px 0; min-height: 60px; background: var(--bg-light); }
+        .calc-label { font-size: 9pt; color: var(--text-light); margin-bottom: 4px; }
+        .calc-answer { margin-top: 10px; font-weight: 600; }
+
+        .mc-options { margin-top: 6px; margin-left: 20px; }
+        .mc-option { display: flex; align-items: center; margin-bottom: 4px; }
+        .mc-checkbox { width: 14px; height: 14px; border: 1px solid var(--text-light); border-radius: 2px; margin-right: 8px; flex-shrink: 0; }
+
+        .hint-box { background: #f0fdf4; border-left: 3px solid var(--success); padding: 8px 12px; margin: 10px 0; font-size: 9pt; font-style: italic; color: #166534; }
+        .hint-box strong { font-style: normal; }
+
+        .part-header { font-weight: 700; font-size: 10pt; color: var(--primary); text-transform: uppercase; margin: 16px 0 10px; padding-bottom: 4px; border-bottom: 1px solid var(--border); }
+
+        .footer { margin-top: 24px; padding-top: 10px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; font-size: 9pt; color: var(--text-light); }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="header-left">
+            <h1>PFL Academy</h1>
+            <h2>Chapter 68: Tax-Efficient Investing Strategies</h2>
+        </div>
+        <div class="header-right">Student Activity Packet</div>
+    </div>
+
+    <div class="section-header">The Challenge</div>
+    <div class="challenge-box">
+        <p>Jamal, age 25, started investing $6,000/year in a Roth IRA while in the 12% tax bracket. His coworker Tyler put the same amount into a traditional IRA for the tax deduction. Both averaged 7% returns over 40 years. At retirement, Jamal's Roth had grown to $1.2 million—100% tax-free withdrawals. Tyler's traditional IRA also had $1.2 million, but he owed approximately $264,000 in taxes (22% rate), leaving him with $936,000. Jamal's tax-efficient strategy gave him $264,000 more—simply by choosing the right account type.</p>
+        <p class="framing-question">How can understanding tax-advantaged accounts, asset location, and strategic timing help you keep more of your investment returns and build substantially greater wealth?</p>
+    </div>
+
+    <div class="objectives-box">
+        <h3>Learning Objectives</h3>
+        <ul>
+            <li>Compare tax-deferred, tax-free (Roth), and taxable account types and determine optimal usage.</li>
+            <li>Calculate the tax implications of capital gains, dividends, and interest income.</li>
+            <li>Apply tax-loss harvesting, asset location, and holding period strategies to minimize taxes.</li>
+        </ul>
+    </div>
+
+    <div class="section-header">Core Concepts</div>
+
+    <table class="terms-table">
+        <tr><th>Term</th><th>Definition</th></tr>
+        <tr><td>Tax-Deferred Account</td><td>Retirement account (traditional 401(k)/IRA) where contributions may be tax-deductible and growth isn't taxed until withdrawal.</td></tr>
+        <tr><td>Tax-Free Account (Roth)</td><td>Retirement account (Roth 401(k)/IRA) funded with after-tax dollars where all growth and qualified withdrawals are tax-free forever.</td></tr>
+        <tr><td>Capital Gains Tax</td><td>Tax on investment profits. Short-term (held <1 year) taxed as ordinary income; long-term (≥1 year) gets preferential rates (0%, 15%, 20%).</td></tr>
+        <tr><td>Tax-Loss Harvesting</td><td>Selling investments at a loss to offset capital gains and reduce taxable income, then reinvesting in similar (not identical) assets.</td></tr>
+        <tr><td>Asset Location</td><td>Strategy of placing tax-inefficient investments (bonds, REITs) in tax-advantaged accounts and tax-efficient investments (index funds) in taxable accounts.</td></tr>
+    </table>
+
+    <div class="background-box">
+        <strong>Background:</strong> The S&P 500 has returned about 10% annually, but <strong>taxes can erode 20-50% of those returns</strong>. The difference between a 7% pre-tax return and 5% after-tax return might seem small, but over 30 years, that 2% annual difference transforms $10,000 into either $76,000 or $43,000—a <strong>$33,000 difference from taxes alone</strong>. Tax-efficient investing adds 1-2% to after-tax returns without taking additional risk, potentially adding $200,000-$500,000 to lifetime wealth.
+    </div>
+
+    <div class="section-header">Apply It</div>
+
+    <div class="part-header">Part A: Account Type Comparison</div>
+
+    <table class="data-table">
+        <tr><th>Account Type</th><th>Tax on Contribution</th><th>Tax on Growth</th><th>Tax on Withdrawal</th><th>Best For</th></tr>
+        <tr><td style="text-align: left; font-weight: 600;">Traditional IRA/401(k)</td><td>Deductible</td><td>Deferred</td><td>Ordinary income</td><td>High earners expecting lower retirement tax</td></tr>
+        <tr><td style="text-align: left; font-weight: 600;">Roth IRA/401(k)</td><td>After-tax</td><td>None</td><td>None (qualified)</td><td>Low bracket now, higher later</td></tr>
+        <tr><td style="text-align: left; font-weight: 600;">Taxable Brokerage</td><td>After-tax</td><td>Annual</td><td>Capital gains</td><td>Flexibility, no contribution limits</td></tr>
+    </table>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Investor Profile: Maya (Age 24)</div>
+        <div class="scenario-description">First job earning $45,000 (12% bracket), expects income to grow significantly. Employer offers 401(k) with 4% match. Can save $10,000/year total.</div>
+        <div class="response-line"><span class="response-label">Priority 1:</span><span class="response-blank"></span></div>
+        <div class="response-line"><span class="response-label">Priority 2:</span><span class="response-blank"></span></div>
+        <div class="response-line"><span class="response-label">Because:</span><span class="response-blank"></span></div>
+    </div>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Investor Profile: Robert (Age 52)</div>
+        <div class="scenario-description">Senior manager earning $180,000 (32% bracket), plans to retire on $70,000/year (likely 22% bracket). No employer match available.</div>
+        <div class="response-line"><span class="response-label">Best account type:</span><span class="response-blank"></span></div>
+        <div class="response-line"><span class="response-label">Because:</span><span class="response-blank"></span></div>
+    </div>
+
+    <div class="part-header">Part B: Tax-Loss Harvesting Scenario</div>
+
+    <p style="margin-bottom: 12px;">Your taxable portfolio shows the following positions in December:</p>
+
+    <table class="data-table">
+        <tr><th>Investment</th><th>Cost Basis</th><th>Current Value</th><th>Gain/Loss</th><th>Holding Period</th></tr>
+        <tr><td style="text-align: left;">Tech Stock A</td><td>$8,000</td><td>$11,000</td><td style="color: #059669;">+$3,000</td><td>14 months</td></tr>
+        <tr><td style="text-align: left;">Bond Fund B</td><td>$10,000</td><td>$9,200</td><td style="color: #dc2626;">-$800</td><td>8 months</td></tr>
+        <tr><td style="text-align: left;">Int'l Fund C</td><td>$7,000</td><td>$5,500</td><td style="color: #dc2626;">-$1,500</td><td>18 months</td></tr>
+    </table>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">1.</span> You sold other stocks earlier this year for a $5,000 long-term gain (15% rate). Which position(s) should you sell to harvest losses and reduce your tax bill?</p>
+        <div class="response-line"><span class="response-label">Sell:</span><span class="response-blank"></span></div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">2.</span> Calculate your tax savings from this tax-loss harvesting strategy:</p>
+        <div class="calc-box"><div class="calc-label">Show calculation: Losses harvested × applicable tax rate</div></div>
+        <div class="calc-answer">Tax savings: $__________</div>
+    </div>
+
+    <div class="hint-box">
+        <strong>Wash Sale Rule:</strong> You can't claim the loss deduction if you buy a "substantially identical" security within 30 days before or after the sale. Buy a different fund to maintain your allocation.
+    </div>
+
+    <div class="part-header">Part C: Holding Period Impact</div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">3.</span> You bought stock for $10,000 eleven months ago. It's now worth $15,000 (a $5,000 gain). You're in the 24% tax bracket. Calculate the tax difference between selling now vs. waiting one more month:</p>
+        <div class="calc-box"><div class="calc-label">Short-term tax (24% ordinary income) vs. Long-term tax (15% preferential rate):</div></div>
+        <div class="calc-answer">Tax savings from waiting: $__________</div>
+    </div>
+
+    <div class="section-header">Check Your Understanding</div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">1.</span> For a 25-year-old in the 12% tax bracket expecting higher income later, the most tax-efficient retirement account choice is typically:</p>
+        <div class="mc-options">
+            <div class="mc-option"><div class="mc-checkbox"></div> A. Traditional IRA (immediate tax deduction)</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> B. Roth IRA (tax-free growth and withdrawals)</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> C. Taxable brokerage account</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> D. All accounts are equally tax-efficient</div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">2.</span> Explain why bonds should typically be held in tax-advantaged accounts while stock index funds can be held in taxable accounts.</p>
+        <div class="answer-lines"><div class="answer-line"></div><div class="answer-line"></div></div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">3.</span> <strong>Calculation:</strong> If optimal asset location adds 0.5% annually to after-tax returns on a $100,000 portfolio over 30 years (7% vs. 6.5% growth), how much additional wealth results?</p>
+        <div class="calc-box"><div class="calc-label">Calculate: $100,000 at 7% for 30 years vs. $100,000 at 6.5% for 30 years</div></div>
+        <div class="calc-answer">Benefit of optimal asset location: $__________</div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">4.</span> Why is tax-loss harvesting valuable even though you're "selling at a loss"? What do you do immediately after harvesting?</p>
+        <div class="answer-lines"><div class="answer-line"></div><div class="answer-line"></div></div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">5.</span> <strong>Reflection:</strong> Based on your current or expected tax bracket, which account type(s) would you prioritize? What asset location strategy would you use? What annual tax-efficiency habit would you commit to?</p>
+        <div class="answer-lines"><div class="answer-line"></div><div class="answer-line"></div><div class="answer-line"></div><div class="answer-line"></div></div>
+    </div>
+
+    <div class="footer">
+        <span>&copy; PFL Academy | pflacademy.co</span>
+        <span>Chapter 68: Tax-Efficient Investing Strategies</span>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-09 Student Activity Packet</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+        :root { --primary: #6366f1; --primary-light: #eef2ff; --accent: #f59e0b; --accent-light: #fef3c7; --success: #059669; --text-dark: #1e293b; --text-medium: #475569; --text-light: #64748b; --border: #e2e8f0; --bg-light: #f8fafc; }
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+        @page { size: letter; margin: 0.5in; }
+        body { font-family: 'Open Sans', sans-serif; font-size: 10.5pt; line-height: 1.5; color: var(--text-dark); background: white; }
+        .header { background: var(--primary); color: white; padding: 14px 18px; border-radius: 6px; margin-bottom: 18px; display: flex; justify-content: space-between; align-items: center; }
+        .header-left h1 { font-size: 13pt; font-weight: 700; margin: 0; }
+        .header-left h2 { font-size: 10pt; font-weight: 400; margin: 2px 0 0; opacity: 0.9; }
+        .header-right { font-size: 9pt; text-align: right; opacity: 0.9; }
+        .section-header { font-size: 11pt; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 2px solid var(--primary); padding-bottom: 4px; margin: 20px 0 12px; }
+        .challenge-box { background: var(--accent-light); border-left: 4px solid var(--accent); padding: 14px 16px; margin-bottom: 16px; border-radius: 0 6px 6px 0; }
+        .challenge-box p { font-style: italic; color: var(--text-dark); margin-bottom: 10px; }
+        .challenge-box .framing-question { font-weight: 600; font-style: normal; color: #92400e; }
+        .objectives-box { background: var(--primary-light); border: 1px solid #c7d2fe; border-radius: 6px; padding: 12px 16px; margin-bottom: 18px; }
+        .objectives-box h3 { font-size: 10pt; font-weight: 700; color: var(--primary); margin-bottom: 6px; }
+        .objectives-box ul { margin: 0; padding-left: 20px; }
+        .objectives-box li { margin-bottom: 3px; color: var(--text-medium); }
+        .terms-table { width: 100%; border-collapse: collapse; margin-bottom: 14px; font-size: 10pt; }
+        .terms-table th { background: var(--bg-light); text-align: left; padding: 8px 10px; border: 1px solid var(--border); font-weight: 600; color: var(--text-medium); }
+        .terms-table td { padding: 8px 10px; border: 1px solid var(--border); vertical-align: top; }
+        .terms-table td:first-child { font-weight: 600; color: var(--primary); width: 28%; }
+        .background-box { background: var(--bg-light); border: 1px solid var(--border); border-radius: 6px; padding: 12px 16px; margin-bottom: 18px; font-size: 10pt; color: var(--text-medium); }
+        .background-box strong { color: var(--text-dark); }
+        .scenario-card { background: white; border: 1px solid var(--border); border-radius: 6px; padding: 12px 14px; margin-bottom: 14px; page-break-inside: avoid; }
+        .scenario-title { font-weight: 700; color: var(--primary); margin-bottom: 6px; font-size: 10pt; }
+        .scenario-description { color: var(--text-medium); margin-bottom: 10px; font-size: 10pt; }
+        .response-line { display: flex; align-items: baseline; margin-bottom: 8px; }
+        .response-label { font-weight: 600; color: var(--text-dark); margin-right: 8px; white-space: nowrap; }
+        .response-blank { flex-grow: 1; border-bottom: 1px solid var(--text-light); min-height: 18px; }
+        .data-table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 10pt; }
+        .data-table th { background: var(--primary); color: white; padding: 8px 10px; text-align: center; font-weight: 600; font-size: 9pt; }
+        .data-table td { padding: 8px 10px; border: 1px solid var(--border); text-align: center; }
+        .data-table tr:nth-child(even) td { background: var(--bg-light); }
+        .data-table .calc-row td { background: #fef9c3; height: 28px; }
+        .question { margin-bottom: 14px; page-break-inside: avoid; }
+        .question-number { font-weight: 700; color: var(--text-dark); }
+        .question-text { color: var(--text-dark); margin-bottom: 6px; }
+        .answer-lines { margin-top: 6px; }
+        .answer-line { border-bottom: 1px solid var(--text-light); height: 22px; margin-bottom: 4px; }
+        .calc-box { border: 1px solid var(--border); border-radius: 4px; padding: 12px; margin: 8px 0; min-height: 60px; background: var(--bg-light); }
+        .calc-label { font-size: 9pt; color: var(--text-light); margin-bottom: 4px; }
+        .calc-answer { margin-top: 10px; font-weight: 600; }
+        .mc-options { margin-top: 6px; margin-left: 20px; }
+        .mc-option { display: flex; align-items: center; margin-bottom: 4px; }
+        .mc-checkbox { width: 14px; height: 14px; border: 1px solid var(--text-light); border-radius: 2px; margin-right: 8px; flex-shrink: 0; }
+        .hint-box { background: #f0fdf4; border-left: 3px solid var(--success); padding: 8px 12px; margin: 10px 0; font-size: 9pt; font-style: italic; color: #166534; }
+        .hint-box strong { font-style: normal; }
+        .part-header { font-weight: 700; font-size: 10pt; color: var(--primary); text-transform: uppercase; margin: 16px 0 10px; padding-bottom: 4px; border-bottom: 1px solid var(--border); }
+        .footer { margin-top: 24px; padding-top: 10px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; font-size: 9pt; color: var(--text-light); }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-left">
+            <h1>PFL Academy</h1>
+            <h2>Chapter 2.4: Understanding Tax Deductions and Credits</h2>
+        </div>
+        <div class="header-right">Student Activity Packet</div>
+    </div>
+
+    <div class="section-header">The Challenge</div>
+    <div class="challenge-box">
+        <p>Emily, a recent graduate earning $40,000, didn't know about tax benefits and paid $4,860 in federal taxes. With proper planning—claiming the student loan interest deduction, IRA contribution deduction, and Lifetime Learning Credit—she could have reduced her tax bill to just $744, a savings of over $4,100! Meanwhile, the Smith family assumed their $23,500 in itemized deductions would save them money, but the $27,700 standard deduction for married couples was actually better.</p>
+        <p class="framing-question">How do tax deductions and credits work differently, and when should you choose one strategy over another?</p>
+    </div>
+
+    <div class="objectives-box">
+        <h3>Learning Objectives</h3>
+        <ul>
+            <li>Distinguish between tax deductions and tax credits.</li>
+            <li>Explain how deductions and credits impact your tax liability differently.</li>
+            <li>Identify common deductions and credits you may qualify for.</li>
+        </ul>
+    </div>
+
+    <div class="section-header">Core Concepts</div>
+    <table class="terms-table">
+        <tr><th>Term</th><th>Definition</th></tr>
+        <tr><td>Tax Deduction</td><td>Reduces your taxable income BEFORE tax is calculated. Value depends on your tax bracket.</td></tr>
+        <tr><td>Tax Credit</td><td>Reduces your tax bill AFTER tax is calculated. Dollar-for-dollar reduction.</td></tr>
+        <tr><td>Standard Deduction</td><td>Fixed amount based on filing status ($13,850 single, $27,700 married filing jointly for 2023).</td></tr>
+        <tr><td>Itemized Deductions</td><td>Specific expenses (mortgage interest, charity, medical) that can be listed individually.</td></tr>
+        <tr><td>Refundable Credit</td><td>Credit that can result in a refund even if it exceeds your tax bill (e.g., EITC).</td></tr>
+    </table>
+
+    <div class="background-box">
+        <strong>Key Difference:</strong> A $1,000 deduction saves you $220 if you're in the 22% bracket (reduces taxable income, then tax is calculated). A $1,000 credit saves you exactly $1,000 regardless of bracket (directly reduces tax owed). Credits are more powerful!
+    </div>
+
+    <div class="section-header">Apply It</div>
+    <div class="part-header">Part A: Deduction vs. Credit Comparison</div>
+    <p style="margin-bottom: 14px;">Calculate the tax savings for each scenario.</p>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Scenario 1: Jamie in the 22% Bracket</div>
+        <div class="scenario-description">Jamie has a choice between a $1,000 tax deduction OR a $200 tax credit. Which saves more?</div>
+        <div class="calc-box">
+            <div class="calc-label">Value of $1,000 deduction: $1,000 × 22% = $______</div>
+            <div class="calc-label" style="margin-top: 8px;">Value of $200 credit: $______</div>
+            <div class="calc-label" style="margin-top: 8px;"><strong>Better choice: ____________</strong></div>
+        </div>
+    </div>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Scenario 2: Alex in the 12% Bracket</div>
+        <div class="scenario-description">Alex qualifies for either a $2,500 student loan interest deduction OR a $1,500 education credit. Tax liability before either: $1,800.</div>
+        <div class="calc-box">
+            <div class="calc-label">Value of $2,500 deduction: $2,500 × 12% = $______</div>
+            <div class="calc-label" style="margin-top: 8px;">Value of $1,500 credit: $______ (but limited to tax liability if nonrefundable)</div>
+            <div class="calc-label" style="margin-top: 8px;"><strong>Better choice: ____________</strong></div>
+        </div>
+    </div>
+
+    <div class="hint-box"><strong>Rule of Thumb:</strong> Credits are usually more valuable than deductions of the same amount, especially for lower-income taxpayers.</div>
+
+    <div class="part-header">Part B: Standard vs. Itemized Decision</div>
+    <p style="margin-bottom: 14px;">The Smith family (married filing jointly) has these potential itemized deductions:</p>
+
+    <table class="data-table">
+        <tr><th>Expense Type</th><th>Amount</th><th>Deductible?</th></tr>
+        <tr><td style="text-align: left;">Mortgage Interest</td><td>$9,500</td><td>Yes (full amount)</td></tr>
+        <tr><td style="text-align: left;">State/Local Taxes</td><td>$12,000</td><td>Capped at $10,000</td></tr>
+        <tr><td style="text-align: left;">Charitable Donations</td><td>$4,000</td><td>Yes (full amount)</td></tr>
+        <tr><td style="text-align: left;">Medical Expenses</td><td>$8,000</td><td>Only if > 7.5% of income</td></tr>
+        <tr class="calc-row"><td style="text-align: left; font-weight: 600;">Total Itemized:</td><td></td><td></td></tr>
+    </table>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">2.</span> Calculate the Smiths' total itemized deductions (note the SALT cap). Compare to the $27,700 standard deduction. Which should they choose?</p>
+        <div class="calc-box"><div class="calc-label">Show your work:</div></div>
+        <div class="calc-answer">Better choice: _________________________</div>
+    </div>
+
+    <div class="part-header">Part C: Common Credits for Students/Young Adults</div>
+    <div class="question">
+        <p class="question-text"><span class="question-number">3.</span> Match each credit to its description and maximum value:</p>
+    </div>
+
+    <table class="data-table">
+        <tr><th>Credit</th><th>Description</th><th>Max Value</th></tr>
+        <tr><td style="text-align: left;">American Opportunity Credit</td><td style="text-align: left;">For first 4 years of college expenses</td><td>$______</td></tr>
+        <tr><td style="text-align: left;">Lifetime Learning Credit</td><td style="text-align: left;">For any post-secondary education</td><td>$______</td></tr>
+        <tr><td style="text-align: left;">Saver's Credit</td><td style="text-align: left;">For retirement contributions (low income)</td><td>$______</td></tr>
+    </table>
+    <p style="font-size: 9pt; color: var(--text-light); margin-top: 6px;">Options: $1,000 | $2,000 | $2,500</p>
+
+    <div class="section-header">Check Your Understanding</div>
+    <div class="question">
+        <p class="question-text"><span class="question-number">1.</span> Which directly reduces your tax bill dollar-for-dollar?</p>
+        <div class="mc-options">
+            <div class="mc-option"><div class="mc-checkbox"></div> A. Tax deduction</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> B. Tax credit</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> C. Standard deduction</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> D. Filing status</div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">2.</span> Why is the same deduction worth more to someone in the 32% bracket than someone in the 12% bracket?</p>
+        <div class="answer-lines"><div class="answer-line"></div><div class="answer-line"></div></div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">3.</span> <strong>Calculation:</strong> Morgan has $45,000 income, takes the $13,850 standard deduction, and qualifies for a $1,000 education credit. Calculate taxable income and final tax (use brackets: $0-$11,000 at 10%, $11,001-$44,725 at 12%).</p>
+        <div class="calc-box"><div class="calc-label">Show your work:</div></div>
+        <div class="calc-answer">Taxable Income: $_______ | Tax Before Credit: $_______ | Final Tax: $_______</div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">4.</span> What's the difference between a refundable and nonrefundable tax credit? Give an example of each.</p>
+        <div class="answer-lines"><div class="answer-line"></div><div class="answer-line"></div></div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">5.</span> <strong>Reflection:</strong> Based on what you've learned, what deductions or credits might you qualify for now or in the near future? How could this knowledge influence your financial decisions?</p>
+        <div class="answer-lines"><div class="answer-line"></div><div class="answer-line"></div><div class="answer-line"></div></div>
+    </div>
+
+    <div class="footer">
+        <span>© PFL Academy | pflacademy.co</span>
+        <span>Chapter 2.4: Understanding Tax Deductions and Credits</span>
+    </div>
+</body>
+</html>

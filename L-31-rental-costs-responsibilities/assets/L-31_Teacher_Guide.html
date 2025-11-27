@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-31 Teacher Guide</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+        :root {
+            --primary: #059669;
+            --primary-light: #ecfdf5;
+            --primary-dark: #065f46;
+            --text-dark: #1e293b;
+            --text-medium: #475569;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --bg-light: #f8fafc;
+            --warning: #f59e0b;
+            --warning-light: #fef3c7;
+            --error: #dc2626;
+            --error-light: #fee2e2;
+            --success-light: #dcfce7;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+
+        @page {
+            size: letter;
+            margin: 0.5in;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 10pt;
+            line-height: 1.45;
+            color: var(--text-dark);
+            background: white;
+        }
+
+        .header {
+            background: var(--primary);
+            color: white;
+            padding: 14px 18px;
+            border-radius: 6px;
+            margin-bottom: 16px;
+        }
+
+        .header h1 {
+            font-size: 13pt;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .header h2 {
+            font-size: 10pt;
+            font-weight: 400;
+            margin: 3px 0 0;
+            opacity: 0.9;
+        }
+
+        .section-header {
+            background: var(--primary-light);
+            border-left: 4px solid var(--primary);
+            padding: 7px 12px;
+            font-size: 10pt;
+            font-weight: 700;
+            color: var(--primary-dark);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin: 16px 0 10px;
+        }
+
+        .overview-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 14px;
+        }
+
+        .overview-table th {
+            background: var(--bg-light);
+            color: var(--text-light);
+            font-size: 8pt;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            text-align: center;
+            padding: 6px 10px;
+            border: 1px solid var(--border);
+            width: 33%;
+        }
+
+        .overview-table td {
+            text-align: center;
+            padding: 10px;
+            border: 1px solid var(--border);
+            font-weight: 600;
+            color: var(--text-dark);
+            font-size: 10pt;
+        }
+
+        .flow-container {
+            margin-bottom: 14px;
+        }
+
+        .flow-item {
+            display: flex;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border);
+            page-break-inside: avoid;
+        }
+
+        .flow-item:last-child {
+            border-bottom: none;
+        }
+
+        .flow-time {
+            width: 65px;
+            font-weight: 700;
+            color: var(--primary);
+            flex-shrink: 0;
+            font-size: 10pt;
+        }
+
+        .flow-content {
+            flex: 1;
+        }
+
+        .flow-title {
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 3px;
+            font-size: 10pt;
+        }
+
+        .flow-content ul {
+            margin: 0;
+            padding-left: 16px;
+            font-size: 9pt;
+            color: var(--text-medium);
+        }
+
+        .flow-content li {
+            margin-bottom: 2px;
+        }
+
+        .diff-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 14px;
+        }
+
+        .diff-box {
+            background: var(--bg-light);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 10px 12px;
+        }
+
+        .diff-title {
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 6px;
+            font-size: 9pt;
+        }
+
+        .diff-box ul {
+            margin: 0;
+            padding-left: 16px;
+            font-size: 9pt;
+            color: var(--text-medium);
+        }
+
+        .diff-box li {
+            margin-bottom: 2px;
+        }
+
+        .answer-key {
+            page-break-before: always;
+        }
+
+        .answer-block {
+            margin-bottom: 12px;
+            page-break-inside: avoid;
+        }
+
+        .answer-title {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 9pt;
+            border-bottom: 1px solid #a7f3d0;
+            padding-bottom: 3px;
+            margin-bottom: 6px;
+        }
+
+        .answer-item {
+            margin-bottom: 5px;
+            font-size: 9pt;
+            color: var(--text-dark);
+        }
+
+        .answer-item strong {
+            color: var(--primary-dark);
+        }
+
+        .calc-display {
+            font-family: 'Courier New', monospace;
+            background: var(--bg-light);
+            padding: 8px 10px;
+            border-radius: 4px;
+            margin: 6px 0;
+            font-size: 8.5pt;
+            line-height: 1.5;
+            white-space: pre-line;
+        }
+
+        .answer-note {
+            background: var(--warning-light);
+            border-left: 3px solid var(--warning);
+            padding: 6px 10px;
+            font-size: 9pt;
+            font-style: italic;
+            color: #92400e;
+            margin: 6px 0;
+        }
+
+        .misconception-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 9pt;
+            margin-top: 10px;
+        }
+
+        .misconception-table th {
+            padding: 6px 10px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .misconception-table th:first-child {
+            background: var(--error-light);
+            color: #991b1b;
+            border: 1px solid #fca5a5;
+            width: 40%;
+        }
+
+        .misconception-table th:last-child {
+            background: var(--success-light);
+            color: #166534;
+            border: 1px solid #86efac;
+        }
+
+        .misconception-table td {
+            padding: 6px 10px;
+            border: 1px solid var(--border);
+            vertical-align: top;
+            color: var(--text-medium);
+        }
+
+        .footer {
+            margin-top: 20px;
+            padding-top: 8px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            font-size: 8pt;
+            color: var(--text-light);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <div class="header">
+        <h1>PFL Academy</h1>
+        <h2>Teacher Guide: Chapter 6.1 — Understanding Rental Costs and Responsibilities</h2>
+    </div>
+
+    <!-- OVERVIEW -->
+    <div class="section-header">Overview</div>
+    <table class="overview-table">
+        <tr>
+            <th>Time</th>
+            <th>Materials</th>
+            <th>Prerequisites</th>
+        </tr>
+        <tr>
+            <td>45-50 Minutes</td>
+            <td>Student Activity Packet, Calculator</td>
+            <td>Basic budgeting concepts</td>
+        </tr>
+    </table>
+
+    <!-- LESSON FLOW -->
+    <div class="section-header">Lesson Flow</div>
+    <div class="flow-container">
+        <div class="flow-item">
+            <div class="flow-time">5 min</div>
+            <div class="flow-content">
+                <div class="flow-title">THE CHALLENGE</div>
+                <ul>
+                    <li>Read Emma's apartment scenario aloud or have students read silently.</li>
+                    <li>Discussion: "What surprised you most about Emma's costs?"</li>
+                    <li>Ask students to estimate what they think renting costs in your local area.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="flow-item">
+            <div class="flow-time">8 min</div>
+            <div class="flow-content">
+                <div class="flow-title">CORE CONCEPTS</div>
+                <ul>
+                    <li>Review the 5 key terms. Emphasize that "security deposit" is different from "first month's rent."</li>
+                    <li>Discuss why renter's insurance matters (liability protection, not just belongings).</li>
+                    <li>Quick check: Ask for examples of utilities that might or might not be included in rent.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="flow-item">
+            <div class="flow-time">25 min</div>
+            <div class="flow-content">
+                <div class="flow-title">APPLY IT</div>
+                <ul>
+                    <li><strong>Part A (12 min):</strong> Students calculate costs for three scenarios. Circulate to check math. Emphasize that roommates reduce individual costs but add complexity.</li>
+                    <li><strong>Part B (8 min):</strong> Lease clause analysis. Discuss why the "entry without notice" clause is a major red flag (violates privacy rights).</li>
+                    <li><strong>Part C (5 min):</strong> Tenant rights scenarios. Have students share responses; emphasize documentation and written communication.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="flow-item">
+            <div class="flow-time">10 min</div>
+            <div class="flow-content">
+                <div class="flow-title">CHECK YOUR UNDERSTANDING</div>
+                <ul>
+                    <li>Complete in class or assign as homework.</li>
+                    <li>Review Q3 (Calculation) and Q4 (jointly and severally liable) as these are most commonly misunderstood.</li>
+                    <li>Q5 reflection: Encourage specific, actionable steps like "start saving $200/month."</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- DIFFERENTIATION -->
+    <div class="section-header">Differentiation</div>
+    <div class="diff-grid">
+        <div class="diff-box">
+            <div class="diff-title">Support</div>
+            <ul>
+                <li>Provide a calculation template showing formula: Upfront = Deposit + First Month + App Fee.</li>
+                <li>Work through Scenario 1 as a class before independent work.</li>
+                <li>Pair students for Part B lease analysis.</li>
+                <li>Provide sentence starters for tenant rights scenarios.</li>
+            </ul>
+        </div>
+        <div class="diff-box">
+            <div class="diff-title">Extension</div>
+            <ul>
+                <li>Research actual rental listings in your area and calculate true costs.</li>
+                <li>Compare state tenant protection laws (some states have stronger protections).</li>
+                <li>Calculate what income level would be needed for each scenario using the 30% rule.</li>
+                <li>Draft a letter to a landlord about the leaking sink scenario.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ANSWER KEY (new page) -->
+    <div class="answer-key">
+        <div class="section-header">Answer Key</div>
+
+        <div class="answer-block">
+            <div class="answer-title">Part A: Rental Cost Analysis</div>
+            <div class="calc-display">Scenario 1 (Downtown Studio):
+Upfront: $950 (deposit) + $950 (first month) + $50 (app fee) = $1,950
+Monthly: $950 + $60 + $55 + $30 = $1,095
+Annual: $1,950 + ($1,095 × 12) = $1,950 + $13,140 = $15,090
+
+Scenario 2 (Suburban 2-Bedroom, Alicia's share):
+Upfront: $700 (deposit share) + $700 (first month) + $35 (app fee) = $1,435
+Monthly: $700 + $120 (utilities share) = $820
+Annual: $1,435 + ($820 × 12) = $1,435 + $9,840 = $11,275
+
+Scenario 3 (Campus 3-Bedroom, per person):
+Upfront: $700 (deposit) + $700 (first month) + $25 (app fee) = $1,425
+Monthly: $700 + $60 (utilities) + $75 (parking) = $835
+9-Month: $1,425 + ($835 × 9) = $1,425 + $7,515 = $8,940</div>
+        </div>
+
+        <div class="answer-block">
+            <div class="answer-title">Part B: Lease Agreement Analysis</div>
+            <div class="answer-item"><strong>Clause 1:</strong> Protects Landlord — YES, Red Flag (violates tenant right to privacy; most states require 24-48 hour notice)</div>
+            <div class="answer-item"><strong>Clause 2:</strong> Protects Tenant — No red flag (this is standard and fair)</div>
+            <div class="answer-item"><strong>Clause 3:</strong> Protects Landlord — Yes, Red Flag (tenant shouldn't pay for repairs they didn't cause)</div>
+            <div class="answer-item"><strong>Clause 4:</strong> Neutral — Potential concern (60 days is long; could be a red flag if tenant forgets)</div>
+            <div class="answer-item"><strong>Clause 5:</strong> Protects Landlord — No major red flag (5-day grace period and $50 fee is relatively standard)</div>
+            <div class="answer-item"><strong>Q4:</strong> The "entry without notice" clause is the biggest red flag. Ask for it to be changed to "24-48 hours written notice required except in emergencies."</div>
+        </div>
+
+        <div class="answer-block">
+            <div class="answer-title">Part C: Tenant Rights Scenarios</div>
+            <div class="answer-item"><strong>Q5:</strong> You have the right to habitable housing. Steps: (1) Send written notice to landlord documenting the issue and date first reported, (2) Give reasonable time to fix (7-14 days for non-emergency), (3) If no response, contact local housing authority, (4) In some states, you may be able to withhold rent or "repair and deduct."</div>
+            <div class="answer-item"><strong>Q6:</strong> This is NOT allowed. You have the right to privacy. Landlords must provide advance notice (typically 24-48 hours) except in true emergencies. "Checking smoke detectors" is not an emergency.</div>
+            <div class="answer-note">Q7: Accept reasonable priorities with clear explanations. Common answers include price, location, safety, parking, pet-friendliness, and in-unit laundry.</div>
+        </div>
+
+        <div class="answer-block">
+            <div class="answer-title">Check Your Understanding</div>
+            <div class="answer-item"><strong>1.</strong> B (30%)</div>
+            <div class="answer-item"><strong>2.</strong> Advantages: Flexibility to move, no maintenance responsibility, lower upfront costs, no property tax. Disadvantages: No equity building, rent can increase, limited control over property, less privacy.</div>
+            <div class="answer-item"><strong>3.</strong> $1,100 (security) + $1,100 (first) + $1,100 (last) + $45 (app fee) = <strong>$3,345 total upfront</strong></div>
+            <div class="answer-item"><strong>4.</strong> "Jointly and severally liable" means each tenant is responsible for the full rent, not just their share. Options: (1) Find a replacement roommate, (2) Negotiate with landlord, (3) Sublet if lease allows, (4) Pay full rent temporarily while pursuing roommate for their share.</div>
+            <div class="answer-item"><strong>5.</strong> <em>Look for specific steps like: build savings for deposits, establish credit history, create a rental budget, research typical costs in desired area, maintain good references.</em></div>
+        </div>
+
+        <!-- COMMON MISCONCEPTIONS -->
+        <div class="section-header">Common Misconceptions</div>
+        <table class="misconception-table">
+            <tr>
+                <th>Misconception</th>
+                <th>Clarification</th>
+            </tr>
+            <tr>
+                <td>"The security deposit is the same as first month's rent."</td>
+                <td>They serve different purposes. First month's rent pays for housing; security deposit is held for potential damages and should be returned when you move out.</td>
+            </tr>
+            <tr>
+                <td>"Landlords can enter whenever they want."</td>
+                <td>Tenants have privacy rights. Landlords must provide advance notice (usually 24-48 hours) except in genuine emergencies like fire or flood.</td>
+            </tr>
+            <tr>
+                <td>"Renter's insurance only covers stolen items."</td>
+                <td>It also provides liability coverage if someone is injured in your apartment and protects against various damages (fire, water, etc.).</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        <span>&copy; PFL Academy | pflacademy.co</span>
+        <span>Teacher Guide: Chapter 6.1</span>
+    </div>
+
+</body>
+</html>

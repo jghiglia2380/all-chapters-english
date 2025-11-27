@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-45 Student Activity Packet</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+        :root {
+            --primary: #6366f1;
+            --primary-light: #eef2ff;
+            --accent: #f59e0b;
+            --accent-light: #fef3c7;
+            --success: #059669;
+            --text-dark: #1e293b;
+            --text-medium: #475569;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --bg-light: #f8fafc;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+        @page { size: letter; margin: 0.5in; }
+
+        body { font-family: 'Open Sans', sans-serif; font-size: 10.5pt; line-height: 1.5; color: var(--text-dark); background: white; }
+
+        .header { background: var(--primary); color: white; padding: 14px 18px; border-radius: 6px; margin-bottom: 18px; display: flex; justify-content: space-between; align-items: center; }
+        .header-left h1 { font-size: 13pt; font-weight: 700; margin: 0; }
+        .header-left h2 { font-size: 10pt; font-weight: 400; margin: 2px 0 0; opacity: 0.9; }
+        .header-right { font-size: 9pt; text-align: right; opacity: 0.9; }
+
+        .section-header { font-size: 11pt; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 2px solid var(--primary); padding-bottom: 4px; margin: 20px 0 12px; }
+
+        .challenge-box { background: var(--accent-light); border-left: 4px solid var(--accent); padding: 14px 16px; margin-bottom: 16px; border-radius: 0 6px 6px 0; }
+        .challenge-box p { font-style: italic; color: var(--text-dark); margin-bottom: 10px; }
+        .challenge-box .framing-question { font-weight: 600; font-style: normal; color: #92400e; }
+
+        .objectives-box { background: var(--primary-light); border: 1px solid #c7d2fe; border-radius: 6px; padding: 12px 16px; margin-bottom: 18px; }
+        .objectives-box h3 { font-size: 10pt; font-weight: 700; color: var(--primary); margin-bottom: 6px; }
+        .objectives-box ul { margin: 0; padding-left: 20px; }
+        .objectives-box li { margin-bottom: 3px; color: var(--text-medium); }
+
+        .terms-table { width: 100%; border-collapse: collapse; margin-bottom: 14px; font-size: 10pt; }
+        .terms-table th { background: var(--bg-light); text-align: left; padding: 8px 10px; border: 1px solid var(--border); font-weight: 600; color: var(--text-medium); }
+        .terms-table td { padding: 8px 10px; border: 1px solid var(--border); vertical-align: top; }
+        .terms-table td:first-child { font-weight: 600; color: var(--primary); width: 28%; }
+
+        .background-box { background: var(--bg-light); border: 1px solid var(--border); border-radius: 6px; padding: 12px 16px; margin-bottom: 18px; font-size: 10pt; color: var(--text-medium); }
+        .background-box strong { color: var(--text-dark); }
+
+        .scenario-card { background: white; border: 1px solid var(--border); border-radius: 6px; padding: 12px 14px; margin-bottom: 14px; page-break-inside: avoid; }
+        .scenario-title { font-weight: 700; color: var(--primary); margin-bottom: 6px; font-size: 10pt; }
+        .scenario-description { color: var(--text-medium); margin-bottom: 10px; font-size: 10pt; }
+
+        .response-line { display: flex; align-items: baseline; margin-bottom: 8px; }
+        .response-label { font-weight: 600; color: var(--text-dark); margin-right: 8px; white-space: nowrap; }
+        .response-blank { flex-grow: 1; border-bottom: 1px solid var(--text-light); min-height: 18px; }
+
+        .question { margin-bottom: 14px; page-break-inside: avoid; }
+        .question-number { font-weight: 700; color: var(--text-dark); }
+        .question-text { color: var(--text-dark); margin-bottom: 6px; }
+
+        .answer-lines { margin-top: 6px; }
+        .answer-line { border-bottom: 1px solid var(--text-light); height: 22px; margin-bottom: 4px; }
+
+        .mc-options { margin-top: 6px; margin-left: 20px; }
+        .mc-option { display: flex; align-items: center; margin-bottom: 4px; }
+        .mc-checkbox { width: 14px; height: 14px; border: 1px solid var(--text-light); border-radius: 2px; margin-right: 8px; flex-shrink: 0; }
+
+        .hint-box { background: #f0fdf4; border-left: 3px solid var(--success); padding: 8px 12px; margin: 10px 0; font-size: 9pt; font-style: italic; color: #166534; }
+        .hint-box strong { font-style: normal; }
+
+        .part-header { font-weight: 700; font-size: 10pt; color: var(--primary); text-transform: uppercase; margin: 16px 0 10px; padding-bottom: 4px; border-bottom: 1px solid var(--border); }
+
+        .business-type-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; font-size: 9pt; }
+        .business-type-box { background: var(--bg-light); border: 1px solid var(--border); border-radius: 4px; padding: 10px; }
+        .business-type-box h4 { font-size: 9pt; font-weight: 700; color: var(--primary); margin-bottom: 4px; }
+        .business-type-box p { color: var(--text-medium); margin-bottom: 4px; }
+        .business-type-box ul { margin: 0; padding-left: 14px; color: var(--text-light); }
+
+        .footer { margin-top: 24px; padding-top: 10px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; font-size: 9pt; color: var(--text-light); }
+
+        .mb-sm { margin-bottom: 8px; }
+        .mb-md { margin-bottom: 14px; }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <div class="header">
+        <div class="header-left">
+            <h1>PFL Academy</h1>
+            <h2>Chapter 15.5: Entrepreneurship and Side Hustles</h2>
+        </div>
+        <div class="header-right">
+            Student Activity Packet
+        </div>
+    </div>
+
+    <!-- THE CHALLENGE -->
+    <div class="section-header">The Challenge</div>
+    <div class="challenge-box">
+        <p>Jordan, a college Computer Science student, noticed classmates struggling with programming assignments. Instead of just helping friends for free, Jordan created a tutoring side hustle: $25/hour (vs. $60-80 for professional tutors), scheduled around classes, and marketed through flyers and social media. Within three months, Jordan had 8 regular clients, a waiting list, and earned $800-1,000 monthly—all while maintaining studies. The business evolved to include group sessions and specialized workshops, built entirely from identifying a problem Jordan was qualified to solve.</p>
+        <p class="framing-question">What opportunities exist around you where your skills could solve problems for others—and potentially generate income?</p>
+    </div>
+
+    <!-- LEARNING OBJECTIVES -->
+    <div class="objectives-box">
+        <h3>Learning Objectives</h3>
+        <ul>
+            <li>Identify entrepreneurial opportunities aligned with personal skills and interests.</li>
+            <li>Understand the essential components of a business plan.</li>
+            <li>Develop strategies for balancing side hustles with traditional employment.</li>
+            <li>Learn about customer discovery and minimum viable product development.</li>
+            <li>Explore financial planning and resource allocation for new ventures.</li>
+        </ul>
+    </div>
+
+    <!-- CORE CONCEPTS -->
+    <div class="section-header">Core Concepts</div>
+
+    <table class="terms-table">
+        <tr>
+            <th>Term</th>
+            <th>Definition</th>
+        </tr>
+        <tr>
+            <td>Entrepreneurship</td>
+            <td>The activity of setting up and running a business, taking on financial risks in the hope of profit.</td>
+        </tr>
+        <tr>
+            <td>Side Hustle</td>
+            <td>A way to make money alongside your primary job, often allowing you to test business ideas with lower risk.</td>
+        </tr>
+        <tr>
+            <td>Minimum Viable Product (MVP)</td>
+            <td>A version of a product with just enough features to be usable by early customers and gather feedback.</td>
+        </tr>
+        <tr>
+            <td>Value Proposition</td>
+            <td>The unique value your product or service offers to customers that differentiates you from competitors.</td>
+        </tr>
+        <tr>
+            <td>Bootstrapping</td>
+            <td>Building a company from the ground up using personal finances and revenue, without outside investment.</td>
+        </tr>
+    </table>
+
+    <div class="background-box">
+        <strong>Background:</strong> Entrepreneurship offers an alternative or complement to traditional employment, allowing you to pursue your passions, develop new skills, and create additional income streams. Starting small with a minimum viable product allows you to test assumptions and refine your offering before committing significant resources. Many successful businesses began as side hustles that grew over time.
+    </div>
+
+    <!-- APPLY IT -->
+    <div class="section-header">Apply It</div>
+
+    <div class="part-header">Part A: Types of Side Hustles</div>
+    <p class="mb-sm">Review these business types and answer the questions below:</p>
+
+    <div class="business-type-grid">
+        <div class="business-type-box">
+            <h4>Service-Based</h4>
+            <p>Tutoring, freelance writing, consulting, photography</p>
+            <ul>
+                <li>+ Low startup costs</li>
+                <li>- Income limited by time</li>
+            </ul>
+        </div>
+        <div class="business-type-box">
+            <h4>Product-Based</h4>
+            <p>Handcrafted goods, reselling, manufactured items</p>
+            <ul>
+                <li>+ Scalable with systems</li>
+                <li>- Inventory costs</li>
+            </ul>
+        </div>
+        <div class="business-type-box">
+            <h4>Digital Products</h4>
+            <p>Online courses, e-books, apps, stock photos</p>
+            <ul>
+                <li>+ Create once, sell many</li>
+                <li>- Marketing challenge</li>
+            </ul>
+        </div>
+        <div class="business-type-box">
+            <h4>Platform-Based</h4>
+            <p>Rideshare, Etsy, TaskRabbit, YouTube</p>
+            <ul>
+                <li>+ Built-in customers</li>
+                <li>- Platform fees/rules</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">1.</span> Which business type would best fit your current skills and situation? Why?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <!-- PART B -->
+    <div class="part-header">Part B: Opportunity Assessment</div>
+    <p class="mb-md">Think of a potential side hustle idea and evaluate it using these criteria:</p>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Your Business Idea:</div>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+        </div>
+
+        <div class="response-line" style="margin-top: 12px;">
+            <span class="response-label">Problem it solves:</span>
+            <span class="response-blank"></span>
+        </div>
+        <div class="response-line">
+            <span class="response-label">Target customer:</span>
+            <span class="response-blank"></span>
+        </div>
+        <div class="response-line">
+            <span class="response-label">What makes it unique:</span>
+            <span class="response-blank"></span>
+        </div>
+        <div class="response-line">
+            <span class="response-label">Skills/resources you have:</span>
+            <span class="response-blank"></span>
+        </div>
+        <div class="response-line">
+            <span class="response-label">Estimated startup cost:</span>
+            <span class="response-blank"></span>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">2.</span> What would be the MVP (Minimum Viable Product) for your idea—the simplest version you could offer to test if customers want it?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <!-- PART C -->
+    <div class="part-header">Part C: Value Proposition</div>
+    <p class="mb-md">Write a 1-2 sentence value proposition for your business idea:</p>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">3.</span> Value Proposition (complete: "[My business] helps [target customer] to [solve problem] by [unique approach/benefit]"):</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="hint-box">
+        <strong>Example:</strong> "Pampered Pets Mobile helps busy pet owners get professional grooming by bringing services directly to their homes, reducing stress for both pets and owners while saving valuable time."
+    </div>
+
+    <!-- CHECK YOUR UNDERSTANDING -->
+    <div class="section-header">Check Your Understanding</div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">1.</span> What is the main advantage of creating a Minimum Viable Product (MVP)?</p>
+        <div class="mc-options">
+            <div class="mc-option"><div class="mc-checkbox"></div> A. It allows you to sell a complete product faster</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> B. It lets you test assumptions and gather feedback before investing heavily</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> C. It guarantees your business will be successful</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> D. It eliminates the need for a business plan</div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">2.</span> Why is "bootstrapping" a common approach for side hustles?</p>
+        <div class="mc-options">
+            <div class="mc-option"><div class="mc-checkbox"></div> A. It's required by law for small businesses</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> B. It allows you to start without taking on debt or giving up ownership</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> C. It means you can skip market research</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> D. It guarantees faster growth than other methods</div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">3.</span> Explain why identifying a specific problem you can solve is more important than just having a good idea.</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">4.</span> What are two strategies for balancing a side hustle with school or a full-time job?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">5.</span> <strong>Reflection:</strong> What entrepreneurial characteristics (risk-taking, resilience, adaptability, etc.) do you feel are your strengths? Which would you need to develop further?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        <span>© PFL Academy | pflacademy.co</span>
+        <span>Chapter 15.5: Entrepreneurship and Side Hustles</span>
+    </div>
+
+</body>
+</html>

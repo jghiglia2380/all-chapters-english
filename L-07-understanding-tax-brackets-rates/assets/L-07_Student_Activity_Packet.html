@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-07 Student Activity Packet</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+        :root { --primary: #6366f1; --primary-light: #eef2ff; --accent: #f59e0b; --accent-light: #fef3c7; --success: #059669; --text-dark: #1e293b; --text-medium: #475569; --text-light: #64748b; --border: #e2e8f0; --bg-light: #f8fafc; }
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+        @page { size: letter; margin: 0.5in; }
+        body { font-family: 'Open Sans', sans-serif; font-size: 10.5pt; line-height: 1.5; color: var(--text-dark); background: white; }
+        .header { background: var(--primary); color: white; padding: 14px 18px; border-radius: 6px; margin-bottom: 18px; display: flex; justify-content: space-between; align-items: center; }
+        .header-left h1 { font-size: 13pt; font-weight: 700; margin: 0; }
+        .header-left h2 { font-size: 10pt; font-weight: 400; margin: 2px 0 0; opacity: 0.9; }
+        .header-right { font-size: 9pt; text-align: right; opacity: 0.9; }
+        .section-header { font-size: 11pt; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 2px solid var(--primary); padding-bottom: 4px; margin: 20px 0 12px; }
+        .challenge-box { background: var(--accent-light); border-left: 4px solid var(--accent); padding: 14px 16px; margin-bottom: 16px; border-radius: 0 6px 6px 0; }
+        .challenge-box p { font-style: italic; color: var(--text-dark); margin-bottom: 10px; }
+        .challenge-box .framing-question { font-weight: 600; font-style: normal; color: #92400e; }
+        .objectives-box { background: var(--primary-light); border: 1px solid #c7d2fe; border-radius: 6px; padding: 12px 16px; margin-bottom: 18px; }
+        .objectives-box h3 { font-size: 10pt; font-weight: 700; color: var(--primary); margin-bottom: 6px; }
+        .objectives-box ul { margin: 0; padding-left: 20px; }
+        .objectives-box li { margin-bottom: 3px; color: var(--text-medium); }
+        .terms-table { width: 100%; border-collapse: collapse; margin-bottom: 14px; font-size: 10pt; }
+        .terms-table th { background: var(--bg-light); text-align: left; padding: 8px 10px; border: 1px solid var(--border); font-weight: 600; color: var(--text-medium); }
+        .terms-table td { padding: 8px 10px; border: 1px solid var(--border); vertical-align: top; }
+        .terms-table td:first-child { font-weight: 600; color: var(--primary); width: 28%; }
+        .background-box { background: var(--bg-light); border: 1px solid var(--border); border-radius: 6px; padding: 12px 16px; margin-bottom: 18px; font-size: 10pt; color: var(--text-medium); }
+        .background-box strong { color: var(--text-dark); }
+        .scenario-card { background: white; border: 1px solid var(--border); border-radius: 6px; padding: 12px 14px; margin-bottom: 14px; page-break-inside: avoid; }
+        .scenario-title { font-weight: 700; color: var(--primary); margin-bottom: 6px; font-size: 10pt; }
+        .scenario-description { color: var(--text-medium); margin-bottom: 10px; font-size: 10pt; }
+        .response-line { display: flex; align-items: baseline; margin-bottom: 8px; }
+        .response-label { font-weight: 600; color: var(--text-dark); margin-right: 8px; white-space: nowrap; }
+        .response-blank { flex-grow: 1; border-bottom: 1px solid var(--text-light); min-height: 18px; }
+        .response-options { color: var(--text-light); font-size: 9pt; margin-left: 8px; white-space: nowrap; }
+        .data-table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 10pt; }
+        .data-table th { background: var(--primary); color: white; padding: 8px 10px; text-align: center; font-weight: 600; font-size: 9pt; }
+        .data-table td { padding: 8px 10px; border: 1px solid var(--border); text-align: center; }
+        .data-table tr:nth-child(even) td { background: var(--bg-light); }
+        .data-table .calc-row td { background: #fef9c3; height: 28px; }
+        .question { margin-bottom: 14px; page-break-inside: avoid; }
+        .question-number { font-weight: 700; color: var(--text-dark); }
+        .question-text { color: var(--text-dark); margin-bottom: 6px; }
+        .answer-lines { margin-top: 6px; }
+        .answer-line { border-bottom: 1px solid var(--text-light); height: 22px; margin-bottom: 4px; }
+        .calc-box { border: 1px solid var(--border); border-radius: 4px; padding: 12px; margin: 8px 0; min-height: 60px; background: var(--bg-light); }
+        .calc-label { font-size: 9pt; color: var(--text-light); margin-bottom: 4px; }
+        .calc-answer { margin-top: 10px; font-weight: 600; }
+        .mc-options { margin-top: 6px; margin-left: 20px; }
+        .mc-option { display: flex; align-items: center; margin-bottom: 4px; }
+        .mc-checkbox { width: 14px; height: 14px; border: 1px solid var(--text-light); border-radius: 2px; margin-right: 8px; flex-shrink: 0; }
+        .hint-box { background: #f0fdf4; border-left: 3px solid var(--success); padding: 8px 12px; margin: 10px 0; font-size: 9pt; font-style: italic; color: #166534; }
+        .hint-box strong { font-style: normal; }
+        .part-header { font-weight: 700; font-size: 10pt; color: var(--primary); text-transform: uppercase; margin: 16px 0 10px; padding-bottom: 4px; border-bottom: 1px solid var(--border); }
+        .footer { margin-top: 24px; padding-top: 10px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; font-size: 9pt; color: var(--text-light); }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-left">
+            <h1>PFL Academy</h1>
+            <h2>Chapter 2.2: Understanding Tax Brackets and Tax Rates</h2>
+        </div>
+        <div class="header-right">Student Activity Packet</div>
+    </div>
+
+    <div class="section-header">The Challenge</div>
+    <div class="challenge-box">
+        <p>Jared earns $50,000 per year as a single filer. His coworker told him he's "in the 22% tax bracket," so Jared assumes he pays $11,000 in federal income tax (22% of $50,000). However, his actual federal tax bill is only $6,307—a difference of $4,693. This misconception about how tax brackets work causes many people to turn down raises or overtime, fearing they'll "lose money" by moving to a higher bracket.</p>
+        <p class="framing-question">How do progressive tax brackets actually work, and why is understanding the difference between marginal and effective tax rates essential for financial decisions?</p>
+    </div>
+
+    <div class="objectives-box">
+        <h3>Learning Objectives</h3>
+        <ul>
+            <li>Differentiate between marginal and effective tax rates.</li>
+            <li>Calculate taxes owed using progressive tax brackets.</li>
+            <li>Explain how filing status affects tax calculations.</li>
+        </ul>
+    </div>
+
+    <div class="section-header">Core Concepts</div>
+    <table class="terms-table">
+        <tr><th>Term</th><th>Definition</th></tr>
+        <tr><td>Tax Bracket</td><td>Income ranges that are taxed at different rates in a progressive system.</td></tr>
+        <tr><td>Marginal Tax Rate</td><td>The rate at which your LAST dollar of income is taxed (your highest bracket).</td></tr>
+        <tr><td>Effective Tax Rate</td><td>The AVERAGE rate at which all your income is taxed (total tax ÷ total income).</td></tr>
+        <tr><td>Progressive Tax System</td><td>A system where tax rates increase as income increases, with each bracket taxed at its own rate.</td></tr>
+        <tr><td>Filing Status</td><td>Categories (single, married filing jointly, head of household) that determine your tax bracket thresholds.</td></tr>
+    </table>
+
+    <div class="background-box">
+        <strong>Background:</strong> The U.S. uses a progressive federal income tax system where only the income WITHIN each bracket is taxed at that rate—not your entire income. For 2023 single filers: $0-$11,000 at 10%, $11,001-$44,725 at 12%, $44,726-$95,375 at 22%, and so on. This means moving into a "higher bracket" only affects the income above the threshold.
+    </div>
+
+    <div class="section-header">Apply It</div>
+    <div class="part-header">Part A: Calculate Taxes Using Brackets</div>
+    <p style="margin-bottom: 14px;">Use the 2023 tax brackets for single filers to calculate the federal income tax.</p>
+
+    <table class="data-table">
+        <tr><th>Income Range</th><th>Tax Rate</th><th>For $50,000 Income</th></tr>
+        <tr><td>$0 - $11,000</td><td>10%</td><td style="text-align: left;">$11,000 × 10% = $______</td></tr>
+        <tr><td>$11,001 - $44,725</td><td>12%</td><td style="text-align: left;">$33,725 × 12% = $______</td></tr>
+        <tr><td>$44,726 - $95,375</td><td>22%</td><td style="text-align: left;">$______ × 22% = $______</td></tr>
+        <tr class="calc-row"><td colspan="2" style="text-align: right; font-weight: 600;">TOTAL TAX:</td><td></td></tr>
+    </table>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">1.</span> Based on your calculation, what is the marginal tax rate for someone earning $50,000?</p>
+        <div class="response-line"><span class="response-label">Marginal Rate:</span><span class="response-blank"></span></div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">2.</span> Calculate the effective tax rate: Total Tax ÷ Total Income × 100</p>
+        <div class="calc-box"><div class="calc-label">Show your work:</div></div>
+        <div class="calc-answer">Effective Rate: ______%</div>
+    </div>
+
+    <div class="hint-box"><strong>Key Insight:</strong> The effective rate (around 12.6%) is MUCH lower than the marginal rate (22%). This is why earning more never results in less take-home pay!</div>
+
+    <div class="part-header">Part B: Filing Status Comparison</div>
+    <p style="margin-bottom: 14px;">Compare how filing status affects taxes for a $110,000 combined income.</p>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Scenario: Sara and her spouse earn $110,000 combined</div>
+        <div class="scenario-description">Married Filing Jointly brackets (2023): $0-$22,000 at 10%, $22,001-$89,450 at 12%, $89,451-$190,750 at 22%.</div>
+        <div class="calc-box">
+            <div class="calc-label">Calculate their federal tax:</div>
+            <div style="font-size: 9pt; color: var(--text-medium); margin-top: 8px;">
+                First $22,000 × 10% = $______<br>
+                Next $67,450 × 12% = $______<br>
+                Remaining $______ × 22% = $______<br>
+                <strong>Total: $______</strong>
+            </div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">3.</span> What is Sara's household effective tax rate? How does the "married filing jointly" status benefit them compared to filing as two single people?</p>
+        <div class="answer-lines"><div class="answer-line"></div><div class="answer-line"></div></div>
+    </div>
+
+    <div class="part-header">Part C: Tax Avoidance vs. Tax Evasion</div>
+    <p style="margin-bottom: 14px;">Classify each action as LEGAL (tax avoidance) or ILLEGAL (tax evasion).</p>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Action 1: Contributing to a 401(k)</div>
+        <div class="scenario-description">Marcus contributes $6,000 to his employer's 401(k) plan, reducing his taxable income.</div>
+        <div class="response-line"><span class="response-label">Classification:</span><span class="response-blank"></span><span class="response-options">(Legal / Illegal)</span></div>
+        <div class="response-line"><span class="response-label">Why:</span><span class="response-blank"></span></div>
+    </div>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Action 2: Not reporting cash income</div>
+        <div class="scenario-description">A server receives $5,000 in tips but only reports $2,000 on their tax return.</div>
+        <div class="response-line"><span class="response-label">Classification:</span><span class="response-blank"></span><span class="response-options">(Legal / Illegal)</span></div>
+        <div class="response-line"><span class="response-label">Why:</span><span class="response-blank"></span></div>
+    </div>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Action 3: Claiming a home office deduction</div>
+        <div class="scenario-description">A freelancer deducts the portion of rent and utilities for their dedicated home office space.</div>
+        <div class="response-line"><span class="response-label">Classification:</span><span class="response-blank"></span><span class="response-options">(Legal / Illegal)</span></div>
+        <div class="response-line"><span class="response-label">Why:</span><span class="response-blank"></span></div>
+    </div>
+
+    <div class="section-header">Check Your Understanding</div>
+    <div class="question">
+        <p class="question-text"><span class="question-number">1.</span> If you earn $60,000 and are in the 22% tax bracket, how much of your income is actually taxed at 22%?</p>
+        <div class="mc-options">
+            <div class="mc-option"><div class="mc-checkbox"></div> A. All $60,000</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> B. $48,000 (60,000 - 11,000 - 1,000)</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> C. $15,275 (the amount above $44,725)</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> D. None—the 22% is just your marginal rate</div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">2.</span> Explain why a raise that "moves you into a higher tax bracket" never results in less take-home pay.</p>
+        <div class="answer-lines"><div class="answer-line"></div><div class="answer-line"></div></div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">3.</span> <strong>Calculation:</strong> Taylor earns $75,000 as a single filer. Calculate their federal income tax and effective rate using the brackets: $0-$11,000 at 10%, $11,001-$44,725 at 12%, $44,726-$95,375 at 22%.</p>
+        <div class="calc-box"><div class="calc-label">Show your work:</div></div>
+        <div class="calc-answer">Total Tax: $_________ | Effective Rate: _________%</div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">4.</span> Why might a married couple with similar incomes sometimes face a "marriage penalty" while a couple with very different incomes gets a "marriage bonus"?</p>
+        <div class="answer-lines"><div class="answer-line"></div><div class="answer-line"></div></div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">5.</span> <strong>Reflection:</strong> How might understanding the difference between marginal and effective tax rates change how you evaluate job offers, overtime opportunities, or side income?</p>
+        <div class="answer-lines"><div class="answer-line"></div><div class="answer-line"></div><div class="answer-line"></div></div>
+    </div>
+
+    <div class="footer">
+        <span>© PFL Academy | pflacademy.co</span>
+        <span>Chapter 2.2: Understanding Tax Brackets and Tax Rates</span>
+    </div>
+</body>
+</html>

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-38 Teacher Guide</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+        :root {
+            --primary: #059669;
+            --primary-light: #ecfdf5;
+            --primary-dark: #065f46;
+            --text-dark: #1e293b;
+            --text-medium: #475569;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --bg-light: #f8fafc;
+            --warning: #f59e0b;
+            --warning-light: #fef3c7;
+            --error: #dc2626;
+            --error-light: #fee2e2;
+            --success-light: #dcfce7;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+        @page { size: letter; margin: 0.5in; }
+
+        body { font-family: 'Open Sans', sans-serif; font-size: 10pt; line-height: 1.45; color: var(--text-dark); background: white; }
+
+        .header { background: var(--primary); color: white; padding: 14px 18px; border-radius: 6px; margin-bottom: 16px; }
+        .header h1 { font-size: 13pt; font-weight: 700; margin: 0; }
+        .header h2 { font-size: 10pt; font-weight: 400; margin: 3px 0 0; opacity: 0.9; }
+
+        .section-header { background: var(--primary-light); border-left: 4px solid var(--primary); padding: 7px 12px; font-size: 10pt; font-weight: 700; color: var(--primary-dark); text-transform: uppercase; letter-spacing: 0.5px; margin: 16px 0 10px; }
+
+        .overview-table { width: 100%; border-collapse: collapse; margin-bottom: 14px; }
+        .overview-table th { background: var(--bg-light); color: var(--text-light); font-size: 8pt; text-transform: uppercase; letter-spacing: 0.5px; text-align: center; padding: 6px 10px; border: 1px solid var(--border); width: 33%; }
+        .overview-table td { text-align: center; padding: 10px; border: 1px solid var(--border); font-weight: 600; color: var(--text-dark); font-size: 10pt; }
+
+        .flow-container { margin-bottom: 14px; }
+        .flow-item { display: flex; padding: 8px 0; border-bottom: 1px solid var(--border); page-break-inside: avoid; }
+        .flow-item:last-child { border-bottom: none; }
+        .flow-time { width: 65px; font-weight: 700; color: var(--primary); flex-shrink: 0; font-size: 10pt; }
+        .flow-content { flex: 1; }
+        .flow-title { font-weight: 700; color: var(--text-dark); margin-bottom: 3px; font-size: 10pt; }
+        .flow-content ul { margin: 0; padding-left: 16px; font-size: 9pt; color: var(--text-medium); }
+        .flow-content li { margin-bottom: 2px; }
+
+        .diff-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px; }
+        .diff-box { background: var(--bg-light); border: 1px solid var(--border); border-radius: 4px; padding: 10px 12px; }
+        .diff-title { font-weight: 700; color: var(--text-dark); margin-bottom: 6px; font-size: 9pt; }
+        .diff-box ul { margin: 0; padding-left: 16px; font-size: 9pt; color: var(--text-medium); }
+        .diff-box li { margin-bottom: 2px; }
+
+        .answer-key { page-break-before: always; }
+        .answer-block { margin-bottom: 12px; page-break-inside: avoid; }
+        .answer-title { font-weight: 700; color: var(--primary); font-size: 9pt; border-bottom: 1px solid #a7f3d0; padding-bottom: 3px; margin-bottom: 6px; }
+        .answer-item { margin-bottom: 5px; font-size: 9pt; color: var(--text-dark); }
+        .answer-item strong { color: var(--primary-dark); }
+
+        .calc-display { font-family: 'Courier New', monospace; background: var(--bg-light); padding: 8px 10px; border-radius: 4px; margin: 6px 0; font-size: 8.5pt; line-height: 1.5; white-space: pre-line; }
+        .answer-note { background: var(--warning-light); border-left: 3px solid var(--warning); padding: 6px 10px; font-size: 9pt; font-style: italic; color: #92400e; margin: 6px 0; }
+
+        .misconception-table { width: 100%; border-collapse: collapse; font-size: 9pt; margin-top: 10px; }
+        .misconception-table th { padding: 6px 10px; text-align: left; font-weight: 600; }
+        .misconception-table th:first-child { background: var(--error-light); color: #991b1b; border: 1px solid #fca5a5; width: 40%; }
+        .misconception-table th:last-child { background: var(--success-light); color: #166534; border: 1px solid #86efac; }
+        .misconception-table td { padding: 6px 10px; border: 1px solid var(--border); vertical-align: top; color: var(--text-medium); }
+
+        .footer { margin-top: 20px; padding-top: 8px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; font-size: 8pt; color: var(--text-light); }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>PFL Academy</h1>
+        <h2>Teacher Guide: Chapter 13.1 — Strategies for Managing High Levels of Debt</h2>
+    </div>
+
+    <div class="section-header">Overview</div>
+    <table class="overview-table">
+        <tr><th>Time</th><th>Materials</th><th>Prerequisites</th></tr>
+        <tr><td>45-50 Minutes</td><td>Student Activity Packet, Calculator</td><td>Basic Credit and Debt Concepts</td></tr>
+    </table>
+
+    <div class="section-header">Lesson Flow</div>
+    <div class="flow-container">
+        <div class="flow-item">
+            <div class="flow-time">5 min</div>
+            <div class="flow-content">
+                <div class="flow-title">THE CHALLENGE</div>
+                <ul>
+                    <li>Read Emily's debt scenario aloud. Note the variety of debt types.</li>
+                    <li>Ask: "What makes some debts more dangerous than others?"</li>
+                    <li>Brainstorm what factors would influence the best strategy choice.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="flow-item">
+            <div class="flow-time">10 min</div>
+            <div class="flow-content">
+                <div class="flow-title">CORE CONCEPTS</div>
+                <ul>
+                    <li>Walk through each debt management strategy with examples.</li>
+                    <li>Emphasize that bankruptcy is a last resort, not a first option.</li>
+                    <li>Explain tax implications of forgiven debt (often overlooked).</li>
+                    <li>Quick check: Have students match scenarios to strategies.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="flow-item">
+            <div class="flow-time">25 min</div>
+            <div class="flow-content">
+                <div class="flow-title">APPLY IT</div>
+                <ul>
+                    <li><strong>Part A (8 min):</strong> Strategy comparison. Discuss which factors make each strategy appropriate.</li>
+                    <li><strong>Part B (10 min):</strong> Debt prioritization. Compare avalanche vs. snowball methods.</li>
+                    <li><strong>Part C (7 min):</strong> Credit rebuilding plan. Focus on practical steps post-crisis.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="flow-item">
+            <div class="flow-time">10 min</div>
+            <div class="flow-content">
+                <div class="flow-title">CHECK YOUR UNDERSTANDING</div>
+                <ul>
+                    <li>Complete in class or assign as homework.</li>
+                    <li>Review Q3 calculation—tax implications of debt forgiveness are often surprising.</li>
+                    <li>Q5 reflection encourages empathetic, nuanced thinking.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-header">Differentiation</div>
+    <div class="diff-grid">
+        <div class="diff-box">
+            <div class="diff-title">Support</div>
+            <ul>
+                <li>Create a flowchart for choosing debt management strategies.</li>
+                <li>Provide a glossary card with all debt-related terms.</li>
+                <li>Walk through Emily's prioritization as a class exercise.</li>
+                <li>Use simplified numbers for tax calculation practice.</li>
+            </ul>
+        </div>
+        <div class="diff-box">
+            <div class="diff-title">Extension</div>
+            <ul>
+                <li>Research nonprofit vs. for-profit debt settlement companies.</li>
+                <li>Calculate total interest paid under different repayment strategies.</li>
+                <li>Compare bankruptcy exemptions across different states.</li>
+                <li>Create a 36-month credit rebuilding timeline with milestones.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="answer-key">
+        <div class="section-header">Answer Key</div>
+
+        <div class="answer-block">
+            <div class="answer-title">Part A & B: Strategy and Prioritization</div>
+            <div class="calc-display">Q1 Recommended Strategy for Emily:
+Debt Management Plan (DMP) is best because:
+- $35,500 total debt is manageable with $800/month discretionary
+- Credit score of 580 makes consolidation loans difficult
+- She has steady income ($3,200/month)
+- Her debt is mostly unsecured (credit cards fit DMP well)
+- Medical bills in collections may be negotiable separately
+
+Debt Prioritization (Avalanche Method):
+1. Credit Card A (22% APR) - highest interest
+2. Credit Card B (19.5% APR) - second highest
+3. Personal Loan (12% APR) - third
+4. Car Loan (6.5% APR) - keep current (secured, lower rate)
+5. Medical Bills (0%) - negotiate payment plan last
+
+Q2: Avalanche saves more money on interest long-term.
+Snowball provides quicker wins (pay off smaller balances first).
+Emily should use avalanche given her high-interest credit cards.</div>
+        </div>
+
+        <div class="answer-block">
+            <div class="answer-title">Part C & Check Your Understanding</div>
+            <div class="answer-item"><strong>Q3 Credit rebuilding strategies:</strong> Any FOUR of: Get secured credit card, become authorized user on family member's account, apply for credit-builder loan, monitor credit report for errors, create budget to avoid future debt, build emergency fund, pay all bills on time, keep credit utilization low.</div>
+            <div class="answer-item"><strong>CYU 1:</strong> B (Chapter 7 liquidates assets to discharge debt; Chapter 13 creates a repayment plan while keeping assets)</div>
+            <div class="answer-item"><strong>CYU 2:</strong> Forgiven debt over $600 is considered taxable income by the IRS. If you settle $30,000 for $18,000, the $12,000 forgiven is added to your taxable income for that year.</div>
+            <div class="answer-item"><strong>CYU 3:</strong> Forgiven amount: $30,000 - $18,000 = $12,000. Tax at 22%: $12,000 x 0.22 = <strong>$2,640</strong></div>
+            <div class="answer-item"><strong>CYU 4:</strong> A secured credit card requires a cash deposit (e.g., $500) that becomes your credit limit. It helps rebuild credit because the card issuer reports your payment history to credit bureaus, demonstrating responsible use.</div>
+            <div class="answer-note">CYU 5: Good questions include: What's your total debt? What types of debt? What's your income? Have you tried negotiating with creditors? Do you have assets you'd lose in bankruptcy? Have you consulted a nonprofit credit counselor? What caused the debt? Would bankruptcy affect your job?</div>
+        </div>
+
+        <div class="section-header">Common Misconceptions</div>
+        <table class="misconception-table">
+            <tr><th>Misconception</th><th>Clarification</th></tr>
+            <tr>
+                <td>"Bankruptcy erases all debt and lets you start completely fresh."</td>
+                <td>Bankruptcy doesn't discharge student loans, child support, alimony, most taxes, or recent purchases. It also stays on your credit report for 7-10 years.</td>
+            </tr>
+            <tr>
+                <td>"Debt settlement companies always get you the best deal."</td>
+                <td>Many are for-profit and charge high fees. Nonprofit credit counseling agencies often get similar or better results without fees. Some settlement companies are outright scams.</td>
+            </tr>
+            <tr>
+                <td>"After bankruptcy, you can never get credit again."</td>
+                <td>While bankruptcy severely impacts credit, rebuilding is possible. Many people receive credit card offers within a year, though with high rates. Full recovery typically takes 3-7 years of responsible credit use.</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="footer">
+        <span>&copy; PFL Academy | pflacademy.co</span>
+        <span>Teacher Guide: Chapter 13.1</span>
+    </div>
+
+</body>
+</html>

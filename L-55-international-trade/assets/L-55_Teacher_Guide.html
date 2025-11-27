@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-55 Teacher Guide</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+        :root {
+            --primary: #059669;
+            --primary-light: #ecfdf5;
+            --primary-dark: #065f46;
+            --text-dark: #1e293b;
+            --text-medium: #475569;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --bg-light: #f8fafc;
+            --warning: #f59e0b;
+            --warning-light: #fef3c7;
+            --error: #dc2626;
+            --error-light: #fee2e2;
+            --success-light: #dcfce7;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+
+        @page {
+            size: letter;
+            margin: 0.5in;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 10pt;
+            line-height: 1.45;
+            color: var(--text-dark);
+            background: white;
+        }
+
+        .header {
+            background: var(--primary);
+            color: white;
+            padding: 14px 18px;
+            border-radius: 6px;
+            margin-bottom: 16px;
+        }
+
+        .header h1 {
+            font-size: 13pt;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .header h2 {
+            font-size: 10pt;
+            font-weight: 400;
+            margin: 3px 0 0;
+            opacity: 0.9;
+        }
+
+        .section-header {
+            background: var(--primary-light);
+            border-left: 4px solid var(--primary);
+            padding: 7px 12px;
+            font-size: 10pt;
+            font-weight: 700;
+            color: var(--primary-dark);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin: 16px 0 10px;
+        }
+
+        .overview-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 14px;
+        }
+
+        .overview-table th {
+            background: var(--bg-light);
+            color: var(--text-light);
+            font-size: 8pt;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            text-align: center;
+            padding: 6px 10px;
+            border: 1px solid var(--border);
+            width: 33%;
+        }
+
+        .overview-table td {
+            text-align: center;
+            padding: 10px;
+            border: 1px solid var(--border);
+            font-weight: 600;
+            color: var(--text-dark);
+            font-size: 10pt;
+        }
+
+        .flow-container {
+            margin-bottom: 14px;
+        }
+
+        .flow-item {
+            display: flex;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border);
+            page-break-inside: avoid;
+        }
+
+        .flow-item:last-child {
+            border-bottom: none;
+        }
+
+        .flow-time {
+            width: 65px;
+            font-weight: 700;
+            color: var(--primary);
+            flex-shrink: 0;
+            font-size: 10pt;
+        }
+
+        .flow-content {
+            flex: 1;
+        }
+
+        .flow-title {
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 3px;
+            font-size: 10pt;
+        }
+
+        .flow-content ul {
+            margin: 0;
+            padding-left: 16px;
+            font-size: 9pt;
+            color: var(--text-medium);
+        }
+
+        .flow-content li {
+            margin-bottom: 2px;
+        }
+
+        .diff-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 14px;
+        }
+
+        .diff-box {
+            background: var(--bg-light);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 10px 12px;
+        }
+
+        .diff-title {
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 6px;
+            font-size: 9pt;
+        }
+
+        .diff-box ul {
+            margin: 0;
+            padding-left: 16px;
+            font-size: 9pt;
+            color: var(--text-medium);
+        }
+
+        .diff-box li {
+            margin-bottom: 2px;
+        }
+
+        .answer-key {
+            page-break-before: always;
+        }
+
+        .answer-block {
+            margin-bottom: 12px;
+            page-break-inside: avoid;
+        }
+
+        .answer-title {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 9pt;
+            border-bottom: 1px solid #a7f3d0;
+            padding-bottom: 3px;
+            margin-bottom: 6px;
+        }
+
+        .answer-item {
+            margin-bottom: 5px;
+            font-size: 9pt;
+            color: var(--text-dark);
+        }
+
+        .answer-item strong {
+            color: var(--primary-dark);
+        }
+
+        .calc-display {
+            font-family: 'Courier New', monospace;
+            background: var(--bg-light);
+            padding: 8px 10px;
+            border-radius: 4px;
+            margin: 6px 0;
+            font-size: 8.5pt;
+            line-height: 1.5;
+            white-space: pre-line;
+        }
+
+        .answer-note {
+            background: var(--warning-light);
+            border-left: 3px solid var(--warning);
+            padding: 6px 10px;
+            font-size: 9pt;
+            font-style: italic;
+            color: #92400e;
+            margin: 6px 0;
+        }
+
+        .misconception-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 9pt;
+            margin-top: 10px;
+        }
+
+        .misconception-table th {
+            padding: 6px 10px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .misconception-table th:first-child {
+            background: var(--error-light);
+            color: #991b1b;
+            border: 1px solid #fca5a5;
+            width: 40%;
+        }
+
+        .misconception-table th:last-child {
+            background: var(--success-light);
+            color: #166534;
+            border: 1px solid #86efac;
+        }
+
+        .misconception-table td {
+            padding: 6px 10px;
+            border: 1px solid var(--border);
+            vertical-align: top;
+            color: var(--text-medium);
+        }
+
+        .footer {
+            margin-top: 20px;
+            padding-top: 8px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            font-size: 8pt;
+            color: var(--text-light);
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <div class="header">
+        <h1>PFL Academy</h1>
+        <h2>Teacher Guide: Chapter 55 — International Trade and Economic Development</h2>
+    </div>
+
+    <!-- OVERVIEW -->
+    <div class="section-header">Overview</div>
+    <table class="overview-table">
+        <tr>
+            <th>Time</th>
+            <th>Materials</th>
+            <th>Prerequisites</th>
+        </tr>
+        <tr>
+            <td>45-50 Minutes</td>
+            <td>Student Activity Packet</td>
+            <td>L-49 Opportunity Cost, L-50 Supply & Demand, L-54 Unemployment</td>
+        </tr>
+    </table>
+
+    <!-- LESSON FLOW -->
+    <div class="section-header">Lesson Flow</div>
+    <div class="flow-container">
+        <div class="flow-item">
+            <div class="flow-time">5 min</div>
+            <div class="flow-content">
+                <div class="flow-title">THE CHALLENGE</div>
+                <ul>
+                    <li>Have students check clothing tags—most will say China, Vietnam, Bangladesh. Make trade tangible.</li>
+                    <li>Mention iPhone supply chain (43 countries)—globalization is inescapable.</li>
+                    <li>Discussion: "Should we make everything in America? Why or why not?"</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="flow-item">
+            <div class="flow-time">10 min</div>
+            <div class="flow-content">
+                <div class="flow-title">CORE CONCEPTS</div>
+                <ul>
+                    <li>Explain comparative vs. absolute advantage using simple 2-person example first.</li>
+                    <li>Key insight: Even if you're better at EVERYTHING, specialize in what you're RELATIVELY best at.</li>
+                    <li>Review tariffs and exchange rates—both affect prices students pay.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="flow-item">
+            <div class="flow-time">25-30 min</div>
+            <div class="flow-content">
+                <div class="flow-title">APPLY IT</div>
+                <ul>
+                    <li><strong>Part A (10 min):</strong> Comparative advantage calculation. Help with opportunity cost math—the insight is more important than perfect calculation.</li>
+                    <li><strong>Part B (10 min):</strong> Tariff stakeholder analysis. Encourage nuance—there are real winners AND losers.</li>
+                    <li><strong>Part C (10 min):</strong> Exchange rate calculations. Focus on strong dollar helps consumers, hurts exporters.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="flow-item">
+            <div class="flow-time">10 min</div>
+            <div class="flow-content">
+                <div class="flow-title">CHECK YOUR UNDERSTANDING</div>
+                <ul>
+                    <li>Review Q2 (tariff stakeholders) and Q4 (why economists support free trade).</li>
+                    <li>Q5 connects to career planning—tie back to L-54 structural unemployment from trade.</li>
+                    <li>Allow debate on trade policy—this is genuinely contested.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- DIFFERENTIATION -->
+    <div class="section-header">Differentiation</div>
+    <div class="diff-grid">
+        <div class="diff-box">
+            <div class="diff-title">Support</div>
+            <ul>
+                <li>Pre-fill opportunity cost calculations for comparative advantage problem.</li>
+                <li>Provide visual: Strong dollar = cheaper to travel abroad, more expensive for foreigners to buy our stuff.</li>
+                <li>Work through tariff stakeholder analysis as a class first.</li>
+                <li>Focus on the intuition, not the math: "Trade lets countries specialize."</li>
+            </ul>
+        </div>
+        <div class="diff-box">
+            <div class="diff-title">Extension</div>
+            <ul>
+                <li>Research a specific trade agreement (USMCA) and analyze who benefited.</li>
+                <li>Calculate the true cost of "Made in USA" for a specific product category.</li>
+                <li>Analyze current trade disputes and predict economic outcomes.</li>
+                <li>Debate: Should the US decouple from China economically?</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ANSWER KEY (new page) -->
+    <div class="answer-key">
+        <div class="section-header">Answer Key</div>
+
+        <div class="answer-block">
+            <div class="answer-title">Part A: Comparative Advantage</div>
+            <div class="calc-display">Country A:
+Opportunity cost of 1 computer = 50/100 = 0.5 cars
+Opportunity cost of 1 car = 100/50 = 2 computers
+
+Country B:
+Opportunity cost of 1 computer = 40/40 = 1 car
+Opportunity cost of 1 car = 40/40 = 1 computer</div>
+            <div class="answer-item"><strong>Comparative advantage in computers:</strong> Country A (gives up only 0.5 cars vs. Country B's 1 car per computer)</div>
+            <div class="answer-item"><strong>Comparative advantage in cars:</strong> Country B (gives up only 1 computer vs. Country A's 2 computers per car)</div>
+            <div class="answer-item"><strong>Optimal arrangement:</strong> Country A specializes in computers, Country B specializes in cars, they trade. Both countries end up with more total goods than if they produced both themselves.</div>
+        </div>
+
+        <div class="answer-block">
+            <div class="answer-title">Part B: Tariff Analysis</div>
+            <div class="answer-item"><strong>Car Buyers:</strong> NEGATIVE. Pay $37,500 instead of $30,000; less purchasing power, fewer choices.</div>
+            <div class="answer-item"><strong>Domestic Auto Workers:</strong> POSITIVE. Jobs protected; foreign competition reduced.</div>
+            <div class="answer-item"><strong>Domestic Car Companies:</strong> POSITIVE. Can charge higher prices; less competition.</div>
+            <div class="answer-item"><strong>Foreign Countries:</strong> NEGATIVE. Lose sales in US; may retaliate with tariffs on US exports.</div>
+            <div class="answer-item"><strong>Government Revenue:</strong> POSITIVE. Collects $7,500 per imported car.</div>
+            <div class="answer-note">Student verdicts will vary. Strong answers acknowledge trade-offs: tariffs protect jobs but hurt consumers. Economic consensus: costs typically exceed benefits, but political considerations differ.</div>
+        </div>
+
+        <div class="answer-block">
+            <div class="answer-title">Part C: Exchange Rate Calculations</div>
+            <div class="calc-display">Calculation 1 (European Travel):
+Current: €120 ÷ 0.92 = $130.43
+With stronger dollar: €120 ÷ 1.00 = $120.00
+Savings: $10.43/night
+
+Calculation 2 (Japanese Import):
+Current: ¥600,000 ÷ 150 = $4,000
+With weaker dollar: ¥600,000 ÷ 120 = $5,000
+Cost increase: $1,000 (25% more)
+
+Calculation 3 (US Export):
+Current: $500 × 0.92 = €460
+With stronger dollar: $500 × 1.00 = €500
+Effect: MORE expensive for foreigners, exports DECREASE</div>
+        </div>
+
+        <div class="answer-block">
+            <div class="answer-title">Check Your Understanding</div>
+            <div class="answer-item"><strong>1.</strong> B (Bangladesh has comparative advantage—lower opportunity cost in clothing)</div>
+            <div class="answer-item"><strong>2.</strong> BENEFITS: Domestic steel producers and workers (protected from competition). HURTS: Consumers and businesses that use steel (cars, construction, appliances)—they pay higher prices. Also hurts foreign steel producers.</div>
+            <div class="answer-item"><strong>3.</strong> Dollar STRENGTHENED (buys more euros). American tourists in Europe benefit—their dollars go further. Hotels, meals, souvenirs all cost fewer dollars.</div>
+            <div class="answer-item"><strong>4.</strong> Total benefits (lower prices for ALL consumers) exceed total costs (job losses in specific industries). Benefits are diffuse ($100s/year per person), costs are concentrated (entire livelihoods). Solution: free trade + compensation programs for displaced workers.</div>
+            <div class="answer-item"><strong>5.</strong> <em>Should identify specific threat (e.g., "coding jobs could be outsourced") and opportunity (e.g., "work for multinational company"). Strong answers connect to L-54 structural unemployment and propose skill development strategy.</em></div>
+        </div>
+
+        <!-- COMMON MISCONCEPTIONS -->
+        <div class="section-header">Common Misconceptions</div>
+        <table class="misconception-table">
+            <tr>
+                <th>Misconception</th>
+                <th>Clarification</th>
+            </tr>
+            <tr>
+                <td>"We should make everything here to create jobs."</td>
+                <td>We COULD make everything here, but at MUCH higher cost. $2,500 iPhones and $50 t-shirts would hurt all consumers. Specialization through trade creates MORE total wealth.</td>
+            </tr>
+            <tr>
+                <td>"Trade deficits mean we're losing."</td>
+                <td>Trade deficit just means we import more than export. We get real goods (cars, electronics); they get dollars. Not inherently bad—reflects consumer preferences.</td>
+            </tr>
+            <tr>
+                <td>"A strong dollar is always good."</td>
+                <td>Good for consumers (cheaper imports, cheaper travel abroad). BAD for exporters and US workers in export industries (our goods more expensive for foreigners).</td>
+            </tr>
+            <tr>
+                <td>"Tariffs are paid by foreign countries."</td>
+                <td>Tariffs are paid by US IMPORTERS and passed to US CONSUMERS through higher prices. Foreign producers may lose sales, but Americans pay the tax.</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        <span>© PFL Academy | pflacademy.co</span>
+        <span>Teacher Guide: Chapter 55</span>
+    </div>
+
+</body>
+</html>

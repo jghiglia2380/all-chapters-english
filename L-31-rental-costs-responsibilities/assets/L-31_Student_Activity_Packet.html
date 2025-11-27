@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-31 Student Activity Packet</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+        :root {
+            --primary: #6366f1;
+            --primary-light: #eef2ff;
+            --accent: #f59e0b;
+            --accent-light: #fef3c7;
+            --success: #059669;
+            --text-dark: #1e293b;
+            --text-medium: #475569;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --bg-light: #f8fafc;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+
+        @page {
+            size: letter;
+            margin: 0.5in;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 10.5pt;
+            line-height: 1.5;
+            color: var(--text-dark);
+            background: white;
+        }
+
+        .header {
+            background: var(--primary);
+            color: white;
+            padding: 14px 18px;
+            border-radius: 6px;
+            margin-bottom: 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-left h1 {
+            font-size: 13pt;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .header-left h2 {
+            font-size: 10pt;
+            font-weight: 400;
+            margin: 2px 0 0;
+            opacity: 0.9;
+        }
+
+        .header-right {
+            font-size: 9pt;
+            text-align: right;
+            opacity: 0.9;
+        }
+
+        .section-header {
+            font-size: 11pt;
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 4px;
+            margin: 20px 0 12px;
+        }
+
+        .challenge-box {
+            background: var(--accent-light);
+            border-left: 4px solid var(--accent);
+            padding: 14px 16px;
+            margin-bottom: 16px;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .challenge-box p {
+            font-style: italic;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+        }
+
+        .challenge-box .framing-question {
+            font-weight: 600;
+            font-style: normal;
+            color: #92400e;
+        }
+
+        .objectives-box {
+            background: var(--primary-light);
+            border: 1px solid #c7d2fe;
+            border-radius: 6px;
+            padding: 12px 16px;
+            margin-bottom: 18px;
+        }
+
+        .objectives-box h3 {
+            font-size: 10pt;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 6px;
+        }
+
+        .objectives-box ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .objectives-box li {
+            margin-bottom: 3px;
+            color: var(--text-medium);
+        }
+
+        .terms-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 14px;
+            font-size: 10pt;
+        }
+
+        .terms-table th {
+            background: var(--bg-light);
+            text-align: left;
+            padding: 8px 10px;
+            border: 1px solid var(--border);
+            font-weight: 600;
+            color: var(--text-medium);
+        }
+
+        .terms-table td {
+            padding: 8px 10px;
+            border: 1px solid var(--border);
+            vertical-align: top;
+        }
+
+        .terms-table td:first-child {
+            font-weight: 600;
+            color: var(--primary);
+            width: 25%;
+        }
+
+        .background-box {
+            background: var(--bg-light);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 12px 16px;
+            margin-bottom: 18px;
+            font-size: 10pt;
+            color: var(--text-medium);
+        }
+
+        .background-box strong {
+            color: var(--text-dark);
+        }
+
+        .scenario-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 12px 14px;
+            margin-bottom: 14px;
+            page-break-inside: avoid;
+        }
+
+        .scenario-title {
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 6px;
+            font-size: 10pt;
+        }
+
+        .scenario-description {
+            color: var(--text-medium);
+            margin-bottom: 10px;
+            font-size: 10pt;
+        }
+
+        .response-line {
+            display: flex;
+            align-items: baseline;
+            margin-bottom: 8px;
+        }
+
+        .response-label {
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-right: 8px;
+            white-space: nowrap;
+        }
+
+        .response-blank {
+            flex-grow: 1;
+            border-bottom: 1px solid var(--text-light);
+            min-height: 18px;
+        }
+
+        .response-options {
+            color: var(--text-light);
+            font-size: 9pt;
+            margin-left: 8px;
+            white-space: nowrap;
+        }
+
+        .because-lines {
+            margin-top: 6px;
+        }
+
+        .because-lines .response-line {
+            margin-bottom: 4px;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 12px 0;
+            font-size: 10pt;
+        }
+
+        .data-table th {
+            background: var(--primary);
+            color: white;
+            padding: 8px 10px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 9pt;
+        }
+
+        .data-table td {
+            padding: 8px 10px;
+            border: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .data-table tr:nth-child(even) td {
+            background: var(--bg-light);
+        }
+
+        .data-table .calc-row td {
+            background: #fef9c3;
+            height: 28px;
+        }
+
+        .question {
+            margin-bottom: 14px;
+            page-break-inside: avoid;
+        }
+
+        .question-number {
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .question-text {
+            color: var(--text-dark);
+            margin-bottom: 6px;
+        }
+
+        .answer-lines {
+            margin-top: 6px;
+        }
+
+        .answer-line {
+            border-bottom: 1px solid var(--text-light);
+            height: 22px;
+            margin-bottom: 4px;
+        }
+
+        .calc-box {
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 12px;
+            margin: 8px 0;
+            min-height: 60px;
+            background: var(--bg-light);
+        }
+
+        .calc-label {
+            font-size: 9pt;
+            color: var(--text-light);
+            margin-bottom: 4px;
+        }
+
+        .calc-answer {
+            margin-top: 10px;
+            font-weight: 600;
+        }
+
+        .mc-options {
+            margin-top: 6px;
+            margin-left: 20px;
+        }
+
+        .mc-option {
+            display: flex;
+            align-items: center;
+            margin-bottom: 4px;
+        }
+
+        .mc-checkbox {
+            width: 14px;
+            height: 14px;
+            border: 1px solid var(--text-light);
+            border-radius: 2px;
+            margin-right: 8px;
+            flex-shrink: 0;
+        }
+
+        .hint-box {
+            background: #f0fdf4;
+            border-left: 3px solid var(--success);
+            padding: 8px 12px;
+            margin: 10px 0;
+            font-size: 9pt;
+            font-style: italic;
+            color: #166534;
+        }
+
+        .hint-box strong {
+            font-style: normal;
+        }
+
+        .part-header {
+            font-weight: 700;
+            font-size: 10pt;
+            color: var(--primary);
+            text-transform: uppercase;
+            margin: 16px 0 10px;
+            padding-bottom: 4px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .footer {
+            margin-top: 24px;
+            padding-top: 10px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            font-size: 9pt;
+            color: var(--text-light);
+        }
+
+        .mb-sm { margin-bottom: 8px; }
+        .mb-md { margin-bottom: 14px; }
+        .mb-lg { margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <div class="header">
+        <div class="header-left">
+            <h1>PFL Academy</h1>
+            <h2>Chapter 6.1: Understanding Rental Costs and Responsibilities</h2>
+        </div>
+        <div class="header-right">
+            Student Activity Packet
+        </div>
+    </div>
+
+    <!-- THE CHALLENGE -->
+    <div class="section-header">The Challenge</div>
+    <div class="challenge-box">
+        <p>Emma recently graduated from college and found a one-bedroom apartment for $1,200 per month. Before moving in, she discovered she needed $4,300 upfront: a security deposit, first and last month's rent, utility activation fees, and moving expenses. Her monthly costs total $1,405 when including utilities, renter's insurance, and parking.</p>
+        <p class="framing-question">How can understanding the true costs of renting help you avoid financial surprises and budget effectively for your first apartment?</p>
+    </div>
+
+    <!-- LEARNING OBJECTIVES -->
+    <div class="objectives-box">
+        <h3>Learning Objectives</h3>
+        <ul>
+            <li>Identify and explain the key components of a lease agreement.</li>
+            <li>Calculate the true costs associated with renting, including upfront and ongoing expenses.</li>
+            <li>Understand your rights and responsibilities as a tenant.</li>
+        </ul>
+    </div>
+
+    <!-- CORE CONCEPTS -->
+    <div class="section-header">Core Concepts</div>
+
+    <table class="terms-table">
+        <tr>
+            <th>Term</th>
+            <th>Definition</th>
+        </tr>
+        <tr>
+            <td>Lease</td>
+            <td>A legal contract between a landlord and tenant that outlines the terms of the rental agreement.</td>
+        </tr>
+        <tr>
+            <td>Security Deposit</td>
+            <td>Money paid upfront to cover potential damages beyond normal wear and tear.</td>
+        </tr>
+        <tr>
+            <td>Renter's Insurance</td>
+            <td>Insurance that protects a tenant's personal belongings and provides liability coverage.</td>
+        </tr>
+        <tr>
+            <td>Utilities</td>
+            <td>Services such as electricity, water, gas, and internet that may or may not be included in rent.</td>
+        </tr>
+        <tr>
+            <td>Lease Term</td>
+            <td>The duration of the rental agreement, typically 6 or 12 months.</td>
+        </tr>
+    </table>
+
+    <div class="background-box">
+        <strong>Background:</strong> Renting is often the first step toward independent living, but many first-time renters underestimate the true costs involved. Beyond the monthly rent, you'll encounter upfront expenses like security deposits and first/last month's rent, plus ongoing costs for utilities and insurance. Understanding lease agreements protects you legally, while knowing tenant rights ensures you receive fair treatment. Proper budgeting for all rental costs prevents financial strain and helps you maintain housing stability.
+    </div>
+
+    <!-- APPLY IT -->
+    <div class="section-header">Apply It</div>
+
+    <div class="part-header">Part A: Rental Cost Analysis</div>
+    <p class="mb-md">For each rental scenario, calculate the costs and analyze the financial impact.</p>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Scenario 1: Downtown Studio Apartment</div>
+        <div class="scenario-description">Marcus is considering a studio apartment for $950/month. Security deposit equals one month's rent. Application fee is $50. Utilities not included: electricity ($60/month), internet ($55/month). Coin laundry costs $30/month.</div>
+        <div class="response-line">
+            <span class="response-label">Total upfront costs:</span>
+            <span class="response-blank"></span>
+        </div>
+        <div class="response-line">
+            <span class="response-label">Total monthly costs:</span>
+            <span class="response-blank"></span>
+        </div>
+        <div class="because-lines">
+            <div class="response-line">
+                <span class="response-label">Annual total (12 months + upfront):</span>
+                <span class="response-blank"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Scenario 2: Suburban 2-Bedroom with Roommate</div>
+        <div class="scenario-description">Alicia found a 2-bedroom for $1,400/month ($700 each with a roommate). Security deposit is $1,400 total. Each pays $35 application fee. Utilities total $240/month split evenly. In-unit laundry included.</div>
+        <div class="response-line">
+            <span class="response-label">Alicia's upfront costs (her share):</span>
+            <span class="response-blank"></span>
+        </div>
+        <div class="response-line">
+            <span class="response-label">Alicia's monthly costs:</span>
+            <span class="response-blank"></span>
+        </div>
+        <div class="because-lines">
+            <div class="response-line">
+                <span class="response-label">Alicia's annual total:</span>
+                <span class="response-blank"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Scenario 3: Campus-Adjacent 3-Bedroom Share</div>
+        <div class="scenario-description">Three students share an apartment at $2,100/month ($700 each). Each pays $700 security deposit and $25 application fee. Utilities (electricity $120, water $60) are split three ways. Parking is $75/month per person.</div>
+        <div class="response-line">
+            <span class="response-label">Each person's upfront costs:</span>
+            <span class="response-blank"></span>
+        </div>
+        <div class="response-line">
+            <span class="response-label">Each person's monthly costs:</span>
+            <span class="response-blank"></span>
+        </div>
+        <div class="because-lines">
+            <div class="response-line">
+                <span class="response-label">Each person's 9-month total (academic year):</span>
+                <span class="response-blank"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="hint-box">
+        <strong>Hint:</strong> Don't forget that upfront costs include security deposit, first month's rent, and any application fees. Monthly costs include rent plus all utilities, insurance, and fees.
+    </div>
+
+    <!-- PART B -->
+    <div class="part-header">Part B: Lease Agreement Analysis</div>
+    <p class="mb-md">Review each lease clause and determine if it protects the tenant, the landlord, or is neutral. Identify any red flags.</p>
+
+    <table class="data-table">
+        <tr>
+            <th>Lease Clause</th>
+            <th>Protects</th>
+            <th>Red Flag?</th>
+        </tr>
+        <tr>
+            <td style="text-align: left; font-size: 9pt;">"Landlord may enter at any time without notice for inspections."</td>
+            <td style="width: 20%;"></td>
+            <td style="width: 15%;"></td>
+        </tr>
+        <tr>
+            <td style="text-align: left; font-size: 9pt;">"Security deposit will be returned within 30 days with itemized deductions."</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td style="text-align: left; font-size: 9pt;">"Tenant is responsible for first $100 of any repair, regardless of cause."</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td style="text-align: left; font-size: 9pt;">"60-day notice required before lease ends; otherwise auto-renews for 12 months."</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td style="text-align: left; font-size: 9pt;">"Late fee of $50 applies if rent is received after 5-day grace period."</td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">4.</span> Which clause above is the biggest red flag, and what would you ask the landlord to change?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <!-- PART C -->
+    <div class="part-header">Part C: Tenant Rights Scenarios</div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">5.</span> Your bathroom sink has been leaking for a week. You reported it to your landlord, but nothing has been done. The floor is getting water damage. What are your rights, and what should you do next?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">6.</span> You came home to find your landlord had entered your apartment without notice to "check the smoke detectors." Is this allowed? What tenant right does this involve?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">7.</span> If you were looking for an apartment, list your top THREE priorities (e.g., location, price, amenities) and explain why each matters to you.</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <!-- CHECK YOUR UNDERSTANDING -->
+    <div class="section-header">Check Your Understanding</div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">1.</span> What is the recommended maximum percentage of income that should go toward housing costs?</p>
+        <div class="mc-options">
+            <div class="mc-option"><div class="mc-checkbox"></div> A. 20%</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> B. 30%</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> C. 40%</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> D. 50%</div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">2.</span> Explain TWO advantages and TWO disadvantages of renting compared to buying a home.</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">3.</span> <strong>Calculation:</strong> An apartment costs $1,100/month with a security deposit equal to one month's rent. First and last month's rent are required upfront. The application fee is $45. What is the total amount needed before moving in?</p>
+        <div class="calc-box">
+            <div class="calc-label">Show your work:</div>
+        </div>
+        <div class="calc-answer">Answer: $_____________ total upfront</div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">4.</span> Emma's roommate suddenly moved out, leaving her responsible for the full $1,400 rent instead of her $700 share. Her lease says tenants are "jointly and severally liable." What does this mean, and what options does Emma have?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">5.</span> <strong>Reflection:</strong> Imagine you're preparing to rent your first apartment in 2-3 years. What three specific steps would you take now to prepare financially, and why?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        <span>&copy; PFL Academy | pflacademy.co</span>
+        <span>Chapter 6.1: Understanding Rental Costs and Responsibilities</span>
+    </div>
+
+</body>
+</html>

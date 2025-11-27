@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-41 Student Activity Packet</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+        :root {
+            --primary: #6366f1;       /* Indigo - PFL Academy brand */
+            --primary-light: #eef2ff;
+            --accent: #f59e0b;        /* Amber for Challenge */
+            --accent-light: #fef3c7;
+            --success: #059669;       /* Emerald for answers */
+            --text-dark: #1e293b;
+            --text-medium: #475569;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --bg-light: #f8fafc;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+
+        @page {
+            size: letter;
+            margin: 0.5in;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 10.5pt;
+            line-height: 1.5;
+            color: var(--text-dark);
+            background: white;
+        }
+
+        /* --- Header --- */
+        .header {
+            background: var(--primary);
+            color: white;
+            padding: 14px 18px;
+            border-radius: 6px;
+            margin-bottom: 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-left h1 {
+            font-size: 13pt;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .header-left h2 {
+            font-size: 10pt;
+            font-weight: 400;
+            margin: 2px 0 0;
+            opacity: 0.9;
+        }
+
+        .header-right {
+            font-size: 9pt;
+            text-align: right;
+            opacity: 0.9;
+        }
+
+        /* --- Section Headers --- */
+        .section-header {
+            font-size: 11pt;
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 4px;
+            margin: 20px 0 12px;
+        }
+
+        /* --- The Challenge Box --- */
+        .challenge-box {
+            background: var(--accent-light);
+            border-left: 4px solid var(--accent);
+            padding: 14px 16px;
+            margin-bottom: 16px;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .challenge-box p {
+            font-style: italic;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+        }
+
+        .challenge-box .framing-question {
+            font-weight: 600;
+            font-style: normal;
+            color: #92400e;
+        }
+
+        /* --- Learning Objectives Box --- */
+        .objectives-box {
+            background: var(--primary-light);
+            border: 1px solid #c7d2fe;
+            border-radius: 6px;
+            padding: 12px 16px;
+            margin-bottom: 18px;
+        }
+
+        .objectives-box h3 {
+            font-size: 10pt;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 6px;
+        }
+
+        .objectives-box ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .objectives-box li {
+            margin-bottom: 3px;
+            color: var(--text-medium);
+        }
+
+        /* --- Key Terms Table --- */
+        .terms-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 14px;
+            font-size: 10pt;
+        }
+
+        .terms-table th {
+            background: var(--bg-light);
+            text-align: left;
+            padding: 8px 10px;
+            border: 1px solid var(--border);
+            font-weight: 600;
+            color: var(--text-medium);
+        }
+
+        .terms-table td {
+            padding: 8px 10px;
+            border: 1px solid var(--border);
+            vertical-align: top;
+        }
+
+        .terms-table td:first-child {
+            font-weight: 600;
+            color: var(--primary);
+            width: 25%;
+        }
+
+        /* --- Background Box --- */
+        .background-box {
+            background: var(--bg-light);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 12px 16px;
+            margin-bottom: 18px;
+            font-size: 10pt;
+            color: var(--text-medium);
+        }
+
+        .background-box strong {
+            color: var(--text-dark);
+        }
+
+        /* --- Scenario Cards --- */
+        .scenario-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 12px 14px;
+            margin-bottom: 14px;
+            page-break-inside: avoid;
+        }
+
+        .scenario-title {
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 6px;
+            font-size: 10pt;
+        }
+
+        .scenario-description {
+            color: var(--text-medium);
+            margin-bottom: 10px;
+            font-size: 10pt;
+        }
+
+        .response-line {
+            display: flex;
+            align-items: baseline;
+            margin-bottom: 8px;
+        }
+
+        .response-label {
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-right: 8px;
+            white-space: nowrap;
+        }
+
+        .response-blank {
+            flex-grow: 1;
+            border-bottom: 1px solid var(--text-light);
+            min-height: 18px;
+        }
+
+        .response-options {
+            color: var(--text-light);
+            font-size: 9pt;
+            margin-left: 8px;
+            white-space: nowrap;
+        }
+
+        .because-lines {
+            margin-top: 6px;
+        }
+
+        .because-lines .response-line {
+            margin-bottom: 4px;
+        }
+
+        /* --- Data Table --- */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 12px 0;
+            font-size: 10pt;
+        }
+
+        .data-table th {
+            background: var(--primary);
+            color: white;
+            padding: 8px 10px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 9pt;
+        }
+
+        .data-table td {
+            padding: 8px 10px;
+            border: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .data-table tr:nth-child(even) td {
+            background: var(--bg-light);
+        }
+
+        .data-table .calc-row td {
+            background: #fef9c3;
+            height: 28px;
+        }
+
+        /* --- Questions --- */
+        .question {
+            margin-bottom: 14px;
+            page-break-inside: avoid;
+        }
+
+        .question-number {
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .question-text {
+            color: var(--text-dark);
+            margin-bottom: 6px;
+        }
+
+        .answer-lines {
+            margin-top: 6px;
+        }
+
+        .answer-line {
+            border-bottom: 1px solid var(--text-light);
+            height: 22px;
+            margin-bottom: 4px;
+        }
+
+        /* --- Calculation Box --- */
+        .calc-box {
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 12px;
+            margin: 8px 0;
+            min-height: 60px;
+            background: var(--bg-light);
+        }
+
+        .calc-label {
+            font-size: 9pt;
+            color: var(--text-light);
+            margin-bottom: 4px;
+        }
+
+        .calc-answer {
+            margin-top: 10px;
+            font-weight: 600;
+        }
+
+        /* --- Multiple Choice --- */
+        .mc-options {
+            margin-top: 6px;
+            margin-left: 20px;
+        }
+
+        .mc-option {
+            display: flex;
+            align-items: center;
+            margin-bottom: 4px;
+        }
+
+        .mc-checkbox {
+            width: 14px;
+            height: 14px;
+            border: 1px solid var(--text-light);
+            border-radius: 2px;
+            margin-right: 8px;
+            flex-shrink: 0;
+        }
+
+        /* --- Hint Box --- */
+        .hint-box {
+            background: #f0fdf4;
+            border-left: 3px solid var(--success);
+            padding: 8px 12px;
+            margin: 10px 0;
+            font-size: 9pt;
+            font-style: italic;
+            color: #166534;
+        }
+
+        .hint-box strong {
+            font-style: normal;
+        }
+
+        /* --- Part Headers --- */
+        .part-header {
+            font-weight: 700;
+            font-size: 10pt;
+            color: var(--primary);
+            text-transform: uppercase;
+            margin: 16px 0 10px;
+            padding-bottom: 4px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        /* --- Skills Grid --- */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 14px;
+        }
+
+        .skills-box {
+            background: var(--bg-light);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 12px;
+        }
+
+        .skills-box h4 {
+            font-size: 10pt;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        .skills-box .answer-line {
+            margin-bottom: 6px;
+        }
+
+        /* --- Footer --- */
+        .footer {
+            margin-top: 24px;
+            padding-top: 10px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            font-size: 9pt;
+            color: var(--text-light);
+        }
+
+        /* --- Utilities --- */
+        .mb-sm { margin-bottom: 8px; }
+        .mb-md { margin-bottom: 14px; }
+        .mb-lg { margin-bottom: 20px; }
+
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <div class="header">
+        <div class="header-left">
+            <h1>PFL Academy</h1>
+            <h2>Chapter 15.1: Career Exploration and Goal Setting</h2>
+        </div>
+        <div class="header-right">
+            Student Activity Packet
+        </div>
+    </div>
+
+    <!-- THE CHALLENGE -->
+    <div class="section-header">The Challenge</div>
+    <div class="challenge-box">
+        <p>Miguel was starting his junior year unsure about what career to pursue. He knew he loved technology and helping people, but couldn't figure out how to combine these interests into a career. After conducting a self-assessment, researching options, and talking to professionals, he discovered UX/UI design—a field that perfectly blended his technical skills with his desire to make technology more user-friendly. He set SMART goals, created a plan, and secured his first design internship by summer.</p>
+        <p class="framing-question">How can a structured approach to career exploration help you identify opportunities you might not have considered and create a clear path to achieving your professional goals?</p>
+    </div>
+
+    <!-- LEARNING OBJECTIVES -->
+    <div class="objectives-box">
+        <h3>Learning Objectives</h3>
+        <ul>
+            <li>Understand the difference between a job and a career.</li>
+            <li>Identify personal interests, skills, and values for career exploration.</li>
+            <li>Research career paths using appropriate resources.</li>
+            <li>Develop SMART career goals for short-term and long-term planning.</li>
+            <li>Create a personalized career development plan.</li>
+        </ul>
+    </div>
+
+    <!-- CORE CONCEPTS -->
+    <div class="section-header">Core Concepts</div>
+
+    <table class="terms-table">
+        <tr>
+            <th>Term</th>
+            <th>Definition</th>
+        </tr>
+        <tr>
+            <td>Career</td>
+            <td>A long-term professional journey that may encompass multiple jobs, involving growth, development, and advancement over time.</td>
+        </tr>
+        <tr>
+            <td>Job</td>
+            <td>A specific position or role with defined responsibilities, typically performed in exchange for payment.</td>
+        </tr>
+        <tr>
+            <td>Self-Assessment</td>
+            <td>The process of evaluating your own interests, skills, values, and personality traits to inform career decisions.</td>
+        </tr>
+        <tr>
+            <td>SMART Goals</td>
+            <td>Specific, Measurable, Achievable, Relevant, and Time-bound objectives for career planning.</td>
+        </tr>
+        <tr>
+            <td>Career Development Plan</td>
+            <td>A strategic roadmap outlining steps to achieve your professional goals.</td>
+        </tr>
+    </table>
+
+    <div class="background-box">
+        <strong>Background:</strong> Understanding the distinction between jobs and careers is fundamental to effective career planning. While jobs provide immediate income, careers offer long-term growth and fulfillment aligned with your personal interests and values. A structured approach to career exploration—involving self-assessment, research, goal setting, and planning—helps ensure your professional path aligns with both your personal aspirations and financial goals.
+    </div>
+
+    <!-- APPLY IT -->
+    <div class="section-header">Apply It</div>
+
+    <div class="part-header">Part A: Jobs vs. Careers Analysis</div>
+    <p class="mb-md">Read each scenario and determine whether the person is focused on a job or building a career. Explain your reasoning.</p>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Scenario 1: Alex's Retail Position</div>
+        <div class="scenario-description">Alex works part-time at a clothing store while attending college. The hours are flexible, but Alex has no interest in retail management and views this position as temporary until graduation.</div>
+        <div class="response-line">
+            <span class="response-label">This is a:</span>
+            <span class="response-blank"></span>
+            <span class="response-options">(job / career)</span>
+        </div>
+        <div class="because-lines">
+            <div class="response-line">
+                <span class="response-label">Because:</span>
+                <span class="response-blank"></span>
+            </div>
+            <div class="response-line">
+                <span class="response-blank" style="margin-left: 60px;"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Scenario 2: Jordan's Healthcare Journey</div>
+        <div class="scenario-description">Jordan started as a medical receptionist and is now pursuing nursing certification. Jordan plans to eventually become a nurse practitioner and has mapped out educational milestones for the next 10 years.</div>
+        <div class="response-line">
+            <span class="response-label">This is a:</span>
+            <span class="response-blank"></span>
+            <span class="response-options">(job / career)</span>
+        </div>
+        <div class="because-lines">
+            <div class="response-line">
+                <span class="response-label">Because:</span>
+                <span class="response-blank"></span>
+            </div>
+            <div class="response-line">
+                <span class="response-blank" style="margin-left: 60px;"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Scenario 3: Taylor's Food Service Work</div>
+        <div class="scenario-description">Taylor works as a server and has been promoted to shift manager. Taylor enjoys hospitality and is taking restaurant management courses while saving to eventually open their own restaurant.</div>
+        <div class="response-line">
+            <span class="response-label">This is a:</span>
+            <span class="response-blank"></span>
+            <span class="response-options">(job / career)</span>
+        </div>
+        <div class="because-lines">
+            <div class="response-line">
+                <span class="response-label">Because:</span>
+                <span class="response-blank"></span>
+            </div>
+            <div class="response-line">
+                <span class="response-blank" style="margin-left: 60px;"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- PART B -->
+    <div class="part-header">Part B: Self-Assessment Inventory</div>
+    <p class="mb-md">Complete the skills inventory below to identify your strengths in both categories.</p>
+
+    <div class="skills-grid">
+        <div class="skills-box">
+            <h4>Hard Skills (Technical abilities)</h4>
+            <p style="font-size: 9pt; color: var(--text-light); margin-bottom: 8px;">Examples: Computer programming, data analysis, writing, foreign languages</p>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+        <div class="skills-box">
+            <h4>Soft Skills (Personal attributes)</h4>
+            <p style="font-size: 9pt; color: var(--text-light); margin-bottom: 8px;">Examples: Communication, leadership, problem-solving, teamwork</p>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">4.</span> Rank your top 5 work values in order of importance (1 = most important):</p>
+        <p style="font-size: 9pt; color: var(--text-light); margin-bottom: 6px;">Options: Work-life balance, Creativity, Leadership opportunities, Financial security, Making a difference, Independence, Recognition, Intellectual stimulation, Variety, Stability</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <!-- PART C -->
+    <div class="part-header">Part C: SMART Goal Development</div>
+    <p class="mb-md">Create one SMART career goal using the framework below.</p>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Your SMART Career Goal</div>
+        <div class="response-line" style="margin-bottom: 12px;">
+            <span class="response-label">S - Specific (What exactly do you want to accomplish?):</span>
+        </div>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+        <div class="response-line" style="margin-bottom: 12px; margin-top: 10px;">
+            <span class="response-label">M - Measurable (How will you track progress?):</span>
+        </div>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+        </div>
+        <div class="response-line" style="margin-bottom: 12px; margin-top: 10px;">
+            <span class="response-label">A - Achievable (Is this realistic given your situation?):</span>
+        </div>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+        </div>
+        <div class="response-line" style="margin-bottom: 12px; margin-top: 10px;">
+            <span class="response-label">R - Relevant (How does this align with your career aspirations?):</span>
+        </div>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+        </div>
+        <div class="response-line" style="margin-bottom: 12px; margin-top: 10px;">
+            <span class="response-label">T - Time-bound (Target completion date):</span>
+        </div>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="hint-box">
+        <strong>Hint:</strong> A well-written SMART goal example: "I will complete an online UX design certification program and build a portfolio with 3 projects within 6 months to prepare for design internship applications."
+    </div>
+
+    <!-- CHECK YOUR UNDERSTANDING -->
+    <div class="section-header">Check Your Understanding</div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">1.</span> The main difference between a job and a career is that a career:</p>
+        <div class="mc-options">
+            <div class="mc-option"><div class="mc-checkbox"></div> A. Always pays more money</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> B. Involves long-term growth and multiple positions over time</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> C. Requires a college degree</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> D. Must be in a professional field</div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">2.</span> Which of the following is an example of a "hard skill"?</p>
+        <div class="mc-options">
+            <div class="mc-option"><div class="mc-checkbox"></div> A. Teamwork</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> B. Leadership</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> C. Computer programming</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> D. Communication</div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">3.</span> Explain why self-assessment is an important first step in career exploration.</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">4.</span> What does the "A" in SMART goals stand for, and why is it important?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">5.</span> <strong>Reflection:</strong> Think about a career field that interests you. What are two specific steps you could take in the next month to learn more about this career path?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        <span>© PFL Academy | pflacademy.co</span>
+        <span>Chapter 15.1: Career Exploration and Goal Setting</span>
+    </div>
+
+</body>
+</html>

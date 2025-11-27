@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-62 Teacher Guide</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+        :root {
+            --primary: #059669;
+            --primary-light: #ecfdf5;
+            --primary-dark: #065f46;
+            --text-dark: #1e293b;
+            --text-medium: #475569;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --bg-light: #f8fafc;
+            --warning: #f59e0b;
+            --warning-light: #fef3c7;
+            --error: #dc2626;
+            --error-light: #fee2e2;
+            --success-light: #dcfce7;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+
+        @page {
+            size: letter;
+            margin: 0.5in;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 10pt;
+            line-height: 1.45;
+            color: var(--text-dark);
+            background: white;
+        }
+
+        .header {
+            background: var(--primary);
+            color: white;
+            padding: 14px 18px;
+            border-radius: 6px;
+            margin-bottom: 16px;
+        }
+
+        .header h1 {
+            font-size: 13pt;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .header h2 {
+            font-size: 10pt;
+            font-weight: 400;
+            margin: 3px 0 0;
+            opacity: 0.9;
+        }
+
+        .section-header {
+            background: var(--primary-light);
+            border-left: 4px solid var(--primary);
+            padding: 7px 12px;
+            font-size: 10pt;
+            font-weight: 700;
+            color: var(--primary-dark);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin: 16px 0 10px;
+        }
+
+        .overview-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 14px;
+        }
+
+        .overview-table th {
+            background: var(--bg-light);
+            color: var(--text-light);
+            font-size: 8pt;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            text-align: center;
+            padding: 6px 10px;
+            border: 1px solid var(--border);
+            width: 33%;
+        }
+
+        .overview-table td {
+            text-align: center;
+            padding: 10px;
+            border: 1px solid var(--border);
+            font-weight: 600;
+            color: var(--text-dark);
+            font-size: 10pt;
+        }
+
+        .flow-container {
+            margin-bottom: 14px;
+        }
+
+        .flow-item {
+            display: flex;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border);
+            page-break-inside: avoid;
+        }
+
+        .flow-item:last-child {
+            border-bottom: none;
+        }
+
+        .flow-time {
+            width: 65px;
+            font-weight: 700;
+            color: var(--primary);
+            flex-shrink: 0;
+            font-size: 10pt;
+        }
+
+        .flow-content {
+            flex: 1;
+        }
+
+        .flow-title {
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 3px;
+            font-size: 10pt;
+        }
+
+        .flow-content ul {
+            margin: 0;
+            padding-left: 16px;
+            font-size: 9pt;
+            color: var(--text-medium);
+        }
+
+        .flow-content li {
+            margin-bottom: 2px;
+        }
+
+        .diff-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 14px;
+        }
+
+        .diff-box {
+            background: var(--bg-light);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 10px 12px;
+        }
+
+        .diff-title {
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 6px;
+            font-size: 9pt;
+        }
+
+        .diff-box ul {
+            margin: 0;
+            padding-left: 16px;
+            font-size: 9pt;
+            color: var(--text-medium);
+        }
+
+        .diff-box li {
+            margin-bottom: 2px;
+        }
+
+        .answer-key {
+            page-break-before: always;
+        }
+
+        .answer-block {
+            margin-bottom: 12px;
+            page-break-inside: avoid;
+        }
+
+        .answer-title {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 9pt;
+            border-bottom: 1px solid #a7f3d0;
+            padding-bottom: 3px;
+            margin-bottom: 6px;
+        }
+
+        .answer-item {
+            margin-bottom: 5px;
+            font-size: 9pt;
+            color: var(--text-dark);
+        }
+
+        .answer-item strong {
+            color: var(--primary-dark);
+        }
+
+        .calc-display {
+            font-family: 'Courier New', monospace;
+            background: var(--bg-light);
+            padding: 8px 10px;
+            border-radius: 4px;
+            margin: 6px 0;
+            font-size: 8.5pt;
+            line-height: 1.5;
+            white-space: pre-line;
+        }
+
+        .answer-note {
+            background: var(--warning-light);
+            border-left: 3px solid var(--warning);
+            padding: 6px 10px;
+            font-size: 9pt;
+            font-style: italic;
+            color: #92400e;
+            margin: 6px 0;
+        }
+
+        .misconception-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 9pt;
+            margin-top: 10px;
+        }
+
+        .misconception-table th {
+            padding: 6px 10px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .misconception-table th:first-child {
+            background: var(--error-light);
+            color: #991b1b;
+            border: 1px solid #fca5a5;
+            width: 40%;
+        }
+
+        .misconception-table th:last-child {
+            background: var(--success-light);
+            color: #166534;
+            border: 1px solid #86efac;
+        }
+
+        .misconception-table td {
+            padding: 6px 10px;
+            border: 1px solid var(--border);
+            vertical-align: top;
+            color: var(--text-medium);
+        }
+
+        .footer {
+            margin-top: 20px;
+            padding-top: 8px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            font-size: 8pt;
+            color: var(--text-light);
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <div class="header">
+        <h1>PFL Academy</h1>
+        <h2>Teacher Guide: Chapter 62 — Investment Portfolio Strategies</h2>
+    </div>
+
+    <!-- OVERVIEW -->
+    <div class="section-header">Overview</div>
+    <table class="overview-table">
+        <tr>
+            <th>Time</th>
+            <th>Materials</th>
+            <th>Prerequisites</th>
+        </tr>
+        <tr>
+            <td>45-50 Minutes</td>
+            <td>Student Activity Packet</td>
+            <td>L-47: Introduction to Investment Types</td>
+        </tr>
+    </table>
+
+    <!-- LESSON FLOW -->
+    <div class="section-header">Lesson Flow</div>
+    <div class="flow-container">
+        <div class="flow-item">
+            <div class="flow-time">5 min</div>
+            <div class="flow-content">
+                <div class="flow-title">THE CHALLENGE</div>
+                <ul>
+                    <li>Read Emma's rebalancing story aloud. Emphasize the $180,000 lifetime impact.</li>
+                    <li>Discussion: "Why did Emma sell stocks that were doing well?"</li>
+                    <li>Preview: Rebalancing seems counterintuitive but enforces buy-low-sell-high discipline.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="flow-item">
+            <div class="flow-time">10 min</div>
+            <div class="flow-content">
+                <div class="flow-title">CORE CONCEPTS</div>
+                <ul>
+                    <li>Review the 5 key terms. Emphasize "asset allocation" as the primary performance driver.</li>
+                    <li>Walk through "110 minus age" guideline with examples.</li>
+                    <li>Quick check: If you're 30, what percent stocks? (80%) If you're 55? (55%)</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="flow-item">
+            <div class="flow-time">25-30 min</div>
+            <div class="flow-content">
+                <div class="flow-title">APPLY IT</div>
+                <ul>
+                    <li><strong>Part A (10 min):</strong> Life-stage allocations. Discuss why allocations differ by age.</li>
+                    <li><strong>Part B (10 min):</strong> Rebalancing math. Ensure students understand Year 3 crash impact.</li>
+                    <li><strong>Part C (5-10 min):</strong> Tax-efficient location. Explain why bonds belong in tax-advantaged accounts.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="flow-item">
+            <div class="flow-time">10 min</div>
+            <div class="flow-content">
+                <div class="flow-title">CHECK YOUR UNDERSTANDING</div>
+                <ul>
+                    <li>Complete in class or assign as homework.</li>
+                    <li>Review Q3 (compound effect of small improvements) and Q5 (personal reflection).</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- DIFFERENTIATION -->
+    <div class="section-header">Differentiation</div>
+    <div class="diff-grid">
+        <div class="diff-box">
+            <div class="diff-title">Support</div>
+            <ul>
+                <li>Pre-teach "110 minus age" rule with multiple age examples.</li>
+                <li>Provide completed Part B table for reference.</li>
+                <li>Pair students for rebalancing calculations.</li>
+                <li>Focus on Part A allocation decisions before moving to B.</li>
+            </ul>
+        </div>
+        <div class="diff-box">
+            <div class="diff-title">Extension</div>
+            <ul>
+                <li>Calculate 40-year impact of 0.5% vs. 1.0% annual improvement.</li>
+                <li>Research actual expense ratios of index funds vs. active funds.</li>
+                <li>Create a personal Investment Policy Statement with specific funds.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ANSWER KEY (new page) -->
+    <div class="answer-key">
+        <div class="section-header">Answer Key</div>
+
+        <div class="answer-block">
+            <div class="answer-title">Part A: Life-Stage Asset Allocation</div>
+            <div class="answer-item"><strong>Profile 1 (Age 25):</strong> 85-90% stocks, 10-15% bonds. Long 40-year horizon allows weathering volatility. Can recover from crashes. Maximize growth potential.</div>
+            <div class="answer-item"><strong>Profile 2 (Age 45):</strong> 65-75% stocks, 25-35% bonds. Shorter 20-year horizon but still need growth. Significant wealth to protect. Balance growth and stability.</div>
+            <div class="answer-item"><strong>Profile 3 (Age 60):</strong> 45-55% stocks, 45-55% bonds. Near-term stability critical (retiring in 5 years). Still need growth for 25-year retirement. Can't afford major loss before retirement.</div>
+        </div>
+
+        <div class="answer-block">
+            <div class="answer-title">Part B: Rebalancing Impact Analysis</div>
+            <div class="calc-display">Year 3 Crash Impact (on $100,000):
+
+Non-Rebalanced (85% stocks / 15% bonds):
+• Stocks: $85,000 × -18% = -$15,300
+• Bonds: $15,000 × +5% = +$750
+• Net Loss: -$14,550 (14.55%)
+
+Rebalanced (80% stocks / 20% bonds):
+• Stocks: $80,000 × -18% = -$14,400
+• Bonds: $20,000 × +5% = +$1,000
+• Net Loss: -$13,400 (13.40%)
+
+Rebalancing saved: $1,150 in this single year</div>
+            <div class="answer-item"><strong>5.</strong> When stocks rise, rebalancing forces selling them (high) and buying bonds (relatively low). When stocks fall, rebalancing forces selling bonds (high) and buying stocks (cheap). This systematic discipline enforces the opposite of emotional reactions.</div>
+        </div>
+
+        <div class="answer-block">
+            <div class="answer-title">Part C: Tax-Efficient Asset Location</div>
+            <div class="answer-item"><strong>6. Option B is better.</strong> Bonds generate taxable interest annually. In taxable account, this is taxed every year at ordinary income rates. In IRA, interest grows tax-deferred. Stocks in taxable account get favorable long-term capital gains rates and you control timing of gains.</div>
+        </div>
+
+        <div class="answer-block">
+            <div class="answer-title">Check Your Understanding</div>
+            <div class="answer-item"><strong>1.</strong> C (Asset allocation)</div>
+            <div class="answer-item"><strong>2.</strong> A 25-year-old has 40+ years to recover from crashes. Over any 20-year period historically, stocks have positive returns. A 60-year-old retiring soon can't wait years to recover—a 40% drop could derail retirement plans.</div>
+            <div class="calc-display"><strong>3.</strong> At 8%: $500/mo × 30 years = ~$680,000
+At 8.5%: $500/mo × 30 years = ~$745,000
+Additional wealth: ~$65,000 from 0.5% improvement</div>
+            <div class="answer-item"><strong>4.</strong> Gradual shift reduces risk progressively as time horizon shortens. Staying 90% stocks at 60 risks devastating losses near retirement. Sudden switches miss growth opportunities and may crystallize gains at wrong time.</div>
+            <div class="answer-item"><strong>5.</strong> <em>Accept responses that show understanding of personal time horizon, realistic risk assessment, and logical allocation reasoning.</em></div>
+        </div>
+
+        <!-- COMMON MISCONCEPTIONS -->
+        <div class="section-header">Common Misconceptions</div>
+        <table class="misconception-table">
+            <tr>
+                <th>Misconception</th>
+                <th>Clarification</th>
+            </tr>
+            <tr>
+                <td>"Rebalancing means selling winners—that's bad."</td>
+                <td>Rebalancing is selling high and buying low systematically. It enforces discipline that improves risk-adjusted returns and prevents unintended risk from allocation drift.</td>
+            </tr>
+            <tr>
+                <td>"I should time the market to maximize returns."</td>
+                <td>Research shows timing attempts hurt returns. Missing just the 10 best days over 20 years can cut returns in half. Consistent investing beats timing.</td>
+            </tr>
+            <tr>
+                <td>"Tax efficiency doesn't matter much."</td>
+                <td>1% annual tax drag over 30 years reduces wealth by 26%. Strategic asset location and minimizing turnover can add hundreds of thousands over a lifetime.</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        <span>&copy; PFL Academy | pflacademy.co</span>
+        <span>Teacher Guide: Chapter 62</span>
+    </div>
+
+</body>
+</html>

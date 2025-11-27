@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-22 Student Activity Packet</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+        :root {
+            --primary: #6366f1;
+            --primary-light: #eef2ff;
+            --accent: #f59e0b;
+            --accent-light: #fef3c7;
+            --success: #059669;
+            --text-dark: #1e293b;
+            --text-medium: #475569;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --bg-light: #f8fafc;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+
+        @page {
+            size: letter;
+            margin: 0.5in;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 10.5pt;
+            line-height: 1.5;
+            color: var(--text-dark);
+            background: white;
+        }
+
+        .header {
+            background: var(--primary);
+            color: white;
+            padding: 14px 18px;
+            border-radius: 6px;
+            margin-bottom: 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-left h1 {
+            font-size: 13pt;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .header-left h2 {
+            font-size: 10pt;
+            font-weight: 400;
+            margin: 2px 0 0;
+            opacity: 0.9;
+        }
+
+        .header-right {
+            font-size: 9pt;
+            text-align: right;
+            opacity: 0.9;
+        }
+
+        .section-header {
+            font-size: 11pt;
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 4px;
+            margin: 20px 0 12px;
+        }
+
+        .challenge-box {
+            background: var(--accent-light);
+            border-left: 4px solid var(--accent);
+            padding: 14px 16px;
+            margin-bottom: 16px;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .challenge-box p {
+            font-style: italic;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+        }
+
+        .challenge-box .framing-question {
+            font-weight: 600;
+            font-style: normal;
+            color: #92400e;
+        }
+
+        .objectives-box {
+            background: var(--primary-light);
+            border: 1px solid #c7d2fe;
+            border-radius: 6px;
+            padding: 12px 16px;
+            margin-bottom: 18px;
+        }
+
+        .objectives-box h3 {
+            font-size: 10pt;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 6px;
+        }
+
+        .objectives-box ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .objectives-box li {
+            margin-bottom: 3px;
+            color: var(--text-medium);
+        }
+
+        .terms-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 14px;
+            font-size: 10pt;
+        }
+
+        .terms-table th {
+            background: var(--bg-light);
+            text-align: left;
+            padding: 8px 10px;
+            border: 1px solid var(--border);
+            font-weight: 600;
+            color: var(--text-medium);
+        }
+
+        .terms-table td {
+            padding: 8px 10px;
+            border: 1px solid var(--border);
+            vertical-align: top;
+        }
+
+        .terms-table td:first-child {
+            font-weight: 600;
+            color: var(--primary);
+            width: 25%;
+        }
+
+        .background-box {
+            background: var(--bg-light);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 12px 16px;
+            margin-bottom: 18px;
+            font-size: 10pt;
+            color: var(--text-medium);
+        }
+
+        .background-box strong {
+            color: var(--text-dark);
+        }
+
+        .scenario-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 12px 14px;
+            margin-bottom: 14px;
+            page-break-inside: avoid;
+        }
+
+        .scenario-title {
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 6px;
+            font-size: 10pt;
+        }
+
+        .scenario-description {
+            color: var(--text-medium);
+            margin-bottom: 10px;
+            font-size: 10pt;
+        }
+
+        .response-line {
+            display: flex;
+            align-items: baseline;
+            margin-bottom: 8px;
+        }
+
+        .response-label {
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-right: 8px;
+            white-space: nowrap;
+        }
+
+        .response-blank {
+            flex-grow: 1;
+            border-bottom: 1px solid var(--text-light);
+            min-height: 18px;
+        }
+
+        .response-options {
+            color: var(--text-light);
+            font-size: 9pt;
+            margin-left: 8px;
+            white-space: nowrap;
+        }
+
+        .because-lines {
+            margin-top: 6px;
+        }
+
+        .because-lines .response-line {
+            margin-bottom: 4px;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 12px 0;
+            font-size: 10pt;
+        }
+
+        .data-table th {
+            background: var(--primary);
+            color: white;
+            padding: 8px 10px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 9pt;
+        }
+
+        .data-table td {
+            padding: 8px 10px;
+            border: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .data-table tr:nth-child(even) td {
+            background: var(--bg-light);
+        }
+
+        .data-table .calc-row td {
+            background: #fef9c3;
+            height: 28px;
+        }
+
+        .question {
+            margin-bottom: 14px;
+            page-break-inside: avoid;
+        }
+
+        .question-number {
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .question-text {
+            color: var(--text-dark);
+            margin-bottom: 6px;
+        }
+
+        .answer-lines {
+            margin-top: 6px;
+        }
+
+        .answer-line {
+            border-bottom: 1px solid var(--text-light);
+            height: 22px;
+            margin-bottom: 4px;
+        }
+
+        .calc-box {
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 12px;
+            margin: 8px 0;
+            min-height: 60px;
+            background: var(--bg-light);
+        }
+
+        .calc-label {
+            font-size: 9pt;
+            color: var(--text-light);
+            margin-bottom: 4px;
+        }
+
+        .calc-answer {
+            margin-top: 10px;
+            font-weight: 600;
+        }
+
+        .mc-options {
+            margin-top: 6px;
+            margin-left: 20px;
+        }
+
+        .mc-option {
+            display: flex;
+            align-items: center;
+            margin-bottom: 4px;
+        }
+
+        .mc-checkbox {
+            width: 14px;
+            height: 14px;
+            border: 1px solid var(--text-light);
+            border-radius: 2px;
+            margin-right: 8px;
+            flex-shrink: 0;
+        }
+
+        .hint-box {
+            background: #f0fdf4;
+            border-left: 3px solid var(--success);
+            padding: 8px 12px;
+            margin: 10px 0;
+            font-size: 9pt;
+            font-style: italic;
+            color: #166534;
+        }
+
+        .hint-box strong {
+            font-style: normal;
+        }
+
+        .part-header {
+            font-weight: 700;
+            font-size: 10pt;
+            color: var(--primary);
+            text-transform: uppercase;
+            margin: 16px 0 10px;
+            padding-bottom: 4px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .footer {
+            margin-top: 24px;
+            padding-top: 10px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            font-size: 9pt;
+            color: var(--text-light);
+        }
+
+        .mb-sm { margin-bottom: 8px; }
+        .mb-md { margin-bottom: 14px; }
+        .mb-lg { margin-bottom: 20px; }
+
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <div class="header">
+        <div class="header-left">
+            <h1>PFL Academy</h1>
+            <h2>Chapter 5.2: Choosing the Right Source of Credit</h2>
+        </div>
+        <div class="header-right">
+            Student Activity Packet
+        </div>
+    </div>
+
+    <!-- THE CHALLENGE -->
+    <div class="section-header">The Challenge</div>
+    <div class="challenge-box">
+        <p>Marcus needs $1,500 for an emergency car repair to keep his job. With a credit score of 650, he's considering three options: a credit union personal loan at 8% APR, his credit card at 18% APR, or a payday loan advertising "quick cash." The payday loan seems easiest, but the fine print shows a 400% APR equivalent.</p>
+        <p class="framing-question">How can Marcus determine which credit source will cost him the least and keep him out of a debt trap?</p>
+    </div>
+
+    <!-- LEARNING OBJECTIVES -->
+    <div class="objectives-box">
+        <h3>Learning Objectives</h3>
+        <ul>
+            <li>Compare different credit sources including banks, credit unions, and alternative lenders.</li>
+            <li>Evaluate credit options based on APR, fees, terms, and total cost.</li>
+            <li>Identify warning signs of predatory lending and develop strategies to avoid high-cost debt.</li>
+        </ul>
+    </div>
+
+    <!-- CORE CONCEPTS -->
+    <div class="section-header">Core Concepts</div>
+
+    <table class="terms-table">
+        <tr>
+            <th>Term</th>
+            <th>Definition</th>
+        </tr>
+        <tr>
+            <td>Credit Union</td>
+            <td>A member-owned, not-for-profit financial cooperative that often offers lower rates than banks.</td>
+        </tr>
+        <tr>
+            <td>Payday Lender</td>
+            <td>A lender offering small, short-term loans with extremely high interest rates (often 300-500% APR).</td>
+        </tr>
+        <tr>
+            <td>Creditworthiness</td>
+            <td>A measure of how likely a borrower is to repay debt, based on credit history and score.</td>
+        </tr>
+        <tr>
+            <td>Predatory Lending</td>
+            <td>Unfair lending practices that take advantage of borrowers through deceptive terms or excessive fees.</td>
+        </tr>
+        <tr>
+            <td>Origination Fee</td>
+            <td>An upfront fee charged by a lender for processing a new loan application.</td>
+        </tr>
+    </table>
+
+    <div class="background-box">
+        <strong>Background:</strong> Not all credit sources are created equal. Banks, credit unions, online lenders, and payday lenders all serve different purposes and come with vastly different costs. A credit union might charge 8% APR on a personal loan, while a payday lender charges 400% for the same amount. Understanding these differences can save you hundreds or even thousands of dollars. The key is to <strong>compare multiple options</strong> before borrowing and always calculate the total cost—not just the monthly payment or how quickly you can get the money.
+    </div>
+
+    <!-- APPLY IT -->
+    <div class="section-header">Apply It</div>
+
+    <div class="part-header">Part A: Credit Source Matching</div>
+    <p class="mb-md">For each borrowing scenario, identify the most appropriate credit source and explain why.</p>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Scenario 1: First-Time Home Buyer</div>
+        <div class="scenario-description">Jasmine has excellent credit (780) and wants to buy her first home. She's comparing offers from her bank, a credit union, and an online mortgage lender.</div>
+        <div class="response-line">
+            <span class="response-label">Best source:</span>
+            <span class="response-blank"></span>
+            <span class="response-options">(bank / credit union / online lender)</span>
+        </div>
+        <div class="because-lines">
+            <div class="response-line">
+                <span class="response-label">Because:</span>
+                <span class="response-blank"></span>
+            </div>
+            <div class="response-line">
+                <span class="response-blank" style="margin-left: 60px;"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Scenario 2: Unexpected Medical Bill</div>
+        <div class="scenario-description">Derek has fair credit (620) and just received a $2,000 medical bill. He has no emergency fund. A payday lender offers same-day approval; his credit union needs 3 days.</div>
+        <div class="response-line">
+            <span class="response-label">Best source:</span>
+            <span class="response-blank"></span>
+            <span class="response-options">(payday lender / credit union / credit card)</span>
+        </div>
+        <div class="because-lines">
+            <div class="response-line">
+                <span class="response-label">Because:</span>
+                <span class="response-blank"></span>
+            </div>
+            <div class="response-line">
+                <span class="response-blank" style="margin-left: 60px;"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Scenario 3: Starting a Small Business</div>
+        <div class="scenario-description">Aisha wants to borrow $15,000 to start a food truck business. She has good credit (700) but limited business history. Traditional banks have rejected her application.</div>
+        <div class="response-line">
+            <span class="response-label">Best source:</span>
+            <span class="response-blank"></span>
+            <span class="response-options">(SBA loan / peer-to-peer / consumer finance)</span>
+        </div>
+        <div class="because-lines">
+            <div class="response-line">
+                <span class="response-label">Because:</span>
+                <span class="response-blank"></span>
+            </div>
+            <div class="response-line">
+                <span class="response-blank" style="margin-left: 60px;"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="hint-box">
+        <strong>Hint:</strong> Consider not just the interest rate, but also approval requirements, processing time, and total cost over the loan term.
+    </div>
+
+    <!-- PART B -->
+    <div class="part-header">Part B: Cost Comparison Analysis</div>
+    <p class="mb-md">Compare the cost of borrowing $1,500 from different sources. Complete the missing values.</p>
+
+    <table class="data-table">
+        <tr>
+            <th>Credit Source</th>
+            <th>APR</th>
+            <th>Term</th>
+            <th>Monthly Payment</th>
+            <th>Total Interest</th>
+        </tr>
+        <tr>
+            <td style="text-align: left; font-weight: 600;">Credit Union Loan</td>
+            <td>8%</td>
+            <td>12 months</td>
+            <td>$130</td>
+            <td>$60</td>
+        </tr>
+        <tr>
+            <td style="text-align: left; font-weight: 600;">Credit Card</td>
+            <td>18%</td>
+            <td>12 months</td>
+            <td>$138</td>
+            <td>$156</td>
+        </tr>
+        <tr>
+            <td style="text-align: left; font-weight: 600;">Payday Loan*</td>
+            <td>400%</td>
+            <td>2 weeks</td>
+            <td>$1,730</td>
+            <td>$230</td>
+        </tr>
+        <tr class="calc-row">
+            <td style="text-align: left; font-weight: 600;">Total Repaid</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+    <p style="font-size: 9pt; color: var(--text-light); margin-top: -8px;">*Payday loan assumes single 2-week term; many borrowers roll over multiple times</p>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">4.</span> If someone rolls over a payday loan 4 times (8 weeks total), paying $230 in fees each time, what is the total cost?</p>
+        <div class="calc-box">
+            <div class="calc-label">Show your work:</div>
+        </div>
+        <div class="calc-answer">Total fees paid: $____________</div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">5.</span> Why might someone choose a payday loan despite the much higher cost? What alternatives should they consider?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <!-- PART C -->
+    <div class="part-header">Part C: Personal Credit Strategy</div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">6.</span> Rank these credit sources from 1 (best/first choice) to 5 (worst/last resort) for your personal use. Explain your top and bottom choices.</p>
+        <div class="answer-lines">
+            <div class="response-line">
+                <span class="response-label">___</span> Credit Union &nbsp;&nbsp;
+                <span class="response-label">___</span> Bank &nbsp;&nbsp;
+                <span class="response-label">___</span> Credit Card &nbsp;&nbsp;
+                <span class="response-label">___</span> Online Lender &nbsp;&nbsp;
+                <span class="response-label">___</span> Payday Lender
+            </div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">7.</span> What THREE warning signs would tell you a lender might be predatory?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <!-- CHECK YOUR UNDERSTANDING -->
+    <div class="section-header">Check Your Understanding</div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">1.</span> Which type of lender typically offers the lowest interest rates to qualified borrowers?</p>
+        <div class="mc-options">
+            <div class="mc-option"><div class="mc-checkbox"></div> A. Payday lenders</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> B. Consumer finance companies</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> C. Credit unions</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> D. Retail store credit</div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">2.</span> Explain why credit unions often offer better rates than commercial banks.</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">3.</span> <strong>Calculation:</strong> A bank offers a $5,000 personal loan at 10% APR for 3 years with a $100 origination fee. Monthly payment is $161. What is the total cost including the fee?</p>
+        <div class="calc-box">
+            <div class="calc-label">Show your work:</div>
+        </div>
+        <div class="calc-answer">Total cost: $____________</div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">4.</span> Marcus chose the credit union loan (8% APR) over the payday loan for his $1,500 car repair. If he pays off the credit union loan in 12 months, how much does he save compared to rolling over the payday loan 4 times?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">5.</span> <strong>Reflection:</strong> Imagine a friend is about to take out a payday loan because they need money fast. What would you say to them? What alternatives would you suggest?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        <span>© PFL Academy | pflacademy.co</span>
+        <span>Chapter 5.2: Choosing the Right Source of Credit</span>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-63 Student Activity Packet</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+        :root {
+            --primary: #6366f1;
+            --primary-light: #eef2ff;
+            --accent: #f59e0b;
+            --accent-light: #fef3c7;
+            --success: #059669;
+            --text-dark: #1e293b;
+            --text-medium: #475569;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --bg-light: #f8fafc;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+
+        @page { size: letter; margin: 0.5in; }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 10.5pt;
+            line-height: 1.5;
+            color: var(--text-dark);
+            background: white;
+        }
+
+        .header {
+            background: var(--primary);
+            color: white;
+            padding: 14px 18px;
+            border-radius: 6px;
+            margin-bottom: 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-left h1 { font-size: 13pt; font-weight: 700; margin: 0; }
+        .header-left h2 { font-size: 10pt; font-weight: 400; margin: 2px 0 0; opacity: 0.9; }
+        .header-right { font-size: 9pt; text-align: right; opacity: 0.9; }
+
+        .section-header {
+            font-size: 11pt;
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 4px;
+            margin: 20px 0 12px;
+        }
+
+        .challenge-box {
+            background: var(--accent-light);
+            border-left: 4px solid var(--accent);
+            padding: 14px 16px;
+            margin-bottom: 16px;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .challenge-box p { font-style: italic; color: var(--text-dark); margin-bottom: 10px; }
+        .challenge-box .framing-question { font-weight: 600; font-style: normal; color: #92400e; }
+
+        .objectives-box {
+            background: var(--primary-light);
+            border: 1px solid #c7d2fe;
+            border-radius: 6px;
+            padding: 12px 16px;
+            margin-bottom: 18px;
+        }
+
+        .objectives-box h3 { font-size: 10pt; font-weight: 700; color: var(--primary); margin-bottom: 6px; }
+        .objectives-box ul { margin: 0; padding-left: 20px; }
+        .objectives-box li { margin-bottom: 3px; color: var(--text-medium); }
+
+        .terms-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 14px;
+            font-size: 10pt;
+        }
+
+        .terms-table th {
+            background: var(--bg-light);
+            text-align: left;
+            padding: 8px 10px;
+            border: 1px solid var(--border);
+            font-weight: 600;
+            color: var(--text-medium);
+        }
+
+        .terms-table td {
+            padding: 8px 10px;
+            border: 1px solid var(--border);
+            vertical-align: top;
+        }
+
+        .terms-table td:first-child { font-weight: 600; color: var(--primary); width: 25%; }
+
+        .background-box {
+            background: var(--bg-light);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 12px 16px;
+            margin-bottom: 18px;
+            font-size: 10pt;
+            color: var(--text-medium);
+        }
+
+        .background-box strong { color: var(--text-dark); }
+
+        .scenario-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 12px 14px;
+            margin-bottom: 14px;
+            page-break-inside: avoid;
+        }
+
+        .scenario-title { font-weight: 700; color: var(--primary); margin-bottom: 6px; font-size: 10pt; }
+        .scenario-description { color: var(--text-medium); margin-bottom: 10px; font-size: 10pt; }
+
+        .response-line { display: flex; align-items: baseline; margin-bottom: 8px; }
+        .response-label { font-weight: 600; color: var(--text-dark); margin-right: 8px; white-space: nowrap; }
+        .response-blank { flex-grow: 1; border-bottom: 1px solid var(--text-light); min-height: 18px; }
+        .response-options { color: var(--text-light); font-size: 9pt; margin-left: 8px; white-space: nowrap; }
+
+        .because-lines { margin-top: 6px; }
+        .because-lines .response-line { margin-bottom: 4px; }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 12px 0;
+            font-size: 10pt;
+        }
+
+        .data-table th {
+            background: var(--primary);
+            color: white;
+            padding: 8px 10px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 9pt;
+        }
+
+        .data-table td { padding: 8px 10px; border: 1px solid var(--border); text-align: center; }
+        .data-table tr:nth-child(even) td { background: var(--bg-light); }
+        .data-table .calc-row td { background: #fef9c3; height: 28px; }
+
+        .question { margin-bottom: 14px; page-break-inside: avoid; }
+        .question-number { font-weight: 700; color: var(--text-dark); }
+        .question-text { color: var(--text-dark); margin-bottom: 6px; }
+
+        .answer-lines { margin-top: 6px; }
+        .answer-line { border-bottom: 1px solid var(--text-light); height: 22px; margin-bottom: 4px; }
+
+        .calc-box {
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 12px;
+            margin: 8px 0;
+            min-height: 60px;
+            background: var(--bg-light);
+        }
+
+        .calc-label { font-size: 9pt; color: var(--text-light); margin-bottom: 4px; }
+        .calc-answer { margin-top: 10px; font-weight: 600; }
+
+        .mc-options { margin-top: 6px; margin-left: 20px; }
+        .mc-option { display: flex; align-items: center; margin-bottom: 4px; }
+        .mc-checkbox { width: 14px; height: 14px; border: 1px solid var(--text-light); border-radius: 2px; margin-right: 8px; flex-shrink: 0; }
+
+        .hint-box {
+            background: #f0fdf4;
+            border-left: 3px solid var(--success);
+            padding: 8px 12px;
+            margin: 10px 0;
+            font-size: 9pt;
+            font-style: italic;
+            color: #166534;
+        }
+
+        .hint-box strong { font-style: normal; }
+
+        .part-header {
+            font-weight: 700;
+            font-size: 10pt;
+            color: var(--primary);
+            text-transform: uppercase;
+            margin: 16px 0 10px;
+            padding-bottom: 4px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .footer {
+            margin-top: 24px;
+            padding-top: 10px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            font-size: 9pt;
+            color: var(--text-light);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="header-left">
+            <h1>PFL Academy</h1>
+            <h2>Chapter 63: Advanced Investment Concepts</h2>
+        </div>
+        <div class="header-right">Student Activity Packet</div>
+    </div>
+
+    <div class="section-header">The Challenge</div>
+    <div class="challenge-box">
+        <p>Jade invested $5,000 in Bitcoin at $20,000 per coin. Within six months, it tripled to $60,000—her investment was now worth $15,000! But instead of rebalancing to lock in gains, she invested another $5,000 at the peak. When Bitcoin crashed to $15,000 per coin, her holdings dropped from $15,000 to just $5,000. Meanwhile, her "boring" stock index funds gained 10% steadily. Jade learned that spectacular gains can become spectacular losses just as quickly.</p>
+        <p class="framing-question">How can understanding alternative investments help you distinguish between legitimate opportunities and speculative risks?</p>
+    </div>
+
+    <div class="objectives-box">
+        <h3>Learning Objectives</h3>
+        <ul>
+            <li>Analyze alternative investment options including REITs, commodities, and cryptocurrency.</li>
+            <li>Evaluate appropriate allocation levels for alternatives based on risk tolerance.</li>
+            <li>Distinguish between legitimate diversification and speculative trends.</li>
+        </ul>
+    </div>
+
+    <div class="section-header">Core Concepts</div>
+
+    <table class="terms-table">
+        <tr><th>Term</th><th>Definition</th></tr>
+        <tr><td>Alternative Investment</td><td>Assets beyond traditional stocks and bonds, including real estate, commodities, private equity, and cryptocurrency.</td></tr>
+        <tr><td>REIT</td><td>Real Estate Investment Trust—a company that owns income-producing properties, required to distribute 90% of income as dividends.</td></tr>
+        <tr><td>Commodities</td><td>Physical goods (gold, oil, agricultural products) that offer different risk characteristics than stocks or bonds.</td></tr>
+        <tr><td>Cryptocurrency</td><td>Digital currency using blockchain technology, extremely volatile and speculative with potential for total loss.</td></tr>
+        <tr><td>Leverage</td><td>Using borrowed money to amplify returns—magnifies both gains and losses, substantially increasing risk.</td></tr>
+    </table>
+
+    <div class="background-box">
+        <strong>Background:</strong> Alternative investments can provide diversification benefits beyond traditional stock-bond portfolios. <strong>REITs</strong> offer real estate exposure with liquidity and professional management. <strong>Gold</strong> may serve as an inflation hedge during economic uncertainty. <strong>Cryptocurrency</strong> is highly speculative—advisors recommend 1-5% maximum allocation, if any. The key insight: <strong>complexity doesn't equal sophistication</strong>. Simple, diversified portfolios often outperform complex alternatives. Before considering alternatives, maximize efficiency in traditional investments through optimal allocation, low fees, and tax efficiency.
+    </div>
+
+    <div class="section-header">Apply It</div>
+
+    <div class="part-header">Part A: Alternative Investment Comparison</div>
+    <p class="mb-md">Analyze how different alternatives performed during major market events.</p>
+
+    <table class="data-table">
+        <tr>
+            <th>Investment</th>
+            <th>2008 Crisis</th>
+            <th>2020 COVID</th>
+            <th>Average Return</th>
+            <th>Volatility</th>
+        </tr>
+        <tr><td style="text-align: left; font-weight: 600;">Stocks</td><td>-37%</td><td>+18%</td><td>10%</td><td>High</td></tr>
+        <tr><td style="text-align: left; font-weight: 600;">Bonds</td><td>+5%</td><td>+8%</td><td>5%</td><td>Low</td></tr>
+        <tr><td style="text-align: left; font-weight: 600;">REITs</td><td>-39%</td><td>-12%</td><td>8%</td><td>High</td></tr>
+        <tr><td style="text-align: left; font-weight: 600;">Gold</td><td>+5%</td><td>+25%</td><td>6%</td><td>Medium</td></tr>
+        <tr><td style="text-align: left; font-weight: 600;">Bitcoin</td><td>N/A</td><td>+300%*</td><td>Varies</td><td>Extreme</td></tr>
+    </table>
+    <p style="font-size: 8pt; color: var(--text-light);">*Bitcoin was -50% in March 2020, then +300% from bottom by year-end</p>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Analysis 1: Diversification Value</div>
+        <div class="scenario-description">Based on the table, which alternative provided the best diversification benefit (held value or gained when stocks fell)?</div>
+        <div class="response-line">
+            <span class="response-label">Best diversifier:</span>
+            <span class="response-blank"></span>
+            <span class="response-options">(REITs / Gold / Bitcoin)</span>
+        </div>
+        <div class="because-lines">
+            <div class="response-line"><span class="response-label">Because:</span><span class="response-blank"></span></div>
+        </div>
+    </div>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Analysis 2: Appropriate Allocation</div>
+        <div class="scenario-description">Given Bitcoin's extreme volatility (+300% one year, -75% another), what maximum portfolio allocation would be appropriate for most investors?</div>
+        <div class="response-line">
+            <span class="response-label">Max allocation:</span>
+            <span class="response-blank"></span>
+            <span class="response-options">(1-5% / 10-20% / 30%+)</span>
+        </div>
+        <div class="because-lines">
+            <div class="response-line"><span class="response-label">Because:</span><span class="response-blank"></span></div>
+        </div>
+    </div>
+
+    <div class="hint-box">
+        <strong>Hint:</strong> A good diversifier moves differently than stocks. If it falls more than stocks during crashes, it adds risk rather than reducing it.
+    </div>
+
+    <div class="part-header">Part B: Portfolio With Alternatives</div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">3.</span> Compare these two portfolios. Calculate the expected return for each (weighted average).</p>
+        <p style="font-size: 9pt; margin-bottom: 8px;"><strong>Portfolio A:</strong> 60% stocks (10%), 40% bonds (5%) | <strong>Portfolio B:</strong> 50% stocks, 30% bonds, 10% REITs (8%), 10% gold (6%)</p>
+        <div class="calc-box"><div class="calc-label">Show your calculations:</div></div>
+        <div class="calc-answer">Portfolio A return: ______% | Portfolio B return: ______%</div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">4.</span> Cameron allocated 10% to REITs for diversification. During 2020, his stocks fell 34% in March but recovered; his REITs fell 12% overall. How did having REITs affect his portfolio's volatility?</p>
+        <div class="answer-lines"><div class="answer-line"></div><div class="answer-line"></div></div>
+    </div>
+
+    <div class="part-header">Part C: Decision Framework</div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">5.</span> A friend says: "You should put 25% of your savings in cryptocurrency—it could 10x!" Using the decision framework, list three questions you should ask before investing.</p>
+        <div class="answer-lines"><div class="answer-line"></div><div class="answer-line"></div><div class="answer-line"></div></div>
+    </div>
+
+    <div class="section-header">Check Your Understanding</div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">1.</span> An investment that owns income-producing properties and must distribute 90% of income as dividends is called a:</p>
+        <div class="mc-options">
+            <div class="mc-option"><div class="mc-checkbox"></div> A. Commodity fund</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> B. Real Estate Investment Trust (REIT)</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> C. Hedge fund</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> D. Cryptocurrency exchange</div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">2.</span> Why might gold serve as a "safe haven" during economic uncertainty, and what are its limitations as an investment?</p>
+        <div class="answer-lines"><div class="answer-line"></div><div class="answer-line"></div></div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">3.</span> <strong>Calculation:</strong> If you invest 5% of a $50,000 portfolio in cryptocurrency and it loses 80% of its value, how much do you lose? How does this affect your overall portfolio?</p>
+        <div class="calc-box"><div class="calc-label">Show your work:</div></div>
+        <div class="calc-answer">Dollar loss: $_________ | Portfolio impact: ________%</div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">4.</span> Marcus chose REIT index funds over buying rental property. Give two advantages of REITs over direct property ownership.</p>
+        <div class="answer-lines"><div class="answer-line"></div><div class="answer-line"></div></div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">5.</span> <strong>Reflection:</strong> Would you include any alternative investments in your portfolio? If yes, which ones and at what allocation? If no, why not? What criteria would change your decision?</p>
+        <div class="answer-lines"><div class="answer-line"></div><div class="answer-line"></div><div class="answer-line"></div><div class="answer-line"></div></div>
+    </div>
+
+    <div class="footer">
+        <span>&copy; PFL Academy | pflacademy.co</span>
+        <span>Chapter 63: Advanced Investment Concepts</span>
+    </div>
+
+</body>
+</html>

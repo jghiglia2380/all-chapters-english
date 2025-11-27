@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-24 Teacher Guide</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+        :root {
+            --primary: #059669;
+            --primary-light: #ecfdf5;
+            --primary-dark: #065f46;
+            --text-dark: #1e293b;
+            --text-medium: #475569;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --bg-light: #f8fafc;
+            --warning: #f59e0b;
+            --warning-light: #fef3c7;
+            --error: #dc2626;
+            --error-light: #fee2e2;
+            --success-light: #dcfce7;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+        @page { size: letter; margin: 0.5in; }
+        body { font-family: 'Open Sans', sans-serif; font-size: 10pt; line-height: 1.45; color: var(--text-dark); background: white; }
+
+        .header { background: var(--primary); color: white; padding: 14px 18px; border-radius: 6px; margin-bottom: 16px; }
+        .header h1 { font-size: 13pt; font-weight: 700; margin: 0; }
+        .header h2 { font-size: 10pt; font-weight: 400; margin: 3px 0 0; opacity: 0.9; }
+
+        .section-header { background: var(--primary-light); border-left: 4px solid var(--primary); padding: 7px 12px; font-size: 10pt; font-weight: 700; color: var(--primary-dark); text-transform: uppercase; letter-spacing: 0.5px; margin: 16px 0 10px; }
+
+        .overview-table { width: 100%; border-collapse: collapse; margin-bottom: 14px; }
+        .overview-table th { background: var(--bg-light); color: var(--text-light); font-size: 8pt; text-transform: uppercase; letter-spacing: 0.5px; text-align: center; padding: 6px 10px; border: 1px solid var(--border); width: 33%; }
+        .overview-table td { text-align: center; padding: 10px; border: 1px solid var(--border); font-weight: 600; color: var(--text-dark); font-size: 10pt; }
+
+        .flow-container { margin-bottom: 14px; }
+        .flow-item { display: flex; padding: 8px 0; border-bottom: 1px solid var(--border); page-break-inside: avoid; }
+        .flow-item:last-child { border-bottom: none; }
+        .flow-time { width: 65px; font-weight: 700; color: var(--primary); flex-shrink: 0; font-size: 10pt; }
+        .flow-content { flex: 1; }
+        .flow-title { font-weight: 700; color: var(--text-dark); margin-bottom: 3px; font-size: 10pt; }
+        .flow-content ul { margin: 0; padding-left: 16px; font-size: 9pt; color: var(--text-medium); }
+        .flow-content li { margin-bottom: 2px; }
+
+        .diff-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px; }
+        .diff-box { background: var(--bg-light); border: 1px solid var(--border); border-radius: 4px; padding: 10px 12px; }
+        .diff-title { font-weight: 700; color: var(--text-dark); margin-bottom: 6px; font-size: 9pt; }
+        .diff-box ul { margin: 0; padding-left: 16px; font-size: 9pt; color: var(--text-medium); }
+        .diff-box li { margin-bottom: 2px; }
+
+        .answer-key { page-break-before: always; }
+        .answer-block { margin-bottom: 12px; page-break-inside: avoid; }
+        .answer-title { font-weight: 700; color: var(--primary); font-size: 9pt; border-bottom: 1px solid #a7f3d0; padding-bottom: 3px; margin-bottom: 6px; }
+        .answer-item { margin-bottom: 5px; font-size: 9pt; color: var(--text-dark); }
+        .answer-item strong { color: var(--primary-dark); }
+
+        .answer-note { background: var(--warning-light); border-left: 3px solid var(--warning); padding: 6px 10px; font-size: 9pt; font-style: italic; color: #92400e; margin: 6px 0; }
+
+        .misconception-table { width: 100%; border-collapse: collapse; font-size: 9pt; margin-top: 10px; }
+        .misconception-table th { padding: 6px 10px; text-align: left; font-weight: 600; }
+        .misconception-table th:first-child { background: var(--error-light); color: #991b1b; border: 1px solid #fca5a5; width: 40%; }
+        .misconception-table th:last-child { background: var(--success-light); color: #166534; border: 1px solid #86efac; }
+        .misconception-table td { padding: 6px 10px; border: 1px solid var(--border); vertical-align: top; color: var(--text-medium); }
+
+        .footer { margin-top: 20px; padding-top: 8px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; font-size: 8pt; color: var(--text-light); }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>PFL Academy</h1>
+        <h2>Teacher Guide: Chapter 5.4 — Consumer Credit Legislation</h2>
+    </div>
+
+    <div class="section-header">Overview</div>
+    <table class="overview-table">
+        <tr><th>Time</th><th>Materials</th><th>Prerequisites</th></tr>
+        <tr><td>45-50 Minutes</td><td>Student Activity Packet</td><td>Understanding Credit Scores (L-23)</td></tr>
+    </table>
+
+    <div class="section-header">Lesson Flow</div>
+    <div class="flow-container">
+        <div class="flow-item">
+            <div class="flow-time">5 min</div>
+            <div class="flow-content">
+                <div class="flow-title">THE CHALLENGE</div>
+                <ul>
+                    <li>Read Marcus's scenario—he faces three distinct violations.</li>
+                    <li>Ask: "What do you think Marcus can do about each problem?"</li>
+                </ul>
+            </div>
+        </div>
+        <div class="flow-item">
+            <div class="flow-time">10 min</div>
+            <div class="flow-content">
+                <div class="flow-title">CORE CONCEPTS</div>
+                <ul>
+                    <li>Review the 5 major laws using acronyms (TILA, FCRA, ECOA, FDCPA, CARD).</li>
+                    <li>Create a quick reference: "Who protects what?"</li>
+                    <li>Explain that CFPB enforces most of these laws.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="flow-item">
+            <div class="flow-time">25-30 min</div>
+            <div class="flow-content">
+                <div class="flow-title">APPLY IT</div>
+                <ul>
+                    <li><strong>Part A (15 min):</strong> Scenario analysis. Have students work in pairs to identify laws.</li>
+                    <li><strong>Part B (5 min):</strong> Rights matching. Quick individual work.</li>
+                    <li><strong>Part C (10 min):</strong> Action steps. Discuss dispute process together.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="flow-item">
+            <div class="flow-time">10 min</div>
+            <div class="flow-content">
+                <div class="flow-title">CHECK YOUR UNDERSTANDING</div>
+                <ul>
+                    <li>Review Q4 to tie back to Marcus's challenge.</li>
+                    <li>Discuss Q5 reflection—why do these protections matter?</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-header">Differentiation</div>
+    <div class="diff-grid">
+        <div class="diff-box">
+            <div class="diff-title">Support</div>
+            <ul>
+                <li>Create a law acronym cheat sheet for reference.</li>
+                <li>Provide a simplified scenario for each law.</li>
+                <li>Work through Part A as a whole class first.</li>
+            </ul>
+        </div>
+        <div class="diff-box">
+            <div class="diff-title">Extension</div>
+            <ul>
+                <li>Research recent CFPB enforcement actions.</li>
+                <li>Write a sample dispute letter for a credit report error.</li>
+                <li>Investigate how the CARD Act changed credit card practices.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="answer-key">
+        <div class="section-header">Answer Key</div>
+
+        <div class="answer-block">
+            <div class="answer-title">Part A: Law Application Scenarios</div>
+            <div class="answer-item"><strong>1. Truth in Lending Act (TILA).</strong> Requires all costs to be disclosed before signing. Javier can request refund of undisclosed fee or file complaint.</div>
+            <div class="answer-item"><strong>2. Equal Credit Opportunity Act (ECOA).</strong> Prohibits discrimination based on gender/marital status. Sophia can file complaint with CFPB; creditor must provide specific reasons for denial.</div>
+            <div class="answer-item"><strong>3. Fair Debt Collection Practices Act (FDCPA).</strong> Prohibits calls after 9 PM, harassment, and threats to contact employer. Lena can demand they stop calling and report violations.</div>
+        </div>
+
+        <div class="answer-block">
+            <div class="answer-title">Part B: Consumer Rights Matching</div>
+            <div class="answer-item"><strong>4.</strong> Fair Credit Reporting Act (FCRA)</div>
+            <div class="answer-item"><strong>5.</strong> Credit CARD Act</div>
+            <div class="answer-item"><strong>6.</strong> Truth in Lending Act (TILA)</div>
+            <div class="answer-item"><strong>7.</strong> Equal Credit Opportunity Act (ECOA)</div>
+        </div>
+
+        <div class="answer-block">
+            <div class="answer-title">Part C: Taking Action</div>
+            <div class="answer-item"><strong>8.</strong> (1) Get free credit report from annualcreditreport.com, (2) Submit dispute in writing to credit bureau with documentation, (3) Bureau must investigate within 30 days and respond.</div>
+            <div class="answer-item"><strong>9.</strong> Consumer Financial Protection Bureau (CFPB), Federal Trade Commission (FTC), state Attorney General's office.</div>
+        </div>
+
+        <div class="answer-block">
+            <div class="answer-title">Check Your Understanding</div>
+            <div class="answer-item"><strong>1.</strong> B (Truth in Lending Act)</div>
+            <div class="answer-item"><strong>2.</strong> Before FDCPA, collectors used harassment, threats, late-night calls, and deception. The law established hours (8 AM-9 PM), banned threats, and gave consumers right to demand written verification.</div>
+            <div class="answer-item"><strong>3.</strong> 30 days to investigate and respond.</div>
+            <div class="answer-item"><strong>4.</strong> Incorrect debt: FCRA (dispute rights). Late-night calls: FDCPA (prohibits calls after 9 PM). Denial without explanation: ECOA (must provide reasons).</div>
+            <div class="answer-item"><strong>5.</strong> <em>Responses should mention: preventing abuse, ensuring transparency, protecting vulnerable consumers, creating fair marketplace. Without laws, lenders could hide costs, discriminate freely, and collectors could use any tactics.</em></div>
+        </div>
+
+        <div class="section-header">Common Misconceptions</div>
+        <table class="misconception-table">
+            <tr><th>Misconception</th><th>Clarification</th></tr>
+            <tr><td>"Debt collectors can call anytime they want."</td><td>FDCPA limits calls to 8 AM-9 PM local time. You can also request in writing that they stop calling entirely.</td></tr>
+            <tr><td>"I can't do anything about errors on my credit report."</td><td>FCRA gives you the right to dispute errors. Bureaus must investigate within 30 days and correct verified errors.</td></tr>
+            <tr><td>"Lenders can deny credit for any reason."</td><td>ECOA prohibits discrimination based on protected characteristics. Lenders must provide specific, legitimate reasons for denial.</td></tr>
+        </table>
+    </div>
+
+    <div class="footer">
+        <span>© PFL Academy | pflacademy.co</span>
+        <span>Teacher Guide: Chapter 5.4</span>
+    </div>
+
+</body>
+</html>

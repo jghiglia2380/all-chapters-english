@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-58 Student Activity Packet: Supply, Demand, and Market Structures</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+        :root {
+            --primary: #6366f1;
+            --primary-light: #eef2ff;
+            --primary-dark: #4338ca;
+            --text-dark: #1e293b;
+            --text-medium: #475569;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --bg-light: #f8fafc;
+            --warning: #f59e0b;
+            --warning-light: #fef3c7;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+
+        @page {
+            size: letter;
+            margin: 0.5in;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 10pt;
+            line-height: 1.45;
+            color: var(--text-dark);
+            background: white;
+        }
+
+        .header {
+            background: var(--primary);
+            color: white;
+            padding: 14px 18px;
+            border-radius: 6px;
+            margin-bottom: 16px;
+        }
+
+        .header h1 {
+            font-size: 13pt;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .header h2 {
+            font-size: 10pt;
+            font-weight: 400;
+            margin: 3px 0 0;
+            opacity: 0.9;
+        }
+
+        .section-header {
+            background: var(--primary-light);
+            border-left: 4px solid var(--primary);
+            padding: 7px 12px;
+            font-size: 10pt;
+            font-weight: 700;
+            color: var(--primary-dark);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin: 16px 0 10px;
+        }
+
+        .challenge-box {
+            background: linear-gradient(135deg, var(--primary-light) 0%, #fff 100%);
+            border: 1px solid var(--primary);
+            border-radius: 6px;
+            padding: 12px 14px;
+            margin-bottom: 14px;
+        }
+
+        .challenge-title {
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 6px;
+            font-size: 10pt;
+        }
+
+        .challenge-box p {
+            font-size: 9.5pt;
+            color: var(--text-medium);
+            margin-bottom: 6px;
+        }
+
+        .objectives-box {
+            background: var(--bg-light);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 12px 14px;
+            margin-bottom: 14px;
+        }
+
+        .objectives-title {
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+            font-size: 10pt;
+        }
+
+        .objectives-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .objectives-list li {
+            position: relative;
+            padding-left: 22px;
+            margin-bottom: 5px;
+            font-size: 9pt;
+            color: var(--text-medium);
+        }
+
+        .objectives-list li::before {
+            content: "□";
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .terms-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 14px;
+            font-size: 9pt;
+        }
+
+        .terms-table th {
+            background: var(--primary);
+            color: white;
+            padding: 8px 10px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 9pt;
+        }
+
+        .terms-table td {
+            padding: 8px 10px;
+            border: 1px solid var(--border);
+            vertical-align: top;
+        }
+
+        .terms-table tr:nth-child(even) {
+            background: var(--bg-light);
+        }
+
+        .terms-table td:first-child {
+            font-weight: 600;
+            color: var(--primary-dark);
+            width: 30%;
+        }
+
+        .background-box {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 12px 14px;
+            margin-bottom: 14px;
+        }
+
+        .background-box h4 {
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 6px;
+            font-size: 10pt;
+        }
+
+        .background-box p {
+            font-size: 9pt;
+            color: var(--text-medium);
+            margin-bottom: 6px;
+        }
+
+        .part-header {
+            background: var(--primary);
+            color: white;
+            padding: 6px 12px;
+            font-size: 10pt;
+            font-weight: 700;
+            border-radius: 4px 4px 0 0;
+            margin-top: 14px;
+        }
+
+        .part-content {
+            border: 1px solid var(--border);
+            border-top: none;
+            border-radius: 0 0 4px 4px;
+            padding: 12px;
+            margin-bottom: 12px;
+        }
+
+        .scenario-card {
+            background: var(--bg-light);
+            border-left: 3px solid var(--primary);
+            padding: 10px 12px;
+            margin-bottom: 10px;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .scenario-title {
+            font-weight: 700;
+            color: var(--primary-dark);
+            font-size: 9pt;
+            margin-bottom: 4px;
+        }
+
+        .scenario-card p, .scenario-card li {
+            font-size: 9pt;
+            color: var(--text-medium);
+            margin-bottom: 4px;
+        }
+
+        .answer-line {
+            border-bottom: 1px solid var(--border);
+            min-height: 18px;
+            margin: 6px 0;
+        }
+
+        .answer-box {
+            border: 1px solid var(--border);
+            min-height: 50px;
+            margin: 6px 0;
+            border-radius: 4px;
+            padding: 6px;
+        }
+
+        .mc-question {
+            margin-bottom: 12px;
+        }
+
+        .mc-question p {
+            font-size: 9.5pt;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 6px;
+        }
+
+        .mc-options {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .mc-options li {
+            position: relative;
+            padding: 5px 8px 5px 28px;
+            margin-bottom: 4px;
+            background: var(--bg-light);
+            border-radius: 4px;
+            font-size: 9pt;
+            color: var(--text-medium);
+        }
+
+        .mc-options li::before {
+            content: attr(data-letter);
+            position: absolute;
+            left: 8px;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .hint-box {
+            background: var(--warning-light);
+            border-left: 3px solid var(--warning);
+            padding: 8px 12px;
+            font-size: 9pt;
+            font-style: italic;
+            color: #92400e;
+            margin: 10px 0;
+        }
+
+        .calc-box {
+            font-family: 'Courier New', monospace;
+            background: var(--bg-light);
+            padding: 10px;
+            border-radius: 4px;
+            margin: 8px 0;
+            font-size: 9pt;
+            border: 1px solid var(--border);
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+            font-size: 9pt;
+        }
+
+        .data-table th, .data-table td {
+            border: 1px solid var(--border);
+            padding: 6px 10px;
+            text-align: center;
+        }
+
+        .data-table th {
+            background: var(--primary-light);
+            color: var(--primary-dark);
+            font-weight: 600;
+        }
+
+        .data-table tr:nth-child(even) {
+            background: var(--bg-light);
+        }
+
+        .footer {
+            margin-top: 20px;
+            padding-top: 8px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            font-size: 8pt;
+            color: var(--text-light);
+        }
+
+        .page-break {
+            page-break-before: always;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <div class="header">
+        <h1>PFL Academy</h1>
+        <h2>Chapter 58: Supply, Demand, and Market Structures — Student Activity Packet</h2>
+    </div>
+
+    <!-- CHALLENGE -->
+    <div class="challenge-box">
+        <div class="challenge-title">The Challenge: Why Do Prices Vary So Much?</div>
+        <p>Why does a cup of coffee cost $3 at one shop but $6 at another? Why do airline tickets skyrocket for Thanksgiving travel? Why is your local cable internet so expensive when there's no competitor?</p>
+        <p>The answers lie in understanding <strong>supply and demand dynamics</strong> and <strong>market structures</strong>. Today's market-savvy consumers save thousands annually by recognizing when prices are likely to fall, which markets offer negotiating power, and when to act quickly before prices rise.</p>
+        <p><strong>Your Goal:</strong> Master these concepts to make smarter financial decisions—from timing major purchases to recognizing fair prices in different types of markets.</p>
+    </div>
+
+    <!-- OBJECTIVES -->
+    <div class="objectives-box">
+        <div class="objectives-title">Learning Objectives</div>
+        <ul class="objectives-list">
+            <li>Analyze how supply and demand interact to determine equilibrium prices and quantities</li>
+            <li>Calculate consumer and producer surplus in various market scenarios</li>
+            <li>Compare how competition levels impact prices, quality, and consumer welfare</li>
+            <li>Evaluate how different market structures affect consumer choices and pricing</li>
+            <li>Apply supply and demand principles to make informed purchasing decisions</li>
+        </ul>
+    </div>
+
+    <!-- TERMS TABLE -->
+    <div class="section-header">Core Concepts</div>
+    <table class="terms-table">
+        <tr>
+            <th>Term</th>
+            <th>Definition</th>
+        </tr>
+        <tr>
+            <td>Demand</td>
+            <td>Quantity consumers are willing and able to purchase at various prices; generally increases as prices decrease</td>
+        </tr>
+        <tr>
+            <td>Supply</td>
+            <td>Quantity producers are willing and able to offer at various prices; generally increases as prices increase</td>
+        </tr>
+        <tr>
+            <td>Equilibrium Price</td>
+            <td>Price where quantity demanded equals quantity supplied; the market "clears" with no shortage or surplus</td>
+        </tr>
+        <tr>
+            <td>Consumer Surplus</td>
+            <td>Difference between what you'd pay vs. what you actually pay; represents the "deal" you get</td>
+        </tr>
+        <tr>
+            <td>Perfect Competition</td>
+            <td>Many buyers/sellers, identical products, no barriers to entry; prices driven to lowest level</td>
+        </tr>
+        <tr>
+            <td>Monopoly</td>
+            <td>Single seller controls market; typically higher prices and reduced consumer choice</td>
+        </tr>
+        <tr>
+            <td>Oligopoly</td>
+            <td>Few large firms dominate; limited competition often leads to similar pricing across competitors</td>
+        </tr>
+        <tr>
+            <td>Elasticity</td>
+            <td>How much quantity demanded changes when price changes; affects price volatility</td>
+        </tr>
+    </table>
+
+    <!-- BACKGROUND -->
+    <div class="background-box">
+        <h4>Why Market Understanding Matters</h4>
+        <p><strong>Timing purchases strategically</strong> can save hundreds to thousands of dollars. Knowing when demand drops (apartment rentals in winter) or supply increases (end-of-year car inventory) helps you buy at optimal times.</p>
+        <p><strong>Recognizing market structure</strong> tells you whether comparison shopping will help. In competitive markets, prices vary significantly—shop around! In monopolies, your energy is better spent finding alternatives or negotiating features.</p>
+        <p><strong>Understanding elasticity</strong> helps you budget. Products with inelastic demand (gasoline, rent) experience large price swings—build larger cushions for these expenses.</p>
+    </div>
+
+    <!-- PART A -->
+    <div class="part-header">Part A: Supply and Demand Shifts (15 minutes)</div>
+    <div class="part-content">
+
+        <p style="font-size: 9pt; margin-bottom: 10px;"><strong>Instructions:</strong> For each scenario, identify whether supply or demand shifts, which direction it shifts, and predict the effect on equilibrium price and quantity.</p>
+
+        <div class="scenario-card">
+            <div class="scenario-title">Scenario 1: Smartphone Market</div>
+            <p>A popular tech reviewer gives a new smartphone an excellent rating, going viral on social media.</p>
+            <p><strong>Which curve shifts?</strong> □ Supply  □ Demand</p>
+            <p><strong>Direction of shift:</strong> □ Left (decrease)  □ Right (increase)</p>
+            <p><strong>Effect on equilibrium price:</strong> □ Increases  □ Decreases  □ No change</p>
+            <p><strong>Effect on quantity sold:</strong> □ Increases  □ Decreases  □ No change</p>
+            <p><strong>Consumer purchasing strategy:</strong></p>
+            <div class="answer-line"></div>
+        </div>
+
+        <div class="scenario-card">
+            <div class="scenario-title">Scenario 2: Coffee Market</div>
+            <p>A drought in Brazil (major coffee producer) destroys 30% of the coffee bean crop.</p>
+            <p><strong>Which curve shifts?</strong> □ Supply  □ Demand</p>
+            <p><strong>Direction of shift:</strong> □ Left (decrease)  □ Right (increase)</p>
+            <p><strong>Effect on equilibrium price:</strong> □ Increases  □ Decreases  □ No change</p>
+            <p><strong>Effect on quantity sold:</strong> □ Increases  □ Decreases  □ No change</p>
+            <p><strong>If you're a regular coffee buyer, what should you expect?</strong></p>
+            <div class="answer-line"></div>
+        </div>
+
+        <div class="scenario-card">
+            <div class="scenario-title">Scenario 3: Television Market</div>
+            <p>New manufacturing technology cuts the cost of producing 4K TVs by 40%.</p>
+            <p><strong>Which curve shifts?</strong> □ Supply  □ Demand</p>
+            <p><strong>Direction of shift:</strong> □ Left (decrease)  □ Right (increase)</p>
+            <p><strong>Effect on equilibrium price:</strong> □ Increases  □ Decreases  □ No change</p>
+            <p><strong>Effect on quantity sold:</strong> □ Increases  □ Decreases  □ No change</p>
+            <p><strong>Should you wait to buy a TV or buy now?</strong></p>
+            <div class="answer-line"></div>
+        </div>
+
+        <div class="scenario-card">
+            <div class="scenario-title">Scenario 4: Housing Rental Market</div>
+            <p>A major employer announces they're moving their headquarters (5,000 jobs) out of the city.</p>
+            <p><strong>Which curve shifts?</strong> □ Supply  □ Demand</p>
+            <p><strong>Direction of shift:</strong> □ Left (decrease)  □ Right (increase)</p>
+            <p><strong>Effect on equilibrium rent prices:</strong> □ Increases  □ Decreases  □ No change</p>
+            <p><strong>If you're looking for an apartment, is this good or bad news? Why?</strong></p>
+            <div class="answer-line"></div>
+        </div>
+
+        <div class="hint-box">
+            <strong>Strategy Tip:</strong> When supply increases or demand decreases → prices fall (good time to buy). When supply decreases or demand increases → prices rise (buy early or wait for conditions to change).
+        </div>
+    </div>
+
+    <!-- PAGE BREAK -->
+    <div class="page-break"></div>
+
+    <!-- PART B -->
+    <div class="part-header">Part B: Market Structure Analysis (15 minutes)</div>
+    <div class="part-content">
+
+        <p style="font-size: 9pt; margin-bottom: 10px;"><strong>Instructions:</strong> Analyze how the same product (basic internet service) would be priced and what consumer options exist under different market structures.</p>
+
+        <div class="scenario-card">
+            <div class="scenario-title">The Setup</div>
+            <p>Imagine basic 100 Mbps internet service that costs $20/month to provide. Let's see how different market structures affect what you pay and your options.</p>
+        </div>
+
+        <table class="data-table">
+            <tr>
+                <th>Market Structure</th>
+                <th>Number of Providers</th>
+                <th>Likely Monthly Price</th>
+                <th>Consumer Surplus</th>
+            </tr>
+            <tr>
+                <td><strong>Perfect Competition</strong><br>(15 providers)</td>
+                <td>15</td>
+                <td>$25-30<br>(close to cost + small profit)</td>
+                <td>HIGH<br>Prices near cost</td>
+            </tr>
+            <tr>
+                <td><strong>Oligopoly</strong><br>(3 providers)</td>
+                <td>3</td>
+                <td>$50-70<br>(limited competition)</td>
+                <td>MEDIUM<br>Some excess profit</td>
+            </tr>
+            <tr>
+                <td><strong>Monopoly</strong><br>(1 provider)</td>
+                <td>1</td>
+                <td>$80-100<br>(no competitive pressure)</td>
+                <td>LOW<br>Maximum extraction</td>
+            </tr>
+        </table>
+
+        <p style="font-size: 9pt; font-weight: 600; margin: 12px 0 8px;">Calculate the annual cost difference:</p>
+        <div class="calc-box">
+Perfect Competition annual cost: $27 × 12 = $324
+Monopoly annual cost: $89 × 12 = $1,068
+Annual extra cost under monopoly: $1,068 - $324 = $_______
+        </div>
+
+        <p style="font-size: 9pt; font-weight: 600; margin: 12px 0 8px;">Identify the market structure for these real-world examples:</p>
+
+        <table class="data-table">
+            <tr>
+                <th>Product/Service</th>
+                <th>Market Structure</th>
+                <th>Why?</th>
+            </tr>
+            <tr>
+                <td>Your local water utility</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Wireless phone service</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Gasoline stations</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Online retail (Amazon, etc.)</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Airlines serving your city</td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+
+        <p style="font-size: 9pt; font-weight: 600; margin: 12px 0 8px;">Strategy Question:</p>
+        <p style="font-size: 9pt; color: var(--text-medium);">In which market structure should you spend the most time comparison shopping? Why?</p>
+        <div class="answer-box"></div>
+
+        <p style="font-size: 9pt; color: var(--text-medium);">In a monopoly market, what strategies can you use to reduce costs?</p>
+        <div class="answer-box"></div>
+    </div>
+
+    <!-- PAGE BREAK -->
+    <div class="page-break"></div>
+
+    <!-- PART C -->
+    <div class="part-header">Part C: Strategic Purchase Planning (15 minutes)</div>
+    <div class="part-content">
+
+        <p style="font-size: 9pt; margin-bottom: 10px;"><strong>Instructions:</strong> Apply supply-demand and market structure analysis to plan a real purchase.</p>
+
+        <div class="scenario-card">
+            <div class="scenario-title">Your Planned Purchase</div>
+            <p><strong>Product/service:</strong> <span class="answer-line" style="display: inline-block; width: 200px;"></span></p>
+            <p><strong>Approximate budget:</strong> $ <span class="answer-line" style="display: inline-block; width: 100px;"></span></p>
+            <p><strong>Timeline (when you need it):</strong> <span class="answer-line" style="display: inline-block; width: 150px;"></span></p>
+        </div>
+
+        <p style="font-size: 9pt; font-weight: 600; margin: 12px 0 8px;">Step 1: Market Structure Analysis</p>
+        <table class="data-table">
+            <tr>
+                <td><strong>Number of sellers</strong></td>
+                <td style="text-align: left;"></td>
+            </tr>
+            <tr>
+                <td><strong>Market structure type</strong></td>
+                <td style="text-align: left;">□ Competitive  □ Oligopoly  □ Monopoly</td>
+            </tr>
+            <tr>
+                <td><strong>Product differentiation</strong></td>
+                <td style="text-align: left;">□ Identical  □ Somewhat different  □ Very different</td>
+            </tr>
+            <tr>
+                <td><strong>Your bargaining power</strong></td>
+                <td style="text-align: left;">□ High  □ Medium  □ Low</td>
+            </tr>
+        </table>
+
+        <p style="font-size: 9pt; font-weight: 600; margin: 12px 0 8px;">Step 2: Supply-Demand Pattern Analysis</p>
+        <table class="data-table">
+            <tr>
+                <td><strong>When is demand typically highest?</strong></td>
+                <td style="text-align: left;"></td>
+            </tr>
+            <tr>
+                <td><strong>When is demand typically lowest?</strong></td>
+                <td style="text-align: left;"></td>
+            </tr>
+            <tr>
+                <td><strong>Are there supply variations (new models, seasonal)?</strong></td>
+                <td style="text-align: left;"></td>
+            </tr>
+            <tr>
+                <td><strong>Current price trend (rising/falling/stable)?</strong></td>
+                <td style="text-align: left;"></td>
+            </tr>
+        </table>
+
+        <p style="font-size: 9pt; font-weight: 600; margin: 12px 0 8px;">Step 3: Strategic Decision</p>
+        <p style="font-size: 9pt; color: var(--text-medium);"><strong>Optimal timing for purchase:</strong></p>
+        <div class="answer-line"></div>
+        <p style="font-size: 9pt; color: var(--text-medium);"><strong>Reasoning based on supply-demand analysis:</strong></p>
+        <div class="answer-box"></div>
+        <p style="font-size: 9pt; color: var(--text-medium);"><strong>Negotiation leverage points:</strong></p>
+        <div class="answer-box"></div>
+        <p style="font-size: 9pt; color: var(--text-medium);"><strong>Expected savings from strategic approach:</strong> $_______</p>
+
+        <div class="hint-box">
+            <strong>Example:</strong> Used car market is an oligopoly (few large dealer chains + many small dealers). Demand peaks June-August, lowest January-February. End-of-month timing increases dealer motivation. Expected savings: $800-1,200 through timing and negotiation.
+        </div>
+    </div>
+
+    <!-- CHECK YOUR UNDERSTANDING -->
+    <div class="section-header">Check Your Understanding</div>
+
+    <div class="mc-question">
+        <p>1. If a frost destroys a significant portion of Florida's orange crop, what happens to orange juice prices?</p>
+        <ul class="mc-options">
+            <li data-letter="A">Prices decrease because demand falls</li>
+            <li data-letter="B">Prices increase because supply decreases</li>
+            <li data-letter="C">Prices stay the same because equilibrium is maintained</li>
+            <li data-letter="D">Prices decrease because consumers switch to substitutes</li>
+        </ul>
+    </div>
+
+    <div class="mc-question">
+        <p>2. Which market structure gives consumers the MOST surplus (best deals)?</p>
+        <ul class="mc-options">
+            <li data-letter="A">Monopoly</li>
+            <li data-letter="B">Oligopoly</li>
+            <li data-letter="C">Perfect competition</li>
+            <li data-letter="D">All market structures provide equal surplus</li>
+        </ul>
+    </div>
+
+    <div class="mc-question">
+        <p>3. Gasoline has inelastic demand. This means:</p>
+        <ul class="mc-options">
+            <li data-letter="A">People will stop buying gas when prices rise</li>
+            <li data-letter="B">Small supply disruptions cause large price swings</li>
+            <li data-letter="C">Gas stations have no pricing power</li>
+            <li data-letter="D">Prices stay constant regardless of supply changes</li>
+        </ul>
+    </div>
+
+    <div class="mc-question">
+        <p>4. In an oligopoly (like wireless carriers), why do competitors often have similar prices?</p>
+        <ul class="mc-options">
+            <li data-letter="A">Government regulations require identical pricing</li>
+            <li data-letter="B">Each firm watches competitors and avoids price wars that hurt all</li>
+            <li data-letter="C">Production costs are identical for all firms</li>
+            <li data-letter="D">Consumers demand identical pricing</li>
+        </ul>
+    </div>
+
+    <div class="mc-question">
+        <p>5. Short Answer: You're planning to rent an apartment in a college town. Using supply-demand analysis, when would be the WORST time to search, and when would be the BEST time? Explain your reasoning.</p>
+        <div class="answer-box" style="min-height: 60px;"></div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        <span>© PFL Academy | pflacademy.co</span>
+        <span>Chapter 58: Supply, Demand, and Market Structures</span>
+    </div>
+
+</body>
+</html>
