@@ -14,6 +14,9 @@
         .header h1 { font-size: 13pt; font-weight: 700; margin: 0; }
         .header h2 { font-size: 10pt; font-weight: 400; margin: 3px 0 0; opacity: 0.9; }
         .section-header { background: var(--primary-light); border-left: 4px solid var(--primary); padding: 7px 12px; font-size: 10pt; font-weight: 700; color: var(--primary-dark); text-transform: uppercase; letter-spacing: 0.5px; margin: 16px 0 10px; }
+        .state-info-box { background: #e0f2fe; border: 1px solid #7dd3fc; border-radius: 6px; padding: 12px 16px; margin-bottom: 14px; font-size: 10pt; }
+        .state-info-box h4 { color: #0369a1; font-weight: 700; margin-bottom: 6px; }
+        .state-info-box p { margin: 0; color: var(--text-medium); }
         .overview-table { width: 100%; border-collapse: collapse; margin-bottom: 14px; }
         .overview-table th { background: var(--bg-light); color: var(--text-light); font-size: 8pt; text-transform: uppercase; letter-spacing: 0.5px; text-align: center; padding: 6px 10px; border: 1px solid var(--border); width: 33%; }
         .overview-table td { text-align: center; padding: 10px; border: 1px solid var(--border); font-weight: 600; color: var(--text-dark); font-size: 10pt; }
@@ -37,6 +40,7 @@
         .answer-item strong { color: var(--primary-dark); }
         .calc-display { font-family: 'Courier New', monospace; background: var(--bg-light); padding: 8px 10px; border-radius: 4px; margin: 6px 0; font-size: 8.5pt; line-height: 1.5; white-space: pre-line; }
         .answer-note { background: var(--warning-light); border-left: 3px solid var(--warning); padding: 6px 10px; font-size: 9pt; font-style: italic; color: #92400e; margin: 6px 0; }
+        .variable-note { background: #dbeafe; border-left: 3px solid #3b82f6; padding: 6px 10px; font-size: 9pt; color: #1e40af; margin: 6px 0; }
         .misconception-table { width: 100%; border-collapse: collapse; font-size: 9pt; margin-top: 10px; }
         .misconception-table th { padding: 6px 10px; text-align: left; font-weight: 600; }
         .misconception-table th:first-child { background: var(--error-light); color: #991b1b; border: 1px solid #fca5a5; width: 40%; }
@@ -48,7 +52,12 @@
 <body>
     <div class="header">
         <h1>PFL Academy</h1>
-        <h2>Teacher Guide: Chapter 2.1 — Understanding Federal and State Taxes</h2>
+        <h2>Teacher Guide: Chapter 2.1 — Understanding Federal and State Taxes ({{STATE_NAME}} Edition)</h2>
+    </div>
+
+    <div class="state-info-box">
+        <h4>State-Specific Data for {{STATE_NAME}} ({{STATE_CODE}})</h4>
+        <p>This guide contains answers calculated using {{STATE_NAME}}'s tax rates: Income Tax {{STATE_INCOME_TAX_RATE}}%, Sales Tax {{STATE_SALES_TAX}}%, Property Tax {{STATE_PROPERTY_TAX_AVG}}%.</p>
     </div>
 
     <div class="section-header">Overview</div>
@@ -64,8 +73,8 @@
             <div class="flow-content">
                 <div class="flow-title">THE CHALLENGE</div>
                 <ul>
-                    <li>Read Mia and Liam's comparison scenario.</li>
-                    <li>Discussion: "Why might someone choose to live in a state with income tax despite the extra cost?"</li>
+                    <li>Read the comparison scenario featuring {{STATE_NAME}}'s {{STATE_INCOME_TAX_RATE}}% income tax rate vs. the national average.</li>
+                    <li>Discussion: "How does {{STATE_NAME}}'s tax structure compare to states you might consider living in?"</li>
                 </ul>
             </div>
         </div>
@@ -75,7 +84,7 @@
                 <div class="flow-title">CORE CONCEPTS</div>
                 <ul>
                     <li>Review 5 key terms. Draw progressive tax bracket visual on board.</li>
-                    <li>List the 7 states with no income tax; discuss how they fund services.</li>
+                    <li>List the 7 states with no income tax; discuss how they fund services differently than {{STATE_NAME}}.</li>
                     <li>Clarify FICA: 6.2% Social Security + 1.45% Medicare = 7.65%.</li>
                 </ul>
             </div>
@@ -85,8 +94,8 @@
             <div class="flow-content">
                 <div class="flow-title">APPLY IT</div>
                 <ul>
-                    <li><strong>Part A (10 min):</strong> Tax type classification. Discuss why sales tax is regressive.</li>
-                    <li><strong>Part B (10 min):</strong> State comparison calculations. Check addition accuracy.</li>
+                    <li><strong>Part A (10 min):</strong> Tax type classification. Use {{STATE_NAME}}'s {{STATE_SALES_TAX}}% sales tax as the example.</li>
+                    <li><strong>Part B (10 min):</strong> {{STATE_NAME}} vs. national average calculations. Check addition accuracy.</li>
                     <li><strong>Part C (5-10 min):</strong> Personal application. Encourage thinking beyond just taxes.</li>
                 </ul>
             </div>
@@ -116,8 +125,8 @@
         <div class="diff-box">
             <div class="diff-title">Extension</div>
             <ul>
-                <li>Research actual tax rates in states where students might want to live.</li>
-                <li>Calculate total tax burden including sales tax on typical monthly spending.</li>
+                <li>Research actual tax rates in neighboring states to compare with {{STATE_NAME}}.</li>
+                <li>Calculate total tax burden including {{STATE_NAME}}'s {{STATE_SALES_TAX}}% sales tax on typical monthly spending.</li>
                 <li>Analyze how different careers (high vs. low income) affect state choice calculus.</li>
             </ul>
         </div>
@@ -126,23 +135,31 @@
     <div class="answer-key">
         <div class="section-header">Answer Key</div>
 
+        <div class="variable-note"><strong>Note:</strong> Calculations below use {{STATE_NAME}}'s tax rate of {{STATE_INCOME_TAX_RATE}}%. National average used for comparison is 4.6%.</div>
+
         <div class="answer-block">
             <div class="answer-title">Part A: Tax Type Classification</div>
             <div class="answer-item"><strong>1. Federal Income Tax:</strong> PROGRESSIVE. Higher earners pay higher percentages due to increasing tax brackets.</div>
-            <div class="answer-item"><strong>2. Sales Tax:</strong> REGRESSIVE. Everyone pays the same rate, but lower-income people spend a higher percentage of their income on taxable goods.</div>
+            <div class="answer-item"><strong>2. Sales Tax ({{STATE_SALES_TAX}}% in {{STATE_NAME}}):</strong> REGRESSIVE. Everyone pays the same rate, but lower-income people spend a higher percentage of their income on taxable goods.</div>
             <div class="answer-item"><strong>3. Social Security Tax:</strong> REGRESSIVE (technically). While proportional up to the wage cap (~$160,000), income above the cap isn't taxed, so high earners pay a lower overall percentage.</div>
         </div>
 
         <div class="answer-block">
-            <div class="answer-title">Part B: State Tax Comparison</div>
-            <div class="calc-display">California:
-$6,000 + $2,400 + $4,590 = $12,990 total taxes
-Take-home: $60,000 - $12,990 = $47,010
+            <div class="answer-title">Part B: {{STATE_NAME}} vs. National Average</div>
+            <div class="calc-display">{{STATE_NAME}}:
+Federal: $6,000
+State: $60,000 × {{STATE_INCOME_TAX_RATE}}% = ${{CALCULATED_STATE_TAX_60K}}
+FICA: $4,590
+Total Taxes: ${{CALCULATED_TOTAL_TAX_60K}}
+Take-home: $60,000 - ${{CALCULATED_TOTAL_TAX_60K}} = ${{CALCULATED_TAKE_HOME_60K}}
 
-Texas:
-$6,000 + $0 + $4,590 = $10,590 total taxes
-Take-home: $60,000 - $10,590 = $49,410</div>
-            <div class="answer-item"><strong>4.</strong> Texas resident has <strong>$2,400 more</strong> take-home pay. This could be offset by higher property taxes (Texas has ~1.8% vs California's ~0.77%), higher sales tax in some Texas cities, or lack of certain state services.</div>
+National Average:
+Federal: $6,000
+State: $60,000 × 4.6% = $2,760
+FICA: $4,590
+Total Taxes: $13,350
+Take-home: $60,000 - $13,350 = $46,650</div>
+            <div class="answer-item"><strong>4.</strong> {{STATE_NAME}} resident has <strong>${{CALCULATED_DIFFERENCE_FROM_NATIONAL}}</strong> difference from national average. This could be offset by {{STATE_NAME}}'s property tax rate of {{STATE_PROPERTY_TAX_AVG}}% (vs. national average ~1.1%), sales tax differences, or variations in state services and cost of living.</div>
         </div>
 
         <div class="answer-block">
@@ -154,22 +171,22 @@ $11,000 × 10% = $1,100
 $33,725 × 12% = $4,047
 $5,275 × 22% = $1,160.50
 Total: $6,307.50</div>
-            <div class="answer-item"><strong>4.</strong> If Mia owns an expensive home, Texas's higher property taxes (1.8% vs 0.77%) could eliminate or exceed the income tax savings. Also if she relies on public services more available in California.</div>
-            <div class="answer-item"><strong>5.</strong> <em>Should consider: total tax burden (not just income tax), cost of living, job opportunities, quality of public services, climate/lifestyle preferences.</em></div>
+            <div class="answer-item"><strong>4.</strong> Someone who rents (doesn't own property) or owns a modest home would benefit from higher income tax / lower property tax states. Homeowners with expensive properties benefit from lower property taxes even if income tax is higher.</div>
+            <div class="answer-item"><strong>5.</strong> <em>Should consider: total tax burden (not just income tax), cost of living, job opportunities, quality of public services, climate/lifestyle preferences. {{STATE_NAME}}'s overall tax structure should be evaluated against career opportunities available in the state.</em></div>
         </div>
 
         <div class="section-header">Common Misconceptions</div>
         <table class="misconception-table">
             <tr><th>Misconception</th><th>Clarification</th></tr>
             <tr><td>"Moving to a higher tax bracket means ALL my income is taxed at that rate."</td><td>Only the income WITHIN each bracket is taxed at that rate. If you earn $50,000, only $5,275 is taxed at 22%—not all $50,000.</td></tr>
-            <tr><td>"States with no income tax are always cheaper."</td><td>No-income-tax states often have higher property taxes, sales taxes, or fees. Total tax burden depends on individual circumstances.</td></tr>
+            <tr><td>"States with no income tax are always cheaper than {{STATE_NAME}}."</td><td>No-income-tax states often have higher property taxes, sales taxes, or fees. Total tax burden depends on individual circumstances. Compare {{STATE_NAME}}'s {{STATE_PROPERTY_TAX_AVG}}% property tax to Texas's ~1.8%.</td></tr>
             <tr><td>"FICA taxes are optional."</td><td>FICA (Social Security + Medicare) is mandatory for all wage earners. It funds programs you'll likely use in retirement.</td></tr>
         </table>
     </div>
 
     <div class="footer">
         <span>© PFL Academy | pflacademy.co</span>
-        <span>Teacher Guide: Chapter 2.1</span>
+        <span>Teacher Guide: Chapter 2.1 — {{STATE_NAME}} Edition</span>
     </div>
 </body>
 </html>

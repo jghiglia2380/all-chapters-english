@@ -273,6 +273,11 @@
             color: var(--text-light);
         }
 
+        .state-info-box { background: #e0f2fe; border: 1px solid #7dd3fc; border-radius: 6px; padding: 12px 16px; margin-bottom: 14px; font-size: 10pt; }
+        .state-info-box h4 { color: #0369a1; font-weight: 700; margin-bottom: 6px; }
+        .state-info-box p { margin: 0; color: var(--text-medium); }
+        .variable-note { background: #dbeafe; border-left: 3px solid #3b82f6; padding: 6px 10px; font-size: 9pt; color: #1e40af; margin: 6px 0; }
+
     </style>
 </head>
 <body>
@@ -280,7 +285,12 @@
     <!-- HEADER -->
     <div class="header">
         <h1>PFL Academy</h1>
-        <h2>Teacher Guide: Chapter 57 — Loan Application Process and Requirements</h2>
+        <h2>Teacher Guide: Chapter 57 — Loan Application Process and Requirements ({{STATE_NAME}} Edition)</h2>
+    </div>
+
+    <div class="state-info-box">
+        <h4>State-Specific Data for {{STATE_NAME}}</h4>
+        <p>This guide uses {{STATE_NAME}}'s current loan rates: Average Mortgage Rate {{STATE_AVG_MORTGAGE_RATE}}%, Auto Loan Rate (New) {{STATE_AVG_AUTO_LOAN_RATE_NEW}}%, Auto Loan Rate (Used) {{STATE_AVG_AUTO_LOAN_RATE_USED}}%.</p>
     </div>
 
     <!-- OVERVIEW -->
@@ -377,6 +387,8 @@
     <div class="answer-key">
         <div class="section-header">Answer Key</div>
 
+        <div class="variable-note"><strong>Note:</strong> This guide references {{STATE_NAME}}'s loan rates: Mortgage {{STATE_AVG_MORTGAGE_RATE}}%, Auto (New) {{STATE_AVG_AUTO_LOAN_RATE_NEW}}%, Auto (Used) {{STATE_AVG_AUTO_LOAN_RATE_USED}}%. Use these rates for state-specific loan comparison discussions.</div>
+
         <div class="answer-block">
             <div class="answer-title">Part A: DTI Calculations</div>
             <div class="calc-display">Jordan:
@@ -452,7 +464,7 @@ This DTI is FAR too high—loan would likely be denied.</div>
     <!-- FOOTER -->
     <div class="footer">
         <span>© PFL Academy | pflacademy.co</span>
-        <span>Teacher Guide: Chapter 57</span>
+        <span>Teacher Guide: Chapter 57 — {{STATE_NAME}} Edition</span>
     </div>
 
 </body>

@@ -71,6 +71,12 @@
             opacity: 0.9;
         }
 
+        .state-data-box { background: #e0f2fe; border: 1px solid #7dd3fc; border-radius: 6px; padding: 12px 16px; margin-bottom: 18px; font-size: 10pt; }
+        .state-data-box h4 { color: #0369a1; font-weight: 700; margin-bottom: 8px; }
+        .state-data-box .data-row { display: flex; justify-content: space-between; margin-bottom: 4px; }
+        .state-data-box .data-label { color: var(--text-medium); }
+        .state-data-box .data-value { font-weight: 600; color: var(--text-dark); }
+
         .section-header {
             font-size: 11pt;
             font-weight: 700;
@@ -368,7 +374,7 @@
             <h2>Chapter 1.3: Income and Taxes</h2>
         </div>
         <div class="header-right">
-            Student Activity Packet
+            Student Activity Packet<br>{{STATE_NAME}} Edition
         </div>
     </div>
 
@@ -385,6 +391,14 @@
             <li>Identify mandatory and voluntary deductions from a paycheck.</li>
             <li>Calculate take-home pay after various deductions.</li>
         </ul>
+    </div>
+
+    <div class="state-data-box">
+        <h4>Your State Data: {{STATE_NAME}} ({{STATE_CODE}})</h4>
+        <div class="data-row"><span class="data-label">State Income Tax Rate:</span><span class="data-value">{{STATE_INCOME_TAX_RATE}}%</span></div>
+        <div class="data-row"><span class="data-label">State Disability Insurance (SDI):</span><span class="data-value">{{STATE_SDI_RATE}}%</span></div>
+        <div class="data-row"><span class="data-label">Local Income Tax:</span><span class="data-value">{{STATE_LOCAL_INCOME_TAX}}%</span></div>
+        <div class="data-row"><span class="data-label">Tax Filing Portal:</span><span class="data-value">{{STATE_TAX_FILING_PORTAL_URL}}</span></div>
     </div>
 
     <div class="section-header">Core Concepts</div>
@@ -488,8 +502,8 @@
             <td></td>
         </tr>
         <tr>
-            <td style="text-align: left;">State Income Tax</td>
-            <td>5%</td>
+            <td style="text-align: left;">State Income Tax ({{STATE_NAME}})</td>
+            <td>{{STATE_INCOME_TAX_RATE}}%</td>
             <td></td>
         </tr>
         <tr>
@@ -604,7 +618,7 @@
 
     <div class="footer">
         <span>© PFL Academy | pflacademy.co</span>
-        <span>Chapter 1.3: Income and Taxes</span>
+        <span>Chapter 1.3: Income and Taxes — {{STATE_NAME}} Edition</span>
     </div>
 
 </body>

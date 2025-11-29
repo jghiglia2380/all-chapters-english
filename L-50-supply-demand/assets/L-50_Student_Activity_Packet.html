@@ -41,6 +41,12 @@
         .objectives-box ul { margin: 0; padding-left: 20px; }
         .objectives-box li { margin-bottom: 3px; color: var(--text-medium); }
 
+        .state-data-box { background: #e0f2fe; border: 1px solid #7dd3fc; border-radius: 6px; padding: 12px 16px; margin-bottom: 18px; font-size: 10pt; }
+        .state-data-box h4 { color: #0369a1; font-weight: 700; margin-bottom: 8px; }
+        .state-data-box .data-row { display: flex; justify-content: space-between; margin-bottom: 4px; }
+        .state-data-box .data-label { color: var(--text-medium); }
+        .state-data-box .data-value { font-weight: 600; color: var(--text-dark); }
+
         .terms-table { width: 100%; border-collapse: collapse; margin-bottom: 14px; font-size: 10pt; }
         .terms-table th { background: var(--bg-light); text-align: left; padding: 8px 10px; border: 1px solid var(--border); font-weight: 600; color: var(--text-medium); }
         .terms-table td { padding: 8px 10px; border: 1px solid var(--border); vertical-align: top; }
@@ -86,14 +92,14 @@
             <h2>Chapter 14.3: Supply and Demand in Personal Finance</h2>
         </div>
         <div class="header-right">
-            Student Activity Packet
+            Student Activity Packet<br>{{STATE_NAME}} Edition
         </div>
     </div>
 
     <!-- THE CHALLENGE -->
     <div class="section-header">The Challenge</div>
     <div class="challenge-box">
-        <p>Why does gas cost more in summer than winter? Why does rent cost more in some cities than others? Why did hand sanitizer prices spike during the pandemic? Why are airline tickets cheaper on Tuesdays? Why do roses cost triple on Valentine's Day? The answer to ALL of these questions is the same: Supply and Demand. Understanding these market forces will help you time purchases strategically, choose careers with strong demand, invest in appreciating assets, and avoid overpaying for goods and services.</p>
+        <p>Why does gas cost more in summer than winter? Why does rent cost more in some cities than others (median rent in {{STATE_NAME}} is ${{STATE_MEDIAN_RENT}}/month compared to the national average of $1,400)? Why did hand sanitizer prices spike during the pandemic? Why are airline tickets cheaper on Tuesdays? Why do roses cost triple on Valentine's Day? The answer to ALL of these questions is the same: Supply and Demand. Understanding these market forces will help you time purchases strategically, choose careers with strong demand, invest in appreciating assets, and avoid overpaying for goods and services.</p>
         <p class="framing-question">How can understanding supply and demand help you make smarter financial decisions?</p>
     </div>
 
@@ -108,6 +114,17 @@
         </ul>
     </div>
 
+    <!-- STATE DATA BOX -->
+    <div class="state-data-box">
+        <h4>Your State Economic Data: {{STATE_NAME}}</h4>
+        <div class="data-row"><span class="data-label">Median Home Price:</span><span class="data-value">${{STATE_MEDIAN_HOME_PRICE}}</span></div>
+        <div class="data-row"><span class="data-label">Median Rent:</span><span class="data-value">${{STATE_MEDIAN_RENT}}/mo</span></div>
+        <div class="data-row"><span class="data-label">Unemployment Rate:</span><span class="data-value">{{STATE_UNEMPLOYMENT_RATE}}% (US: {{US_UNEMPLOYMENT_RATE}}%)</span></div>
+        <div class="data-row"><span class="data-label">Median Household Income:</span><span class="data-value">${{STATE_MEDIAN_INCOME}}</span></div>
+        <div class="data-row"><span class="data-label">Population Growth:</span><span class="data-value">{{STATE_POPULATION_GROWTH}}</span></div>
+        <div class="data-row"><span class="data-label">Job Growth:</span><span class="data-value">{{STATE_JOB_GROWTH}}</span></div>
+    </div>
+
     <!-- CORE CONCEPTS -->
     <div class="section-header">Core Concepts</div>
 
@@ -118,11 +135,11 @@
         </tr>
         <tr>
             <td>Law of Demand</td>
-            <td>As price increases, quantity demanded decreases (and vice versa), all else being equal.</td>
+            <td>As price increases, quantity demanded decreases (and vice versa), all else being equal. For example, when {{STATE_NAME}}'s housing prices rise, fewer buyers can afford homes.</td>
         </tr>
         <tr>
             <td>Law of Supply</td>
-            <td>As price increases, quantity supplied increases (and vice versa), all else being equal.</td>
+            <td>As price increases, quantity supplied increases (and vice versa), all else being equal. Higher home prices in {{STATE_NAME}} encourage more construction.</td>
         </tr>
         <tr>
             <td>Equilibrium</td>
@@ -130,7 +147,7 @@
         </tr>
         <tr>
             <td>Demand Shift</td>
-            <td>Movement of the entire demand curve due to changes in income, preferences, population, or related goods.</td>
+            <td>Movement of the entire demand curve due to changes in income, preferences, population, or related goods. {{STATE_NAME}}'s {{STATE_POPULATION_GROWTH}} population growth shifts housing demand.</td>
         </tr>
         <tr>
             <td>Supply Shift</td>
@@ -139,7 +156,7 @@
     </table>
 
     <div class="background-box">
-        <strong>Background:</strong> Supply and demand curves show HOW prices reach their levels and WHY they change. Prices signal scarcity: high prices tell you something is scarce relative to demand; low prices indicate abundance. Understanding these forces helps you time purchases (buy when demand is low), choose careers (where demand exceeds supply), and avoid overpaying (recognize temporary price spikes).
+        <strong>Background:</strong> Supply and demand curves show HOW prices reach their levels and WHY they change. In {{STATE_NAME}}, the median home price is ${{STATE_MEDIAN_HOME_PRICE}} (national average: $350,000) and median rent is ${{STATE_MEDIAN_RENT}}/month (national average: $1,400). These prices reflect {{STATE_NAME}}'s specific supply (available housing, construction rates) and demand (population growth, job market, income levels) factors. Understanding these forces helps you time purchases (buy when demand is low), choose careers (where demand exceeds supply), and avoid overpaying.
     </div>
 
     <!-- APPLY IT -->
@@ -203,79 +220,91 @@
     </div>
 
     <!-- PART B -->
-    <div class="part-header">Part B: Demand Shifters</div>
-    <p class="mb-md">Identify what happens to demand when each factor changes:</p>
-
-    <div class="question">
-        <p class="question-text"><span class="question-number">3.</span> For each scenario, indicate whether demand INCREASES (shifts right) or DECREASES (shifts left):</p>
-    </div>
+    <div class="part-header">Part B: {{STATE_NAME}} Housing Market Analysis</div>
+    <p class="mb-md">Analyze supply and demand factors in {{STATE_NAME}}'s housing market:</p>
 
     <table class="data-table">
         <tr>
-            <th>Scenario</th>
-            <th>Demand Shifts...</th>
-            <th>Price Effect</th>
+            <th>Factor</th>
+            <th>{{STATE_NAME}} Data</th>
+            <th>National Average</th>
+            <th>Effect on Housing</th>
         </tr>
         <tr>
-            <td style="text-align: left;">Income in the region increases</td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td style="text-align: left;">Price of a substitute good increases</td>
-            <td></td>
+            <td style="text-align: left;">Population Growth</td>
+            <td>{{STATE_POPULATION_GROWTH}}</td>
+            <td>0.5%/year</td>
             <td></td>
         </tr>
         <tr>
-            <td style="text-align: left;">Population decreases (people move away)</td>
-            <td></td>
+            <td style="text-align: left;">Job Growth</td>
+            <td>{{STATE_JOB_GROWTH}}</td>
+            <td>1.5%/year</td>
             <td></td>
         </tr>
         <tr>
-            <td style="text-align: left;">Consumers expect prices to rise soon</td>
+            <td style="text-align: left;">Median Income</td>
+            <td>${{STATE_MEDIAN_INCOME}}</td>
+            <td>$75,000</td>
             <td></td>
+        </tr>
+        <tr>
+            <td style="text-align: left;">Unemployment Rate</td>
+            <td>{{STATE_UNEMPLOYMENT_RATE}}%</td>
+            <td>{{US_UNEMPLOYMENT_RATE}}%</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td style="text-align: left;">Days on Market (homes)</td>
+            <td>{{STATE_DAYS_ON_MARKET}} days</td>
+            <td>45 days</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td style="text-align: left;">Construction Trend</td>
+            <td>{{STATE_CONSTRUCTION_TREND}}</td>
+            <td>Moderate</td>
             <td></td>
         </tr>
     </table>
 
-    <!-- PART C -->
-    <div class="part-header">Part C: Supply Shifters</div>
-    <p class="mb-md">Identify what happens to supply when each factor changes:</p>
-
     <div class="question">
-        <p class="question-text"><span class="question-number">4.</span> For each scenario, indicate whether supply INCREASES (shifts right) or DECREASES (shifts left):</p>
+        <p class="question-text"><span class="question-number">3.</span> Based on {{STATE_NAME}}'s data above, is housing demand likely stronger or weaker than the national average? Which factors indicate this?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
     </div>
 
-    <table class="data-table">
-        <tr>
-            <th>Scenario</th>
-            <th>Supply Shifts...</th>
-            <th>Price Effect</th>
-        </tr>
-        <tr>
-            <td style="text-align: left;">Production costs (materials, labor) increase</td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td style="text-align: left;">New technology makes production cheaper</td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td style="text-align: left;">Government adds new regulations and taxes</td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td style="text-align: left;">More businesses enter the market</td>
-            <td></td>
-            <td></td>
-        </tr>
-    </table>
+    <div class="question">
+        <p class="question-text"><span class="question-number">4.</span> If {{STATE_NAME}}'s population growth continues at {{STATE_POPULATION_GROWTH}}, what will happen to housing prices if construction (supply) doesn't keep pace?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+        </div>
+    </div>
 
     <div class="hint-box">
-        <strong>Personal Finance Application:</strong> When you see supply disruptions (factory closures, shipping delays), expect prices to rise temporarily. Stock up before disruptions or wait for supply to recover.
+        <strong>Key Insight:</strong> In {{STATE_NAME}}, homes stay on the market for {{STATE_DAYS_ON_MARKET}} days on average. If this is below 45 days (national average), it suggests demand exceeds supply. If above, supply may exceed demand.
+    </div>
+
+    <!-- PART C -->
+    <div class="part-header">Part C: Labor Market Supply and Demand</div>
+    <p class="mb-md">Apply supply and demand to {{STATE_NAME}}'s job market:</p>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">5.</span> {{STATE_NAME}}'s unemployment rate is {{STATE_UNEMPLOYMENT_RATE}}% (national: {{US_UNEMPLOYMENT_RATE}}%). What does this tell you about the balance between labor supply and demand?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">6.</span> If you're choosing a career, how might {{STATE_NAME}}'s {{STATE_JOB_GROWTH}} job growth affect your starting salary and job options compared to a state with slower growth?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
     </div>
 
     <!-- CHECK YOUR UNDERSTANDING -->
@@ -302,8 +331,9 @@
     </div>
 
     <div class="question">
-        <p class="question-text"><span class="question-number">3.</span> Gas prices are typically higher in summer. Is this due to a change in supply or demand? Explain why this occurs.</p>
+        <p class="question-text"><span class="question-number">3.</span> {{STATE_NAME}}'s median home price is ${{STATE_MEDIAN_HOME_PRICE}} (national avg: $350,000). Using supply and demand concepts, explain what factors might cause this difference.</p>
         <div class="answer-lines">
+            <div class="answer-line"></div>
             <div class="answer-line"></div>
             <div class="answer-line"></div>
         </div>
@@ -318,7 +348,7 @@
     </div>
 
     <div class="question">
-        <p class="question-text"><span class="question-number">5.</span> <strong>Reflection:</strong> Think of a major purchase you're planning (car, apartment, electronics). When would be the best time to buy based on supply and demand patterns? How much might you save by timing your purchase strategically?</p>
+        <p class="question-text"><span class="question-number">5.</span> <strong>Reflection:</strong> Based on {{STATE_NAME}}'s economic data (median rent: ${{STATE_MEDIAN_RENT}}/mo, median home price: ${{STATE_MEDIAN_HOME_PRICE}}, unemployment: {{STATE_UNEMPLOYMENT_RATE}}%), what's the best strategy for someone your age: rent or save for a home? When would be the best time to buy based on supply and demand patterns?</p>
         <div class="answer-lines">
             <div class="answer-line"></div>
             <div class="answer-line"></div>
@@ -327,10 +357,14 @@
         </div>
     </div>
 
+    <div class="hint-box">
+        <strong>Resources:</strong> For more economic data on {{STATE_NAME}}, visit: Labor market data at {{STATE_LABOR_WEBSITE}}, housing market at {{STATE_REALTOR_WEBSITE}}, or economic development at {{STATE_ECON_DEV_WEBSITE}}.
+    </div>
+
     <!-- FOOTER -->
     <div class="footer">
         <span>© PFL Academy | pflacademy.co</span>
-        <span>Chapter 14.3: Supply and Demand</span>
+        <span>Chapter 14.3: Supply and Demand — {{STATE_NAME}} Edition</span>
     </div>
 
 </body>

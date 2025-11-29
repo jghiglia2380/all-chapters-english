@@ -67,13 +67,23 @@
         .misconception-table td { padding: 6px 10px; border: 1px solid var(--border); vertical-align: top; color: var(--text-medium); }
 
         .footer { margin-top: 20px; padding-top: 8px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; font-size: 8pt; color: var(--text-light); }
+
+        .state-info-box { background: #e0f2fe; border: 1px solid #7dd3fc; border-radius: 6px; padding: 12px 16px; margin-bottom: 14px; font-size: 10pt; }
+        .state-info-box h4 { color: #0369a1; font-weight: 700; margin-bottom: 6px; }
+        .state-info-box p { margin: 0; color: var(--text-medium); }
+        .variable-note { background: #dbeafe; border-left: 3px solid #3b82f6; padding: 6px 10px; font-size: 9pt; color: #1e40af; margin: 6px 0; }
     </style>
 </head>
 <body>
 
     <div class="header">
         <h1>PFL Academy</h1>
-        <h2>Teacher Guide: Chapter 68 — Tax-Efficient Investing Strategies</h2>
+        <h2>Teacher Guide: Chapter 68 — Tax-Efficient Investing Strategies ({{STATE_NAME}} Edition)</h2>
+    </div>
+
+    <div class="state-info-box">
+        <h4>State-Specific Tax Data for {{STATE_NAME}}</h4>
+        <p>This guide uses {{STATE_NAME}}'s tax rates for state-specific calculations: State Income Tax {{STATE_INCOME_TAX_RATE}}%, State Capital Gains Tax {{STATE_CAPITAL_GAINS_TAX}}%.</p>
     </div>
 
     <div class="section-header">Overview</div>
@@ -152,6 +162,8 @@
     <div class="answer-key">
         <div class="section-header">Answer Key</div>
 
+        <div class="variable-note"><strong>Note:</strong> This guide references {{STATE_NAME}}'s tax rates (Income Tax {{STATE_INCOME_TAX_RATE}}%, Capital Gains {{STATE_CAPITAL_GAINS_TAX}}%). Use these rates when discussing state-level tax implications for investment decisions.</div>
+
         <div class="answer-block">
             <div class="answer-title">Part A: Account Type Comparison</div>
             <div class="answer-item"><strong>Maya:</strong> Priority 1: Traditional 401(k) to get 4% match (free money). Priority 2: Roth IRA to maximize tax-free growth at low 12% bracket. She's young and in low bracket—Roth makes sense for additional savings beyond match.</div>
@@ -195,7 +207,7 @@ Benefit of optimal asset location: ~$100,000</div>
 
     <div class="footer">
         <span>&copy; PFL Academy | pflacademy.co</span>
-        <span>Teacher Guide: Chapter 68</span>
+        <span>Teacher Guide: Chapter 68 — {{STATE_NAME}} Edition</span>
     </div>
 
 </body>

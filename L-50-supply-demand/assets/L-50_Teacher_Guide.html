@@ -21,6 +21,8 @@
             --error: #dc2626;
             --error-light: #fee2e2;
             --success-light: #dcfce7;
+            --info: #0ea5e9;
+            --info-light: #e0f2fe;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
@@ -28,11 +30,21 @@
 
         body { font-family: 'Open Sans', sans-serif; font-size: 10pt; line-height: 1.45; color: var(--text-dark); background: white; }
 
-        .header { background: var(--primary); color: white; padding: 14px 18px; border-radius: 6px; margin-bottom: 16px; }
-        .header h1 { font-size: 13pt; font-weight: 700; margin: 0; }
-        .header h2 { font-size: 10pt; font-weight: 400; margin: 3px 0 0; opacity: 0.9; }
+        .header { background: var(--primary); color: white; padding: 14px 18px; border-radius: 6px; margin-bottom: 16px; display: flex; justify-content: space-between; align-items: center; }
+        .header-left h1 { font-size: 13pt; font-weight: 700; margin: 0; }
+        .header-left h2 { font-size: 10pt; font-weight: 400; margin: 3px 0 0; opacity: 0.9; }
+        .header-right { font-size: 9pt; text-align: right; opacity: 0.9; }
 
         .section-header { background: var(--primary-light); border-left: 4px solid var(--primary); padding: 7px 12px; font-size: 10pt; font-weight: 700; color: var(--primary-dark); text-transform: uppercase; letter-spacing: 0.5px; margin: 16px 0 10px; }
+
+        .variable-note { background: var(--info-light); border: 1px solid #7dd3fc; border-radius: 6px; padding: 10px 14px; margin-bottom: 14px; font-size: 9pt; }
+        .variable-note strong { color: #0369a1; }
+
+        .state-data-box { background: #e0f2fe; border: 1px solid #7dd3fc; border-radius: 6px; padding: 12px 16px; margin-bottom: 14px; font-size: 9pt; }
+        .state-data-box h4 { color: #0369a1; font-weight: 700; margin-bottom: 8px; font-size: 10pt; }
+        .state-data-box .data-row { display: flex; justify-content: space-between; margin-bottom: 4px; }
+        .state-data-box .data-label { color: var(--text-medium); }
+        .state-data-box .data-value { font-weight: 600; color: var(--text-dark); }
 
         .overview-table { width: 100%; border-collapse: collapse; margin-bottom: 14px; }
         .overview-table th { background: var(--bg-light); color: var(--text-light); font-size: 8pt; text-transform: uppercase; letter-spacing: 0.5px; text-align: center; padding: 6px 10px; border: 1px solid var(--border); width: 33%; }
@@ -74,8 +86,30 @@
 
     <!-- HEADER -->
     <div class="header">
-        <h1>PFL Academy</h1>
-        <h2>Teacher Guide: Chapter 14.3 — Supply and Demand in Personal Finance</h2>
+        <div class="header-left">
+            <h1>PFL Academy</h1>
+            <h2>Teacher Guide: Chapter 14.3 — Supply and Demand in Personal Finance</h2>
+        </div>
+        <div class="header-right">
+            {{STATE_NAME}} Edition
+        </div>
+    </div>
+
+    <!-- VARIABLE NOTE -->
+    <div class="variable-note">
+        <strong>Note on State-Specific Content:</strong> This lesson uses {{STATE_NAME}}-specific economic data including median home price (${{STATE_MEDIAN_HOME_PRICE}}), median rent (${{STATE_MEDIAN_RENT}}/mo), unemployment rate ({{STATE_UNEMPLOYMENT_RATE}}%), and labor market indicators. Students analyze how supply and demand factors specific to {{STATE_NAME}} affect housing and job markets. Answer key notes are provided as frameworks since specific responses will vary based on state data.
+    </div>
+
+    <!-- STATE DATA REFERENCE -->
+    <div class="state-data-box">
+        <h4>{{STATE_NAME}} Economic Data Reference</h4>
+        <div class="data-row"><span class="data-label">Median Home Price:</span><span class="data-value">${{STATE_MEDIAN_HOME_PRICE}} (National: $350,000)</span></div>
+        <div class="data-row"><span class="data-label">Median Rent:</span><span class="data-value">${{STATE_MEDIAN_RENT}}/mo (National: $1,400)</span></div>
+        <div class="data-row"><span class="data-label">Unemployment Rate:</span><span class="data-value">{{STATE_UNEMPLOYMENT_RATE}}% (National: {{US_UNEMPLOYMENT_RATE}}%)</span></div>
+        <div class="data-row"><span class="data-label">Median Income:</span><span class="data-value">${{STATE_MEDIAN_INCOME}} (National: $75,000)</span></div>
+        <div class="data-row"><span class="data-label">Population Growth:</span><span class="data-value">{{STATE_POPULATION_GROWTH}} (National: 0.5%)</span></div>
+        <div class="data-row"><span class="data-label">Job Growth:</span><span class="data-value">{{STATE_JOB_GROWTH}} (National: 1.5%)</span></div>
+        <div class="data-row"><span class="data-label">Days on Market:</span><span class="data-value">{{STATE_DAYS_ON_MARKET}} days (National: 45)</span></div>
     </div>
 
     <!-- OVERVIEW -->
@@ -102,6 +136,7 @@
                 <div class="flow-title">THE CHALLENGE</div>
                 <ul>
                     <li>Read the opening questions about price changes aloud.</li>
+                    <li>Point out {{STATE_NAME}}'s median rent (${{STATE_MEDIAN_RENT}}/mo) compared to national average ($1,400).</li>
                     <li>Discussion: "Can you think of other examples where prices change predictably?"</li>
                     <li>Preview that supply and demand explains virtually ALL price changes.</li>
                 </ul>
@@ -114,8 +149,9 @@
                 <div class="flow-title">CORE CONCEPTS</div>
                 <ul>
                     <li>Review the 5 key terms. Use simple visual diagrams to show supply/demand curves.</li>
+                    <li>Connect terms to {{STATE_NAME}} examples: "When home prices rise in {{STATE_NAME}}, fewer buyers can afford homes (law of demand)."</li>
                     <li>Emphasize the difference between "movement along a curve" (price change) and "shift of the curve" (other factors).</li>
-                    <li>Quick check: "If concert tickets cost $200 vs. $50, which price creates more demand?" (Law of demand)</li>
+                    <li>Quick check: "If concert tickets cost $200 vs. $50, which price creates more demand?"</li>
                 </ul>
             </div>
         </div>
@@ -126,8 +162,8 @@
                 <div class="flow-title">APPLY IT</div>
                 <ul>
                     <li><strong>Part A (8 min):</strong> Market Equilibrium. Walk through the used car table. Identify equilibrium and discuss how surpluses/shortages self-correct.</li>
-                    <li><strong>Part B (8 min):</strong> Demand Shifters. Students categorize each scenario. Emphasize real-world applications (income changes, substitutes, expectations).</li>
-                    <li><strong>Part C (8 min):</strong> Supply Shifters. Students categorize supply changes. Connect to recent events (supply chain issues, inflation).</li>
+                    <li><strong>Part B (12 min):</strong> {{STATE_NAME}} Housing Market Analysis. Students analyze how population growth ({{STATE_POPULATION_GROWTH}}), job growth ({{STATE_JOB_GROWTH}}), and other factors affect housing prices. Key insight: {{STATE_DAYS_ON_MARKET}} days on market indicates demand strength.</li>
+                    <li><strong>Part C (8 min):</strong> Labor Market Analysis. Connect {{STATE_NAME}}'s {{STATE_UNEMPLOYMENT_RATE}}% unemployment to labor supply/demand balance.</li>
                 </ul>
             </div>
         </div>
@@ -138,8 +174,8 @@
                 <div class="flow-title">CHECK YOUR UNDERSTANDING</div>
                 <ul>
                     <li>Complete in class or assign as homework.</li>
-                    <li>Review Q3 (gas prices) and Q5 (personal application) for practical understanding.</li>
-                    <li>Preview Day 2 Learning Lab: Housing and labor market analysis, purchase timing strategies.</li>
+                    <li>Review Q3 ({{STATE_NAME}} home prices vs. national) and Q5 (personal strategy) for practical understanding.</li>
+                    <li>Preview Day 2 Learning Lab: Deep dive into {{STATE_NAME}}'s housing market, labor market simulation, and purchase timing strategies.</li>
                 </ul>
             </div>
         </div>
@@ -152,17 +188,17 @@
             <div class="diff-title">Support</div>
             <ul>
                 <li>Provide a graphic organizer with supply/demand curve visuals.</li>
-                <li>Use everyday examples: "Pizza prices at lunch vs. dinner."</li>
-                <li>Create a cheat sheet: "Income up = demand up, costs up = supply down."</li>
-                <li>Work through Part A as a whole-class activity.</li>
+                <li>Use everyday {{STATE_NAME}} examples: local rent prices, gas prices, job opportunities.</li>
+                <li>Create a cheat sheet: "Population up = demand up, construction up = supply up."</li>
+                <li>Work through Part B housing analysis as a whole-class activity.</li>
             </ul>
         </div>
         <div class="diff-box">
             <div class="diff-title">Extension</div>
             <ul>
-                <li>Research how the Federal Reserve's actions affect supply and demand (interest rates).</li>
-                <li>Analyze a recent price spike (housing, used cars, gas) using supply/demand framework.</li>
-                <li>Calculate elasticity: How sensitive is demand for different goods to price changes?</li>
+                <li>Compare {{STATE_NAME}}'s economic data to neighboring states—why are prices different?</li>
+                <li>Research how the Federal Reserve's interest rate changes affect {{STATE_NAME}}'s housing market.</li>
+                <li>Calculate price-to-income ratio: Is housing more or less affordable in {{STATE_NAME}} than nationally?</li>
             </ul>
         </div>
     </div>
@@ -171,6 +207,10 @@
     <div class="answer-key">
         <div class="section-header">Answer Key</div>
 
+        <div class="answer-note">
+            <strong>State-Specific Answers:</strong> Answers for Parts B, C, and Check Your Understanding questions will vary based on {{STATE_NAME}}'s current data. The frameworks below guide evaluation of student responses.
+        </div>
+
         <div class="answer-block">
             <div class="answer-title">Part A: Market Equilibrium Analysis</div>
             <div class="answer-item"><strong>1.</strong> Equilibrium at <strong>$20,000</strong>—quantity demanded (300) equals quantity supplied (300). Market condition: EQUILIBRIUM (no shortage or surplus).</div>
@@ -178,28 +218,33 @@
         </div>
 
         <div class="answer-block">
-            <div class="answer-title">Part B: Demand Shifters</div>
-            <div class="answer-item">• Income increases → Demand <strong>INCREASES (shifts right)</strong> → Prices rise</div>
-            <div class="answer-item">• Price of substitute increases → Demand <strong>INCREASES (shifts right)</strong> → Prices rise (consumers switch to this good)</div>
-            <div class="answer-item">• Population decreases → Demand <strong>DECREASES (shifts left)</strong> → Prices fall</div>
-            <div class="answer-item">• Expect prices to rise → Demand <strong>INCREASES (shifts right)</strong> → Prices rise (buy now before increase)</div>
+            <div class="answer-title">Part B: {{STATE_NAME}} Housing Market Analysis</div>
+            <div class="answer-item"><strong>3.</strong> Evaluate based on comparing {{STATE_NAME}}'s data to national averages:
+                <br>• If population growth > 0.5% → stronger demand
+                <br>• If job growth > 1.5% → stronger demand
+                <br>• If median income > $75,000 → stronger demand
+                <br>• If unemployment < national → stronger demand
+                <br>• If days on market < 45 → demand exceeds supply</div>
+            <div class="answer-item"><strong>4.</strong> If population growth ({{STATE_POPULATION_GROWTH}}) continues without matching construction, demand continues to increase while supply stays flat → prices rise. More people competing for same housing stock = higher prices.</div>
         </div>
 
         <div class="answer-block">
-            <div class="answer-title">Part C: Supply Shifters</div>
-            <div class="answer-item">• Production costs increase → Supply <strong>DECREASES (shifts left)</strong> → Prices rise</div>
-            <div class="answer-item">• Technology makes production cheaper → Supply <strong>INCREASES (shifts right)</strong> → Prices fall</div>
-            <div class="answer-item">• Government adds regulations/taxes → Supply <strong>DECREASES (shifts left)</strong> → Prices rise</div>
-            <div class="answer-item">• More businesses enter market → Supply <strong>INCREASES (shifts right)</strong> → Prices fall</div>
+            <div class="answer-title">Part C: Labor Market Supply and Demand</div>
+            <div class="answer-item"><strong>5.</strong> Evaluate based on comparison:
+                <br>• If {{STATE_NAME}} unemployment < national: Labor demand exceeds supply → better job prospects, potentially higher wages
+                <br>• If {{STATE_NAME}} unemployment > national: Labor supply exceeds demand → more competition, potentially lower wages</div>
+            <div class="answer-item"><strong>6.</strong> If job growth is strong ({{STATE_JOB_GROWTH}}), employers compete for workers → higher starting salaries, more job options, better benefits. Weak job growth = opposite effects.</div>
         </div>
 
         <div class="answer-block">
             <div class="answer-title">Check Your Understanding</div>
             <div class="answer-item"><strong>1.</strong> B (Quantity demanded decreases—this is the law of demand)</div>
             <div class="answer-item"><strong>2.</strong> B (Quantity demanded equals quantity supplied—market clears)</div>
-            <div class="answer-item"><strong>3.</strong> <strong>Demand shift.</strong> Summer brings more travel/driving (vacation season), shifting demand right. Supply stays relatively constant. Higher demand with same supply = higher prices.</div>
+            <div class="answer-item"><strong>3.</strong> Evaluate based on {{STATE_NAME}}'s ${{STATE_MEDIAN_HOME_PRICE}} vs. $350,000 national:
+                <br>• Higher than national: Strong demand factors (population/job growth), limited supply, high incomes
+                <br>• Lower than national: Weaker demand (population decline, fewer jobs), more supply, lower incomes</div>
             <div class="answer-item"><strong>4.</strong> <strong>Temporary demand spike.</strong> On Valentine's Day, demand for roses shifts dramatically right (everyone wants roses that day). Supply can't instantly increase (roses take time to grow). Huge demand increase + fixed supply = 3× price increase. A week later, demand returns to normal and prices fall.</div>
-            <div class="answer-item"><strong>5.</strong> <em>Responses will vary. Look for: identification of demand/supply patterns (e.g., buy cars at end of model year, winter coats in spring, fly on Tuesdays), estimated savings from strategic timing, and reasoning based on supply/demand concepts learned.</em></div>
+            <div class="answer-item"><strong>5.</strong> <em>Responses will vary. Look for: use of {{STATE_NAME}}'s specific data (rent vs. home price ratio), consideration of current supply/demand balance (days on market indicator), timing strategy based on understanding of market cycles, and personal financial factors.</em></div>
         </div>
 
         <!-- COMMON MISCONCEPTIONS -->
@@ -210,16 +255,20 @@
                 <th>Clarification</th>
             </tr>
             <tr>
-                <td>"Higher prices are always bad for consumers."</td>
-                <td>High prices signal scarcity and attract new supply. They're painful short-term but help markets self-correct. High prices during shortages prevent hoarding and ensure goods reach those who value them most.</td>
+                <td>"High prices in {{STATE_NAME}} are just because of greed."</td>
+                <td>Prices reflect supply and demand balance. {{STATE_NAME}}'s home price of ${{STATE_MEDIAN_HOME_PRICE}} reflects its specific combination of demand factors (population growth: {{STATE_POPULATION_GROWTH}}, job growth: {{STATE_JOB_GROWTH}}) and supply factors (construction trends, land availability).</td>
             </tr>
             <tr>
                 <td>"Supply and demand only applies to goods, not services or labor."</td>
-                <td>Supply and demand applies to EVERYTHING with a price—including wages (labor market), rent (housing market), interest rates (credit market), and stock prices (financial markets).</td>
+                <td>Supply and demand applies to EVERYTHING with a price—including wages ({{STATE_NAME}}'s {{STATE_UNEMPLOYMENT_RATE}}% unemployment reflects labor market balance), rent ({{STATE_NAME}}'s ${{STATE_MEDIAN_RENT}}/mo), interest rates, and stock prices.</td>
             </tr>
             <tr>
-                <td>"Prices only change when sellers raise them."</td>
-                <td>Prices change due to shifts in supply OR demand. A seller might want to raise prices, but if demand is weak, they can't—buyers won't pay. Equilibrium is determined by both sides of the market.</td>
+                <td>"If prices are high, they'll stay high forever."</td>
+                <td>High prices attract new supply (builders construct more housing, workers enter high-paying fields). Over time, increased supply puts downward pressure on prices. Markets self-correct—it's a question of how quickly.</td>
+            </tr>
+            <tr>
+                <td>"The government controls all prices."</td>
+                <td>While regulations affect some prices (minimum wage, rent control), most prices are determined by millions of individual supply and demand decisions. Government can shift supply or demand curves but rarely overrides market forces long-term.</td>
             </tr>
         </table>
     </div>
@@ -227,7 +276,7 @@
     <!-- FOOTER -->
     <div class="footer">
         <span>© PFL Academy | pflacademy.co</span>
-        <span>Teacher Guide: Chapter 14.3</span>
+        <span>Teacher Guide: Chapter 14.3 — {{STATE_NAME}} Edition</span>
     </div>
 
 </body>

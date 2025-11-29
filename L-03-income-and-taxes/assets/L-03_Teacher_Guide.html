@@ -65,6 +65,11 @@
             opacity: 0.9;
         }
 
+        .state-info-box { background: #e0f2fe; border: 1px solid #7dd3fc; border-radius: 6px; padding: 12px 16px; margin-bottom: 14px; font-size: 10pt; }
+        .state-info-box h4 { color: #0369a1; font-weight: 700; margin-bottom: 6px; }
+        .state-info-box p { margin: 0; color: var(--text-medium); }
+        .variable-note { background: #dbeafe; border-left: 3px solid #3b82f6; padding: 6px 10px; font-size: 9pt; color: #1e40af; margin: 6px 0; }
+
         .section-header {
             background: var(--primary-light);
             border-left: 4px solid var(--primary);
@@ -280,7 +285,12 @@
     <!-- HEADER -->
     <div class="header">
         <h1>PFL Academy</h1>
-        <h2>Teacher Guide: Chapter 1.3 — Income and Taxes</h2>
+        <h2>Teacher Guide: Chapter 1.3 — Income and Taxes ({{STATE_NAME}} Edition)</h2>
+    </div>
+
+    <div class="state-info-box">
+        <h4>State-Specific Data for {{STATE_NAME}} ({{STATE_CODE}})</h4>
+        <p>This guide contains answers calculated using {{STATE_NAME}}'s tax rates: State Income Tax {{STATE_INCOME_TAX_RATE}}%, SDI {{STATE_SDI_RATE}}%, Local Income Tax {{STATE_LOCAL_INCOME_TAX}}%.</p>
     </div>
 
     <!-- OVERVIEW -->
@@ -374,6 +384,8 @@
     <div class="answer-key">
         <div class="section-header">Answer Key</div>
 
+        <div class="variable-note"><strong>Note:</strong> Calculations below use {{STATE_NAME}}'s state income tax rate of {{STATE_INCOME_TAX_RATE}}%. Answers will vary by state.</div>
+
         <div class="answer-block">
             <div class="answer-title">Part A: Deduction Classification</div>
             <div class="answer-item"><strong>1. Social Security:</strong> MANDATORY. Required by federal law (FICA); funds retirement benefits.</div>
@@ -387,15 +399,15 @@
 
 Deductions:
 • Federal Income Tax: $4,000 × 0.12 = $480
-• State Income Tax: $4,000 × 0.05 = $200
+• State Income Tax ({{STATE_NAME}}): $4,000 × {{STATE_INCOME_TAX_RATE}}% = ${{CALCULATED_STATE_TAX_4000}}
 • Social Security: $4,000 × 0.062 = $248
 • Medicare: $4,000 × 0.0145 = $58
 • Health Insurance: $200 (flat)
 • 401(k): $4,000 × 0.06 = $240
 
-Total Deductions: $1,426
-Net Monthly Income: $4,000 - $1,426 = $2,574</div>
-            <div class="answer-item"><strong>4.</strong> Percentage to deductions: $1,426 ÷ $4,000 × 100 = <strong>35.65%</strong></div>
+Total Deductions: ${{CALCULATED_TOTAL_DEDUCTIONS_4000}}
+Net Monthly Income: $4,000 - ${{CALCULATED_TOTAL_DEDUCTIONS_4000}} = ${{CALCULATED_NET_INCOME_4000}}</div>
+            <div class="answer-item"><strong>4.</strong> Percentage to deductions: ${{CALCULATED_TOTAL_DEDUCTIONS_4000}} ÷ $4,000 × 100 = <strong>{{CALCULATED_DEDUCTION_PERCENT}}%</strong></div>
             <div class="answer-item"><strong>5.</strong> Without 401(k): $240 more per month. <strong>Not a good trade-off</strong> because: (1) loses employer match (free money), (2) loses tax-deferred growth, (3) loses compound growth over time—as shown by Alex/Jamie example.</div>
         </div>
 
@@ -443,7 +455,7 @@ Net monthly income: $900 - $162 = $738</div>
     <!-- FOOTER -->
     <div class="footer">
         <span>© PFL Academy | pflacademy.co</span>
-        <span>Teacher Guide: Chapter 1.3</span>
+        <span>Teacher Guide: Chapter 1.3 — {{STATE_NAME}} Edition</span>
     </div>
 
 </body>

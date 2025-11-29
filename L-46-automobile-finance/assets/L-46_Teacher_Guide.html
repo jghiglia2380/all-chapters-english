@@ -21,6 +21,8 @@
             --error: #dc2626;
             --error-light: #fee2e2;
             --success-light: #dcfce7;
+            --info: #0ea5e9;
+            --info-light: #e0f2fe;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
@@ -28,11 +30,15 @@
 
         body { font-family: 'Open Sans', sans-serif; font-size: 10pt; line-height: 1.45; color: var(--text-dark); background: white; }
 
-        .header { background: var(--primary); color: white; padding: 14px 18px; border-radius: 6px; margin-bottom: 16px; }
-        .header h1 { font-size: 13pt; font-weight: 700; margin: 0; }
-        .header h2 { font-size: 10pt; font-weight: 400; margin: 3px 0 0; opacity: 0.9; }
+        .header { background: var(--primary); color: white; padding: 14px 18px; border-radius: 6px; margin-bottom: 16px; display: flex; justify-content: space-between; align-items: center; }
+        .header-left h1 { font-size: 13pt; font-weight: 700; margin: 0; }
+        .header-left h2 { font-size: 10pt; font-weight: 400; margin: 3px 0 0; opacity: 0.9; }
+        .header-right { font-size: 9pt; text-align: right; opacity: 0.9; }
 
         .section-header { background: var(--primary-light); border-left: 4px solid var(--primary); padding: 7px 12px; font-size: 10pt; font-weight: 700; color: var(--primary-dark); text-transform: uppercase; letter-spacing: 0.5px; margin: 16px 0 10px; }
+
+        .variable-note { background: var(--info-light); border: 1px solid #7dd3fc; border-radius: 6px; padding: 10px 14px; margin-bottom: 14px; font-size: 9pt; }
+        .variable-note strong { color: #0369a1; }
 
         .overview-table { width: 100%; border-collapse: collapse; margin-bottom: 14px; }
         .overview-table th { background: var(--bg-light); color: var(--text-light); font-size: 8pt; text-transform: uppercase; letter-spacing: 0.5px; text-align: center; padding: 6px 10px; border: 1px solid var(--border); width: 33%; }
@@ -52,6 +58,12 @@
         .diff-title { font-weight: 700; color: var(--text-dark); margin-bottom: 6px; font-size: 9pt; }
         .diff-box ul { margin: 0; padding-left: 16px; font-size: 9pt; color: var(--text-medium); }
         .diff-box li { margin-bottom: 2px; }
+
+        .state-data-box { background: #e0f2fe; border: 1px solid #7dd3fc; border-radius: 6px; padding: 12px 16px; margin-bottom: 14px; font-size: 9pt; }
+        .state-data-box h4 { color: #0369a1; font-weight: 700; margin-bottom: 8px; font-size: 10pt; }
+        .state-data-box .data-row { display: flex; justify-content: space-between; margin-bottom: 4px; }
+        .state-data-box .data-label { color: var(--text-medium); }
+        .state-data-box .data-value { font-weight: 600; color: var(--text-dark); }
 
         .answer-key { page-break-before: always; }
         .answer-block { margin-bottom: 12px; page-break-inside: avoid; }
@@ -76,8 +88,30 @@
 
     <!-- HEADER -->
     <div class="header">
-        <h1>PFL Academy</h1>
-        <h2>Teacher Guide: Chapter 12.1 — Automobile Finance</h2>
+        <div class="header-left">
+            <h1>PFL Academy</h1>
+            <h2>Teacher Guide: Chapter 12.1 — Automobile Finance</h2>
+        </div>
+        <div class="header-right">
+            {{STATE_NAME}} Edition
+        </div>
+    </div>
+
+    <!-- VARIABLE NOTE -->
+    <div class="variable-note">
+        <strong>Note on State-Specific Content:</strong> This lesson uses {{STATE_NAME}}-specific data for vehicle costs, including sales tax ({{STATE_SALES_TAX}}%), registration fees (${{STATE_REGISTRATION_INITIAL}} initial, ${{STATE_REGISTRATION_ANNUAL}} annual), loan rates ({{STATE_AVG_AUTO_LOAN_RATE_NEW}}% new, {{STATE_AVG_AUTO_LOAN_RATE_USED}}% used), and insurance costs (${{STATE_INSURANCE_AVG_TEEN}}/month for teens). Student answers will vary based on these values. The Answer Key provides formulas that work with any state's data.
+    </div>
+
+    <!-- STATE DATA REFERENCE -->
+    <div class="state-data-box">
+        <h4>{{STATE_NAME}} Auto Data Reference</h4>
+        <div class="data-row"><span class="data-label">Sales Tax:</span><span class="data-value">{{STATE_SALES_TAX}}%</span></div>
+        <div class="data-row"><span class="data-label">Initial Registration:</span><span class="data-value">${{STATE_REGISTRATION_INITIAL}}</span></div>
+        <div class="data-row"><span class="data-label">Annual Registration:</span><span class="data-value">${{STATE_REGISTRATION_ANNUAL}}</span></div>
+        <div class="data-row"><span class="data-label">New Car Loan Rate:</span><span class="data-value">{{STATE_AVG_AUTO_LOAN_RATE_NEW}}%</span></div>
+        <div class="data-row"><span class="data-label">Used Car Loan Rate:</span><span class="data-value">{{STATE_AVG_AUTO_LOAN_RATE_USED}}%</span></div>
+        <div class="data-row"><span class="data-label">Teen Insurance (monthly):</span><span class="data-value">${{STATE_INSURANCE_AVG_TEEN}}</span></div>
+        <div class="data-row"><span class="data-label">Gas Price:</span><span class="data-value">${{STATE_GAS_PRICE_CURRENT}}/gal</span></div>
     </div>
 
     <!-- OVERVIEW -->
@@ -104,6 +138,7 @@
                 <div class="flow-title">THE CHALLENGE</div>
                 <ul>
                     <li>Read Taylor's vehicle financing comparison aloud or have students read silently.</li>
+                    <li>Point out the {{STATE_NAME}}-specific insurance cost (${{STATE_INSURANCE_AVG_TEEN}}/mo) and loan rate ({{STATE_AVG_AUTO_LOAN_RATE_USED}}%).</li>
                     <li>Discussion: "Why do you think car dealerships advertise monthly payments rather than total cost?"</li>
                     <li>Preview how total cost analysis reveals the true financial picture.</li>
                 </ul>
@@ -116,6 +151,7 @@
                 <div class="flow-title">CORE CONCEPTS</div>
                 <ul>
                     <li>Review the 5 key terms. Emphasize depreciation—cars lose 20-30% value in year 1.</li>
+                    <li>Point out how Total Cost of Ownership includes {{STATE_NAME}}'s {{STATE_SALES_TAX}}% sales tax and ${{STATE_REGISTRATION_ANNUAL}}/year registration.</li>
                     <li>Explain the concept of "equity" vs. "being underwater" on a loan.</li>
                     <li>Quick check: Ask students to estimate what a $30,000 car might be worth after 5 years (~$12,000).</li>
                 </ul>
@@ -127,8 +163,9 @@
             <div class="flow-content">
                 <div class="flow-title">APPLY IT</div>
                 <ul>
-                    <li><strong>Part A (15 min):</strong> Buy vs. Lease Comparison. Walk through the table together. Have students calculate totals. Key insight: leasing costs more AND leaves nothing.</li>
-                    <li><strong>Part B (10-15 min):</strong> Loan Term Analysis. Students compare 36/60/72 month options. Emphasize the $4,000+ difference in interest.</li>
+                    <li><strong>Part A (10 min):</strong> Buy vs. Lease Comparison. Walk through the table together. Have students calculate totals including {{STATE_NAME}}'s sales tax and registration. Key insight: leasing costs more AND leaves nothing.</li>
+                    <li><strong>Part B (8 min):</strong> Loan Term Analysis using {{STATE_NAME}} rates. Students compare 36/60/72 month options. Emphasize the $4,000+ difference in interest.</li>
+                    <li><strong>Part C (10 min):</strong> {{STATE_NAME}} Total Cost of Ownership. Students calculate first-year costs and compare to national averages.</li>
                 </ul>
             </div>
         </div>
@@ -139,8 +176,8 @@
                 <div class="flow-title">CHECK YOUR UNDERSTANDING</div>
                 <ul>
                     <li>Complete in class or assign as homework.</li>
-                    <li>Review Q3 (total cost vs. monthly) and Q5 (personal application) for deeper understanding.</li>
-                    <li>Preview Day 2 Learning Lab: Building complete vehicle cost scenarios with real data.</li>
+                    <li>Review Q3 (total cost vs. monthly with {{STATE_NAME}} examples) and Q5 (personal application) for deeper understanding.</li>
+                    <li>Preview Day 2 Learning Lab: Building complete vehicle cost scenarios with real {{STATE_NAME}} data.</li>
                 </ul>
             </div>
         </div>
@@ -153,7 +190,7 @@
             <div class="diff-title">Support</div>
             <ul>
                 <li>Pre-fill some calculations in the comparison table.</li>
-                <li>Provide a step-by-step calculation guide.</li>
+                <li>Provide a step-by-step calculation guide with {{STATE_NAME}} values.</li>
                 <li>Allow calculator use for all problems.</li>
                 <li>Work through Part A as a whole-class activity.</li>
             </ul>
@@ -161,9 +198,9 @@
         <div class="diff-box">
             <div class="diff-title">Extension</div>
             <ul>
-                <li>Research actual vehicle prices and loan rates, then create custom scenarios.</li>
+                <li>Research actual vehicle prices and compare {{STATE_NAME}} costs to neighboring states.</li>
                 <li>Calculate opportunity cost: what $500/month invested for 30 years becomes.</li>
-                <li>Compare insurance costs for different vehicles and ownership scenarios.</li>
+                <li>Compare insurance costs for different vehicles using {{STATE_INSURANCE_COMPARISON_URL}}.</li>
             </ul>
         </div>
     </div>
@@ -172,16 +209,22 @@
     <div class="answer-key">
         <div class="section-header">Answer Key</div>
 
+        <div class="answer-note">
+            <strong>State-Specific Answers:</strong> Numerical answers below use the formula structure. Actual values will vary based on {{STATE_NAME}}'s current rates. Use the state data reference above to calculate expected answers.
+        </div>
+
         <div class="answer-block">
             <div class="answer-title">Part A: Buy vs. Lease Comparison</div>
-            <div class="calc-display">BUY:
-Total Paid = $7,000 (down) + $31,680 (payments) = $38,680
-Net Cost = $38,680 - $14,000 (resale) = $24,680
+            <div class="calc-display">BUY (using {{STATE_NAME}} data):
+Sales Tax = $35,000 × {{STATE_SALES_TAX}}%
+Registration = ${{STATE_REGISTRATION_INITIAL}} + (5 × ${{STATE_REGISTRATION_ANNUAL}})
+Total Paid = $7,000 (down) + $31,680 (payments) + Sales Tax + Registration
+Net Cost = Total Paid - $14,000 (resale)
 
 LEASE:
 Total Paid = $4,000 (down payments) + $28,800 (payments) = $32,800
 Net Cost = $32,800 - $0 (nothing at end) = $32,800</div>
-            <div class="answer-item"><strong>1.</strong> BUY has lower net cost by $8,120 ($32,800 - $24,680)</div>
+            <div class="answer-item"><strong>1.</strong> BUY typically has lower net cost. The exact difference depends on {{STATE_NAME}}'s sales tax and registration fees.</div>
             <div class="answer-item"><strong>2.</strong> 3 more years payment-free while leasing continues: 36 months × $400 = <strong>$14,400 saved</strong></div>
         </div>
 
@@ -192,12 +235,25 @@ Net Cost = $32,800 - $0 (nothing at end) = $32,800</div>
         </div>
 
         <div class="answer-block">
+            <div class="answer-title">Part C: {{STATE_NAME}} Total Cost of Ownership</div>
+            <div class="calc-display">{{STATE_NAME}} First-Year Calculation:
+Vehicle: $30,000
+Sales Tax: $30,000 × {{STATE_SALES_TAX}}%
+Registration: ${{STATE_REGISTRATION_INITIAL}}
+Insurance: ${{STATE_INSURANCE_AVG_TEEN}} × 12 = ${{CALCULATED_INSURANCE_TEEN_ANNUAL}}
+Gas: 429 gal × ${{STATE_GAS_PRICE_CURRENT}}
+
+National Average First-Year: ~$35,937</div>
+            <div class="answer-item"><strong>5.</strong> Answers will vary. Key factors: sales tax rate, insurance costs (teen rates in {{STATE_NAME}} are ${{STATE_INSURANCE_AVG_TEEN}}/month vs. $250 national avg), and gas prices.</div>
+        </div>
+
+        <div class="answer-block">
             <div class="answer-title">Check Your Understanding</div>
             <div class="answer-item"><strong>1.</strong> C ($16,000 - cars typically lose ~60% of value in 5 years, keeping 40%)</div>
             <div class="answer-item"><strong>2.</strong> B (Years of payment-free driving while the car still has value)</div>
-            <div class="answer-item"><strong>3.</strong> Total cost includes: all payments, interest, depreciation, insurance, fuel, maintenance, and what the car is worth at the end. Monthly payment alone ignores loan length, interest total, and whether you have an asset at the end. A $300/month lease seems cheaper than $500 loan payment, but leaves you with nothing.</div>
+            <div class="answer-item"><strong>3.</strong> Total cost includes: all payments, interest, depreciation, insurance, fuel, maintenance, and what the car is worth at the end. In {{STATE_NAME}}, this includes {{STATE_SALES_TAX}}% sales tax and ${{STATE_REGISTRATION_ANNUAL}}/year registration. Monthly payment alone ignores loan length, interest total, and whether you have an asset at the end. A $300/month lease seems cheaper than $500 loan payment, but leaves you with nothing.</div>
             <div class="answer-item"><strong>4.</strong> Situations where leasing might make sense: (1) Business use with tax deductions, (2) Need newest safety features for short-term, (3) Job requires always having a new reliable car, (4) Planning to relocate/uncertain about long-term vehicle needs, (5) Cannot afford down payment for purchase.</div>
-            <div class="answer-item"><strong>5.</strong> <em>Responses will vary. Look for: consideration of total cost (not just monthly), acknowledgment of opportunity cost, realistic assessment of personal situation, and alignment with stated financial goals.</em></div>
+            <div class="answer-item"><strong>5.</strong> <em>Responses will vary. Look for: consideration of total cost (not just monthly), acknowledgment of {{STATE_NAME}}-specific costs ({{STATE_SALES_TAX}}% tax, ${{STATE_INSURANCE_AVG_TEEN}}/mo insurance), realistic assessment of personal situation, and alignment with stated financial goals.</em></div>
         </div>
 
         <!-- COMMON MISCONCEPTIONS -->
@@ -209,7 +265,7 @@ Net Cost = $32,800 - $0 (nothing at end) = $32,800</div>
             </tr>
             <tr>
                 <td>"Lower monthly payment = better deal"</td>
-                <td>Lower payments often mean longer terms, more interest, and being "underwater" longer. Total cost and net cost after resale are better metrics.</td>
+                <td>Lower payments often mean longer terms, more interest, and being "underwater" longer. Total cost and net cost after resale are better metrics. In {{STATE_NAME}}, don't forget to add {{STATE_SALES_TAX}}% sales tax to the purchase.</td>
             </tr>
             <tr>
                 <td>"Leasing is always smarter because you're not paying for depreciation"</td>
@@ -217,7 +273,11 @@ Net Cost = $32,800 - $0 (nothing at end) = $32,800</div>
             </tr>
             <tr>
                 <td>"New cars are more reliable so they cost less overall"</td>
-                <td>A 3-year-old certified pre-owned car has already lost most of its depreciation but still has years of reliable life. The "sweet spot" for value is often 2-4 years old.</td>
+                <td>A 3-year-old certified pre-owned car has already lost most of its depreciation but still has years of reliable life. The "sweet spot" for value is often 2-4 years old. Plus, in {{STATE_NAME}}, you pay {{STATE_SALES_TAX}}% sales tax on whatever price you pay—lower price means lower tax.</td>
+            </tr>
+            <tr>
+                <td>"Insurance costs are the same for all cars"</td>
+                <td>Insurance varies significantly by vehicle, driver age, and location. In {{STATE_NAME}}, teen drivers average ${{STATE_INSURANCE_AVG_TEEN}}/month (national avg: $250). This is a major factor in total cost of ownership.</td>
             </tr>
         </table>
     </div>
@@ -225,7 +285,7 @@ Net Cost = $32,800 - $0 (nothing at end) = $32,800</div>
     <!-- FOOTER -->
     <div class="footer">
         <span>© PFL Academy | pflacademy.co</span>
-        <span>Teacher Guide: Chapter 12.1</span>
+        <span>Teacher Guide: Chapter 12.1 — {{STATE_NAME}} Edition</span>
     </div>
 
 </body>

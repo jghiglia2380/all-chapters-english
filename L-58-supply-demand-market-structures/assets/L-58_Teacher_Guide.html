@@ -273,6 +273,11 @@
             color: var(--text-light);
         }
 
+        .state-info-box { background: #e0f2fe; border: 1px solid #7dd3fc; border-radius: 6px; padding: 12px 16px; margin-bottom: 14px; font-size: 10pt; }
+        .state-info-box h4 { color: #0369a1; font-weight: 700; margin-bottom: 6px; }
+        .state-info-box p { margin: 0; color: var(--text-medium); }
+        .variable-note { background: #dbeafe; border-left: 3px solid #3b82f6; padding: 6px 10px; font-size: 9pt; color: #1e40af; margin: 6px 0; }
+
     </style>
 </head>
 <body>
@@ -280,7 +285,12 @@
     <!-- HEADER -->
     <div class="header">
         <h1>PFL Academy</h1>
-        <h2>Teacher Guide: Chapter 58 — Supply, Demand, and Market Structures</h2>
+        <h2>Teacher Guide: Chapter 58 — Supply, Demand, and Market Structures ({{STATE_NAME}} Edition)</h2>
+    </div>
+
+    <div class="state-info-box">
+        <h4>State-Specific Data for {{STATE_NAME}}</h4>
+        <p>This guide uses {{STATE_NAME}}'s housing market data for supply-demand examples: Median Home Price ${{STATE_MEDIAN_HOME_PRICE}}, Median Monthly Rent ${{STATE_MEDIAN_RENT}}.</p>
     </div>
 
     <!-- OVERVIEW -->
@@ -378,6 +388,8 @@
     <div class="answer-key">
         <div class="section-header">Answer Key</div>
 
+        <div class="variable-note"><strong>Note:</strong> This guide references {{STATE_NAME}}'s housing market data (Median Home Price ${{STATE_MEDIAN_HOME_PRICE}}, Median Rent ${{STATE_MEDIAN_RENT}}) for state-specific supply-demand discussions and examples.</div>
+
         <div class="answer-block">
             <div class="answer-title">Part A: Supply and Demand Shifts</div>
             <div class="answer-item"><strong>Scenario 1 (Smartphone):</strong> DEMAND shifts RIGHT. Price INCREASES. Quantity INCREASES. Strategy: Buy before demand surge if possible, or wait for initial hype to settle.</div>
@@ -447,7 +459,7 @@ This is what monopoly power costs consumers!</div>
     <!-- FOOTER -->
     <div class="footer">
         <span>© PFL Academy | pflacademy.co</span>
-        <span>Teacher Guide: Chapter 58</span>
+        <span>Teacher Guide: Chapter 58 — {{STATE_NAME}} Edition</span>
     </div>
 
 </body>

@@ -41,6 +41,12 @@
         .objectives-box ul { margin: 0; padding-left: 20px; }
         .objectives-box li { margin-bottom: 3px; color: var(--text-medium); }
 
+        .state-data-box { background: #e0f2fe; border: 1px solid #7dd3fc; border-radius: 6px; padding: 12px 16px; margin-bottom: 18px; font-size: 10pt; }
+        .state-data-box h4 { color: #0369a1; font-weight: 700; margin-bottom: 8px; }
+        .state-data-box .data-row { display: flex; justify-content: space-between; margin-bottom: 4px; }
+        .state-data-box .data-label { color: var(--text-medium); }
+        .state-data-box .data-value { font-weight: 600; color: var(--text-dark); }
+
         .terms-table { width: 100%; border-collapse: collapse; margin-bottom: 14px; font-size: 10pt; }
         .terms-table th { background: var(--bg-light); text-align: left; padding: 8px 10px; border: 1px solid var(--border); font-weight: 600; color: var(--text-medium); }
         .terms-table td { padding: 8px 10px; border: 1px solid var(--border); vertical-align: top; }
@@ -90,14 +96,14 @@
             <h2>Chapter 12.1: Automobile Finance - Buying vs. Leasing</h2>
         </div>
         <div class="header-right">
-            Student Activity Packet
+            Student Activity Packet<br>{{STATE_NAME}} Edition
         </div>
     </div>
 
     <!-- THE CHALLENGE -->
     <div class="section-header">The Challenge</div>
     <div class="challenge-box">
-        <p>Taylor was car shopping and faced a choice: lease a new SUV for $450/month or buy a 3-year-old certified pre-owned sedan for $28,000 with 20% down. After analyzing total cost of ownership over 8 years—including payments, depreciation, insurance, and opportunity costs—Taylor chose to buy. After paying off the 5-year loan, Taylor drove the car payment-free for 3 more years while saving that $423/month. The total 8-year cost was $19,380 (accounting for resale value), compared to over $43,000 if leasing twice with nothing to show for it.</p>
+        <p>Taylor was car shopping in {{STATE_NAME}} and faced a choice: lease a new SUV for $450/month or buy a 3-year-old certified pre-owned sedan for $28,000 with 20% down. After analyzing total cost of ownership over 8 years—including payments, depreciation, insurance (averaging ${{STATE_INSURANCE_AVG_TEEN}}/month for young drivers in {{STATE_NAME}}), and opportunity costs—Taylor chose to buy. After paying off the 5-year loan at {{STATE_AVG_AUTO_LOAN_RATE_USED}}%, Taylor drove the car payment-free for 3 more years while saving that $423/month. The total 8-year cost was $19,380 (accounting for resale value), compared to over $43,000 if leasing twice with nothing to show for it.</p>
         <p class="framing-question">How can understanding total cost of ownership help you make smarter vehicle financing decisions beyond just comparing monthly payments?</p>
     </div>
 
@@ -111,6 +117,18 @@
             <li>Compare loan terms, interest rates, and their effects on total vehicle costs.</li>
             <li>Make informed decisions about vehicle acquisition aligned with financial goals.</li>
         </ul>
+    </div>
+
+    <!-- STATE DATA BOX -->
+    <div class="state-data-box">
+        <h4>Your State Auto Data: {{STATE_NAME}} ({{STATE_CODE}})</h4>
+        <div class="data-row"><span class="data-label">Sales Tax:</span><span class="data-value">{{STATE_SALES_TAX}}%</span></div>
+        <div class="data-row"><span class="data-label">Initial Registration:</span><span class="data-value">${{STATE_REGISTRATION_INITIAL}}</span></div>
+        <div class="data-row"><span class="data-label">Annual Registration:</span><span class="data-value">${{STATE_REGISTRATION_ANNUAL}}</span></div>
+        <div class="data-row"><span class="data-label">New Car Loan Rate:</span><span class="data-value">{{STATE_AVG_AUTO_LOAN_RATE_NEW}}%</span></div>
+        <div class="data-row"><span class="data-label">Used Car Loan Rate:</span><span class="data-value">{{STATE_AVG_AUTO_LOAN_RATE_USED}}%</span></div>
+        <div class="data-row"><span class="data-label">Teen Insurance (monthly):</span><span class="data-value">${{STATE_INSURANCE_AVG_TEEN}}</span></div>
+        <div class="data-row"><span class="data-label">Current Gas Price:</span><span class="data-value">${{STATE_GAS_PRICE_CURRENT}}/gal</span></div>
     </div>
 
     <!-- CORE CONCEPTS -->
@@ -127,7 +145,7 @@
         </tr>
         <tr>
             <td>Total Cost of Ownership</td>
-            <td>Complete financial cost including purchase price, financing, insurance, fuel, maintenance, repairs, and depreciation.</td>
+            <td>Complete financial cost including purchase price, financing, insurance, fuel, maintenance, repairs, and depreciation. In {{STATE_NAME}}, this also includes {{STATE_SALES_TAX}}% sales tax and annual registration fees of ${{STATE_REGISTRATION_ANNUAL}}.</td>
         </tr>
         <tr>
             <td>Residual Value</td>
@@ -144,19 +162,19 @@
     </table>
 
     <div class="background-box">
-        <strong>Background:</strong> Purchasing or leasing a vehicle is typically the second-largest financial decision after housing. The average new car costs over $48,000, and the financing method you choose can result in thousands of dollars in difference over time. The advertised monthly payment is only one piece of a puzzle that includes interest rates, depreciation, insurance, maintenance, and opportunity costs.
+        <strong>Background:</strong> Purchasing or leasing a vehicle is typically the second-largest financial decision after housing. The average new car costs over $48,000, and the financing method you choose can result in thousands of dollars in difference over time. The advertised monthly payment is only one piece of a puzzle that includes interest rates (currently {{STATE_AVG_AUTO_LOAN_RATE_NEW}}% for new cars and {{STATE_AVG_AUTO_LOAN_RATE_USED}}% for used cars in {{STATE_NAME}}), depreciation, insurance, maintenance, and opportunity costs. The national average new car loan rate is 6.5%, and used car rate is 7.5%.
     </div>
 
     <!-- APPLY IT -->
     <div class="section-header">Apply It</div>
 
     <div class="part-header">Part A: Buy vs. Lease Comparison</div>
-    <p class="mb-sm">Compare these two scenarios for a $35,000 vehicle over 6 years:</p>
+    <p class="mb-sm">Compare these two scenarios for a $35,000 vehicle over 6 years in {{STATE_NAME}}:</p>
 
     <table class="data-table">
         <tr>
             <th>Factor</th>
-            <th>BUY: 60-month loan at 5%</th>
+            <th>BUY: 60-month loan at {{STATE_AVG_AUTO_LOAN_RATE_NEW}}%</th>
             <th>LEASE: Two 36-month leases at $400/mo</th>
         </tr>
         <tr>
@@ -174,8 +192,18 @@
             <td>$31,680 (60 mo × $528)</td>
             <td>$28,800 (72 mo × $400)</td>
         </tr>
+        <tr>
+            <td style="text-align: left; font-weight: 600;">Sales Tax ({{STATE_SALES_TAX}}%)</td>
+            <td>${{STATE_SALES_TAX}}% × $35,000 = $_____</td>
+            <td>Included in payments</td>
+        </tr>
+        <tr>
+            <td style="text-align: left; font-weight: 600;">Registration (6 years)</td>
+            <td>${{STATE_REGISTRATION_INITIAL}} + (5 × ${{STATE_REGISTRATION_ANNUAL}}) = $_____</td>
+            <td>Included in lease</td>
+        </tr>
         <tr class="calc-row">
-            <td style="text-align: left; font-weight: 600;">Total Paid (including down)</td>
+            <td style="text-align: left; font-weight: 600;">Total Paid (including all costs)</td>
             <td></td>
             <td></td>
         </tr>
@@ -192,7 +220,7 @@
     </table>
 
     <div class="question">
-        <p class="question-text"><span class="question-number">1.</span> Calculate the total paid and net cost for each option. Which has the lower net cost?</p>
+        <p class="question-text"><span class="question-number">1.</span> Calculate the total paid and net cost for each option including {{STATE_NAME}}'s sales tax and registration fees. Which has the lower net cost?</p>
         <div class="calc-box">
             <div class="calc-label">Show your calculations:</div>
         </div>
@@ -208,7 +236,7 @@
 
     <!-- PART B -->
     <div class="part-header">Part B: Loan Term Impact Analysis</div>
-    <p class="mb-md">Compare these loan options for a $26,000 vehicle at different terms:</p>
+    <p class="mb-md">Compare these loan options for a $26,000 vehicle at different terms (using {{STATE_NAME}} rates):</p>
 
     <table class="data-table">
         <tr>
@@ -219,23 +247,27 @@
         </tr>
         <tr>
             <td>36 months</td>
-            <td>5.5%</td>
+            <td>{{STATE_AVG_AUTO_LOAN_RATE_NEW}}%</td>
             <td>$784</td>
             <td>$2,224</td>
         </tr>
         <tr>
             <td>60 months</td>
-            <td>6.0%</td>
+            <td>{{STATE_AVG_AUTO_LOAN_RATE_NEW}}% + 0.5%</td>
             <td>$502</td>
             <td>$4,120</td>
         </tr>
         <tr>
             <td>72 months</td>
-            <td>7.5%</td>
+            <td>{{STATE_AVG_AUTO_LOAN_RATE_USED}}%</td>
             <td>$449</td>
             <td>$6,328</td>
         </tr>
     </table>
+
+    <div class="hint-box">
+        <strong>Note:</strong> In {{STATE_NAME}}, the difference between new and used car loan rates is approximately {{CALCULATED_INTEREST_DIFFERENCE}}%. Longer loan terms typically have higher rates.
+    </div>
 
     <div class="question">
         <p class="question-text"><span class="question-number">3.</span> How much MORE in total interest would you pay by choosing the 72-month loan instead of the 36-month loan?</p>
@@ -250,6 +282,56 @@
             <strong>Hint:</strong> Use the formula: Monthly payment × 36 months × 1.11 (approximate growth factor) = approximately $11,250
         </div>
         <div class="answer-lines">
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+    <!-- PART C: State-Specific Costs -->
+    <div class="part-header">Part C: {{STATE_NAME}} Total Cost of Ownership</div>
+    <p class="mb-md">Calculate the true first-year cost for a $30,000 vehicle in {{STATE_NAME}}:</p>
+
+    <table class="data-table">
+        <tr>
+            <th>Cost Category</th>
+            <th>{{STATE_NAME}}</th>
+            <th>National Average</th>
+        </tr>
+        <tr>
+            <td style="text-align: left;">Vehicle Price</td>
+            <td>$30,000</td>
+            <td>$30,000</td>
+        </tr>
+        <tr>
+            <td style="text-align: left;">Sales Tax</td>
+            <td>$30,000 × {{STATE_SALES_TAX}}% = $_____</td>
+            <td>$30,000 × 5.0% = $1,500</td>
+        </tr>
+        <tr>
+            <td style="text-align: left;">Initial Registration</td>
+            <td>${{STATE_REGISTRATION_INITIAL}}</td>
+            <td>$150 (avg)</td>
+        </tr>
+        <tr>
+            <td style="text-align: left;">Annual Insurance (teen)</td>
+            <td>${{STATE_INSURANCE_AVG_TEEN}} × 12 = ${{CALCULATED_INSURANCE_TEEN_ANNUAL}}</td>
+            <td>$250 × 12 = $3,000</td>
+        </tr>
+        <tr>
+            <td style="text-align: left;">Gas (12,000 mi @ 28 mpg)</td>
+            <td>429 gal × ${{STATE_GAS_PRICE_CURRENT}} = $_____</td>
+            <td>429 gal × $3.00 = $1,287</td>
+        </tr>
+        <tr class="calc-row">
+            <td style="text-align: left; font-weight: 600;">First-Year Total</td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">5.</span> How does {{STATE_NAME}}'s first-year cost compare to the national average? What factors make the biggest difference?</p>
+        <div class="answer-lines">
+            <div class="answer-line"></div>
             <div class="answer-line"></div>
         </div>
     </div>
@@ -278,7 +360,7 @@
     </div>
 
     <div class="question">
-        <p class="question-text"><span class="question-number">3.</span> Explain why "total cost of ownership" is a better metric than "monthly payment" when comparing vehicle options.</p>
+        <p class="question-text"><span class="question-number">3.</span> Explain why "total cost of ownership" is a better metric than "monthly payment" when comparing vehicle options. Include at least one {{STATE_NAME}}-specific cost in your answer.</p>
         <div class="answer-lines">
             <div class="answer-line"></div>
             <div class="answer-line"></div>
@@ -295,7 +377,7 @@
     </div>
 
     <div class="question">
-        <p class="question-text"><span class="question-number">5.</span> <strong>Reflection:</strong> Given your anticipated income and financial goals, which approach (buy new, buy used, or lease) would best fit your situation when you need a vehicle? Explain your reasoning considering total cost, cash flow, and opportunity cost.</p>
+        <p class="question-text"><span class="question-number">5.</span> <strong>Reflection:</strong> Given your anticipated income, {{STATE_NAME}}'s vehicle costs ({{STATE_SALES_TAX}}% sales tax, ${{STATE_INSURANCE_AVG_TEEN}}/month insurance for teens), and your financial goals, which approach (buy new, buy used, or lease) would best fit your situation when you need a vehicle? Explain your reasoning considering total cost, cash flow, and opportunity cost.</p>
         <div class="answer-lines">
             <div class="answer-line"></div>
             <div class="answer-line"></div>
@@ -304,10 +386,14 @@
         </div>
     </div>
 
+    <div class="hint-box">
+        <strong>Resources:</strong> For more information on vehicle costs in {{STATE_NAME}}, visit the DMV at {{STATE_DMV_URL}}, compare insurance rates at {{STATE_INSURANCE_COMPARISON_URL}}, or check consumer protection resources at {{STATE_CONSUMER_PROTECTION_URL}}.
+    </div>
+
     <!-- FOOTER -->
     <div class="footer">
         <span>© PFL Academy | pflacademy.co</span>
-        <span>Chapter 12.1: Automobile Finance</span>
+        <span>Chapter 12.1: Automobile Finance — {{STATE_NAME}} Edition</span>
     </div>
 
 </body>

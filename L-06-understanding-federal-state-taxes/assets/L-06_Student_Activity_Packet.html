@@ -28,6 +28,11 @@
         .terms-table td:first-child { font-weight: 600; color: var(--primary); width: 28%; }
         .background-box { background: var(--bg-light); border: 1px solid var(--border); border-radius: 6px; padding: 12px 16px; margin-bottom: 18px; font-size: 10pt; color: var(--text-medium); }
         .background-box strong { color: var(--text-dark); }
+        .state-data-box { background: #e0f2fe; border: 1px solid #7dd3fc; border-radius: 6px; padding: 12px 16px; margin-bottom: 18px; font-size: 10pt; }
+        .state-data-box h4 { color: #0369a1; font-weight: 700; margin-bottom: 8px; }
+        .state-data-box .data-row { display: flex; justify-content: space-between; margin-bottom: 4px; }
+        .state-data-box .data-label { color: var(--text-medium); }
+        .state-data-box .data-value { font-weight: 600; color: var(--text-dark); }
         .scenario-card { background: white; border: 1px solid var(--border); border-radius: 6px; padding: 12px 14px; margin-bottom: 14px; page-break-inside: avoid; }
         .scenario-title { font-weight: 700; color: var(--primary); margin-bottom: 6px; font-size: 10pt; }
         .scenario-description { color: var(--text-medium); margin-bottom: 10px; font-size: 10pt; }
@@ -63,13 +68,20 @@
             <h1>PFL Academy</h1>
             <h2>Chapter 2.1: Understanding Federal and State Taxes</h2>
         </div>
-        <div class="header-right">Student Activity Packet</div>
+        <div class="header-right">Student Activity Packet<br>{{STATE_NAME}} Edition</div>
     </div>
 
     <div class="section-header">The Challenge</div>
     <div class="challenge-box">
-        <p>Mia and Liam both earn $70,000 annually, but Mia lives in California (with state income tax) while Liam lives in Texas (no state income tax). After federal and state income taxes, Mia's take-home pay is approximately $51,100, while Liam's is $54,900—a difference of $3,800. However, if both owned $300,000 homes, Liam would pay $3,180 more in property taxes, nearly eliminating his advantage.</p>
+        <p>Two workers each earn $70,000 annually. One lives in {{STATE_NAME}}, where the state income tax rate is {{STATE_INCOME_TAX_RATE}}%. The other lives in a state with the national average income tax rate of 4.6%. After federal and state income taxes, how much difference would there be in take-home pay? And what other taxes might offset or increase that difference?</p>
         <p class="framing-question">How do different state tax structures create different financial advantages depending on individual circumstances?</p>
+    </div>
+
+    <div class="state-data-box">
+        <h4>Your State Tax Data: {{STATE_NAME}} ({{STATE_CODE}})</h4>
+        <div class="data-row"><span class="data-label">State Income Tax Rate:</span><span class="data-value">{{STATE_INCOME_TAX_RATE}}%</span></div>
+        <div class="data-row"><span class="data-label">State Sales Tax:</span><span class="data-value">{{STATE_SALES_TAX}}%</span></div>
+        <div class="data-row"><span class="data-label">Average Property Tax Rate:</span><span class="data-value">{{STATE_PROPERTY_TAX_AVG}}%</span></div>
     </div>
 
     <div class="objectives-box">
@@ -77,7 +89,7 @@
         <ul>
             <li>Distinguish between federal and state taxes and their purposes.</li>
             <li>Explain how progressive tax brackets work.</li>
-            <li>Compare tax structures across different states.</li>
+            <li>Compare your state's tax structure to national averages.</li>
         </ul>
     </div>
 
@@ -87,12 +99,12 @@
         <tr><td>Federal Income Tax</td><td>Tax collected by the federal government based on income, using progressive tax brackets.</td></tr>
         <tr><td>Progressive Tax</td><td>System where higher-income earners pay a higher percentage of income in taxes.</td></tr>
         <tr><td>Payroll Taxes (FICA)</td><td>Employment taxes that fund Social Security (6.2%) and Medicare (1.45%).</td></tr>
-        <tr><td>State Income Tax</td><td>Tax collected by states, varying from 0% (some states) to over 13% (highest brackets).</td></tr>
+        <tr><td>State Income Tax</td><td>Tax collected by states, varying from 0% (some states) to over 13% (highest brackets). {{STATE_NAME}}'s rate is {{STATE_INCOME_TAX_RATE}}%.</td></tr>
         <tr><td>Tax Bracket</td><td>Income range subject to a specific tax rate in a progressive system.</td></tr>
     </table>
 
     <div class="background-box">
-        <strong>Background:</strong> The U.S. uses a progressive federal income tax system where rates increase with income—but only the income within each bracket is taxed at that bracket's rate. Seven states have no income tax: Alaska, Florida, Nevada, South Dakota, Tennessee, Texas, and Wyoming. States without income tax often rely more on sales taxes and property taxes. Payroll taxes (7.65% total) fund Social Security and Medicare regardless of which state you live in.
+        <strong>Background:</strong> The U.S. uses a progressive federal income tax system where rates increase with income—but only the income within each bracket is taxed at that bracket's rate. Seven states have no income tax: Alaska, Florida, Nevada, South Dakota, Tennessee, Texas, and Wyoming. States without income tax often rely more on sales taxes and property taxes. Payroll taxes (7.65% total) fund Social Security and Medicare regardless of which state you live in. The national average state income tax rate is approximately 4.6%.
     </div>
 
     <div class="section-header">Apply It</div>
@@ -105,7 +117,7 @@
         <div class="response-line"><span class="response-label">Why:</span><span class="response-blank"></span></div>
     </div>
     <div class="scenario-card">
-        <div class="scenario-title">Tax 2: Sales Tax (8% on all purchases)</div>
+        <div class="scenario-title">Tax 2: Sales Tax ({{STATE_SALES_TAX}}% in {{STATE_NAME}})</div>
         <div class="response-line"><span class="response-label">Type:</span><span class="response-blank"></span><span class="response-options">(Progressive / Regressive / Proportional)</span></div>
         <div class="response-line"><span class="response-label">Why:</span><span class="response-blank"></span></div>
     </div>
@@ -117,26 +129,26 @@
 
     <div class="hint-box"><strong>Hint:</strong> Consider who pays a higher PERCENTAGE of their income. Progressive = higher earners pay higher %. Regressive = lower earners pay higher %. Proportional = everyone pays same %.</div>
 
-    <div class="part-header">Part B: State Tax Comparison</div>
-    <p style="margin-bottom: 14px;">Compare annual taxes for a $60,000 salary in two states.</p>
+    <div class="part-header">Part B: Your State vs. National Average</div>
+    <p style="margin-bottom: 14px;">Compare annual taxes for a $60,000 salary in {{STATE_NAME}} vs. the national average.</p>
 
     <table class="data-table">
-        <tr><th>Tax Type</th><th>California (Income Tax State)</th><th>Texas (No Income Tax State)</th></tr>
+        <tr><th>Tax Type</th><th>{{STATE_NAME}}</th><th>National Average</th></tr>
         <tr><td style="text-align: left;">Federal Income Tax (approx)</td><td>$6,000</td><td>$6,000</td></tr>
-        <tr><td style="text-align: left;">State Income Tax</td><td>$2,400 (4% avg)</td><td>$0</td></tr>
+        <tr><td style="text-align: left;">State Income Tax</td><td>$60,000 × {{STATE_INCOME_TAX_RATE}}% = $______</td><td>$60,000 × 4.6% = $2,760</td></tr>
         <tr><td style="text-align: left;">Social Security + Medicare</td><td>$4,590 (7.65%)</td><td>$4,590 (7.65%)</td></tr>
         <tr class="calc-row"><td style="text-align: left; font-weight: 600;">Total Taxes</td><td></td><td></td></tr>
         <tr class="calc-row"><td style="text-align: left; font-weight: 600;">Take-Home Pay</td><td></td><td></td></tr>
     </table>
 
     <div class="question">
-        <p class="question-text"><span class="question-number">4.</span> How much more take-home pay does the Texas resident have? What might offset this advantage?</p>
+        <p class="question-text"><span class="question-number">4.</span> How does {{STATE_NAME}}'s take-home pay compare to the national average? What other taxes in your state might offset this difference?</p>
         <div class="answer-lines"><div class="answer-line"></div><div class="answer-line"></div></div>
     </div>
 
     <div class="part-header">Part C: Personal Application</div>
     <div class="question">
-        <p class="question-text"><span class="question-number">5.</span> If you were choosing between job offers in California vs. Texas with identical salaries, what factors beyond state income tax would you consider?</p>
+        <p class="question-text"><span class="question-number">5.</span> If you were choosing between job offers in {{STATE_NAME}} vs. another state with different tax rates, what factors beyond state income tax would you consider?</p>
         <div class="answer-lines"><div class="answer-line"></div><div class="answer-line"></div><div class="answer-line"></div></div>
     </div>
 
@@ -160,17 +172,17 @@
         <div class="calc-answer">Total Federal Tax: $_____________</div>
     </div>
     <div class="question">
-        <p class="question-text"><span class="question-number">4.</span> Mia moved from California to Texas to avoid state income tax. Under what circumstances might this move NOT result in significant tax savings?</p>
+        <p class="question-text"><span class="question-number">4.</span> {{STATE_NAME}} has a {{STATE_INCOME_TAX_RATE}}% income tax rate and {{STATE_PROPERTY_TAX_AVG}}% average property tax. Under what circumstances might someone choose to live in a state with higher income tax but lower property tax?</p>
         <div class="answer-lines"><div class="answer-line"></div><div class="answer-line"></div></div>
     </div>
     <div class="question">
-        <p class="question-text"><span class="question-number">5.</span> <strong>Reflection:</strong> How might understanding different state tax structures influence your decisions about where to live and work after graduation?</p>
+        <p class="question-text"><span class="question-number">5.</span> <strong>Reflection:</strong> How might understanding {{STATE_NAME}}'s tax structure compared to other states influence your decisions about where to live and work after graduation?</p>
         <div class="answer-lines"><div class="answer-line"></div><div class="answer-line"></div><div class="answer-line"></div><div class="answer-line"></div></div>
     </div>
 
     <div class="footer">
         <span>© PFL Academy | pflacademy.co</span>
-        <span>Chapter 2.1: Understanding Federal and State Taxes</span>
+        <span>Chapter 2.1: Understanding Federal and State Taxes — {{STATE_NAME}} Edition</span>
     </div>
 </body>
 </html>
