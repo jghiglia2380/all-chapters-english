@@ -1,0 +1,2186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-46: Automobile Finance Learning Lab | PFL Academy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .learning-station {
+            background-color: white;
+            border-radius: 0.75rem;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .station-number {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            width: 3rem;
+            height: 3rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-right: 1rem;
+        }
+
+        .persona-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .checkpoint {
+            background-color: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 1.25rem;
+            margin: 1.5rem 0;
+            border-radius: 0.5rem;
+        }
+
+        .calculation-input {
+            border: 2px solid #d1d5db;
+            border-radius: 0.375rem;
+            padding: 0.5rem;
+            width: 100%;
+            font-family: monospace;
+        }
+
+        .calculation-input:focus {
+            outline: none;
+            border-color: #4f46e5;
+        }
+
+        .calculation-input.correct {
+            border-color: #10b981;
+            background-color: #d1fae5;
+        }
+
+        .calculation-input.incorrect {
+            border-color: #ef4444;
+            background-color: #fee2e2;
+        }
+
+        .feedback {
+            padding: 0.75rem;
+            border-radius: 0.375rem;
+            margin-top: 0.5rem;
+            font-weight: 500;
+        }
+
+        .feedback.correct {
+            background-color: #d1fae5;
+            color: #065f46;
+        }
+
+        .feedback.incorrect {
+            background-color: #fee2e2;
+            color: #991b1b;
+        }
+
+        .rubric {
+            background-color: #f3f4f6;
+            border: 2px solid #d1d5db;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin: 1rem 0;
+            display: none;
+        }
+
+        .rubric.show {
+            display: block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .insight-box {
+            background-color: #d1fae5;
+            border-left: 4px solid #10b981;
+            padding: 1.25rem;
+            border-radius: 0.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .consequence-box {
+            background-color: #fee2e2;
+            border-left: 4px solid #ef4444;
+            padding: 1.25rem;
+            border-radius: 0.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .matrix-cell {
+            border: 2px solid #d1d5db;
+            padding: 0.75rem;
+            border-radius: 0.375rem;
+        }
+
+        .matrix-header {
+            background-color: #eef2ff;
+            font-weight: bold;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .locked {
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        .progress-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #d1d5db;
+            transition: all 0.3s ease;
+        }
+
+        .progress-dot.active {
+            background-color: #4f46e5;
+            transform: scale(1.3);
+        }
+
+        .progress-dot.completed {
+            background-color: #10b981;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Fixed Header -->
+    <header class="bg-indigo-600 text-white shadow-md fixed top-0 left-0 right-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h1 class="text-2xl font-bold">PFL Academy</h1>
+                    <p class="text-indigo-200 text-sm">L-46: Automobile Finance - Day 2 Learning Lab</p>
+                </div>
+                <div class="flex items-center space-x-6">
+                    <a href="#" class="hover:text-indigo-200">Home</a>
+                    <a href="day1-REVISED-v2.html" class="hover:text-indigo-200">← Back to Day 1</a>
+                    <button onclick="toggleRubrics()" class="text-xs bg-indigo-500 px-3 py-1 rounded hover:bg-indigo-400">
+                        👨‍🏫 Teacher Rubrics
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Spacer -->
+    <div class="h-24"></div>
+
+    <!-- Progress Indicators -->
+    <div class="bg-white shadow-sm border-b sticky top-24 z-30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <span class="text-sm font-semibold text-gray-700">Your Progress:</span>
+                    <div class="flex items-center space-x-2">
+                        <div class="progress-dot active" id="dot-1"></div>
+                        <div class="progress-dot" id="dot-2"></div>
+                        <div class="progress-dot" id="dot-3"></div>
+                        <div class="progress-dot" id="dot-3.5"></div>
+                        <div class="progress-dot" id="dot-4"></div>
+                    </div>
+                </div>
+                <div class="text-sm text-gray-600">
+                    <span id="current-station">Station 1</span> of 5 Complete
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Introduction -->
+        <div class="bg-gradient-to-r from-indigo-600 to-purple-700 text-white rounded-lg p-8 mb-8">
+            <div class="flex items-center mb-4">
+                <span class="bg-white bg-opacity-20 px-3 py-1 rounded-full text-sm font-semibold">LEARNING LAB</span>
+            </div>
+            <h2 class="text-3xl font-bold mb-4">Apply Your Skills: Real-World Analysis</h2>
+            <p class="text-indigo-100 text-lg mb-4">Yesterday you helped Marcus make his decision. Today you'll analyze different situations, master the calculations independently, and create your own decision-making framework.</p>
+            <p class="text-indigo-100">⏱️ <strong>Time:</strong> 50 minutes | 📊 <strong>Stations:</strong> 5 hands-on challenges</p>
+        </div>
+
+        <!-- DECISION SCENARIO: Marcus's Transportation Choice -->
+        <div class="bg-white rounded-lg shadow-lg p-8 mb-8 border-4 border-indigo-500">
+            <div class="flex items-center mb-6">
+                <span class="bg-indigo-600 text-white px-4 py-2 rounded-full text-sm font-bold mr-3">🚗 DECISION SCENARIO</span>
+                <h3 class="text-2xl font-bold text-gray-900">Help Marcus Make His Choice</h3>
+            </div>
+
+            <!-- Marcus's Persona -->
+            <div class="persona-card mb-6">
+                <h4 class="text-2xl font-bold mb-3">👨‍💼 Meet Marcus</h4>
+                <div class="grid md:grid-cols-2 gap-4 text-white">
+                    <div>
+                        <p class="mb-2"><strong>Age:</strong> 24 years old</p>
+                        <p class="mb-2"><strong>Situation:</strong> Just accepted a new job in {{STATE_NAME}}</p>
+                        <p class="mb-2"><strong>Location:</strong> Lives in the suburbs, works downtown</p>
+                    </div>
+                    <div>
+                        <p class="mb-2"><strong>Commute:</strong> 25 miles each way (50 miles/day)</p>
+                        <p class="mb-2"><strong>Monthly Budget:</strong> Maximum $400/month for car payment</p>
+                        <p class="mb-2"><strong>Credit Score:</strong> 680 (Fair)</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Given Values -->
+            <div class="bg-gray-50 border-2 border-gray-300 rounded-lg p-6 mb-6">
+                <h4 class="font-bold text-lg mb-4 text-gray-900">📋 Given Information:</h4>
+                <div class="grid md:grid-cols-3 gap-4">
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-1">Annual Miles Driven</label>
+                        <input type="text" value="13,000 miles" readonly class="w-full p-2 bg-white border-2 border-gray-300 rounded font-mono text-gray-800">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-1">Current Gas Price</label>
+                        <input type="text" value="$2.89/gallon" readonly class="w-full p-2 bg-white border-2 border-gray-300 rounded font-mono text-gray-800">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-1">Interest Rate (680 credit)</label>
+                        <input type="text" value="8.5% APR" readonly class="w-full p-2 bg-white border-2 border-gray-300 rounded font-mono text-gray-800">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Decision Choices -->
+            <div class="bg-blue-50 border-2 border-blue-300 rounded-lg p-6 mb-6">
+                <h4 class="font-bold text-lg mb-4 text-gray-900">🤔 What Should Marcus Do?</h4>
+                <p class="text-gray-700 mb-4">Select one option and see the financial consequences:</p>
+
+                <select id="marcus-choice" onchange="showMarcusConsequence()" class="w-full p-4 border-2 border-indigo-500 rounded-lg text-lg font-semibold bg-white cursor-pointer mb-4">
+                    <option value="">-- Select Marcus's Best Option --</option>
+                    <option value="new">Option A: Buy $28,000 New Car (5-year loan, 32 MPG, $220/mo insurance)</option>
+                    <option value="used">Option B: Buy $15,000 Used Car (4-year loan, 38 MPG, $145/mo insurance)</option>
+                    <option value="lease">Option C: Lease $25,000 Car (3-year lease, 35 MPG, $190/mo insurance)</option>
+                </select>
+            </div>
+
+            <!-- Consequence Display -->
+            <div id="marcus-consequence" class="hidden">
+                <!-- This will be populated by JavaScript -->
+            </div>
+
+            <!-- Reflection -->
+            <div class="bg-yellow-50 border-2 border-yellow-400 rounded-lg p-6 mt-6">
+                <h4 class="font-bold text-lg mb-3 text-gray-900">💭 Justify Your Decision:</h4>
+                <p class="text-sm text-gray-600 mb-3">Based on the numerical outcomes above, explain why you chose this option for Marcus. Consider his budget, commute, and long-term financial goals.</p>
+                <textarea id="marcus-reflection" rows="5" class="w-full p-4 border-2 border-gray-300 rounded-lg" placeholder="Why is this the best choice for Marcus? What trade-offs is he making? How does this align with his $400/month budget and 25-mile commute?"></textarea>
+            </div>
+        </div>
+
+        <!-- Station 1: Situational Decision-Making -->
+        <div class="learning-station" id="station-1">
+            <div class="flex items-start mb-6">
+                <div class="station-number">1</div>
+                <div>
+                    <h3 class="text-2xl font-bold text-gray-900">Different People, Different Right Answers</h3>
+                    <p class="text-gray-600 mt-1">Calculate and compare how commute distance changes the best choice</p>
+                </div>
+            </div>
+
+            <p class="text-gray-700 mb-6">Same three vehicle options. Two people with different commutes. YOU calculate which option makes sense for each person.</p>
+
+            <!-- Personas -->
+            <div class="grid md:grid-cols-2 gap-4 mb-6">
+                <div class="persona-card">
+                    <h4 class="text-xl font-bold mb-2">👨‍💼 Carlos (High Miles)</h4>
+                    <div class="text-sm space-y-1">
+                        <p>• Commute: 40 miles each way</p>
+                        <p>• Annual miles: ~20,800</p>
+                        <p>• Income: $2,800/month</p>
+                        <p>• Budget: Tight</p>
+                    </div>
+                </div>
+                <div class="persona-card">
+                    <h4 class="text-xl font-bold mb-2">👩‍💻 Emma (Low Miles)</h4>
+                    <div class="text-sm space-y-1">
+                        <p>• Commute: 3 miles each way</p>
+                        <p>• Annual miles: ~5,000</p>
+                        <p>• Income: $4,500/month</p>
+                        <p>• Budget: Flexible</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-blue-50 border-2 border-blue-200 rounded-lg p-6 mb-6">
+                <h4 class="font-bold text-lg mb-4">Option A: $35k New SUV (22 MPG, $260/mo insurance, $90/mo maintenance)</h4>
+                <p class="text-sm mb-4">Loan: 72 months @ 8.5%, Gas: $2.89/gal</p>
+
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <h5 class="font-bold mb-3">Carlos's 2-Year Cost:</h5>
+                        <div class="space-y-2">
+                            <div>
+                                <label class="block text-sm">Monthly payment ($35k, 72mo, 8.5%):</label>
+                                <input type="number" id="s1-carlos-a-payment" class="calculation-input" placeholder="$">
+                                <div id="s1-carlos-a-payment-fb"></div>
+                            </div>
+                            <div>
+                                <label class="block text-sm">Total fuel (20,800 mi/yr, 22 MPG, $2.89):</label>
+                                <input type="number" id="s1-carlos-a-fuel" class="calculation-input" placeholder="$">
+                                <div id="s1-carlos-a-fuel-fb"></div>
+                            </div>
+                            <div>
+                                <label class="block text-sm">Insurance + Maintenance (24 months):</label>
+                                <input type="number" id="s1-carlos-a-other" class="calculation-input" placeholder="$">
+                                <div id="s1-carlos-a-other-fb"></div>
+                            </div>
+                            <div class="bg-blue-100 p-3 rounded">
+                                <label class="block text-sm font-bold">TOTAL 2-year cost:</label>
+                                <input type="number" id="s1-carlos-a-total" class="calculation-input" placeholder="$">
+                                <div id="s1-carlos-a-total-fb"></div>
+                            </div>
+                        </div>
+                        <button onclick="checkStation1CarlosA()" class="btn-primary mt-3">Check Calculation</button>
+                    </div>
+                    <div>
+                        <h5 class="font-bold mb-3">Emma's 2-Year Cost:</h5>
+                        <div class="space-y-2">
+                            <div>
+                                <label class="block text-sm">Monthly payment (same as Carlos):</label>
+                                <input type="number" id="s1-emma-a-payment" class="calculation-input" placeholder="$">
+                                <div id="s1-emma-a-payment-fb"></div>
+                            </div>
+                            <div>
+                                <label class="block text-sm">Total fuel (5,000 mi/yr, 22 MPG, $2.89):</label>
+                                <input type="number" id="s1-emma-a-fuel" class="calculation-input" placeholder="$">
+                                <div id="s1-emma-a-fuel-fb"></div>
+                            </div>
+                            <div>
+                                <label class="block text-sm">Insurance + Maintenance (same):</label>
+                                <input type="number" id="s1-emma-a-other" class="calculation-input" placeholder="$">
+                                <div id="s1-emma-a-other-fb"></div>
+                            </div>
+                            <div class="bg-blue-100 p-3 rounded">
+                                <label class="block text-sm font-bold">TOTAL 2-year cost:</label>
+                                <input type="number" id="s1-emma-a-total" class="calculation-input" placeholder="$">
+                                <div id="s1-emma-a-total-fb"></div>
+                            </div>
+                        </div>
+                        <button onclick="checkStation1EmmaA()" class="btn-primary mt-3">Check Calculation</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-green-50 border-2 border-green-200 rounded-lg p-6 mb-6">
+                <h4 class="font-bold text-lg mb-4">Option B: $16k Used Sedan (38 MPG, $145/mo insurance, $70/mo maintenance)</h4>
+                <p class="text-sm mb-4">Loan: $13k after $3k down, 48 months @ 7%, Gas: $2.89/gal</p>
+
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <h5 class="font-bold mb-3">Carlos's 2-Year Cost:</h5>
+                        <div class="space-y-2">
+                            <div>
+                                <label class="block text-sm">Monthly payment ($13k, 48mo, 7%):</label>
+                                <input type="number" id="s1-carlos-b-payment" class="calculation-input" placeholder="$">
+                                <div id="s1-carlos-b-payment-fb"></div>
+                            </div>
+                            <div>
+                                <label class="block text-sm">Total fuel (20,800 mi/yr, 38 MPG, $2.89):</label>
+                                <input type="number" id="s1-carlos-b-fuel" class="calculation-input" placeholder="$">
+                                <div id="s1-carlos-b-fuel-fb"></div>
+                            </div>
+                            <div>
+                                <label class="block text-sm">Insurance + Maintenance + $3k down:</label>
+                                <input type="number" id="s1-carlos-b-other" class="calculation-input" placeholder="$">
+                                <div id="s1-carlos-b-other-fb"></div>
+                            </div>
+                            <div class="bg-green-100 p-3 rounded">
+                                <label class="block text-sm font-bold">TOTAL 2-year cost:</label>
+                                <input type="number" id="s1-carlos-b-total" class="calculation-input" placeholder="$">
+                                <div id="s1-carlos-b-total-fb"></div>
+                            </div>
+                        </div>
+                        <button onclick="checkStation1CarlosB()" class="btn-primary mt-3">Check Calculation</button>
+                    </div>
+                    <div>
+                        <h5 class="font-bold mb-3">Emma's 2-Year Cost:</h5>
+                        <div class="space-y-2">
+                            <div>
+                                <label class="block text-sm">Monthly payment (same):</label>
+                                <input type="number" id="s1-emma-b-payment" class="calculation-input" placeholder="$">
+                                <div id="s1-emma-b-payment-fb"></div>
+                            </div>
+                            <div>
+                                <label class="block text-sm">Total fuel (5,000 mi/yr, 38 MPG, $2.89):</label>
+                                <input type="number" id="s1-emma-b-fuel" class="calculation-input" placeholder="$">
+                                <div id="s1-emma-b-fuel-fb"></div>
+                            </div>
+                            <div>
+                                <label class="block text-sm">Insurance + Maintenance + down:</label>
+                                <input type="number" id="s1-emma-b-other" class="calculation-input" placeholder="$">
+                                <div id="s1-emma-b-other-fb"></div>
+                            </div>
+                            <div class="bg-green-100 p-3 rounded">
+                                <label class="block text-sm font-bold">TOTAL 2-year cost:</label>
+                                <input type="number" id="s1-emma-b-total" class="calculation-input" placeholder="$">
+                                <div id="s1-emma-b-total-fb"></div>
+                            </div>
+                        </div>
+                        <button onclick="checkStation1EmmaB()" class="btn-primary mt-3">Check Calculation</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="station1-analysis" class="hidden">
+                <div class="checkpoint">
+                    <h4 class="font-semibold text-gray-900 mb-3">Analyze Using COST Framework:</h4>
+
+                    <div class="bg-white rounded p-4 mb-3">
+                        <p class="font-semibold mb-2">C - CALCULATIONS: What do the numbers tell you?</p>
+                        <textarea id="s1-cost-c" class="calculation-input h-20" placeholder="Compare Carlos's Option A vs B. Compare Emma's Option A vs B. Which saves more for each person?"></textarea>
+                    </div>
+                    <div class="bg-white rounded p-4 mb-3">
+                        <p class="font-semibold mb-2">O - OPPORTUNITY COSTS: What does choosing the expensive option cost them?</p>
+                        <textarea id="s1-cost-o" class="calculation-input h-20" placeholder="Calculate the dollar difference. What could they do with that money instead?"></textarea>
+                    </div>
+                    <div class="bg-white rounded p-4 mb-3">
+                        <p class="font-semibold mb-2">S - SITUATION: Why does commute distance matter so much?</p>
+                        <textarea id="s1-cost-s" class="calculation-input h-20" placeholder="Look at the fuel cost difference between Carlos and Emma..."></textarea>
+                    </div>
+                    <div class="bg-white rounded p-4 mb-3">
+                        <p class="font-semibold mb-2">T - TIME: How does this difference compound over 5 years?</p>
+                        <textarea id="s1-cost-t" class="calculation-input h-20" placeholder="If this pattern continues, what's the 5-year difference?"></textarea>
+                    </div>
+                </div>
+
+                <button onclick="completeStation1()" class="btn-primary">Complete Station 1 →</button>
+
+                <div class="rubric">
+                    <h4 class="font-bold text-gray-900 mb-2">👨‍🏫 Teacher Rubric: Situational Analysis</h4>
+                    <ul class="text-sm text-gray-700 space-y-1">
+                        <li><strong>4:</strong> All calculations correct (±$200). COST analysis identifies that Carlos saves ~$5k with Option B due to fuel efficiency, Emma's savings are smaller. Explains why situation matters.</li>
+                        <li><strong>3:</strong> Calculations substantially correct. Recognizes different optimal choices for different situations.</li>
+                        <li><strong>2:</strong> Calculations attempted. Identifies that commute matters but analysis lacks depth.</li>
+                        <li><strong>1:</strong> Calculation errors. Generic analysis.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Station 2: Credit Score Impact (Locked Initially) -->
+        <div class="learning-station locked" id="station-2">
+            <div class="flex items-start mb-6">
+                <div class="station-number">2</div>
+                <div>
+                    <h3 class="text-2xl font-bold text-gray-900">The Credit Score Tax</h3>
+                    <p class="text-gray-600 mt-1">Calculate how much poor credit actually costs</p>
+                </div>
+            </div>
+
+            <p class="text-gray-700 mb-6">Three people buy the same $28,000 car with a 60-month loan. Only difference: their credit scores. YOU calculate the true cost of poor credit.</p>
+
+            <div class="grid md:grid-cols-3 gap-4 mb-6">
+                <div class="bg-red-50 border-2 border-red-200 rounded-lg p-4">
+                    <h4 class="font-bold text-red-900">Taylor (Credit: 610)</h4>
+                    <p class="text-sm">Interest Rate: <strong>11.5%</strong></p>
+                </div>
+                <div class="bg-yellow-50 border-2 border-yellow-200 rounded-lg p-4">
+                    <h4 class="font-bold text-yellow-900">Jordan (Credit: 690)</h4>
+                    <p class="text-sm">Interest Rate: <strong>7.5%</strong></p>
+                </div>
+                <div class="bg-green-50 border-2 border-green-200 rounded-lg p-4">
+                    <h4 class="font-bold text-green-900">Alex (Credit: 780)</h4>
+                    <p class="text-sm">Interest Rate: <strong>4.5%</strong></p>
+                </div>
+            </div>
+
+            <div class="bg-white border-2 border-gray-200 rounded-lg p-6 mb-6">
+                <h4 class="font-bold text-lg mb-4">Calculate Each Person's True Cost:</h4>
+
+                <div class="space-y-6">
+                    <div>
+                        <h5 class="font-bold text-red-900 mb-3">Taylor (11.5% APR):</h5>
+                        <div class="grid md:grid-cols-3 gap-4">
+                            <div>
+                                <label class="block text-sm mb-1">Monthly payment:</label>
+                                <input type="number" id="s2-taylor-pmt" step="0.01" class="calculation-input" placeholder="$">
+                                <div id="s2-taylor-pmt-fb"></div>
+                            </div>
+                            <div>
+                                <label class="block text-sm mb-1">Total paid (60 months):</label>
+                                <input type="number" id="s2-taylor-total" class="calculation-input" placeholder="$">
+                                <div id="s2-taylor-total-fb"></div>
+                            </div>
+                            <div>
+                                <label class="block text-sm mb-1">Total interest paid:</label>
+                                <input type="number" id="s2-taylor-int" class="calculation-input" placeholder="$">
+                                <div id="s2-taylor-int-fb"></div>
+                            </div>
+                        </div>
+                        <button onclick="checkStation2Taylor()" class="btn-primary mt-3">Check Taylor's Calculation</button>
+                    </div>
+
+                    <div>
+                        <h5 class="font-bold text-yellow-900 mb-3">Jordan (7.5% APR):</h5>
+                        <div class="grid md:grid-cols-3 gap-4">
+                            <div>
+                                <label class="block text-sm mb-1">Monthly payment:</label>
+                                <input type="number" id="s2-jordan-pmt" step="0.01" class="calculation-input" placeholder="$">
+                                <div id="s2-jordan-pmt-fb"></div>
+                            </div>
+                            <div>
+                                <label class="block text-sm mb-1">Total paid:</label>
+                                <input type="number" id="s2-jordan-total" class="calculation-input" placeholder="$">
+                                <div id="s2-jordan-total-fb"></div>
+                            </div>
+                            <div>
+                                <label class="block text-sm mb-1">Total interest:</label>
+                                <input type="number" id="s2-jordan-int" class="calculation-input" placeholder="$">
+                                <div id="s2-jordan-int-fb"></div>
+                            </div>
+                        </div>
+                        <button onclick="checkStation2Jordan()" class="btn-primary mt-3">Check Jordan's Calculation</button>
+                    </div>
+
+                    <div>
+                        <h5 class="font-bold text-green-900 mb-3">Alex (4.5% APR):</h5>
+                        <div class="grid md:grid-cols-3 gap-4">
+                            <div>
+                                <label class="block text-sm mb-1">Monthly payment:</label>
+                                <input type="number" id="s2-alex-pmt" step="0.01" class="calculation-input" placeholder="$">
+                                <div id="s2-alex-pmt-fb"></div>
+                            </div>
+                            <div>
+                                <label class="block text-sm mb-1">Total paid:</label>
+                                <input type="number" id="s2-alex-total" class="calculation-input" placeholder="$">
+                                <div id="s2-alex-total-fb"></div>
+                            </div>
+                            <div>
+                                <label class="block text-sm mb-1">Total interest:</label>
+                                <input type="number" id="s2-alex-int" class="calculation-input" placeholder="$">
+                                <div id="s2-alex-int-fb"></div>
+                            </div>
+                        </div>
+                        <button onclick="checkStation2Alex()" class="btn-primary mt-3">Check Alex's Calculation</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="station2-comparison" class="hidden">
+                <div class="consequence-box">
+                    <h4 class="font-bold text-red-900 mb-3">Calculate the "Credit Score Tax":</h4>
+                    <div class="space-y-3">
+                        <div>
+                            <label class="block text-sm mb-1">How much MORE does Taylor pay than Alex? (difference in total interest)</label>
+                            <input type="number" id="s2-taylor-vs-alex" class="calculation-input" placeholder="$">
+                            <div id="s2-taylor-vs-alex-fb"></div>
+                        </div>
+                        <div>
+                            <label class="block text-sm mb-1">How much MORE does Jordan pay than Alex?</label>
+                            <input type="number" id="s2-jordan-vs-alex" class="calculation-input" placeholder="$">
+                            <div id="s2-jordan-vs-alex-fb"></div>
+                        </div>
+                        <div>
+                            <label class="block text-sm mb-1">What percentage of the car's price does Taylor pay in EXTRA interest vs Alex?</label>
+                            <input type="number" id="s2-taylor-pct" step="0.1" class="calculation-input" placeholder="%">
+                            <div id="s2-taylor-pct-fb"></div>
+                        </div>
+                    </div>
+                    <button onclick="checkStation2Comparison()" class="btn-primary mt-4">Check Comparison</button>
+                </div>
+
+                <div id="station2-analysis" class="hidden checkpoint">
+                    <h4 class="font-semibold mb-3">Action Plan Using COST Framework:</h4>
+                    <div class="bg-white rounded p-4 mb-3">
+                        <p class="font-semibold mb-2">C - CALCULATIONS: What specific actions improve credit scores?</p>
+                        <textarea id="s2-cost-c" class="calculation-input h-20" placeholder="If Taylor wants to save $3,000+, what must they do BEFORE buying?"></textarea>
+                    </div>
+                    <div class="bg-white rounded p-4 mb-3">
+                        <p class="font-semibold mb-2">O - OPPORTUNITY COSTS: What does Taylor give up?</p>
+                        <textarea id="s2-cost-o" class="calculation-input h-20" placeholder="With the extra $3k in interest, what could Taylor have bought/saved/invested?"></textarea>
+                    </div>
+                    <div class="bg-white rounded p-4 mb-3">
+                        <p class="font-semibold mb-2">S - SITUATION: Why does this matter more for some buyers?</p>
+                        <textarea id="s2-cost-s" class="calculation-input h-20" placeholder="For someone buying a $28k car on a tight budget..."></textarea>
+                    </div>
+                    <div class="bg-white rounded p-4 mb-3">
+                        <p class="font-semibold mb-2">T - TIME: How long does it take to improve credit?</p>
+                        <textarea id="s2-cost-t" class="calculation-input h-20" placeholder="Should Taylor wait 6-12 months to improve credit before buying? Why/why not?"></textarea>
+                    </div>
+
+                    <button onclick="completeStation2()" class="btn-primary">Complete Station 2 →</button>
+                </div>
+
+                <div class="rubric">
+                    <h4 class="font-bold text-gray-900 mb-2">👨‍🏫 Teacher Rubric: Credit Impact Analysis</h4>
+                    <ul class="text-sm text-gray-700 space-y-1">
+                        <li><strong>4:</strong> All calculations correct (±$100). Identifies Taylor pays ~$3,200 more than Alex (11.4% of car price). COST analysis includes specific credit-building actions with timeline.</li>
+                        <li><strong>3:</strong> Calculations substantially correct. Recognizes credit score impact. Lists credit improvement strategies.</li>
+                        <li><strong>2:</strong> Calculations attempted. Understands credit matters but analysis lacks actionable steps.</li>
+                        <li><strong>1:</strong> Calculation errors. Generic credit advice.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Station 3: Depreciation (Locked Initially) -->
+        <div class="learning-station locked" id="station-3">
+            <div class="flex items-start mb-6">
+                <div class="station-number">3</div>
+                <div>
+                    <h3 class="text-2xl font-bold text-gray-900">The Depreciation Trap</h3>
+                    <p class="text-gray-600 mt-1">Calculate when you're "underwater" on a car loan</p>
+                </div>
+            </div>
+
+            <p class="text-gray-700 mb-6">You're "underwater" when you owe more than the car is worth. This is EXTREMELY common. Let's calculate exactly when it happens.</p>
+
+            <div class="bg-blue-50 border-2 border-blue-200 rounded-lg p-6 mb-6">
+                <h4 class="font-bold text-lg mb-4">Scenario: $38,000 new car, $0 down, 72 months @ 9%</h4>
+
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium mb-1">1. Calculate monthly payment:</label>
+                        <input type="number" id="s3-payment" step="0.01" class="calculation-input" placeholder="$">
+                        <div id="s3-payment-fb"></div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium mb-1">2. After 12 months, you've paid how much toward principal?</label>
+                        <p class="text-xs text-gray-600 mb-1">Hint: First calculate total paid (payment × 12), then subtract interest. Monthly rate = 9%/12. Use loan balance formula or estimate ~$4,200 toward principal.</p>
+                        <input type="number" id="s3-principal-yr1" class="calculation-input" placeholder="$">
+                        <div id="s3-principal-yr1-fb"></div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium mb-1">3. Amount still owed after 12 months:</label>
+                        <input type="number" id="s3-owed-yr1" class="calculation-input" placeholder="$">
+                        <div id="s3-owed-yr1-fb"></div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium mb-1">4. Vehicle value after 12 months (new cars lose ~20% first year):</label>
+                        <input type="number" id="s3-value-yr1" class="calculation-input" placeholder="$">
+                        <div id="s3-value-yr1-fb"></div>
+                    </div>
+
+                    <div class="bg-red-50 p-4 rounded">
+                        <label class="block text-sm font-medium mb-1">5. How much are you underwater at 12 months? (owed - value)</label>
+                        <input type="number" id="s3-underwater-yr1" class="calculation-input" placeholder="$">
+                        <div id="s3-underwater-yr1-fb"></div>
+                    </div>
+
+                    <button onclick="checkStation3Year1()" class="btn-primary">Check Year 1 Calculation</button>
+                </div>
+            </div>
+
+            <div id="station3-analysis" class="hidden">
+                <div class="consequence-box">
+                    <h4 class="font-bold text-red-900 mb-3">⚠️ Real Consequence: Job Relocation</h4>
+                    <p class="text-red-800 mb-4">You get a great job offer 500 miles away at month 18. You need to sell the car. Can you?</p>
+
+                    <div class="space-y-3">
+                        <div>
+                            <label class="block text-sm mb-1">Amount owed at month 18 (estimate ~$32,500):</label>
+                            <input type="number" id="s3-owed-18" class="calculation-input" placeholder="$">
+                            <div id="s3-owed-18-fb"></div>
+                        </div>
+                        <div>
+                            <label class="block text-sm mb-1">Value at month 18 ($38k × 0.80 × 0.925 for 6 more months):</label>
+                            <input type="number" id="s3-value-18" class="calculation-input" placeholder="$">
+                            <div id="s3-value-18-fb"></div>
+                        </div>
+                        <div>
+                            <label class="block text-sm mb-1">How much CASH would you need to sell the car?</label>
+                            <input type="number" id="s3-cash-needed" class="calculation-input" placeholder="$">
+                            <div id="s3-cash-needed-fb"></div>
+                        </div>
+                    </div>
+                    <button onclick="checkStation3Consequence()" class="btn-primary mt-3">Check Consequence</button>
+                </div>
+
+                <div id="station3-reflection" class="hidden checkpoint">
+                    <h4 class="font-semibold mb-3">Reflect Using COST Framework:</h4>
+                    <div class="bg-white rounded p-4 mb-3">
+                        <p class="font-semibold mb-2">C - CALCULATIONS: What causes the underwater trap?</p>
+                        <textarea id="s3-cost-c" class="calculation-input h-20" placeholder="Compare depreciation rate vs. loan paydown rate..."></textarea>
+                    </div>
+                    <div class="bg-white rounded p-4 mb-3">
+                        <p class="font-semibold mb-2">O - OPPORTUNITY COSTS: What flexibility do you lose when underwater?</p>
+                        <textarea id="s3-cost-o" class="calculation-input h-20" placeholder="List 3 situations where being underwater creates problems..."></textarea>
+                    </div>
+                    <div class="bg-white rounded p-4 mb-3">
+                        <p class="font-semibold mb-2">S - SITUATION: How do you avoid this trap?</p>
+                        <textarea id="s3-cost-s" class="calculation-input h-20" placeholder="Down payment amount? Loan length? New vs used?"></textarea>
+                    </div>
+                    <div class="bg-white rounded p-4 mb-3">
+                        <p class="font-semibold mb-2">T - TIME: When do you finally have positive equity with this loan?</p>
+                        <textarea id="s3-cost-t" class="calculation-input h-20" placeholder="Estimate based on 15%/year depreciation after year 1..."></textarea>
+                    </div>
+
+                    <button onclick="completeStation3()" class="btn-primary">Complete Station 3 →</button>
+                </div>
+
+                <div class="rubric">
+                    <h4 class="font-bold text-gray-900 mb-2">👨‍🏫 Teacher Rubric: Depreciation Analysis</h4>
+                    <ul class="text-sm text-gray-700 space-y-1">
+                        <li><strong>4:</strong> All calculations correct (±$500). Identifies ~$4,200 underwater at 12 months, ~$4,400 at 18 months. COST analysis explains how down payment or shorter loan prevents trap.</li>
+                        <li><strong>3:</strong> Calculations substantially correct. Understands underwater concept. Lists prevention strategies.</li>
+                        <li><strong>2:</strong> Calculations attempted. Recognizes problem but solutions lack specificity.</li>
+                        <li><strong>1:</strong> Calculation errors. Generic analysis.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Station 3.5: TRANSFER CHALLENGE - Maya's Scenario (Locked Initially) -->
+        <div class="learning-station locked" id="station-3-5">
+            <div class="flex items-start mb-6">
+                <div class="station-number">3.5</div>
+                <div>
+                    <h3 class="text-2xl font-bold text-gray-900">🎯 Transfer Challenge: Help Your Cousin Maya</h3>
+                    <p class="text-gray-600 mt-1">Apply everything you've learned INDEPENDENTLY - no hints, no pre-calculated answers</p>
+                </div>
+            </div>
+
+            <div class="bg-orange-50 border-4 border-orange-400 rounded-lg p-6 mb-6">
+                <h4 class="text-xl font-bold text-orange-900 mb-4">Scenario:</h4>
+                <p class="text-gray-800 mb-4">Your cousin Maya calls you for advice. She just got her first "real" job making $52,000/year ($3,380/month after taxes). She's looking at a 2023 SUV for $32,000.</p>
+
+                <div class="bg-white rounded-lg p-4 mb-4">
+                    <h5 class="font-bold mb-3">The Deal:</h5>
+                    <ul class="space-y-2 text-sm">
+                        <li>• Price: $32,000</li>
+                        <li>• Down payment: $0 ("I don't have savings yet")</li>
+                        <li>• Loan term: 72 months</li>
+                        <li>• Interest rate: 8.9% (her credit score is 645)</li>
+                        <li>• Insurance quote: $285/month</li>
+                        <li>• Fuel economy: 24 MPG</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white rounded-lg p-4">
+                    <h5 class="font-bold mb-3">Her Situation:</h5>
+                    <ul class="space-y-2 text-sm">
+                        <li>• Commute: 6 miles each way, 3 days/week (hybrid schedule)</li>
+                        <li>• Annual miles: ~8,000</li>
+                        <li>• Apartment lease ends in 18 months (might move for career advancement)</li>
+                        <li>• Current expenses: $2,100/month (rent, food, student loans, etc.)</li>
+                        <li>• Emergency savings: $800</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="consequence-box">
+                <h4 class="font-bold text-red-900 mb-4">⚠️ YOUR TASK (Complete Independently):</h4>
+
+                <div class="space-y-6">
+                    <div>
+                        <h5 class="font-bold mb-2">1. Identify Red Flags</h5>
+                        <p class="text-sm mb-2">List at least 3 red flags in Maya's plan. Use specific numbers.</p>
+                        <textarea id="maya-red-flags" class="calculation-input h-32" placeholder="Red Flag 1:&#10;Red Flag 2:&#10;Red Flag 3:"></textarea>
+                        <div class="text-xs text-gray-600 mt-1">Hint: Think about debt-to-income ratio, loan term, down payment, credit score, timeline flexibility...</div>
+                    </div>
+
+                    <div>
+                        <h5 class="font-bold mb-2">2. Calculate Total 2-Year Cost</h5>
+                        <p class="text-sm mb-2">Show your work for each component:</p>
+
+                        <div class="grid md:grid-cols-2 gap-4 mb-3">
+                            <div>
+                                <label class="block text-sm mb-1">Monthly payment ($32k, 72mo, 8.9%):</label>
+                                <input type="number" id="maya-payment" class="calculation-input" placeholder="$">
+                            </div>
+                            <div>
+                                <label class="block text-sm mb-1">Loan payments (24 months):</label>
+                                <input type="number" id="maya-loan-total" class="calculation-input" placeholder="$">
+                            </div>
+                            <div>
+                                <label class="block text-sm mb-1">Insurance (24 months):</label>
+                                <input type="number" id="maya-insurance" class="calculation-input" placeholder="$">
+                            </div>
+                            <div>
+                                <label class="block text-sm mb-1">Fuel (16k miles, 24 MPG, $2.89):</label>
+                                <input type="number" id="maya-fuel" class="calculation-input" placeholder="$">
+                            </div>
+                            <div>
+                                <label class="block text-sm mb-1">Maintenance (estimate $80/mo):</label>
+                                <input type="number" id="maya-maint" class="calculation-input" placeholder="$">
+                            </div>
+                            <div>
+                                <label class="block text-sm mb-1">Registration ($350 + $75):</label>
+                                <input type="number" id="maya-reg" class="calculation-input" placeholder="$">
+                            </div>
+                        </div>
+
+                        <div class="bg-orange-100 p-4 rounded">
+                            <label class="block font-bold mb-1">Total 2-Year Cost:</label>
+                            <input type="number" id="maya-total-cost" class="calculation-input text-xl" placeholder="$">
+                        </div>
+                    </div>
+
+                    <div>
+                        <h5 class="font-bold mb-2">3. Calculate Monthly Budget Impact</h5>
+                        <div class="space-y-2">
+                            <div>
+                                <label class="block text-sm mb-1">Total monthly vehicle cost (payment + insurance + fuel/mo + maint):</label>
+                                <input type="number" id="maya-monthly" class="calculation-input" placeholder="$">
+                            </div>
+                            <div>
+                                <label class="block text-sm mb-1">Total monthly expenses (existing $2,100 + vehicle):</label>
+                                <input type="number" id="maya-total-expenses" class="calculation-input" placeholder="$">
+                            </div>
+                            <div>
+                                <label class="block text-sm mb-1">Money left over each month ($3,380 - expenses):</label>
+                                <input type="number" id="maya-leftover" class="calculation-input" placeholder="$">
+                            </div>
+                            <div>
+                                <label class="block text-sm mb-1">What % of her income goes to the vehicle?</label>
+                                <input type="number" id="maya-pct" step="0.1" class="calculation-input" placeholder="%">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h5 class="font-bold mb-2">4. Calculate Position at 18 Months (When Lease Ends)</h5>
+                        <div class="space-y-2">
+                            <div>
+                                <label class="block text-sm mb-1">Amount owed (estimate ~$27,500):</label>
+                                <input type="number" id="maya-owed-18" class="calculation-input" placeholder="$">
+                            </div>
+                            <div>
+                                <label class="block text-sm mb-1">Vehicle value (20% yr 1, 15% next 6 months):</label>
+                                <input type="number" id="maya-value-18" class="calculation-input" placeholder="$">
+                            </div>
+                            <div>
+                                <label class="block text-sm mb-1">Underwater amount:</label>
+                                <input type="number" id="maya-underwater" class="calculation-input" placeholder="$">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h5 class="font-bold mb-2">5. Your Recommendation to Maya</h5>
+                        <p class="text-sm mb-2">Using the COST framework, what should Maya do instead? Be specific with numbers and alternatives.</p>
+                        <textarea id="maya-recommendation" class="calculation-input h-48" placeholder="C - CALCULATIONS: Based on your calculations...&#10;O - OPPORTUNITY COSTS: If Maya chooses this deal...&#10;S - SITUATION: Given Maya's situation...&#10;T - TIME: Over the next 18-24 months...&#10;&#10;RECOMMENDATION: (specific alternative with numbers)"></textarea>
+                    </div>
+                </div>
+
+                <button onclick="submitMayaChallenge()" class="btn-primary mt-4">Submit My Analysis →</button>
+            </div>
+
+            <div id="maya-feedback" class="hidden"></div>
+
+            <div class="rubric">
+                <h4 class="font-bold text-gray-900 mb-2">👨‍🏫 Teacher Rubric: Transfer Challenge</h4>
+                <ul class="text-sm text-gray-700 space-y-1">
+                    <li><strong>4 (Exemplary):</strong> Identifies 5+ red flags with calculations. All math correct (±$300). Recognizes ~40% debt-to-income ratio, ~$4k underwater at 18 months, low emergency fund. Recommendation includes specific alternatives (e.g., "Buy $18k used, 48-month loan, saves $X over 2 years").</li>
+                    <li><strong>3 (Proficient):</strong> Identifies 3-4 red flags. Calculations substantially correct. Recommendation supported by numbers. Shows independent application of concepts.</li>
+                    <li><strong>2 (Developing):</strong> Identifies 2-3 issues. Calculations attempted with some errors. Recommendation generic but shows understanding of key risks.</li>
+                    <li><strong>1 (Beginning):</strong> Identifies 0-1 issues. Significant calculation errors. Recommendation lacks specificity or support from data.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Station 4: Weighted Decision Matrix (Locked Initially) -->
+        <div class="learning-station locked" id="station-4">
+            <div class="flex items-start mb-6">
+                <div class="station-number">4</div>
+                <div>
+                    <h3 class="text-2xl font-bold text-gray-900">Your Personal Decision Framework</h3>
+                    <p class="text-gray-600 mt-1">Create a weighted analysis system you can use for any vehicle decision</p>
+                </div>
+            </div>
+
+            <p class="text-gray-700 mb-6">Not all factors matter equally. You'll create a weighted scoring system based on YOUR priorities, then apply it to three realistic options for yourself.</p>
+
+            <div class="bg-indigo-50 border-2 border-indigo-300 rounded-lg p-6 mb-6">
+                <h4 class="font-bold text-lg mb-4">Step 1: Input Your Situation</h4>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium mb-1">Your monthly take-home income:</label>
+                        <input type="number" id="your-income" class="calculation-input" placeholder="$">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-1">Your current savings:</label>
+                        <input type="number" id="your-savings" class="calculation-input" placeholder="$">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-1">Your daily commute (one way miles):</label>
+                        <input type="number" id="your-commute" class="calculation-input" placeholder="miles">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-1">Your estimated credit score:</label>
+                        <select id="your-credit" class="calculation-input">
+                            <option value="">Select range</option>
+                            <option value="600">600-650 (Building)</option>
+                            <option value="670">650-700 (Fair)</option>
+                            <option value="720">700-750 (Good)</option>
+                            <option value="780">750+ (Excellent)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-1">Timeline (when do you need a vehicle?):</label>
+                        <select id="your-timeline" class="calculation-input">
+                            <option value="">Select timeline</option>
+                            <option value="immediate">Immediate (1-2 weeks)</option>
+                            <option value="soon">Soon (1-3 months)</option>
+                            <option value="flexible">Flexible (3-6 months)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-1">Likelihood of relocation in next 2 years:</label>
+                        <select id="your-flexibility" class="calculation-input">
+                            <option value="">Select likelihood</option>
+                            <option value="high">High (>50%)</option>
+                            <option value="medium">Medium (25-50%)</option>
+                            <option value="low">Low (<25%)</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-purple-50 border-2 border-purple-300 rounded-lg p-6 mb-6">
+                <h4 class="font-bold text-lg mb-4">Step 2: Assign Factor Weights (Must total 100 points)</h4>
+                <p class="text-sm text-gray-700 mb-4">Give more points to factors that matter most to YOU. Example: If monthly payment is critical, give it 25-30 points. If ownership doesn't matter, give it 5-10 points.</p>
+
+                <div class="space-y-3">
+                    <div class="flex items-center space-x-4">
+                        <label class="w-64 text-sm font-medium">Monthly payment fits budget:</label>
+                        <input type="number" id="weight-payment" min="0" max="100" class="calculation-input w-24" placeholder="0-100">
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <label class="w-64 text-sm font-medium">Total 3-year cost:</label>
+                        <input type="number" id="weight-total-cost" min="0" max="100" class="calculation-input w-24" placeholder="0-100">
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <label class="w-64 text-sm font-medium">Flexibility if life changes:</label>
+                        <input type="number" id="weight-flexibility" min="0" max="100" class="calculation-input w-24" placeholder="0-100">
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <label class="w-64 text-sm font-medium">Matches driving needs:</label>
+                        <input type="number" id="weight-driving" min="0" max="100" class="calculation-input w-24" placeholder="0-100">
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <label class="w-64 text-sm font-medium">Builds equity/ownership:</label>
+                        <input type="number" id="weight-equity" min="0" max="100" class="calculation-input w-24" placeholder="0-100">
+                    </div>
+                    <div class="bg-purple-100 p-3 rounded mt-3">
+                        <div class="flex items-center justify-between">
+                            <span class="font-bold">Total Points:</span>
+                            <span id="weight-total" class="text-2xl font-bold">0</span>
+                        </div>
+                        <div id="weight-error" class="text-red-600 text-sm mt-1 hidden">Must equal exactly 100 points</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white border-2 border-gray-300 rounded-lg p-6 mb-6">
+                <h4 class="font-bold text-lg mb-4">Step 3: Score Each Option (1-10 scale) and Calculate Weighted Totals</h4>
+                <p class="text-sm text-gray-700 mb-4">For each factor, rate each option 1-10 (10=best). Then multiply by your weight and sum for weighted score.</p>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm">
+                        <thead>
+                            <tr class="bg-gray-100">
+                                <th class="p-2 text-left">Factor</th>
+                                <th class="p-2 text-center">Weight</th>
+                                <th class="p-2 text-center">Option A<br>($40k New)</th>
+                                <th class="p-2 text-center">Option B<br>($18k Used)</th>
+                                <th class="p-2 text-center">Option C<br>(Lease)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="p-2">Monthly payment fits budget</td>
+                                <td class="p-2 text-center" id="display-weight-payment">-</td>
+                                <td class="p-2"><input type="number" id="score-a-payment" min="1" max="10" class="calculation-input w-16 mx-auto" placeholder="1-10"></td>
+                                <td class="p-2"><input type="number" id="score-b-payment" min="1" max="10" class="calculation-input w-16 mx-auto" placeholder="1-10"></td>
+                                <td class="p-2"><input type="number" id="score-c-payment" min="1" max="10" class="calculation-input w-16 mx-auto" placeholder="1-10"></td>
+                            </tr>
+                            <tr class="bg-gray-50">
+                                <td class="p-2">Total 3-year cost</td>
+                                <td class="p-2 text-center" id="display-weight-total-cost">-</td>
+                                <td class="p-2"><input type="number" id="score-a-total-cost" min="1" max="10" class="calculation-input w-16 mx-auto" placeholder="1-10"></td>
+                                <td class="p-2"><input type="number" id="score-b-total-cost" min="1" max="10" class="calculation-input w-16 mx-auto" placeholder="1-10"></td>
+                                <td class="p-2"><input type="number" id="score-c-total-cost" min="1" max="10" class="calculation-input w-16 mx-auto" placeholder="1-10"></td>
+                            </tr>
+                            <tr>
+                                <td class="p-2">Flexibility if life changes</td>
+                                <td class="p-2 text-center" id="display-weight-flexibility">-</td>
+                                <td class="p-2"><input type="number" id="score-a-flexibility" min="1" max="10" class="calculation-input w-16 mx-auto" placeholder="1-10"></td>
+                                <td class="p-2"><input type="number" id="score-b-flexibility" min="1" max="10" class="calculation-input w-16 mx-auto" placeholder="1-10"></td>
+                                <td class="p-2"><input type="number" id="score-c-flexibility" min="1" max="10" class="calculation-input w-16 mx-auto" placeholder="1-10"></td>
+                            </tr>
+                            <tr class="bg-gray-50">
+                                <td class="p-2">Matches driving needs</td>
+                                <td class="p-2 text-center" id="display-weight-driving">-</td>
+                                <td class="p-2"><input type="number" id="score-a-driving" min="1" max="10" class="calculation-input w-16 mx-auto" placeholder="1-10"></td>
+                                <td class="p-2"><input type="number" id="score-b-driving" min="1" max="10" class="calculation-input w-16 mx-auto" placeholder="1-10"></td>
+                                <td class="p-2"><input type="number" id="score-c-driving" min="1" max="10" class="calculation-input w-16 mx-auto" placeholder="1-10"></td>
+                            </tr>
+                            <tr>
+                                <td class="p-2">Builds equity/ownership</td>
+                                <td class="p-2 text-center" id="display-weight-equity">-</td>
+                                <td class="p-2"><input type="number" id="score-a-equity" min="1" max="10" class="calculation-input w-16 mx-auto" placeholder="1-10"></td>
+                                <td class="p-2"><input type="number" id="score-b-equity" min="1" max="10" class="calculation-input w-16 mx-auto" placeholder="1-10"></td>
+                                <td class="p-2"><input type="number" id="score-c-equity" min="1" max="10" class="calculation-input w-16 mx-auto" placeholder="1-10"></td>
+                            </tr>
+                            <tr class="bg-indigo-100 font-bold">
+                                <td class="p-2" colspan="2">WEIGHTED TOTAL (calculate yourself):</td>
+                                <td class="p-2"><input type="number" id="total-a" class="calculation-input w-24 mx-auto font-bold text-lg" placeholder="Sum"></td>
+                                <td class="p-2"><input type="number" id="total-b" class="calculation-input w-24 mx-auto font-bold text-lg" placeholder="Sum"></td>
+                                <td class="p-2"><input type="number" id="total-c" class="calculation-input w-24 mx-auto font-bold text-lg" placeholder="Sum"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="mt-4 p-4 bg-yellow-50 border-2 border-yellow-300 rounded">
+                    <h5 class="font-bold mb-2">How to calculate weighted total:</h5>
+                    <p class="text-sm">For each option: (Weight1 × Score1) + (Weight2 × Score2) + ... + (Weight5 × Score5) = Weighted Total</p>
+                    <p class="text-sm mt-2">Example: If monthly payment weight = 30 and you scored it 8, that's 30 × 8 = 240 points. Add up all 5 factor scores.</p>
+                </div>
+
+                <button onclick="calculateDecisionMatrix()" class="btn-primary mt-4">Check My Weighted Scores →</button>
+            </div>
+
+            <div id="matrix-results" class="hidden">
+                <div class="checkpoint">
+                    <h4 class="font-semibold mb-3">Justify Your Decision Using COST Framework:</h4>
+
+                    <div class="bg-white rounded p-4 mb-3">
+                        <p class="font-semibold mb-2">C - CALCULATIONS: Which option scored highest? By how much?</p>
+                        <textarea id="s4-cost-c" class="calculation-input h-20" placeholder="Based on your weighted scoring system..."></textarea>
+                    </div>
+                    <div class="bg-white rounded p-4 mb-3">
+                        <p class="font-semibold mb-2">O - OPPORTUNITY COSTS: What do you give up with your top choice?</p>
+                        <textarea id="s4-cost-o" class="calculation-input h-20" placeholder="What does the winning option not provide?"></textarea>
+                    </div>
+                    <div class="bg-white rounded p-4 mb-3">
+                        <p class="font-semibold mb-2">S - SITUATION: Does this choice match your specific situation?</p>
+                        <textarea id="s4-cost-s" class="calculation-input h-20" placeholder="Connect to your income, commute, timeline, flexibility needs..."></textarea>
+                    </div>
+                    <div class="bg-white rounded p-4 mb-3">
+                        <p class="font-semibold mb-2">T - TIME: How might your priorities change in 2-3 years?</p>
+                        <textarea id="s4-cost-t" class="calculation-input h-20" placeholder="If your situation changes, which factors become more/less important?"></textarea>
+                    </div>
+
+                    <div class="bg-indigo-50 border-2 border-indigo-300 rounded-lg p-6 mt-6">
+                        <h5 class="font-bold mb-3">Your Personal Vehicle Financing Strategy:</h5>
+                        <p class="text-sm mb-3">Write your personal rules based on this analysis. What will you remember when you buy your first vehicle?</p>
+                        <textarea id="personal-strategy" class="calculation-input h-40" placeholder="My vehicle financing rules:&#10;1. I will never...&#10;2. I will always...&#10;3. Before buying, I will...&#10;4. My must-haves are...&#10;5. I'm willing to compromise on..."></textarea>
+                    </div>
+
+                    <button onclick="completeStation4()" class="btn-primary mt-4">🎉 Complete Learning Lab</button>
+                </div>
+
+                <div class="rubric">
+                    <h4 class="font-bold text-gray-900 mb-2">👨‍🏫 Teacher Rubric: Decision Matrix & Strategy</h4>
+                    <ul class="text-sm text-gray-700 space-y-1">
+                        <li><strong>4:</strong> Weights total 100. All weighted calculations correct. COST analysis connects scoring to specific situation. Personal strategy includes 5+ specific, actionable rules grounded in calculations.</li>
+                        <li><strong>3:</strong> Weights total 100. Calculations substantially correct. Strategy includes specific rules connected to analysis.</li>
+                        <li><strong>2:</strong> Weights approximately total 100. Calculation errors but concept understood. Strategy includes some specific rules.</li>
+                        <li><strong>1:</strong> Weights don't total 100. Significant errors. Generic strategy without connection to analysis.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Completion Celebration -->
+        <div id="completion-celebration" class="hidden bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded-lg p-8 text-center">
+            <div class="text-6xl mb-4">🎉</div>
+            <h3 class="text-3xl font-bold mb-4">Learning Lab Complete!</h3>
+            <p class="text-xl text-green-100 mb-6">You can now analyze ANY vehicle financing decision independently.</p>
+            <div class="flex justify-center space-x-4">
+                <a href="day1-REVISED-v2.html" class="bg-white text-indigo-600 px-6 py-3 rounded-lg font-semibold">← Back to Day 1</a>
+                <button onclick="downloadCompleteAnalysis()" class="bg-indigo-600 text-white px-6 py-3 rounded-lg font-semibold">Download All My Work</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let completedStations = [];
+        let rubricsVisible = false;
+
+        function toggleRubrics() {
+            rubricsVisible = !rubricsVisible;
+            const rubrics = document.querySelectorAll('.rubric');
+            rubrics.forEach(rubric => {
+                if (rubricsVisible) {
+                    rubric.classList.add('show');
+                } else {
+                    rubric.classList.remove('show');
+                }
+            });
+        }
+
+        function isClose(value, target, tolerance) {
+            return Math.abs(value - target) <= tolerance;
+        }
+
+        function showFeedback(elementId, isCorrect, message) {
+            const feedback = document.getElementById(elementId);
+            const input = document.getElementById(elementId.replace('-fb', ''));
+            if (feedback && input) {
+                feedback.className = 'feedback ' + (isCorrect ? 'correct' : 'incorrect');
+                feedback.textContent = message;
+                input.className = 'calculation-input ' + (isCorrect ? 'correct' : 'incorrect');
+            }
+        }
+
+        // Calculation helpers
+        function PMT(P, r, n) {
+            if (r === 0) return P / n;
+            return P * (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+        }
+
+        // Marcus Decision Scenario Function
+        function showMarcusConsequence() {
+            const choice = document.getElementById('marcus-choice').value;
+            const consequenceDiv = document.getElementById('marcus-consequence');
+
+            if (!choice) {
+                consequenceDiv.classList.add('hidden');
+                return;
+            }
+
+            let html = '';
+            let monthlyPayment, totalCost, carValueAtEnd, totalOwnershipCost, annualMiles, mpg, insurance, maintenance;
+
+            // Marcus drives 13,000 miles annually, gas is $2.89/gal
+            annualMiles = 13000;
+            const gasPrice = 2.89;
+            const interestRate = 0.085; // 8.5% APR for credit score 680
+
+            if (choice === 'new') {
+                // Option A: Buy $28,000 New Car
+                const loanAmount = 28000;
+                const loanMonths = 60; // 5-year loan
+                mpg = 32;
+                insurance = 220;
+                maintenance = 80;
+
+                monthlyPayment = PMT(loanAmount, interestRate / 12, loanMonths);
+                const monthlyFuel = (annualMiles / 12 / mpg) * gasPrice;
+                const totalMonthlyPayment = monthlyPayment + insurance + maintenance + monthlyFuel;
+
+                totalCost = (monthlyPayment * loanMonths) + ((insurance + maintenance) * loanMonths) + (monthlyFuel * loanMonths);
+                carValueAtEnd = 28000 * 0.40; // Approximately 40% of original value after 5 years
+                totalOwnershipCost = totalCost;
+
+                html = `
+                    <div class="bg-blue-50 border-4 border-blue-500 rounded-lg p-6">
+                        <h4 class="text-xl font-bold text-blue-900 mb-4">📊 Option A: Buy New Car - Financial Analysis</h4>
+
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div class="bg-white rounded-lg p-4 border-2 border-blue-300">
+                                <h5 class="font-bold text-gray-900 mb-3">Monthly Breakdown:</h5>
+                                <div class="space-y-2 text-sm">
+                                    <div class="flex justify-between">
+                                        <span>Loan Payment:</span>
+                                        <span class="font-bold">$${monthlyPayment.toFixed(2)}</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span>Insurance:</span>
+                                        <span class="font-bold">$${insurance.toFixed(2)}</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span>Maintenance:</span>
+                                        <span class="font-bold">$${maintenance.toFixed(2)}</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span>Fuel (${(annualMiles/12).toFixed(0)} mi/mo @ 32 MPG):</span>
+                                        <span class="font-bold">$${monthlyFuel.toFixed(2)}</span>
+                                    </div>
+                                    <div class="border-t-2 border-gray-300 pt-2 mt-2 flex justify-between text-lg">
+                                        <span class="font-bold">TOTAL MONTHLY:</span>
+                                        <span class="font-bold text-blue-700">$${totalMonthlyPayment.toFixed(2)}</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bg-white rounded-lg p-4 border-2 border-blue-300">
+                                <h5 class="font-bold text-gray-900 mb-3">5-Year Totals:</h5>
+                                <div class="space-y-2 text-sm">
+                                    <div class="flex justify-between">
+                                        <span>Total Paid:</span>
+                                        <span class="font-bold">$${totalCost.toFixed(2)}</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span>Car Value After 5 Years:</span>
+                                        <span class="font-bold text-green-600">$${carValueAtEnd.toFixed(2)}</span>
+                                    </div>
+                                    <div class="border-t-2 border-gray-300 pt-2 mt-2 flex justify-between text-lg">
+                                        <span class="font-bold">NET COST:</span>
+                                        <span class="font-bold text-red-600">$${(totalOwnershipCost - carValueAtEnd).toFixed(2)}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-4 bg-yellow-100 border-l-4 border-yellow-500 p-4 rounded">
+                            <p class="text-sm"><strong>⚠️ Budget Check:</strong> Monthly total of $${totalMonthlyPayment.toFixed(2)} <span class="${totalMonthlyPayment > 400 ? 'text-red-600 font-bold' : 'text-green-600 font-bold'}">${totalMonthlyPayment > 400 ? 'EXCEEDS' : 'is within'}</span> Marcus's $400 budget!</p>
+                        </div>
+                    </div>
+                `;
+            } else if (choice === 'used') {
+                // Option B: Buy $15,000 Used Car
+                const loanAmount = 15000;
+                const loanMonths = 48; // 4-year loan
+                mpg = 38;
+                insurance = 145;
+                maintenance = 120; // Higher maintenance for used car
+
+                monthlyPayment = PMT(loanAmount, interestRate / 12, loanMonths);
+                const monthlyFuel = (annualMiles / 12 / mpg) * gasPrice;
+                const totalMonthlyPayment = monthlyPayment + insurance + maintenance + monthlyFuel;
+
+                totalCost = (monthlyPayment * loanMonths) + ((insurance + maintenance) * loanMonths) + (monthlyFuel * loanMonths);
+                carValueAtEnd = 15000 * 0.50; // Used cars depreciate slower, approximately 50% after 4 years
+                totalOwnershipCost = totalCost;
+
+                html = `
+                    <div class="bg-green-50 border-4 border-green-500 rounded-lg p-6">
+                        <h4 class="text-xl font-bold text-green-900 mb-4">📊 Option B: Buy Used Car - Financial Analysis</h4>
+
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div class="bg-white rounded-lg p-4 border-2 border-green-300">
+                                <h5 class="font-bold text-gray-900 mb-3">Monthly Breakdown:</h5>
+                                <div class="space-y-2 text-sm">
+                                    <div class="flex justify-between">
+                                        <span>Loan Payment:</span>
+                                        <span class="font-bold">$${monthlyPayment.toFixed(2)}</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span>Insurance:</span>
+                                        <span class="font-bold">$${insurance.toFixed(2)}</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span>Maintenance:</span>
+                                        <span class="font-bold">$${maintenance.toFixed(2)}</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span>Fuel (${(annualMiles/12).toFixed(0)} mi/mo @ 38 MPG):</span>
+                                        <span class="font-bold">$${monthlyFuel.toFixed(2)}</span>
+                                    </div>
+                                    <div class="border-t-2 border-gray-300 pt-2 mt-2 flex justify-between text-lg">
+                                        <span class="font-bold">TOTAL MONTHLY:</span>
+                                        <span class="font-bold text-green-700">$${totalMonthlyPayment.toFixed(2)}</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bg-white rounded-lg p-4 border-2 border-green-300">
+                                <h5 class="font-bold text-gray-900 mb-3">4-Year Totals:</h5>
+                                <div class="space-y-2 text-sm">
+                                    <div class="flex justify-between">
+                                        <span>Total Paid:</span>
+                                        <span class="font-bold">$${totalCost.toFixed(2)}</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span>Car Value After 4 Years:</span>
+                                        <span class="font-bold text-green-600">$${carValueAtEnd.toFixed(2)}</span>
+                                    </div>
+                                    <div class="border-t-2 border-gray-300 pt-2 mt-2 flex justify-between text-lg">
+                                        <span class="font-bold">NET COST:</span>
+                                        <span class="font-bold text-red-600">$${(totalOwnershipCost - carValueAtEnd).toFixed(2)}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-4 bg-yellow-100 border-l-4 border-yellow-500 p-4 rounded">
+                            <p class="text-sm"><strong>✅ Budget Check:</strong> Monthly total of $${totalMonthlyPayment.toFixed(2)} <span class="${totalMonthlyPayment > 400 ? 'text-red-600 font-bold' : 'text-green-600 font-bold'}">${totalMonthlyPayment > 400 ? 'EXCEEDS' : 'fits comfortably within'}</span> Marcus's $400 budget!</p>
+                        </div>
+                    </div>
+                `;
+            } else if (choice === 'lease') {
+                // Option C: Lease $25,000 Car
+                const leaseMonths = 36; // 3-year lease
+                mpg = 35;
+                insurance = 190;
+                maintenance = 40; // Lower maintenance with lease (covered under warranty)
+
+                // Lease payment calculation (simplified): depreciation + interest
+                const residualValue = 25000 * 0.55; // 55% residual after 3 years
+                const depreciation = (25000 - residualValue) / leaseMonths;
+                const financeCharge = (25000 + residualValue) * (interestRate / 12);
+                monthlyPayment = depreciation + financeCharge;
+
+                const monthlyFuel = (annualMiles / 12 / mpg) * gasPrice;
+                const totalMonthlyPayment = monthlyPayment + insurance + maintenance + monthlyFuel;
+
+                totalCost = (monthlyPayment * leaseMonths) + ((insurance + maintenance) * leaseMonths) + (monthlyFuel * leaseMonths);
+                carValueAtEnd = 0; // No ownership at end of lease
+                totalOwnershipCost = totalCost;
+
+                html = `
+                    <div class="bg-purple-50 border-4 border-purple-500 rounded-lg p-6">
+                        <h4 class="text-xl font-bold text-purple-900 mb-4">📊 Option C: Lease - Financial Analysis</h4>
+
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div class="bg-white rounded-lg p-4 border-2 border-purple-300">
+                                <h5 class="font-bold text-gray-900 mb-3">Monthly Breakdown:</h5>
+                                <div class="space-y-2 text-sm">
+                                    <div class="flex justify-between">
+                                        <span>Lease Payment:</span>
+                                        <span class="font-bold">$${monthlyPayment.toFixed(2)}</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span>Insurance:</span>
+                                        <span class="font-bold">$${insurance.toFixed(2)}</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span>Maintenance:</span>
+                                        <span class="font-bold">$${maintenance.toFixed(2)}</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span>Fuel (${(annualMiles/12).toFixed(0)} mi/mo @ 35 MPG):</span>
+                                        <span class="font-bold">$${monthlyFuel.toFixed(2)}</span>
+                                    </div>
+                                    <div class="border-t-2 border-gray-300 pt-2 mt-2 flex justify-between text-lg">
+                                        <span class="font-bold">TOTAL MONTHLY:</span>
+                                        <span class="font-bold text-purple-700">$${totalMonthlyPayment.toFixed(2)}</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bg-white rounded-lg p-4 border-2 border-purple-300">
+                                <h5 class="font-bold text-gray-900 mb-3">3-Year Totals:</h5>
+                                <div class="space-y-2 text-sm">
+                                    <div class="flex justify-between">
+                                        <span>Total Paid:</span>
+                                        <span class="font-bold">$${totalCost.toFixed(2)}</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span>Car Value After 3 Years:</span>
+                                        <span class="font-bold text-red-600">$${carValueAtEnd.toFixed(2)}</span>
+                                    </div>
+                                    <div class="border-t-2 border-gray-300 pt-2 mt-2 flex justify-between text-lg">
+                                        <span class="font-bold">NET COST:</span>
+                                        <span class="font-bold text-red-600">$${totalOwnershipCost.toFixed(2)}</span>
+                                    </div>
+                                </div>
+                                <p class="text-xs text-gray-500 mt-3">⚠️ No ownership - you must return the car or buy it at market value</p>
+                            </div>
+                        </div>
+
+                        <div class="mt-4 bg-yellow-100 border-l-4 border-yellow-500 p-4 rounded">
+                            <p class="text-sm"><strong>⚠️ Budget Check:</strong> Monthly total of $${totalMonthlyPayment.toFixed(2)} <span class="${totalMonthlyPayment > 400 ? 'text-red-600 font-bold' : 'text-green-600 font-bold'}">${totalMonthlyPayment > 400 ? 'EXCEEDS' : 'fits within'}</span> Marcus's $400 budget!</p>
+                        </div>
+
+                        <div class="mt-4 bg-red-100 border-l-4 border-red-500 p-4 rounded">
+                            <p class="text-sm"><strong>🚨 Lease Considerations:</strong> Mileage limit typically 12,000 mi/year. Marcus drives 13,000 mi/year, so he'd pay overage fees (~$0.25/mile × 1,000 miles = $250/year extra).</p>
+                        </div>
+                    </div>
+                `;
+            }
+
+            consequenceDiv.innerHTML = html;
+            consequenceDiv.classList.remove('hidden');
+            consequenceDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        // Station 1 Functions
+        let station1Complete = { carlosA: false, carlosB: false, emmaA: false, emmaB: false };
+
+        function checkStation1CarlosA() {
+            const payment = parseFloat(document.getElementById('s1-carlos-a-payment').value);
+            const fuel = parseFloat(document.getElementById('s1-carlos-a-fuel').value);
+            const other = parseFloat(document.getElementById('s1-carlos-a-other').value);
+            const total = parseFloat(document.getElementById('s1-carlos-a-total').value);
+
+            const correctPayment = PMT(35000, 0.085/12, 72); // ~$605
+            const correctFuel = (20800 * 2 / 22) * 2.89; // ~$5,462
+            const correctOther = (260 + 90) * 24; // $8,400
+            const correctTotal = (correctPayment * 24) + correctFuel + correctOther;
+
+            let allCorrect = true;
+
+            if (isClose(payment, correctPayment, 10)) {
+                showFeedback('s1-carlos-a-payment-fb', true, '✓ Correct!');
+            } else {
+                showFeedback('s1-carlos-a-payment-fb', false, '✗ Use PMT formula');
+                allCorrect = false;
+            }
+
+            if (isClose(fuel, correctFuel, 200)) {
+                showFeedback('s1-carlos-a-fuel-fb', true, '✓ Correct!');
+            } else {
+                showFeedback('s1-carlos-a-fuel-fb', false, '✗ (20,800×2) ÷ 22 × $2.89');
+                allCorrect = false;
+            }
+
+            if (isClose(other, correctOther, 100)) {
+                showFeedback('s1-carlos-a-other-fb', true, '✓ Correct!');
+            } else {
+                showFeedback('s1-carlos-a-other-fb', false, '✗ ($260+$90) × 24');
+                allCorrect = false;
+            }
+
+            if (isClose(total, correctTotal, 300)) {
+                showFeedback('s1-carlos-a-total-fb', true, '✓ Correct!');
+                if (allCorrect) {
+                    station1Complete.carlosA = true;
+                    checkStation1AllComplete();
+                }
+            } else {
+                showFeedback('s1-carlos-a-total-fb', false, '✗ Sum all components');
+            }
+        }
+
+        function checkStation1EmmaA() {
+            const payment = parseFloat(document.getElementById('s1-emma-a-payment').value);
+            const fuel = parseFloat(document.getElementById('s1-emma-a-fuel').value);
+            const other = parseFloat(document.getElementById('s1-emma-a-other').value);
+            const total = parseFloat(document.getElementById('s1-emma-a-total').value);
+
+            const correctPayment = PMT(35000, 0.085/12, 72);
+            const correctFuel = (5000 * 2 / 22) * 2.89; // ~$1,314
+            const correctOther = (260 + 90) * 24;
+            const correctTotal = (correctPayment * 24) + correctFuel + correctOther;
+
+            let allCorrect = true;
+
+            if (isClose(payment, correctPayment, 10)) {
+                showFeedback('s1-emma-a-payment-fb', true, '✓ Same payment');
+            } else {
+                showFeedback('s1-emma-a-payment-fb', false, '✗ Same as Carlos');
+                allCorrect = false;
+            }
+
+            if (isClose(fuel, correctFuel, 100)) {
+                showFeedback('s1-emma-a-fuel-fb', true, '✓ Much less fuel than Carlos!');
+            } else {
+                showFeedback('s1-emma-a-fuel-fb', false, '✗ (5,000×2) ÷ 22 × $2.89');
+                allCorrect = false;
+            }
+
+            if (isClose(other, correctOther, 100)) {
+                showFeedback('s1-emma-a-other-fb', true, '✓ Correct!');
+            } else {
+                showFeedback('s1-emma-a-other-fb', false, '✗ Same as Carlos');
+                allCorrect = false;
+            }
+
+            if (isClose(total, correctTotal, 300)) {
+                showFeedback('s1-emma-a-total-fb', true, '✓ Correct!');
+                if (allCorrect) {
+                    station1Complete.emmaA = true;
+                    checkStation1AllComplete();
+                }
+            } else {
+                showFeedback('s1-emma-a-total-fb', false, '✗ Sum all components');
+            }
+        }
+
+        function checkStation1CarlosB() {
+            const payment = parseFloat(document.getElementById('s1-carlos-b-payment').value);
+            const fuel = parseFloat(document.getElementById('s1-carlos-b-fuel').value);
+            const other = parseFloat(document.getElementById('s1-carlos-b-other').value);
+            const total = parseFloat(document.getElementById('s1-carlos-b-total').value);
+
+            const correctPayment = PMT(13000, 0.07/12, 48); // ~$312
+            const correctFuel = (20800 * 2 / 38) * 2.89; // ~$3,163
+            const correctOther = (145 + 70) * 24 + 3000; // $8,160
+            const correctTotal = (correctPayment * 24) + correctFuel + correctOther;
+
+            let allCorrect = true;
+
+            if (isClose(payment, correctPayment, 10)) {
+                showFeedback('s1-carlos-b-payment-fb', true, '✓ Correct!');
+            } else {
+                showFeedback('s1-carlos-b-payment-fb', false, '✗ PMT($13k, 48mo, 7%)');
+                allCorrect = false;
+            }
+
+            if (isClose(fuel, correctFuel, 200)) {
+                showFeedback('s1-carlos-b-fuel-fb', true, '✓ Much better MPG!');
+            } else {
+                showFeedback('s1-carlos-b-fuel-fb', false, '✗ Better MPG = less fuel');
+                allCorrect = false;
+            }
+
+            if (isClose(other, correctOther, 200)) {
+                showFeedback('s1-carlos-b-other-fb', true, '✓ Don\'t forget down payment');
+            } else {
+                showFeedback('s1-carlos-b-other-fb', false, '✗ ($145+$70)×24 + $3,000');
+                allCorrect = false;
+            }
+
+            if (isClose(total, correctTotal, 300)) {
+                showFeedback('s1-carlos-b-total-fb', true, '✓ WAY cheaper than Option A!');
+                if (allCorrect) {
+                    station1Complete.carlosB = true;
+                    checkStation1AllComplete();
+                }
+            } else {
+                showFeedback('s1-carlos-b-total-fb', false, '✗ Sum all');
+            }
+        }
+
+        function checkStation1EmmaB() {
+            const payment = parseFloat(document.getElementById('s1-emma-b-payment').value);
+            const fuel = parseFloat(document.getElementById('s1-emma-b-fuel').value);
+            const other = parseFloat(document.getElementById('s1-emma-b-other').value);
+            const total = parseFloat(document.getElementById('s1-emma-b-total').value);
+
+            const correctPayment = PMT(13000, 0.07/12, 48);
+            const correctFuel = (5000 * 2 / 38) * 2.89; // ~$761
+            const correctOther = (145 + 70) * 24 + 3000;
+            const correctTotal = (correctPayment * 24) + correctFuel + correctOther;
+
+            let allCorrect = true;
+
+            if (isClose(payment, correctPayment, 10)) {
+                showFeedback('s1-emma-b-payment-fb', true, '✓ Same');
+            } else {
+                showFeedback('s1-emma-b-payment-fb', false, '✗ Same as Carlos');
+                allCorrect = false;
+            }
+
+            if (isClose(fuel, correctFuel, 100)) {
+                showFeedback('s1-emma-b-fuel-fb', true, '✓ Minimal fuel cost!');
+            } else {
+                showFeedback('s1-emma-b-fuel-fb', false, '✗ Low miles + high MPG');
+                allCorrect = false;
+            }
+
+            if (isClose(other, correctOther, 200)) {
+                showFeedback('s1-emma-b-other-fb', true, '✓ Correct!');
+            } else {
+                showFeedback('s1-emma-b-other-fb', false, '✗ Same as Carlos');
+                allCorrect = false;
+            }
+
+            if (isClose(total, correctTotal, 300)) {
+                showFeedback('s1-emma-b-total-fb', true, '✓ Cheapest for Emma!');
+                if (allCorrect) {
+                    station1Complete.emmaB = true;
+                    checkStation1AllComplete();
+                }
+            } else {
+                showFeedback('s1-emma-b-total-fb', false, '✗ Sum all');
+            }
+        }
+
+        function checkStation1AllComplete() {
+            if (station1Complete.carlosA && station1Complete.carlosB && station1Complete.emmaA && station1Complete.emmaB) {
+                document.getElementById('station1-analysis').classList.remove('hidden');
+            }
+        }
+
+        function completeStation1() {
+            const c = document.getElementById('s1-cost-c').value;
+            const o = document.getElementById('s1-cost-o').value;
+            const s = document.getElementById('s1-cost-s').value;
+            const t = document.getElementById('s1-cost-t').value;
+
+            if (c.length < 60 || o.length < 60 || s.length < 60 || t.length < 60) {
+                alert('Please complete all COST framework sections with detailed analysis.');
+                return;
+            }
+
+            completedStations.push(1);
+            updateProgress();
+            document.getElementById('station-2').classList.remove('locked');
+            setTimeout(() => {
+                document.getElementById('station-2').scrollIntoView({ behavior: 'smooth' });
+            }, 300);
+        }
+
+        // Station 2 Functions
+        let station2Complete = { taylor: false, jordan: false, alex: false, comparison: false };
+
+        function checkStation2Taylor() {
+            const pmt = parseFloat(document.getElementById('s2-taylor-pmt').value);
+            const total = parseFloat(document.getElementById('s2-taylor-total').value);
+            const interest = parseFloat(document.getElementById('s2-taylor-int').value);
+
+            const correctPmt = PMT(28000, 0.115/12, 60); // ~$618
+            const correctTotal = correctPmt * 60; // ~$37,080
+            const correctInt = correctTotal - 28000; // ~$9,080
+
+            let allCorrect = true;
+
+            if (isClose(pmt, correctPmt, 10)) {
+                showFeedback('s2-taylor-pmt-fb', true, '✓ Correct!');
+            } else {
+                showFeedback('s2-taylor-pmt-fb', false, '✗ PMT($28k, 60mo, 11.5%)');
+                allCorrect = false;
+            }
+
+            if (isClose(total, correctTotal, 200)) {
+                showFeedback('s2-taylor-total-fb', true, '✓ Correct!');
+            } else {
+                showFeedback('s2-taylor-total-fb', false, '✗ Payment × 60');
+                allCorrect = false;
+            }
+
+            if (isClose(interest, correctInt, 200)) {
+                showFeedback('s2-taylor-int-fb', true, '✓ Ouch! High interest!');
+                if (allCorrect) {
+                    station2Complete.taylor = true;
+                    checkStation2AllComplete();
+                }
+            } else {
+                showFeedback('s2-taylor-int-fb', false, '✗ Total - $28,000');
+            }
+        }
+
+        function checkStation2Jordan() {
+            const pmt = parseFloat(document.getElementById('s2-jordan-pmt').value);
+            const total = parseFloat(document.getElementById('s2-jordan-total').value);
+            const interest = parseFloat(document.getElementById('s2-jordan-int').value);
+
+            const correctPmt = PMT(28000, 0.075/12, 60); // ~$561
+            const correctTotal = correctPmt * 60;
+            const correctInt = correctTotal - 28000;
+
+            let allCorrect = true;
+
+            if (isClose(pmt, correctPmt, 10)) {
+                showFeedback('s2-jordan-pmt-fb', true, '✓ Correct!');
+            } else {
+                showFeedback('s2-jordan-pmt-fb', false, '✗ 7.5% APR');
+                allCorrect = false;
+            }
+
+            if (isClose(total, correctTotal, 200)) {
+                showFeedback('s2-jordan-total-fb', true, '✓ Correct!');
+            } else {
+                showFeedback('s2-jordan-total-fb', false, '✗ Payment × 60');
+                allCorrect = false;
+            }
+
+            if (isClose(interest, correctInt, 200)) {
+                showFeedback('s2-jordan-int-fb', true, '✓ Better than Taylor!');
+                if (allCorrect) {
+                    station2Complete.jordan = true;
+                    checkStation2AllComplete();
+                }
+            } else {
+                showFeedback('s2-jordan-int-fb', false, '✗ Total - $28,000');
+            }
+        }
+
+        function checkStation2Alex() {
+            const pmt = parseFloat(document.getElementById('s2-alex-pmt').value);
+            const total = parseFloat(document.getElementById('s2-alex-total').value);
+            const interest = parseFloat(document.getElementById('s2-alex-int').value);
+
+            const correctPmt = PMT(28000, 0.045/12, 60); // ~$522
+            const correctTotal = correctPmt * 60;
+            const correctInt = correctTotal - 28000;
+
+            let allCorrect = true;
+
+            if (isClose(pmt, correctPmt, 10)) {
+                showFeedback('s2-alex-pmt-fb', true, '✓ Correct! Best rate!');
+            } else {
+                showFeedback('s2-alex-pmt-fb', false, '✗ 4.5% APR');
+                allCorrect = false;
+            }
+
+            if (isClose(total, correctTotal, 200)) {
+                showFeedback('s2-alex-total-fb', true, '✓ Correct!');
+            } else {
+                showFeedback('s2-alex-total-fb', false, '✗ Payment × 60');
+                allCorrect = false;
+            }
+
+            if (isClose(interest, correctInt, 200)) {
+                showFeedback('s2-alex-int-fb', true, '✓ Lowest interest!');
+                if (allCorrect) {
+                    station2Complete.alex = true;
+                    checkStation2AllComplete();
+                }
+            } else {
+                showFeedback('s2-alex-int-fb', false, '✗ Total - $28,000');
+            }
+        }
+
+        function checkStation2AllComplete() {
+            if (station2Complete.taylor && station2Complete.jordan && station2Complete.alex) {
+                document.getElementById('station2-comparison').classList.remove('hidden');
+            }
+        }
+
+        function checkStation2Comparison() {
+            const taylorVsAlex = parseFloat(document.getElementById('s2-taylor-vs-alex').value);
+            const jordanVsAlex = parseFloat(document.getElementById('s2-jordan-vs-alex').value);
+            const pct = parseFloat(document.getElementById('s2-taylor-pct').value);
+
+            // Approximate values
+            const alexInt = 3320; // ~$3,320
+            const jordanInt = 5660; // ~$5,660
+            const taylorInt = 9080; // ~$9,080
+
+            const correctTaylorVsAlex = taylorInt - alexInt; // ~$5,760
+            const correctJordanVsAlex = jordanInt - alexInt; // ~$2,340
+            const correctPct = (correctTaylorVsAlex / 28000) * 100; // ~20.6%
+
+            let allCorrect = true;
+
+            if (isClose(taylorVsAlex, correctTaylorVsAlex, 500)) {
+                showFeedback('s2-taylor-vs-alex-fb', true, '✓ Taylor pays $5,760 MORE!');
+            } else {
+                showFeedback('s2-taylor-vs-alex-fb', false, '✗ Subtract Alex\'s interest from Taylor\'s');
+                allCorrect = false;
+            }
+
+            if (isClose(jordanVsAlex, correctJordanVsAlex, 300)) {
+                showFeedback('s2-jordan-vs-alex-fb', true, '✓ Jordan pays $2,340 more');
+            } else {
+                showFeedback('s2-jordan-vs-alex-fb', false, '✗ Subtract Alex from Jordan');
+                allCorrect = false;
+            }
+
+            if (isClose(pct, correctPct, 3)) {
+                showFeedback('s2-taylor-pct-fb', true, '✓ 20.6% of the car price! Devastating!');
+                if (allCorrect) {
+                    station2Complete.comparison = true;
+                    document.getElementById('station2-analysis').classList.remove('hidden');
+                }
+            } else {
+                showFeedback('s2-taylor-pct-fb', false, '✗ ($5,760 ÷ $28,000) × 100');
+            }
+        }
+
+        function completeStation2() {
+            const c = document.getElementById('s2-cost-c').value;
+            const o = document.getElementById('s2-cost-o').value;
+            const s = document.getElementById('s2-cost-s').value;
+            const t = document.getElementById('s2-cost-t').value;
+
+            if (c.length < 60 || o.length < 60 || s.length < 60 || t.length < 60) {
+                alert('Please complete all COST framework sections.');
+                return;
+            }
+
+            completedStations.push(2);
+            updateProgress();
+            document.getElementById('station-3').classList.remove('locked');
+            setTimeout(() => {
+                document.getElementById('station-3').scrollIntoView({ behavior: 'smooth' });
+            }, 300);
+        }
+
+        // Station 3 Functions
+        let station3Complete = { year1: false, consequence: false };
+
+        function checkStation3Year1() {
+            const payment = parseFloat(document.getElementById('s3-payment').value);
+            const principalYr1 = parseFloat(document.getElementById('s3-principal-yr1').value);
+            const owedYr1 = parseFloat(document.getElementById('s3-owed-yr1').value);
+            const valueYr1 = parseFloat(document.getElementById('s3-value-yr1').value);
+            const underwaterYr1 = parseFloat(document.getElementById('s3-underwater-yr1').value);
+
+            const correctPayment = PMT(38000, 0.09/12, 72); // ~$659
+            const correctPrincipalYr1 = 4200; // Approximate
+            const correctOwedYr1 = 38000 - correctPrincipalYr1; // ~$33,800
+            const correctValueYr1 = 38000 * 0.80; // $30,400
+            const correctUnderwaterYr1 = correctOwedYr1 - correctValueYr1; // ~$3,400
+
+            let allCorrect = true;
+
+            if (isClose(payment, correctPayment, 15)) {
+                showFeedback('s3-payment-fb', true, '✓ Correct! ~$659/month');
+            } else {
+                showFeedback('s3-payment-fb', false, '✗ PMT($38k, 72mo, 9%)');
+                allCorrect = false;
+            }
+
+            if (isClose(principalYr1, correctPrincipalYr1, 500)) {
+                showFeedback('s3-principal-yr1-fb', true, '✓ Only ~$4,200 toward principal!');
+            } else {
+                showFeedback('s3-principal-yr1-fb', false, '✗ Most goes to interest early on');
+                allCorrect = false;
+            }
+
+            if (isClose(owedYr1, correctOwedYr1, 500)) {
+                showFeedback('s3-owed-yr1-fb', true, '✓ Still owe ~$33,800');
+            } else {
+                showFeedback('s3-owed-yr1-fb', false, '✗ $38,000 - principal paid');
+                allCorrect = false;
+            }
+
+            if (isClose(valueYr1, correctValueYr1, 500)) {
+                showFeedback('s3-value-yr1-fb', true, '✓ Lost 20% = $30,400');
+            } else {
+                showFeedback('s3-value-yr1-fb', false, '✗ $38,000 × 0.80');
+                allCorrect = false;
+            }
+
+            if (isClose(underwaterYr1, correctUnderwaterYr1, 800)) {
+                showFeedback('s3-underwater-yr1-fb', true, '✓ Underwater by ~$3,400!');
+                if (allCorrect) {
+                    station3Complete.year1 = true;
+                    document.getElementById('station3-analysis').classList.remove('hidden');
+                }
+            } else {
+                showFeedback('s3-underwater-yr1-fb', false, '✗ Owed - Value');
+            }
+        }
+
+        function checkStation3Consequence() {
+            const owed18 = parseFloat(document.getElementById('s3-owed-18').value);
+            const value18 = parseFloat(document.getElementById('s3-value-18').value);
+            const cashNeeded = parseFloat(document.getElementById('s3-cash-needed').value);
+
+            const correctOwed18 = 32500;
+            const correctValue18 = 38000 * 0.80 * 0.925; // ~$28,120
+            const correctCashNeeded = correctOwed18 - correctValue18; // ~$4,380
+
+            let allCorrect = true;
+
+            if (isClose(owed18, correctOwed18, 1000)) {
+                showFeedback('s3-owed-18-fb', true, '✓ ~$32,500 owed');
+            } else {
+                showFeedback('s3-owed-18-fb', false, '✗ Estimate from pattern');
+                allCorrect = false;
+            }
+
+            if (isClose(value18, correctValue18, 1000)) {
+                showFeedback('s3-value-18-fb', true, '✓ ~$28,120 value');
+            } else {
+                showFeedback('s3-value-18-fb', false, '✗ Depreciation continues');
+                allCorrect = false;
+            }
+
+            if (isClose(cashNeeded, correctCashNeeded, 1000)) {
+                showFeedback('s3-cash-needed-fb', true, '✓ Need ~$4,380 cash to sell!');
+                if (allCorrect) {
+                    station3Complete.consequence = true;
+                    document.getElementById('station3-reflection').classList.remove('hidden');
+                }
+            } else {
+                showFeedback('s3-cash-needed-fb', false, '✗ Owed - Value');
+            }
+        }
+
+        function completeStation3() {
+            const c = document.getElementById('s3-cost-c').value;
+            const o = document.getElementById('s3-cost-o').value;
+            const s = document.getElementById('s3-cost-s').value;
+            const t = document.getElementById('s3-cost-t').value;
+
+            if (c.length < 60 || o.length < 60 || s.length < 60 || t.length < 60) {
+                alert('Please complete all COST framework sections.');
+                return;
+            }
+
+            completedStations.push(3);
+            updateProgress();
+            document.getElementById('station-3-5').classList.remove('locked');
+            setTimeout(() => {
+                document.getElementById('station-3-5').scrollIntoView({ behavior: 'smooth' });
+            }, 300);
+        }
+
+        // Maya Transfer Challenge
+        function submitMayaChallenge() {
+            const redFlags = document.getElementById('maya-red-flags').value;
+            const payment = parseFloat(document.getElementById('maya-payment').value);
+            const loanTotal = parseFloat(document.getElementById('maya-loan-total').value);
+            const insurance = parseFloat(document.getElementById('maya-insurance').value);
+            const fuel = parseFloat(document.getElementById('maya-fuel').value);
+            const maint = parseFloat(document.getElementById('maya-maint').value);
+            const reg = parseFloat(document.getElementById('maya-reg').value);
+            const totalCost = parseFloat(document.getElementById('maya-total-cost').value);
+            const monthly = parseFloat(document.getElementById('maya-monthly').value);
+            const totalExpenses = parseFloat(document.getElementById('maya-total-expenses').value);
+            const leftover = parseFloat(document.getElementById('maya-leftover').value);
+            const pct = parseFloat(document.getElementById('maya-pct').value);
+            const owed18 = parseFloat(document.getElementById('maya-owed-18').value);
+            const value18 = parseFloat(document.getElementById('maya-value-18').value);
+            const underwater = parseFloat(document.getElementById('maya-underwater').value);
+            const recommendation = document.getElementById('maya-recommendation').value;
+
+            // Check minimum completion
+            if (redFlags.length < 100 || recommendation.length < 200) {
+                alert('Please complete red flags (100+ chars) and recommendation (200+ chars) with specific details.');
+                return;
+            }
+
+            // Calculate correct values
+            const correctPayment = PMT(32000, 0.089/12, 72); // ~$569
+            const correctLoanTotal = correctPayment * 24;
+            const correctInsurance = 285 * 24; // $6,840
+            const correctFuel = (16000 / 24) * 2.89; // ~$1,927
+            const correctMaint = 80 * 24; // $1,920
+            const correctReg = 425;
+            const correctTotalCost = correctLoanTotal + correctInsurance + correctFuel + correctMaint + correctReg;
+            const correctMonthly = correctPayment + 285 + (correctFuel/24) + 80;
+            const correctTotalExpenses = 2100 + correctMonthly;
+            const correctLeftover = 3380 - correctTotalExpenses;
+            const correctPct = (correctMonthly / 3380) * 100;
+            const correctOwed18 = 27500; // Estimate
+            const correctValue18 = 32000 * 0.80 * 0.925;
+            const correctUnderwater = correctOwed18 - correctValue18;
+
+            let score = 0;
+            let feedback = '<div class="insight-box"><h4 class="font-bold text-green-900 mb-3">Maya Challenge Review:</h4><ul class="text-sm space-y-2">';
+
+            // Check calculations
+            if (isClose(payment, correctPayment, 20)) {
+                score += 10;
+                feedback += '<li>✓ Payment calculation correct</li>';
+            } else {
+                feedback += `<li>✗ Payment: you entered $${payment.toFixed(2)}, correct is ~$${correctPayment.toFixed(2)}</li>`;
+            }
+
+            if (isClose(totalCost, correctTotalCost, 500)) {
+                score += 15;
+                feedback += '<li>✓ Total 2-year cost correct</li>';
+            } else {
+                feedback += `<li>✗ Total cost: check your component calculations</li>`;
+            }
+
+            if (isClose(monthly, correctMonthly, 50)) {
+                score += 10;
+                feedback += '<li>✓ Monthly vehicle cost correct</li>';
+            } else {
+                feedback += `<li>✗ Monthly cost: should be ~$${correctMonthly.toFixed(0)}</li>`;
+            }
+
+            if (isClose(pct, correctPct, 5)) {
+                score += 10;
+                feedback += `<li>✓ Percentage correct: ${correctPct.toFixed(1)}% of income to vehicle!</li>`;
+            } else {
+                feedback += `<li>✗ Percentage should be ~${correctPct.toFixed(1)}%</li>`;
+            }
+
+            if (isClose(underwater, correctUnderwater, 1500)) {
+                score += 15;
+                feedback += '<li>✓ Underwater calculation correct</li>';
+            } else {
+                feedback += `<li>✗ At 18 months, underwater by ~$${correctUnderwater.toFixed(0)}</li>`;
+            }
+
+            // Check red flags quality
+            if (redFlags.includes('$0 down') || redFlags.includes('no down') || redFlags.includes('0%')) {
+                score += 10;
+                feedback += '<li>✓ Identified $0 down payment red flag</li>';
+            }
+
+            if (redFlags.includes('72') || redFlags.includes('6 year')) {
+                score += 10;
+                feedback += '<li>✓ Identified 72-month loan red flag</li>';
+            }
+
+            if (redFlags.includes('645') || redFlags.includes('credit score')) {
+                score += 10;
+                feedback += '<li>✓ Identified poor credit score red flag</li>';
+            }
+
+            if (pct > 25 && (redFlags.includes('40%') || redFlags.includes('debt') || redFlags.includes('income'))) {
+                score += 10;
+                feedback += '<li>✓ Identified excessive debt-to-income ratio</li>';
+            }
+
+            // Check recommendation quality
+            if (recommendation.toLowerCase().includes('used') && recommendation.toLowerCase().includes('cheaper')) {
+                score += 10;
+                feedback += '<li>✓ Recommendation includes less expensive alternative</li>';
+            }
+
+            feedback += `</ul><p class="mt-4 font-bold">Score: ${score}/100</p>`;
+
+            if (score >= 80) {
+                feedback += '<p class="text-green-800 mt-2">Excellent! You can independently analyze vehicle financing decisions. You\'re ready for Station 4.</p></div>';
+                completedStations.push(3.5);
+                updateProgress();
+                document.getElementById('station-4').classList.remove('locked');
+            } else if (score >= 60) {
+                feedback += '<p class="text-yellow-800 mt-2">Good work, but review your calculations. Check your math and try to identify more red flags.</p></div>';
+            } else {
+                feedback += '<p class="text-red-800 mt-2">Please review the concepts from Stations 1-3. Maya\'s situation has MAJOR red flags you\'re missing.</p></div>';
+            }
+
+            document.getElementById('maya-feedback').innerHTML = feedback;
+            document.getElementById('maya-feedback').classList.remove('hidden');
+            document.getElementById('maya-feedback').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Station 4: Weighted Decision Matrix
+        // Update weight display
+        document.querySelectorAll('[id^="weight-"]').forEach(input => {
+            input.addEventListener('input', updateWeightTotal);
+        });
+
+        function updateWeightTotal() {
+            const w1 = parseInt(document.getElementById('weight-payment').value) || 0;
+            const w2 = parseInt(document.getElementById('weight-total-cost').value) || 0;
+            const w3 = parseInt(document.getElementById('weight-flexibility').value) || 0;
+            const w4 = parseInt(document.getElementById('weight-driving').value) || 0;
+            const w5 = parseInt(document.getElementById('weight-equity').value) || 0;
+
+            const total = w1 + w2 + w3 + w4 + w5;
+            document.getElementById('weight-total').textContent = total;
+
+            if (total === 100) {
+                document.getElementById('weight-error').classList.add('hidden');
+                document.getElementById('display-weight-payment').textContent = w1;
+                document.getElementById('display-weight-total-cost').textContent = w2;
+                document.getElementById('display-weight-flexibility').textContent = w3;
+                document.getElementById('display-weight-driving').textContent = w4;
+                document.getElementById('display-weight-equity').textContent = w5;
+            } else {
+                document.getElementById('weight-error').classList.remove('hidden');
+            }
+        }
+
+        function calculateDecisionMatrix() {
+            const totalWeight = parseInt(document.getElementById('weight-total').textContent);
+            if (totalWeight !== 100) {
+                alert('Weights must total exactly 100 points!');
+                return;
+            }
+
+            // Get all scores
+            const weights = [
+                parseInt(document.getElementById('weight-payment').value),
+                parseInt(document.getElementById('weight-total-cost').value),
+                parseInt(document.getElementById('weight-flexibility').value),
+                parseInt(document.getElementById('weight-driving').value),
+                parseInt(document.getElementById('weight-equity').value)
+            ];
+
+            const scoresA = [
+                parseInt(document.getElementById('score-a-payment').value) || 0,
+                parseInt(document.getElementById('score-a-total-cost').value) || 0,
+                parseInt(document.getElementById('score-a-flexibility').value) || 0,
+                parseInt(document.getElementById('score-a-driving').value) || 0,
+                parseInt(document.getElementById('score-a-equity').value) || 0
+            ];
+
+            const scoresB = [
+                parseInt(document.getElementById('score-b-payment').value) || 0,
+                parseInt(document.getElementById('score-b-total-cost').value) || 0,
+                parseInt(document.getElementById('score-b-flexibility').value) || 0,
+                parseInt(document.getElementById('score-b-driving').value) || 0,
+                parseInt(document.getElementById('score-b-equity').value) || 0
+            ];
+
+            const scoresC = [
+                parseInt(document.getElementById('score-c-payment').value) || 0,
+                parseInt(document.getElementById('score-c-total-cost').value) || 0,
+                parseInt(document.getElementById('score-c-flexibility').value) || 0,
+                parseInt(document.getElementById('score-c-driving').value) || 0,
+                parseInt(document.getElementById('score-c-equity').value) || 0
+            ];
+
+            // Check all scores 1-10
+            const allScores = [...scoresA, ...scoresB, ...scoresC];
+            if (allScores.some(s => s < 1 || s > 10)) {
+                alert('All scores must be between 1 and 10!');
+                return;
+            }
+
+            // Get student's calculated totals
+            const studentTotalA = parseFloat(document.getElementById('total-a').value);
+            const studentTotalB = parseFloat(document.getElementById('total-b').value);
+            const studentTotalC = parseFloat(document.getElementById('total-c').value);
+
+            // Calculate correct weighted totals
+            let correctTotalA = 0;
+            let correctTotalB = 0;
+            let correctTotalC = 0;
+
+            for (let i = 0; i < 5; i++) {
+                correctTotalA += weights[i] * scoresA[i];
+                correctTotalB += weights[i] * scoresB[i];
+                correctTotalC += weights[i] * scoresC[i];
+            }
+
+            // Check if calculations are correct
+            if (!isClose(studentTotalA, correctTotalA, 50) ||
+                !isClose(studentTotalB, correctTotalB, 50) ||
+                !isClose(studentTotalC, correctTotalC, 50)) {
+                alert(`Check your weighted total calculations!\n\nCorrect totals:\nOption A: ${correctTotalA}\nOption B: ${correctTotalB}\nOption C: ${correctTotalC}\n\nYour calculations:\nOption A: ${studentTotalA}\nOption B: ${studentTotalB}\nOption C: ${studentTotalC}`);
+                return;
+            }
+
+            // All correct - show analysis
+            document.getElementById('matrix-results').classList.remove('hidden');
+            document.getElementById('matrix-results').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function completeStation4() {
+            const c = document.getElementById('s4-cost-c').value;
+            const o = document.getElementById('s4-cost-o').value;
+            const s = document.getElementById('s4-cost-s').value;
+            const t = document.getElementById('s4-cost-t').value;
+            const strategy = document.getElementById('personal-strategy').value;
+
+            if (c.length < 60 || o.length < 60 || s.length < 60 || t.length < 60 || strategy.length < 150) {
+                alert('Please complete all COST sections and your personal strategy (150+ characters).');
+                return;
+            }
+
+            completedStations.push(4);
+            updateProgress();
+            document.getElementById('completion-celebration').classList.remove('hidden');
+            document.getElementById('completion-celebration').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function updateProgress() {
+            const dots = ['dot-1', 'dot-2', 'dot-3', 'dot-3.5', 'dot-4'];
+            dots.forEach((dotId, index) => {
+                const dot = document.getElementById(dotId);
+                if (completedStations.includes(index + 1) || completedStations.includes(3.5)) {
+                    dot.classList.add('completed');
+                    dot.classList.remove('active');
+                } else if (index === completedStations.length) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active', 'completed');
+                }
+            });
+
+            document.getElementById('current-station').textContent = `Station ${completedStations.length}`;
+        }
+
+        function downloadCompleteAnalysis() {
+            const analysis = {
+                chapter: 'L-46: Automobile Finance - Day 2 Learning Lab',
+                date: new Date().toLocaleDateString(),
+                completedStations: completedStations,
+                // Could add all checkpoint answers here
+            };
+
+            const blob = new Blob([JSON.stringify(analysis, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'L46-Day2-Complete-Analysis.json';
+            a.click();
+            URL.revokeObjectURL(url);
+
+            alert('✅ Complete Learning Lab analysis downloaded!');
+        }
+    </script>
+</body>
+</html>

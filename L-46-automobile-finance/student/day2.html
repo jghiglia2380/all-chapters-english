@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-46: Automobile Finance Learning Lab | PFL Academy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .learning-station {
+            background-color: white;
+            border-radius: 0.75rem;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .station-number {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            width: 3rem;
+            height: 3rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-right: 1rem;
+        }
+
+        .persona-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .checkpoint {
+            background-color: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 1.25rem;
+            margin: 1.5rem 0;
+            border-radius: 0.5rem;
+        }
+
+        .calculation-input {
+            border: 2px solid #d1d5db;
+            border-radius: 0.375rem;
+            padding: 0.5rem;
+            width: 100%;
+            font-family: monospace;
+        }
+
+        .calculation-input:focus {
+            outline: none;
+            border-color: #4f46e5;
+        }
+
+        .calculation-input.correct {
+            border-color: #10b981;
+            background-color: #d1fae5;
+        }
+
+        .calculation-input.incorrect {
+            border-color: #ef4444;
+            background-color: #fee2e2;
+        }
+
+        .feedback {
+            padding: 0.75rem;
+            border-radius: 0.375rem;
+            margin-top: 0.5rem;
+            font-weight: 500;
+        }
+
+        .feedback.correct {
+            background-color: #d1fae5;
+            color: #065f46;
+        }
+
+        .feedback.incorrect {
+            background-color: #fee2e2;
+            color: #991b1b;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .insight-box {
+            background-color: #d1fae5;
+            border-left: 4px solid #10b981;
+            padding: 1.25rem;
+            border-radius: 0.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .profile-card {
+            background-color: #f9fafb;
+            border: 2px solid #e5e7eb;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .profile-card h4 {
+            color: #4f46e5;
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .progress-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #d1d5db;
+            transition: all 0.3s ease;
+        }
+
+        .progress-dot.active {
+            background-color: #4f46e5;
+            transform: scale(1.3);
+        }
+
+        .progress-dot.completed {
+            background-color: #10b981;
+        }
+
+        @media print {
+            .no-print {
+                display: none;
+            }
+            body {
+                background-color: white;
+            }
+        }
+
+        .loan-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+
+        .loan-table th,
+        .loan-table td {
+            border: 1px solid #d1d5db;
+            padding: 0.75rem;
+            text-align: center;
+        }
+
+        .loan-table th {
+            background-color: #eef2ff;
+            font-weight: bold;
+            color: #4f46e5;
+        }
+
+        .loan-table tr:hover {
+            background-color: #f9fafb;
+        }
+
+        .cost-input-group {
+            background-color: #f9fafb;
+            border: 2px solid #e5e7eb;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .cost-input-group label {
+            display: block;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 0.5rem;
+        }
+
+        .cost-input-group input {
+            width: 100%;
+            padding: 0.5rem;
+            border: 2px solid #d1d5db;
+            border-radius: 0.375rem;
+            font-family: monospace;
+        }
+
+        .total-highlight {
+            background-color: #fef3c7;
+            border: 3px solid #f59e0b;
+            font-size: 1.25rem;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Fixed Header -->
+    <header class="bg-indigo-600 text-white shadow-md fixed top-0 left-0 right-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h1 class="text-2xl font-bold">PFL Academy</h1>
+                    <p class="text-indigo-200 text-sm">L-46: Automobile Finance - Day 2 Learning Lab</p>
+                </div>
+                <div class="flex items-center space-x-6 no-print">
+                    <a href="#" class="hover:text-indigo-200">Home</a>
+                    <a href="day1.html" class="hover:text-indigo-200">← Back to Day 1</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Spacer -->
+    <div class="h-24"></div>
+
+    <!-- Progress Indicators -->
+    <div class="bg-white shadow-sm border-b sticky top-24 z-30 no-print">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <span class="text-sm font-semibold text-gray-700">Your Progress:</span>
+                    <div class="flex items-center space-x-2">
+                        <div class="progress-dot active" id="dot-1"></div>
+                        <div class="progress-dot" id="dot-2"></div>
+                        <div class="progress-dot" id="dot-3"></div>
+                        <div class="progress-dot" id="dot-4"></div>
+                    </div>
+                </div>
+                <div class="text-sm text-gray-600">
+                    <span id="current-activity">Activity 1</span> of 4 Complete
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Introduction -->
+        <div class="bg-gradient-to-r from-indigo-600 to-purple-700 text-white rounded-lg p-8 mb-8">
+            <div class="flex items-center mb-4">
+                <span class="bg-white bg-opacity-20 px-3 py-1 rounded-full text-sm font-semibold">LEARNING LAB</span>
+            </div>
+            <h2 class="text-3xl font-bold mb-4">Apply Your Skills: Real-World Vehicle Financing</h2>
+            <p class="text-indigo-100 text-lg mb-4">Today you'll analyze real vehicle listings, compare financing options for different customer profiles, understand how loan terms impact total cost, and create your personal vehicle financing strategy.</p>
+            <p class="text-indigo-100">⏱️ <strong>Time:</strong> 55 minutes | 📊 <strong>Activities:</strong> 4 hands-on challenges</p>
+        </div>
+
+        <!-- ========== ACTIVITY 1: Real-World Vehicle Cost Breakdown ========== -->
+        <div class="learning-station" id="activity-1">
+            <div class="flex items-start mb-6">
+                <div class="station-number">1</div>
+                <div>
+                    <h3 class="text-2xl font-bold text-gray-900">Real-World Vehicle Cost Breakdown</h3>
+                    <div class="checkpoint mt-2">
+                        <span class="font-bold">⏱️ 15 minutes</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6">
+                <p class="font-semibold text-gray-900 mb-2">Instructions:</p>
+                <p class="text-gray-700">"Find a real vehicle listing and calculate the TRUE total cost of purchase."</p>
+            </div>
+
+            <div class="mb-6">
+                <h4 class="font-bold text-lg mb-3">Step 1: Choose ONE vehicle from these example links</h4>
+                <ul class="list-disc list-inside space-y-2 text-blue-600">
+                    <li><a href="https://www.cars.com/shopping/honda-cr_v/" target="_blank" class="underline hover:text-blue-800">2024 Honda CR-V on Cars.com</a></li>
+                    <li><a href="https://www.autotrader.com/cars-for-sale/toyota/camry" target="_blank" class="underline hover:text-blue-800">2024 Toyota Camry on AutoTrader</a></li>
+                    <li><a href="https://www.cars.com/shopping/ford-f_150/" target="_blank" class="underline hover:text-blue-800">2021 Ford F-150 CPO</a></li>
+                </ul>
+            </div>
+
+            <div class="mb-6">
+                <h4 class="font-bold text-lg mb-3">Step 2: Record the details</h4>
+                <div class="grid md:grid-cols-3 gap-4">
+                    <div class="cost-input-group">
+                        <label>Vehicle Make/Model/Year</label>
+                        <input type="text" id="vehicle-name" placeholder="e.g., 2024 Honda CR-V">
+                    </div>
+                    <div class="cost-input-group">
+                        <label>Listed Price</label>
+                        <input type="number" id="listed-price" placeholder="28500">
+                    </div>
+                    <div class="cost-input-group">
+                        <label>Condition</label>
+                        <select id="vehicle-condition" class="w-full p-2 border-2 border-gray-300 rounded">
+                            <option value="">Select...</option>
+                            <option value="new">New</option>
+                            <option value="used">Used</option>
+                            <option value="cpo">Certified Pre-Owned</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-6">
+                <h4 class="font-bold text-lg mb-3">Step 3: Calculate TRUE cost to drive it home</h4>
+                <div class="space-y-3">
+                    <div class="cost-input-group">
+                        <label>Listed Price</label>
+                        <input type="text" id="calc-listed-price" readonly class="bg-gray-100" value="$0.00">
+                    </div>
+                    <div class="cost-input-group">
+                        <label><span id="state-name">Your State</span> Sales Tax (<span id="sales-tax-rate">6.5</span>%)</label>
+                        <input type="text" id="calc-sales-tax" readonly class="bg-gray-100" value="$0.00">
+                    </div>
+                    <div class="cost-input-group">
+                        <label>Registration Fee</label>
+                        <input type="text" id="calc-registration" readonly class="bg-gray-100" value="$250.00">
+                    </div>
+                    <div class="cost-input-group">
+                        <label>Documentation Fees</label>
+                        <input type="text" id="calc-doc-fee" readonly class="bg-gray-100" value="$500.00">
+                    </div>
+                    <div class="cost-input-group">
+                        <label>Delivery Fee (if applicable)</label>
+                        <input type="number" id="delivery-fee" placeholder="0" value="0">
+                    </div>
+                    <div class="cost-input-group total-highlight">
+                        <label>TOTAL COST TO PURCHASE</label>
+                        <input type="text" id="total-purchase-cost" readonly class="bg-yellow-50 font-bold text-xl" value="$0.00">
+                    </div>
+                </div>
+
+                <button onclick="calculateTotalCost()" class="btn-primary mt-4">Calculate Total Cost</button>
+            </div>
+
+            <div class="mb-6">
+                <h4 class="font-bold text-lg mb-3">Step 4: Compare advertised monthly payment vs. calculated</h4>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="cost-input-group">
+                        <label>Advertised Monthly Payment (from website)</label>
+                        <input type="number" id="advertised-payment" placeholder="425">
+                    </div>
+                    <div class="cost-input-group">
+                        <label>Your Calculated Payment (60 months, <span id="apr-new">6.5</span>% APR, 20% down)</label>
+                        <input type="text" id="calculated-payment" readonly class="bg-gray-100" value="$0.00/month">
+                    </div>
+                </div>
+                <div class="cost-input-group mt-3">
+                    <label>Difference (Your Calculation - Advertised)</label>
+                    <input type="text" id="payment-difference" readonly class="bg-gray-100" value="$0.00/month">
+                </div>
+
+                <button onclick="calculateMonthlyPayment()" class="btn-primary mt-4">Calculate Monthly Payment</button>
+            </div>
+
+            <div class="insight-box">
+                <h4 class="font-bold mb-2">💡 Key Insight:</h4>
+                <p>Advertised prices rarely include taxes, fees, and registration. The "drive-home price" can be 8-12% higher than advertised!</p>
+            </div>
+
+            <div class="text-right mt-6">
+                <button onclick="completeActivity(1)" class="btn-primary">Complete Activity 1 →</button>
+            </div>
+        </div>
+
+        <!-- ========== ACTIVITY 2: Buy vs. Lease Decision Simulator ========== -->
+        <div class="learning-station hidden" id="activity-2">
+            <div class="flex items-start mb-6">
+                <div class="station-number">2</div>
+                <div>
+                    <h3 class="text-2xl font-bold text-gray-900">Buy vs. Lease Decision Simulator</h3>
+                    <div class="checkpoint mt-2">
+                        <span class="font-bold">⏱️ 20 minutes</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6">
+                <p class="font-semibold text-gray-900 mb-2">Instructions:</p>
+                <p class="text-gray-700">"Analyze which financing option is best for three different customer profiles."</p>
+            </div>
+
+            <!-- Profile A: College Student -->
+            <div class="profile-card">
+                <h4>👨‍🎓 Profile A: College Student - Alex</h4>
+                <div class="grid md:grid-cols-2 gap-4 text-sm">
+                    <div>
+                        <p><strong>Age:</strong> 22</p>
+                        <p><strong>Income:</strong> $35,000/year</p>
+                        <p><strong>Situation:</strong> First job after graduation, may relocate in 2-3 years</p>
+                    </div>
+                    <div>
+                        <p><strong>Driving:</strong> 10,000 miles/year</p>
+                        <p><strong>Budget:</strong> Limited, needs low monthly payment</p>
+                        <p><strong>Priority:</strong> Flexibility</p>
+                    </div>
+                </div>
+
+                <div class="mt-4">
+                    <label class="block font-semibold mb-2">Your Recommendation:</label>
+                    <div class="space-y-2 mb-3">
+                        <label class="flex items-center">
+                            <input type="radio" name="alex-choice" value="buy-new" class="mr-2">
+                            <span>Buy New</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="radio" name="alex-choice" value="buy-used" class="mr-2">
+                            <span>Buy Used</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="radio" name="alex-choice" value="lease" class="mr-2">
+                            <span>Lease</span>
+                        </label>
+                    </div>
+
+                    <label class="block font-semibold mb-2">Justify your decision with specific numbers and reasoning:</label>
+                    <textarea id="alex-justification" rows="4" class="w-full p-3 border-2 border-gray-300 rounded" placeholder="Consider: Alex's uncertainty about future location, limited budget, low annual mileage (10,000 miles), and need for flexibility..."></textarea>
+                </div>
+            </div>
+
+            <!-- Profile B: Sales Professional -->
+            <div class="profile-card">
+                <h4>💼 Profile B: Sales Professional - Jordan</h4>
+                <div class="grid md:grid-cols-2 gap-4 text-sm">
+                    <div>
+                        <p><strong>Age:</strong> 35</p>
+                        <p><strong>Income:</strong> $75,000/year</p>
+                        <p><strong>Situation:</strong> Needs reliable transportation for client meetings</p>
+                    </div>
+                    <div>
+                        <p><strong>Driving:</strong> 25,000 miles/year</p>
+                        <p><strong>Budget:</strong> Moderate, values reliability</p>
+                        <p><strong>Priority:</strong> Professional appearance</p>
+                    </div>
+                </div>
+
+                <div class="bg-yellow-50 border-l-4 border-yellow-500 p-3 mt-3 mb-3">
+                    <p class="text-sm"><strong>⚠️ Important:</strong> Most leases limit 12,000-15,000 miles/year with $0.25/mile overage fees. At 25,000 miles/year, Jordan would pay $2,500-3,250/year in overage fees on a typical lease!</p>
+                </div>
+
+                <div class="mt-4">
+                    <label class="block font-semibold mb-2">Your Recommendation:</label>
+                    <div class="space-y-2 mb-3">
+                        <label class="flex items-center">
+                            <input type="radio" name="jordan-choice" value="buy-new" class="mr-2">
+                            <span>Buy New</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="radio" name="jordan-choice" value="buy-used" class="mr-2">
+                            <span>Buy Used</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="radio" name="jordan-choice" value="lease" class="mr-2">
+                            <span>Lease</span>
+                        </label>
+                    </div>
+
+                    <label class="block font-semibold mb-2">Justify your decision considering high mileage impact:</label>
+                    <textarea id="jordan-justification" rows="4" class="w-full p-3 border-2 border-gray-300 rounded" placeholder="Consider: Jordan's high annual mileage (25,000 miles), need for reliability, lease mileage restrictions and overage fees, professional image requirements..."></textarea>
+                </div>
+            </div>
+
+            <!-- Profile C: Young Family -->
+            <div class="profile-card">
+                <h4>👨‍👩‍👧‍👦 Profile C: Young Family - Morgan</h4>
+                <div class="grid md:grid-cols-2 gap-4 text-sm">
+                    <div>
+                        <p><strong>Age:</strong> 28</p>
+                        <p><strong>Income:</strong> $65,000/year</p>
+                        <p><strong>Situation:</strong> Growing family, plans to keep vehicle 8+ years</p>
+                    </div>
+                    <div>
+                        <p><strong>Driving:</strong> 15,000 miles/year</p>
+                        <p><strong>Budget:</strong> Balanced, values long-term value</p>
+                        <p><strong>Priority:</strong> Safety and longevity</p>
+                    </div>
+                </div>
+
+                <div class="mt-4">
+                    <label class="block font-semibold mb-2">Your Recommendation:</label>
+                    <div class="space-y-2 mb-3">
+                        <label class="flex items-center">
+                            <input type="radio" name="morgan-choice" value="buy-new" class="mr-2">
+                            <span>Buy New</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="radio" name="morgan-choice" value="buy-used" class="mr-2">
+                            <span>Buy Used</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="radio" name="morgan-choice" value="lease" class="mr-2">
+                            <span>Lease</span>
+                        </label>
+                    </div>
+
+                    <label class="block font-semibold mb-2">Calculate: 8-year ownership cost vs. 2 consecutive 3-year leases</label>
+                    <div class="grid md:grid-cols-2 gap-4 mb-3">
+                        <div class="cost-input-group">
+                            <label>Estimated 8-Year Buy Cost ($30,000 vehicle)</label>
+                            <input type="text" id="morgan-buy-cost" placeholder="Enter your calculation" class="font-mono">
+                        </div>
+                        <div class="cost-input-group">
+                            <label>Estimated Cost of 2 Consecutive Leases</label>
+                            <input type="text" id="morgan-lease-cost" placeholder="Enter your calculation" class="font-mono">
+                        </div>
+                    </div>
+
+                    <label class="block font-semibold mb-2">Justify your decision considering long ownership period:</label>
+                    <textarea id="morgan-justification" rows="4" class="w-full p-3 border-2 border-gray-300 rounded" placeholder="Consider: Morgan's 8+ year ownership plan, family safety needs, long-term value vs. short-term flexibility, equity building..."></textarea>
+                </div>
+            </div>
+
+            <div class="insight-box">
+                <h4 class="font-bold mb-2">💡 Key Insight:</h4>
+                <p>The "best" financing option depends on individual circumstances: Annual mileage, ownership duration, budget constraints, and lifestyle flexibility all play crucial roles in the decision.</p>
+            </div>
+
+            <div class="text-right mt-6">
+                <button onclick="completeActivity(2)" class="btn-primary">Complete Activity 2 →</button>
+            </div>
+        </div>
+
+        <!-- ========== ACTIVITY 3: Loan Terms Impact Analysis ========== -->
+        <div class="learning-station hidden" id="activity-3">
+            <div class="flex items-start mb-6">
+                <div class="station-number">3</div>
+                <div>
+                    <h3 class="text-2xl font-bold text-gray-900">Loan Terms Impact Analysis</h3>
+                    <div class="checkpoint mt-2">
+                        <span class="font-bold">⏱️ 15 minutes</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6">
+                <p class="font-semibold text-gray-900 mb-2">Instructions:</p>
+                <p class="text-gray-700">"Same car, different loan terms—see how much the term length affects your total cost."</p>
+            </div>
+
+            <div class="bg-gray-100 border-2 border-gray-300 rounded-lg p-6 mb-6">
+                <h4 class="font-bold text-lg mb-3">📋 Scenario</h4>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div>
+                        <p><strong>Vehicle Purchase Price:</strong> $28,000</p>
+                        <p><strong>Down Payment:</strong> $3,000</p>
+                    </div>
+                    <div>
+                        <p><strong>Loan Amount:</strong> $25,000</p>
+                        <p><strong>APR:</strong> 6.5%</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-6">
+                <h4 class="font-bold text-lg mb-3">Interactive Loan Comparison Table</h4>
+                <p class="text-sm text-gray-600 mb-4">The table below auto-calculates as you explore different loan terms:</p>
+
+                <table class="loan-table">
+                    <thead>
+                        <tr>
+                            <th>Loan Term</th>
+                            <th>Monthly Payment</th>
+                            <th>Total Interest</th>
+                            <th>Total Cost</th>
+                            <th>Interest vs. 48mo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>36 months</strong></td>
+                            <td id="payment-36">$764.98</td>
+                            <td id="interest-36">$2,539.18</td>
+                            <td id="total-36">$27,539.18</td>
+                            <td id="vs48-36" class="text-green-600">-$869.41 (savings)</td>
+                        </tr>
+                        <tr style="background-color: #fef3c7;">
+                            <td><strong>48 months</strong></td>
+                            <td id="payment-48">$590.00</td>
+                            <td id="interest-48">$3,408.59</td>
+                            <td id="total-48">$28,408.59</td>
+                            <td id="vs48-48" class="font-bold">baseline</td>
+                        </tr>
+                        <tr>
+                            <td><strong>60 months</strong></td>
+                            <td id="payment-60">$488.44</td>
+                            <td id="interest-60">$4,306.20</td>
+                            <td id="total-60">$29,306.20</td>
+                            <td id="vs48-60" class="text-red-600">+$897.61 (extra cost)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>72 months</strong></td>
+                            <td id="payment-72">$414.32</td>
+                            <td id="interest-72">$5,231.04</td>
+                            <td id="total-72">$30,231.04</td>
+                            <td id="vs48-72" class="text-red-600">+$1,822.45</td>
+                        </tr>
+                        <tr>
+                            <td><strong>84 months</strong></td>
+                            <td id="payment-84">$360.80</td>
+                            <td id="interest-84">$6,187.20</td>
+                            <td id="total-84">$31,187.20</td>
+                            <td id="vs48-84" class="text-red-600">+$2,778.61</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="mb-6">
+                <h4 class="font-bold text-lg mb-3">Analysis Questions</h4>
+
+                <div class="cost-input-group mb-4">
+                    <label>1. How much MORE in total interest do you pay with 84 months vs. 48 months?</label>
+                    <div class="flex items-center space-x-2">
+                        <span class="text-lg font-bold">$</span>
+                        <input type="number" id="q1-answer" placeholder="Calculate from table above" class="calculation-input">
+                        <button onclick="checkAnswer(1, 2778.61)" class="btn-primary">Check</button>
+                    </div>
+                    <div id="q1-feedback"></div>
+                </div>
+
+                <div class="cost-input-group mb-4">
+                    <label>2. At what loan term does total interest exceed $3,000 (your down payment amount)?</label>
+                    <div class="flex items-center space-x-2">
+                        <input type="number" id="q2-answer" placeholder="Enter number of months" class="calculation-input">
+                        <span class="text-lg font-bold">months</span>
+                        <button onclick="checkAnswer(2, 48)" class="btn-primary">Check</button>
+                    </div>
+                    <div id="q2-feedback"></div>
+                </div>
+
+                <div class="cost-input-group mb-4">
+                    <label>3. What's the "sweet spot" balancing affordable monthly payment and reasonable total cost?</label>
+                    <textarea id="q3-answer" rows="3" class="w-full p-3 border-2 border-gray-300 rounded" placeholder="Your analysis: Consider monthly budget vs. total interest paid..."></textarea>
+                </div>
+
+                <div class="cost-input-group mb-4">
+                    <label>4. If you could afford $550/month, which term would you choose and why?</label>
+                    <div class="mb-2">
+                        <input type="number" id="q4-term" placeholder="Enter months" class="calculation-input mb-2">
+                        <span class="text-sm text-gray-600 ml-2">months</span>
+                    </div>
+                    <textarea id="q4-why" rows="3" class="w-full p-3 border-2 border-gray-300 rounded" placeholder="Explain your reasoning considering the $550/month budget..."></textarea>
+                </div>
+            </div>
+
+            <div class="insight-box">
+                <h4 class="font-bold mb-2">💡 Key Insight:</h4>
+                <p>Extending your loan from 48 to 84 months reduces your monthly payment by $229.20, but costs you an extra $2,778.61 in interest. That's paying almost $2,800 more for the same $25,000 car!</p>
+            </div>
+
+            <div class="text-right mt-6">
+                <button onclick="completeActivity(3)" class="btn-primary">Complete Activity 3 →</button>
+            </div>
+        </div>
+
+        <!-- ========== ACTIVITY 4: Personal Vehicle Financing Strategy ========== -->
+        <div class="learning-station hidden" id="activity-4">
+            <div class="flex items-start mb-6">
+                <div class="station-number">4</div>
+                <div>
+                    <h3 class="text-2xl font-bold text-gray-900">Your Personal Vehicle Financing Strategy</h3>
+                    <div class="checkpoint mt-2">
+                        <span class="font-bold">⏱️ 5 minutes</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6">
+                <p class="font-semibold text-gray-900 mb-2">Instructions:</p>
+                <p class="text-gray-700">"Based on today's activities, create your personal vehicle financing plan."</p>
+            </div>
+
+            <div class="mb-6">
+                <h4 class="font-bold text-lg mb-3">Reflection Questions</h4>
+
+                <div class="cost-input-group mb-4">
+                    <label>1. When I buy my first car, I will likely:</label>
+                    <div class="space-y-2 mb-3">
+                        <label class="flex items-center">
+                            <input type="radio" name="personal-choice" value="buy-new" class="mr-2">
+                            <span>Buy New</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="radio" name="personal-choice" value="buy-used-2-3" class="mr-2">
+                            <span>Buy Used (2-3 years old)</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="radio" name="personal-choice" value="buy-cpo" class="mr-2">
+                            <span>Buy Certified Pre-Owned</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="radio" name="personal-choice" value="lease" class="mr-2">
+                            <span>Lease</span>
+                        </label>
+                    </div>
+                    <label class="block font-semibold mb-2">Why?</label>
+                    <textarea id="personal-why" rows="3" class="w-full p-3 border-2 border-gray-300 rounded" placeholder="Explain your reasoning based on what you learned today..."></textarea>
+                </div>
+
+                <div class="cost-input-group mb-4">
+                    <label>2. My target loan term would be:</label>
+                    <div class="flex items-center space-x-2 mb-2">
+                        <input type="number" id="target-term" placeholder="e.g., 48" class="calculation-input">
+                        <span class="text-lg font-bold">months</span>
+                    </div>
+                    <label class="block font-semibold mb-2">Because:</label>
+                    <textarea id="term-reason" rows="3" class="w-full p-3 border-2 border-gray-300 rounded" placeholder="Explain why this term length balances your needs..."></textarea>
+                </div>
+
+                <div class="cost-input-group mb-4">
+                    <label>3. Before signing ANY financing agreement, I will calculate:</label>
+                    <div class="space-y-2">
+                        <label class="flex items-center">
+                            <input type="checkbox" id="check-total-cost" class="mr-2">
+                            <span>Total cost including taxes and fees</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" id="check-monthly" class="mr-2">
+                            <span>Monthly payment I can truly afford</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" id="check-interest" class="mr-2">
+                            <span>Total interest over loan life</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" id="check-opportunity" class="mr-2">
+                            <span>Opportunity cost of down payment</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" id="check-insurance" class="mr-2">
+                            <span>Insurance costs for that vehicle</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" id="check-fuel" class="mr-2">
+                            <span>Estimated fuel costs</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" id="check-other" class="mr-2">
+                            <span>Other:</span>
+                            <input type="text" id="check-other-text" placeholder="Specify..." class="ml-2 p-1 border border-gray-300 rounded flex-1">
+                        </label>
+                    </div>
+                </div>
+
+                <div class="cost-input-group mb-4">
+                    <label>4. One costly mistake I'll avoid based on today's lesson:</label>
+                    <textarea id="avoid-mistake" rows="3" class="w-full p-3 border-2 border-gray-300 rounded" placeholder="What mistake will you avoid and why is it costly?"></textarea>
+                </div>
+
+                <div class="cost-input-group mb-4">
+                    <label>5. The most surprising thing I learned today:</label>
+                    <textarea id="surprising-learning" rows="3" class="w-full p-3 border-2 border-gray-300 rounded" placeholder="What surprised you most about vehicle financing?"></textarea>
+                </div>
+            </div>
+
+            <div class="bg-gradient-to-r from-green-50 to-blue-50 border-2 border-green-500 rounded-lg p-6">
+                <h4 class="font-bold text-lg mb-3 text-green-800">🎯 Your Personal Strategy is Complete!</h4>
+                <p class="text-gray-700 mb-4">Save this to your portfolio or print it for future reference when you're ready to buy your first vehicle.</p>
+                <div class="flex space-x-4">
+                    <button onclick="saveToPortfolio()" class="btn-primary">💾 Save to My Portfolio</button>
+                    <button onclick="window.print()" class="btn-primary">🖨️ Print My Strategy</button>
+                </div>
+            </div>
+
+            <div class="insight-box mt-6">
+                <h4 class="font-bold mb-2">🎓 Congratulations!</h4>
+                <p>You've completed the Automobile Finance Learning Lab. You now have the skills to analyze real vehicle costs, compare financing options, understand loan terms impact, and make informed decisions about your future vehicle purchases.</p>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // State variables - would be populated from database in production
+        const STATE_NAME = "California";
+        const SALES_TAX = 7.5;
+        const AUTO_REGISTRATION_FEE = 250;
+        const AVG_AUTO_LOAN_RATE_NEW = 6.5;
+
+        // Update state-specific fields
+        document.getElementById('state-name').textContent = STATE_NAME;
+        document.getElementById('sales-tax-rate').textContent = SALES_TAX;
+
+        // Progress tracking
+        let currentActivity = 1;
+        const totalActivities = 4;
+
+        function completeActivity(activityNum) {
+            // Save current activity data
+            saveActivityData(activityNum);
+
+            // Mark as completed
+            document.getElementById(`dot-${activityNum}`).classList.remove('active');
+            document.getElementById(`dot-${activityNum}`).classList.add('completed');
+
+            // Hide current activity
+            document.getElementById(`activity-${activityNum}`).classList.add('hidden');
+
+            // Show next activity if not last
+            if (activityNum < totalActivities) {
+                currentActivity = activityNum + 1;
+                document.getElementById(`activity-${currentActivity}`).classList.remove('hidden');
+                document.getElementById(`dot-${currentActivity}`).classList.add('active');
+                document.getElementById('current-activity').textContent = `Activity ${currentActivity}`;
+
+                // Scroll to top
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } else {
+                // All activities complete
+                document.getElementById('current-activity').textContent = 'All Activities Complete!';
+            }
+        }
+
+        function saveActivityData(activityNum) {
+            // Save to localStorage
+            const data = {};
+
+            if (activityNum === 1) {
+                data.vehicleName = document.getElementById('vehicle-name').value;
+                data.listedPrice = document.getElementById('listed-price').value;
+                data.condition = document.getElementById('vehicle-condition').value;
+                data.totalCost = document.getElementById('total-purchase-cost').value;
+            } else if (activityNum === 2) {
+                data.alexChoice = document.querySelector('input[name="alex-choice"]:checked')?.value;
+                data.alexJustification = document.getElementById('alex-justification').value;
+                data.jordanChoice = document.querySelector('input[name="jordan-choice"]:checked')?.value;
+                data.jordanJustification = document.getElementById('jordan-justification').value;
+                data.morganChoice = document.querySelector('input[name="morgan-choice"]:checked')?.value;
+                data.morganJustification = document.getElementById('morgan-justification').value;
+            } else if (activityNum === 3) {
+                data.q1 = document.getElementById('q1-answer').value;
+                data.q2 = document.getElementById('q2-answer').value;
+                data.q3 = document.getElementById('q3-answer').value;
+                data.q4Term = document.getElementById('q4-term').value;
+                data.q4Why = document.getElementById('q4-why').value;
+            } else if (activityNum === 4) {
+                data.personalChoice = document.querySelector('input[name="personal-choice"]:checked')?.value;
+                data.personalWhy = document.getElementById('personal-why').value;
+                data.targetTerm = document.getElementById('target-term').value;
+                data.termReason = document.getElementById('term-reason').value;
+            }
+
+            localStorage.setItem(`l46_activity${activityNum}`, JSON.stringify(data));
+        }
+
+        // Activity 1: Cost Calculations
+        function calculateTotalCost() {
+            const listedPrice = parseFloat(document.getElementById('listed-price').value) || 0;
+            const deliveryFee = parseFloat(document.getElementById('delivery-fee').value) || 0;
+
+            const salesTax = listedPrice * (SALES_TAX / 100);
+            const totalCost = listedPrice + salesTax + AUTO_REGISTRATION_FEE + 500 + deliveryFee;
+
+            document.getElementById('calc-listed-price').value = `$${listedPrice.toFixed(2)}`;
+            document.getElementById('calc-sales-tax').value = `$${salesTax.toFixed(2)}`;
+            document.getElementById('calc-registration').value = `$${AUTO_REGISTRATION_FEE.toFixed(2)}`;
+            document.getElementById('total-purchase-cost').value = `$${totalCost.toFixed(2)}`;
+        }
+
+        function calculateMonthlyPayment() {
+            const listedPrice = parseFloat(document.getElementById('listed-price').value) || 0;
+            const downPayment = listedPrice * 0.2; // 20% down
+            const loanAmount = listedPrice - downPayment;
+            const monthlyRate = AVG_AUTO_LOAN_RATE_NEW / 100 / 12;
+            const numPayments = 60;
+
+            const monthlyPayment = loanAmount * (monthlyRate * Math.pow(1 + monthlyRate, numPayments)) / (Math.pow(1 + monthlyRate, numPayments) - 1);
+
+            document.getElementById('calculated-payment').value = `$${monthlyPayment.toFixed(2)}/month`;
+
+            const advertisedPayment = parseFloat(document.getElementById('advertised-payment').value) || 0;
+            const difference = monthlyPayment - advertisedPayment;
+
+            document.getElementById('payment-difference').value = `$${difference.toFixed(2)}/month`;
+        }
+
+        // Activity 3: Check answers
+        function checkAnswer(questionNum, correctAnswer) {
+            const answerInput = document.getElementById(`q${questionNum}-answer`);
+            const feedbackDiv = document.getElementById(`q${questionNum}-feedback`);
+            const userAnswer = parseFloat(answerInput.value);
+
+            // Allow for small rounding differences
+            const tolerance = 1;
+            const isCorrect = Math.abs(userAnswer - correctAnswer) <= tolerance;
+
+            if (isCorrect) {
+                answerInput.classList.remove('incorrect');
+                answerInput.classList.add('correct');
+                feedbackDiv.className = 'feedback correct';
+                feedbackDiv.textContent = '✓ Correct! Great work!';
+            } else {
+                answerInput.classList.remove('correct');
+                answerInput.classList.add('incorrect');
+                feedbackDiv.className = 'feedback incorrect';
+                feedbackDiv.textContent = `✗ Not quite. Check your calculation. Hint: Look at the table above.`;
+            }
+        }
+
+        // Activity 4: Save and Print functions
+        function saveToPortfolio() {
+            saveActivityData(4);
+            alert('✓ Your Personal Vehicle Financing Strategy has been saved to your portfolio!\n\nYou can access it anytime from your profile page.');
+        }
+
+        // Load saved data on page load
+        window.addEventListener('load', function() {
+            // Auto-calculate loan table values
+            calculateLoanTable();
+
+            // Load any saved progress
+            for (let i = 1; i <= totalActivities; i++) {
+                const saved = localStorage.getItem(`l46_activity${i}`);
+                if (saved) {
+                    const data = JSON.parse(saved);
+                    // Restore form values if needed
+                }
+            }
+        });
+
+        function calculateLoanTable() {
+            const principal = 25000;
+            const annualRate = 6.5;
+            const monthlyRate = annualRate / 100 / 12;
+            const terms = [36, 48, 60, 72, 84];
+            const baseline48Interest = 3408.59;
+
+            terms.forEach(term => {
+                const monthlyPayment = principal * (monthlyRate * Math.pow(1 + monthlyRate, term)) / (Math.pow(1 + monthlyRate, term) - 1);
+                const totalPaid = monthlyPayment * term;
+                const totalInterest = totalPaid - principal;
+                const totalCost = principal + totalInterest;
+                const vsBaseline = totalInterest - baseline48Interest;
+
+                document.getElementById(`payment-${term}`).textContent = `$${monthlyPayment.toFixed(2)}`;
+                document.getElementById(`interest-${term}`).textContent = `$${totalInterest.toFixed(2)}`;
+                document.getElementById(`total-${term}`).textContent = `$${totalCost.toFixed(2)}`;
+
+                if (term !== 48) {
+                    const sign = vsBaseline > 0 ? '+' : '';
+                    const color = vsBaseline > 0 ? 'text-red-600' : 'text-green-600';
+                    const label = vsBaseline > 0 ? '' : ' (savings)';
+                    document.getElementById(`vs48-${term}`).innerHTML = `<span class="${color}">${sign}$${Math.abs(vsBaseline).toFixed(2)}${label}</span>`;
+                }
+            });
+        }
+
+        // Auto-update calculations in Activity 1
+        document.getElementById('listed-price')?.addEventListener('input', calculateTotalCost);
+        document.getElementById('delivery-fee')?.addEventListener('input', calculateTotalCost);
+    </script>
+</body>
+</html>
