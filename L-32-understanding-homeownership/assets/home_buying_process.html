@@ -1,4 +1,20 @@
 <!DOCTYPE html>
+<!--
+PFL Academy State-Agnostic Template
+L-Chapter: L-32
+Chapter Title: Understanding Home Buying
+Oklahoma Reference: Chapter 10.3
+
+Variables used in this template:
+- {{STATE_NAME}} - Full state name (e.g., Kentucky, Georgia)
+- {{CHAPTER_NUMBER}} - State-specific chapter number (e.g., 2.1, 1.4)
+- {{CHAPTER_ID}} - L-chapter identifier (e.g., L-32)
+- {{CHAPTER_TITLE}} - Always: Understanding Home Buying
+
+This template will be processed by generate_state_html.py to create
+state-specific versions with correct chapter numbering.
+-->
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -252,7 +268,7 @@
         <div class="header">
             <div class="logo">PFL Academy</div>
             <h1>Home Buying Process Guide</h1>
-            <div class="subtitle">Chapter 10.3: Understanding Home Buying</div>
+            <div class="subtitle">Chapter {{CHAPTER_NUMBER}}: Understanding Home Buying</div>
         </div>
         
         <div class="print-instructions">
@@ -621,7 +637,7 @@
         </div>
         
         <div class="footer">
-            <p>PFL Academy | Chapter 10.3: Understanding Home Buying | © 2025</p>
+            <p>PFL Academy | Chapter {{CHAPTER_NUMBER}}: Understanding Home Buying | © 2025</p>
         </div>
     </div>
 </body>

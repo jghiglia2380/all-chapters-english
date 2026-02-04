@@ -1,4 +1,20 @@
 <!DOCTYPE html>
+<!--
+PFL Academy State-Agnostic Template
+L-Chapter: L-41
+Chapter Title: Career Planning and Development
+Oklahoma Reference: Chapter 15.1
+
+Variables used in this template:
+- {{STATE_NAME}} - Full state name (e.g., Kentucky, Georgia)
+- {{CHAPTER_NUMBER}} - State-specific chapter number (e.g., 2.1, 1.4)
+- {{CHAPTER_ID}} - L-chapter identifier (e.g., L-41)
+- {{CHAPTER_TITLE}} - Always: Career Planning and Development
+
+This template will be processed by generate_state_html.py to create
+state-specific versions with correct chapter numbering.
+-->
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -157,13 +173,13 @@
 <body>
     <div class="print-header">
         <h1>SMART Career Goals Guide</h1>
-        <p>Chapter 15.1: Career Exploration and Goal Setting</p>
+        <p>Chapter {{CHAPTER_NUMBER}}: Career Exploration and Goal Setting</p>
     </div>
 
     <button class="print-button no-print" onclick="window.print()">Print / Save as PDF</button>
 
     <h1>SMART Career Goals Guide</h1>
-    <p><strong>Chapter 15.1: Career Exploration and Goal Setting</strong></p>
+    <p><strong>Chapter {{CHAPTER_NUMBER}}: Career Exploration and Goal Setting</strong></p>
 
     <h2>Introduction to SMART Goal Setting</h2>
     <p>Setting effective goals is essential for career development. The SMART framework provides a structured approach to creating goals that are clear, actionable, and more likely to be achieved. This guide will help you understand and apply the SMART framework to your career planning.</p>
@@ -544,7 +560,7 @@
     </div>
 
     <div class="footer">
-        <p>PFL Academy | Chapter 15.1: Career Exploration and Goal Setting | SMART Career Goals Guide</p>
+        <p>PFL Academy | Chapter {{CHAPTER_NUMBER}}: Career Exploration and Goal Setting | SMART Career Goals Guide</p>
         <p>Page 1 of 1</p>
     </div>
     

@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-58: Supply, Demand, and Market Structures - Day 2 Learning Lab</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .helper-content {
+            display: none;
+        }
+        .helper-content.active {
+            display: block;
+        }
+        .given-value {
+            background-color: #f3f4f6;
+            cursor: not-allowed;
+        }
+        .activity-timer {
+            background-color: #FFFBEB;
+            border-left: 4px solid #F59E0B;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Fixed Header -->
+    <header class="bg-indigo-600 text-white p-4 shadow-md fixed top-0 left-0 right-0 z-40">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-bold">L-58: Supply, Demand, and Market Structures | Day 2 Learning Lab</h1>
+            <nav class="space-x-4">
+                <a href="#" class="hover:underline">Home</a>
+                <a href="#" class="hover:underline">Curriculum</a>
+                <a href="#" class="hover:underline">Resources</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Spacer for fixed header -->
+    <div class="h-16"></div>
+
+    <!-- Day 1 Recall Banner -->
+    <section class="bg-indigo-100 border-l-4 border-indigo-600 p-6 my-6 mx-4 rounded-r-lg">
+        <h2 class="text-2xl font-bold text-gray-900 mb-3">📚 Day 1 Recap: Market Forces and Structures</h2>
+        <p class="text-gray-700 mb-4">Yesterday, you learned the fundamental economic concepts that drive prices and competition:</p>
+        <div class="grid md:grid-cols-3 gap-3 mb-4">
+            <div class="bg-white p-3 rounded-lg shadow-sm">
+                <h4 class="font-bold text-indigo-700">Supply & Demand</h4>
+                <p class="text-sm text-gray-600">How market forces determine equilibrium price and quantity</p>
+            </div>
+            <div class="bg-white p-3 rounded-lg shadow-sm">
+                <h4 class="font-bold text-indigo-700">Market Structures</h4>
+                <p class="text-sm text-gray-600">Perfect competition, oligopoly, and monopoly affect your choices</p>
+            </div>
+            <div class="bg-white p-3 rounded-lg shadow-sm">
+                <h4 class="font-bold text-indigo-700">Consumer Surplus</h4>
+                <p class="text-sm text-gray-600">The value you capture when paying less than willingness to pay</p>
+            </div>
+        </div>
+        <p class="text-gray-700">Today, you'll apply these concepts hands-on with market simulations, real price research, and strategic purchasing plans.</p>
+    </section>
+
+    <div class="container mx-auto px-4 py-6">
+
+        <!-- Activity 1: Market Equilibrium Challenge -->
+        <section id="activity1" class="bg-white rounded-lg shadow-lg p-6 mb-8">
+            <div class="activity-timer p-4 rounded-lg mb-4">
+                <p class="font-bold text-gray-800">⏱ Activity 1: Market Equilibrium Challenge | 12 minutes</p>
+            </div>
+
+            <h2 class="text-3xl font-bold text-gray-900 mb-4">📊 Activity 1: Market Equilibrium Challenge</h2>
+            <p class="text-gray-700 mb-6">Manipulate supply and demand curves to observe how equilibrium price and quantity change in response to market events.</p>
+
+            <!-- Scenario Selection -->
+            <div class="mb-6">
+                <label class="block text-sm font-medium text-gray-700 mb-2">Select Market Scenario:</label>
+                <select id="eqScenarioSelect" onchange="loadEquilibriumScenario()" class="w-full p-3 border border-gray-300 rounded-lg">
+                    <option value="">-- Choose a scenario --</option>
+                    <option value="scenario1">Scenario 1: New Smartphone Release (Positive Review)</option>
+                    <option value="scenario2">Scenario 2: Manufacturing Disruption (Factory Fire)</option>
+                    <option value="scenario3">Scenario 3: Economic Downturn (Recession)</option>
+                    <option value="scenario4">Scenario 4: Technological Breakthrough</option>
+                </select>
+            </div>
+
+            <!-- Scenario Display -->
+            <div id="eqScenarioDisplay" class="bg-gray-50 p-6 rounded-lg mb-6" style="display: none;">
+                <h3 class="text-xl font-bold text-gray-900 mb-4">Scenario Details</h3>
+
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Product:</label>
+                    <input type="text" id="eqProduct" value="Smartphone" class="w-full p-2 border border-gray-300 rounded given-value" readonly>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Initial Equilibrium Price:</label>
+                        <input type="text" id="eqInitialPrice" value="$800" class="w-full p-2 border border-gray-300 rounded given-value" readonly>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Initial Equilibrium Quantity:</label>
+                        <input type="text" id="eqInitialQuantity" value="100,000 units" class="w-full p-2 border border-gray-300 rounded given-value" readonly>
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Market Event:</label>
+                    <textarea id="eqEvent" rows="2" class="w-full p-2 border border-gray-300 rounded given-value" readonly></textarea>
+                </div>
+
+                <!-- Results -->
+                <div class="bg-white p-4 rounded-lg border border-gray-300 mb-4">
+                    <h4 class="font-bold text-gray-800 mb-3">Impact Analysis</h4>
+
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="bg-indigo-50 p-3 rounded-lg">
+                            <p class="text-sm text-gray-600 mb-1">New Equilibrium Price:</p>
+                            <p class="text-2xl font-bold text-indigo-700">$<span id="eqNewPrice">0</span></p>
+                            <p class="text-sm text-gray-600 mt-1">Change: <span id="eqPriceChange" class="font-bold"></span></p>
+                        </div>
+                        <div class="bg-indigo-50 p-3 rounded-lg">
+                            <p class="text-sm text-gray-600 mb-1">New Equilibrium Quantity:</p>
+                            <p class="text-2xl font-bold text-indigo-700"><span id="eqNewQuantity">0</span> units</p>
+                            <p class="text-sm text-gray-600 mt-1">Change: <span id="eqQuantityChange" class="font-bold"></span></p>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 bg-blue-50 p-3 rounded-lg">
+                        <p class="text-sm text-gray-600 mb-1">Consumer Surplus Change:</p>
+                        <p class="text-xl font-bold" id="eqSurplusChange"></p>
+                    </div>
+                </div>
+
+                <!-- Analysis Questions -->
+                <div class="bg-yellow-50 border border-yellow-300 p-4 rounded-lg">
+                    <h4 class="font-bold text-gray-900 mb-2">Analysis Question:</h4>
+                    <p id="eqQuestion" class="text-gray-700 mb-3"></p>
+                    <textarea id="eqAnswer" rows="2" class="w-full p-3 border border-gray-300 rounded-lg" placeholder="Write your answer here..."></textarea>
+                </div>
+            </div>
+        </section>
+
+        <!-- Activity 2: Market Structure Comparison Station -->
+        <section id="activity2" class="bg-white rounded-lg shadow-lg p-6 mb-8">
+            <div class="activity-timer p-4 rounded-lg mb-4">
+                <p class="font-bold text-gray-800">⏱ Activity 2: Market Structure Comparison Station | 15 minutes</p>
+            </div>
+
+            <h2 class="text-3xl font-bold text-gray-900 mb-4">🏢 Activity 2: Market Structure Comparison</h2>
+            <p class="text-gray-700 mb-6">Compare how different market structures affect price, output, and consumer welfare for identical products (100 Mbps internet service).</p>
+
+            <!-- Structure Selection -->
+            <div class="mb-6">
+                <label class="block text-sm font-medium text-gray-700 mb-2">Select Market Structure:</label>
+                <select id="structureSelect" onchange="loadMarketStructure()" class="w-full p-3 border border-gray-300 rounded-lg">
+                    <option value="">-- Choose a structure --</option>
+                    <option value="perfect">Perfect Competition (15 providers)</option>
+                    <option value="oligopoly">Oligopoly (3 large providers)</option>
+                    <option value="monopoly">Monopoly (1 provider)</option>
+                </select>
+            </div>
+
+            <!-- Structure Display -->
+            <div id="structureDisplay" class="bg-gray-50 p-6 rounded-lg mb-6" style="display: none;">
+                <h3 class="text-xl font-bold text-gray-900 mb-4">Market Structure: <span id="structureName"></span></h3>
+
+                <div class="grid md:grid-cols-3 gap-4 mb-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Number of Providers:</label>
+                        <input type="text" id="structureProviders" class="w-full p-2 border border-gray-300 rounded given-value" readonly>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Demand (Households):</label>
+                        <input type="text" id="structureDemand" value="100,000" class="w-full p-2 border border-gray-300 rounded given-value" readonly>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Cost to Provide:</label>
+                        <input type="text" id="structureCost" value="$20/month" class="w-full p-2 border border-gray-300 rounded given-value" readonly>
+                    </div>
+                </div>
+
+                <!-- Results Grid -->
+                <div class="grid md:grid-cols-2 gap-4 mb-4">
+                    <div class="bg-white p-4 rounded-lg border border-gray-300">
+                        <h4 class="font-bold text-gray-800 mb-3">Market Outcomes</h4>
+                        <div class="space-y-2">
+                            <div class="flex justify-between">
+                                <span class="text-gray-700">Market Price:</span>
+                                <span class="font-bold text-indigo-700">$<span id="structurePrice">0</span>/month</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-700">Quantity Sold:</span>
+                                <span class="font-bold text-indigo-700"><span id="structureQuantity">0</span></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-4 rounded-lg border border-gray-300">
+                        <h4 class="font-bold text-gray-800 mb-3">Economic Surplus</h4>
+                        <div class="space-y-2">
+                            <div class="flex justify-between">
+                                <span class="text-gray-700">Consumer Surplus:</span>
+                                <span class="font-bold text-blue-700">$<span id="structureConsumer">0</span>M</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-700">Producer Surplus:</span>
+                                <span class="font-bold text-green-700">$<span id="structureProducer">0</span>M</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-700">Total Surplus:</span>
+                                <span class="font-bold text-purple-700">$<span id="structureTotal">0</span>M</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Comparison to Perfect Competition -->
+                <div id="structureComparison" class="bg-yellow-50 border border-yellow-300 p-4 rounded-lg mb-4" style="display: none;">
+                    <h4 class="font-bold text-gray-900 mb-2">📊 Comparison to Perfect Competition:</h4>
+                    <div class="grid md:grid-cols-3 gap-3">
+                        <div>
+                            <p class="text-sm text-gray-600">Price Difference:</p>
+                            <p class="font-bold" id="priceDiff"></p>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-600">Consumer Surplus Difference:</p>
+                            <p class="font-bold" id="consumerDiff"></p>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-600">Deadweight Loss:</p>
+                            <p class="font-bold text-red-700" id="deadweightLoss"></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Annual Cost Calculation -->
+                <div class="bg-indigo-50 p-4 rounded-lg">
+                    <h4 class="font-bold text-gray-900 mb-2">💰 Your Annual Cost Impact:</h4>
+                    <p class="text-gray-700">In this market, a typical household pays <span class="font-bold text-indigo-700">$<span id="annualCost">0</span>/year</span>.</p>
+                    <p id="costComparison" class="text-gray-700 mt-2"></p>
+                </div>
+            </div>
+
+            <!-- Real-World Markets Exercise -->
+            <div class="bg-white border border-gray-300 p-6 rounded-lg">
+                <h3 class="text-xl font-bold text-gray-900 mb-4">🌍 Identify Real Markets:</h3>
+                <div class="space-y-4">
+                    <div>
+                        <label class="block font-medium text-gray-800 mb-2">Perfect Competition Examples (from your life):</label>
+                        <textarea id="perfectExamples" rows="2" class="w-full p-3 border border-gray-300 rounded-lg" placeholder="e.g., agricultural products, stock market, online retail for common items..."></textarea>
+                    </div>
+                    <div>
+                        <label class="block font-medium text-gray-800 mb-2">Oligopoly Examples (from your life):</label>
+                        <textarea id="oligopolyExamples" rows="2" class="w-full p-3 border border-gray-300 rounded-lg" placeholder="e.g., airlines, wireless carriers, automobile manufacturers..."></textarea>
+                    </div>
+                    <div>
+                        <label class="block font-medium text-gray-800 mb-2">Monopoly Examples (from your life):</label>
+                        <textarea id="monopolyExamples" rows="2" class="w-full p-3 border border-gray-300 rounded-lg" placeholder="e.g., local cable provider, local utility companies..."></textarea>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Activity 3: Elasticity and Budget Planning -->
+        <section id="activity3" class="bg-white rounded-lg shadow-lg p-6 mb-8">
+            <div class="activity-timer p-4 rounded-lg mb-4">
+                <p class="font-bold text-gray-800">⏱ Activity 3: Elasticity and Budget Planning | 10 minutes</p>
+            </div>
+
+            <h2 class="text-3xl font-bold text-gray-900 mb-4">📈 Activity 3: Elasticity and Budget Planning</h2>
+            <p class="text-gray-700 mb-6">Understand how demand elasticity affects price volatility and budget accordingly.</p>
+
+            <!-- Product Comparison -->
+            <div class="grid md:grid-cols-2 gap-6 mb-6">
+                <!-- Inelastic Product: Gasoline -->
+                <div class="bg-red-50 border border-red-300 p-6 rounded-lg">
+                    <h3 class="text-xl font-bold text-red-900 mb-4">Product A: Gasoline (Inelastic)</h3>
+
+                    <div class="space-y-3 mb-4">
+                        <div class="flex justify-between">
+                            <span class="text-gray-700">Current Price:</span>
+                            <span class="font-bold">$<span id="gasPrice">3.50</span>/gallon</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-700">Monthly Consumption:</span>
+                            <input type="number" id="gasConsumption" value="40" class="w-20 p-1 border border-gray-300 rounded text-center"> gallons
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-700">Current Monthly Cost:</span>
+                            <span class="font-bold text-gray-900">$<span id="gasCost">140</span></span>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-3 rounded-lg mb-3">
+                        <p class="text-sm text-gray-700 mb-2"><strong>Supply Shock:</strong> 10% supply reduction</p>
+                        <button onclick="applyGasShock()" class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">Apply Shock</button>
+                    </div>
+
+                    <div id="gasResults" class="bg-white p-3 rounded-lg" style="display: none;">
+                        <div class="space-y-2">
+                            <div class="flex justify-between">
+                                <span class="text-gray-700">New Price:</span>
+                                <span class="font-bold text-red-700">$<span id="gasNewPrice">0</span>/gallon</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-700">Price Change:</span>
+                                <span class="font-bold text-red-700"><span id="gasPriceChange">0</span>%</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-700">New Monthly Cost:</span>
+                                <span class="font-bold text-red-900">$<span id="gasNewCost">0</span></span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-700">Budget Impact:</span>
+                                <span class="font-bold text-red-700">+$<span id="gasBudgetImpact">0</span>/month</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Elastic Product: Restaurant Meals -->
+                <div class="bg-green-50 border border-green-300 p-6 rounded-lg">
+                    <h3 class="text-xl font-bold text-green-900 mb-4">Product B: Restaurant Meals (Elastic)</h3>
+
+                    <div class="space-y-3 mb-4">
+                        <div class="flex justify-between">
+                            <span class="text-gray-700">Current Price:</span>
+                            <span class="font-bold">$<span id="mealPrice">15</span>/meal</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-700">Monthly Consumption:</span>
+                            <input type="number" id="mealConsumption" value="8" class="w-20 p-1 border border-gray-300 rounded text-center"> meals
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-700">Current Monthly Cost:</span>
+                            <span class="font-bold text-gray-900">$<span id="mealCost">120</span></span>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-3 rounded-lg mb-3">
+                        <p class="text-sm text-gray-700 mb-2"><strong>Supply Shock:</strong> 10% supply reduction</p>
+                        <button onclick="applyMealShock()" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Apply Shock</button>
+                    </div>
+
+                    <div id="mealResults" class="bg-white p-3 rounded-lg" style="display: none;">
+                        <div class="space-y-2">
+                            <div class="flex justify-between">
+                                <span class="text-gray-700">New Price:</span>
+                                <span class="font-bold text-green-700">$<span id="mealNewPrice">0</span>/meal</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-700">Price Change:</span>
+                                <span class="font-bold text-green-700"><span id="mealPriceChange">0</span>%</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-700">Your New Consumption:</span>
+                                <span class="font-bold text-green-900"><span id="mealNewConsumption">0</span> meals</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-700">New Monthly Cost:</span>
+                                <span class="font-bold text-green-900">$<span id="mealNewCost">0</span></span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-700">Budget Impact:</span>
+                                <span class="font-bold text-green-700">+$<span id="mealBudgetImpact">0</span>/month</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Budget Analysis Table -->
+            <div class="bg-white border border-gray-300 p-6 rounded-lg">
+                <h3 class="text-xl font-bold text-gray-900 mb-4">Your Budget Shock Preparation</h3>
+                <p class="text-sm text-gray-600 mb-4">List your 5 largest monthly expenses and classify by elasticity to identify vulnerabilities:</p>
+
+                <table class="w-full border-collapse border border-gray-300">
+                    <thead>
+                        <tr class="bg-gray-100">
+                            <th class="border border-gray-300 p-2 text-left">Expense</th>
+                            <th class="border border-gray-300 p-2 text-left">Monthly Cost</th>
+                            <th class="border border-gray-300 p-2 text-left">Elastic/Inelastic</th>
+                            <th class="border border-gray-300 p-2 text-left">Shock Vulnerability</th>
+                            <th class="border border-gray-300 p-2 text-left">Contingency Plan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="border border-gray-300 p-2"><input type="text" class="w-full p-1 border-0" placeholder="e.g., Rent"></td>
+                            <td class="border border-gray-300 p-2"><input type="text" class="w-full p-1 border-0" placeholder="$900"></td>
+                            <td class="border border-gray-300 p-2">
+                                <select class="w-full p-1">
+                                    <option>Inelastic</option>
+                                    <option>Moderate</option>
+                                    <option>Elastic</option>
+                                </select>
+                            </td>
+                            <td class="border border-gray-300 p-2">
+                                <select class="w-full p-1">
+                                    <option>High</option>
+                                    <option>Medium</option>
+                                    <option>Low</option>
+                                </select>
+                            </td>
+                            <td class="border border-gray-300 p-2"><input type="text" class="w-full p-1 border-0" placeholder="Build 1-month cushion"></td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300 p-2"><input type="text" class="w-full p-1 border-0"></td>
+                            <td class="border border-gray-300 p-2"><input type="text" class="w-full p-1 border-0"></td>
+                            <td class="border border-gray-300 p-2">
+                                <select class="w-full p-1">
+                                    <option>Inelastic</option>
+                                    <option>Moderate</option>
+                                    <option>Elastic</option>
+                                </select>
+                            </td>
+                            <td class="border border-gray-300 p-2">
+                                <select class="w-full p-1">
+                                    <option>High</option>
+                                    <option>Medium</option>
+                                    <option>Low</option>
+                                </select>
+                            </td>
+                            <td class="border border-gray-300 p-2"><input type="text" class="w-full p-1 border-0"></td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300 p-2"><input type="text" class="w-full p-1 border-0"></td>
+                            <td class="border border-gray-300 p-2"><input type="text" class="w-full p-1 border-0"></td>
+                            <td class="border border-gray-300 p-2">
+                                <select class="w-full p-1">
+                                    <option>Inelastic</option>
+                                    <option>Moderate</option>
+                                    <option>Elastic</option>
+                                </select>
+                            </td>
+                            <td class="border border-gray-300 p-2">
+                                <select class="w-full p-1">
+                                    <option>High</option>
+                                    <option>Medium</option>
+                                    <option>Low</option>
+                                </select>
+                            </td>
+                            <td class="border border-gray-300 p-2"><input type="text" class="w-full p-1 border-0"></td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300 p-2"><input type="text" class="w-full p-1 border-0"></td>
+                            <td class="border border-gray-300 p-2"><input type="text" class="w-full p-1 border-0"></td>
+                            <td class="border border-gray-300 p-2">
+                                <select class="w-full p-1">
+                                    <option>Inelastic</option>
+                                    <option>Moderate</option>
+                                    <option>Elastic</option>
+                                </select>
+                            </td>
+                            <td class="border border-gray-300 p-2">
+                                <select class="w-full p-1">
+                                    <option>High</option>
+                                    <option>Medium</option>
+                                    <option>Low</option>
+                                </select>
+                            </td>
+                            <td class="border border-gray-300 p-2"><input type="text" class="w-full p-1 border-0"></td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300 p-2"><input type="text" class="w-full p-1 border-0"></td>
+                            <td class="border border-gray-300 p-2"><input type="text" class="w-full p-1 border-0"></td>
+                            <td class="border border-gray-300 p-2">
+                                <select class="w-full p-1">
+                                    <option>Inelastic</option>
+                                    <option>Moderate</option>
+                                    <option>Elastic</option>
+                                </select>
+                            </td>
+                            <td class="border border-gray-300 p-2">
+                                <select class="w-full p-1">
+                                    <option>High</option>
+                                    <option>Medium</option>
+                                    <option>Low</option>
+                                </select>
+                            </td>
+                            <td class="border border-gray-300 p-2"><input type="text" class="w-full p-1 border-0"></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="mt-4 bg-blue-50 p-4 rounded-lg">
+                    <p class="font-bold text-gray-900">💡 Key Takeaway:</p>
+                    <p class="text-gray-700">Products with inelastic demand (gasoline, rent, utilities) experience larger price swings from supply shocks, so they require larger emergency budget cushions.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Activity 4: Real Market Intelligence Gathering -->
+        <section id="activity4" class="bg-white rounded-lg shadow-lg p-6 mb-8">
+            <div class="activity-timer p-4 rounded-lg mb-4">
+                <p class="font-bold text-gray-800">⏱ Activity 4: Real Market Intelligence Gathering | 13 minutes</p>
+            </div>
+
+            <h2 class="text-3xl font-bold text-gray-900 mb-4">🔍 Activity 4: Real Market Intelligence</h2>
+            <p class="text-gray-700 mb-6">Apply supply-demand analysis to an actual purchase you're planning using real market data.</p>
+
+            <!-- Target Purchase -->
+            <div class="bg-gray-50 p-6 rounded-lg mb-6">
+                <h3 class="text-xl font-bold text-gray-900 mb-4">Step 1: Select Your Target Purchase</h3>
+
+                <div class="grid md:grid-cols-3 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Product:</label>
+                        <input type="text" id="targetProduct" class="w-full p-3 border border-gray-300 rounded-lg" placeholder="e.g., Used Honda Civic">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Approximate Budget:</label>
+                        <input type="text" id="targetBudget" class="w-full p-3 border border-gray-300 rounded-lg" placeholder="$15,000">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Timeline:</label>
+                        <input type="text" id="targetTimeline" class="w-full p-3 border border-gray-300 rounded-lg" placeholder="Next 3 months">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Market Structure Analysis -->
+            <div class="bg-white border border-gray-300 p-6 rounded-lg mb-6">
+                <h3 class="text-xl font-bold text-gray-900 mb-4">Step 2: Market Structure Analysis</h3>
+
+                <div class="space-y-4">
+                    <div>
+                        <label class="block font-medium text-gray-800 mb-2">Number of major sellers in your market:</label>
+                        <input type="text" id="numSellers" class="w-full p-3 border border-gray-300 rounded-lg" placeholder="e.g., 5 large dealers + many small dealers">
+                    </div>
+                    <div>
+                        <label class="block font-medium text-gray-800 mb-2">Market structure classification:</label>
+                        <select id="marketClass" class="w-full p-3 border border-gray-300 rounded-lg">
+                            <option value="">-- Select --</option>
+                            <option value="perfect">Perfect Competition</option>
+                            <option value="oligopoly">Oligopoly</option>
+                            <option value="monopoly">Monopoly</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block font-medium text-gray-800 mb-2">Product differentiation (identical vs. highly differentiated):</label>
+                        <input type="text" id="productDiff" class="w-full p-3 border border-gray-300 rounded-lg" placeholder="Moderately differentiated">
+                    </div>
+                    <div>
+                        <label class="block font-medium text-gray-800 mb-2">Based on market structure, how much power do you have as a buyer?</label>
+                        <textarea id="buyerPower" rows="2" class="w-full p-3 border border-gray-300 rounded-lg" placeholder="Moderate power - can comparison shop across multiple dealers..."></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Supply-Demand Pattern Research -->
+            <div class="bg-white border border-gray-300 p-6 rounded-lg mb-6">
+                <h3 class="text-xl font-bold text-gray-900 mb-4">Step 3: Supply-Demand Pattern Research</h3>
+
+                <div class="space-y-4">
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block font-medium text-gray-800 mb-2">When is demand typically highest?</label>
+                            <input type="text" id="highDemand" class="w-full p-3 border border-gray-300 rounded-lg" placeholder="Spring/summer">
+                        </div>
+                        <div>
+                            <label class="block font-medium text-gray-800 mb-2">When is demand typically lowest?</label>
+                            <input type="text" id="lowDemand" class="w-full p-3 border border-gray-300 rounded-lg" placeholder="Winter">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block font-medium text-gray-800 mb-2">Are there supply variations (new model releases, seasonal changes)?</label>
+                        <textarea id="supplyVariations" rows="2" class="w-full p-3 border border-gray-300 rounded-lg" placeholder="End of lease cycles every 2-3 years, rental car fleet sales..."></textarea>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block font-medium text-gray-800 mb-2">Is supply currently high or constrained?</label>
+                            <select id="currentSupply" class="w-full p-3 border border-gray-300 rounded-lg">
+                                <option value="">-- Select --</option>
+                                <option value="high">High supply</option>
+                                <option value="normal">Normal supply</option>
+                                <option value="constrained">Constrained supply</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block font-medium text-gray-800 mb-2">3-month price trend:</label>
+                            <select id="priceTrend" class="w-full p-3 border border-gray-300 rounded-lg">
+                                <option value="">-- Select --</option>
+                                <option value="rising">Rising</option>
+                                <option value="stable">Stable</option>
+                                <option value="falling">Falling</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Strategic Timing Decision -->
+            <div class="bg-indigo-50 p-6 rounded-lg">
+                <h3 class="text-xl font-bold text-gray-900 mb-4">Step 4: Strategic Timing Decision</h3>
+
+                <div class="space-y-4">
+                    <div>
+                        <label class="block font-medium text-gray-800 mb-2">Optimal purchase timing:</label>
+                        <input type="text" id="optimalTiming" class="w-full p-3 border border-gray-300 rounded-lg" placeholder="End of current month or wait until January">
+                    </div>
+                    <div>
+                        <label class="block font-medium text-gray-800 mb-2">Reasoning:</label>
+                        <textarea id="timingReason" rows="3" class="w-full p-3 border border-gray-300 rounded-lg" placeholder="High inventory + end-of-month dealer quotas + seasonal low demand = maximum leverage..."></textarea>
+                    </div>
+                    <div>
+                        <label class="block font-medium text-gray-800 mb-2">Expected savings from optimal timing:</label>
+                        <input type="text" id="expectedSavings" class="w-full p-3 border border-gray-300 rounded-lg" placeholder="$800-$1,200 (5-8%)">
+                    </div>
+                    <div>
+                        <label class="block font-medium text-gray-800 mb-2">Points of leverage (for negotiation):</label>
+                        <textarea id="leverage" rows="2" class="w-full p-3 border border-gray-300 rounded-lg" placeholder="High inventory, end-of-month timing, knowledge of market price, pre-approved financing, immediate cash buyer..."></textarea>
+                    </div>
+                </div>
+
+                <button onclick="savePurchaseStrategy()" class="mt-4 bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700">Save Purchase Strategy</button>
+            </div>
+        </section>
+
+        <!-- Activity 5: Consumer Surplus Maximization Game -->
+        <section id="activity5" class="bg-white rounded-lg shadow-lg p-6 mb-8">
+            <div class="activity-timer p-4 rounded-lg mb-4">
+                <p class="font-bold text-gray-800">⏱ Activity 5: Consumer Surplus Maximization Game | 10 minutes</p>
+            </div>
+
+            <h2 class="text-3xl font-bold text-gray-900 mb-4">🎯 Activity 5: Consumer Surplus Maximization</h2>
+            <p class="text-gray-700 mb-6">Practice strategies to capture more consumer surplus in various purchasing scenarios.</p>
+
+            <!-- Scenarios -->
+            <div class="space-y-6">
+                <!-- Scenario 1 -->
+                <div class="bg-gray-50 p-6 rounded-lg border border-gray-300">
+                    <h3 class="text-lg font-bold text-gray-900 mb-3">Scenario 1: Airline Tickets for Thanksgiving</h3>
+                    <div class="grid md:grid-cols-2 gap-4 mb-4">
+                        <div>
+                            <p class="text-sm text-gray-600 mb-1">Current Price: <span class="font-bold">$450</span></p>
+                            <p class="text-sm text-gray-600 mb-1">Your Max Willingness to Pay: <span class="font-bold">$600</span></p>
+                            <p class="text-sm text-gray-600">Potential Consumer Surplus: <span class="font-bold text-green-700">$150</span></p>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Your Strategy:</label>
+                            <select id="scenario1" class="w-full p-2 border border-gray-300 rounded-lg">
+                                <option value="">-- Select strategy --</option>
+                                <option value="a">Book now (10 weeks before)</option>
+                                <option value="b">Wait for a sale (risky)</option>
+                                <option value="c">Book Tuesday evening (lower demand)</option>
+                                <option value="d">Use price tracking tools and book when price drops</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Reasoning:</label>
+                        <textarea id="scenario1Reason" rows="2" class="w-full p-2 border border-gray-300 rounded-lg" placeholder="Explain your strategy choice..."></textarea>
+                    </div>
+                </div>
+
+                <!-- Scenario 2 -->
+                <div class="bg-gray-50 p-6 rounded-lg border border-gray-300">
+                    <h3 class="text-lg font-bold text-gray-900 mb-3">Scenario 2: Apartment Rental in College Town</h3>
+                    <div class="grid md:grid-cols-2 gap-4 mb-4">
+                        <div>
+                            <p class="text-sm text-gray-600 mb-1">Your Budget: <span class="font-bold">$1,200/month max</span></p>
+                            <p class="text-sm text-gray-600">Typical Market Rate: <span class="font-bold">$1,100/month</span></p>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Your Strategy:</label>
+                            <select id="scenario2" class="w-full p-2 border border-gray-300 rounded-lg">
+                                <option value="">-- Select strategy --</option>
+                                <option value="a">Search July-August (peak student demand)</option>
+                                <option value="b">Search October-November (post-peak)</option>
+                                <option value="c">Search January (lowest seasonal demand)</option>
+                                <option value="d">Negotiate longer lease for lower monthly rate</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Reasoning:</label>
+                        <textarea id="scenario2Reason" rows="2" class="w-full p-2 border border-gray-300 rounded-lg" placeholder="Explain your strategy choice..."></textarea>
+                    </div>
+                </div>
+
+                <!-- Scenario 3 -->
+                <div class="bg-gray-50 p-6 rounded-lg border border-gray-300">
+                    <h3 class="text-lg font-bold text-gray-900 mb-3">Scenario 3: Electronics Purchase (Laptop)</h3>
+                    <div class="grid md:grid-cols-2 gap-4 mb-4">
+                        <div>
+                            <p class="text-sm text-gray-600 mb-1">Current Price: <span class="font-bold">$1,200</span></p>
+                            <p class="text-sm text-gray-600">Market Structure: <span class="font-bold">Oligopoly (several major retailers)</span></p>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Your Strategy:</label>
+                            <select id="scenario3" class="w-full p-2 border border-gray-300 rounded-lg">
+                                <option value="">-- Select strategy --</option>
+                                <option value="a">Buy from first store you check</option>
+                                <option value="b">Compare prices across 5 retailers</option>
+                                <option value="c">Wait for Black Friday (3 months away)</option>
+                                <option value="d">Buy open-box/refurbished from authorized seller</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Reasoning:</label>
+                        <textarea id="scenario3Reason" rows="2" class="w-full p-2 border border-gray-300 rounded-lg" placeholder="Explain your strategy choice..."></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-6 bg-green-50 p-4 rounded-lg border border-green-300">
+                <h4 class="font-bold text-gray-900 mb-2">💰 Your Potential Annual Savings:</h4>
+                <p class="text-gray-700">Calculate your estimated savings across all scenarios. Strategic purchasing can save $1,500-$3,000+ annually!</p>
+                <input type="text" id="annualSavings" class="mt-2 w-full p-3 border border-gray-300 rounded-lg" placeholder="Enter your estimated annual savings...">
+            </div>
+        </section>
+
+        <!-- Reflection & Wrap-Up -->
+        <section class="bg-yellow-50 border-l-4 border-yellow-500 p-6 rounded-r-lg mb-8">
+            <h2 class="text-2xl font-bold text-gray-900 mb-4">💭 Reflection & Commitments</h2>
+
+            <div class="space-y-4">
+                <div>
+                    <label class="block font-medium text-gray-800 mb-2">What's one market dynamic you weren't aware of before that you'll now watch for?</label>
+                    <textarea id="awareness" rows="2" class="w-full p-3 border border-gray-300 rounded-lg"></textarea>
+                </div>
+
+                <div>
+                    <label class="block font-medium text-gray-800 mb-2">What's an upcoming purchase where timing could save you money?</label>
+                    <textarea id="timing" rows="2" class="w-full p-3 border border-gray-300 rounded-lg"></textarea>
+                </div>
+
+                <div>
+                    <label class="block font-medium text-gray-800 mb-2">What was your biggest insight from today's activities?</label>
+                    <textarea id="insight" rows="2" class="w-full p-3 border border-gray-300 rounded-lg"></textarea>
+                </div>
+
+                <div class="bg-white p-4 rounded-lg">
+                    <h4 class="font-bold text-gray-900 mb-3">Action Commitments:</h4>
+                    <div class="space-y-3">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">This week, I will research market conditions for:</label>
+                            <input type="text" id="weekCommit" class="w-full p-2 border border-gray-300 rounded-lg">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Before my next major purchase, I will:</label>
+                            <input type="text" id="purchaseCommit" class="w-full p-2 border border-gray-300 rounded-lg">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">To maximize consumer surplus, my go-to strategy will be:</label>
+                            <input type="text" id="strategyCommit" class="w-full p-2 border border-gray-300 rounded-lg">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button onclick="saveReflections()" class="mt-4 bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700">Save Reflections & Commitments</button>
+        </section>
+
+        <!-- Wrap-Up -->
+        <section class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-lg shadow-lg p-8 mb-8">
+            <h2 class="text-3xl font-bold mb-4">🎓 Chapter L-58 Complete!</h2>
+            <p class="text-lg mb-4">You've mastered the tools to understand and navigate markets strategically!</p>
+            <ul class="list-disc list-inside space-y-2 mb-6">
+                <li>Analyzed how supply and demand shifts affect equilibrium prices and quantities</li>
+                <li>Compared perfect competition, oligopoly, and monopoly outcomes side-by-side</li>
+                <li>Understood how elasticity determines price volatility and budget impacts</li>
+                <li>Researched real market conditions for a purchase you're planning</li>
+                <li>Developed strategic timing plans to maximize consumer surplus</li>
+            </ul>
+            <p class="text-lg font-semibold">Remember: Understanding market dynamics can save you thousands of dollars annually through strategic timing, comparison shopping, and recognizing market structures!</p>
+        </section>
+
+    </div>
+
+    <script>
+        // Activity 1: Equilibrium Scenarios
+        const equilibriumScenarios = {
+            scenario1: {
+                product: 'Smartphone',
+                initialPrice: 800,
+                initialQuantity: 100000,
+                event: 'A popular tech reviewer gives the phone an excellent rating, increasing demand by 20%',
+                priceChange: 12,
+                quantityChange: 15,
+                surplusChange: 'Increased slightly - consumers pay more but still value product highly',
+                question: 'If you need this product, should you buy immediately or wait? Why?'
+            },
+            scenario2: {
+                product: 'Smartphone',
+                initialPrice: 800,
+                initialQuantity: 100000,
+                event: 'A factory fire reduces production capacity, decreasing supply by 20%',
+                priceChange: 15,
+                quantityChange: -18,
+                surplusChange: 'Decreased significantly - consumers pay more for less quantity',
+                question: 'If you need this product, should you buy immediately or wait? Why?'
+            },
+            scenario3: {
+                product: 'Smartphone',
+                initialPrice: 800,
+                initialQuantity: 100000,
+                event: 'Rising unemployment and falling consumer income decreases demand by 25%',
+                priceChange: -20,
+                quantityChange: -22,
+                surplusChange: 'Mixed - lower prices help but fewer purchases overall',
+                question: 'When would this create good buying opportunities?'
+            },
+            scenario4: {
+                product: 'Smartphone',
+                initialPrice: 800,
+                initialQuantity: 100000,
+                event: 'A new manufacturing process cuts production costs in half, increasing supply by 30%',
+                priceChange: -25,
+                quantityChange: 28,
+                surplusChange: 'Maximized - lower prices and more quantity available',
+                question: 'Give a real example of when this happened in a market you purchase from'
+            }
+        };
+
+        function loadEquilibriumScenario() {
+            const select = document.getElementById('eqScenarioSelect');
+            const scenarioId = select.value;
+
+            if (!scenarioId) {
+                document.getElementById('eqScenarioDisplay').style.display = 'none';
+                return;
+            }
+
+            const scenario = equilibriumScenarios[scenarioId];
+
+            document.getElementById('eqProduct').value = scenario.product;
+            document.getElementById('eqInitialPrice').value = '$' + scenario.initialPrice;
+            document.getElementById('eqInitialQuantity').value = scenario.initialQuantity.toLocaleString() + ' units';
+            document.getElementById('eqEvent').value = scenario.event;
+
+            const newPrice = scenario.initialPrice * (1 + scenario.priceChange / 100);
+            const newQuantity = scenario.initialQuantity * (1 + scenario.quantityChange / 100);
+
+            document.getElementById('eqNewPrice').textContent = newPrice.toFixed(2);
+            document.getElementById('eqNewQuantity').textContent = Math.round(newQuantity).toLocaleString();
+
+            document.getElementById('eqPriceChange').textContent = (scenario.priceChange > 0 ? '+' : '') + scenario.priceChange + '%';
+            document.getElementById('eqPriceChange').className = scenario.priceChange > 0 ? 'font-bold text-red-700' : 'font-bold text-green-700';
+
+            document.getElementById('eqQuantityChange').textContent = (scenario.quantityChange > 0 ? '+' : '') + scenario.quantityChange + '%';
+            document.getElementById('eqQuantityChange').className = scenario.quantityChange > 0 ? 'font-bold text-green-700' : 'font-bold text-red-700';
+
+            document.getElementById('eqSurplusChange').textContent = scenario.surplusChange;
+            document.getElementById('eqSurplusChange').className = scenario.surplusChange.includes('Increased') ? 'text-xl font-bold text-green-700' : scenario.surplusChange.includes('Decreased') ? 'text-xl font-bold text-red-700' : 'text-xl font-bold text-yellow-700';
+
+            document.getElementById('eqQuestion').textContent = scenario.question;
+
+            document.getElementById('eqScenarioDisplay').style.display = 'block';
+        }
+
+        // Activity 2: Market Structure Comparison
+        const marketStructures = {
+            perfect: {
+                name: 'Perfect Competition',
+                providers: '15 equal-sized providers',
+                price: 25,
+                quantity: 100000,
+                consumerSurplus: 15,
+                producerSurplus: 5,
+                totalSurplus: 20
+            },
+            oligopoly: {
+                name: 'Oligopoly',
+                providers: '3 large providers',
+                price: 40,
+                quantity: 88000,
+                consumerSurplus: 10,
+                producerSurplus: 15,
+                totalSurplus: 25
+            },
+            monopoly: {
+                name: 'Monopoly',
+                providers: '1 provider',
+                price: 55,
+                quantity: 75000,
+                consumerSurplus: 6,
+                producerSurplus: 20,
+                totalSurplus: 26
+            }
+        };
+
+        function loadMarketStructure() {
+            const select = document.getElementById('structureSelect');
+            const structureId = select.value;
+
+            if (!structureId) {
+                document.getElementById('structureDisplay').style.display = 'none';
+                return;
+            }
+
+            const structure = marketStructures[structureId];
+
+            document.getElementById('structureName').textContent = structure.name;
+            document.getElementById('structureProviders').value = structure.providers;
+            document.getElementById('structurePrice').textContent = structure.price;
+            document.getElementById('structureQuantity').textContent = structure.quantity.toLocaleString();
+            document.getElementById('structureConsumer').textContent = structure.consumerSurplus;
+            document.getElementById('structureProducer').textContent = structure.producerSurplus;
+            document.getElementById('structureTotal').textContent = structure.totalSurplus;
+
+            const annualCost = structure.price * 12;
+            document.getElementById('annualCost').textContent = annualCost;
+
+            if (structureId !== 'perfect') {
+                const perfectPrice = marketStructures.perfect.price;
+                const perfectConsumer = marketStructures.perfect.consumerSurplus;
+
+                const priceDiff = structure.price - perfectPrice;
+                const consumerDiff = perfectConsumer - structure.consumerSurplus;
+                const deadweight = (perfectConsumer + marketStructures.perfect.producerSurplus) - (structure.consumerSurplus + structure.producerSurplus);
+
+                document.getElementById('priceDiff').textContent = '+$' + priceDiff + '/month higher';
+                document.getElementById('priceDiff').className = 'font-bold text-red-700';
+
+                document.getElementById('consumerDiff').textContent = '-$' + consumerDiff + 'M less surplus';
+                document.getElementById('consumerDiff').className = 'font-bold text-red-700';
+
+                document.getElementById('deadweightLoss').textContent = '$' + Math.abs(deadweight).toFixed(1) + 'M';
+
+                document.getElementById('costComparison').textContent = `Compared to perfect competition ($${perfectPrice * 12}/year), you pay $${priceDiff * 12}/year MORE.`;
+
+                document.getElementById('structureComparison').style.display = 'block';
+            } else {
+                document.getElementById('costComparison').textContent = 'This is the most efficient market structure with lowest prices and maximum consumer surplus!';
+                document.getElementById('structureComparison').style.display = 'none';
+            }
+
+            document.getElementById('structureDisplay').style.display = 'block';
+        }
+
+        // Activity 3: Elasticity Impact
+        function applyGasShock() {
+            const consumption = parseFloat(document.getElementById('gasConsumption').value);
+            const currentPrice = 3.50;
+            const currentCost = currentPrice * consumption;
+
+            // Inelastic: price rises 25% for 10% supply shock, quantity barely changes
+            const newPrice = currentPrice * 1.25;
+            const newConsumption = consumption * 0.98; // slight reduction
+            const newCost = newPrice * newConsumption;
+            const impact = newCost - currentCost;
+
+            document.getElementById('gasNewPrice').textContent = newPrice.toFixed(2);
+            document.getElementById('gasPriceChange').textContent = '25';
+            document.getElementById('gasNewCost').textContent = newCost.toFixed(2);
+            document.getElementById('gasBudgetImpact').textContent = impact.toFixed(2);
+
+            document.getElementById('gasResults').style.display = 'block';
+        }
+
+        function applyMealShock() {
+            const consumption = parseFloat(document.getElementById('mealConsumption').value);
+            const currentPrice = 15;
+            const currentCost = currentPrice * consumption;
+
+            // Elastic: price rises only 8% for 10% supply shock, but quantity falls significantly
+            const newPrice = currentPrice * 1.08;
+            const newConsumption = consumption * 0.75; // significant reduction
+            const newCost = newPrice * newConsumption;
+            const impact = newCost - currentCost;
+
+            document.getElementById('mealNewPrice').textContent = newPrice.toFixed(2);
+            document.getElementById('mealPriceChange').textContent = '8';
+            document.getElementById('mealNewConsumption').textContent = Math.round(newConsumption);
+            document.getElementById('mealNewCost').textContent = newCost.toFixed(2);
+            document.getElementById('mealBudgetImpact').textContent = impact.toFixed(2);
+
+            document.getElementById('mealResults').style.display = 'block';
+        }
+
+        // Save functions
+        function savePurchaseStrategy() {
+            const product = document.getElementById('targetProduct').value;
+            if (product.trim()) {
+                alert('✅ Your purchase strategy has been saved! Apply this market intelligence when you\'re ready to buy.');
+            } else {
+                alert('Please enter your target product first.');
+            }
+        }
+
+        function saveReflections() {
+            alert('✅ Your reflections and commitments have been saved! Review them before your next major purchase.');
+        }
+    </script>
+</body>
+</html>

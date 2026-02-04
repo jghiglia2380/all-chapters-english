@@ -1,9 +1,25 @@
 <!DOCTYPE html>
+<!--
+PFL Academy State-Agnostic Template
+L-Chapter: L-42
+Chapter Title: Job Application Process
+Oklahoma Reference: Chapter 15.2
+
+Variables used in this template:
+- {{STATE_NAME}} - Full state name (e.g., Kentucky, Georgia)
+- {{CHAPTER_NUMBER}} - State-specific chapter number (e.g., 2.1, 1.4)
+- {{CHAPTER_ID}} - L-chapter identifier (e.g., L-42)
+- {{CHAPTER_TITLE}} - Always: Job Application Process
+
+This template will be processed by generate_state_html.py to create
+state-specific versions with correct chapter numbering.
+-->
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>L-42 Student Activity Packet</title>
+    <title>{{STATE_NAME}} Chapter {{CHAPTER_NUMBER}}: Job Application Process - Student Activity Packet</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap');
 
@@ -363,7 +379,7 @@
     <div class="header">
         <div class="header-left">
             <h1>PFL Academy</h1>
-            <h2>Chapter 15.2: Resume Building and Personal Branding</h2>
+            <h2>Chapter {{CHAPTER_NUMBER}}: Resume Building and Personal Branding</h2>
         </div>
         <div class="header-right">
             Student Activity Packet
@@ -617,7 +633,7 @@
     <!-- FOOTER -->
     <div class="footer">
         <span>© PFL Academy | pflacademy.co</span>
-        <span>Chapter 15.2: Resume Building and Personal Branding</span>
+        <span>Chapter {{CHAPTER_NUMBER}}: Resume Building and Personal Branding</span>
     </div>
 
 </body>

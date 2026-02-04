@@ -1,9 +1,25 @@
 <!DOCTYPE html>
+<!--
+PFL Academy State-Agnostic Template
+L-Chapter: L-32
+Chapter Title: Understanding Home Buying
+Oklahoma Reference: Chapter 10.3
+
+Variables used in this template:
+- {{STATE_NAME}} - Full state name (e.g., Kentucky, Georgia)
+- {{CHAPTER_NUMBER}} - State-specific chapter number (e.g., 2.1, 1.4)
+- {{CHAPTER_ID}} - L-chapter identifier (e.g., L-32)
+- {{CHAPTER_TITLE}} - Always: Understanding Home Buying
+
+This template will be processed by generate_state_html.py to create
+state-specific versions with correct chapter numbering.
+-->
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>L-32 Student Activity Packet</title>
+    <title>{{STATE_NAME}} Chapter {{CHAPTER_NUMBER}}: Understanding Home Buying - Student Activity Packet</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap');
 
@@ -366,7 +382,7 @@
     <div class="header">
         <div class="header-left">
             <h1>PFL Academy</h1>
-            <h2>Chapter 6.2: Understanding Homeownership</h2>
+            <h2>Chapter {{CHAPTER_NUMBER}}: Understanding Homeownership</h2>
         </div>
         <div class="header-right">
             Student Activity Packet
@@ -613,7 +629,7 @@
     <!-- FOOTER -->
     <div class="footer">
         <span>&copy; PFL Academy | pflacademy.co</span>
-        <span>Chapter 6.2: Understanding Homeownership</span>
+        <span>Chapter {{CHAPTER_NUMBER}}: Understanding Homeownership</span>
     </div>
 
 </body>

@@ -1,4 +1,20 @@
 <!DOCTYPE html>
+<!--
+PFL Academy State-Agnostic Template
+L-Chapter: L-09
+Chapter Title: Understanding Tax Deductions and Credits
+Oklahoma Reference: Chapter 2.4
+
+Variables used in this template:
+- {{STATE_NAME}} - Full state name (e.g., Kentucky, Georgia)
+- {{CHAPTER_NUMBER}} - State-specific chapter number (e.g., 2.1, 1.4)
+- {{CHAPTER_ID}} - L-chapter identifier (e.g., L-09)
+- {{CHAPTER_TITLE}} - Always: Understanding Tax Deductions and Credits
+
+This template will be processed by generate_state_html.py to create
+state-specific versions with correct chapter numbering.
+-->
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -237,7 +253,7 @@
     
     <div class="footnote">
         <p>Note: This worksheet is for educational purposes only and does not constitute tax advice. Tax laws and amounts change regularly. For specific tax advice, consult a qualified tax professional.</p>
-        <p>PFL Academy - Chapter 2.4: Understanding Tax Deductions and Credits</p>
+        <p>PFL Academy - Chapter {{CHAPTER_NUMBER}}: Understanding Tax Deductions and Credits</p>
     </div>
 </body>
 </html>

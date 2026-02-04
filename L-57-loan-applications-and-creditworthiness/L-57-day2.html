@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-57: Loan Applications and Creditworthiness - Day 2 Learning Lab</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .helper-content {
+            display: none;
+        }
+        .helper-content.active {
+            display: block;
+        }
+        .given-value {
+            background-color: #f3f4f6;
+            cursor: not-allowed;
+        }
+        .activity-timer {
+            background-color: #FFFBEB;
+            border-left: 4px solid #F59E0B;
+        }
+        .strength-bar {
+            transition: width 0.3s ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Fixed Header -->
+    <header class="bg-indigo-600 text-white p-4 shadow-md fixed top-0 left-0 right-0 z-40">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-bold">L-57: Loan Applications and Creditworthiness | Day 2 Learning Lab</h1>
+            <nav class="space-x-4">
+                <a href="#" class="hover:underline">Home</a>
+                <a href="#" class="hover:underline">Curriculum</a>
+                <a href="#" class="hover:underline">Resources</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Spacer for fixed header -->
+    <div class="h-16"></div>
+
+    <!-- Day 1 Recall Banner -->
+    <section class="bg-indigo-100 border-l-4 border-indigo-600 p-6 my-6 mx-4 rounded-r-lg">
+        <h2 class="text-2xl font-bold text-gray-900 mb-3">📚 Day 1 Recap: The Five C's Framework</h2>
+        <p class="text-gray-700 mb-4">Yesterday, you learned how lenders evaluate loan applications using the Five C's:</p>
+        <div class="grid md:grid-cols-5 gap-3 mb-4">
+            <div class="bg-white p-3 rounded-lg shadow-sm">
+                <h4 class="font-bold text-indigo-700">Character</h4>
+                <p class="text-sm text-gray-600">Credit history & payment patterns</p>
+            </div>
+            <div class="bg-white p-3 rounded-lg shadow-sm">
+                <h4 class="font-bold text-indigo-700">Capacity</h4>
+                <p class="text-sm text-gray-600">Ability to repay based on income</p>
+            </div>
+            <div class="bg-white p-3 rounded-lg shadow-sm">
+                <h4 class="font-bold text-indigo-700">Capital</h4>
+                <p class="text-sm text-gray-600">Available financial resources</p>
+            </div>
+            <div class="bg-white p-3 rounded-lg shadow-sm">
+                <h4 class="font-bold text-indigo-700">Collateral</h4>
+                <p class="text-sm text-gray-600">Assets securing the loan</p>
+            </div>
+            <div class="bg-white p-3 rounded-lg shadow-sm">
+                <h4 class="font-bold text-indigo-700">Conditions</h4>
+                <p class="text-sm text-gray-600">Loan purpose & economic factors</p>
+            </div>
+        </div>
+        <p class="text-gray-700">Today, you'll apply this framework hands-on by analyzing real borrower profiles, completing applications, and developing personal improvement strategies.</p>
+    </section>
+
+    <div class="container mx-auto px-4 py-6">
+
+        <!-- Activity 1: Documentation Hunt Challenge -->
+        <section id="activity1" class="bg-white rounded-lg shadow-lg p-6 mb-8">
+            <div class="activity-timer p-4 rounded-lg mb-4">
+                <p class="font-bold text-gray-800">⏱ Activity 1: Documentation Hunt Challenge | 12 minutes</p>
+            </div>
+
+            <h2 class="text-3xl font-bold text-gray-900 mb-4">📄 Activity 1: Documentation Hunt Challenge</h2>
+            <p class="text-gray-700 mb-6">Review three borrower profiles and identify the required documentation for each loan type. Distinguish between critical documents (required for approval) and supporting documents (strengthen application).</p>
+
+            <!-- Borrower Selection -->
+            <div class="mb-6">
+                <label class="block text-sm font-medium text-gray-700 mb-2">Select Borrower Profile:</label>
+                <select id="borrowerSelect" onchange="loadBorrowerProfile()" class="w-full p-3 border border-gray-300 rounded-lg">
+                    <option value="">-- Choose a borrower --</option>
+                    <option value="destiny">Destiny - Auto Loan ($22,000)</option>
+                    <option value="andre">Andre - Personal Loan ($12,000)</option>
+                    <option value="keisha">Keisha - Mortgage ($185,000)</option>
+                </select>
+            </div>
+
+            <!-- Borrower Profile Display -->
+            <div id="borrowerProfile" class="bg-gray-50 p-6 rounded-lg mb-6" style="display: none;">
+                <h3 class="text-xl font-bold text-gray-900 mb-4">Borrower Profile</h3>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Name:</label>
+                        <input type="text" id="borrowerName" class="w-full p-2 border border-gray-300 rounded given-value" readonly>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Age:</label>
+                        <input type="text" id="borrowerAge" class="w-full p-2 border border-gray-300 rounded given-value" readonly>
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Loan Type:</label>
+                    <input type="text" id="loanType" class="w-full p-2 border border-gray-300 rounded given-value" readonly>
+                </div>
+
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Loan Amount:</label>
+                    <input type="text" id="loanAmount" class="w-full p-2 border border-gray-300 rounded given-value" readonly>
+                </div>
+
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Employment:</label>
+                    <textarea id="employment" rows="2" class="w-full p-2 border border-gray-300 rounded given-value" readonly></textarea>
+                </div>
+
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Annual Income:</label>
+                    <input type="text" id="income" class="w-full p-2 border border-gray-300 rounded given-value" readonly>
+                </div>
+
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Credit Situation:</label>
+                    <input type="text" id="creditSituation" class="w-full p-2 border border-gray-300 rounded given-value" readonly>
+                </div>
+
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Special Circumstances:</label>
+                    <input type="text" id="specialCircumstances" class="w-full p-2 border border-gray-300 rounded given-value" readonly>
+                </div>
+            </div>
+
+            <!-- Documentation Checklist -->
+            <div id="documentationChecklist" class="bg-white border border-gray-300 rounded-lg p-6 mb-6" style="display: none;">
+                <h3 class="text-xl font-bold text-gray-900 mb-4">📋 Required Documentation Checklist</h3>
+                <p class="text-sm text-gray-600 mb-4">Select all documents required for this loan application. Pay special attention to special circumstances.</p>
+
+                <div class="mb-6">
+                    <h4 class="font-bold text-gray-800 mb-2">Universal Required (All Loans):</h4>
+                    <div class="space-y-2">
+                        <label class="flex items-center"><input type="checkbox" class="mr-2 doc-checkbox" data-category="universal" data-type="critical" value="photo_id"> Government-issued photo ID</label>
+                        <label class="flex items-center"><input type="checkbox" class="mr-2 doc-checkbox" data-category="universal" data-type="critical" value="ssn"> Social Security card/verification</label>
+                        <label class="flex items-center"><input type="checkbox" class="mr-2 doc-checkbox" data-category="universal" data-type="critical" value="address"> Proof of address (utility bill/lease)</label>
+                        <label class="flex items-center"><input type="checkbox" class="mr-2 doc-checkbox" data-category="universal" data-type="critical" value="paystubs"> Pay stubs (last 2-3 months)</label>
+                        <label class="flex items-center"><input type="checkbox" class="mr-2 doc-checkbox" data-category="universal" data-type="critical" value="w2"> W-2 forms (past 2 years)</label>
+                        <label class="flex items-center"><input type="checkbox" class="mr-2 doc-checkbox" data-category="universal" data-type="critical" value="bank_statements"> Bank statements (past 2-3 months)</label>
+                    </div>
+                </div>
+
+                <div id="autoSpecific" class="mb-6" style="display: none;">
+                    <h4 class="font-bold text-gray-800 mb-2">Auto Loan Specific:</h4>
+                    <div class="space-y-2">
+                        <label class="flex items-center"><input type="checkbox" class="mr-2 doc-checkbox" data-category="auto" data-type="critical" value="purchase_agreement"> Vehicle purchase agreement</label>
+                        <label class="flex items-center"><input type="checkbox" class="mr-2 doc-checkbox" data-category="auto" data-type="critical" value="vin"> Vehicle identification number (VIN)</label>
+                        <label class="flex items-center"><input type="checkbox" class="mr-2 doc-checkbox" data-category="auto" data-type="critical" value="insurance"> Auto insurance information</label>
+                        <label class="flex items-center"><input type="checkbox" class="mr-2 doc-checkbox" data-category="auto" data-type="supporting" value="down_payment"> Down payment verification</label>
+                    </div>
+                </div>
+
+                <div id="personalSpecific" class="mb-6" style="display: none;">
+                    <h4 class="font-bold text-gray-800 mb-2">Personal Loan Specific:</h4>
+                    <div class="space-y-2">
+                        <label class="flex items-center"><input type="checkbox" class="mr-2 doc-checkbox" data-category="personal" data-type="critical" value="loan_purpose"> Detailed explanation of loan purpose</label>
+                        <label class="flex items-center"><input type="checkbox" class="mr-2 doc-checkbox" data-category="personal" data-type="critical" value="creditor_statements"> Current creditor statements</label>
+                        <label class="flex items-center"><input type="checkbox" class="mr-2 doc-checkbox" data-category="personal" data-type="supporting" value="payment_history"> Debt payment history</label>
+                        <label class="flex items-center"><input type="checkbox" class="mr-2 doc-checkbox" data-category="personal" data-type="supporting" value="employment_letter"> Employment verification letter</label>
+                    </div>
+                </div>
+
+                <div id="mortgageSpecific" class="mb-6" style="display: none;">
+                    <h4 class="font-bold text-gray-800 mb-2">Mortgage Specific:</h4>
+                    <div class="space-y-2">
+                        <label class="flex items-center"><input type="checkbox" class="mr-2 doc-checkbox" data-category="mortgage" data-type="critical" value="purchase_contract"> Property purchase contract</label>
+                        <label class="flex items-center"><input type="checkbox" class="mr-2 doc-checkbox" data-category="mortgage" data-type="critical" value="appraisal"> Property appraisal</label>
+                        <label class="flex items-center"><input type="checkbox" class="mr-2 doc-checkbox" data-category="mortgage" data-type="critical" value="tax_info"> Property tax information</label>
+                        <label class="flex items-center"><input type="checkbox" class="mr-2 doc-checkbox" data-category="mortgage" data-type="critical" value="insurance_quote"> Homeowners insurance quote</label>
+                        <label class="flex items-center"><input type="checkbox" class="mr-2 doc-checkbox" data-category="mortgage" data-type="critical" value="tax_returns"> Tax returns (past 2 years)</label>
+                        <label class="flex items-center"><input type="checkbox" class="mr-2 doc-checkbox" data-category="mortgage" data-type="supporting" value="reserves"> Proof of reserves (2-6 months payments)</label>
+                    </div>
+                </div>
+
+                <div id="selfEmployedSpecific" class="mb-6" style="display: none;">
+                    <h4 class="font-bold text-red-700 mb-2">⚠️ Self-Employment Additional Documents:</h4>
+                    <div class="space-y-2">
+                        <label class="flex items-center"><input type="checkbox" class="mr-2 doc-checkbox" data-category="self_employed" data-type="critical" value="tax_returns_business"> Business tax returns (past 2 years)</label>
+                        <label class="flex items-center"><input type="checkbox" class="mr-2 doc-checkbox" data-category="self_employed" data-type="critical" value="profit_loss"> Profit and loss statements</label>
+                        <label class="flex items-center"><input type="checkbox" class="mr-2 doc-checkbox" data-category="self_employed" data-type="critical" value="business_bank"> Business bank statements (3 months)</label>
+                        <label class="flex items-center"><input type="checkbox" class="mr-2 doc-checkbox" data-category="self_employed" data-type="supporting" value="business_license"> Business license/registration</label>
+                        <label class="flex items-center"><input type="checkbox" class="mr-2 doc-checkbox" data-category="self_employed" data-type="supporting" value="cpa_letter"> CPA letter verifying business</label>
+                    </div>
+                </div>
+
+                <div id="giftFundsSpecific" class="mb-6" style="display: none;">
+                    <h4 class="font-bold text-red-700 mb-2">⚠️ Gift Funds Additional Documents:</h4>
+                    <div class="space-y-2">
+                        <label class="flex items-center"><input type="checkbox" class="mr-2 doc-checkbox" data-category="gift_funds" data-type="critical" value="gift_letter"> Gift letter from donor</label>
+                        <label class="flex items-center"><input type="checkbox" class="mr-2 doc-checkbox" data-category="gift_funds" data-type="critical" value="donor_statement"> Donor's bank statement showing withdrawal</label>
+                        <label class="flex items-center"><input type="checkbox" class="mr-2 doc-checkbox" data-category="gift_funds" data-type="critical" value="transfer_proof"> Documentation of fund transfer</label>
+                        <label class="flex items-center"><input type="checkbox" class="mr-2 doc-checkbox" data-category="gift_funds" data-type="supporting" value="relationship_proof"> Proof of relationship to donor</label>
+                    </div>
+                </div>
+
+                <button onclick="evaluateDocumentation()" class="mt-4 bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700">Submit Documentation List</button>
+
+                <div id="docFeedback" class="mt-4 p-4 rounded-lg" style="display: none;"></div>
+            </div>
+        </section>
+
+        <!-- Activity 2: Application Completion Workshop -->
+        <section id="activity2" class="bg-white rounded-lg shadow-lg p-6 mb-8">
+            <div class="activity-timer p-4 rounded-lg mb-4">
+                <p class="font-bold text-gray-800">⏱ Activity 2: Application Completion Workshop | 18 minutes</p>
+            </div>
+
+            <h2 class="text-3xl font-bold text-gray-900 mb-4">✍️ Activity 2: Application Completion Workshop</h2>
+            <p class="text-gray-700 mb-6">Complete a loan application using a detailed borrower profile, then modify the profile to improve approval odds and compare results.</p>
+
+            <!-- Scenario Selection -->
+            <div class="mb-6">
+                <label class="block text-sm font-medium text-gray-700 mb-2">Select Application Scenario:</label>
+                <select id="appScenarioSelect" onchange="loadApplicationScenario()" class="w-full p-3 border border-gray-300 rounded-lg">
+                    <option value="">-- Choose a scenario --</option>
+                    <option value="jordan">Scenario A: Jordan Martinez - Mid-Credit Auto Loan ($24,000)</option>
+                    <option value="taylor">Scenario B: Taylor Chen - Strong-Credit Personal Loan ($15,000)</option>
+                    <option value="alex">Scenario C: Alex Thompson - First-Time Homebuyer ($195,000)</option>
+                </select>
+            </div>
+
+            <!-- Application Form -->
+            <div id="applicationForm" class="bg-gray-50 p-6 rounded-lg mb-6" style="display: none;">
+                <h3 class="text-xl font-bold text-gray-900 mb-4">Loan Application Form</h3>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Full Name:</label>
+                        <input type="text" id="appName" class="w-full p-2 border border-gray-300 rounded given-value" readonly>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Age:</label>
+                        <input type="text" id="appAge" class="w-full p-2 border border-gray-300 rounded given-value" readonly>
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Current Employer:</label>
+                    <input type="text" id="appEmployer" class="w-full p-2 border border-gray-300 rounded given-value" readonly>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Position:</label>
+                        <input type="text" id="appPosition" class="w-full p-2 border border-gray-300 rounded given-value" readonly>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Employment Length:</label>
+                        <input type="text" id="appEmploymentLength" class="w-full p-2 border border-gray-300 rounded given-value" readonly>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Gross Monthly Income:</label>
+                        <input type="text" id="appIncome" class="w-full p-2 border border-gray-300 rounded given-value" readonly>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Credit Score:</label>
+                        <input type="text" id="appCreditScore" class="w-full p-2 border border-gray-300 rounded given-value" readonly>
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <h4 class="font-bold text-gray-800 mb-2">Existing Debts:</h4>
+                    <div id="appDebts" class="space-y-2"></div>
+                </div>
+
+                <div class="mb-4">
+                    <h4 class="font-bold text-gray-800 mb-2">Assets:</h4>
+                    <div id="appAssets" class="space-y-2"></div>
+                </div>
+
+                <!-- DTI Calculator -->
+                <button onclick="toggleHelper('appDTIHelper')" class="w-full bg-indigo-100 hover:bg-indigo-200 p-3 rounded-lg text-left font-medium text-indigo-700 flex justify-between items-center mb-4">
+                    <span>📊 Calculate Debt-to-Income Ratio</span>
+                    <span>▼</span>
+                </button>
+                <div id="appDTIHelper" class="helper-content bg-white p-4 rounded-lg border border-indigo-200 mb-4">
+                    <p class="text-sm text-gray-600 mb-2">Total Monthly Debt: <span id="totalDebt" class="font-bold">$0</span></p>
+                    <p class="text-sm text-gray-600 mb-2">Gross Monthly Income: <span id="grossIncome" class="font-bold">$0</span></p>
+                    <p class="text-lg font-bold text-gray-800">DTI Ratio: <span id="dtiRatio" class="text-indigo-700">0%</span></p>
+                    <div id="dtiBar" class="w-full bg-gray-200 rounded-full h-4 mt-2">
+                        <div id="dtiFill" class="h-4 rounded-full strength-bar" style="width: 0%; background-color: #10b981;"></div>
+                    </div>
+                </div>
+
+                <!-- Application Strength -->
+                <div class="bg-white p-4 rounded-lg border border-gray-300 mb-4">
+                    <h4 class="font-bold text-gray-800 mb-2">Application Strength Score:</h4>
+                    <div id="strengthScore" class="text-3xl font-bold text-indigo-700 mb-2">0/100</div>
+                    <div class="w-full bg-gray-200 rounded-full h-6">
+                        <div id="strengthBar" class="h-6 rounded-full strength-bar" style="width: 0%; background-color: #10b981;"></div>
+                    </div>
+                    <p id="strengthFeedback" class="text-sm text-gray-600 mt-2"></p>
+                </div>
+
+                <button onclick="calculateApplicationStrength()" class="bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700 mr-4">Calculate Application Strength</button>
+                <button onclick="showModificationPanel()" class="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700">Improve Application</button>
+            </div>
+
+            <!-- Modification Panel -->
+            <div id="modificationPanel" class="bg-yellow-50 border border-yellow-300 p-6 rounded-lg mb-6" style="display: none;">
+                <h3 class="text-xl font-bold text-gray-900 mb-4">🔧 Modify Borrower Profile to Improve Application</h3>
+                <p class="text-sm text-gray-600 mb-4">Adjust at least TWO factors below and recalculate to see the impact:</p>
+
+                <div class="space-y-4">
+                    <div>
+                        <label class="flex items-center mb-2">
+                            <input type="checkbox" id="modCreditScore" class="mr-2">
+                            <span class="font-medium">Improve credit score by 50 points (payment history improvement)</span>
+                        </label>
+                    </div>
+                    <div>
+                        <label class="flex items-center mb-2">
+                            <input type="checkbox" id="modPayDebt" class="mr-2">
+                            <span class="font-medium">Pay off one credit card ($2,000-$3,000)</span>
+                        </label>
+                    </div>
+                    <div>
+                        <label class="flex items-center mb-2">
+                            <input type="checkbox" id="modIncreaseSavings" class="mr-2">
+                            <span class="font-medium">Increase savings by $5,000</span>
+                        </label>
+                    </div>
+                    <div>
+                        <label class="flex items-center mb-2">
+                            <input type="checkbox" id="modIncreaseDown" class="mr-2">
+                            <span class="font-medium">Increase down payment by 5%</span>
+                        </label>
+                    </div>
+                </div>
+
+                <button onclick="applyModifications()" class="mt-4 bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700">Apply Modifications & Recalculate</button>
+            </div>
+        </section>
+
+        <!-- Activity 3: Five C's Evaluation Station -->
+        <section id="activity3" class="bg-white rounded-lg shadow-lg p-6 mb-8">
+            <div class="activity-timer p-4 rounded-lg mb-4">
+                <p class="font-bold text-gray-800">⏱ Activity 3: The Five C's Evaluation Station | 12 minutes</p>
+            </div>
+
+            <h2 class="text-3xl font-bold text-gray-900 mb-4">🔍 Activity 3: The Five C's Evaluation Station</h2>
+            <p class="text-gray-700 mb-6">Step into the lender's shoes! Evaluate borrowers using the Five C's framework and make lending recommendations.</p>
+
+            <!-- Borrower Selection for Evaluation -->
+            <div class="mb-6">
+                <label class="block text-sm font-medium text-gray-700 mb-2">Select Borrower to Evaluate:</label>
+                <select id="evalBorrowerSelect" onchange="loadEvaluationScenario()" class="w-full p-3 border border-gray-300 rounded-lg">
+                    <option value="">-- Choose a borrower --</option>
+                    <option value="jamal">Jamal - Auto Loan Request ($18,000)</option>
+                    <option value="sarah">Sarah - Mortgage Request ($180,000)</option>
+                    <option value="marcus">Marcus - Personal Loan Request ($8,000)</option>
+                </select>
+            </div>
+
+            <!-- Evaluation Form -->
+            <div id="evaluationForm" class="bg-gray-50 p-6 rounded-lg mb-6" style="display: none;">
+                <h3 class="text-xl font-bold text-gray-900 mb-4">Borrower Financial Profile</h3>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Name:</label>
+                        <input type="text" id="evalName" class="w-full p-2 border border-gray-300 rounded given-value" readonly>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Age:</label>
+                        <input type="text" id="evalAge" class="w-full p-2 border border-gray-300 rounded given-value" readonly>
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Loan Request:</label>
+                    <input type="text" id="evalLoanRequest" class="w-full p-2 border border-gray-300 rounded given-value" readonly>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Monthly Income:</label>
+                        <input type="text" id="evalIncome" class="w-full p-2 border border-gray-300 rounded given-value" readonly>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Credit Score:</label>
+                        <input type="text" id="evalCreditScore" class="w-full p-2 border border-gray-300 rounded given-value" readonly>
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Employment:</label>
+                    <input type="text" id="evalEmployment" class="w-full p-2 border border-gray-300 rounded given-value" readonly>
+                </div>
+
+                <div id="evalDebts" class="mb-4"></div>
+                <div id="evalAssets" class="mb-4"></div>
+
+                <!-- Five C's Scoring -->
+                <div class="bg-white border border-gray-300 p-6 rounded-lg mb-4">
+                    <h4 class="text-xl font-bold text-gray-900 mb-4">Rate Each of the Five C's (1-10 scale)</h4>
+
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block font-medium text-gray-800 mb-2">1. Character (Credit History) - 35% weight</label>
+                            <p class="text-sm text-gray-600 mb-2">Consider: Credit score, payment history, credit age</p>
+                            <input type="range" id="characterScore" min="1" max="10" value="5" oninput="updateFiveCsDisplay()" class="w-full">
+                            <div class="flex justify-between text-sm text-gray-600">
+                                <span>1 (Poor)</span>
+                                <span id="characterValue" class="font-bold">5</span>
+                                <span>10 (Excellent)</span>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block font-medium text-gray-800 mb-2">2. Capacity (Ability to Repay) - 30% weight</label>
+                            <p class="text-sm text-gray-600 mb-2">Consider: DTI ratio, income stability, employment history</p>
+                            <input type="range" id="capacityScore" min="1" max="10" value="5" oninput="updateFiveCsDisplay()" class="w-full">
+                            <div class="flex justify-between text-sm text-gray-600">
+                                <span>1 (Poor)</span>
+                                <span id="capacityValue" class="font-bold">5</span>
+                                <span>10 (Excellent)</span>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block font-medium text-gray-800 mb-2">3. Capital (Financial Resources) - 15% weight</label>
+                            <p class="text-sm text-gray-600 mb-2">Consider: Savings, down payment, asset diversity</p>
+                            <input type="range" id="capitalScore" min="1" max="10" value="5" oninput="updateFiveCsDisplay()" class="w-full">
+                            <div class="flex justify-between text-sm text-gray-600">
+                                <span>1 (Poor)</span>
+                                <span id="capitalValue" class="font-bold">5</span>
+                                <span>10 (Excellent)</span>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block font-medium text-gray-800 mb-2">4. Collateral (Loan Security) - 10% weight</label>
+                            <p class="text-sm text-gray-600 mb-2">Consider: Asset value, LTV ratio, marketability</p>
+                            <input type="range" id="collateralScore" min="1" max="10" value="5" oninput="updateFiveCsDisplay()" class="w-full">
+                            <div class="flex justify-between text-sm text-gray-600">
+                                <span>1 (Poor)</span>
+                                <span id="collateralValue" class="font-bold">5</span>
+                                <span>10 (Excellent)</span>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block font-medium text-gray-800 mb-2">5. Conditions (Purpose & Economic Factors) - 10% weight</label>
+                            <p class="text-sm text-gray-600 mb-2">Consider: Loan purpose, economic climate, industry outlook</p>
+                            <input type="range" id="conditionsScore" min="1" max="10" value="5" oninput="updateFiveCsDisplay()" class="w-full">
+                            <div class="flex justify-between text-sm text-gray-600">
+                                <span>1 (Poor)</span>
+                                <span id="conditionsValue" class="font-bold">5</span>
+                                <span>10 (Excellent)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Overall Recommendation -->
+                    <div class="mt-6 p-4 bg-indigo-50 rounded-lg">
+                        <h4 class="font-bold text-gray-900 mb-2">Overall Creditworthiness Score:</h4>
+                        <div class="text-4xl font-bold text-indigo-700 mb-2"><span id="overallScore">25</span>/50</div>
+                        <div class="w-full bg-gray-200 rounded-full h-6 mb-4">
+                            <div id="overallBar" class="h-6 rounded-full strength-bar" style="width: 50%; background-color: #fbbf24;"></div>
+                        </div>
+                        <label class="block font-medium text-gray-800 mb-2">Lending Recommendation:</label>
+                        <select id="lendingRecommendation" class="w-full p-3 border border-gray-300 rounded-lg mb-2">
+                            <option value="">-- Select recommendation --</option>
+                            <option value="approve_premium">Approve - Premium Terms (Best Rate)</option>
+                            <option value="approve_standard">Approve - Standard Terms</option>
+                            <option value="approve_conditional">Approve - Conditional (Higher Rate/Co-signer)</option>
+                            <option value="deny">Deny - Recommend Improvement & Reapply</option>
+                        </select>
+                        <label class="block font-medium text-gray-800 mb-2">Justification for Decision:</label>
+                        <textarea id="lendingJustification" rows="3" class="w-full p-3 border border-gray-300 rounded-lg" placeholder="Explain your lending decision based on the Five C's evaluation..."></textarea>
+                    </div>
+
+                    <button onclick="submitEvaluation()" class="mt-4 bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700">Submit Evaluation</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Activity 4: Creditworthiness Improvement Planning -->
+        <section id="activity4" class="bg-white rounded-lg shadow-lg p-6 mb-8">
+            <div class="activity-timer p-4 rounded-lg mb-4">
+                <p class="font-bold text-gray-800">⏱ Activity 4: Creditworthiness Improvement Planning | 8 minutes</p>
+            </div>
+
+            <h2 class="text-3xl font-bold text-gray-900 mb-4">📈 Activity 4: Personal Creditworthiness Improvement Planning</h2>
+            <p class="text-gray-700 mb-6">Develop your personal action plan to strengthen your creditworthiness for future loan applications.</p>
+
+            <!-- Personal Financial Assessment -->
+            <div class="bg-gray-50 p-6 rounded-lg mb-6">
+                <h3 class="text-xl font-bold text-gray-900 mb-4">Step 1: Current Financial Position</h3>
+
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Future Loan Need (next 2-3 years):</label>
+                    <select id="futureLoan" class="w-full p-3 border border-gray-300 rounded-lg">
+                        <option value="">-- Select anticipated loan need --</option>
+                        <option value="auto">Auto Loan ($15,000 - $30,000)</option>
+                        <option value="personal">Personal Loan ($5,000 - $20,000)</option>
+                        <option value="student">Student Loan ($10,000 - $50,000)</option>
+                        <option value="mortgage">Mortgage ($150,000 - $300,000)</option>
+                    </select>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Current/Expected Monthly Income:</label>
+                        <input type="number" id="currentIncome" class="w-full p-3 border border-gray-300 rounded-lg" placeholder="$0">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Estimated Credit Score:</label>
+                        <select id="estimatedCredit" class="w-full p-3 border border-gray-300 rounded-lg">
+                            <option value="">-- Select range --</option>
+                            <option value="building">Building Credit (No Score Yet)</option>
+                            <option value="poor">300-579 (Poor)</option>
+                            <option value="fair">580-669 (Fair)</option>
+                            <option value="good">670-739 (Good)</option>
+                            <option value="very_good">740-799 (Very Good)</option>
+                            <option value="excellent">800+ (Excellent)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Current Monthly Debt Payments:</label>
+                    <input type="number" id="currentDebtPayments" class="w-full p-3 border border-gray-300 rounded-lg" placeholder="$0">
+                </div>
+
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Current Savings:</label>
+                    <input type="number" id="currentSavings" class="w-full p-3 border border-gray-300 rounded-lg" placeholder="$0">
+                </div>
+            </div>
+
+            <!-- SWOT Analysis -->
+            <div class="bg-white border border-gray-300 p-6 rounded-lg mb-6">
+                <h3 class="text-xl font-bold text-gray-900 mb-4">Step 2: SWOT Analysis</h3>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-4">
+                    <div>
+                        <label class="block font-medium text-green-700 mb-2">✅ Strengths (What's working in your favor?)</label>
+                        <textarea id="swotStrengths" rows="3" class="w-full p-3 border border-gray-300 rounded-lg" placeholder="Stable employment, good payment history, growing income..."></textarea>
+                    </div>
+                    <div>
+                        <label class="block font-medium text-red-700 mb-2">⚠️ Weaknesses (What might prevent approval?)</label>
+                        <textarea id="swotWeaknesses" rows="3" class="w-full p-3 border border-gray-300 rounded-lg" placeholder="Limited credit history, high DTI, low savings..."></textarea>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-4">
+                    <div>
+                        <label class="block font-medium text-blue-700 mb-2">🚀 Opportunities (What can you improve?)</label>
+                        <textarea id="swotOpportunities" rows="3" class="w-full p-3 border border-gray-300 rounded-lg" placeholder="Build credit through responsible card use, pay down debt, increase savings..."></textarea>
+                    </div>
+                    <div>
+                        <label class="block font-medium text-orange-700 mb-2">⚡ Threats (Potential obstacles?)</label>
+                        <textarea id="swotThreats" rows="3" class="w-full p-3 border border-gray-300 rounded-lg" placeholder="Job uncertainty, unexpected expenses, interest rate increases..."></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6-12 Month Action Plan -->
+            <div class="bg-indigo-50 p-6 rounded-lg mb-6">
+                <h3 class="text-xl font-bold text-gray-900 mb-4">Step 3: 6-12 Month Improvement Action Plan</h3>
+
+                <div class="space-y-4">
+                    <div>
+                        <label class="block font-medium text-gray-800 mb-2">Credit Building Actions:</label>
+                        <textarea id="creditActions" rows="2" class="w-full p-3 border border-gray-300 rounded-lg" placeholder="e.g., Pay all bills on time, reduce credit card utilization to 20%, add authorized user account..."></textarea>
+                    </div>
+
+                    <div>
+                        <label class="block font-medium text-gray-800 mb-2">Debt Reduction Actions:</label>
+                        <textarea id="debtActions" rows="2" class="w-full p-3 border border-gray-300 rounded-lg" placeholder="e.g., Pay off $2,000 credit card, make extra $50/month to student loan..."></textarea>
+                    </div>
+
+                    <div>
+                        <label class="block font-medium text-gray-800 mb-2">Savings Building Actions:</label>
+                        <textarea id="savingsActions" rows="2" class="w-full p-3 border border-gray-300 rounded-lg" placeholder="e.g., Automatic $200/month transfer, save tax refund, reduce dining out..."></textarea>
+                    </div>
+
+                    <div>
+                        <label class="block font-medium text-gray-800 mb-2">Documentation Preparation:</label>
+                        <textarea id="documentationActions" rows="2" class="w-full p-3 border border-gray-300 rounded-lg" placeholder="e.g., Organize tax returns, maintain 3 months bank statements, keep pay stubs..."></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Most Impactful Action -->
+            <div class="bg-yellow-50 border border-yellow-400 p-6 rounded-lg mb-6">
+                <h3 class="text-xl font-bold text-gray-900 mb-4">Step 4: Your Single Most Impactful Action</h3>
+                <p class="text-sm text-gray-600 mb-3">Of all the improvements you could make, which ONE action would have the biggest positive impact on your loan application in the next 6 months?</p>
+                <textarea id="mostImpactful" rows="3" class="w-full p-3 border border-gray-300 rounded-lg" placeholder="Describe your #1 priority action and why it's most important..."></textarea>
+            </div>
+
+            <button onclick="saveImprovementPlan()" class="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700">Save My Improvement Plan</button>
+            <div id="planSaved" class="mt-4 p-4 bg-green-100 text-green-800 rounded-lg" style="display: none;">
+                ✅ Your creditworthiness improvement plan has been saved! Review it regularly and track your progress.
+            </div>
+        </section>
+
+        <!-- Wrap-Up -->
+        <section class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-lg shadow-lg p-8 mb-8">
+            <h2 class="text-3xl font-bold mb-4">🎓 Chapter L-57 Complete!</h2>
+            <p class="text-lg mb-4">You've now gained hands-on experience with:</p>
+            <ul class="list-disc list-inside space-y-2 mb-6">
+                <li>Identifying required documentation for different loan types</li>
+                <li>Completing comprehensive loan applications</li>
+                <li>Evaluating creditworthiness from a lender's perspective</li>
+                <li>Creating personal improvement strategies for stronger applications</li>
+            </ul>
+            <p class="text-lg font-semibold">Remember: The time you invest now in building creditworthiness can save you thousands of dollars in better loan terms over your lifetime!</p>
+        </section>
+
+    </div>
+
+    <script>
+        // Borrower profiles for Activity 1
+        const borrowerProfiles = {
+            destiny: {
+                name: "Destiny",
+                age: 26,
+                loanType: "Auto loan",
+                loanAmount: "$22,000",
+                loanPurpose: "Certified pre-owned SUV",
+                employment: "Marketing coordinator, 18 months at current job",
+                income: "$45,000 annually",
+                creditSituation: "Good credit, building credit history",
+                downPayment: "$4,000 saved",
+                specialCircumstances: "None",
+                requiredDocs: ["universal", "auto"]
+            },
+            andre: {
+                name: "Andre",
+                age: 30,
+                loanType: "Personal loan",
+                loanAmount: "$12,000",
+                loanPurpose: "Credit card debt consolidation",
+                employment: "Self-employed contractor, 3 years in business",
+                income: "$52,000 annually (variable)",
+                creditSituation: "Fair credit, high utilization",
+                savings: "$2,500",
+                specialCircumstances: "Self-employment requires additional documentation",
+                requiredDocs: ["universal", "personal", "self_employed"]
+            },
+            keisha: {
+                name: "Keisha",
+                age: 29,
+                loanType: "Mortgage",
+                loanAmount: "$185,000",
+                loanPurpose: "First-time home buyer",
+                employment: "Software developer, 2.5 years at current company",
+                income: "$68,000 annually",
+                creditSituation: "Excellent credit",
+                downPayment: "$20,000 (includes $5,000 gift from parents)",
+                specialCircumstances: "Gift funds require gift letter documentation",
+                requiredDocs: ["universal", "mortgage", "gift_funds"]
+            }
+        };
+
+        // Application scenarios for Activity 2
+        const applicationScenarios = {
+            jordan: {
+                name: "Jordan Martinez",
+                age: 25,
+                employer: "Tech Solutions Inc.",
+                position: "Customer Service Representative",
+                employmentLength: "18 months",
+                income: 3167,
+                creditScore: 670,
+                debts: [
+                    {type: "Student loan", balance: 15000, payment: 185},
+                    {type: "Credit card 1", balance: 2800, payment: 85},
+                    {type: "Credit card 2", balance: 1200, payment: 45}
+                ],
+                assets: {checking: 1800, savings: 3500, investments: 2200},
+                loanType: "Auto loan",
+                loanAmount: 24000
+            },
+            taylor: {
+                name: "Taylor Chen",
+                age: 32,
+                employer: "Regional Medical Center",
+                position: "Registered Nurse",
+                employmentLength: "4 years",
+                income: 5167,
+                creditScore: 750,
+                debts: [
+                    {type: "Mortgage", balance: 145000, payment: 1250},
+                    {type: "Car loan", balance: 8500, payment: 285},
+                    {type: "Credit card", balance: 800, payment: 35}
+                ],
+                assets: {checking: 4200, savings: 18000, retirement: 35000, homeEquity: 25000},
+                loanType: "Personal loan",
+                loanAmount: 15000
+            },
+            alex: {
+                name: "Alex Thompson",
+                age: 28,
+                employer: "City Public School District",
+                position: "High School Teacher",
+                employmentLength: "3 years",
+                income: 4000,
+                creditScore: 695,
+                debts: [
+                    {type: "Student loans", balance: 28000, payment: 340},
+                    {type: "Credit card", balance: 1500, payment: 55},
+                    {type: "Car loan", balance: 12000, payment: 295}
+                ],
+                assets: {checking: 2500, savings: 18000, retirement: 12000},
+                loanType: "Mortgage",
+                loanAmount: 195000
+            }
+        };
+
+        // Evaluation scenarios for Activity 3
+        const evaluationScenarios = {
+            jamal: {
+                name: "Jamal",
+                age: 24,
+                loanRequest: "Auto loan - $18,000 (down payment $1,500)",
+                income: 3500,
+                creditScore: 650,
+                employment: "Administrative assistant, 10 months at current job",
+                debts: [
+                    {type: "Student loans", balance: 8000, payment: 95},
+                    {type: "Credit cards", balance: 3000, payment: 90}
+                ],
+                assets: {savings: 2500, checking: 800},
+                housing: "Rent $750/month"
+            },
+            sarah: {
+                name: "Sarah",
+                age: 28,
+                loanRequest: "Mortgage - $180,000 (down payment $18,000)",
+                income: 4583,
+                creditScore: 740,
+                employment: "Marketing manager, 2.5 years at current company",
+                debts: [
+                    {type: "Student loans", balance: 15000, payment: 165},
+                    {type: "Credit card", balance: 500, payment: 25}
+                ],
+                assets: {savings: 12000, checking: 3000, retirement: 18000},
+                housing: "Current rent $1100/month"
+            },
+            marcus: {
+                name: "Marcus",
+                age: 22,
+                loanRequest: "Personal loan - $8,000 (debt consolidation)",
+                income: 2917,
+                creditScore: 580,
+                employment: "Restaurant server, 14 months at current job",
+                debts: [
+                    {type: "Student loans", balance: 12000, payment: 140},
+                    {type: "Credit card 1", balance: 2800, payment: 85},
+                    {type: "Credit card 2", balance: 1700, payment: 55}
+                ],
+                assets: {savings: 800, checking: 200},
+                housing: "Rent $650/month"
+            }
+        };
+
+        let currentScenarioData = {};
+
+        function toggleHelper(id) {
+            const content = document.getElementById(id);
+            content.classList.toggle('active');
+        }
+
+        function loadBorrowerProfile() {
+            const select = document.getElementById('borrowerSelect');
+            const borrowerId = select.value;
+
+            if (!borrowerId) {
+                document.getElementById('borrowerProfile').style.display = 'none';
+                document.getElementById('documentationChecklist').style.display = 'none';
+                return;
+            }
+
+            const borrower = borrowerProfiles[borrowerId];
+
+            document.getElementById('borrowerName').value = borrower.name;
+            document.getElementById('borrowerAge').value = borrower.age;
+            document.getElementById('loanType').value = borrower.loanType;
+            document.getElementById('loanAmount').value = borrower.loanAmount;
+            document.getElementById('employment').value = borrower.employment;
+            document.getElementById('income').value = borrower.income;
+            document.getElementById('creditSituation').value = borrower.creditSituation;
+            document.getElementById('specialCircumstances').value = borrower.specialCircumstances;
+
+            document.getElementById('borrowerProfile').style.display = 'block';
+            document.getElementById('documentationChecklist').style.display = 'block';
+
+            // Show/hide loan-specific sections
+            document.getElementById('autoSpecific').style.display = borrower.requiredDocs.includes('auto') ? 'block' : 'none';
+            document.getElementById('personalSpecific').style.display = borrower.requiredDocs.includes('personal') ? 'block' : 'none';
+            document.getElementById('mortgageSpecific').style.display = borrower.requiredDocs.includes('mortgage') ? 'block' : 'none';
+            document.getElementById('selfEmployedSpecific').style.display = borrower.requiredDocs.includes('self_employed') ? 'block' : 'none';
+            document.getElementById('giftFundsSpecific').style.display = borrower.requiredDocs.includes('gift_funds') ? 'block' : 'none';
+
+            // Reset checkboxes
+            document.querySelectorAll('.doc-checkbox').forEach(cb => cb.checked = false);
+        }
+
+        function evaluateDocumentation() {
+            const select = document.getElementById('borrowerSelect');
+            const borrowerId = select.value;
+            const borrower = borrowerProfiles[borrowerId];
+
+            const checked = Array.from(document.querySelectorAll('.doc-checkbox:checked'));
+            const critical = checked.filter(cb => cb.dataset.type === 'critical');
+            const allCritical = Array.from(document.querySelectorAll('.doc-checkbox[data-type="critical"]'));
+
+            const requiredCategories = borrower.requiredDocs;
+            const criticalRequired = allCritical.filter(cb => requiredCategories.includes(cb.dataset.category));
+
+            const score = (critical.length / criticalRequired.length) * 100;
+            const feedback = document.getElementById('docFeedback');
+
+            if (score >= 90) {
+                feedback.className = 'mt-4 p-4 rounded-lg bg-green-100 border border-green-400';
+                feedback.innerHTML = `<p class="font-bold text-green-800">✅ Excellent! You identified ${critical.length} of ${criticalRequired.length} critical documents.</p><p class="text-green-700 mt-2">This application would be processed smoothly with minimal delays.</p>`;
+            } else if (score >= 70) {
+                feedback.className = 'mt-4 p-4 rounded-lg bg-yellow-100 border border-yellow-400';
+                feedback.innerHTML = `<p class="font-bold text-yellow-800">⚠️ Good effort! You identified ${critical.length} of ${criticalRequired.length} critical documents.</p><p class="text-yellow-700 mt-2">Review the special circumstances to ensure you haven't missed any required documentation.</p>`;
+            } else {
+                feedback.className = 'mt-4 p-4 rounded-lg bg-red-100 border border-red-400';
+                feedback.innerHTML = `<p class="font-bold text-red-800">❌ Incomplete. You identified ${critical.length} of ${criticalRequired.length} critical documents.</p><p class="text-red-700 mt-2">Missing critical documents would delay or deny the application. Review all requirements carefully.</p>`;
+            }
+
+            feedback.style.display = 'block';
+        }
+
+        function loadApplicationScenario() {
+            const select = document.getElementById('appScenarioSelect');
+            const scenarioId = select.value;
+
+            if (!scenarioId) {
+                document.getElementById('applicationForm').style.display = 'none';
+                return;
+            }
+
+            const scenario = applicationScenarios[scenarioId];
+            currentScenarioData = {...scenario};
+
+            document.getElementById('appName').value = scenario.name;
+            document.getElementById('appAge').value = scenario.age;
+            document.getElementById('appEmployer').value = scenario.employer;
+            document.getElementById('appPosition').value = scenario.position;
+            document.getElementById('appEmploymentLength').value = scenario.employmentLength;
+            document.getElementById('appIncome').value = '$' + scenario.income.toLocaleString();
+            document.getElementById('appCreditScore').value = scenario.creditScore;
+
+            // Display debts
+            const debtsHtml = scenario.debts.map(d =>
+                `<div class="flex justify-between p-2 bg-gray-100 rounded">
+                    <span>${d.type}: $${d.balance.toLocaleString()}</span>
+                    <span class="font-bold">$${d.payment}/month</span>
+                </div>`
+            ).join('');
+            document.getElementById('appDebts').innerHTML = debtsHtml;
+
+            // Display assets
+            const assetsHtml = Object.entries(scenario.assets).map(([key, value]) =>
+                `<div class="flex justify-between p-2 bg-gray-100 rounded">
+                    <span>${key.charAt(0).toUpperCase() + key.slice(1).replace(/([A-Z])/g, ' $1')}:</span>
+                    <span class="font-bold">$${value.toLocaleString()}</span>
+                </div>`
+            ).join('');
+            document.getElementById('appAssets').innerHTML = assetsHtml;
+
+            document.getElementById('applicationForm').style.display = 'block';
+            calculateApplicationStrength();
+        }
+
+        function calculateApplicationStrength() {
+            if (!currentScenarioData.name) return;
+
+            const totalDebt = currentScenarioData.debts.reduce((sum, d) => sum + d.payment, 0);
+            const dti = (totalDebt / currentScenarioData.income) * 100;
+
+            document.getElementById('totalDebt').textContent = '$' + totalDebt.toLocaleString();
+            document.getElementById('grossIncome').textContent = '$' + currentScenarioData.income.toLocaleString();
+            document.getElementById('dtiRatio').textContent = dti.toFixed(1) + '%';
+
+            const dtiFill = document.getElementById('dtiFill');
+            dtiFill.style.width = Math.min(dti, 100) + '%';
+            dtiFill.style.backgroundColor = dti < 30 ? '#10b981' : dti < 40 ? '#fbbf24' : '#ef4444';
+
+            // Calculate strength score
+            let score = 0;
+
+            // Credit score (35 points)
+            if (currentScenarioData.creditScore >= 740) score += 35;
+            else if (currentScenarioData.creditScore >= 680) score += 28;
+            else if (currentScenarioData.creditScore >= 620) score += 20;
+            else score += 10;
+
+            // DTI (30 points)
+            if (dti < 20) score += 30;
+            else if (dti < 30) score += 24;
+            else if (dti < 40) score += 18;
+            else score += 10;
+
+            // Assets (15 points)
+            const totalAssets = Object.values(currentScenarioData.assets).reduce((sum, v) => sum + v, 0);
+            if (totalAssets > 30000) score += 15;
+            else if (totalAssets > 15000) score += 12;
+            else if (totalAssets > 5000) score += 8;
+            else score += 4;
+
+            // Employment (10 points)
+            score += 10;
+
+            // Loan type (10 points)
+            score += 10;
+
+            document.getElementById('strengthScore').textContent = score + '/100';
+            const strengthBar = document.getElementById('strengthBar');
+            strengthBar.style.width = score + '%';
+            strengthBar.style.backgroundColor = score >= 70 ? '#10b981' : score >= 50 ? '#fbbf24' : '#ef4444';
+
+            let feedback = '';
+            if (score >= 70) feedback = 'Strong application - Likely approval with favorable terms';
+            else if (score >= 50) feedback = 'Moderate application - May require improvements or have higher rates';
+            else feedback = 'Weak application - Consider improvements before applying';
+
+            document.getElementById('strengthFeedback').textContent = feedback;
+        }
+
+        function showModificationPanel() {
+            document.getElementById('modificationPanel').style.display = 'block';
+            document.querySelectorAll('#modificationPanel input[type="checkbox"]').forEach(cb => cb.checked = false);
+        }
+
+        function applyModifications() {
+            const scenario = currentScenarioData;
+            let modifications = [];
+
+            if (document.getElementById('modCreditScore').checked) {
+                scenario.creditScore += 50;
+                modifications.push('Credit score improved by 50 points');
+            }
+
+            if (document.getElementById('modPayDebt').checked) {
+                if (scenario.debts.length > 1) {
+                    const removed = scenario.debts.splice(1, 1)[0];
+                    modifications.push(`Paid off ${removed.type} ($${removed.balance.toLocaleString()})`);
+                }
+            }
+
+            if (document.getElementById('modIncreaseSavings').checked) {
+                scenario.assets.savings += 5000;
+                modifications.push('Increased savings by $5,000');
+            }
+
+            if (document.getElementById('modIncreaseDown').checked) {
+                modifications.push('Increased down payment by 5%');
+            }
+
+            if (modifications.length >= 2) {
+                loadApplicationScenario();
+                alert('Modifications applied!\n\n' + modifications.join('\n') + '\n\nRecalculating application strength...');
+            } else {
+                alert('Please select at least TWO modifications to apply.');
+            }
+        }
+
+        function loadEvaluationScenario() {
+            const select = document.getElementById('evalBorrowerSelect');
+            const borrowerId = select.value;
+
+            if (!borrowerId) {
+                document.getElementById('evaluationForm').style.display = 'none';
+                return;
+            }
+
+            const borrower = evaluationScenarios[borrowerId];
+
+            document.getElementById('evalName').value = borrower.name;
+            document.getElementById('evalAge').value = borrower.age;
+            document.getElementById('evalLoanRequest').value = borrower.loanRequest;
+            document.getElementById('evalIncome').value = '$' + borrower.income.toLocaleString();
+            document.getElementById('evalCreditScore').value = borrower.creditScore;
+            document.getElementById('evalEmployment').value = borrower.employment;
+
+            // Display debts
+            const debtsHtml = '<h4 class="font-bold text-gray-800 mb-2">Existing Debts:</h4>' +
+                borrower.debts.map(d =>
+                    `<div class="flex justify-between p-2 bg-gray-100 rounded mb-1">
+                        <span>${d.type}: $${d.balance.toLocaleString()}</span>
+                        <span class="font-bold">$${d.payment}/month</span>
+                    </div>`
+                ).join('');
+            document.getElementById('evalDebts').innerHTML = debtsHtml;
+
+            // Display assets
+            const assetsHtml = '<h4 class="font-bold text-gray-800 mb-2">Assets:</h4>' +
+                Object.entries(borrower.assets).map(([key, value]) =>
+                    `<div class="flex justify-between p-2 bg-gray-100 rounded mb-1">
+                        <span>${key.charAt(0).toUpperCase() + key.slice(1)}:</span>
+                        <span class="font-bold">$${value.toLocaleString()}</span>
+                    </div>`
+                ).join('');
+            document.getElementById('evalAssets').innerHTML = assetsHtml;
+
+            document.getElementById('evaluationForm').style.display = 'block';
+            updateFiveCsDisplay();
+        }
+
+        function updateFiveCsDisplay() {
+            const character = document.getElementById('characterScore').value;
+            const capacity = document.getElementById('capacityScore').value;
+            const capital = document.getElementById('capitalScore').value;
+            const collateral = document.getElementById('collateralScore').value;
+            const conditions = document.getElementById('conditionsScore').value;
+
+            document.getElementById('characterValue').textContent = character;
+            document.getElementById('capacityValue').textContent = capacity;
+            document.getElementById('capitalValue').textContent = capital;
+            document.getElementById('collateralValue').textContent = collateral;
+            document.getElementById('conditionsValue').textContent = conditions;
+
+            // Calculate weighted score (max 50)
+            const score = (character * 3.5) + (capacity * 3) + (capital * 1.5) + (collateral * 1) + (conditions * 1);
+
+            document.getElementById('overallScore').textContent = Math.round(score);
+
+            const percentage = (score / 50) * 100;
+            const overallBar = document.getElementById('overallBar');
+            overallBar.style.width = percentage + '%';
+            overallBar.style.backgroundColor = score >= 40 ? '#10b981' : score >= 30 ? '#fbbf24' : score >= 20 ? '#f97316' : '#ef4444';
+        }
+
+        function submitEvaluation() {
+            const recommendation = document.getElementById('lendingRecommendation').value;
+            const justification = document.getElementById('lendingJustification').value;
+
+            if (!recommendation || !justification.trim()) {
+                alert('Please select a lending recommendation and provide justification.');
+                return;
+            }
+
+            alert('✅ Evaluation submitted! In a real lending environment, your evaluation would be reviewed and compared with automated underwriting systems.');
+        }
+
+        function saveImprovementPlan() {
+            const futureLoan = document.getElementById('futureLoan').value;
+            const mostImpactful = document.getElementById('mostImpactful').value;
+
+            if (!futureLoan || !mostImpactful.trim()) {
+                alert('Please complete your future loan need and most impactful action.');
+                return;
+            }
+
+            document.getElementById('planSaved').style.display = 'block';
+
+            // In production, this would save to database
+            console.log('Improvement plan saved:', {
+                futureLoan,
+                currentIncome: document.getElementById('currentIncome').value,
+                estimatedCredit: document.getElementById('estimatedCredit').value,
+                currentDebtPayments: document.getElementById('currentDebtPayments').value,
+                currentSavings: document.getElementById('currentSavings').value,
+                swot: {
+                    strengths: document.getElementById('swotStrengths').value,
+                    weaknesses: document.getElementById('swotWeaknesses').value,
+                    opportunities: document.getElementById('swotOpportunities').value,
+                    threats: document.getElementById('swotThreats').value
+                },
+                actions: {
+                    credit: document.getElementById('creditActions').value,
+                    debt: document.getElementById('debtActions').value,
+                    savings: document.getElementById('savingsActions').value,
+                    documentation: document.getElementById('documentationActions').value
+                },
+                mostImpactful
+            });
+
+            setTimeout(() => {
+                window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+            }, 500);
+        }
+    </script>
+</body>
+</html>

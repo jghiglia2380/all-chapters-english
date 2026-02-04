@@ -1,9 +1,25 @@
 <!DOCTYPE html>
+<!--
+PFL Academy State-Agnostic Template
+L-Chapter: L-06
+Chapter Title: Understanding Federal and State Taxes
+Oklahoma Reference: Chapter 2.1
+
+Variables used in this template:
+- {{STATE_NAME}} - Full state name (e.g., Kentucky, Georgia)
+- {{CHAPTER_NUMBER}} - State-specific chapter number (e.g., 2.1, 1.4)
+- {{CHAPTER_ID}} - L-chapter identifier (e.g., L-06)
+- {{CHAPTER_TITLE}} - Always: Understanding Federal and State Taxes
+
+This template will be processed by generate_state_html.py to create
+state-specific versions with correct chapter numbering.
+-->
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>L-06 Student Activity Packet</title>
+    <title>{{STATE_NAME}} Chapter {{CHAPTER_NUMBER}}: Understanding Federal and State Taxes - Student Activity Packet</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap');
         :root { --primary: #6366f1; --primary-light: #eef2ff; --accent: #f59e0b; --accent-light: #fef3c7; --success: #059669; --text-dark: #1e293b; --text-medium: #475569; --text-light: #64748b; --border: #e2e8f0; --bg-light: #f8fafc; }
@@ -66,7 +82,7 @@
     <div class="header">
         <div class="header-left">
             <h1>PFL Academy</h1>
-            <h2>Chapter 2.1: Understanding Federal and State Taxes</h2>
+            <h2>Chapter {{CHAPTER_NUMBER}}: Understanding Federal and State Taxes</h2>
         </div>
         <div class="header-right">Student Activity Packet<br>{{STATE_NAME}} Edition</div>
     </div>
@@ -182,7 +198,7 @@
 
     <div class="footer">
         <span>© PFL Academy | pflacademy.co</span>
-        <span>Chapter 2.1: Understanding Federal and State Taxes — {{STATE_NAME}} Edition</span>
+        <span>Chapter {{CHAPTER_NUMBER}}: Understanding Federal and State Taxes — {{STATE_NAME}} Edition</span>
     </div>
 </body>
 </html>

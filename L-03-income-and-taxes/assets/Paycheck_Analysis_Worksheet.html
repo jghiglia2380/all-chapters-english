@@ -1,9 +1,25 @@
 <!DOCTYPE html>
+<!--
+PFL Academy State-Agnostic Template
+L-Chapter: L-03
+Chapter Title: Income and Taxes
+Oklahoma Reference: Chapter 1.3
+
+Variables used in this template:
+- {{STATE_NAME}} - Full state name (e.g., Kentucky, Georgia)
+- {{CHAPTER_NUMBER}} - State-specific chapter number (e.g., 2.1, 1.4)
+- {{CHAPTER_ID}} - L-chapter identifier (e.g., L-03)
+- {{CHAPTER_TITLE}} - Always: Income and Taxes
+
+This template will be processed by generate_state_html.py to create
+state-specific versions with correct chapter numbering.
+-->
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Paycheck Analysis Worksheet - Chapter 1.3: Income and Taxes</title>
+    <title>Paycheck Analysis Worksheet - Chapter {{CHAPTER_NUMBER}}: Income and Taxes</title>
     <style>
         /* Common styles for all resources */
         body {
@@ -111,7 +127,7 @@
     
     <div class="header">
         <h1>Paycheck Analysis Worksheet</h1>
-        <p><strong>Chapter 1.3:</strong> Income and Taxes</p>
+        <p><strong>Chapter {{CHAPTER_NUMBER}}:</strong> Income and Taxes</p>
     </div>
     
     <div class="worksheet-section">
@@ -424,7 +440,7 @@
     </div>
     
     <div class="footer">
-        <p>PFL Academy © 2025 | Chapter 1.3: Income and Taxes</p>
+        <p>PFL Academy © 2025 | Chapter {{CHAPTER_NUMBER}}: Income and Taxes</p>
     </div>
 </body>
 </html>

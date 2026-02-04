@@ -1,9 +1,25 @@
 <!DOCTYPE html>
+<!--
+PFL Academy State-Agnostic Template
+L-Chapter: L-04
+Chapter Title: Financial Goal Setting
+Oklahoma Reference: Chapter 1.4
+
+Variables used in this template:
+- {{STATE_NAME}} - Full state name (e.g., Kentucky, Georgia)
+- {{CHAPTER_NUMBER}} - State-specific chapter number (e.g., 2.1, 1.4)
+- {{CHAPTER_ID}} - L-chapter identifier (e.g., L-04)
+- {{CHAPTER_TITLE}} - Always: Financial Goal Setting
+
+This template will be processed by generate_state_html.py to create
+state-specific versions with correct chapter numbering.
+-->
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SMART Financial Goals Worksheet - Chapter 1.4: Financial Goal Setting</title>
+    <title>SMART Financial Goals Worksheet - Chapter {{CHAPTER_NUMBER}}: Financial Goal Setting</title>
     <style>
         /* Common styles for all resources */
         body {
@@ -112,7 +128,7 @@
     
     <div class="header">
         <h1>SMART Financial Goals Worksheet</h1>
-        <p><strong>Chapter 1.4:</strong> Financial Goal Setting</p>
+        <p><strong>Chapter {{CHAPTER_NUMBER}}:</strong> Financial Goal Setting</p>
     </div>
     
     <div class="instructions">
@@ -268,7 +284,7 @@
     </div>
     
     <div class="footer">
-        <p>PFL Academy © 2025 | Chapter 1.4: Financial Goal Setting</p>
+        <p>PFL Academy © 2025 | Chapter {{CHAPTER_NUMBER}}: Financial Goal Setting</p>
     </div>
 </body>
 </html>

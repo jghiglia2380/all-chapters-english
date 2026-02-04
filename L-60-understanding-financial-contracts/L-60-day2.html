@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-60: Understanding Financial Contracts - Day 2 Learning Lab</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .learning-objective { background-color: #e6f3ff; border-radius: 0.5rem; padding: 1.5rem; margin-bottom: 1rem; }
+        .activity-timer { background-color: #FFFBEB; border-left: 4px solid #F59E0B; padding: 1rem; margin: 1rem 0; }
+        .activity-section { background-color: #f9fafb; border-radius: 0.5rem; padding: 1.5rem; margin: 1.5rem 0; border: 2px solid #e5e7eb; }
+        .contract-excerpt { background-color: #f3f4f6; border-left: 4px solid #6366f1; padding: 1rem; margin: 1rem 0; font-family: 'Courier New', monospace; font-size: 0.9rem; }
+        .fee-item { padding: 0.75rem; margin: 0.5rem 0; border: 1px solid #e5e7eb; border-radius: 0.375rem; }
+        .fee-item.found { background-color: #d1fae5; border-color: #10b981; }
+        .red-flag { background-color: #fee2e2; border-left: 4px solid #ef4444; padding: 1rem; margin: 0.5rem 0; }
+        .consumer-friendly { background-color: #d1fae5; border-left: 4px solid #10b981; padding: 1rem; margin: 0.5rem 0; }
+        .comparison-card { border: 2px solid #e5e7eb; border-radius: 0.5rem; padding: 1.25rem; }
+        .comparison-card.selected { border-color: #6366f1; background-color: #eef2ff; }
+        .negotiation-scenario { background-color: #fff7ed; border: 2px solid #f97316; border-radius: 0.5rem; padding: 1.25rem; margin: 1rem 0; }
+        .checklist-item { padding: 0.75rem; margin: 0.5rem 0; border-left: 3px solid #d1d5db; background-color: #f9fafb; }
+        .checklist-item.checked { border-left-color: #10b981; background-color: #f0fdf4; }
+        .score-display { font-size: 2.5rem; font-weight: bold; color: #6366f1; }
+        .element-badge { display: inline-block; padding: 0.25rem 0.75rem; border-radius: 1rem; font-size: 0.875rem; margin: 0.25rem; }
+        .badge-offer { background-color: #dbeafe; color: #1e40af; }
+        .badge-acceptance { background-color: #fef3c7; color: #92400e; }
+        .badge-consideration { background-color: #dcfce7; color: #166534; }
+        .badge-capacity { background-color: #f3e8ff; color: #6b21a8; }
+        .badge-legality { background-color: #fee2e2; color: #991b1b; }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Fixed Header -->
+    <header class="bg-indigo-600 text-white p-4 shadow-md fixed top-0 left-0 right-0 z-40">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <h1 class="text-2xl font-bold">PFL Academy</h1>
+            <nav class="hidden md:flex space-x-6">
+                <a href="#" class="hover:text-indigo-200">Home</a>
+                <a href="#" class="hover:text-indigo-200">Curriculum</a>
+                <a href="#" class="hover:text-indigo-200">Resources</a>
+                <a href="#" class="hover:text-indigo-200">Profile</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Spacer for fixed header -->
+    <div class="h-16"></div>
+
+    <!-- Day 1 Recall Banner -->
+    <div class="bg-blue-100 border-l-4 border-blue-500 p-4 mb-6">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-xl font-bold text-blue-900 mb-2">📚 Day 1 Recall: Contract Literacy Foundations</h2>
+            <p class="text-blue-800 mb-2">Yesterday, we learned that valid contracts require five essential elements:</p>
+            <div class="flex flex-wrap gap-2 mb-2">
+                <span class="element-badge badge-offer">Offer</span>
+                <span class="element-badge badge-acceptance">Acceptance</span>
+                <span class="element-badge badge-consideration">Consideration</span>
+                <span class="element-badge badge-capacity">Capacity</span>
+                <span class="element-badge badge-legality">Legality</span>
+            </div>
+            <p class="text-blue-800">We analyzed four contract types and identified common red flags: automatic renewal, early termination penalties, arbitration clauses, hidden fees, and unilateral modification rights. Today, we'll practice these skills hands-on!</p>
+        </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto p-6 lg:grid lg:grid-cols-10 lg:gap-6">
+        <!-- Left Navigation Sidebar -->
+        <aside class="lg:col-span-2 mb-6 lg:mb-0">
+            <div class="bg-white rounded-lg shadow-md p-4 sticky top-24">
+                <h2 class="font-bold text-lg mb-4 text-gray-800">Learning Lab Activities</h2>
+                <nav class="space-y-2">
+                    <a href="#activity1" class="block p-2 rounded bg-indigo-50 text-indigo-700 border-l-4 border-indigo-700">
+                        Activity 1: Scavenger Hunt
+                    </a>
+                    <a href="#activity2" class="block p-2 rounded hover:bg-gray-50">
+                        Activity 2: Fine Print
+                    </a>
+                    <a href="#activity3" class="block p-2 rounded hover:bg-gray-50">
+                        Activity 3: Comparison
+                    </a>
+                    <a href="#activity4" class="block p-2 rounded hover:bg-gray-50">
+                        Activity 4: Negotiation
+                    </a>
+                    <a href="#activity5" class="block p-2 rounded hover:bg-gray-50">
+                        Activity 5: Checklist
+                    </a>
+                    <a href="#reflection" class="block p-2 rounded hover:bg-gray-50">
+                        Reflection
+                    </a>
+                </nav>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="lg:col-span-8">
+            <div class="bg-white rounded-lg shadow-md p-8">
+
+                <!-- Header -->
+                <div class="mb-8">
+                    <h1 class="text-4xl font-bold text-gray-900 mb-2">Understanding Financial Contracts</h1>
+                    <p class="text-xl text-gray-600">Day 2: Contract Literacy Learning Lab</p>
+                    <p class="text-gray-500 mt-2">Duration: 55 minutes | Interactive Practice</p>
+                </div>
+
+                <!-- Activity 1: Contract Elements Scavenger Hunt -->
+                <section id="activity1" class="activity-section">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4">Activity 1: Contract Elements Scavenger Hunt</h2>
+                    <div class="activity-timer">
+                        <p class="text-sm font-semibold text-gray-700">⏱️ Time: 10 minutes</p>
+                    </div>
+                    <p class="text-gray-700 mb-4">
+                        <strong>Objective:</strong> Rapidly identify the five essential contract elements in various real-world contracts.
+                    </p>
+
+                    <div class="mb-6">
+                        <h3 class="text-lg font-bold text-gray-900 mb-3">Contract 1: Auto Loan Agreement</h3>
+                        <div class="contract-excerpt">
+                            <p class="mb-2">"This Vehicle Financing Agreement ('Agreement'), dated March 15, 2025, is between AutoCredit Finance Corp. ('Lender') and Taylor Morgan ('Borrower'). Lender agrees to loan Borrower $22,000 for the purchase of a 2023 Honda Civic, VIN: 1HGBH41JXMN109186. Borrower agrees to repay the loan amount plus interest at an APR of 5.9% through 60 monthly payments of $421."</p>
+                            <p class="mb-2">"By signing below, Borrower accepts these terms and acknowledges receipt of the loan proceeds of $22,000. Borrower pledges the vehicle as collateral and agrees to maintain comprehensive insurance. Borrower certifies being at least 18 years of age and legally competent to enter this agreement."</p>
+                            <p>"This agreement is executed in accordance with state consumer lending laws. Any default may result in repossession of the vehicle."</p>
+                        </div>
+
+                        <div class="grid md:grid-cols-2 gap-4 mt-4">
+                            <div>
+                                <h4 class="font-semibold text-gray-900 mb-2">Identify the Elements:</h4>
+                                <label class="flex items-start mb-2">
+                                    <input type="checkbox" class="mt-1 mr-2" id="auto-offer">
+                                    <span class="text-gray-700"><strong>Offer:</strong> Lender agrees to loan $22,000</span>
+                                </label>
+                                <label class="flex items-start mb-2">
+                                    <input type="checkbox" class="mt-1 mr-2" id="auto-acceptance">
+                                    <span class="text-gray-700"><strong>Acceptance:</strong> Borrower signs and accepts terms</span>
+                                </label>
+                                <label class="flex items-start mb-2">
+                                    <input type="checkbox" class="mt-1 mr-2" id="auto-consideration">
+                                    <span class="text-gray-700"><strong>Consideration:</strong> $22,000 loan ↔ repayment + interest</span>
+                                </label>
+                                <label class="flex items-start mb-2">
+                                    <input type="checkbox" class="mt-1 mr-2" id="auto-capacity">
+                                    <span class="text-gray-700"><strong>Capacity:</strong> At least 18 years old, legally competent</span>
+                                </label>
+                                <label class="flex items-start mb-2">
+                                    <input type="checkbox" class="mt-1 mr-2" id="auto-legality">
+                                    <span class="text-gray-700"><strong>Legality:</strong> Accordance with state lending laws</span>
+                                </label>
+                            </div>
+                            <div class="p-4 bg-blue-50 rounded">
+                                <h4 class="font-semibold text-gray-900 mb-2">Quick Analysis:</h4>
+                                <label class="block text-sm text-gray-700 mb-1">Total amount to be repaid:</label>
+                                <input type="text" class="w-full border rounded px-2 py-1 mb-2" placeholder="$421 × 60 = ?">
+                                <label class="block text-sm text-gray-700 mb-1">Total interest paid:</label>
+                                <input type="text" class="w-full border rounded px-2 py-1 mb-2" placeholder="Total - Principal">
+                                <label class="block text-sm text-gray-700 mb-1">What happens if borrower defaults?</label>
+                                <input type="text" class="w-full border rounded px-2 py-1" placeholder="Vehicle...">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <h3 class="text-lg font-bold text-gray-900 mb-3">Contract 2: Employment Offer Letter</h3>
+                        <div class="contract-excerpt">
+                            <p class="mb-2">"Dear Jordan Chen, TechSolutions Inc. ('Company') is pleased to offer you the position of Software Developer at an annual salary of $75,000, payable bi-weekly. Your employment will begin on April 1, 2025. This offer is contingent upon successful completion of a background check."</p>
+                            <p class="mb-2">"In this role, you will develop and maintain web applications as directed by the Engineering Manager. You will be eligible for health benefits after 60 days and 10 days paid vacation annually. You must be legally authorized to work in the United States."</p>
+                            <p>"This is an at-will employment relationship, meaning either party may terminate employment at any time with or without cause. By signing below, you accept this offer and agree to abide by all company policies. You certify that you are not bound by any non-compete agreements that would prevent you from performing these duties."</p>
+                        </div>
+
+                        <div class="mt-4">
+                            <label class="block text-gray-700 font-semibold mb-2">Match each element to its location in the contract:</label>
+                            <div class="space-y-2">
+                                <select class="w-full border rounded px-3 py-2">
+                                    <option value="">Offer: Select the correct phrase...</option>
+                                    <option value="correct">Pleased to offer position of Software Developer at $75,000</option>
+                                    <option>Background check requirement</option>
+                                    <option>At-will employment relationship</option>
+                                </select>
+                                <select class="w-full border rounded px-3 py-2">
+                                    <option value="">Acceptance: Select the correct phrase...</option>
+                                    <option>Annual salary of $75,000</option>
+                                    <option value="correct">By signing below, you accept this offer</option>
+                                    <option>10 days paid vacation</option>
+                                </select>
+                                <select class="w-full border rounded px-3 py-2">
+                                    <option value="">Consideration: What does each party provide?</option>
+                                    <option>Company provides: policies; Employee provides: signature</option>
+                                    <option value="correct">Company provides: salary + benefits; Employee provides: work services</option>
+                                    <option>Company provides: offer letter; Employee provides: background check</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-4 bg-green-50 rounded">
+                        <h4 class="font-bold text-gray-900 mb-2">✓ Scavenger Hunt Scoring</h4>
+                        <p class="text-gray-700 mb-2">Count how many elements you correctly identified across all 6 contract types (not all shown above - this is practice for the full activity):</p>
+                        <div class="flex items-center gap-4">
+                            <label class="text-gray-700">Your score:</label>
+                            <input type="number" id="scavenger-score" class="border rounded px-3 py-2 w-20" min="0" max="30" placeholder="0-30">
+                            <span class="text-gray-700">out of 30 elements</span>
+                        </div>
+                        <p class="text-sm text-gray-600 mt-2">24-30: Expert | 18-23: Proficient | 12-17: Developing | Below 12: Needs more practice</p>
+                    </div>
+                </section>
+
+                <!-- Activity 2: The Fine Print Challenge -->
+                <section id="activity2" class="activity-section">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4">Activity 2: The Fine Print Challenge</h2>
+                    <div class="activity-timer">
+                        <p class="text-sm font-semibold text-gray-700">⏱️ Time: 15 minutes (5 minutes per round)</p>
+                    </div>
+
+                    <!-- Round 1: Fee Identification -->
+                    <div class="mb-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Round 1: Fee Identification Hunt</h3>
+                        <p class="text-gray-700 mb-3">Review this apartment lease and identify ALL fees mentioned (obvious and hidden):</p>
+
+                        <div class="contract-excerpt mb-4">
+                            <p class="mb-2"><strong>RENTAL AGREEMENT - SECTION 3: PAYMENTS</strong></p>
+                            <p class="mb-1">Monthly rent: $1,200 (due 1st of month)</p>
+                            <p class="mb-1">Security deposit: $1,200 (due at signing)</p>
+                            <p class="mb-1">Application fee: $50 per applicant (non-refundable)</p>
+                            <p class="mb-1">Late payment: $85 if rent received after 5th of month</p>
+                            <p class="mb-1">Returned payment: $40 per occurrence</p>
+                            <p class="mb-1">Pet deposit: $300 per pet (refundable); Pet rent: $35/month per pet</p>
+                            <p class="mb-1">Parking: Included for one vehicle; Additional parking: $75/month</p>
+                            <p class="mb-1">Utilities: Tenant responsible for electric, gas, internet; Water/trash included</p>
+                            <p class="mb-1">Lease break fee: Two months' rent ($2,400) if terminating before lease end</p>
+                            <p class="mb-1">Lock change fee: $125 if keys are lost</p>
+                            <p class="mb-1">Cleaning fee: $150 if apartment not cleaned per move-out checklist</p>
+                            <p>Subletting application: $500 review fee (non-refundable, approval not guaranteed)</p>
+                        </div>
+
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div>
+                                <h4 class="font-semibold text-gray-900 mb-2">Calculate Fee Scenarios:</h4>
+                                <div class="mb-3">
+                                    <label class="block text-sm text-gray-700 mb-1">Move-in costs (no pets, 1 applicant):</label>
+                                    <div class="flex gap-2">
+                                        <input type="text" class="flex-1 border rounded px-2 py-1" placeholder="Application + deposit + 1st month">
+                                        <button onclick="checkAnswer(this, '2450')" class="px-3 py-1 bg-blue-500 text-white rounded text-sm">Check</button>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="block text-sm text-gray-700 mb-1">Monthly cost (1 pet, 1 extra parking):</label>
+                                    <div class="flex gap-2">
+                                        <input type="text" class="flex-1 border rounded px-2 py-1" placeholder="Rent + pet rent + parking">
+                                        <button onclick="checkAnswer(this, '1310')" class="px-3 py-1 bg-blue-500 text-white rounded text-sm">Check</button>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="block text-sm text-gray-700 mb-1">Cost if you're late on rent and it bounces:</label>
+                                    <div class="flex gap-2">
+                                        <input type="text" class="flex-1 border rounded px-2 py-1" placeholder="Late fee + returned payment">
+                                        <button onclick="checkAnswer(this, '125')" class="px-3 py-1 bg-blue-500 text-white rounded text-sm">Check</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900 mb-2">Maximum Penalty Scenario:</h4>
+                                <p class="text-sm text-gray-700 mb-2">Calculate the worst-case cost if you:</p>
+                                <ul class="text-sm text-gray-700 list-disc list-inside mb-2">
+                                    <li>Break lease early (fee: <input type="text" class="border rounded px-2 py-1 w-20" placeholder="$">)</li>
+                                    <li>Lose keys (fee: <input type="text" class="border rounded px-2 py-1 w-20" placeholder="$">)</li>
+                                    <li>Don't clean properly (fee: <input type="text" class="border rounded px-2 py-1 w-20" placeholder="$">)</li>
+                                    <li>Forfeit security deposit ($1,200)</li>
+                                </ul>
+                                <div class="p-3 bg-red-50 rounded">
+                                    <label class="block text-sm font-semibold text-red-900">Total worst-case penalties:</label>
+                                    <input type="text" class="w-full border rounded px-2 py-1 mt-1" placeholder="Add all penalties">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Round 2: Red Flag Detection -->
+                    <div class="mb-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Round 2: Red Flag Detection</h3>
+                        <p class="text-gray-700 mb-3">Rate each clause from "Consumer Friendly" to "Major Red Flag":</p>
+
+                        <div class="space-y-3">
+                            <div class="p-3 border rounded">
+                                <p class="text-gray-700 mb-2"><strong>Clause A:</strong> "This agreement automatically renews for 12-month terms unless Member provides written cancellation 60 days before renewal."</p>
+                                <select class="w-full border rounded px-3 py-2">
+                                    <option value="">Rate this clause...</option>
+                                    <option>Consumer Friendly - Easy to exit</option>
+                                    <option>Minor Concern - Some restrictions</option>
+                                    <option value="correct">Major Red Flag - Easy to forget, locked in another year</option>
+                                </select>
+                            </div>
+
+                            <div class="p-3 border rounded">
+                                <p class="text-gray-700 mb-2"><strong>Clause B:</strong> "Company reserves the right to modify these terms at any time. Continued use of service constitutes acceptance of changes."</p>
+                                <select class="w-full border rounded px-3 py-2">
+                                    <option value="">Rate this clause...</option>
+                                    <option>Consumer Friendly - Fair terms</option>
+                                    <option value="correct">Major Red Flag - Unilateral modification without approval</option>
+                                    <option>Minor Concern - Standard practice</option>
+                                </select>
+                            </div>
+
+                            <div class="p-3 border rounded">
+                                <p class="text-gray-700 mb-2"><strong>Clause C:</strong> "Either party may terminate this agreement with 30 days written notice. No penalties apply."</p>
+                                <select class="w-full border rounded px-3 py-2">
+                                    <option value="">Rate this clause...</option>
+                                    <option value="correct">Consumer Friendly - Mutual flexibility, no penalties</option>
+                                    <option>Minor Concern - 30 days is long</option>
+                                    <option>Major Red Flag - Unfair terms</option>
+                                </select>
+                            </div>
+
+                            <div class="p-3 border rounded">
+                                <p class="text-gray-700 mb-2"><strong>Clause D:</strong> "All disputes must be resolved through binding arbitration. Customer waives right to jury trial and class action participation."</p>
+                                <select class="w-full border rounded px-3 py-2">
+                                    <option value="">Rate this clause...</option>
+                                    <option>Consumer Friendly - Fast dispute resolution</option>
+                                    <option>Minor Concern - Arbitration is acceptable</option>
+                                    <option value="correct">Major Red Flag - Eliminates legal recourse options</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Round 3: Hidden Obligations -->
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Round 3: Hidden Obligation Discovery</h3>
+                        <p class="text-gray-700 mb-3">Identify obligations that might surprise someone who only skimmed this contract:</p>
+
+                        <div class="contract-excerpt mb-4">
+                            <p class="mb-2"><strong>AUTO LOAN AGREEMENT - SECTION 7: BORROWER OBLIGATIONS</strong></p>
+                            <p class="mb-1">"Borrower must maintain comprehensive and collision insurance with maximum $500 deductible naming Lender as loss payee for duration of loan. Proof of insurance must be provided within 10 days of loan funding. Failure to maintain insurance constitutes default and may trigger acceleration clause."</p>
+                            <p class="mb-1">"Vehicle must not be used for commercial purposes, racing, or off-road activities. Modifications that decrease vehicle value are prohibited without Lender approval."</p>
+                            <p>"If Borrower misses two consecutive payments or any three payments during loan term, entire remaining balance becomes immediately due (acceleration). Lender may repossess vehicle without notice. Borrower remains responsible for loan balance if repossession sale doesn't cover full amount owed plus repossession costs."</p>
+                        </div>
+
+                        <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4">
+                            <h4 class="font-bold text-gray-900 mb-2">Hidden Obligations Checklist:</h4>
+                            <label class="flex items-start mb-2">
+                                <input type="checkbox" class="mt-1 mr-2">
+                                <span class="text-gray-700">Must buy expensive insurance (comprehensive + collision with low deductible) for life of loan</span>
+                            </label>
+                            <label class="flex items-start mb-2">
+                                <input type="checkbox" class="mt-1 mr-2">
+                                <span class="text-gray-700">Cannot use car for Uber/Lyft or any commercial purpose</span>
+                            </label>
+                            <label class="flex items-start mb-2">
+                                <input type="checkbox" class="mt-1 mr-2">
+                                <span class="text-gray-700">Two missed payments = entire loan balance due immediately</span>
+                            </label>
+                            <label class="flex items-start mb-2">
+                                <input type="checkbox" class="mt-1 mr-2">
+                                <span class="text-gray-700">Even after repossession, you may still owe money if car doesn't sell for enough</span>
+                            </label>
+                            <label class="flex items-start mb-2">
+                                <input type="checkbox" class="mt-1 mr-2">
+                                <span class="text-gray-700">Lender can repossess without warning if you default</span>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Activity 3: Contract Comparison Station -->
+                <section id="activity3" class="activity-section">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4">Activity 3: Contract Comparison Station</h2>
+                    <div class="activity-timer">
+                        <p class="text-sm font-semibold text-gray-700">⏱️ Time: 15 minutes (5 minutes per scenario)</p>
+                    </div>
+
+                    <!-- Scenario 1: Apartment Leases -->
+                    <div class="mb-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Scenario 1: Choosing an Apartment Lease</h3>
+
+                        <div class="grid md:grid-cols-3 gap-4 mb-4">
+                            <div class="comparison-card">
+                                <h4 class="font-bold text-gray-900 mb-2">Apartment A</h4>
+                                <ul class="text-sm text-gray-700 space-y-1 mb-3">
+                                    <li>• Rent: $1,050/month</li>
+                                    <li>• Lease: 12 months</li>
+                                    <li>• Security deposit: $1,000</li>
+                                    <li>• Pets: Not allowed</li>
+                                    <li>• Early termination: $200 fee</li>
+                                    <li>• Subletting: Allowed with approval</li>
+                                </ul>
+                                <label class="flex items-center">
+                                    <input type="radio" name="apt-choice" value="A" class="mr-2">
+                                    <span class="text-sm">Select Apartment A</span>
+                                </label>
+                            </div>
+
+                            <div class="comparison-card">
+                                <h4 class="font-bold text-gray-900 mb-2">Apartment B</h4>
+                                <ul class="text-sm text-gray-700 space-y-1 mb-3">
+                                    <li>• Rent: $1,100/month</li>
+                                    <li>• Lease: Month-to-month</li>
+                                    <li>• Security deposit: $500</li>
+                                    <li>• Pets: Allowed ($50/month fee)</li>
+                                    <li>• Early termination: No fee</li>
+                                    <li>• Subletting: Not applicable</li>
+                                </ul>
+                                <label class="flex items-center">
+                                    <input type="radio" name="apt-choice" value="B" class="mr-2">
+                                    <span class="text-sm">Select Apartment B</span>
+                                </label>
+                            </div>
+
+                            <div class="comparison-card">
+                                <h4 class="font-bold text-gray-900 mb-2">Apartment C</h4>
+                                <ul class="text-sm text-gray-700 space-y-1 mb-3">
+                                    <li>• Rent: $950/month</li>
+                                    <li>• Lease: 18 months</li>
+                                    <li>• Security deposit: $1,500</li>
+                                    <li>• Pets: Not allowed</li>
+                                    <li>• Early termination: 2 months' rent</li>
+                                    <li>• Subletting: Prohibited</li>
+                                </ul>
+                                <label class="flex items-center">
+                                    <input type="radio" name="apt-choice" value="C" class="mr-2">
+                                    <span class="text-sm">Select Apartment C</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div class="p-4 bg-gray-50 rounded">
+                                <h5 class="font-semibold text-gray-900 mb-2">Calculate 12-month costs:</h5>
+                                <div class="space-y-2">
+                                    <div>
+                                        <label class="text-sm text-gray-700">Apartment A (12 months):</label>
+                                        <input type="text" class="w-full border rounded px-2 py-1" placeholder="$1,050 × 12 + deposit">
+                                    </div>
+                                    <div>
+                                        <label class="text-sm text-gray-700">Apartment B (12 months):</label>
+                                        <input type="text" class="w-full border rounded px-2 py-1" placeholder="$1,100 × 12 + deposit">
+                                    </div>
+                                    <div>
+                                        <label class="text-sm text-gray-700">Apartment C (12 months):</label>
+                                        <input type="text" class="w-full border rounded px-2 py-1" placeholder="$950 × 12 + deposit">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="p-4 bg-blue-50 rounded">
+                                <h5 class="font-semibold text-gray-900 mb-2">Cost if you leave after 8 months:</h5>
+                                <div class="space-y-2">
+                                    <div>
+                                        <label class="text-sm text-gray-700">Apartment A:</label>
+                                        <input type="text" class="w-full border rounded px-2 py-1" placeholder="8 months + $200 fee + lost deposit?">
+                                    </div>
+                                    <div>
+                                        <label class="text-sm text-gray-700">Apartment B:</label>
+                                        <input type="text" class="w-full border rounded px-2 py-1" placeholder="8 months (no fee!)">
+                                    </div>
+                                    <div>
+                                        <label class="text-sm text-gray-700">Apartment C:</label>
+                                        <input type="text" class="w-full border rounded px-2 py-1" placeholder="8 months + $1,900 penalty + lost deposit">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-4 p-4 bg-yellow-50 rounded">
+                            <h5 class="font-semibold text-gray-900 mb-2">Which is best for different situations?</h5>
+                            <div class="space-y-2">
+                                <div>
+                                    <label class="text-sm text-gray-700 font-semibold">If you have uncertain job situation:</label>
+                                    <select class="w-full border rounded px-3 py-2 mt-1">
+                                        <option value="">Select best option...</option>
+                                        <option>Apartment A - Low termination fee</option>
+                                        <option value="correct">Apartment B - Month-to-month, maximum flexibility</option>
+                                        <option>Apartment C - Cheapest monthly rent</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="text-sm text-gray-700 font-semibold">If you want lowest total cost and plan to stay 18+ months:</label>
+                                    <select class="w-full border rounded px-3 py-2 mt-1">
+                                        <option value="">Select best option...</option>
+                                        <option>Apartment A - Mid-range option</option>
+                                        <option>Apartment B - Most flexible</option>
+                                        <option value="correct">Apartment C - Lowest monthly rent ($950)</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Scenario 2: Auto Loans -->
+                    <div class="mb-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Scenario 2: Auto Loan Comparison ($25,000 vehicle)</h3>
+
+                        <div class="grid md:grid-cols-3 gap-4 mb-4">
+                            <div class="comparison-card">
+                                <h4 class="font-bold text-gray-900 mb-2">Lender A</h4>
+                                <ul class="text-sm text-gray-700 space-y-1">
+                                    <li>• APR: 4.5%</li>
+                                    <li>• Term: 60 months</li>
+                                    <li>• Origination fee: $0</li>
+                                    <li>• Prepayment: Allowed</li>
+                                    <li>• Monthly payment: $466</li>
+                                </ul>
+                            </div>
+
+                            <div class="comparison-card">
+                                <h4 class="font-bold text-gray-900 mb-2">Lender B</h4>
+                                <ul class="text-sm text-gray-700 space-y-1">
+                                    <li>• APR: 3.9%</li>
+                                    <li>• Term: 72 months</li>
+                                    <li>• Origination fee: $500</li>
+                                    <li>• Prepayment: 3% penalty</li>
+                                    <li>• Monthly payment: $384</li>
+                                </ul>
+                            </div>
+
+                            <div class="comparison-card">
+                                <h4 class="font-bold text-gray-900 mb-2">Lender C</h4>
+                                <ul class="text-sm text-gray-700 space-y-1">
+                                    <li>• APR: 5.2%</li>
+                                    <li>• Term: 48 months</li>
+                                    <li>• Origination fee: $0</li>
+                                    <li>• Prepayment: Allowed</li>
+                                    <li>• Monthly payment: $575</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="p-4 bg-gray-50 rounded mb-4">
+                            <h5 class="font-semibold text-gray-900 mb-3">Calculate Total Costs:</h5>
+                            <div class="grid md:grid-cols-3 gap-4">
+                                <div>
+                                    <label class="text-sm text-gray-700 font-semibold">Lender A Total:</label>
+                                    <input type="text" class="w-full border rounded px-2 py-1 mt-1" placeholder="$466 × 60">
+                                    <p class="text-xs text-gray-600 mt-1">Interest paid: <input type="text" class="border rounded px-2 py-1 w-20" placeholder="?"></p>
+                                </div>
+                                <div>
+                                    <label class="text-sm text-gray-700 font-semibold">Lender B Total:</label>
+                                    <input type="text" class="w-full border rounded px-2 py-1 mt-1" placeholder="$384 × 72 + $500">
+                                    <p class="text-xs text-gray-600 mt-1">Interest + fees: <input type="text" class="border rounded px-2 py-1 w-20" placeholder="?"></p>
+                                </div>
+                                <div>
+                                    <label class="text-sm text-gray-700 font-semibold">Lender C Total:</label>
+                                    <input type="text" class="w-full border rounded px-2 py-1 mt-1" placeholder="$575 × 48">
+                                    <p class="text-xs text-gray-600 mt-1">Interest paid: <input type="text" class="border rounded px-2 py-1 w-20" placeholder="?"></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-4 bg-blue-50 rounded">
+                            <h5 class="font-semibold text-gray-900 mb-2">Early Payoff Scenario (after 24 months):</h5>
+                            <p class="text-sm text-gray-700 mb-2">If you want to pay off the loan early after 2 years, which has the lowest cost?</p>
+                            <div class="space-y-2">
+                                <label class="flex items-start">
+                                    <input type="radio" name="early-payoff" class="mt-1 mr-2">
+                                    <span class="text-sm text-gray-700">Lender A - No prepayment penalty</span>
+                                </label>
+                                <label class="flex items-start">
+                                    <input type="radio" name="early-payoff" class="mt-1 mr-2">
+                                    <span class="text-sm text-gray-700">Lender B - Has 3% penalty on remaining balance (~$750 fee)</span>
+                                </label>
+                                <label class="flex items-start">
+                                    <input type="radio" name="early-payoff" class="mt-1 mr-2">
+                                    <span class="text-sm text-gray-700">Lender C - No prepayment penalty, shortest term</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Scenario 3: Cell Phone Plans -->
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Scenario 3: Cell Phone Plan Comparison</h3>
+
+                        <div class="grid md:grid-cols-3 gap-4 mb-4">
+                            <div class="comparison-card">
+                                <h4 class="font-bold text-gray-900 mb-2">Plan A</h4>
+                                <ul class="text-sm text-gray-700 space-y-1">
+                                    <li>• $80/month</li>
+                                    <li>• 2-year contract</li>
+                                    <li>• "Free" $900 phone (financed)</li>
+                                    <li>• Early termination: $350 fee</li>
+                                    <li>• Phone balance due if cancel</li>
+                                </ul>
+                            </div>
+
+                            <div class="comparison-card">
+                                <h4 class="font-bold text-gray-900 mb-2">Plan B</h4>
+                                <ul class="text-sm text-gray-700 space-y-1">
+                                    <li>• $60/month</li>
+                                    <li>• No contract</li>
+                                    <li>• Bring your own device</li>
+                                    <li>• Cancel anytime, no fee</li>
+                                    <li>• (Buy $400 phone separately)</li>
+                                </ul>
+                            </div>
+
+                            <div class="comparison-card">
+                                <h4 class="font-bold text-gray-900 mb-2">Plan C</h4>
+                                <ul class="text-sm text-gray-700 space-y-1">
+                                    <li>• $70/month</li>
+                                    <li>• 1-year contract</li>
+                                    <li>• $300 phone subsidy</li>
+                                    <li>• Early termination: $150 fee</li>
+                                    <li>• Must buy phone ($400)</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="p-4 bg-gray-100 rounded">
+                            <h5 class="font-semibold text-gray-900 mb-3">24-Month Cost Comparison:</h5>
+                            <div class="grid md:grid-cols-3 gap-4">
+                                <div>
+                                    <p class="text-sm font-semibold text-gray-900">Plan A (2-year contract):</p>
+                                    <p class="text-sm text-gray-700">$80 × 24 = <input type="text" class="border rounded px-2 py-1 w-20"></p>
+                                    <p class="text-xs text-gray-600 mt-1">(Phone included in monthly fee)</p>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-semibold text-gray-900">Plan B (no contract):</p>
+                                    <p class="text-sm text-gray-700">($60 × 24) + $400 = <input type="text" class="border rounded px-2 py-1 w-20"></p>
+                                    <p class="text-xs text-gray-600 mt-1">($400 upfront phone cost)</p>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-semibold text-gray-900">Plan C (1-year contract):</p>
+                                    <p class="text-sm text-gray-700">($70 × 24) + ($400 - $300) = <input type="text" class="border rounded px-2 py-1 w-20"></p>
+                                    <p class="text-xs text-gray-600 mt-1">($100 net phone cost with subsidy)</p>
+                                </div>
+                            </div>
+                            <p class="text-sm text-gray-700 mt-3 font-semibold">Which plan has the lowest total cost over 24 months? <select class="border rounded px-2 py-1"><option value="">Select...</option><option>Plan A ($1,920)</option><option value="correct">Plan B ($1,840)</option><option>Plan C ($1,780)</option></select></p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Activity 4: Contract Negotiation Role-Play -->
+                <section id="activity4" class="activity-section">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4">Activity 4: Contract Negotiation Role-Play</h2>
+                    <div class="activity-timer">
+                        <p class="text-sm font-semibold text-gray-700">⏱️ Time: 10 minutes</p>
+                    </div>
+                    <p class="text-gray-700 mb-4">
+                        <strong>Objective:</strong> Practice negotiating contract terms and advocating for your interests.
+                    </p>
+
+                    <div class="negotiation-scenario">
+                        <h3 class="text-lg font-bold text-gray-900 mb-3">Scenario 1: Apartment Lease Negotiation</h3>
+                        <div class="mb-3">
+                            <p class="text-gray-700 mb-2"><strong>Problematic Term:</strong> "Early termination requires 60 days notice and payment of two months' rent ($1,800)"</p>
+                            <p class="text-gray-700 mb-2"><strong>Your Situation:</strong> You accepted a job in another state starting in 10 weeks. You have 8 months remaining on your lease.</p>
+                        </div>
+
+                        <div class="grid md:grid-cols-2 gap-4 mb-3">
+                            <div class="p-3 bg-white rounded">
+                                <h4 class="font-semibold text-gray-900 mb-2">Prepare Your Negotiation:</h4>
+                                <label class="block text-sm text-gray-700 mb-1">Your bottom line (minimum acceptable):</label>
+                                <textarea class="w-full border rounded p-2 mb-2" rows="2" placeholder="What's the most you're willing to pay?"></textarea>
+
+                                <label class="block text-sm text-gray-700 mb-1">Your opening proposal:</label>
+                                <textarea class="w-full border rounded p-2 mb-2" rows="2" placeholder="What will you ask for first?"></textarea>
+
+                                <label class="block text-sm text-gray-700 mb-1">Justification for your request:</label>
+                                <textarea class="w-full border rounded p-2" rows="3" placeholder="Why should landlord agree?"></textarea>
+                            </div>
+
+                            <div class="p-3 bg-blue-50 rounded">
+                                <h4 class="font-semibold text-gray-900 mb-2">Suggested Talking Points:</h4>
+                                <ul class="text-sm text-gray-700 space-y-1">
+                                    <li>✓ "I've been a reliable tenant (always paid on time, no issues)"</li>
+                                    <li>✓ "I can help find/screen a replacement tenant"</li>
+                                    <li>✓ "Could we reduce the fee to one month's rent instead of two?"</li>
+                                    <li>✓ "I'm leaving for career advancement, not dissatisfaction with the property"</li>
+                                    <li>✓ "Would you waive the fee if I find an approved replacement?"</li>
+                                </ul>
+
+                                <div class="mt-3 p-2 bg-white rounded">
+                                    <p class="text-xs font-semibold text-gray-900 mb-1">Possible Compromise:</p>
+                                    <p class="text-xs text-gray-700">Pay one month's rent ($900) and forfeit security deposit ($900) = $1,800 total, but spread over time instead of upfront</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="negotiation-scenario">
+                        <h3 class="text-lg font-bold text-gray-900 mb-3">Scenario 2: Employment Non-Compete Negotiation</h3>
+                        <div class="mb-3">
+                            <p class="text-gray-700 mb-2"><strong>Problematic Term:</strong> "Employee shall not work for any competing business within 50 miles for 2 years after leaving Company."</p>
+                            <p class="text-gray-700 mb-2"><strong>Your Situation:</strong> This is your dream job, but there are only 3 major employers in your field within 50 miles.</p>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="block text-gray-700 font-semibold mb-2">Draft your negotiation email to HR:</label>
+                            <textarea class="w-full border rounded p-3" rows="8" placeholder="Dear [HR Contact],
+
+Thank you for the job offer for [Position]. I'm very excited about this opportunity. I'd like to discuss the non-compete clause in Section 5...
+
+[Your negotiation points here]
+
+I propose modifying the clause to...
+
+Thank you for considering this request."></textarea>
+                        </div>
+
+                        <div class="p-3 bg-green-50 rounded">
+                            <h4 class="font-semibold text-gray-900 mb-2">Reasonable Counter-Proposal:</h4>
+                            <p class="text-sm text-gray-700 mb-2">Instead of: 2 years / 50 miles / any competing business</p>
+                            <p class="text-sm text-gray-700 font-semibold">Propose: 1 year / 25 miles / direct competitors only (not entire industry)</p>
+                            <p class="text-xs text-gray-600 mt-2">This still protects the employer's interests while not completely restricting your career mobility.</p>
+                        </div>
+                    </div>
+
+                    <div class="p-4 bg-indigo-50 rounded mt-4">
+                        <h4 class="font-bold text-gray-900 mb-2">Negotiation Reflection:</h4>
+                        <label class="block text-gray-700 mb-1">What made you uncomfortable about negotiating? How did you overcome it?</label>
+                        <textarea class="w-full border rounded p-2 mb-3" rows="2"></textarea>
+
+                        <label class="block text-gray-700 mb-1">What tactics were most effective in your practice negotiation?</label>
+                        <textarea class="w-full border rounded p-2" rows="2"></textarea>
+                    </div>
+                </section>
+
+                <!-- Activity 5: Personal Contract Safety Checklist Builder -->
+                <section id="activity5" class="activity-section">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4">Activity 5: Personal Contract Safety Checklist Builder</h2>
+                    <div class="activity-timer">
+                        <p class="text-sm font-semibold text-gray-700">⏱️ Time: 5 minutes</p>
+                    </div>
+                    <p class="text-gray-700 mb-4">
+                        <strong>Objective:</strong> Create a personalized checklist for reviewing any future contract before signing.
+                    </p>
+
+                    <div class="mb-6">
+                        <h3 class="text-lg font-bold text-gray-900 mb-3">Essential Questions (Everyone Should Include):</h3>
+                        <div class="space-y-2">
+                            <div class="checklist-item">
+                                <label class="flex items-start">
+                                    <input type="checkbox" class="mt-1 mr-3" checked disabled>
+                                    <span class="text-gray-700">Have I read the ENTIRE contract, including all fine print?</span>
+                                </label>
+                            </div>
+                            <div class="checklist-item">
+                                <label class="flex items-start">
+                                    <input type="checkbox" class="mt-1 mr-3" checked disabled>
+                                    <span class="text-gray-700">Do I understand ALL terms and clauses, or do I need to research/ask about some?</span>
+                                </label>
+                            </div>
+                            <div class="checklist-item">
+                                <label class="flex items-start">
+                                    <input type="checkbox" class="mt-1 mr-3" checked disabled>
+                                    <span class="text-gray-700">Have I identified ALL fees, charges, penalties, and interest rates?</span>
+                                </label>
+                            </div>
+                            <div class="checklist-item">
+                                <label class="flex items-start">
+                                    <input type="checkbox" class="mt-1 mr-3" checked disabled>
+                                    <span class="text-gray-700">What is the TOTAL cost over the full contract term (including all fees)?</span>
+                                </label>
+                            </div>
+                            <div class="checklist-item">
+                                <label class="flex items-start">
+                                    <input type="checkbox" class="mt-1 mr-3" checked disabled>
+                                    <span class="text-gray-700">How and when can I TERMINATE this contract?</span>
+                                </label>
+                            </div>
+                            <div class="checklist-item">
+                                <label class="flex items-start">
+                                    <input type="checkbox" class="mt-1 mr-3" checked disabled>
+                                    <span class="text-gray-700">What are the consequences if I need to EXIT EARLY?</span>
+                                </label>
+                            </div>
+                            <div class="checklist-item">
+                                <label class="flex items-start">
+                                    <input type="checkbox" class="mt-1 mr-3" checked disabled>
+                                    <span class="text-gray-700">Am I giving up important RIGHTS (like the ability to sue or join class actions)?</span>
+                                </label>
+                            </div>
+                            <div class="checklist-item">
+                                <label class="flex items-start">
+                                    <input type="checkbox" class="mt-1 mr-3" checked disabled>
+                                    <span class="text-gray-700">Can the other party CHANGE THE TERMS without my approval?</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <h3 class="text-lg font-bold text-gray-900 mb-3">Customize Your Checklist (Add items relevant to YOU):</h3>
+                        <p class="text-gray-700 mb-3">Select additional items based on your life stage and priorities:</p>
+
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div>
+                                <h4 class="font-semibold text-gray-900 mb-2">If you have uncertain future plans:</h4>
+                                <label class="flex items-start mb-2">
+                                    <input type="checkbox" class="mt-1 mr-2" onchange="updateCustomChecklist()">
+                                    <span class="text-sm text-gray-700">Is this a month-to-month agreement or can I exit with minimal penalty?</span>
+                                </label>
+                                <label class="flex items-start mb-2">
+                                    <input type="checkbox" class="mt-1 mr-2" onchange="updateCustomChecklist()">
+                                    <span class="text-sm text-gray-700">Does automatic renewal lock me in, or can I easily cancel?</span>
+                                </label>
+                            </div>
+
+                            <div>
+                                <h4 class="font-semibold text-gray-900 mb-2">If you're budget-conscious:</h4>
+                                <label class="flex items-start mb-2">
+                                    <input type="checkbox" class="mt-1 mr-2" onchange="updateCustomChecklist()">
+                                    <span class="text-sm text-gray-700">What hidden fees could surprise me (late fees, processing fees, etc.)?</span>
+                                </label>
+                                <label class="flex items-start mb-2">
+                                    <input type="checkbox" class="mt-1 mr-2" onchange="updateCustomChecklist()">
+                                    <span class="text-sm text-gray-700">Are there annual fees or price increases after an introductory period?</span>
+                                </label>
+                            </div>
+
+                            <div>
+                                <h4 class="font-semibold text-gray-900 mb-2">For employment contracts:</h4>
+                                <label class="flex items-start mb-2">
+                                    <input type="checkbox" class="mt-1 mr-2" onchange="updateCustomChecklist()">
+                                    <span class="text-sm text-gray-700">Does the non-compete clause unreasonably restrict my future career?</span>
+                                </label>
+                                <label class="flex items-start mb-2">
+                                    <input type="checkbox" class="mt-1 mr-2" onchange="updateCustomChecklist()">
+                                    <span class="text-sm text-gray-700">Am I required to work a minimum period or pay back signing bonuses?</span>
+                                </label>
+                            </div>
+
+                            <div>
+                                <h4 class="font-semibold text-gray-900 mb-2">For loan agreements:</h4>
+                                <label class="flex items-start mb-2">
+                                    <input type="checkbox" class="mt-1 mr-2" onchange="updateCustomChecklist()">
+                                    <span class="text-sm text-gray-700">Is there a prepayment penalty if I pay off the loan early?</span>
+                                </label>
+                                <label class="flex items-start mb-2">
+                                    <input type="checkbox" class="mt-1 mr-2" onchange="updateCustomChecklist()">
+                                    <span class="text-sm text-gray-700">What triggers default, and what are the consequences (acceleration, etc.)?</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <h3 class="text-lg font-bold text-gray-900 mb-3">Add Your Own Custom Questions:</h3>
+                        <p class="text-sm text-gray-700 mb-2">Based on your experiences today, what specific questions will YOU always ask?</p>
+                        <div class="space-y-2">
+                            <input type="text" class="w-full border rounded px-3 py-2" placeholder="1. Custom question based on your priorities...">
+                            <input type="text" class="w-full border rounded px-3 py-2" placeholder="2. Another question important to you...">
+                            <input type="text" class="w-full border rounded px-3 py-2" placeholder="3. One more personalized question...">
+                        </div>
+                    </div>
+
+                    <div class="p-4 bg-green-50 rounded">
+                        <h4 class="font-bold text-gray-900 mb-2">✓ Save Your Checklist</h4>
+                        <p class="text-gray-700 mb-3">Your personalized contract review checklist is ready! Here's how to use it:</p>
+                        <div class="flex gap-3">
+                            <button class="px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700">📥 Download PDF</button>
+                            <button class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700">📧 Email to Myself</button>
+                            <button class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">🖨️ Print Checklist</button>
+                        </div>
+                        <p class="text-sm text-gray-600 mt-3">Keep this checklist in your financial documents folder and use it every time you're asked to sign a contract!</p>
+                    </div>
+                </section>
+
+                <!-- Reflection & Wrap-up -->
+                <section id="reflection" class="mb-8">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4">Reflection & Wrap-up</h2>
+
+                    <div class="mb-6">
+                        <h3 class="text-lg font-bold text-gray-900 mb-3">Individual Reflection:</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-gray-700 font-semibold mb-2">1. What was the most surprising or concerning contract clause you discovered today?</label>
+                                <textarea class="w-full border rounded p-3" rows="3" placeholder="Your reflection..."></textarea>
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 font-semibold mb-2">2. How has your confidence in reading and understanding contracts changed?</label>
+                                <textarea class="w-full border rounded p-3" rows="3" placeholder="Your reflection..."></textarea>
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 font-semibold mb-2">3. What specific strategies will you use before signing your next financial contract?</label>
+                                <textarea class="w-full border rounded p-3" rows="3" placeholder="Your strategies..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <h3 class="text-lg font-bold text-gray-900 mb-3">Action Commitment:</h3>
+                        <p class="text-gray-700 mb-3">Before leaving, commit to these specific actions:</p>
+                        <div class="space-y-3">
+                            <div class="p-4 bg-blue-50 rounded">
+                                <label class="block text-gray-700 font-semibold mb-2">One contract I've already signed that I'll now review more carefully:</label>
+                                <input type="text" class="w-full border rounded px-3 py-2" placeholder="Contract type and why you'll review it...">
+                            </div>
+                            <div class="p-4 bg-green-50 rounded">
+                                <label class="block text-gray-700 font-semibold mb-2">One upcoming contract decision where I'll apply these skills:</label>
+                                <input type="text" class="w-full border rounded px-3 py-2" placeholder="Future contract you anticipate signing...">
+                            </div>
+                            <div class="p-4 bg-purple-50 rounded">
+                                <label class="block text-gray-700 font-semibold mb-2">One person I'll teach about contract literacy:</label>
+                                <input type="text" class="w-full border rounded px-3 py-2" placeholder="Who could benefit from what you learned?">
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Key Takeaways -->
+                <div class="bg-gradient-to-r from-indigo-500 to-purple-600 text-white rounded-lg p-6">
+                    <h2 class="text-2xl font-bold mb-4">🎯 Key Takeaways</h2>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div>
+                            <p class="mb-2">✓ <strong>Reading contracts thoroughly before signing is non-negotiable</strong> - courts enforce contracts as written</p>
+                            <p class="mb-2">✓ <strong>All valid contracts have five essential elements:</strong> offer, acceptance, consideration, capacity, and legality</p>
+                            <p class="mb-2">✓ <strong>Fine print contains the most important terms</strong> - fees, penalties, termination conditions, rights you're waiving</p>
+                            <p class="mb-2">✓ <strong>Contract comparison reveals significant differences</strong> - similar offers can vary by thousands of dollars</p>
+                            <p class="mb-2">✓ <strong>Many terms are negotiable</strong> - professional negotiation often succeeds, especially for major contracts</p>
+                        </div>
+                        <div>
+                            <p class="mb-2">✓ <strong>Common red flags:</strong> automatic renewal, unilateral modification, arbitration clauses, liability limitations, prepayment penalties</p>
+                            <p class="mb-2">✓ <strong>Personal checklists ensure consistency</strong> - use your checklist for every contract</p>
+                            <p class="mb-2">✓ <strong>Contract literacy is practical and powerful</strong> - saves thousands of dollars and prevents legal problems</p>
+                            <p class="mb-2">✓ <strong>Professional advice matters</strong> - major contracts benefit from attorney review</p>
+                            <p>✓ <strong>Your signature creates binding obligations</strong> - never sign under pressure or without understanding</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Completion -->
+                <div class="mt-8 p-6 bg-green-50 border-2 border-green-500 rounded-lg text-center">
+                    <h2 class="text-2xl font-bold text-green-900 mb-2">🎉 Congratulations!</h2>
+                    <p class="text-green-800 text-lg">You've completed L-60: Understanding Financial Contracts</p>
+                    <p class="text-green-700 mt-2">You now have the skills to read, analyze, compare, and negotiate financial contracts to protect your interests!</p>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Simple answer checking function
+        function checkAnswer(button, correctAnswer) {
+            const input = button.previousElementSibling;
+            const userAnswer = input.value.replace(/[^0-9]/g, ''); // Remove non-numeric
+            if (userAnswer === correctAnswer) {
+                input.classList.add('border-green-500', 'bg-green-50');
+                button.textContent = '✓ Correct';
+                button.classList.remove('bg-blue-500');
+                button.classList.add('bg-green-500');
+            } else {
+                input.classList.add('border-red-500', 'bg-red-50');
+                button.textContent = 'Try again';
+            }
+        }
+
+        // Update custom checklist count
+        function updateCustomChecklist() {
+            const checked = document.querySelectorAll('input[type="checkbox"][onchange]:checked').length;
+            console.log(`Custom checklist items selected: ${checked}`);
+        }
+
+        // Apartment comparison card selection
+        document.querySelectorAll('input[name="apt-choice"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                document.querySelectorAll('.comparison-card').forEach(card => {
+                    card.classList.remove('selected');
+                });
+                this.closest('.comparison-card').classList.add('selected');
+            });
+        });
+
+        // Auto-save to localStorage
+        document.querySelectorAll('textarea, input[type="text"]:not(.given-value)').forEach(field => {
+            const key = 'contract-lab-' + (field.id || field.placeholder);
+
+            // Load saved value
+            const saved = localStorage.getItem(key);
+            if (saved) field.value = saved;
+
+            // Save on change
+            field.addEventListener('blur', function() {
+                if (this.value) localStorage.setItem(key, this.value);
+            });
+        });
+
+        // Checkbox persistence
+        document.querySelectorAll('input[type="checkbox"]:not([disabled])').forEach(checkbox => {
+            const key = 'contract-checkbox-' + (checkbox.id || Math.random());
+
+            // Load saved state
+            const saved = localStorage.getItem(key);
+            if (saved === 'true') checkbox.checked = true;
+
+            // Save on change
+            checkbox.addEventListener('change', function() {
+                localStorage.setItem(key, this.checked);
+            });
+        });
+    </script>
+</body>
+</html>

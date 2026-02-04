@@ -1,4 +1,20 @@
 <!DOCTYPE html>
+<!--
+PFL Academy State-Agnostic Template
+L-Chapter: L-08
+Chapter Title: Understanding Tax Filing Requirements
+Oklahoma Reference: Chapter 2.3
+
+Variables used in this template:
+- {{STATE_NAME}} - Full state name (e.g., Kentucky, Georgia)
+- {{CHAPTER_NUMBER}} - State-specific chapter number (e.g., 2.1, 1.4)
+- {{CHAPTER_ID}} - L-chapter identifier (e.g., L-08)
+- {{CHAPTER_TITLE}} - Always: Understanding Tax Filing Requirements
+
+This template will be processed by generate_state_html.py to create
+state-specific versions with correct chapter numbering.
+-->
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -197,7 +213,7 @@
 
     <div class="header">
         <h1>Tax Filing Checklist</h1>
-        <p class="subtitle">Chapter 2.3: Understanding Tax Filing Requirements</p>
+        <p class="subtitle">Chapter {{CHAPTER_NUMBER}}: Understanding Tax Filing Requirements</p>
     </div>
 
     <h2>Introduction</h2>
@@ -799,7 +815,7 @@
     </div>
 
     <footer>
-        <p>PFL Academy - Chapter 2.3: Understanding Tax Filing Requirements</p>
+        <p>PFL Academy - Chapter {{CHAPTER_NUMBER}}: Understanding Tax Filing Requirements</p>
         <p>© 2025 PFL Academy. For educational purposes only. Not tax advice.</p>
     </footer>
 </body>

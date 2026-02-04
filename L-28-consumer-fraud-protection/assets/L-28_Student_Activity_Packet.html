@@ -1,9 +1,25 @@
 <!DOCTYPE html>
+<!--
+PFL Academy State-Agnostic Template
+L-Chapter: L-28
+Chapter Title: Protecting Yourself from Consumer Fraud
+Oklahoma Reference: Chapter 9.1
+
+Variables used in this template:
+- {{STATE_NAME}} - Full state name (e.g., Kentucky, Georgia)
+- {{CHAPTER_NUMBER}} - State-specific chapter number (e.g., 2.1, 1.4)
+- {{CHAPTER_ID}} - L-chapter identifier (e.g., L-28)
+- {{CHAPTER_TITLE}} - Always: Protecting Yourself from Consumer Fraud
+
+This template will be processed by generate_state_html.py to create
+state-specific versions with correct chapter numbering.
+-->
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>L-28 Student Activity Packet</title>
+    <title>{{STATE_NAME}} Chapter {{CHAPTER_NUMBER}}: Protecting Yourself from Consumer Fraud - Student Activity Packet</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap');
 
@@ -84,7 +100,7 @@
     <div class="header">
         <div class="header-left">
             <h1>PFL Academy</h1>
-            <h2>Chapter 6.3: Consumer Fraud Protection</h2>
+            <h2>Chapter {{CHAPTER_NUMBER}}: Consumer Fraud Protection</h2>
         </div>
         <div class="header-right">Student Activity Packet</div>
     </div>
@@ -264,7 +280,7 @@
 
     <div class="footer">
         <span>© PFL Academy | pflacademy.co</span>
-        <span>Chapter 6.3: Consumer Fraud Protection</span>
+        <span>Chapter {{CHAPTER_NUMBER}}: Consumer Fraud Protection</span>
     </div>
 
 </body>

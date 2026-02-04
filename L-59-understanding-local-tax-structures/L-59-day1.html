@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-59: Understanding Local Tax Structures - Day 1</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .helper-content {
+            display: none;
+        }
+        .helper-content.active {
+            display: block;
+        }
+        .given-value {
+            background-color: #f3f4f6;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Fixed Header -->
+    <header class="bg-indigo-600 text-white p-4 shadow-md fixed top-0 left-0 right-0 z-40">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-bold">L-59: Understanding Local Tax Structures | Day 1 of 2</h1>
+            <nav class="space-x-4">
+                <a href="#" class="hover:underline">Home</a>
+                <a href="#" class="hover:underline">Curriculum</a>
+                <a href="#" class="hover:underline">Resources</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Spacer for fixed header -->
+    <div class="h-16"></div>
+
+    <div class="container mx-auto px-4 py-6">
+
+        <!-- Learning Objectives -->
+        <section class="bg-blue-50 rounded-lg p-6 mb-8">
+            <h2 class="text-2xl font-bold text-gray-900 mb-4">📚 Learning Objectives</h2>
+            <ul class="list-disc list-inside space-y-2 text-gray-700">
+                <li>Analyze different types of local taxes and their purposes in funding community services</li>
+                <li>Calculate personal property tax obligations using assessment values and millage rates</li>
+                <li>Evaluate how local tax structures vary across different jurisdictions and impact personal finances</li>
+                <li>Compare tax rates and services across different municipalities to make informed residency decisions</li>
+                <li>Interpret property tax bills and understand assessment, exemptions, and appeal processes</li>
+            </ul>
+        </section>
+
+        <!-- Introduction -->
+        <section class="bg-white rounded-lg shadow-lg p-6 mb-8">
+            <h2 class="text-3xl font-bold text-gray-900 mb-4">Introduction</h2>
+            <p class="text-gray-700 mb-4">When you think about taxes, you probably think about federal income tax or state sales tax. But there's another layer of taxation that directly impacts where you live, the services you receive, and how much you pay every month: <strong>local taxes</strong>.</p>
+            <p class="text-gray-700 mb-4">Local taxes are collected by cities, counties, parishes, towns, and special districts to fund the services that directly shape your daily life. These taxes pay for your local schools, police and fire departments, roads, parks, libraries, and public transportation. Unlike federal taxes that fund national programs, local taxes stay in your community and directly affect the quality of life where you live.</p>
+            <p class="text-gray-700">Understanding local tax structures is essential for making informed financial decisions. When you're deciding where to live—whether you're renting your first apartment, buying a home, or relocating for a job—local taxes will significantly impact your cost of living. Two apartments with identical rent prices can have vastly different total costs once you factor in local taxes. A seemingly affordable home purchase can become financially stressful if property taxes are high. In this lesson, you'll learn to analyze local tax structures, calculate your potential tax obligations, and make informed decisions about where to live based on the complete financial picture.</p>
+        </section>
+
+        <!-- Key Concepts -->
+        <section class="bg-gray-50 rounded-lg p-6 mb-8">
+            <h2 class="text-3xl font-bold text-gray-900 mb-4">Key Concepts</h2>
+
+            <div class="space-y-4">
+                <div class="bg-white p-4 rounded-lg border border-gray-300">
+                    <h3 class="font-bold text-indigo-700 mb-2">Property Tax</h3>
+                    <p class="text-gray-700">A tax levied on real estate property (land and buildings) by local governments, typically based on the assessed value of the property. This is the primary source of revenue for most local governments.</p>
+                </div>
+
+                <div class="bg-white p-4 rounded-lg border border-gray-300">
+                    <h3 class="font-bold text-indigo-700 mb-2">Assessed Value</h3>
+                    <p class="text-gray-700">The dollar value assigned to a property by a government assessor for the purpose of calculating property taxes. The assessed value may be lower than the market value, depending on the assessment ratio used in your jurisdiction.</p>
+                </div>
+
+                <div class="bg-white p-4 rounded-lg border border-gray-300">
+                    <h3 class="font-bold text-indigo-700 mb-2">Millage Rate (Mill Rate)</h3>
+                    <p class="text-gray-700">The amount of tax per $1,000 of assessed property value. One mill equals $1 of tax for every $1,000 of assessed value. For example, a millage rate of 25 mills means you pay $25 per $1,000 of assessed value.</p>
+                </div>
+
+                <div class="bg-white p-4 rounded-lg border border-gray-300">
+                    <h3 class="font-bold text-indigo-700 mb-2">Local Sales Tax</h3>
+                    <p class="text-gray-700">An additional sales tax imposed by cities or counties on top of state sales tax. In {{STATE_NAME}}, the state sales tax is {{STATE_SALES_TAX}}%, but local jurisdictions can add their own sales tax, creating combined rates that vary across the state.</p>
+                </div>
+
+                <div class="bg-white p-4 rounded-lg border border-gray-300">
+                    <h3 class="font-bold text-indigo-700 mb-2">Homestead Exemption</h3>
+                    <p class="text-gray-700">A reduction in the assessed value of a primary residence for property tax purposes, designed to reduce the tax burden on homeowners. Eligibility and amounts vary by {{STATE_NAME}} and local jurisdiction.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Real-World Examples -->
+        <section class="bg-white rounded-lg shadow-lg p-6 mb-8">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6">Real-World Examples</h2>
+
+            <div class="bg-blue-50 border-l-4 border-blue-500 p-6 rounded-r-lg mb-6">
+                <h3 class="text-xl font-bold text-gray-900 mb-3">Mia's First Apartment Decision</h3>
+                <p class="text-gray-700 mb-3"><strong>Background:</strong> Mia, 19, is starting her first full-time job at a medical office earning $38,000 annually. She's comparing two apartments.</p>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-4">
+                    <div class="bg-white p-4 rounded-lg">
+                        <h4 class="font-bold text-blue-900 mb-2">Apartment A</h4>
+                        <ul class="text-sm text-gray-700 space-y-1">
+                            <li>• Rent: <span class="font-bold">$850/month</span></li>
+                            <li>• Location: Downtown {{STATE_MAJOR_CITY}}</li>
+                            <li>• Local sales tax: {{STATE_HIGH_LOCAL_SALES_TAX}}%</li>
+                            <li>• Combined sales tax: {{STATE_COMBINED_HIGH_SALES_TAX}}%</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg">
+                        <h4 class="font-bold text-green-900 mb-2">Apartment B</h4>
+                        <ul class="text-sm text-gray-700 space-y-1">
+                            <li>• Rent: <span class="font-bold">$900/month</span></li>
+                            <li>• Location: {{STATE_SUBURB_CITY}} (suburb)</li>
+                            <li>• Local sales tax: {{STATE_LOW_LOCAL_SALES_TAX}}%</li>
+                            <li>• Combined sales tax: {{STATE_COMBINED_LOW_SALES_TAX}}%</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <p class="text-gray-700 mb-3"><strong>Analysis:</strong> Apartment A appears cheaper, but Mia estimates she spends $1,000/month on taxable purchases. The sales tax difference creates an additional cost that must be factored in.</p>
+                <p class="text-gray-700 mb-3"><strong>Decision:</strong> When sales tax is factored in, Apartment B is only slightly more expensive per month but offers safer neighborhood and better parking. Mia chooses Apartment B as better overall value.</p>
+                <p class="text-gray-700"><strong>Lesson:</strong> Always factor in local sales taxes when comparing locations, especially if you make significant purchases.</p>
+            </div>
+
+            <div class="bg-green-50 border-l-4 border-green-500 p-6 rounded-r-lg mb-6">
+                <h3 class="text-xl font-bold text-gray-900 mb-3">The Rodriguez Family's Home Purchase</h3>
+                <p class="text-gray-700 mb-3"><strong>Background:</strong> Carlos and Maria Rodriguez are buying their first home. They're both teachers earning a combined $85,000. They've narrowed their choice to two homes.</p>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-4">
+                    <div class="bg-white p-4 rounded-lg">
+                        <h4 class="font-bold text-blue-900 mb-2">Home A</h4>
+                        <ul class="text-sm text-gray-700 space-y-1">
+                            <li>• Price: <span class="font-bold">$280,000</span></li>
+                            <li>• Location: {{STATE_HIGH_TAX_CITY}}</li>
+                            <li>• Annual property tax: <span class="font-bold">$8,400 ($700/month)</span></li>
+                            <li>• School district rating: 9/10</li>
+                            <li>• Commute: 15 minutes each</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg">
+                        <h4 class="font-bold text-green-900 mb-2">Home B</h4>
+                        <ul class="text-sm text-gray-700 space-y-1">
+                            <li>• Price: <span class="font-bold">$265,000</span></li>
+                            <li>• Location: {{STATE_MEDIUM_TAX_CITY}}</li>
+                            <li>• Annual property tax: <span class="font-bold">$5,300 ($442/month)</span></li>
+                            <li>• School district rating: 7/10</li>
+                            <li>• Commute: 30 minutes each</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <p class="text-gray-700 mb-3"><strong>Analysis:</strong> Home B saves them $15,000 on purchase price and $3,100 annually in property taxes. Over a 30-year mortgage, the property tax difference alone equals <span class="font-bold text-red-700">$93,000</span>.</p>
+                <p class="text-gray-700 mb-3"><strong>Decision:</strong> They choose Home A, recognizing that the higher property taxes directly fund the superior schools they prioritize. They reduce other expenses to afford the difference.</p>
+                <p class="text-gray-700"><strong>Lesson:</strong> Property taxes reflect community priorities. Decide what services matter most to you and choose accordingly.</p>
+            </div>
+
+            <div class="bg-purple-50 border-l-4 border-purple-500 p-6 rounded-r-lg">
+                <h3 class="text-xl font-bold text-gray-900 mb-3">James's Job Relocation</h3>
+                <p class="text-gray-700 mb-3"><strong>Background:</strong> James, 24, works in tech support and has received two job offers.</p>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-4">
+                    <div class="bg-white p-4 rounded-lg">
+                        <h4 class="font-bold text-blue-900 mb-2">Offer A</h4>
+                        <ul class="text-sm text-gray-700 space-y-1">
+                            <li>• Salary: <span class="font-bold">$58,000</span></li>
+                            <li>• Location: {{STATE_HIGH_TAX_MAJOR_CITY}}</li>
+                            <li>• Combined sales tax: {{STATE_HIGH_COMBINED_SALES_TAX}}%</li>
+                            <li>• Avg rent (1BR): $1,350/month</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg">
+                        <h4 class="font-bold text-green-900 mb-2">Offer B</h4>
+                        <ul class="text-sm text-gray-700 space-y-1">
+                            <li>• Salary: <span class="font-bold">$55,000</span></li>
+                            <li>• Location: {{STATE_LOW_TAX_MEDIUM_CITY}}</li>
+                            <li>• Combined sales tax: {{STATE_LOW_COMBINED_SALES_TAX}}%</li>
+                            <li>• Avg rent (1BR): $975/month</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <p class="text-gray-700 mb-3"><strong>Decision:</strong> When James calculates his actual take-home pay and cost of living, Offer B leaves him with more disposable income despite the lower salary. He also prefers the smaller city's pace of life.</p>
+                <p class="text-gray-700"><strong>Lesson:</strong> Higher salaries don't always mean more money in your pocket. Local taxes and cost of living significantly impact your financial reality.</p>
+            </div>
+        </section>
+
+        <!-- Interactive Visualization: Property Tax Comparison -->
+        <section class="bg-gradient-to-r from-purple-50 to-pink-50 rounded-lg p-6 my-8 border-2 border-purple-400">
+            <h2 class="text-2xl font-bold text-gray-900 mb-4">📊 Interactive Visualization: Property Tax Comparison Across Jurisdictions</h2>
+            <p class="text-gray-700 mb-6">See how much property tax you'd pay on a $280,000 home in different cities with varying millage rates:</p>
+
+            <canvas id="propertyTaxChart" style="max-height: 350px;"></canvas>
+
+            <div class="grid md:grid-cols-4 gap-3 mt-6">
+                <div class="bg-green-50 p-3 rounded border-l-4 border-green-600 text-center">
+                    <div class="text-xs font-bold text-green-900 mb-1">Low Tax City</div>
+                    <div class="text-lg font-bold text-green-900">15 mills</div>
+                    <div class="text-2xl font-bold text-green-900 mt-1">$4,200/yr</div>
+                    <div class="text-xs text-gray-600">$350/month</div>
+                </div>
+                <div class="bg-blue-50 p-3 rounded border-l-4 border-blue-600 text-center">
+                    <div class="text-xs font-bold text-blue-900 mb-1">Medium Tax City</div>
+                    <div class="text-lg font-bold text-blue-900">22 mills</div>
+                    <div class="text-2xl font-bold text-blue-900 mt-1">$6,160/yr</div>
+                    <div class="text-xs text-gray-600">$513/month</div>
+                </div>
+                <div class="bg-yellow-50 p-3 rounded border-l-4 border-yellow-600 text-center">
+                    <div class="text-xs font-bold text-yellow-900 mb-1">High Tax City</div>
+                    <div class="text-lg font-bold text-yellow-900">30 mills</div>
+                    <div class="text-2xl font-bold text-yellow-900 mt-1">$8,400/yr</div>
+                    <div class="text-xs text-gray-600">$700/month</div>
+                </div>
+                <div class="bg-red-50 p-3 rounded border-l-4 border-red-600 text-center">
+                    <div class="text-xs font-bold text-red-900 mb-1">Very High Tax</div>
+                    <div class="text-lg font-bold text-red-900">38 mills</div>
+                    <div class="text-2xl font-bold text-red-900 mt-1">$10,640/yr</div>
+                    <div class="text-xs text-gray-600">$887/month</div>
+                </div>
+            </div>
+
+            <div class="mt-4 bg-white p-4 rounded-lg border border-purple-200">
+                <p class="text-sm text-gray-700 mb-2">
+                    <strong>💡 Key Insight:</strong> The difference between low and very high tax jurisdictions is <strong>$6,440 per year</strong> for the same $280,000 home!
+                </p>
+                <p class="text-sm text-gray-700">
+                    Over a 30-year mortgage, that's <strong>$193,200</strong> in additional property taxes. Always research local millage rates before deciding where to buy.
+                    Higher taxes often fund better schools, services, and infrastructure—consider what you're getting for the cost.
+                </p>
+            </div>
+        </section>
+
+        <!-- Skill Builder: Local Tax Impact Calculator -->
+        <section class="bg-purple-50 rounded-lg shadow-lg p-6 mb-8">
+            <h2 class="text-3xl font-bold text-gray-900 mb-4">🧮 Skill Builder: Local Tax Impact Calculator</h2>
+            <p class="text-gray-700 mb-6">Compare the total local tax burden across different jurisdictions in {{STATE_NAME}}.</p>
+
+            <!-- Jurisdiction Selection -->
+            <div class="bg-white p-6 rounded-lg border border-gray-300 mb-6">
+                <h3 class="text-xl font-bold text-gray-900 mb-4">Select Jurisdiction</h3>
+
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Choose Location:</label>
+                    <select id="jurisdiction" onchange="loadJurisdiction()" class="w-full p-3 border border-gray-300 rounded-lg">
+                        <option value="">-- Select a jurisdiction --</option>
+                        <option value="high_tax">{{STATE_HIGH_TAX_CITY}} (High tax, excellent services)</option>
+                        <option value="medium_tax">{{STATE_MEDIUM_TAX_CITY}} (Medium tax, good services)</option>
+                        <option value="low_tax">{{STATE_LOW_TAX_CITY}} (Low tax, basic services)</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Calculator Inputs -->
+            <div id="calculatorInputs" class="bg-white p-6 rounded-lg border border-gray-300 mb-6" style="display: none;">
+                <h3 class="text-xl font-bold text-gray-900 mb-4">Enter Your Information</h3>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Property Value (if buying):</label>
+                        <input type="number" id="propertyValue" value="250000" class="w-full p-3 border border-gray-300 rounded-lg" placeholder="$250,000">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Annual Taxable Purchases:</label>
+                        <input type="number" id="annualPurchases" value="24000" class="w-full p-3 border border-gray-300 rounded-lg" placeholder="$24,000">
+                    </div>
+                </div>
+
+                <button onclick="calculateTaxes()" class="bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700">Calculate Tax Burden</button>
+            </div>
+
+            <!-- Results Display -->
+            <div id="taxResults" class="bg-white p-6 rounded-lg border border-gray-300" style="display: none;">
+                <h3 class="text-xl font-bold text-gray-900 mb-4">Tax Burden Analysis for <span id="locationName"></span></h3>
+
+                <div class="grid md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <h4 class="font-bold text-gray-800 mb-3">Tax Rates</h4>
+                        <div class="space-y-2 text-sm">
+                            <div class="flex justify-between">
+                                <span class="text-gray-700">Property Tax Millage:</span>
+                                <span class="font-bold" id="millageRate">0</span> mills
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-700">Combined Sales Tax:</span>
+                                <span class="font-bold" id="salesTaxRate">0</span>%
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-700">School District Rating:</span>
+                                <span class="font-bold" id="schoolRating">0</span>/10
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h4 class="font-bold text-gray-800 mb-3">Annual Tax Obligations</h4>
+                        <div class="space-y-2">
+                            <div class="bg-blue-50 p-3 rounded-lg">
+                                <p class="text-sm text-gray-600">Property Tax (Annual):</p>
+                                <p class="text-2xl font-bold text-blue-700">$<span id="propertyTaxAnnual">0</span></p>
+                                <p class="text-sm text-gray-600">Monthly: $<span id="propertyTaxMonthly">0</span></p>
+                            </div>
+                            <div class="bg-green-50 p-3 rounded-lg">
+                                <p class="text-sm text-gray-600">Sales Tax (Annual):</p>
+                                <p class="text-2xl font-bold text-green-700">$<span id="salesTaxAnnual">0</span></p>
+                                <p class="text-sm text-gray-600">Monthly: $<span id="salesTaxMonthly">0</span></p>
+                            </div>
+                            <div class="bg-purple-50 p-3 rounded-lg">
+                                <p class="text-sm text-gray-600">Total Local Tax Burden:</p>
+                                <p class="text-3xl font-bold text-purple-700">$<span id="totalTaxBurden">0</span></p>
+                                <p class="text-sm text-gray-600">Per year</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-indigo-50 p-4 rounded-lg">
+                    <h4 class="font-bold text-gray-900 mb-2">Services & Quality of Life</h4>
+                    <p id="servicesSummary" class="text-gray-700"></p>
+                </div>
+            </div>
+
+            <!-- Comparison Feature -->
+            <div class="mt-6 bg-yellow-50 border border-yellow-300 p-4 rounded-lg">
+                <p class="font-bold text-gray-900 mb-2">💡 Pro Tip:</p>
+                <p class="text-gray-700">Calculate tax burden for at least three different locations to compare. Higher taxes often mean better schools and services, but not always. Consider what matters most to you!</p>
+            </div>
+        </section>
+
+        <!-- Reflection Prompt -->
+        <section class="bg-yellow-50 border-l-4 border-yellow-500 p-6 rounded-r-lg mb-8">
+            <h2 class="text-2xl font-bold text-gray-900 mb-4">💭 Reflection Prompt</h2>
+            <p class="text-gray-700 mb-3">Think about where you currently live or where you might want to live in the next 5-10 years:</p>
+            <ul class="list-disc list-inside space-y-2 text-gray-700 mb-4">
+                <li>What local services are most important to you (schools, public transportation, parks, public safety)?</li>
+                <li>How much are you willing to pay in local taxes for high-quality services?</li>
+                <li>If you had to choose between lower taxes with fewer services or higher taxes with excellent services, which would you choose and why?</li>
+                <li>How might your priorities change at different life stages (single young professional vs. family with children vs. retirement)?</li>
+            </ul>
+            <textarea id="reflection" rows="4" class="w-full p-3 border border-gray-300 rounded-lg" placeholder="Write your reflection here..."></textarea>
+            <button onclick="saveReflection()" class="mt-3 bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700">Save Reflection</button>
+        </section>
+
+        <!-- Coming Tomorrow Bridge -->
+        <section class="bg-blue-100 border-l-4 border-blue-500 p-6 rounded-r-lg">
+            <h3 class="text-xl font-bold text-gray-900 mb-3">🔍 Coming Tomorrow: Hands-On Tax Analysis</h3>
+            <p class="text-gray-700 mb-3">Tomorrow in the Learning Lab, you'll dive deeper into local tax analysis! You'll:</p>
+            <ul class="list-disc list-inside text-gray-700 space-y-1 mb-3">
+                <li>Decode a real property tax bill and understand exactly where your money goes</li>
+                <li>Compare three different {{STATE_NAME}} locations for your specific financial situation</li>
+                <li>Simulate home buying decisions with property tax integration</li>
+                <li>Learn when and how to challenge a property assessment</li>
+                <li>Plan tax strategies for different life stages</li>
+            </ul>
+            <p class="text-gray-700 font-semibold">Get ready to become a local tax expert!</p>
+        </section>
+
+    </div>
+
+    <script>
+        const jurisdictions = {
+            high_tax: {
+                name: '{{STATE_HIGH_TAX_CITY}}',
+                millageRate: 35,
+                salesTaxRate: 8.5,
+                schoolRating: 9,
+                services: 'Excellent schools, comprehensive public transportation, extensive parks and recreation, top-tier emergency services, well-maintained infrastructure.'
+            },
+            medium_tax: {
+                name: '{{STATE_MEDIUM_TAX_CITY}}',
+                millageRate: 25,
+                salesTaxRate: 7.0,
+                schoolRating: 7,
+                services: 'Good schools, moderate public transportation, community parks, reliable emergency services, regular road maintenance.'
+            },
+            low_tax: {
+                name: '{{STATE_LOW_TAX_CITY}}',
+                millageRate: 15,
+                salesTaxRate: 6.0,
+                schoolRating: 6,
+                services: 'Basic schools, limited public transportation, few parks, standard emergency services, periodic road maintenance.'
+            }
+        };
+
+        function loadJurisdiction() {
+            const select = document.getElementById('jurisdiction');
+            const jurisdictionId = select.value;
+
+            if (!jurisdictionId) {
+                document.getElementById('calculatorInputs').style.display = 'none';
+                document.getElementById('taxResults').style.display = 'none';
+                return;
+            }
+
+            document.getElementById('calculatorInputs').style.display = 'block';
+        }
+
+        function calculateTaxes() {
+            const jurisdictionId = document.getElementById('jurisdiction').value;
+            if (!jurisdictionId) {
+                alert('Please select a jurisdiction first.');
+                return;
+            }
+
+            const jurisdiction = jurisdictions[jurisdictionId];
+            const propertyValue = parseFloat(document.getElementById('propertyValue').value) || 0;
+            const annualPurchases = parseFloat(document.getElementById('annualPurchases').value) || 0;
+
+            // Calculate property tax (assuming 100% assessment and $25,000 homestead exemption)
+            const assessedValue = propertyValue;
+            const homesteadExemption = 25000;
+            const taxableValue = Math.max(0, assessedValue - homesteadExemption);
+            const propertyTaxAnnual = (taxableValue * jurisdiction.millageRate) / 1000;
+            const propertyTaxMonthly = propertyTaxAnnual / 12;
+
+            // Calculate sales tax
+            const salesTaxAnnual = annualPurchases * (jurisdiction.salesTaxRate / 100);
+            const salesTaxMonthly = salesTaxAnnual / 12;
+
+            // Total tax burden
+            const totalTaxBurden = propertyTaxAnnual + salesTaxAnnual;
+
+            // Update display
+            document.getElementById('locationName').textContent = jurisdiction.name;
+            document.getElementById('millageRate').textContent = jurisdiction.millageRate;
+            document.getElementById('salesTaxRate').textContent = jurisdiction.salesTaxRate;
+            document.getElementById('schoolRating').textContent = jurisdiction.schoolRating;
+
+            document.getElementById('propertyTaxAnnual').textContent = Math.round(propertyTaxAnnual).toLocaleString();
+            document.getElementById('propertyTaxMonthly').textContent = Math.round(propertyTaxMonthly).toLocaleString();
+            document.getElementById('salesTaxAnnual').textContent = Math.round(salesTaxAnnual).toLocaleString();
+            document.getElementById('salesTaxMonthly').textContent = Math.round(salesTaxMonthly).toLocaleString();
+            document.getElementById('totalTaxBurden').textContent = Math.round(totalTaxBurden).toLocaleString();
+
+            document.getElementById('servicesSummary').textContent = jurisdiction.services;
+
+            document.getElementById('taxResults').style.display = 'block';
+        }
+
+        function saveReflection() {
+            const reflection = document.getElementById('reflection').value;
+            if (reflection.trim()) {
+                alert('✅ Reflection saved! You\'ll build on these insights in tomorrow\'s Learning Lab.');
+                console.log('Reflection saved:', reflection);
+            } else {
+                alert('Please write your reflection before saving.');
+            }
+        }
+
+        // Property Tax Comparison Chart
+        const propTaxCtx = document.getElementById('propertyTaxChart').getContext('2d');
+
+        const homeValue = 280000; // $280,000 home
+        const millageRates = [
+            { city: 'Low Tax City', mills: 15, color: '#059669' },
+            { city: 'Medium Tax City', mills: 22, color: '#2563EB' },
+            { city: 'High Tax City', mills: 30, color: '#F59E0B' },
+            { city: 'Very High Tax', mills: 38, color: '#DC2626' }
+        ];
+
+        // Calculate annual property tax: (Home Value × Mills) / 1000
+        const annualTaxes = millageRates.map(item => (homeValue * item.mills) / 1000);
+        const monthlyTaxes = annualTaxes.map(tax => tax / 12);
+
+        new Chart(propTaxCtx, {
+            type: 'bar',
+            data: {
+                labels: millageRates.map(item => item.city + '\n(' + item.mills + ' mills)'),
+                datasets: [{
+                    label: 'Annual Property Tax',
+                    data: annualTaxes,
+                    backgroundColor: millageRates.map(item => item.color),
+                    borderColor: millageRates.map(item => item.color),
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Annual Property Tax on $280,000 Home by Jurisdiction',
+                        font: {
+                            size: 16,
+                            weight: 'bold'
+                        }
+                    },
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                        padding: 12,
+                        callbacks: {
+                            title: function(context) {
+                                return context[0].label.replace(/\n/g, ' ');
+                            },
+                            label: function(context) {
+                                const annual = context.parsed.y;
+                                const monthly = annual / 12;
+                                return [
+                                    'Annual Tax: $' + annual.toLocaleString(),
+                                    'Monthly: $' + Math.round(monthly).toLocaleString()
+                                ];
+                            },
+                            footer: function(context) {
+                                const index = context[0].dataIndex;
+                                const mills = millageRates[index].mills;
+                                return '\nCalculation: $280,000 × ' + mills + ' mills ÷ 1000';
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Jurisdiction',
+                            font: {
+                                size: 13,
+                                weight: 'bold'
+                            }
+                        },
+                        ticks: {
+                            font: {
+                                size: 10
+                            }
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Annual Property Tax',
+                            font: {
+                                size: 13,
+                                weight: 'bold'
+                            }
+                        },
+                        ticks: {
+                            callback: function(value) {
+                                return '$' + (value / 1000).toFixed(1) + 'k';
+                            }
+                        },
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

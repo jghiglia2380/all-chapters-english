@@ -1,4 +1,20 @@
 <!DOCTYPE html>
+<!--
+PFL Academy State-Agnostic Template
+L-Chapter: L-33
+Chapter Title: Understanding and Managing Risk
+Oklahoma Reference: Chapter 11.1
+
+Variables used in this template:
+- {{STATE_NAME}} - Full state name (e.g., Kentucky, Georgia)
+- {{CHAPTER_NUMBER}} - State-specific chapter number (e.g., 2.1, 1.4)
+- {{CHAPTER_ID}} - L-chapter identifier (e.g., L-33)
+- {{CHAPTER_TITLE}} - Always: Understanding and Managing Risk
+
+This template will be processed by generate_state_html.py to create
+state-specific versions with correct chapter numbering.
+-->
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -151,7 +167,7 @@
     <div class="container">
         <div class="header">
             <h1>Risk Assessment Matrix Worksheet</h1>
-            <p>Chapter 11.1: Understanding and Managing Risk</p>
+            <p>Chapter {{CHAPTER_NUMBER}}: Understanding and Managing Risk</p>
         </div>
         
         <div class="instructions">
@@ -445,7 +461,7 @@
         <div class="writing-area"></div>
         
         <div class="footer">
-            <p>PFL Academy | Chapter 11.1: Understanding and Managing Risk</p>
+            <p>PFL Academy | Chapter {{CHAPTER_NUMBER}}: Understanding and Managing Risk</p>
             <p>© 2025 PFL Academy. All rights reserved.</p>
         </div>
     </div>

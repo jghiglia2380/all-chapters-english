@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-60: Understanding Financial Contracts - Day 1</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .learning-objective { background-color: #e6f3ff; border-radius: 0.5rem; padding: 1.5rem; margin-bottom: 1rem; }
+        .discussion-prompt { background-color: #e6f0ff; border-left: 4px solid #3b82f6; padding: 1rem; margin: 1rem 0; }
+        .case-study { background-color: #f0f9ff; border-left: 4px solid #0ea5e9; padding: 1.5rem; margin: 1rem 0; }
+        .skill-builder { background-color: #f3e8ff; border-radius: 0.5rem; padding: 1.5rem; margin: 1.5rem 0; }
+        .activity-timer { background-color: #FFFBEB; border-left: 4px solid #F59E0B; padding: 1rem; margin: 1rem 0; }
+        .key-concept { background-color: #f0fdf4; border-left: 4px solid #10b981; padding: 1rem; margin: 0.5rem 0; }
+        .given-value { background-color: #f3f4f6; color: #6b7280; cursor: not-allowed; }
+        .helper-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; }
+        .helper-content.active { max-height: 500px; }
+        .contract-section { border: 2px solid #e5e7eb; border-radius: 0.5rem; padding: 1.5rem; margin: 1rem 0; }
+        .contract-section.correct { border-color: #10b981; background-color: #f0fdf4; }
+        .contract-section.incorrect { border-color: #ef4444; background-color: #fef2f2; }
+        .contract-tab { cursor: pointer; padding: 0.75rem 1.5rem; border: 1px solid #e5e7eb; }
+        .contract-tab.active { background-color: #6366f1; color: white; }
+        .contract-content { display: none; }
+        .contract-content.active { display: block; }
+        .checklist-item { padding: 0.5rem; margin: 0.25rem 0; border-left: 3px solid #d1d5db; }
+        .checklist-item.checked { border-left-color: #10b981; background-color: #f0fdf4; }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Fixed Header -->
+    <header class="bg-indigo-600 text-white p-4 shadow-md fixed top-0 left-0 right-0 z-40">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <h1 class="text-2xl font-bold">PFL Academy</h1>
+            <nav class="hidden md:flex space-x-6">
+                <a href="#" class="hover:text-indigo-200">Home</a>
+                <a href="#" class="hover:text-indigo-200">Curriculum</a>
+                <a href="#" class="hover:text-indigo-200">Resources</a>
+                <a href="#" class="hover:text-indigo-200">Profile</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Spacer for fixed header -->
+    <div class="h-16"></div>
+
+    <div class="max-w-7xl mx-auto p-6 lg:grid lg:grid-cols-10 lg:gap-6">
+        <!-- Left Navigation Sidebar -->
+        <aside class="lg:col-span-2 mb-6 lg:mb-0">
+            <div class="bg-white rounded-lg shadow-md p-4 sticky top-24">
+                <h2 class="font-bold text-lg mb-4 text-gray-800">L-60: Financial Contracts</h2>
+                <nav class="space-y-2">
+                    <a href="#introduction" class="block p-2 rounded bg-indigo-50 text-indigo-700 border-l-4 border-indigo-700">
+                        Introduction
+                    </a>
+                    <a href="#key-concepts" class="block p-2 rounded hover:bg-gray-50">
+                        Key Concepts
+                    </a>
+                    <a href="#elements" class="block p-2 rounded hover:bg-gray-50">
+                        Contract Elements
+                    </a>
+                    <a href="#types" class="block p-2 rounded hover:bg-gray-50">
+                        Types of Contracts
+                    </a>
+                    <a href="#language" class="block p-2 rounded hover:bg-gray-50">
+                        Contract Language
+                    </a>
+                    <a href="#implications" class="block p-2 rounded hover:bg-gray-50">
+                        Implications
+                    </a>
+                    <a href="#examples" class="block p-2 rounded hover:bg-gray-50">
+                        Real-World Examples
+                    </a>
+                    <a href="#skill-builder" class="block p-2 rounded hover:bg-gray-50">
+                        Contract Analysis Tool
+                    </a>
+                </nav>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="lg:col-span-8">
+            <div class="bg-white rounded-lg shadow-md p-8">
+
+                <!-- Header -->
+                <div class="mb-8">
+                    <h1 class="text-4xl font-bold text-gray-900 mb-2">Understanding Financial Contracts</h1>
+                    <p class="text-xl text-gray-600">Day 1: Contract Literacy Foundations</p>
+                </div>
+
+                <!-- Learning Objectives -->
+                <section class="mb-8">
+                    <div class="learning-objective">
+                        <h2 class="text-2xl font-bold text-gray-900 mb-4">Learning Objectives</h2>
+                        <ul class="list-disc list-inside space-y-2 text-gray-700">
+                            <li>Identify the essential elements that make a contract legally binding</li>
+                            <li>Interpret common legal terminology and contract clauses in financial agreements</li>
+                            <li>Analyze contract terms to understand rights, obligations, and potential risks</li>
+                            <li>Evaluate the financial implications of signing different types of contracts</li>
+                            <li>Apply contract literacy skills to protect personal interests in financial transactions</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- Introduction -->
+                <section id="introduction" class="mb-8">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4">Introduction</h2>
+                    <p class="text-gray-700 mb-4">
+                        Every day, Americans enter into dozens of contracts—many without realizing it. When you accept the terms of service for a new app, sign up for a gym membership, rent an apartment, finance a phone, or even click "I agree" to website cookies, you're entering a legally binding agreement. Some of these contracts are minor and temporary, but others, like apartment leases, car loans, or employment agreements, can have significant financial consequences that last for months or years.
+                    </p>
+                    <p class="text-gray-700 mb-4">
+                        The challenge is that most people sign contracts without fully understanding what they're agreeing to. Contract language is often dense, filled with legal terminology, and deliberately written to protect the interests of the party that drafted it—usually a business or institution. A 2012 study found that only 7% of people read end-user license agreements before clicking "I agree," and even those who try often struggle to understand the legal language. This widespread contract illiteracy leaves consumers vulnerable to unexpected fees, unfavorable terms, and obligations they didn't fully comprehend.
+                    </p>
+                    <p class="text-gray-700">
+                        Understanding contracts isn't about becoming a lawyer—it's about developing the literacy to protect your financial interests. Knowing what makes a contract valid, recognizing common contract terms and clauses, identifying potential red flags, and understanding your rights and obligations can save you thousands of dollars and prevent legal problems. Whether you're signing your first apartment lease, financing your education, or accepting a job offer, contract literacy is an essential life skill that empowers you to make informed decisions and avoid costly mistakes.
+                    </p>
+                </section>
+
+                <!-- Key Concepts -->
+                <section id="key-concepts" class="mb-8">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4">Key Concepts</h2>
+
+                    <div class="key-concept">
+                        <p class="text-gray-700">
+                            <strong class="text-gray-900">Contract:</strong> A legally enforceable agreement between two or more parties that creates mutual obligations; valid contracts require offer, acceptance, consideration, capacity, and legality
+                        </p>
+                    </div>
+
+                    <div class="key-concept">
+                        <p class="text-gray-700">
+                            <strong class="text-gray-900">Offer:</strong> A proposal made by one party (the offeror) to another party (the offeree) indicating a willingness to enter into a contract on specified terms
+                        </p>
+                    </div>
+
+                    <div class="key-concept">
+                        <p class="text-gray-700">
+                            <strong class="text-gray-900">Acceptance:</strong> The offeree's agreement to the terms of an offer, creating a binding contract; acceptance must be unconditional and communicated to the offeror
+                        </p>
+                    </div>
+
+                    <div class="key-concept">
+                        <p class="text-gray-700">
+                            <strong class="text-gray-900">Consideration:</strong> Something of value exchanged between the parties; each party must give something (money, services, goods, or a promise) for the contract to be legally binding
+                        </p>
+                    </div>
+
+                    <div class="key-concept">
+                        <p class="text-gray-700">
+                            <strong class="text-gray-900">Capacity:</strong> The legal ability to enter into a contract; parties must be of legal age (18 in most states), mentally competent, and not under duress or undue influence
+                        </p>
+                    </div>
+
+                    <div class="key-concept">
+                        <p class="text-gray-700">
+                            <strong class="text-gray-900">Breach of Contract:</strong> Failure to fulfill the obligations outlined in a contract without a legal excuse; breaches can be material (major) or minor and may result in legal remedies
+                        </p>
+                    </div>
+
+                    <div class="key-concept">
+                        <p class="text-gray-700">
+                            <strong class="text-gray-900">Terms and Conditions:</strong> The specific provisions, rules, and requirements outlined in a contract that define each party's rights and obligations
+                        </p>
+                    </div>
+
+                    <div class="key-concept">
+                        <p class="text-gray-700">
+                            <strong class="text-gray-900">Fine Print:</strong> Contract clauses, often in small text or buried in lengthy documents, that contain important limitations, fees, penalties, or conditions that may not be immediately obvious
+                        </p>
+                    </div>
+
+                    <div class="key-concept">
+                        <p class="text-gray-700">
+                            <strong class="text-gray-900">Boilerplate Clauses:</strong> Standard, pre-written contract provisions that appear in many contracts, such as arbitration clauses, liability limitations, and termination conditions
+                        </p>
+                    </div>
+
+                    <div class="key-concept">
+                        <p class="text-gray-700">
+                            <strong class="text-gray-900">Unilateral vs. Bilateral Contract:</strong> A unilateral contract involves one party making a promise in exchange for an action (e.g., reward offers); a bilateral contract involves mutual promises between two parties (most common type)
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Essential Elements of a Valid Contract -->
+                <section id="elements" class="mb-8">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4">Essential Elements of a Valid Contract</h2>
+                    <p class="text-gray-700 mb-4">
+                        For a contract to be legally enforceable, it must contain five essential elements. First, there must be an <strong>offer</strong>—a clear proposal by one party to do or provide something specific. Second, there must be <strong>acceptance</strong> of that offer by the other party. This acceptance must be unconditional and communicated back to the person making the offer. If you respond to an offer by changing the terms, that's actually a counter-offer, not an acceptance, and no contract is formed.
+                    </p>
+                    <p class="text-gray-700 mb-4">
+                        Third, there must be <strong>consideration</strong>—each party must exchange something of value. This could be money, services, goods, or even a promise to do (or not do) something in the future. A promise without consideration is generally not enforceable. For example, if someone promises to give you their car for free with no exchange, that's a gift, not a contract, and they can change their mind without legal consequences.
+                    </p>
+                    <p class="text-gray-700 mb-4">
+                        Fourth, the parties must have <strong>capacity</strong> to contract. This means they must be legally competent—of legal age (18 in most states, though 19 in some), mentally capable of understanding the agreement, and entering the contract voluntarily without threats or undue pressure. Contracts signed by minors are generally voidable by the minor, and contracts signed under duress or fraud can be invalidated.
+                    </p>
+                    <p class="text-gray-700">
+                        Fifth, the contract's purpose must be <strong>legal</strong>. You cannot create an enforceable contract for illegal activities. A contract to sell stolen goods or engage in illegal services would be void from the start, regardless of whether all other elements are present.
+                    </p>
+                </section>
+
+                <!-- Types of Financial Contracts -->
+                <section id="types" class="mb-8">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4">Types of Financial Contracts You'll Encounter</h2>
+
+                    <div class="mb-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Lease Agreements</h3>
+                        <p class="text-gray-700">
+                            An apartment lease is a contract granting you the right to occupy a property for a specified period in exchange for monthly rent. Leases typically include terms about security deposits, maintenance responsibilities, pet policies, utilities, subletting restrictions, and conditions for lease termination. Breaking a lease early often results in financial penalties.
+                        </p>
+                    </div>
+
+                    <div class="mb-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Loan Agreements</h3>
+                        <p class="text-gray-700">
+                            Loan agreements outline the terms under which you borrow money and agree to repay it, including the principal amount, interest rate, payment schedule, fees, and consequences of default. Whether it's a student loan, auto loan, or personal loan, these contracts create a legal obligation to repay the debt regardless of your financial circumstances. Understanding loan terms—particularly interest calculations, prepayment penalties, and default provisions—is crucial to avoid unexpected costs.
+                        </p>
+                    </div>
+
+                    <div class="mb-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Service Contracts</h3>
+                        <p class="text-gray-700">
+                            Service contracts are agreements where you pay for ongoing services, such as cell phone plans, internet service, gym memberships, or subscription services. These often include terms about service duration, automatic renewal, cancellation procedures, early termination fees, and dispute resolution. Many people sign up for services with promotional rates only to discover significant price increases after the initial period or find themselves locked into long-term contracts with substantial cancellation penalties.
+                        </p>
+                    </div>
+
+                    <div class="mb-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Employment Contracts</h3>
+                        <p class="text-gray-700">
+                            Employment contracts and offer letters outline the terms of your employment, including compensation, benefits, job duties, work schedule, probationary periods, non-compete clauses, and termination conditions. While many jobs are "at-will" (meaning either party can end the relationship at any time), employment contracts can include provisions that limit your ability to work for competitors or require you to stay for a minimum period.
+                        </p>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Purchase Agreements</h3>
+                        <p class="text-gray-700">
+                            Purchase agreements for major items like vehicles or real estate involve extensive contracts detailing the purchase price, payment terms, warranties, inspection contingencies, and transfer of ownership. These high-stakes contracts require careful review as they involve substantial financial commitments.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Understanding Contract Language -->
+                <section id="language" class="mb-8">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4">Understanding and Interpreting Contract Language</h2>
+                    <p class="text-gray-700 mb-4">
+                        Contracts are often deliberately written in complex legal language that can obscure important terms. Learning to navigate this language is essential to protecting your interests. Start by reading the <strong>entire contract</strong>—never sign something you haven't fully reviewed. Pay particular attention to sections that outline your financial obligations, including payment amounts, due dates, fees, penalties, and conditions that could trigger additional charges.
+                    </p>
+                    <p class="text-gray-700 mb-4">
+                        Look for <strong>key terms</strong> that define when and how the contract can be modified or terminated. Many contracts include clauses allowing one party (usually the business) to change terms with minimal notice, while making it difficult for you to exit the agreement. Automatic renewal clauses can cause subscriptions or memberships to continue (and charge you) indefinitely unless you proactively cancel, often requiring 30-60 days' notice before the renewal date.
+                    </p>
+                    <p class="text-gray-700 mb-4">
+                        <strong>Arbitration clauses</strong> are increasingly common and often buried in the fine print. These provisions require you to resolve disputes through private arbitration rather than court, potentially limiting your legal remedies and preventing you from participating in class-action lawsuits. While not inherently unfair, arbitration clauses significantly affect your rights if problems arise.
+                    </p>
+                    <p class="text-gray-700 mb-4">
+                        <strong>Liability limitations</strong> and <strong>indemnification clauses</strong> often appear in contracts to protect the business from responsibility. These might limit the company's liability for damages, require you to waive certain rights, or even make you responsible for legal costs if disputes occur. Understanding these provisions helps you assess the actual risks you're accepting.
+                    </p>
+                    <p class="text-gray-700">
+                        Pay close attention to any language about <strong>default and remedies</strong>. What happens if you miss a payment or can't fulfill your obligations? What penalties or fees apply? Can the lender repossess property? Will you be responsible for collection costs and legal fees? Understanding the worst-case scenarios helps you evaluate whether you can realistically fulfill the contract.
+                    </p>
+                </section>
+
+                <!-- Implications & Importance -->
+                <section id="implications" class="mb-8">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4">Implications & Importance</h2>
+                    <p class="text-gray-700 mb-4">
+                        Contract literacy has direct and substantial financial implications. Signing a contract you don't understand can commit you to thousands of dollars in unexpected expenses. A person who signs an apartment lease without understanding the subletting restrictions might find themselves legally obligated to pay $12,000 for the remainder of their lease even after they move out for a new job. Someone who doesn't read their gym membership contract might discover they're locked into a two-year commitment with a $500 early termination fee.
+                    </p>
+                    <p class="text-gray-700 mb-4">
+                        Credit agreements in particular can have devastating long-term impacts if not properly understood. Payday loan contracts, rent-to-own agreements, and certain credit card terms can include effective annual percentage rates exceeding 300%, trapping borrowers in cycles of debt. Understanding the true cost of credit, including all fees and interest calculations, is essential to avoiding predatory lending arrangements.
+                    </p>
+                    <p class="text-gray-700 mb-4">
+                        Your future financial flexibility is often at stake in contracts. Non-compete clauses in employment contracts might prevent you from taking better job opportunities in your field for months or years after leaving. Early termination penalties in service contracts might lock you into expensive plans even when cheaper alternatives become available. Understanding these restrictions before signing allows you to negotiate better terms or choose different options.
+                    </p>
+                    <p class="text-gray-700">
+                        Moreover, contracts create legal obligations that don't disappear just because you change your mind, experience financial hardship, or didn't fully understand what you were signing. Courts generally enforce contracts as written, assuming that signing indicates agreement and understanding. The excuse "I didn't read it" or "I didn't understand it" rarely provides legal protection once you've signed. This makes reading and understanding contracts before signing not just advisable, but essential to protecting your financial wellbeing.
+                    </p>
+                </section>
+
+                <!-- Real-World Examples -->
+                <section id="examples" class="mb-8">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4">Real-World Examples</h2>
+
+                    <div class="case-study">
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Aaliyah's Apartment Lease Trap</h3>
+                        <p class="text-gray-700 mb-3">
+                            Aaliyah, excited about her first apartment, quickly signed a 12-month lease after a brief tour. She was eager to move in and didn't carefully review the 15-page lease agreement. The monthly rent of $950 seemed affordable on her $2,800 monthly income. Three months later, Aaliyah received an unexpected job offer in another city with significantly better pay and career advancement. When she told her landlord she needed to break her lease, she discovered several provisions she'd overlooked: the lease required 60 days' written notice for early termination, prohibited subletting without landlord approval (which required a $500 application fee with no guarantee of acceptance), and included a early termination penalty of two months' rent plus forfeiture of her $950 security deposit.
+                        </p>
+                        <p class="text-gray-700">
+                            Aaliyah's failure to read and understand her lease cost her $2,850 in termination penalties plus her security deposit—a total of $3,800—on top of rent for the 60-day notice period. Had she read the lease carefully, she might have negotiated different terms, chosen a month-to-month lease (available for $100 more per month), or at least understood her financial obligations before committing. This expensive lesson taught Aaliyah that reading and understanding contracts before signing is worth the time investment.
+                        </p>
+                    </div>
+
+                    <div class="case-study">
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Marcus's Cell Phone Contract Mistake</h3>
+                        <p class="text-gray-700 mb-3">
+                            Marcus wanted the newest smartphone and was thrilled when the store offered it "free" with a new two-year contract. The salesperson emphasized the phone's $1,200 value and the low $75 monthly payment for unlimited data. Marcus signed the multi-page contract on the salesperson's tablet without reading it, assuming the deal was as straightforward as presented. Six months later, Marcus's living situation changed, and he needed to significantly reduce his expenses. When he tried to cancel his phone service, he discovered the "free" phone wasn't actually free—it was financed over 24 months and built into his plan. The contract included an early termination fee of $350 plus the remaining balance on the phone (approximately $800), totaling $1,150 to cancel.
+                        </p>
+                        <p class="text-gray-700">
+                            Additionally, the contract included an automatic upgrade clause that would renew his commitment every time he accepted a phone upgrade. Marcus realized that had he bought a $300 used phone outright and chosen a $40/month no-contract plan, he would save over $1,400 over two years compared to his current locked-in contract. More importantly, he would have maintained flexibility to adjust his plan as his circumstances changed. Marcus's experience illustrates how "free" offers often come with hidden long-term obligations that are only apparent when reading the full contract.
+                        </p>
+                    </div>
+
+                    <div class="case-study">
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Sofia's Informed Contract Negotiation</h3>
+                        <p class="text-gray-700 mb-3">
+                            Sofia was offered her first full-time job at an annual salary of $52,000. Rather than immediately signing the offer letter, she carefully reviewed all five pages, highlighting sections she didn't understand and researching unfamiliar terms. She discovered a non-compete clause that would prevent her from working for any competing company within a 50-mile radius for two years after leaving the position. Given that her industry had limited employers in her area, this clause could seriously limit her career mobility. The offer also included a 90-day probationary period during which she could be terminated without cause and would not be eligible for health benefits.
+                        </p>
+                        <p class="text-gray-700">
+                            Sofia researched whether these terms were standard and contacted the HR department with specific questions and concerns. She politely requested modifications to the non-compete clause, asking to limit it to direct competitors and reduce the restriction to one year and 25 miles. She also negotiated to receive health benefits after 60 days rather than 90. The employer agreed to her requested changes and appreciated her professionalism in negotiating the terms. By understanding the contract and advocating for her interests, Sofia secured better terms that protected her future career flexibility while still accepting the job. Her careful contract review and willingness to negotiate established a pattern of informed decision-making that served her throughout her career, and the employer respected her attention to detail and professional approach.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Interactive Visualization: Contract Cost Comparison -->
+                <section class="bg-gradient-to-r from-orange-50 to-red-50 rounded-lg p-6 my-8 border-2 border-orange-400">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4">📊 Interactive Visualization: Contract vs. No-Contract Cost Comparison</h2>
+                    <p class="text-gray-700 mb-6">Compare the total cost of a locked-in 24-month phone contract vs. a flexible no-contract plan, both in normal circumstances and if you need to cancel early:</p>
+
+                    <div class="bg-white p-4 rounded-lg mb-4">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Scenario:</label>
+                        <select id="contractScenario" onchange="updateContractChart()" class="w-full p-3 border border-gray-300 rounded-lg">
+                            <option value="full">Complete 24-Month Term (Normal)</option>
+                            <option value="early6">Cancel After 6 Months (Emergency)</option>
+                            <option value="early12">Cancel After 12 Months (Job Relocation)</option>
+                            <option value="early18">Cancel After 18 Months (Financial Hardship)</option>
+                        </select>
+                    </div>
+
+                    <canvas id="contractCostChart" style="max-height: 350px;"></canvas>
+
+                    <div class="grid md:grid-cols-2 gap-4 mt-6">
+                        <div class="bg-blue-50 p-4 rounded border-l-4 border-blue-600">
+                            <h4 class="font-bold text-blue-900 mb-2">24-Month Contract Plan</h4>
+                            <p class="text-sm text-gray-700 mb-2">$75/month + "Free" $1,200 phone (financed)</p>
+                            <p class="text-xs text-gray-600">Early termination: $350 fee + remaining phone balance</p>
+                        </div>
+                        <div class="bg-green-50 p-4 rounded border-l-4 border-green-600">
+                            <h4 class="font-bold text-green-900 mb-2">No-Contract Flexible Plan</h4>
+                            <p class="text-sm text-gray-700 mb-2">$40/month + $300 used phone (paid upfront)</p>
+                            <p class="text-xs text-gray-600">Cancel anytime with no penalties</p>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 bg-white p-4 rounded-lg border border-orange-200">
+                        <p class="text-sm text-gray-700" id="contractInsight"></p>
+                    </div>
+                </section>
+
+                <!-- Reflection Prompt -->
+                <div class="discussion-prompt mb-8">
+                    <h3 class="text-lg font-bold text-gray-900 mb-2">💭 Reflection Prompt</h3>
+                    <p class="text-gray-700">
+                        Think about financial contracts you've already signed or expect to sign in the near future (phone plan, streaming service subscription, rental agreement, credit card, etc.). What terms or conditions did you accept without fully understanding? How might taking the time to read and analyze these contracts have changed your decisions or helped you negotiate better terms? What questions would you now know to ask before signing a contract?
+                    </p>
+                </div>
+
+                <!-- Skill Builder Activity -->
+                <section id="skill-builder" class="mb-8">
+                    <div class="skill-builder">
+                        <h2 class="text-2xl font-bold text-gray-900 mb-4">📋 Contract Analysis Tool</h2>
+                        <div class="activity-timer mb-4">
+                            <p class="text-sm font-semibold text-gray-700">⏱️ Activity Time: 20-25 minutes</p>
+                        </div>
+                        <p class="text-gray-700 mb-4">
+                            Practice identifying essential contract elements, key terms, and potential red flags in real-world financial contracts. You'll analyze four common contract types and develop your contract literacy skills.
+                        </p>
+
+                        <!-- Contract Tabs -->
+                        <div class="flex flex-wrap mb-4 border-b">
+                            <div class="contract-tab active" onclick="switchContract('lease')">Apartment Lease</div>
+                            <div class="contract-tab" onclick="switchContract('phone')">Cell Phone Plan</div>
+                            <div class="contract-tab" onclick="switchContract('gym')">Gym Membership</div>
+                            <div class="contract-tab" onclick="switchContract('loan')">Personal Loan</div>
+                        </div>
+
+                        <!-- Apartment Lease Contract -->
+                        <div id="lease-contract" class="contract-content active">
+                            <h3 class="text-xl font-bold text-gray-900 mb-4">Apartment Lease Agreement</h3>
+
+                            <div class="contract-section p-4 mb-4">
+                                <p class="text-sm text-gray-600 mb-2"><strong>CONTRACT EXCERPT:</strong></p>
+                                <p class="text-gray-700 mb-2">
+                                    "This Residential Lease Agreement ('Agreement') is entered into on January 1, 2025, between Riverside Property Management, LLC ('Landlord') and <input type="text" id="lease-tenant-name" placeholder="Your Name" class="border rounded px-2 py-1"> ('Tenant'). Landlord agrees to lease to Tenant the residential property located at 742 Oak Street, Apartment 3B, for a term of 12 months beginning January 1, 2025 and ending December 31, 2025."
+                                </p>
+                                <p class="text-gray-700 mb-2">
+                                    "Tenant agrees to pay monthly rent of $1,050, due on the first day of each month. A security deposit of $1,050 is required at lease signing. Late payments (received after the 5th of the month) will incur a $75 late fee. Tenant may not sublet the premises without prior written approval from Landlord, which may be granted or denied at Landlord's sole discretion. Subletting application fee: $500 (non-refundable)."
+                                </p>
+                                <p class="text-gray-700">
+                                    "Early termination requires 60 days written notice and payment of an early termination fee equal to two months' rent. Security deposit will be forfeited in the event of early termination. Tenant must be at least 18 years of age and of sound mind to enter this agreement. This agreement is governed by the laws of the state in which the property is located."
+                                </p>
+                            </div>
+
+                            <h4 class="text-lg font-bold text-gray-900 mb-3">Identify the Five Essential Elements:</h4>
+
+                            <div class="mb-4">
+                                <label class="flex items-start mb-2">
+                                    <input type="checkbox" id="lease-offer" class="mt-1 mr-2">
+                                    <span class="text-gray-700"><strong>Offer:</strong> Where is the offer in this contract?</span>
+                                </label>
+                                <div id="lease-offer-helper" class="helper-content ml-6 p-3 bg-blue-50 rounded">
+                                    <p class="text-sm text-gray-700">The offer is: "Landlord agrees to lease to Tenant the residential property located at 742 Oak Street, Apartment 3B, for a term of 12 months." This is the landlord's proposal to provide housing.</p>
+                                </div>
+                                <button onclick="toggleHelper('lease-offer-helper')" class="text-sm text-blue-600 ml-6">Show explanation</button>
+                            </div>
+
+                            <div class="mb-4">
+                                <label class="flex items-start mb-2">
+                                    <input type="checkbox" id="lease-acceptance" class="mt-1 mr-2">
+                                    <span class="text-gray-700"><strong>Acceptance:</strong> How is acceptance shown?</span>
+                                </label>
+                                <div id="lease-acceptance-helper" class="helper-content ml-6 p-3 bg-blue-50 rounded">
+                                    <p class="text-sm text-gray-700">Acceptance occurs when the tenant signs the agreement and provides the security deposit. The signature communicates unconditional agreement to the terms.</p>
+                                </div>
+                                <button onclick="toggleHelper('lease-acceptance-helper')" class="text-sm text-blue-600 ml-6">Show explanation</button>
+                            </div>
+
+                            <div class="mb-4">
+                                <label class="flex items-start mb-2">
+                                    <input type="checkbox" id="lease-consideration" class="mt-1 mr-2">
+                                    <span class="text-gray-700"><strong>Consideration:</strong> What is being exchanged?</span>
+                                </label>
+                                <div id="lease-consideration-helper" class="helper-content ml-6 p-3 bg-blue-50 rounded">
+                                    <p class="text-sm text-gray-700">Tenant provides: $1,050 monthly rent + $1,050 security deposit. Landlord provides: Right to occupy the apartment for 12 months. Both parties exchange something of value.</p>
+                                </div>
+                                <button onclick="toggleHelper('lease-consideration-helper')" class="text-sm text-blue-600 ml-6">Show explanation</button>
+                            </div>
+
+                            <div class="mb-4">
+                                <label class="flex items-start mb-2">
+                                    <input type="checkbox" id="lease-capacity" class="mt-1 mr-2">
+                                    <span class="text-gray-700"><strong>Capacity:</strong> What indicates parties have capacity?</span>
+                                </label>
+                                <div id="lease-capacity-helper" class="helper-content ml-6 p-3 bg-blue-50 rounded">
+                                    <p class="text-sm text-gray-700">"Tenant must be at least 18 years of age and of sound mind" - this clause establishes the capacity requirement. Both parties must be legally competent.</p>
+                                </div>
+                                <button onclick="toggleHelper('lease-capacity-helper')" class="text-sm text-blue-600 ml-6">Show explanation</button>
+                            </div>
+
+                            <div class="mb-4">
+                                <label class="flex items-start mb-2">
+                                    <input type="checkbox" id="lease-legality" class="mt-1 mr-2">
+                                    <span class="text-gray-700"><strong>Legality:</strong> Is the contract purpose legal?</span>
+                                </label>
+                                <div id="lease-legality-helper" class="helper-content ml-6 p-3 bg-blue-50 rounded">
+                                    <p class="text-sm text-gray-700">Yes - residential leases are legal contracts. The clause "governed by the laws of the state" confirms this is a lawful agreement under state law.</p>
+                                </div>
+                                <button onclick="toggleHelper('lease-legality-helper')" class="text-sm text-blue-600 ml-6">Show explanation</button>
+                            </div>
+
+                            <h4 class="text-lg font-bold text-gray-900 mb-3 mt-6">Identify Key Financial Terms & Red Flags:</h4>
+
+                            <div class="grid md:grid-cols-2 gap-4 mb-4">
+                                <div class="p-4 border rounded">
+                                    <label class="font-semibold text-gray-900">Monthly rent:</label>
+                                    <input type="text" id="lease-rent" class="w-full border rounded px-2 py-1 mt-1" placeholder="$">
+                                </div>
+                                <div class="p-4 border rounded">
+                                    <label class="font-semibold text-gray-900">Security deposit:</label>
+                                    <input type="text" id="lease-deposit" class="w-full border rounded px-2 py-1 mt-1" placeholder="$">
+                                </div>
+                                <div class="p-4 border rounded">
+                                    <label class="font-semibold text-gray-900">Late fee:</label>
+                                    <input type="text" id="lease-late-fee" class="w-full border rounded px-2 py-1 mt-1" placeholder="$">
+                                </div>
+                                <div class="p-4 border rounded">
+                                    <label class="font-semibold text-gray-900">Early termination cost:</label>
+                                    <input type="text" id="lease-termination" class="w-full border rounded px-2 py-1 mt-1" placeholder="$">
+                                </div>
+                            </div>
+
+                            <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-4">
+                                <h5 class="font-bold text-gray-900 mb-2">⚠️ Red Flags Identified:</h5>
+                                <ul class="list-disc list-inside text-gray-700 space-y-1">
+                                    <li>$500 non-refundable subletting application fee with no guarantee of approval</li>
+                                    <li>Early termination requires 2 months' rent ($2,100) PLUS forfeiture of security deposit ($1,050) = $3,150 total</li>
+                                    <li>Landlord has "sole discretion" to approve or deny subletting requests</li>
+                                    <li>60 days notice required - you pay rent for 2 months after deciding to leave</li>
+                                </ul>
+                            </div>
+
+                            <div class="p-4 bg-gray-50 rounded">
+                                <h5 class="font-bold text-gray-900 mb-2">📊 Total Cost Analysis:</h5>
+                                <p class="text-gray-700 mb-2">12-month lease total: $1,050 × 12 = <strong>$12,600</strong> + $1,050 deposit = <strong>$13,650</strong></p>
+                                <p class="text-gray-700">If you break lease after 6 months: $6,300 (rent paid) + $3,150 (termination penalties) + $2,100 (60-day notice) = <strong>$11,550</strong> for only 8 months of occupancy</p>
+                            </div>
+                        </div>
+
+                        <!-- Cell Phone Contract -->
+                        <div id="phone-contract" class="contract-content">
+                            <h3 class="text-xl font-bold text-gray-900 mb-4">Cell Phone Service Contract</h3>
+
+                            <div class="contract-section p-4 mb-4">
+                                <p class="text-sm text-gray-600 mb-2"><strong>CONTRACT EXCERPT:</strong></p>
+                                <p class="text-gray-700 mb-2">
+                                    "This Wireless Service Agreement ('Agreement') between MobileConnect Inc. ('Provider') and <input type="text" placeholder="Your Name" class="border rounded px-2 py-1"> ('Customer') grants Customer access to unlimited talk, text, and data services for $75 per month. Agreement term: 24 months beginning on activation date."
+                                </p>
+                                <p class="text-gray-700 mb-2">
+                                    "Customer receives a promotional device (retail value $1,200) at no upfront cost. Device payments of $50/month are included in the monthly service charge for 24 months. Early termination fee: $350 plus the remaining balance on device financing. Provider reserves the right to modify service terms, coverage areas, and pricing with 30 days' notice."
+                                </p>
+                                <p class="text-gray-700">
+                                    "Upon completion of 24-month term, this agreement automatically renews month-to-month at the then-current rate unless Customer provides written cancellation notice 30 days prior to renewal date. Any device upgrade will initiate a new 24-month commitment. Disputes will be resolved through binding arbitration; Customer waives right to participate in class action lawsuits."
+                                </p>
+                            </div>
+
+                            <h4 class="text-lg font-bold text-gray-900 mb-3">Financial Analysis:</h4>
+
+                            <div class="grid md:grid-cols-2 gap-4 mb-4">
+                                <div class="p-4 border rounded">
+                                    <label class="font-semibold text-gray-900">Monthly payment:</label>
+                                    <input type="text" class="w-full border rounded px-2 py-1 mt-1 given-value" value="$75" readonly>
+                                    <p class="text-xs text-gray-500 mt-1">Includes $50 device payment</p>
+                                </div>
+                                <div class="p-4 border rounded">
+                                    <label class="font-semibold text-gray-900">Contract term:</label>
+                                    <input type="text" class="w-full border rounded px-2 py-1 mt-1 given-value" value="24 months" readonly>
+                                </div>
+                                <div class="p-4 border rounded">
+                                    <label class="font-semibold text-gray-900">Total cost over 24 months:</label>
+                                    <input type="text" class="w-full border rounded px-2 py-1 mt-1" placeholder="Calculate: $75 × 24">
+                                </div>
+                                <div class="p-4 border rounded">
+                                    <label class="font-semibold text-gray-900">Device financing total:</label>
+                                    <input type="text" class="w-full border rounded px-2 py-1 mt-1" placeholder="Calculate: $50 × 24">
+                                </div>
+                            </div>
+
+                            <div class="bg-red-50 border-l-4 border-red-400 p-4 mb-4">
+                                <h5 class="font-bold text-gray-900 mb-2">🚨 Major Red Flags:</h5>
+                                <ul class="list-disc list-inside text-gray-700 space-y-1">
+                                    <li><strong>"Free" phone is not free</strong> - it's financed at $50/month ($1,200 total) built into your bill</li>
+                                    <li><strong>Early termination</strong> costs $350 fee + remaining device balance (e.g., after 6 months: $350 + $900 = $1,250)</li>
+                                    <li><strong>Automatic renewal</strong> - contract continues indefinitely unless you cancel with 30 days notice</li>
+                                    <li><strong>Device upgrades restart commitment</strong> - accepting new phone = new 24-month contract</li>
+                                    <li><strong>Unilateral modification</strong> - provider can change pricing and terms with just 30 days notice</li>
+                                    <li><strong>Arbitration clause</strong> - you give up right to sue or join class actions</li>
+                                </ul>
+                            </div>
+
+                            <div class="p-4 bg-blue-50 rounded">
+                                <h5 class="font-bold text-gray-900 mb-2">💡 Better Alternative Analysis:</h5>
+                                <p class="text-gray-700 mb-2">If you bought a $300 used phone outright and chose a $40/month no-contract plan:</p>
+                                <p class="text-gray-700 mb-1">24-month cost: $300 + ($40 × 24) = $1,260</p>
+                                <p class="text-gray-700 mb-1">Contract plan cost: $75 × 24 = $1,800</p>
+                                <p class="text-gray-700 font-semibold">Savings: $540 over 2 years + you maintain flexibility to change plans anytime</p>
+                            </div>
+                        </div>
+
+                        <!-- Gym Membership Contract -->
+                        <div id="gym-contract" class="contract-content">
+                            <h3 class="text-xl font-bold text-gray-900 mb-4">Gym Membership Agreement</h3>
+
+                            <div class="contract-section p-4 mb-4">
+                                <p class="text-sm text-gray-600 mb-2"><strong>CONTRACT EXCERPT:</strong></p>
+                                <p class="text-gray-700 mb-2">
+                                    "This Membership Agreement between FitLife Gym ('Facility') and <input type="text" placeholder="Your Name" class="border rounded px-2 py-1"> ('Member') grants Member access to all gym facilities and group fitness classes. Initial membership term: 12 months at $45 per month, plus $75 enrollment fee (due at signing)."
+                                </p>
+                                <p class="text-gray-700 mb-2">
+                                    "This agreement automatically renews for successive 12-month terms unless Member provides written cancellation notice at least 30 days prior to renewal date. Early cancellation (before 12-month term ends) requires payment of 50% of remaining monthly fees. Annual maintenance fee of $49 will be charged each year on the membership anniversary date."
+                                </p>
+                                <p class="text-gray-700">
+                                    "Member agrees to monthly automatic payments via credit card or bank account. Facility is not responsible for injuries, lost items, or service interruptions. Membership is non-transferable. Freeze requests (medical/military only) require documentation and $10/month freeze fee."
+                                </p>
+                            </div>
+
+                            <h4 class="text-lg font-bold text-gray-900 mb-3">Cost Calculator:</h4>
+
+                            <div class="grid md:grid-cols-2 gap-4 mb-4">
+                                <div class="p-4 border rounded">
+                                    <label class="font-semibold text-gray-900">Monthly dues:</label>
+                                    <input type="text" class="w-full border rounded px-2 py-1 mt-1 given-value" value="$45" readonly>
+                                </div>
+                                <div class="p-4 border rounded">
+                                    <label class="font-semibold text-gray-900">Enrollment fee (one-time):</label>
+                                    <input type="text" class="w-full border rounded px-2 py-1 mt-1 given-value" value="$75" readonly>
+                                </div>
+                                <div class="p-4 border rounded">
+                                    <label class="font-semibold text-gray-900">Annual maintenance fee:</label>
+                                    <input type="text" class="w-full border rounded px-2 py-1 mt-1 given-value" value="$49" readonly>
+                                </div>
+                                <div class="p-4 border rounded">
+                                    <label class="font-semibold text-gray-900">First year total cost:</label>
+                                    <input type="text" class="w-full border rounded px-2 py-1 mt-1" placeholder="Calculate total">
+                                </div>
+                            </div>
+
+                            <div class="mb-4">
+                                <h5 class="font-semibold text-gray-900 mb-2">Early Cancellation Cost Calculator:</h5>
+                                <p class="text-gray-700 mb-2">If you want to cancel after 4 months, calculate your penalty:</p>
+                                <div class="grid md:grid-cols-3 gap-4">
+                                    <div class="p-3 border rounded">
+                                        <label class="text-sm text-gray-700">Months remaining:</label>
+                                        <input type="text" class="w-full border rounded px-2 py-1 mt-1 given-value" value="8 months" readonly>
+                                    </div>
+                                    <div class="p-3 border rounded">
+                                        <label class="text-sm text-gray-700">Total remaining fees:</label>
+                                        <input type="text" class="w-full border rounded px-2 py-1 mt-1" placeholder="8 × $45">
+                                    </div>
+                                    <div class="p-3 border rounded bg-red-50">
+                                        <label class="text-sm text-gray-700">Cancellation penalty (50%):</label>
+                                        <input type="text" class="w-full border rounded px-2 py-1 mt-1" placeholder="Half of total">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-4">
+                                <h5 class="font-bold text-gray-900 mb-2">⚠️ Red Flags:</h5>
+                                <ul class="list-disc list-inside text-gray-700 space-y-1">
+                                    <li><strong>Automatic 12-month renewal</strong> - contract continues yearly unless you cancel (easy to forget)</li>
+                                    <li><strong>30-day advance notice required</strong> - you must remember to cancel a full month before anniversary</li>
+                                    <li><strong>High early cancellation penalty</strong> - 50% of remaining fees (after 4 months = $180 penalty)</li>
+                                    <li><strong>Hidden annual fee</strong> - $49 maintenance fee each year on top of monthly dues</li>
+                                    <li><strong>Automatic payment requirement</strong> - they can charge your card/account automatically</li>
+                                    <li><strong>Limited freeze options</strong> - can only freeze for medical/military reasons, costs $10/month</li>
+                                    <li><strong>Liability waiver</strong> - gym not responsible for injuries or lost items</li>
+                                </ul>
+                            </div>
+
+                            <div class="p-4 bg-gray-50 rounded">
+                                <h5 class="font-bold text-gray-900 mb-2">💰 Actual Cost Breakdown:</h5>
+                                <p class="text-gray-700">Year 1: $75 (enrollment) + ($45 × 12 months) + $49 (annual fee) = <strong>$664</strong></p>
+                                <p class="text-gray-700">If advertised as "$45/month," many people expect $540/year but actually pay $664 (23% more)</p>
+                            </div>
+                        </div>
+
+                        <!-- Personal Loan Contract -->
+                        <div id="loan-contract" class="contract-content">
+                            <h3 class="text-xl font-bold text-gray-900 mb-4">Personal Loan Agreement</h3>
+
+                            <div class="contract-section p-4 mb-4">
+                                <p class="text-sm text-gray-600 mb-2"><strong>CONTRACT EXCERPT:</strong></p>
+                                <p class="text-gray-700 mb-2">
+                                    "This Loan Agreement between QuickCash Lending ('Lender') and <input type="text" placeholder="Your Name" class="border rounded px-2 py-1"> ('Borrower') provides a loan of $5,000 ('Principal Amount') at an Annual Percentage Rate (APR) of 18.99%. Loan term: 36 months with monthly payments of $181."
+                                </p>
+                                <p class="text-gray-700 mb-2">
+                                    "Loan origination fee of 5% ($250) will be deducted from principal amount; Borrower will receive $4,750. Late payment fee: $35 per occurrence. Returned payment fee: $25. Default triggers acceleration clause - entire remaining balance becomes immediately due. Lender may report delinquencies to credit bureaus. Prepayment penalty: 2% of remaining principal if loan paid off within first 12 months."
+                                </p>
+                                <p class="text-gray-700">
+                                    "In event of default, Borrower is responsible for all collection costs, including reasonable attorney fees. Lender may pursue wage garnishment after court judgment. This agreement is governed by state law and includes mandatory binding arbitration for disputes."
+                                </p>
+                            </div>
+
+                            <h4 class="text-lg font-bold text-gray-900 mb-3">Loan Cost Analysis:</h4>
+
+                            <div class="grid md:grid-cols-2 gap-4 mb-4">
+                                <div class="p-4 border rounded bg-blue-50">
+                                    <label class="font-semibold text-gray-900">Loan amount requested:</label>
+                                    <input type="text" class="w-full border rounded px-2 py-1 mt-1 given-value" value="$5,000" readonly>
+                                </div>
+                                <div class="p-4 border rounded bg-red-50">
+                                    <label class="font-semibold text-gray-900">Actual amount received:</label>
+                                    <input type="text" class="w-full border rounded px-2 py-1 mt-1 given-value" value="$4,750" readonly>
+                                    <p class="text-xs text-gray-600 mt-1">$250 origination fee deducted</p>
+                                </div>
+                                <div class="p-4 border rounded">
+                                    <label class="font-semibold text-gray-900">Monthly payment:</label>
+                                    <input type="text" class="w-full border rounded px-2 py-1 mt-1 given-value" value="$181" readonly>
+                                </div>
+                                <div class="p-4 border rounded">
+                                    <label class="font-semibold text-gray-900">Loan term:</label>
+                                    <input type="text" class="w-full border rounded px-2 py-1 mt-1 given-value" value="36 months" readonly>
+                                </div>
+                                <div class="p-4 border rounded">
+                                    <label class="font-semibold text-gray-900">APR:</label>
+                                    <input type="text" class="w-full border rounded px-2 py-1 mt-1 given-value" value="18.99%" readonly>
+                                </div>
+                                <div class="p-4 border rounded bg-yellow-50">
+                                    <label class="font-semibold text-gray-900">Total amount repaid:</label>
+                                    <input type="text" class="w-full border rounded px-2 py-1 mt-1" placeholder="$181 × 36 months">
+                                </div>
+                            </div>
+
+                            <div class="mb-4">
+                                <h5 class="font-semibold text-gray-900 mb-2">Calculate Total Cost of Borrowing:</h5>
+                                <div class="p-4 bg-gray-100 rounded">
+                                    <p class="text-gray-700 mb-2">Total repayment: $181 × 36 = <input type="text" class="border rounded px-2 py-1 w-24" placeholder="?"></p>
+                                    <p class="text-gray-700 mb-2">Amount borrowed (after fees): $4,750</p>
+                                    <p class="text-gray-700 font-semibold">Total interest + fees paid: <input type="text" class="border rounded px-2 py-1 w-24" placeholder="?"></p>
+                                </div>
+                            </div>
+
+                            <div class="bg-red-50 border-l-4 border-red-500 p-4 mb-4">
+                                <h5 class="font-bold text-gray-900 mb-2">🚨 Serious Red Flags:</h5>
+                                <ul class="list-disc list-inside text-gray-700 space-y-1">
+                                    <li><strong>Origination fee deducted upfront</strong> - you pay interest on $5,000 but only receive $4,750</li>
+                                    <li><strong>High APR (18.99%)</strong> - much higher than typical bank personal loan (8-12%)</li>
+                                    <li><strong>Prepayment penalty</strong> - 2% fee if you pay off loan early in first year (discourages paying down debt)</li>
+                                    <li><strong>Acceleration clause</strong> - one missed payment can make entire balance due immediately</li>
+                                    <li><strong>Late fees stack up</strong> - $35 late fee + $25 returned payment fee = $60 penalty</li>
+                                    <li><strong>Wage garnishment permitted</strong> - lender can take money directly from paycheck after court order</li>
+                                    <li><strong>Borrower pays collection costs</strong> - you pay attorney fees if they pursue collections</li>
+                                    <li><strong>Mandatory arbitration</strong> - cannot sue in court; must use arbitration</li>
+                                </ul>
+                            </div>
+
+                            <div class="p-4 bg-green-50 rounded">
+                                <h5 class="font-bold text-gray-900 mb-2">✓ What Makes This Contract Valid?</h5>
+                                <ul class="list-disc list-inside text-gray-700 space-y-1">
+                                    <li><strong>Offer:</strong> Lender offers $5,000 loan at 18.99% APR</li>
+                                    <li><strong>Acceptance:</strong> Borrower signs agreement accepting terms</li>
+                                    <li><strong>Consideration:</strong> Lender provides money; Borrower promises repayment with interest</li>
+                                    <li><strong>Capacity:</strong> Borrower must be legally competent adult</li>
+                                    <li><strong>Legality:</strong> Personal loans are legal (though terms may be predatory)</li>
+                                </ul>
+                                <p class="text-gray-700 mt-3 font-semibold">Even though this is a valid contract, the terms are very unfavorable to the borrower. A valid contract isn't necessarily a good contract.</p>
+                            </div>
+
+                            <div class="p-4 bg-blue-50 rounded mt-4">
+                                <h5 class="font-bold text-gray-900 mb-2">📊 Comparison with Better Alternative:</h5>
+                                <div class="grid md:grid-cols-2 gap-4">
+                                    <div>
+                                        <p class="font-semibold text-red-700">QuickCash Loan:</p>
+                                        <p class="text-sm text-gray-700">Receive: $4,750</p>
+                                        <p class="text-sm text-gray-700">Repay: $6,516</p>
+                                        <p class="text-sm text-gray-700">Cost: $1,766</p>
+                                    </div>
+                                    <div>
+                                        <p class="font-semibold text-green-700">Credit Union Loan (10% APR, no fees):</p>
+                                        <p class="text-sm text-gray-700">Receive: $5,000</p>
+                                        <p class="text-sm text-gray-700">Repay: $5,807</p>
+                                        <p class="text-sm text-gray-700">Cost: $807</p>
+                                    </div>
+                                </div>
+                                <p class="text-gray-700 mt-2 font-semibold">Savings by choosing credit union: $959</p>
+                            </div>
+                        </div>
+
+                        <!-- Summary and Reflection -->
+                        <div class="mt-6 p-4 bg-indigo-50 rounded-lg">
+                            <h4 class="text-lg font-bold text-gray-900 mb-3">📝 Contract Analysis Reflection</h4>
+                            <p class="text-gray-700 mb-4">After analyzing all four contracts, answer these questions:</p>
+
+                            <div class="mb-4">
+                                <label class="block text-gray-700 font-semibold mb-2">1. Which contract had the most consumer-friendly terms? Why?</label>
+                                <textarea class="w-full border rounded p-2" rows="3" placeholder="Your analysis..."></textarea>
+                            </div>
+
+                            <div class="mb-4">
+                                <label class="block text-gray-700 font-semibold mb-2">2. Which contract posed the greatest financial risk? What specific clauses concern you most?</label>
+                                <textarea class="w-full border rounded p-2" rows="3" placeholder="Your analysis..."></textarea>
+                            </div>
+
+                            <div class="mb-4">
+                                <label class="block text-gray-700 font-semibold mb-2">3. What patterns did you notice in how contracts protect business interests over consumer interests?</label>
+                                <textarea class="w-full border rounded p-2" rows="3" placeholder="Your observations..."></textarea>
+                            </div>
+
+                            <div>
+                                <label class="block text-gray-700 font-semibold mb-2">4. List three specific questions you will ALWAYS ask yourself before signing any financial contract:</label>
+                                <textarea class="w-full border rounded p-2" rows="4" placeholder="1.&#10;2.&#10;3."></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Summary -->
+                <section class="mb-8">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4">Summary</h2>
+                    <p class="text-gray-700 mb-4">
+                        Financial contracts are legally binding agreements that create obligations and affect your financial wellbeing, often for months or years. Every valid contract requires five essential elements: offer, acceptance, consideration, capacity, and legality. Throughout your life, you'll encounter numerous types of financial contracts—lease agreements, loan contracts, service agreements, employment contracts, and purchase agreements—each with unique terms and implications.
+                    </p>
+                    <p class="text-gray-700 mb-4">
+                        Understanding contract language, including fine print, boilerplate clauses, and legal terminology, is essential to protecting your interests. Key areas to examine include payment terms, fees and penalties, modification and termination provisions, arbitration clauses, liability limitations, and default remedies. Many contracts are deliberately complex and favor the party that drafted them, making careful review essential before signing.
+                    </p>
+                    <p class="text-gray-700">
+                        The consequences of signing contracts you don't understand can be severe and costly, including unexpected fees, restricted flexibility, unfavorable obligations, and limited legal recourse if problems arise. Courts generally enforce contracts as written, and claims that you didn't read or understand what you signed provide little protection. Taking time to read contracts thoroughly, research unfamiliar terms, ask questions, and negotiate unfavorable provisions can save thousands of dollars and prevent significant legal problems. Contract literacy is not about avoiding all agreements—it's about understanding what you're agreeing to so you can make informed decisions that protect your financial interests and long-term wellbeing.
+                    </p>
+                </section>
+
+                <!-- Coming Tomorrow -->
+                <div class="bg-gradient-to-r from-indigo-500 to-purple-600 text-white rounded-lg p-6 mt-8">
+                    <h2 class="text-2xl font-bold mb-3">🎯 Coming Tomorrow: Contract Literacy Learning Lab</h2>
+                    <p class="mb-4">Tomorrow, you'll put your contract analysis skills into action with hands-on activities:</p>
+                    <ul class="space-y-2">
+                        <li class="flex items-start">
+                            <span class="mr-2">✓</span>
+                            <span>Contract Elements Scavenger Hunt - rapidly identify essential elements in 6 real contracts</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="mr-2">✓</span>
+                            <span>Fine Print Challenge - find hidden fees, red flags, and problematic clauses</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="mr-2">✓</span>
+                            <span>Contract Comparison Station - evaluate competing offers to find the best deal</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="mr-2">✓</span>
+                            <span>Contract Negotiation Role-Play - practice advocating for better terms</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="mr-2">✓</span>
+                            <span>Personal Contract Safety Checklist - create your own review tool for future contracts</span>
+                        </li>
+                    </ul>
+                    <p class="mt-4 font-semibold">Be ready to analyze, compare, and negotiate real-world financial contracts!</p>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Helper toggle function
+        function toggleHelper(id) {
+            const content = document.getElementById(id);
+            content.classList.toggle('active');
+        }
+
+        // Contract tab switching
+        function switchContract(type) {
+            // Hide all contract content
+            document.querySelectorAll('.contract-content').forEach(content => {
+                content.classList.remove('active');
+            });
+
+            // Remove active class from all tabs
+            document.querySelectorAll('.contract-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            // Show selected contract content
+            document.getElementById(type + '-contract').classList.add('active');
+
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Auto-save to localStorage (optional enhancement)
+        document.querySelectorAll('input[type="text"], textarea').forEach(input => {
+            input.addEventListener('blur', function() {
+                const key = 'contract-analysis-' + this.id;
+                if (this.value && !this.classList.contains('given-value')) {
+                    localStorage.setItem(key, this.value);
+                }
+            });
+
+            // Load saved values on page load
+            const key = 'contract-analysis-' + input.id;
+            const saved = localStorage.getItem(key);
+            if (saved && !input.classList.contains('given-value')) {
+                input.value = saved;
+            }
+        });
+
+        // Checkbox state persistence
+        document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                const key = 'contract-checkbox-' + this.id;
+                localStorage.setItem(key, this.checked);
+            });
+
+            // Load saved checkbox state
+            const key = 'contract-checkbox-' + checkbox.id;
+            const saved = localStorage.getItem(key);
+            if (saved === 'true') {
+                checkbox.checked = true;
+            }
+        });
+
+        // Contract Cost Comparison Chart
+        let contractChart = null;
+
+        function updateContractChart() {
+            const scenario = document.getElementById('contractScenario').value;
+            const ctx = document.getElementById('contractCostChart').getContext('2d');
+
+            // Contract plan: $75/month + $1,200 phone financed over 24 months
+            const contractMonthly = 75;
+            const phoneValue = 1200;
+            const earlyTermFee = 350;
+
+            // No-contract plan: $40/month + $300 phone paid upfront
+            const noContractMonthly = 40;
+            const upfrontPhone = 300;
+
+            let months, contractCost, noContractCost, insight;
+
+            if (scenario === 'full') {
+                // Complete 24-month term
+                months = 24;
+                contractCost = contractMonthly * months; // $1,800
+                noContractCost = (noContractMonthly * months) + upfrontPhone; // $960 + $300 = $1,260
+                insight = '<strong>💡 Full 24-Month Term:</strong> The contract plan costs <strong>$' + contractCost.toLocaleString() + '</strong> total. The no-contract plan costs <strong>$' + noContractCost.toLocaleString() + '</strong> (including $300 upfront phone). <strong>You save $' + (contractCost - noContractCost).toLocaleString() + '</strong> by avoiding the contract and maintaining flexibility!';
+            } else {
+                // Early termination scenarios
+                if (scenario === 'early6') {
+                    months = 6;
+                } else if (scenario === 'early12') {
+                    months = 12;
+                } else {
+                    months = 18;
+                }
+
+                const remainingPhoneBalance = phoneValue - (phoneValue / 24 * months);
+                contractCost = (contractMonthly * months) + earlyTermFee + remainingPhoneBalance;
+                noContractCost = (noContractMonthly * months) + upfrontPhone;
+
+                const extraCost = contractCost - noContractCost;
+                insight = '<strong>⚠️ Early Termination After ' + months + ' Months:</strong> Contract plan total: <strong>$' + Math.round(contractCost).toLocaleString() + '</strong> ($' + (contractMonthly * months).toLocaleString() + ' paid + $' + earlyTermFee.toLocaleString() + ' termination fee + $' + Math.round(remainingPhoneBalance).toLocaleString() + ' remaining phone balance). No-contract total: <strong>$' + noContractCost.toLocaleString() + '</strong>. The contract penalty costs you an extra <strong>$' + Math.round(extraCost).toLocaleString() + '</strong>!';
+            }
+
+            document.getElementById('contractInsight').innerHTML = insight;
+
+            // Destroy existing chart
+            if (contractChart) {
+                contractChart.destroy();
+            }
+
+            contractChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Contract Plan', 'No-Contract Plan'],
+                    datasets: [{
+                        label: 'Total Cost',
+                        data: [contractCost, noContractCost],
+                        backgroundColor: ['#3B82F6', '#10B981'],
+                        borderColor: ['#2563EB', '#059669'],
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: scenario === 'full' ? '24-Month Total Cost Comparison' : 'Early Cancellation Cost Comparison (After ' + months + ' Months)',
+                            font: {
+                                size: 16,
+                                weight: 'bold'
+                            }
+                        },
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                            padding: 12,
+                            callbacks: {
+                                label: function(context) {
+                                    return 'Total Cost: $' + Math.round(context.parsed.y).toLocaleString();
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Plan Type',
+                                font: {
+                                    size: 13,
+                                    weight: 'bold'
+                                }
+                            }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Total Cost',
+                                font: {
+                                    size: 13,
+                                    weight: 'bold'
+                                }
+                            },
+                            ticks: {
+                                callback: function(value) {
+                                    return '$' + (value / 1000).toFixed(1) + 'k';
+                                }
+                            },
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+
+        // Initialize the chart on page load
+        window.addEventListener('DOMContentLoaded', updateContractChart);
+    </script>
+</body>
+</html>

@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-57: Loan Applications and Creditworthiness in {{STATE_NAME}} | Day 1 of 2</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .given-value {
+            background-color: #f3f4f6;
+            cursor: not-allowed;
+        }
+        .helper-content {
+            display: none;
+        }
+        .helper-content.active {
+            display: block;
+        }
+        .strength-gauge {
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="bg-indigo-600 text-white p-4 shadow-md fixed top-0 left-0 right-0 z-40">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-bold">L-57: Loan Applications and Creditworthiness | Day 1 of 2</h1>
+            <nav class="space-x-4">
+                <a href="#" class="hover:underline">Home</a>
+                <a href="#" class="hover:underline">Curriculum</a>
+                <a href="#" class="hover:underline">Resources</a>
+                <a href="#" class="hover:underline">Profile</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="h-16"></div> <!-- Spacer for fixed header -->
+
+    <div class="container mx-auto px-4 py-8">
+        <div class="grid lg:grid-cols-12 gap-8">
+
+            <!-- Main Content (Left Column) -->
+            <main class="lg:col-span-8 space-y-8">
+
+                <!-- Learning Objectives -->
+                <section class="bg-blue-50 rounded-lg p-6">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4">Learning Objectives</h2>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <li>Complete a comprehensive loan application with accuracy and required documentation</li>
+                        <li>Identify and gather the necessary documentation for different types of loan applications</li>
+                        <li>Understand how lenders evaluate creditworthiness and assess loan applications</li>
+                        <li>Analyze factors that increase or decrease likelihood of loan approval</li>
+                        <li>Develop strategies to strengthen loan applications and improve approval odds</li>
+                    </ul>
+                </section>
+
+                <!-- Introduction -->
+                <section>
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4">Introduction</h2>
+                    <div class="prose max-w-none text-gray-700 space-y-4">
+                        <p>Applying for a loan can be one of the most intimidating financial experiences, particularly the first time. Whether you're seeking an auto loan, personal loan, student loan, or mortgage, the application process requires detailed personal and financial information, extensive documentation, and patience as lenders evaluate your creditworthiness.</p>
+
+                        <p>Understanding what lenders look for, how to prepare your documentation, and how the evaluation process works can dramatically improve your chances of approval and help you secure better terms.</p>
+
+                        <p>The difference between a 5% and 8% interest rate on a $25,000 auto loan over five years is nearly $2,000 in additional interest—a significant cost stemming from inadequate preparation or poor creditworthiness.</p>
+                    </div>
+                </section>
+
+                <!-- Key Concepts -->
+                <section>
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4">Key Concepts</h2>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="bg-white p-4 rounded-lg shadow">
+                            <h3 class="font-bold text-indigo-600 mb-2">Creditworthiness</h3>
+                            <p class="text-sm text-gray-700">A lender's assessment of your ability and willingness to repay debt, based on credit history, income, employment stability, and existing debts.</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg shadow">
+                            <h3 class="font-bold text-indigo-600 mb-2">Debt-to-Income Ratio (DTI)</h3>
+                            <p class="text-sm text-gray-700">The percentage of your gross monthly income that goes toward debt payments; lenders typically prefer DTI below 36-43%.</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg shadow">
+                            <h3 class="font-bold text-indigo-600 mb-2">Pre-approval</h3>
+                            <p class="text-sm text-gray-700">A preliminary evaluation where a lender reviews your finances and indicates willingness to lend up to a certain amount.</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg shadow">
+                            <h3 class="font-bold text-indigo-600 mb-2">Hard Inquiry</h3>
+                            <p class="text-sm text-gray-700">When a lender checks your credit report as part of a loan application; temporarily lowers your credit score by a few points.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- The Five C's Framework -->
+                <section>
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4">The Five C's of Credit</h2>
+                    <p class="text-gray-700 mb-4">Lenders use "The Five C's" to evaluate loan applications:</p>
+
+                    <div class="space-y-4">
+                        <details class="bg-white p-4 rounded-lg shadow">
+                            <summary class="font-bold text-indigo-600 cursor-pointer">Character (35% weight)</summary>
+                            <p class="mt-2 text-gray-700">Your credit history and track record of repaying debts. Lenders examine credit reports for payment history, bankruptcies, collections. Credit scores above 740 get best rates; below 620 face challenges.</p>
+                        </details>
+
+                        <details class="bg-white p-4 rounded-lg shadow">
+                            <summary class="font-bold text-indigo-600 cursor-pointer">Capacity (30% weight)</summary>
+                            <p class="mt-2 text-gray-700">Your ability to repay based on income and existing debts. Lenders calculate debt-to-income ratio. Most prefer DTI below 36% for best rates, some accept up to 43%.</p>
+                        </details>
+
+                        <details class="bg-white p-4 rounded-lg shadow">
+                            <summary class="font-bold text-indigo-600 cursor-pointer">Capital (15% weight)</summary>
+                            <p class="mt-2 text-gray-700">Financial resources including savings, investments, and assets. Lenders want to see reserves beyond down payment—typically 2-6 months of payments in savings.</p>
+                        </details>
+
+                        <details class="bg-white p-4 rounded-lg shadow">
+                            <summary class="font-bold text-indigo-600 cursor-pointer">Collateral (10% weight)</summary>
+                            <p class="mt-2 text-gray-700">For secured loans, the asset backing the debt (car for auto loans, property for mortgages). Loan-to-value ratio affects approval and terms.</p>
+                        </details>
+
+                        <details class="bg-white p-4 rounded-lg shadow">
+                            <summary class="font-bold text-indigo-600 cursor-pointer">Conditions (10% weight)</summary>
+                            <p class="mt-2 text-gray-700">Loan purpose, economic environment, and specific circumstances. Lenders assess whether the loan makes financial sense.</p>
+                        </details>
+                    </div>
+                </section>
+
+                <!-- Real-World Examples -->
+                <section>
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4">Real-World Examples</h2>
+
+                    <div class="space-y-6">
+                        <!-- Carmen's Example -->
+                        <div class="bg-green-50 border-l-4 border-green-500 p-6 rounded-r-lg">
+                            <h3 class="text-xl font-bold text-gray-900 mb-3">✓ Carmen's Prepared Auto Loan Application</h3>
+                            <p class="text-gray-700 mb-3">Carmen needed a reliable car for her new job and researched auto financing <strong>three months before shopping</strong>. She checked her credit score (680) and identified two late payments from a medical bill. She paid the bill, set up autopay, and disputed an error on her credit report.</p>
+                            <p class="text-gray-700 mb-3">When she found a certified pre-owned sedan for $22,000, she was ready with all documentation. Her credit union approved $19,000 (she put $3,000 down) at <strong>5.8% for 60 months ($362/month)</strong>. The dealership offered 7.2%, but Carmen used her pre-approval to negotiate a match.</p>
+                            <p class="text-green-700 font-bold">Savings: ~$1,400 in interest over 5 years through preparation and pre-approval.</p>
+                        </div>
+
+                        <!-- Marcus's Example -->
+                        <div class="bg-red-50 border-l-4 border-red-500 p-6 rounded-r-lg">
+                            <h3 class="text-xl font-bold text-gray-900 mb-3">✗ Marcus's Unprepared Personal Loan Struggle</h3>
+                            <p class="text-gray-700 mb-3">Marcus needed $15,000 to consolidate credit card debt but applied reactively. He submitted three applications in one day without checking his credit first. Two denied him immediately—his score was 610 with 85% credit utilization and recent late payments.</p>
+                            <p class="text-gray-700 mb-3">The third lender approved him at <strong>22% interest for 60 months ($422/month)</strong> with a $500 origination fee. When documentation was requested, Marcus scrambled, taking two weeks. His recent job change triggered additional scrutiny.</p>
+                            <p class="text-red-700 font-bold">Lost opportunity: Had he improved credit 3-6 months first, he could have qualified for 12-15% rates, saving $100-150/month ($6,000-9,000 over loan life).</p>
+                        </div>
+
+                        <!-- Jasmine's Example -->
+                        <div class="bg-green-50 border-l-4 border-green-500 p-6 rounded-r-lg">
+                            <h3 class="text-xl font-bold text-gray-900 mb-3">✓ Jasmine's Strategic Mortgage Pre-Approval</h3>
+                            <p class="text-gray-700 mb-3">Jasmine planned to buy her first home within a year. Starting with credit score 720 and 38% DTI, she created a strategic plan: pay off her car loan (6 months remaining, freeing $285/month) and reduce credit cards from $5,000 to under $1,500.</p>
+                            <p class="text-gray-700 mb-3">After eight months, her DTI dropped to 28% and credit score improved to 745. She gathered extensive documentation and applied for pre-approval. She received approval for up to $280,000 at 6.75% with 10% down. By putting 15% down instead, she reduced her rate to <strong>6.5% and eliminated PMI</strong>, saving $200/month.</p>
+                            <p class="text-green-700 font-bold">Savings: ~$45,000 over 30-year mortgage from strategic preparation.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Interactive Visualization: Credit Score Impact -->
+                <section class="bg-gradient-to-r from-indigo-50 to-blue-50 rounded-lg p-6 my-8 border-2 border-indigo-300">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4">📊 Interactive Visualization: Credit Score Impact on Auto Loan Costs</h2>
+                    <p class="text-gray-700 mb-6">See how your credit score affects the total cost of a $24,000 auto loan over 5 years:</p>
+
+                    <canvas id="creditImpactChart" style="max-height: 350px;"></canvas>
+
+                    <div class="grid md:grid-cols-5 gap-3 mt-6">
+                        <div class="bg-green-50 p-3 rounded border-l-4 border-green-600 text-center">
+                            <div class="text-xs font-bold text-green-900 mb-1">Exceptional</div>
+                            <div class="text-lg font-bold text-green-900">4.5%</div>
+                            <div class="text-xs text-gray-600">$26,806 total</div>
+                        </div>
+                        <div class="bg-blue-50 p-3 rounded border-l-4 border-blue-600 text-center">
+                            <div class="text-xs font-bold text-blue-900 mb-1">Very Good</div>
+                            <div class="text-lg font-bold text-blue-900">5.8%</div>
+                            <div class="text-xs text-gray-600">$27,710 total</div>
+                        </div>
+                        <div class="bg-indigo-50 p-3 rounded border-l-4 border-indigo-600 text-center">
+                            <div class="text-xs font-bold text-indigo-900 mb-1">Good</div>
+                            <div class="text-lg font-bold text-indigo-900">7.2%</div>
+                            <div class="text-xs text-gray-600">$28,646 total</div>
+                        </div>
+                        <div class="bg-yellow-50 p-3 rounded border-l-4 border-yellow-600 text-center">
+                            <div class="text-xs font-bold text-yellow-900 mb-1">Fair</div>
+                            <div class="text-lg font-bold text-yellow-900">11.5%</div>
+                            <div class="text-xs text-gray-600">$31,718 total</div>
+                        </div>
+                        <div class="bg-red-50 p-3 rounded border-l-4 border-red-600 text-center">
+                            <div class="text-xs font-bold text-red-900 mb-1">Poor</div>
+                            <div class="text-lg font-bold text-red-900">16.9%</div>
+                            <div class="text-xs text-gray-600">$35,813 total</div>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 bg-white p-4 rounded-lg border border-indigo-200">
+                        <p class="text-sm text-gray-700">
+                            <strong>💡 Key Insight:</strong> The difference between exceptional and poor credit is <strong>$9,007 in total cost</strong> for the same $24,000 car!
+                            Improving your credit score from Fair (580-669) to Good (670-739) alone saves you <strong>$3,072</strong> over 5 years.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Skill Builder Activity -->
+                <section id="skill-builder" class="bg-purple-50 p-6 rounded-lg">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4">💼 Skill Builder: Loan Application Simulator</h2>
+                    <p class="text-gray-700 mb-6">Practice completing loan applications and see how different factors affect approval likelihood and interest rates.</p>
+
+                    <!-- Scenario Selection -->
+                    <div class="mb-6">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Select Loan Scenario:</label>
+                        <select id="scenarioSelect" class="w-full p-3 border border-gray-300 rounded-lg">
+                            <option value="">Choose a scenario...</option>
+                            <option value="auto">Scenario A: Auto Loan ($24,000 certified pre-owned vehicle)</option>
+                            <option value="personal">Scenario B: Personal Loan ($10,000 debt consolidation)</option>
+                            <option value="mortgage">Scenario C: First-Time Homebuyer Mortgage ($220,000 home)</option>
+                        </select>
+                    </div>
+
+                    <!-- Borrower Profile (Given Values) -->
+                    <div id="borrowerProfile" class="mb-6 hidden">
+                        <h3 class="text-lg font-bold text-gray-900 mb-3">Borrower Profile (Read-Only)</h3>
+                        <div class="grid md:grid-cols-2 gap-4 bg-gray-100 p-4 rounded-lg">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700">Age</label>
+                                <input type="text" id="age" class="given-value w-full p-2 border rounded" readonly>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700">Credit Score</label>
+                                <input type="text" id="creditScore" class="given-value w-full p-2 border rounded" readonly>
+                            </div>
+                            <div class="md:col-span-2">
+                                <label class="block text-sm font-medium text-gray-700">Employment</label>
+                                <input type="text" id="employment" class="given-value w-full p-2 border rounded" readonly>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700">Gross Monthly Income</label>
+                                <input type="text" id="monthlyIncome" class="given-value w-full p-2 border rounded" readonly>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700">Total Monthly Debts</label>
+                                <input type="text" id="monthlyDebts" class="given-value w-full p-2 border rounded" readonly>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- DTI Calculator Helper -->
+                    <div id="dtiHelper" class="mb-6 hidden">
+                        <button onclick="toggleHelper('dtiHelperContent')" class="w-full bg-indigo-100 hover:bg-indigo-200 p-3 rounded-lg text-left font-medium text-indigo-700 flex justify-between items-center">
+                            <span>📊 DTI Calculator Helper</span>
+                            <span>▼</span>
+                        </button>
+                        <div id="dtiHelperContent" class="helper-content mt-2 bg-white p-4 rounded-lg border border-indigo-200">
+                            <h4 class="font-bold mb-2">Step-by-Step DTI Calculation:</h4>
+                            <div class="space-y-2 text-sm">
+                                <p><strong>Step 1:</strong> Total monthly debt payments = <span id="stepDebts" class="text-indigo-600 font-bold">$0</span></p>
+                                <p><strong>Step 2:</strong> Gross monthly income = <span id="stepIncome" class="text-indigo-600 font-bold">$0</span></p>
+                                <p><strong>Step 3:</strong> DTI = (Debts ÷ Income) × 100</p>
+                                <p class="text-lg"><strong>Your DTI:</strong> <span id="calculatedDTI" class="text-indigo-600 font-bold">0%</span></p>
+                                <div id="dtiStatus" class="mt-2 p-2 rounded"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Application Strength -->
+                    <div id="applicationResults" class="hidden">
+                        <div class="bg-white p-6 rounded-lg shadow-lg">
+                            <h3 class="text-xl font-bold text-gray-900 mb-4">Application Strength Analysis</h3>
+
+                            <!-- Strength Gauge -->
+                            <div class="mb-6">
+                                <div class="flex justify-between mb-2">
+                                    <span class="text-sm font-medium">Strength Score</span>
+                                    <span id="strengthScore" class="text-2xl font-bold text-indigo-600">0</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-6">
+                                    <div id="strengthBar" class="strength-gauge h-6 rounded-full transition-all duration-500" style="width: 0%"></div>
+                                </div>
+                                <div class="flex justify-between text-xs text-gray-500 mt-1">
+                                    <span>Poor (0-59)</span>
+                                    <span>Fair (60-69)</span>
+                                    <span>Good (70-84)</span>
+                                    <span>Excellent (85-100)</span>
+                                </div>
+                            </div>
+
+                            <!-- Approval Likelihood -->
+                            <div id="approvalBadge" class="text-center p-4 rounded-lg mb-4">
+                                <div class="text-sm font-medium">Approval Likelihood</div>
+                                <div id="approvalText" class="text-2xl font-bold"></div>
+                            </div>
+
+                            <!-- Interest Rate Estimate -->
+                            <div class="bg-blue-50 p-4 rounded-lg mb-4">
+                                <div class="text-sm font-medium text-gray-700">Estimated Interest Rate Range</div>
+                                <div id="rateRange" class="text-xl font-bold text-indigo-600"></div>
+                            </div>
+
+                            <!-- Feedback -->
+                            <div class="space-y-3">
+                                <div>
+                                    <h4 class="font-bold text-green-700 mb-2">✓ Strengths:</h4>
+                                    <ul id="strengths" class="list-disc list-inside text-sm text-gray-700 space-y-1"></ul>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-yellow-700 mb-2">⚠ Areas for Improvement:</h4>
+                                    <ul id="weaknesses" class="list-disc list-inside text-sm text-gray-700 space-y-1"></ul>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-indigo-700 mb-2">💡 Recommendations:</h4>
+                                    <ul id="recommendations" class="list-disc list-inside text-sm text-gray-700 space-y-1"></ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button id="submitBtn" onclick="evaluateApplication()" class="hidden w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-lg transition-colors">
+                        Evaluate Application
+                    </button>
+                </section>
+
+                <!-- Reflection -->
+                <section>
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4">Reflection</h2>
+                    <p class="text-gray-700 mb-4">Think about a major loan you might need within the next 2-5 years (auto loan, student loan, personal loan, or mortgage). Assess your current creditworthiness using the Five C's framework and identify specific actions you could take in the next 6-12 months to strengthen your future loan application.</p>
+                    <textarea class="w-full p-4 border border-gray-300 rounded-lg min-h-32" placeholder="Write your reflection here... (no minimum length required)"></textarea>
+                </section>
+
+                <!-- Coming Tomorrow Bridge -->
+                <section class="bg-blue-100 border-l-4 border-blue-500 p-6 rounded-r-lg">
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">🔍 Coming Tomorrow: Hands-On Application Practice</h3>
+                    <p class="text-gray-700 mb-3">Tomorrow, you'll put your knowledge into action! In the Learning Lab, you'll:</p>
+                    <ul class="list-disc list-inside text-gray-700 space-y-1 mb-3">
+                        <li>Identify required documentation for Destiny, Andre, and Keisha's loan applications</li>
+                        <li>Complete full applications using the Loan Application Simulator</li>
+                        <li>Evaluate three borrowers (Jamal, Sarah, Marcus) as a loan officer using the Five C's</li>
+                        <li>Create your own personalized creditworthiness improvement plan</li>
+                    </ul>
+                    <p class="text-gray-700 font-medium">Which borrower do you think will get the best loan terms? See you tomorrow!</p>
+                </section>
+
+            </main>
+
+            <!-- Sidebar (Right Column) -->
+            <aside class="lg:col-span-4 space-y-6">
+
+                <!-- Credit Score Reference -->
+                <div class="bg-white p-4 rounded-lg shadow sticky top-20">
+                    <h3 class="font-bold text-gray-900 mb-3">Credit Score Ranges</h3>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex justify-between p-2 bg-green-100 rounded">
+                            <span>800-850</span>
+                            <span class="font-bold text-green-700">Exceptional</span>
+                        </div>
+                        <div class="flex justify-between p-2 bg-green-50 rounded">
+                            <span>740-799</span>
+                            <span class="font-bold text-green-600">Very Good</span>
+                        </div>
+                        <div class="flex justify-between p-2 bg-blue-50 rounded">
+                            <span>670-739</span>
+                            <span class="font-bold text-blue-600">Good</span>
+                        </div>
+                        <div class="flex justify-between p-2 bg-yellow-50 rounded">
+                            <span>580-669</span>
+                            <span class="font-bold text-yellow-600">Fair</span>
+                        </div>
+                        <div class="flex justify-between p-2 bg-red-50 rounded">
+                            <span>300-579</span>
+                            <span class="font-bold text-red-600">Poor</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DTI Thresholds -->
+                <div class="bg-white p-4 rounded-lg shadow">
+                    <h3 class="font-bold text-gray-900 mb-3">DTI Thresholds by Loan Type</h3>
+                    <table class="w-full text-sm">
+                        <thead>
+                            <tr class="border-b">
+                                <th class="text-left py-2">Loan Type</th>
+                                <th class="text-right py-2">Preferred</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b">
+                                <td class="py-2">Auto Loan</td>
+                                <td class="text-right">≤15%</td>
+                            </tr>
+                            <tr class="border-b">
+                                <td class="py-2">Personal Loan</td>
+                                <td class="text-right">≤36%</td>
+                            </tr>
+                            <tr>
+                                <td class="py-2">Mortgage</td>
+                                <td class="text-right">≤28%/36%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </aside>
+
+        </div>
+    </div>
+
+    <script>
+        // Scenario data
+        const scenarios = {
+            auto: {
+                age: 26,
+                creditScore: 680,
+                employment: "Marketing coordinator, 14 months at current job",
+                monthlyIncome: 3800,
+                debts: [
+                    { type: "Credit card", balance: 2500, payment: 75 },
+                    { type: "Student loan", balance: 18000, payment: 220 }
+                ],
+                loanAmount: 21000,
+                downPayment: 3000
+            },
+            personal: {
+                age: 29,
+                creditScore: 625,
+                employment: "Restaurant server, 3 years at current job",
+                monthlyIncome: 2800,
+                debts: [
+                    { type: "Credit card 1", balance: 4200, payment: 125 },
+                    { type: "Credit card 2", balance: 3800, payment: 115 },
+                    { type: "Credit card 3", balance: 2000, payment: 60 }
+                ],
+                loanAmount: 10000
+            },
+            mortgage: {
+                age: 31,
+                creditScore: 745,
+                employment: "Software developer, 2.5 years at current job",
+                monthlyIncome: 6200,
+                debts: [
+                    { type: "Car loan", balance: 12000, payment: 285 },
+                    { type: "Student loan", balance: 25000, payment: 310 },
+                    { type: "Credit card", balance: 1200, payment: 35 }
+                ],
+                loanAmount: 198000,
+                downPayment: 22000
+            }
+        };
+
+        let currentScenario = null;
+
+        // Scenario selection
+        document.getElementById('scenarioSelect').addEventListener('change', function() {
+            const scenario = this.value;
+            if (scenario) {
+                loadScenario(scenario);
+            }
+        });
+
+        function loadScenario(scenarioType) {
+            currentScenario = scenarios[scenarioType];
+            const data = currentScenario;
+
+            // Populate profile
+            document.getElementById('age').value = data.age;
+            document.getElementById('creditScore').value = data.creditScore;
+            document.getElementById('employment').value = data.employment;
+            document.getElementById('monthlyIncome').value = '$' + data.monthlyIncome.toLocaleString();
+
+            const totalDebts = data.debts.reduce((sum, debt) => sum + debt.payment, 0);
+            document.getElementById('monthlyDebts').value = '$' + totalDebts.toLocaleString();
+
+            // Show sections
+            document.getElementById('borrowerProfile').classList.remove('hidden');
+            document.getElementById('dtiHelper').classList.remove('hidden');
+            document.getElementById('submitBtn').classList.remove('hidden');
+
+            // Update helper
+            document.getElementById('stepDebts').textContent = '$' + totalDebts;
+            document.getElementById('stepIncome').textContent = '$' + data.monthlyIncome.toLocaleString();
+
+            const dti = ((totalDebts / data.monthlyIncome) * 100).toFixed(1);
+            document.getElementById('calculatedDTI').textContent = dti + '%';
+
+            // Color code DTI
+            const dtiStatus = document.getElementById('dtiStatus');
+            if (dti < 28) {
+                dtiStatus.className = 'mt-2 p-2 rounded bg-green-100 text-green-700';
+                dtiStatus.textContent = '✓ Excellent DTI - Well below threshold';
+            } else if (dti < 36) {
+                dtiStatus.className = 'mt-2 p-2 rounded bg-yellow-100 text-yellow-700';
+                dtiStatus.textContent = '⚠ Good DTI - Within acceptable range';
+            } else {
+                dtiStatus.className = 'mt-2 p-2 rounded bg-red-100 text-red-700';
+                dtiStatus.textContent = '✗ High DTI - May affect approval';
+            }
+        }
+
+        function toggleHelper(id) {
+            const element = document.getElementById(id);
+            element.classList.toggle('active');
+        }
+
+        function evaluateApplication() {
+            if (!currentScenario) return;
+
+            const data = currentScenario;
+            const totalDebts = data.debts.reduce((sum, debt) => sum + debt.payment, 0);
+            const dti = (totalDebts / data.monthlyIncome) * 100;
+
+            // Calculate strength score (0-100)
+            let score = 0;
+
+            // Character (credit score) - 35 points
+            if (data.creditScore >= 740) score += 35;
+            else if (data.creditScore >= 680) score += 28;
+            else if (data.creditScore >= 620) score += 20;
+            else score += 10;
+
+            // Capacity (DTI) - 30 points
+            if (dti < 28) score += 30;
+            else if (dti < 36) score += 24;
+            else if (dti < 43) score += 15;
+            else score += 5;
+
+            // Capital (simplified) - 20 points
+            if (data.downPayment) score += 15;
+            score += 5; // Base savings assumption
+
+            // Collateral & Conditions - 15 points
+            score += 15;
+
+            // Display results
+            document.getElementById('strengthScore').textContent = score;
+            document.getElementById('strengthBar').style.width = score + '%';
+
+            // Color code bar
+            if (score >= 85) {
+                document.getElementById('strengthBar').className = 'strength-gauge h-6 rounded-full bg-gradient-to-r from-green-400 to-green-600';
+            } else if (score >= 70) {
+                document.getElementById('strengthBar').className = 'strength-gauge h-6 rounded-full bg-gradient-to-r from-blue-400 to-blue-600';
+            } else if (score >= 60) {
+                document.getElementById('strengthBar').className = 'strength-gauge h-6 rounded-full bg-gradient-to-r from-yellow-400 to-yellow-600';
+            } else {
+                document.getElementById('strengthBar').className = 'strength-gauge h-6 rounded-full bg-gradient-to-r from-red-400 to-red-600';
+            }
+
+            // Approval likelihood
+            const approvalBadge = document.getElementById('approvalBadge');
+            const approvalText = document.getElementById('approvalText');
+
+            if (score >= 85) {
+                approvalBadge.className = 'text-center p-4 rounded-lg mb-4 bg-green-100';
+                approvalText.textContent = 'Strong Approval';
+                approvalText.className = 'text-2xl font-bold text-green-700';
+            } else if (score >= 70) {
+                approvalBadge.className = 'text-center p-4 rounded-lg mb-4 bg-blue-100';
+                approvalText.textContent = 'Likely Approval';
+                approvalText.className = 'text-2xl font-bold text-blue-700';
+            } else if (score >= 60) {
+                approvalBadge.className = 'text-center p-4 rounded-lg mb-4 bg-yellow-100';
+                approvalText.textContent = 'Conditional Approval';
+                approvalText.className = 'text-2xl font-bold text-yellow-700';
+            } else {
+                approvalBadge.className = 'text-center p-4 rounded-lg mb-4 bg-red-100';
+                approvalText.textContent = 'Unlikely Approval';
+                approvalText.className = 'text-2xl font-bold text-red-700';
+            }
+
+            // Interest rate
+            let rateRange = '';
+            if (data.creditScore >= 740) rateRange = '4.5% - 6.0%';
+            else if (data.creditScore >= 680) rateRange = '6.0% - 7.5%';
+            else if (data.creditScore >= 620) rateRange = '7.5% - 10.0%';
+            else rateRange = '10.0% - 15.0%';
+            document.getElementById('rateRange').textContent = rateRange;
+
+            // Strengths
+            const strengths = [];
+            if (data.creditScore >= 680) strengths.push('Good credit score (' + data.creditScore + ')');
+            if (dti < 36) strengths.push('Healthy debt-to-income ratio (' + dti.toFixed(1) + '%)');
+            if (data.employment.includes('years')) strengths.push('Stable employment history');
+            if (data.downPayment) strengths.push('Significant down payment ($' + data.downPayment.toLocaleString() + ')');
+
+            const strengthsList = document.getElementById('strengths');
+            strengthsList.innerHTML = strengths.map(s => '<li>' + s + '</li>').join('');
+
+            // Weaknesses
+            const weaknesses = [];
+            if (data.creditScore < 680) weaknesses.push('Credit score could be improved');
+            if (dti >= 36) weaknesses.push('High debt-to-income ratio');
+            if (data.employment.includes('months') && parseInt(data.employment) < 24) weaknesses.push('Limited employment history at current job');
+
+            const weaknessesList = document.getElementById('weaknesses');
+            weaknessesList.innerHTML = weaknesses.length > 0 ? weaknesses.map(w => '<li>' + w + '</li>').join('') : '<li>No significant weaknesses identified</li>';
+
+            // Recommendations
+            const recommendations = [];
+            if (data.creditScore < 740) recommendations.push('Pay down credit card balances to improve credit score');
+            if (dti >= 28) recommendations.push('Reduce debt-to-income ratio by paying off smaller debts');
+            recommendations.push('Shop rates with 3+ lenders to compare offers');
+            recommendations.push('Consider increasing down payment to reduce loan amount');
+
+            const recommendationsList = document.getElementById('recommendations');
+            recommendationsList.innerHTML = recommendations.map(r => '<li>' + r + '</li>').join('');
+
+            // Show results
+            document.getElementById('applicationResults').classList.remove('hidden');
+            document.getElementById('applicationResults').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Credit Score Impact Chart - Show total cost of auto loan by credit score
+        const creditCtx = document.getElementById('creditImpactChart').getContext('2d');
+
+        // Calculate monthly payment for a loan
+        function calculateLoanPayment(principal, annualRate, months) {
+            const monthlyRate = annualRate / 100 / 12;
+            const payment = principal * (monthlyRate * Math.pow(1 + monthlyRate, months)) / (Math.pow(1 + monthlyRate, months) - 1);
+            return payment;
+        }
+
+        // Credit score ranges and typical auto loan rates
+        const creditData = [
+            { score: 'Exceptional\n(800-850)', rate: 4.5, color: '#059669' },
+            { score: 'Very Good\n(740-799)', rate: 5.8, color: '#2563EB' },
+            { score: 'Good\n(670-739)', rate: 7.2, color: '#4F46E5' },
+            { score: 'Fair\n(580-669)', rate: 11.5, color: '#F59E0B' },
+            { score: 'Poor\n(300-579)', rate: 16.9, color: '#DC2626' }
+        ];
+
+        const principal = 24000;
+        const months = 60;
+
+        // Calculate total costs
+        const totalCosts = creditData.map(item => {
+            const monthlyPayment = calculateLoanPayment(principal, item.rate, months);
+            return Math.round(monthlyPayment * months);
+        });
+
+        // Calculate interest paid (total - principal)
+        const interestPaid = totalCosts.map(total => total - principal);
+
+        new Chart(creditCtx, {
+            type: 'bar',
+            data: {
+                labels: creditData.map(d => d.score),
+                datasets: [
+                    {
+                        label: 'Principal',
+                        data: Array(5).fill(principal),
+                        backgroundColor: '#94A3B8',
+                        stack: 'stack1'
+                    },
+                    {
+                        label: 'Interest Paid',
+                        data: interestPaid,
+                        backgroundColor: creditData.map(d => d.color),
+                        stack: 'stack1'
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: '$24,000 Auto Loan - Total Cost by Credit Score (5-year term)',
+                        font: {
+                            size: 16,
+                            weight: 'bold'
+                        }
+                    },
+                    legend: {
+                        display: true,
+                        position: 'top',
+                        labels: {
+                            usePointStyle: true,
+                            padding: 15
+                        }
+                    },
+                    tooltip: {
+                        backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                        padding: 12,
+                        callbacks: {
+                            title: function(context) {
+                                return context[0].label.replace(/\n/g, ' ');
+                            },
+                            label: function(context) {
+                                if (context.datasetIndex === 0) {
+                                    return 'Principal: $' + context.parsed.y.toLocaleString();
+                                } else {
+                                    const index = context.dataIndex;
+                                    const rate = creditData[index].rate;
+                                    return 'Interest (' + rate + '%): $' + context.parsed.y.toLocaleString();
+                                }
+                            },
+                            footer: function(context) {
+                                const index = context[0].dataIndex;
+                                const total = totalCosts[index];
+                                const monthlyPayment = calculateLoanPayment(principal, creditData[index].rate, months);
+                                return '\nTotal Cost: $' + total.toLocaleString() + '\nMonthly: $' + Math.round(monthlyPayment).toLocaleString();
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        stacked: true,
+                        title: {
+                            display: true,
+                            text: 'Credit Score Range',
+                            font: {
+                                size: 13,
+                                weight: 'bold'
+                            }
+                        },
+                        ticks: {
+                            font: {
+                                size: 10
+                            }
+                        }
+                    },
+                    y: {
+                        stacked: true,
+                        title: {
+                            display: true,
+                            text: 'Total Loan Cost',
+                            font: {
+                                size: 13,
+                                weight: 'bold'
+                            }
+                        },
+                        ticks: {
+                            callback: function(value) {
+                                return '$' + (value / 1000).toFixed(0) + 'k';
+                            }
+                        },
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>

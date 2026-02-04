@@ -1,4 +1,20 @@
 <!DOCTYPE html>
+<!--
+PFL Academy State-Agnostic Template
+L-Chapter: L-27
+Chapter Title: Shopping Online: Convenience at a Cost
+Oklahoma Reference: Chapter 8.2
+
+Variables used in this template:
+- {{STATE_NAME}} - Full state name (e.g., Kentucky, Georgia)
+- {{CHAPTER_NUMBER}} - State-specific chapter number (e.g., 2.1, 1.4)
+- {{CHAPTER_ID}} - L-chapter identifier (e.g., L-27)
+- {{CHAPTER_TITLE}} - Always: Shopping Online: Convenience at a Cost
+
+This template will be processed by generate_state_html.py to create
+state-specific versions with correct chapter numbering.
+-->
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -140,7 +156,7 @@
 <body>
     <header>
         <h1>Consumer Rights Reference Guide</h1>
-        <p>Chapter 8.2: Online Shopping</p>
+        <p>Chapter {{CHAPTER_NUMBER}}: Online Shopping</p>
     </header>
     
     <div class="introduction">
@@ -406,7 +422,7 @@
     </div>
     
     <footer>
-        <p>PFL Academy - Chapter 8.2: Online Shopping</p>
+        <p>PFL Academy - Chapter {{CHAPTER_NUMBER}}: Online Shopping</p>
         <p><small>Note: This guide provides general information and is not legal advice. Consumer protection laws may vary by state and change over time.</small></p>
     </footer>
 </body>

@@ -1,4 +1,20 @@
 <!DOCTYPE html>
+<!--
+PFL Academy State-Agnostic Template
+L-Chapter: L-11
+Chapter Title: Understanding Different Types of Financial Service Providers
+Oklahoma Reference: Chapter 3.1
+
+Variables used in this template:
+- {{STATE_NAME}} - Full state name (e.g., Kentucky, Georgia)
+- {{CHAPTER_NUMBER}} - State-specific chapter number (e.g., 2.1, 1.4)
+- {{CHAPTER_ID}} - L-chapter identifier (e.g., L-11)
+- {{CHAPTER_TITLE}} - Always: Understanding Different Types of Financial Service Providers
+
+This template will be processed by generate_state_html.py to create
+state-specific versions with correct chapter numbering.
+-->
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -131,7 +147,7 @@
     
     <div class="header">
         <h1>Financial Scenario Matchmaker Worksheet</h1>
-        <p><strong>Chapter 3.1:</strong> Understanding Financial Service Providers</p>
+        <p><strong>Chapter {{CHAPTER_NUMBER}}:</strong> Understanding Financial Service Providers</p>
     </div>
     
     <div class="worksheet-section">
@@ -397,7 +413,7 @@
     </div>
     
     <div class="footer">
-        <p>PFL Academy © 2025 | Chapter 3.1: Understanding Financial Service Providers</p>
+        <p>PFL Academy © 2025 | Chapter {{CHAPTER_NUMBER}}: Understanding Financial Service Providers</p>
     </div>
 </body>
 </html>

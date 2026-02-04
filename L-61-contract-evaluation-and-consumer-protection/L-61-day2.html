@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-61: Contract Evaluation and Consumer Protection - Day 2 Learning Lab</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .learning-objective { background-color: #e6f3ff; border-radius: 0.5rem; padding: 1.5rem; margin-bottom: 1rem; }
+        .activity-timer { background-color: #FFFBEB; border-left: 4px solid #F59E0B; padding: 1rem; margin: 1rem 0; }
+        .activity-section { background-color: #f9fafb; border-radius: 0.5rem; padding: 1.5rem; margin: 1.5rem 0; border: 2px solid #e5e7eb; }
+        .scenario-box { background-color: #fff7ed; border: 2px solid #f97316; border-radius: 0.5rem; padding: 1.25rem; margin: 1rem 0; }
+        .law-box { background-color: #dbeafe; border-left: 4px solid #3b82f6; padding: 1rem; margin: 0.5rem 0; }
+        .clause-card { border: 2px solid #e5e7eb; border-radius: 0.5rem; padding: 1.25rem; margin: 0.75rem 0; font-family: 'Courier New', monospace; font-size: 0.9rem; }
+        .acceptable { border-color: #10b981; background-color: #f0fdf4; }
+        .concerning { border-color: #f59e0b; background-color: #fffbeb; }
+        .unacceptable { border-color: #ef4444; background-color: #fef2f2; }
+        .negotiation-script { background-color: #f3f4f6; border-left: 4px solid #6366f1; padding: 1rem; margin: 0.5rem 0; }
+        .step-badge { display: inline-block; background-color: #6366f1; color: white; padding: 0.25rem 0.75rem; border-radius: 9999px; font-size: 0.875rem; font-weight: 600; margin-right: 0.5rem; }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Fixed Header -->
+    <header class="bg-indigo-600 text-white p-4 shadow-md fixed top-0 left-0 right-0 z-40">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <h1 class="text-2xl font-bold">PFL Academy</h1>
+            <nav class="hidden md:flex space-x-6">
+                <a href="#" class="hover:text-indigo-200">Home</a>
+                <a href="#" class="hover:text-indigo-200">Curriculum</a>
+                <a href="#" class="hover:text-indigo-200">Resources</a>
+                <a href="#" class="hover:text-indigo-200">Profile</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Spacer for fixed header -->
+    <div class="h-16"></div>
+
+    <!-- Day 1 Recall Banner -->
+    <div class="bg-blue-100 border-l-4 border-blue-500 p-4 mb-6">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-xl font-bold text-blue-900 mb-2">📚 Day 1 Recall: Contract Evaluation Essentials</h2>
+            <p class="text-blue-800 mb-2">Yesterday we learned to critically analyze contracts using a 6-step systematic approach:</p>
+            <ol class="text-blue-800 list-decimal list-inside space-y-1">
+                <li>Identify parties and obligations</li>
+                <li>Understand financial terms completely</li>
+                <li>Examine termination and modification provisions</li>
+                <li>Analyze risk allocation and liability</li>
+                <li>Check dispute resolution requirements</li>
+                <li>Verify consistency with promises made</li>
+            </ol>
+            <p class="text-blue-800 mt-2">We identified red flags (as-is, non-refundable, mandatory arbitration, automatic renewal) and learned about consumer protection laws that safeguard your rights. Today, we practice these skills hands-on!</p>
+        </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto p-6 lg:grid lg:grid-cols-10 lg:gap-6">
+        <!-- Left Navigation Sidebar -->
+        <aside class="lg:col-span-2 mb-6 lg:mb-0">
+            <div class="bg-white rounded-lg shadow-md p-4 sticky top-24">
+                <h2 class="font-bold text-lg mb-4 text-gray-800">Learning Lab Activities</h2>
+                <nav class="space-y-2">
+                    <a href="#activity1" class="block p-2 rounded bg-indigo-50 text-indigo-700 border-l-4 border-indigo-700">
+                        Activity 1: Deep-Dive
+                    </a>
+                    <a href="#activity2" class="block p-2 rounded hover:bg-gray-50">
+                        Activity 2: Consumer Rights
+                    </a>
+                    <a href="#activity3" class="block p-2 rounded hover:bg-gray-50">
+                        Activity 3: Red Flags
+                    </a>
+                    <a href="#activity4" class="block p-2 rounded hover:bg-gray-50">
+                        Activity 4: Negotiation
+                    </a>
+                    <a href="#activity5" class="block p-2 rounded hover:bg-gray-50">
+                        Activity 5: Personal Plan
+                    </a>
+                    <a href="#reflection" class="block p-2 rounded hover:bg-gray-50">
+                        Reflection
+                    </a>
+                </nav>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="lg:col-span-8">
+            <div class="bg-white rounded-lg shadow-md p-8">
+
+                <!-- Header -->
+                <div class="mb-8">
+                    <h1 class="text-4xl font-bold text-gray-900 mb-2">Contract Evaluation and Consumer Protection</h1>
+                    <p class="text-xl text-gray-600">Day 2: Contract Evaluation Learning Lab</p>
+                    <p class="text-gray-500 mt-2">Duration: 55 minutes | Hands-on Analysis & Practice</p>
+                </div>
+
+                <!-- Activity 1: Real Contract Deep-Dive Analysis -->
+                <section id="activity1" class="activity-section">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4">Activity 1: Real Contract Deep-Dive Analysis</h2>
+                    <div class="activity-timer">
+                        <p class="text-sm font-semibold text-gray-700">⏱️ Time: 15 minutes total (7 min apartment | 4 min gym | 4 min cell phone)</p>
+                    </div>
+                    <p class="text-gray-700 mb-4">
+                        <strong>Objective:</strong> Analyze three complete real-world contracts using systematic evaluation framework.
+                    </p>
+
+                    <!-- Apartment Lease Tabs -->
+                    <div class="mb-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Contract A: 8-Page Apartment Lease (7 minutes)</h3>
+
+                        <div class="grid md:grid-cols-2 gap-4 mb-4">
+                            <div class="p-4 border-2 border-blue-500 rounded">
+                                <h4 class="font-bold text-gray-900 mb-2">Security Deposit Terms:</h4>
+                                <ul class="text-sm text-gray-700 space-y-1">
+                                    <li>• Amount: $1,500 (1.5 months rent)</li>
+                                    <li>• Refund timeline: Within 30 days of move-out</li>
+                                    <li>• Deductions allowed: Unpaid rent, damages beyond wear and tear, cleaning if not per checklist</li>
+                                    <li>• Interest: No interest paid on deposit</li>
+                                </ul>
+                                <label class="block text-sm text-gray-700 mt-2 font-semibold">Is this reasonable?</label>
+                                <select class="w-full border rounded px-2 py-1 mt-1 text-sm">
+                                    <option value="">Rate...</option>
+                                    <option value="correct">Yes - terms align with state law</option>
+                                    <option>No - amount is excessive</option>
+                                    <option>No - interest should be paid</option>
+                                </select>
+                            </div>
+
+                            <div class="p-4 border-2 border-red-500 rounded">
+                                <h4 class="font-bold text-gray-900 mb-2">Early Termination:</h4>
+                                <ul class="text-sm text-gray-700 space-y-1">
+                                    <li>• Notice: 60 days written (certified mail)</li>
+                                    <li>• Fee: 2 months rent ($2,000)</li>
+                                    <li>• Deposit: Forfeited ($1,500)</li>
+                                    <li>• Notice period rent: 2 months ($2,000)</li>
+                                </ul>
+                                <label class="block text-sm text-gray-700 mt-2 font-semibold">Total cost to break lease:</label>
+                                <input type="text" class="w-full border rounded px-2 py-1 mt-1 text-sm" placeholder="Calculate: $2,000 + $1,500 + $2,000">
+                            </div>
+
+                            <div class="p-4 border-2 border-orange-500 rounded">
+                                <h4 class="font-bold text-gray-900 mb-2">Landlord Entry Rights:</h4>
+                                <p class="text-sm text-gray-700 mb-2">"Landlord may enter with 24 hours notice for repairs, inspections, or showings. Emergency entry permitted without notice."</p>
+                                <label class="block text-sm text-gray-700 font-semibold">Complies with state law?</label>
+                                <select class="w-full border rounded px-2 py-1 mt-1 text-sm">
+                                    <option value="">Select...</option>
+                                    <option value="correct">Yes - 24-hour notice is standard</option>
+                                    <option>No - should require 48 hours</option>
+                                    <option>No - emergency entry needs definition</option>
+                                </select>
+                            </div>
+
+                            <div class="p-4 border-2 border-green-500 rounded">
+                                <h4 class="font-bold text-gray-900 mb-2">Automatic Renewal:</h4>
+                                <p class="text-sm text-gray-700 mb-2">"Lease converts to month-to-month after initial 12-month term. Either party may terminate with 30 days notice. Rent may increase with 60 days notice."</p>
+                                <label class="block text-sm text-gray-700 font-semibold">Assessment:</label>
+                                <select class="w-full border rounded px-2 py-1 mt-1 text-sm">
+                                    <option value="">Rate...</option>
+                                    <option value="correct">Consumer-friendly - flexibility after year 1</option>
+                                    <option>Concerning - rent increase with only 60 days notice</option>
+                                    <option>Red flag - should lock in rate</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="p-4 bg-yellow-50 rounded">
+                            <h4 class="font-bold text-gray-900 mb-2">Clauses You Would Negotiate:</h4>
+                            <div class="space-y-2">
+                                <input type="text" class="w-full border rounded px-3 py-2" placeholder="1. Most important clause to change...">
+                                <input type="text" class="w-full border rounded px-3 py-2" placeholder="2. Second priority...">
+                                <input type="text" class="w-full border rounded px-3 py-2" placeholder="3. Third priority...">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Gym Membership -->
+                    <div class="mb-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Contract B: Gym Membership (4 minutes)</h3>
+
+                        <div class="grid md:grid-cols-3 gap-4 mb-4">
+                            <div class="p-3 border rounded">
+                                <h4 class="font-semibold text-gray-900 text-sm mb-2">Advertised:</h4>
+                                <p class="text-sm text-gray-700">"$20/month, cancel anytime!"</p>
+                            </div>
+                            <div class="p-3 border rounded bg-red-50">
+                                <h4 class="font-semibold text-gray-900 text-sm mb-2">Actual Contract:</h4>
+                                <p class="text-xs text-gray-700">• $20/month + $49 annual fee</p>
+                                <p class="text-xs text-gray-700">• 12-month commitment</p>
+                                <p class="text-xs text-gray-700">• $150 early termination fee</p>
+                            </div>
+                            <div class="p-3 border rounded">
+                                <h4 class="font-semibold text-gray-900 text-sm mb-2">Cancellation:</h4>
+                                <p class="text-xs text-gray-700">• 30 days advance written notice</p>
+                                <p class="text-xs text-gray-700">• Certified mail required</p>
+                                <p class="text-xs text-gray-700">• No cancellation by phone/email</p>
+                            </div>
+                        </div>
+
+                        <div class="p-4 bg-gray-50 rounded mb-4">
+                            <h4 class="font-semibold text-gray-900 mb-2">Calculate True Costs:</h4>
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-sm text-gray-700 mb-1">First year total:</label>
+                                    <input type="text" class="w-full border rounded px-2 py-1" placeholder="($20 × 12) + $49 = ?">
+                                </div>
+                                <div>
+                                    <label class="block text-sm text-gray-700 mb-1">If cancel after 4 months:</label>
+                                    <input type="text" class="w-full border rounded px-2 py-1" placeholder="($20 × 4) + $49 + $150 = ?">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-4 bg-blue-50 rounded">
+                            <label class="block text-gray-700 font-semibold mb-2">Does "cancel anytime" claim violate truth in advertising?</label>
+                            <select class="w-full border rounded px-3 py-2">
+                                <option value="">Select...</option>
+                                <option value="correct">Yes - "anytime" contradicts 12-month commitment and $150 fee</option>
+                                <option>No - fine print disclosure makes it acceptable</option>
+                                <option>Unclear - depends on state law</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Cell Phone Contract -->
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Contract C: Cell Phone Service (4 minutes)</h3>
+
+                        <div class="clause-card mb-4">
+                            <p class="text-sm mb-2"><strong>MODIFICATION CLAUSE:</strong></p>
+                            <p class="text-sm">"Provider may increase monthly service fees up to 15% annually with 30 days email notice. Continued use after price increase constitutes acceptance. Customer may cancel within 30-day notice period but remains liable for device financing balance."</p>
+                        </div>
+
+                        <div class="grid md:grid-cols-2 gap-4 mb-4">
+                            <div>
+                                <label class="block text-gray-700 font-semibold mb-2">Scenario: Service starts at $70/month</label>
+                                <div class="space-y-2">
+                                    <div>
+                                        <label class="text-sm text-gray-700">After Year 1 (15% increase):</label>
+                                        <input type="text" class="w-full border rounded px-2 py-1" placeholder="$70 × 1.15 = ?">
+                                    </div>
+                                    <div>
+                                        <label class="text-sm text-gray-700">After Year 2 (another 15%):</label>
+                                        <input type="text" class="w-full border rounded px-2 py-1" placeholder="Year 1 price × 1.15 = ?">
+                                    </div>
+                                    <div>
+                                        <label class="text-sm text-gray-700">Total increase over 2 years:</label>
+                                        <input type="text" class="w-full border rounded px-2 py-1" placeholder="?">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="p-3 bg-red-50 rounded">
+                                <h4 class="font-semibold text-gray-900 mb-2">Problems with this clause:</h4>
+                                <label class="flex items-start mb-2 text-sm">
+                                    <input type="checkbox" class="mt-1 mr-2">
+                                    <span class="text-gray-700">15% annual increases compound - prices can double in ~5 years</span>
+                                </label>
+                                <label class="flex items-start mb-2 text-sm">
+                                    <input type="checkbox" class="mt-1 mr-2">
+                                    <span class="text-gray-700">Email notice easy to miss (spam folder)</span>
+                                </label>
+                                <label class="flex items-start mb-2 text-sm">
+                                    <input type="checkbox" class="mt-1 mr-2">
+                                    <span class="text-gray-700">Can't truly cancel - still owe device balance</span>
+                                </label>
+                                <label class="flex items-start text-sm">
+                                    <input type="checkbox" class="mt-1 mr-2">
+                                    <span class="text-gray-700">Completely one-sided - you can't propose changes</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="p-4 bg-purple-50 rounded">
+                            <label class="block text-gray-700 font-semibold mb-2">Which contract overall had the most unfair terms?</label>
+                            <select class="w-full border rounded px-3 py-2">
+                                <option value="">Select...</option>
+                                <option>Apartment lease - excessive termination fees</option>
+                                <option>Gym membership - misleading advertising</option>
+                                <option>Cell phone - compound price increases + device lock-in</option>
+                            </select>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Activity 2: Consumer Rights Application -->
+                <section id="activity2" class="activity-section">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4">Activity 2: Consumer Rights Application</h2>
+                    <div class="activity-timer">
+                        <p class="text-sm font-semibold text-gray-700">⏱️ Time: 12 minutes (3 minutes per scenario)</p>
+                    </div>
+
+                    <!-- Scenario 1 -->
+                    <div class="scenario-box mb-6">
+                        <h3 class="text-lg font-bold text-gray-900 mb-3">Scenario 1: Bait-and-Switch Tactics</h3>
+                        <p class="text-gray-700 mb-3">
+                            Car dealership advertised "$199/month lease—no money down!" When you arrive, the contract shows: $2,500 due at signing, $249/month, mandatory $1,200 maintenance package, $395 acquisition fee.
+                        </p>
+
+                        <div class="law-box mb-3">
+                            <h4 class="font-semibold text-blue-900 mb-1">Applicable Laws:</h4>
+                            <ul class="text-sm text-gray-700 list-disc list-inside">
+                                <li>FTC Act - prohibits deceptive advertising</li>
+                                <li>Truth in Lending Act (TILA) - requires clear credit disclosure</li>
+                                <li>State consumer protection laws - vary by state</li>
+                            </ul>
+                        </div>
+
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-gray-700 font-semibold mb-2">Available remedies:</label>
+                                <div class="space-y-1">
+                                    <label class="flex items-start text-sm">
+                                        <input type="checkbox" class="mt-1 mr-2">
+                                        <span class="text-gray-700">File complaint with FTC</span>
+                                    </label>
+                                    <label class="flex items-start text-sm">
+                                        <input type="checkbox" class="mt-1 mr-2">
+                                        <span class="text-gray-700">Report to state Attorney General</span>
+                                    </label>
+                                    <label class="flex items-start text-sm">
+                                        <input type="checkbox" class="mt-1 mr-2">
+                                        <span class="text-gray-700">Walk away - don't sign contract</span>
+                                    </label>
+                                    <label class="flex items-start text-sm">
+                                        <input type="checkbox" class="mt-1 mr-2">
+                                        <span class="text-gray-700">Request contract matching advertised terms</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 font-semibold mb-2">How would you respond?</label>
+                                <textarea class="w-full border rounded p-2" rows="4" placeholder="Your strategy..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Scenario 2 -->
+                    <div class="scenario-box mb-6">
+                        <h3 class="text-lg font-bold text-gray-900 mb-3">Scenario 2: Defective Product with "No Warranty" Clause</h3>
+                        <p class="text-gray-700 mb-3">
+                            You purchased a used appliance "as-is, no warranty" for $400. It failed within one week. Seller refuses refund citing "as-is" clause in sales receipt.
+                        </p>
+
+                        <div class="law-box mb-3">
+                            <h4 class="font-semibold text-blue-900 mb-1">Legal Principles:</h4>
+                            <ul class="text-sm text-gray-700 list-disc list-inside">
+                                <li>Implied warranties (merchantability, fitness) may apply even with "as-is" if seller is dealer</li>
+                                <li>Magnuson-Moss Warranty Act governs consumer product warranties</li>
+                                <li>Fraud/misrepresentation may void "as-is" terms if seller knew of defect</li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <label class="block text-gray-700 font-semibold mb-2">Does the Magnuson-Moss Act or implied warranty law apply?</label>
+                            <select class="w-full border rounded px-3 py-2 mb-3">
+                                <option value="">Select...</option>
+                                <option>No - "as-is" disclaimer eliminates all warranties</option>
+                                <option value="correct">Maybe - depends if seller is dealer vs. private party; fraud voids "as-is"</option>
+                                <option>Yes - implied warranties cannot be disclaimed</option>
+                            </select>
+                            <label class="block text-gray-700 font-semibold mb-2">What are your options?</label>
+                            <textarea class="w-full border rounded p-2" rows="3" placeholder="List your potential remedies..."></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Scenario 3 -->
+                    <div class="scenario-box mb-6">
+                        <h3 class="text-lg font-bold text-gray-900 mb-3">Scenario 3: Forced Arbitration for Serious Harm</h3>
+                        <p class="text-gray-700 mb-3">
+                            You signed an apartment lease with mandatory arbitration clause waiving right to jury trial. You suffered serious injury from landlord's negligence (failed to repair known hazard). Arbitration clause says disputes must be resolved through private arbitration.
+                        </p>
+
+                        <div>
+                            <label class="block text-gray-700 font-semibold mb-2">Is this enforceable for personal injury claims in your state?</label>
+                            <select class="w-full border rounded px-3 py-2 mb-3">
+                                <option value="">Select...</option>
+                                <option>Yes - arbitration clauses are always enforceable</option>
+                                <option value="correct">Varies by state - some limit arbitration for negligence/personal injury</option>
+                                <option>No - personal injury claims can never be arbitrated</option>
+                            </select>
+                            <label class="block text-gray-700 font-semibold mb-2">What consumer protections might apply?</label>
+                            <textarea class="w-full border rounded p-2" rows="3" placeholder="Research state law, unconscionability doctrine, public policy exceptions..."></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Scenario 4 -->
+                    <div class="scenario-box">
+                        <h3 class="text-lg font-bold text-gray-900 mb-3">Scenario 4: Cooling-Off Period Rights</h3>
+                        <p class="text-gray-700 mb-3">
+                            You signed an expensive home improvement contract ($8,000) during a high-pressure door-to-door sales pitch. Next day, you realized the price is 3x market rate. Contract says "all sales final."
+                        </p>
+
+                        <div class="law-box mb-3">
+                            <h4 class="font-semibold text-blue-900 mb-1">Federal Cooling-Off Rule:</h4>
+                            <p class="text-sm text-gray-700">Door-to-door sales over $25 have a 3-day cooling-off period. Seller must inform you of cancellation rights.</p>
+                        </div>
+
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-gray-700 font-semibold mb-2">Does 3-day cooling-off period apply?</label>
+                                <select class="w-full border rounded px-3 py-2">
+                                    <option value="">Select...</option>
+                                    <option value="correct">Yes - federal rule applies to door-to-door sales over $25</option>
+                                    <option>No - "all sales final" clause overrides cooling-off rights</option>
+                                    <option>Only if seller disclosed cancellation rights</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 font-semibold mb-2">How do you exercise cancellation rights?</label>
+                                <textarea class="w-full border rounded p-2" rows="4" placeholder="Steps to cancel within 3 days..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Activity 3: Red Flag Identification Challenge -->
+                <section id="activity3" class="activity-section">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4">Activity 3: Red Flag Identification Challenge</h2>
+                    <div class="activity-timer">
+                        <p class="text-sm font-semibold text-gray-700">⏱️ Time: 10 minutes (3 rounds)</p>
+                    </div>
+
+                    <!-- Round 1 -->
+                    <div class="mb-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Round 1: Liability and Warranty Disclaimers (3 min)</h3>
+                        <p class="text-gray-700 mb-3">Classify each clause as Acceptable, Concerning, or Unacceptable:</p>
+
+                        <div class="space-y-3">
+                            <div class="clause-card">
+                                <p class="text-sm mb-2"><strong>Clause 1:</strong> "Product sold as-is with no warranty of any kind" [Used car, $15,000]</p>
+                                <select class="w-full border rounded px-2 py-1 text-sm">
+                                    <option value="">Classify...</option>
+                                    <option value="correct">Acceptable - Common for used items if disclosed clearly</option>
+                                    <option>Concerning - Price is high for no warranty</option>
+                                    <option>Unacceptable - All sales need some warranty</option>
+                                </select>
+                            </div>
+
+                            <div class="clause-card">
+                                <p class="text-sm mb-2"><strong>Clause 2:</strong> "Company not liable for any damages including those caused by our negligence"</p>
+                                <select class="w-full border rounded px-2 py-1 text-sm">
+                                    <option value="">Classify...</option>
+                                    <option>Acceptable - Company needs protection</option>
+                                    <option>Concerning - Broad but maybe enforceable</option>
+                                    <option value="correct">Unacceptable - Cannot waive liability for own negligence in most states</option>
+                                </select>
+                            </div>
+
+                            <div class="clause-card">
+                                <p class="text-sm mb-2"><strong>Clause 3:</strong> "Limited warranty covers defects for 90 days; excludes consequential damages"</p>
+                                <select class="w-full border rounded px-2 py-1 text-sm">
+                                    <option value="">Classify...</option>
+                                    <option value="correct">Acceptable - Reasonable limited warranty with clear terms</option>
+                                    <option>Concerning - 90 days is too short</option>
+                                    <option>Unacceptable - Must cover consequential damages</option>
+                                </select>
+                            </div>
+
+                            <div class="clause-card">
+                                <p class="text-sm mb-2"><strong>Clause 4:</strong> "Customer waives all claims against Company for any reason whatsoever"</p>
+                                <select class="w-full border rounded px-2 py-1 text-sm">
+                                    <option value="">Classify...</option>
+                                    <option>Acceptable - Standard business protection</option>
+                                    <option>Concerning - Very broad</option>
+                                    <option value="correct">Unacceptable - Overly broad; likely unconscionable</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Round 2 -->
+                    <div class="mb-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Round 2: Termination and Modification (3 min)</h3>
+                        <p class="text-gray-700 mb-3">Evaluate these contract provisions:</p>
+
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div class="clause-card acceptable">
+                                <p class="text-sm mb-2"><strong>Good:</strong> "Either party may terminate with 30 days notice"</p>
+                                <p class="text-xs text-gray-600">Mutual termination rights = Fair</p>
+                            </div>
+
+                            <div class="clause-card unacceptable">
+                                <p class="text-sm mb-2"><strong>Bad:</strong> "Company may terminate anytime; Customer needs 90 days notice + $500 fee"</p>
+                                <p class="text-xs text-gray-600">One-sided = Unfair</p>
+                            </div>
+
+                            <div class="clause-card concerning">
+                                <p class="text-sm mb-2"><strong>Concerning:</strong> "Company may change terms by posting on website; continued use = acceptance"</p>
+                                <label class="block text-xs text-gray-700 mt-2">What makes this problematic?</label>
+                                <input type="text" class="w-full border rounded px-2 py-1 text-xs mt-1" placeholder="Your analysis...">
+                            </div>
+
+                            <div class="clause-card acceptable">
+                                <p class="text-sm mb-2"><strong>Acceptable:</strong> "Annual contract with month-to-month rollover after initial term"</p>
+                                <p class="text-xs text-gray-600">Provides flexibility after commitment</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Round 3 -->
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Round 3: Financial and Payment Terms (4 min)</h3>
+                        <p class="text-gray-700 mb-3">Calculate hidden costs and identify problems:</p>
+
+                        <div class="space-y-4">
+                            <div class="p-4 bg-red-50 border-l-4 border-red-500 rounded">
+                                <p class="text-sm text-gray-700 mb-2"><strong>Problem 1:</strong> Service advertised as "$9.99/month"</p>
+                                <p class="text-sm text-gray-700 mb-2">Contract shows: $9.99 + $2.99 processing + $4.99 convenience + taxes</p>
+                                <label class="text-sm text-gray-700 font-semibold">Actual monthly cost:</label>
+                                <input type="text" class="border rounded px-2 py-1 w-full mt-1" placeholder="~$19/month = 90% more than advertised!">
+                            </div>
+
+                            <div class="p-4 bg-yellow-50 border-l-4 border-yellow-500 rounded">
+                                <p class="text-sm text-gray-700 mb-2"><strong>Problem 2:</strong> "$500 deposit, fully refundable"</p>
+                                <p class="text-sm text-gray-700 mb-2">Fine print lists 15 conditions that forfeit deposit (normal wear and tear, cleaning not meeting standard, late notice, etc.)</p>
+                                <label class="text-sm text-gray-700 font-semibold">Why is this deceptive?</label>
+                                <textarea class="w-full border rounded p-2 mt-1 text-sm" rows="2" placeholder="Explain..."></textarea>
+                            </div>
+
+                            <div class="p-4 bg-orange-50 border-l-4 border-orange-500 rounded">
+                                <p class="text-sm text-gray-700 mb-2"><strong>Problem 3:</strong> "Low monthly payment of $50"</p>
+                                <p class="text-sm text-gray-700 mb-2">For 84 months = $4,200 total for $1,800 item</p>
+                                <div class="grid grid-cols-2 gap-2 mt-2">
+                                    <div>
+                                        <label class="text-xs text-gray-700">Total interest paid:</label>
+                                        <input type="text" class="border rounded px-2 py-1 w-full text-sm" placeholder="$4,200 - $1,800">
+                                    </div>
+                                    <div>
+                                        <label class="text-xs text-gray-700">Effective APR:</label>
+                                        <input type="text" class="border rounded px-2 py-1 w-full text-sm" placeholder="~20%+">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Activity 4: Negotiation Strategy Workshop -->
+                <section id="activity4" class="activity-section">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4">Activity 4: Negotiation Strategy Workshop</h2>
+                    <div class="activity-timer">
+                        <p class="text-sm font-semibold text-gray-700">⏱️ Time: 12 minutes</p>
+                    </div>
+
+                    <div class="mb-6">
+                        <h3 class="text-lg font-bold text-gray-900 mb-3">Negotiation Scripts Practice</h3>
+
+                        <div class="negotiation-script mb-4">
+                            <p class="text-sm font-semibold text-gray-900 mb-2"><span class="step-badge">Weak</span> Approach:</p>
+                            <p class="text-sm text-gray-700 italic">"Can we make the termination fee lower?"</p>
+                        </div>
+
+                        <div class="negotiation-script mb-4">
+                            <p class="text-sm font-semibold text-gray-900 mb-2"><span class="step-badge">Strong</span> Approach:</p>
+                            <p class="text-sm text-gray-700 italic">"I'm very interested in signing, but the $500 early termination fee for a $40/month membership is excessive—that's 12.5 months of dues. Industry standard is 2-3 months maximum. Could we reduce it to $120 (3 months)? If so, I'm ready to sign today."</p>
+                        </div>
+
+                        <p class="text-gray-700 mb-4"><strong>Why the strong approach works:</strong></p>
+                        <ul class="list-disc list-inside text-gray-700 mb-4 space-y-1">
+                            <li>Shows genuine interest (not just complaining)</li>
+                            <li>Provides objective benchmark (industry standard)</li>
+                            <li>Offers specific alternative (not vague "lower")</li>
+                            <li>Creates urgency (ready to sign today)</li>
+                        </ul>
+
+                        <h4 class="font-bold text-gray-900 mb-3">Practice Scenarios - Write Strong Negotiation Scripts:</h4>
+
+                        <div class="mb-4">
+                            <p class="text-gray-700 mb-2"><strong>Scenario 1:</strong> $500 gym termination fee (annual dues $480)</p>
+                            <textarea class="w-full border rounded p-3" rows="4" placeholder="Your strong negotiation script..."></textarea>
+                        </div>
+
+                        <div class="mb-4">
+                            <p class="text-gray-700 mb-2"><strong>Scenario 2:</strong> Employment 2-year non-compete covering entire industry in 5-state region</p>
+                            <textarea class="w-full border rounded p-3" rows="4" placeholder="Your strong negotiation script..."></textarea>
+                        </div>
+
+                        <div>
+                            <p class="text-gray-700 mb-2"><strong>Scenario 3:</strong> Automatic price increase clause: "Price may increase up to 15% annually"</p>
+                            <textarea class="w-full border rounded p-3" rows="4" placeholder="Your strong negotiation script..."></textarea>
+                        </div>
+                    </div>
+
+                    <div class="p-4 bg-green-50 rounded">
+                        <h4 class="font-bold text-gray-900 mb-2">Negotiation Success Factors:</h4>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div>
+                                <h5 class="font-semibold text-gray-900 mb-2">DO:</h5>
+                                <ul class="text-sm text-gray-700 space-y-1">
+                                    <li>✓ Research standard terms beforehand</li>
+                                    <li>✓ Be specific about what you want changed</li>
+                                    <li>✓ Explain why it's reasonable</li>
+                                    <li>✓ Show willingness to sign if terms improve</li>
+                                    <li>✓ Remain professional and respectful</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h5 class="font-semibold text-gray-900 mb-2">DON'T:</h5>
+                                <ul class="text-sm text-gray-700 space-y-1">
+                                    <li>✗ Make vague requests ("better terms")</li>
+                                    <li>✗ Be confrontational or demanding</li>
+                                    <li>✗ Negotiate every single clause</li>
+                                    <li>✗ Accept "this is non-negotiable" without trying</li>
+                                    <li>✗ Sign if critical terms remain unacceptable</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Activity 5: Personal Contract Evaluation -->
+                <section id="activity5" class="activity-section">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4">Activity 5: Personal Contract Evaluation</h2>
+                    <div class="activity-timer">
+                        <p class="text-sm font-semibold text-gray-700">⏱️ Time: 11 minutes</p>
+                    </div>
+
+                    <div class="mb-6">
+                        <h3 class="text-lg font-bold text-gray-900 mb-3">Contract Inventory (3 min)</h3>
+                        <p class="text-gray-700 mb-3">List contracts you currently have or anticipate signing soon:</p>
+
+                        <div class="grid md:grid-cols-3 gap-4">
+                            <div class="p-4 bg-blue-50 rounded">
+                                <h4 class="font-semibold text-gray-900 mb-2">Current Contracts:</h4>
+                                <textarea class="w-full border rounded p-2" rows="5" placeholder="e.g., Phone plan, streaming services, gym membership, car insurance..."></textarea>
+                            </div>
+                            <div class="p-4 bg-green-50 rounded">
+                                <h4 class="font-semibold text-gray-900 mb-2">Within 6 Months:</h4>
+                                <textarea class="w-full border rounded p-2" rows="5" placeholder="e.g., Apartment lease renewal, new credit card..."></textarea>
+                            </div>
+                            <div class="p-4 bg-purple-50 rounded">
+                                <h4 class="font-semibold text-gray-900 mb-2">Within 1 Year:</h4>
+                                <textarea class="w-full border rounded p-2" rows="5" placeholder="e.g., Car purchase, employment contract, student loans..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <h3 class="text-lg font-bold text-gray-900 mb-3">Priority Analysis (3 min)</h3>
+                        <p class="text-gray-700 mb-3">Select one current and one anticipated contract. For each, answer:</p>
+
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div class="p-4 border-2 border-blue-500 rounded">
+                                <h4 class="font-semibold text-gray-900 mb-3">Current Contract:</h4>
+                                <div class="space-y-3">
+                                    <div>
+                                        <label class="block text-sm text-gray-700 mb-1">Contract type:</label>
+                                        <input type="text" class="w-full border rounded px-2 py-1" placeholder="e.g., Cell phone plan">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm text-gray-700 mb-1">Most important terms:</label>
+                                        <textarea class="w-full border rounded p-2" rows="2" placeholder="What mattered when signing?"></textarea>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm text-gray-700 mb-1">Terms you didn't understand:</label>
+                                        <textarea class="w-full border rounded p-2" rows="2" placeholder="What was confusing?"></textarea>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm text-gray-700 mb-1">What you'd negotiate now:</label>
+                                        <textarea class="w-full border rounded p-2" rows="2" placeholder="Knowing what you know..."></textarea>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="p-4 border-2 border-green-500 rounded">
+                                <h4 class="font-semibold text-gray-900 mb-3">Anticipated Contract:</h4>
+                                <div class="space-y-3">
+                                    <div>
+                                        <label class="block text-sm text-gray-700 mb-1">Contract type:</label>
+                                        <input type="text" class="w-full border rounded px-2 py-1" placeholder="e.g., Apartment lease">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm text-gray-700 mb-1">Red flags to watch for:</label>
+                                        <textarea class="w-full border rounded p-2" rows="2" placeholder="What concerns you?"></textarea>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm text-gray-700 mb-1">Consumer protections:</label>
+                                        <textarea class="w-full border rounded p-2" rows="2" placeholder="What laws apply?"></textarea>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm text-gray-700 mb-1">Walk-away conditions:</label>
+                                        <textarea class="w-full border rounded p-2" rows="2" placeholder="What would make you decline?"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-3">Action Plan (5 min)</h3>
+                        <p class="text-gray-700 mb-3">Create a specific plan for one contract:</p>
+
+                        <div class="p-4 bg-indigo-50 rounded">
+                            <h4 class="font-semibold text-gray-900 mb-3">For a Current or Anticipated Contract:</h4>
+                            <div class="space-y-3">
+                                <div>
+                                    <label class="flex items-center mb-1">
+                                        <input type="checkbox" class="mr-2">
+                                        <span class="text-gray-700 font-semibold">Review it thoroughly this week (schedule specific time)</span>
+                                    </label>
+                                    <input type="text" class="w-full border rounded px-2 py-1 ml-6" placeholder="When will you review it?">
+                                </div>
+                                <div>
+                                    <label class="block text-gray-700 font-semibold mb-1">Identify problematic terms you missed:</label>
+                                    <textarea class="w-full border rounded p-2" rows="2" placeholder="What will you look for specifically?"></textarea>
+                                </div>
+                                <div>
+                                    <label class="block text-gray-700 font-semibold mb-1">Research if terms are standard or excessive:</label>
+                                    <textarea class="w-full border rounded p-2" rows="2" placeholder="Where will you research comparable contracts?"></textarea>
+                                </div>
+                                <div>
+                                    <label class="flex items-center mb-1">
+                                        <input type="checkbox" class="mr-2">
+                                        <span class="text-gray-700 font-semibold">Set calendar reminder for renewal/cancellation deadlines</span>
+                                    </label>
+                                    <input type="date" class="w-full border rounded px-2 py-1 ml-6">
+                                </div>
+                                <div>
+                                    <label class="block text-gray-700 font-semibold mb-1">Your decision:</label>
+                                    <select class="w-full border rounded px-3 py-2">
+                                        <option value="">Select action...</option>
+                                        <option>Continue as-is</option>
+                                        <option>Attempt to renegotiate specific terms</option>
+                                        <option>Cancel and find alternative</option>
+                                        <option>Wait until renewal to negotiate</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Reflection & Wrap-up -->
+                <section id="reflection" class="mb-8">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4">Reflection & Wrap-up</h2>
+
+                    <div class="mb-6">
+                        <h3 class="text-lg font-bold text-gray-900 mb-3">Individual Reflection:</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-gray-700 font-semibold mb-2">1. Most surprising discovery today:</label>
+                                <textarea class="w-full border rounded p-3" rows="3" placeholder="What contract term or protection surprised you most?"></textarea>
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 font-semibold mb-2">2. Confidence check (rate 1-10):</label>
+                                <div class="grid md:grid-cols-2 gap-3">
+                                    <div class="flex items-center">
+                                        <span class="text-gray-700 mr-2">Reading contracts:</span>
+                                        <input type="number" min="1" max="10" class="border rounded px-2 py-1 w-16">
+                                    </div>
+                                    <div class="flex items-center">
+                                        <span class="text-gray-700 mr-2">Identifying unfair clauses:</span>
+                                        <input type="number" min="1" max="10" class="border rounded px-2 py-1 w-16">
+                                    </div>
+                                    <div class="flex items-center">
+                                        <span class="text-gray-700 mr-2">Knowing consumer rights:</span>
+                                        <input type="number" min="1" max="10" class="border rounded px-2 py-1 w-16">
+                                    </div>
+                                    <div class="flex items-center">
+                                        <span class="text-gray-700 mr-2">Negotiating better terms:</span>
+                                        <input type="number" min="1" max="10" class="border rounded px-2 py-1 w-16">
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 font-semibold mb-2">3. Practical application - ONE action you'll take this week:</label>
+                                <textarea class="w-full border rounded p-3" rows="3" placeholder="Be specific about what you'll do and when..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <h3 class="text-lg font-bold text-gray-900 mb-3">Action Commitments:</h3>
+                        <div class="space-y-3">
+                            <div class="p-4 bg-blue-50 rounded">
+                                <label class="block text-gray-700 font-semibold mb-2">Contract I'll review more carefully:</label>
+                                <input type="text" class="w-full border rounded px-3 py-2" placeholder="Which contract and why?">
+                            </div>
+                            <div class="p-4 bg-green-50 rounded">
+                                <label class="block text-gray-700 font-semibold mb-2">Upcoming contract where I'll apply these skills:</label>
+                                <input type="text" class="w-full border rounded px-3 py-2" placeholder="What contract decision?">
+                            </div>
+                            <div class="p-4 bg-purple-50 rounded">
+                                <label class="block text-gray-700 font-semibold mb-2">Person I'll teach about contract literacy:</label>
+                                <input type="text" class="w-full border rounded px-3 py-2" placeholder="Who could benefit?">
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Key Takeaways -->
+                <div class="bg-gradient-to-r from-indigo-500 to-purple-600 text-white rounded-lg p-6">
+                    <h2 class="text-2xl font-bold mb-4">🎯 Key Takeaways</h2>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div>
+                            <p class="mb-2">✓ <strong>Systematic analysis works</strong> - Using structured evaluation ensures you don't miss critical details</p>
+                            <p class="mb-2">✓ <strong>Many terms are negotiable</strong> - Despite being presented as "standard," you can often get better terms by asking</p>
+                            <p class="mb-2">✓ <strong>Consumer laws protect you</strong> - Rights that cannot be contracted away (unconscionability, cooling-off periods, warranty protections)</p>
+                            <p class="mb-2">✓ <strong>Red flags demand scrutiny</strong> - As-is, non-refundable, binding arbitration, automatic renewal, broad liability waivers</p>
+                        </div>
+                        <div>
+                            <p class="mb-2">✓ <strong>Walking away is powerful</strong> - Your best leverage is willingness to decline bad deals</p>
+                            <p class="mb-2">✓ <strong>Research beats guessing</strong> - Know what's standard vs. excessive in your market</p>
+                            <p class="mb-2">✓ <strong>Document everything</strong> - Get promises in writing; contracts override verbal assurances</p>
+                            <p>✓ <strong>Never sign under pressure</strong> - If deal won't wait for careful review, it's probably not a good deal</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Completion -->
+                <div class="mt-8 p-6 bg-green-50 border-2 border-green-500 rounded-lg text-center">
+                    <h2 class="text-2xl font-bold text-green-900 mb-2">🎉 Congratulations!</h2>
+                    <p class="text-green-800 text-lg">You've completed L-61: Contract Evaluation and Consumer Protection</p>
+                    <p class="text-green-700 mt-2">You now have advanced skills to analyze, evaluate, negotiate, and protect yourself from unfair contract terms!</p>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Auto-save to localStorage
+        document.querySelectorAll('input[type="text"], input[type="number"], input[type="date"], textarea, select').forEach(field => {
+            const key = 'contract-lab-61-' + (field.id || field.placeholder || Math.random());
+
+            // Load saved value
+            const saved = localStorage.getItem(key);
+            if (saved) field.value = saved;
+
+            // Save on change
+            field.addEventListener('blur', function() {
+                if (this.value) localStorage.setItem(key, this.value);
+            });
+        });
+
+        // Checkbox persistence
+        document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+            const key = 'contract-checkbox-61-' + (checkbox.id || Math.random());
+
+            // Load saved state
+            const saved = localStorage.getItem(key);
+            if (saved === 'true') checkbox.checked = true;
+
+            // Save on change
+            checkbox.addEventListener('change', function() {
+                localStorage.setItem(key, this.checked);
+            });
+        });
+    </script>
+</body>
+</html>

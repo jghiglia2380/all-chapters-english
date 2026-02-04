@@ -1,4 +1,20 @@
 <!DOCTYPE html>
+<!--
+PFL Academy State-Agnostic Template
+L-Chapter: L-35
+Chapter Title: Managing Insurance Costs
+Oklahoma Reference: Chapter 11.3
+
+Variables used in this template:
+- {{STATE_NAME}} - Full state name (e.g., Kentucky, Georgia)
+- {{CHAPTER_NUMBER}} - State-specific chapter number (e.g., 2.1, 1.4)
+- {{CHAPTER_ID}} - L-chapter identifier (e.g., L-35)
+- {{CHAPTER_TITLE}} - Always: Managing Insurance Costs
+
+This template will be processed by generate_state_html.py to create
+state-specific versions with correct chapter numbering.
+-->
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -193,13 +209,13 @@
 <body>
     <div class="print-header">
         <h1>Cost-Saving Strategy Guide</h1>
-        <p>Chapter 11.3: Managing Insurance Costs</p>
+        <p>Chapter {{CHAPTER_NUMBER}}: Managing Insurance Costs</p>
     </div>
 
     <button class="print-button no-print" onclick="window.print()">Print / Save as PDF</button>
 
     <h1>Cost-Saving Strategy Guide</h1>
-    <p><strong>Chapter 11.3: Managing Insurance Costs</strong></p>
+    <p><strong>Chapter {{CHAPTER_NUMBER}}: Managing Insurance Costs</strong></p>
 
     <h2>Introduction to Insurance Cost-Saving Strategies</h2>
     <p>Insurance is a necessary expense for protecting yourself, your family, and your assets. However, there are many effective strategies for managing insurance costs while maintaining appropriate coverage. This guide outlines five key strategies for reducing insurance costs and provides guidance on which strategies work best for different personal situations.</p>
@@ -607,7 +623,7 @@
     <div class="input-field" style="min-height: 150px;"></div>
 
     <div class="footer">
-        <p>PFL Academy | Chapter 11.3: Managing Insurance Costs | Cost-Saving Strategy Guide</p>
+        <p>PFL Academy | Chapter {{CHAPTER_NUMBER}}: Managing Insurance Costs | Cost-Saving Strategy Guide</p>
         <p>Page 1 of 1</p>
     </div>
     

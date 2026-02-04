@@ -1,4 +1,20 @@
 <!DOCTYPE html>
+<!--
+PFL Academy State-Agnostic Template
+L-Chapter: L-15
+Chapter Title: Understanding the Power of Compound Interest and the Rule of 72
+Oklahoma Reference: Chapter 5.2
+
+Variables used in this template:
+- {{STATE_NAME}} - Full state name (e.g., Kentucky, Georgia)
+- {{CHAPTER_NUMBER}} - State-specific chapter number (e.g., 2.1, 1.4)
+- {{CHAPTER_ID}} - L-chapter identifier (e.g., L-15)
+- {{CHAPTER_TITLE}} - Always: Understanding the Power of Compound Interest and the Rule of 72
+
+This template will be processed by generate_state_html.py to create
+state-specific versions with correct chapter numbering.
+-->
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -136,7 +152,7 @@
 
     <div class="header">
         <h1>Investment Strategy Template</h1>
-        <p>Chapter 5.2: Understanding the Power of Compound Interest and the Rule of 72</p>
+        <p>Chapter {{CHAPTER_NUMBER}}: Understanding the Power of Compound Interest and the Rule of 72</p>
     </div>
 
     <div class="intro">
@@ -448,7 +464,7 @@
     </div>
 
     <footer>
-        <p>PFL Academy | Chapter 5.2: Understanding the Power of Compound Interest and the Rule of 72</p>
+        <p>PFL Academy | Chapter {{CHAPTER_NUMBER}}: Understanding the Power of Compound Interest and the Rule of 72</p>
     </footer>
 </body>
 </html>

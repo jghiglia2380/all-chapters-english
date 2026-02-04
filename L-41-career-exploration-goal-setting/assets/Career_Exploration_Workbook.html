@@ -1,4 +1,20 @@
 <!DOCTYPE html>
+<!--
+PFL Academy State-Agnostic Template
+L-Chapter: L-41
+Chapter Title: Career Planning and Development
+Oklahoma Reference: Chapter 15.1
+
+Variables used in this template:
+- {{STATE_NAME}} - Full state name (e.g., Kentucky, Georgia)
+- {{CHAPTER_NUMBER}} - State-specific chapter number (e.g., 2.1, 1.4)
+- {{CHAPTER_ID}} - L-chapter identifier (e.g., L-41)
+- {{CHAPTER_TITLE}} - Always: Career Planning and Development
+
+This template will be processed by generate_state_html.py to create
+state-specific versions with correct chapter numbering.
+-->
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -197,13 +213,13 @@
 <body>
     <div class="print-header">
         <h1>Career Exploration Workbook</h1>
-        <p>Chapter 15.1: Career Exploration and Goal Setting</p>
+        <p>Chapter {{CHAPTER_NUMBER}}: Career Exploration and Goal Setting</p>
     </div>
 
     <button class="print-button no-print" onclick="window.print()">Print / Save as PDF</button>
 
     <h1>Career Exploration Workbook</h1>
-    <p><strong>Chapter 15.1: Career Exploration and Goal Setting</strong></p>
+    <p><strong>Chapter {{CHAPTER_NUMBER}}: Career Exploration and Goal Setting</strong></p>
 
     <h2>Introduction</h2>
     <p>This workbook will guide you through a comprehensive self-assessment and career exploration process. By completing these activities, you'll gain valuable insights into your interests, skills, and values that will help you make informed career decisions and set meaningful goals for your future.</p>
@@ -923,7 +939,7 @@
     </div>
 
     <div class="footer">
-        <p>PFL Academy | Chapter 15.1: Career Exploration and Goal Setting | Career Exploration Workbook</p>
+        <p>PFL Academy | Chapter {{CHAPTER_NUMBER}}: Career Exploration and Goal Setting | Career Exploration Workbook</p>
         <p>Page 1 of 1</p>
     </div>
     

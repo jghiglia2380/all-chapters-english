@@ -1,4 +1,20 @@
 <!DOCTYPE html>
+<!--
+PFL Academy State-Agnostic Template
+L-Chapter: L-40
+Chapter Title: Researching and Evaluating Charitable Groups
+Oklahoma Reference: Chapter 14.1
+
+Variables used in this template:
+- {{STATE_NAME}} - Full state name (e.g., Kentucky, Georgia)
+- {{CHAPTER_NUMBER}} - State-specific chapter number (e.g., 2.1, 1.4)
+- {{CHAPTER_ID}} - L-chapter identifier (e.g., L-40)
+- {{CHAPTER_TITLE}} - Always: Researching and Evaluating Charitable Groups
+
+This template will be processed by generate_state_html.py to create
+state-specific versions with correct chapter numbering.
+-->
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -115,7 +131,7 @@
     <button class="print-button" onclick="window.print()">Save as PDF / Print</button>
     
     <h1>Form 990 Quick Reference Guide</h1>
-    <p><strong>PFL Academy - Chapter 14.2: Checking Out Charitable Groups</strong></p>
+    <p><strong>PFL Academy - Chapter {{CHAPTER_NUMBER}}: Checking Out Charitable Groups</strong></p>
     
     <h2>Introduction to Form 990</h2>
     <p>Form 990 is a tax document that nonprofit organizations must file annually with the Internal Revenue Service (IRS). It provides valuable information about an organization's mission, programs, finances, governance, and operations. Learning how to read Form 990 is an essential skill for evaluating charitable organizations.</p>
@@ -498,7 +514,7 @@
     </div>
     
     <footer>
-        <p>© PFL Academy - Chapter 14.2: Checking Out Charitable Groups</p>
+        <p>© PFL Academy - Chapter {{CHAPTER_NUMBER}}: Checking Out Charitable Groups</p>
         <p>This resource is designed for educational purposes. Content should be reviewed and updated periodically.</p>
     </footer>
 </body>

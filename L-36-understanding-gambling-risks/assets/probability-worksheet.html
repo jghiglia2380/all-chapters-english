@@ -1,4 +1,20 @@
 <!DOCTYPE html>
+<!--
+PFL Academy State-Agnostic Template
+L-Chapter: L-36
+Chapter Title: Understanding Gambling Risks
+Oklahoma Reference: Chapter 12.1
+
+Variables used in this template:
+- {{STATE_NAME}} - Full state name (e.g., Kentucky, Georgia)
+- {{CHAPTER_NUMBER}} - State-specific chapter number (e.g., 2.1, 1.4)
+- {{CHAPTER_ID}} - L-chapter identifier (e.g., L-36)
+- {{CHAPTER_TITLE}} - Always: Understanding Gambling Risks
+
+This template will be processed by generate_state_html.py to create
+state-specific versions with correct chapter numbering.
+-->
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -130,7 +146,7 @@
 <body>
     <div class="header">
         <div class="logo">PFL Academy</div>
-        <div>Chapter 12.1: Understanding the Risks of Gambling</div>
+        <div>Chapter {{CHAPTER_NUMBER}}: Understanding the Risks of Gambling</div>
     </div>
     
     <h1>Gambling Probability Worksheet</h1>

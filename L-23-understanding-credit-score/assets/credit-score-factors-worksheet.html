@@ -1,4 +1,20 @@
 <!DOCTYPE html>
+<!--
+PFL Academy State-Agnostic Template
+L-Chapter: L-23
+Chapter Title: Understanding Your Credit Score and Its Impact
+Oklahoma Reference: Chapter 7.3
+
+Variables used in this template:
+- {{STATE_NAME}} - Full state name (e.g., Kentucky, Georgia)
+- {{CHAPTER_NUMBER}} - State-specific chapter number (e.g., 2.1, 1.4)
+- {{CHAPTER_ID}} - L-chapter identifier (e.g., L-23)
+- {{CHAPTER_TITLE}} - Always: Understanding Your Credit Score and Its Impact
+
+This template will be processed by generate_state_html.py to create
+state-specific versions with correct chapter numbering.
+-->
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -137,7 +153,7 @@
 <body>
     <header>
         <h1>Credit Score Factors Worksheet</h1>
-        <p>Chapter 7.3: Understanding Credit Scores</p>
+        <p>Chapter {{CHAPTER_NUMBER}}: Understanding Credit Scores</p>
     </header>
     
     <div class="instructions">
@@ -241,7 +257,7 @@
     </div>
     
     <footer>
-        <p>PFL Academy - Chapter 7.3: Understanding Credit Scores</p>
+        <p>PFL Academy - Chapter {{CHAPTER_NUMBER}}: Understanding Credit Scores</p>
     </footer>
 </body>
 </html>

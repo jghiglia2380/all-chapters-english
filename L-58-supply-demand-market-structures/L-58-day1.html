@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-58: Supply, Demand, and Market Structures - Day 1</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .helper-content {
+            display: none;
+        }
+        .helper-content.active {
+            display: block;
+        }
+        .given-value {
+            background-color: #f3f4f6;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Fixed Header -->
+    <header class="bg-indigo-600 text-white p-4 shadow-md fixed top-0 left-0 right-0 z-40">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-bold">L-58: Supply, Demand, and Market Structures | Day 1 of 2</h1>
+            <nav class="space-x-4">
+                <a href="#" class="hover:underline">Home</a>
+                <a href="#" class="hover:underline">Curriculum</a>
+                <a href="#" class="hover:underline">Resources</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Spacer for fixed header -->
+    <div class="h-16"></div>
+
+    <div class="container mx-auto px-4 py-6">
+
+        <!-- Learning Objectives -->
+        <section class="bg-blue-50 rounded-lg p-6 mb-8">
+            <h2 class="text-2xl font-bold text-gray-900 mb-4">📚 Learning Objectives</h2>
+            <ul class="list-disc list-inside space-y-2 text-gray-700">
+                <li>Analyze how supply and demand interact to determine equilibrium prices and quantities</li>
+                <li>Evaluate how different market structures affect consumer choices and pricing</li>
+                <li>Calculate consumer and producer surplus in various market scenarios</li>
+                <li>Compare how competition levels impact prices, quality, and consumer welfare</li>
+                <li>Apply supply and demand principles to make informed financial decisions as a consumer</li>
+            </ul>
+        </section>
+
+        <!-- Introduction -->
+        <section class="bg-white rounded-lg shadow-lg p-6 mb-8">
+            <h2 class="text-3xl font-bold text-gray-900 mb-4">Introduction</h2>
+            <p class="text-gray-700 mb-4">Every day, you make dozens of financial decisions influenced by the invisible forces of supply and demand. Why does a cup of coffee cost $3 at one shop but $6 at another? Why do concert ticket prices skyrocket when your favorite artist comes to town? Why are groceries more expensive this year than last? The answers lie in understanding how markets work—and this understanding is crucial to making smart financial decisions.</p>
+            <p class="text-gray-700 mb-4">Supply and demand are the foundational forces that determine prices in a market economy. When you understand these principles, you gain insight into why prices change, when to expect deals, and how to time major purchases. You also develop the ability to predict price movements and adjust your spending accordingly. For a recent graduate managing a tight budget, understanding market dynamics can mean the difference between paying premium prices and finding value.</p>
+            <p class="text-gray-700">Beyond pricing, understanding market structures helps you recognize when you're getting a fair deal and when market conditions work against you. Some industries are highly competitive, driving prices down and quality up. Others are dominated by a few large companies that can influence prices and limit choices. Recognizing these structures empowers you to navigate markets more effectively, whether you're buying groceries, choosing internet service, or comparing healthcare options.</p>
+        </section>
+
+        <!-- Key Concepts -->
+        <section class="bg-gray-50 rounded-lg p-6 mb-8">
+            <h2 class="text-3xl font-bold text-gray-900 mb-4">Key Concepts</h2>
+
+            <div class="grid md:grid-cols-2 gap-4">
+                <div class="bg-white p-4 rounded-lg border border-gray-300">
+                    <h3 class="font-bold text-indigo-700 mb-2">Demand</h3>
+                    <p class="text-sm text-gray-700">The quantity of a good or service that consumers are willing and able to purchase at various price points; generally increases as prices decrease</p>
+                </div>
+                <div class="bg-white p-4 rounded-lg border border-gray-300">
+                    <h3 class="font-bold text-indigo-700 mb-2">Supply</h3>
+                    <p class="text-sm text-gray-700">The quantity of a good or service that producers are willing and able to offer for sale at various price points; generally increases as prices increase</p>
+                </div>
+                <div class="bg-white p-4 rounded-lg border border-gray-300">
+                    <h3 class="font-bold text-indigo-700 mb-2">Equilibrium Price</h3>
+                    <p class="text-sm text-gray-700">The price at which the quantity demanded equals the quantity supplied, resulting in a stable market with no shortages or surpluses</p>
+                </div>
+                <div class="bg-white p-4 rounded-lg border border-gray-300">
+                    <h3 class="font-bold text-indigo-700 mb-2">Consumer Surplus</h3>
+                    <p class="text-sm text-gray-700">The difference between what consumers are willing to pay for a good and what they actually pay; represents the benefit consumers receive from market transactions</p>
+                </div>
+                <div class="bg-white p-4 rounded-lg border border-gray-300">
+                    <h3 class="font-bold text-indigo-700 mb-2">Perfect Competition</h3>
+                    <p class="text-sm text-gray-700">A market structure with many buyers and sellers, identical products, and no barriers to entry; firms are price takers with no individual market power</p>
+                </div>
+                <div class="bg-white p-4 rounded-lg border border-gray-300">
+                    <h3 class="font-bold text-indigo-700 mb-2">Monopoly</h3>
+                    <p class="text-sm text-gray-700">A market structure with a single seller controlling the entire market, typically resulting in higher prices and reduced output compared to competitive markets</p>
+                </div>
+                <div class="bg-white p-4 rounded-lg border border-gray-300">
+                    <h3 class="font-bold text-indigo-700 mb-2">Oligopoly</h3>
+                    <p class="text-sm text-gray-700">A market structure dominated by a few large firms whose actions significantly affect market prices; often characterized by strategic behavior and limited competition</p>
+                </div>
+                <div class="bg-white p-4 rounded-lg border border-gray-300">
+                    <h3 class="font-bold text-indigo-700 mb-2">Elasticity</h3>
+                    <p class="text-sm text-gray-700">The responsiveness of quantity demanded or supplied to changes in price; essential for understanding how price changes affect consumer spending and business revenue</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Real-World Examples -->
+        <section class="bg-white rounded-lg shadow-lg p-6 mb-8">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6">Real-World Examples</h2>
+
+            <div class="bg-blue-50 border-l-4 border-blue-500 p-6 rounded-r-lg mb-6">
+                <h3 class="text-xl font-bold text-gray-900 mb-3">Marcus Navigates the Used Car Market</h3>
+                <p class="text-gray-700 mb-3">Marcus needed a reliable used car but had a tight budget of $12,000. He researched the used car market and learned it approximates an oligopoly with a few large dealer chains and many smaller independent dealers, but with meaningful competition. He observed that sedan demand had decreased as consumers shifted to SUVs, while sedan supply remained high—creating downward pressure on sedan prices.</p>
+                <p class="text-gray-700 mb-3">Marcus targeted a three-year-old Toyota Camry, a model with high reliability and abundant supply. He monitored prices across multiple dealerships for three weeks, noting an average price of $13,500. He noticed that dealerships had higher inventories near month-end (supply up) and offered better deals.</p>
+                <p class="text-gray-700 mb-3">Marcus visited dealers on the last day of the month and found the same Camry for $12,800. He negotiated down to <span class="font-bold text-green-700">$11,900</span> by demonstrating knowledge of market prices and emphasizing his immediate ability to buy.</p>
+                <p class="text-gray-700"><span class="font-bold">Result:</span> By understanding market dynamics—specifically that high supply and low demand for sedans created buyer leverage, and that end-of-month timing increased dealer motivation—Marcus secured a reliable vehicle $1,600 below market average, representing a <span class="font-bold">12% savings</span> that freed up funds for an emergency account.</p>
+            </div>
+
+            <div class="bg-blue-50 border-l-4 border-blue-500 p-6 rounded-r-lg mb-6">
+                <h3 class="text-xl font-bold text-gray-900 mb-3">Alicia Times Her Apartment Search</h3>
+                <p class="text-gray-700 mb-3">Alicia planned to move to a new city for a job starting in August. Researching the rental market, she discovered the city had a large university, creating a highly seasonal demand pattern. Student demand peaked in August for fall semester, while supply remained relatively constant year-round, driving August rents 15-20% above winter rates.</p>
+                <p class="text-gray-700 mb-3">Alicia realized that moving in August would mean competing with thousands of students for apartments and paying premium prices. Instead, she negotiated a September start date with her employer and searched for apartments in late September after student demand subsided.</p>
+                <p class="text-gray-700 mb-3">She found a one-bedroom apartment for <span class="font-bold text-green-700">$1,100/month</span>—the same unit had been listed in July for $1,300/month.</p>
+                <p class="text-gray-700"><span class="font-bold">Result:</span> By understanding the seasonal supply-demand dynamics and timing her search for the post-peak period, Alicia saved <span class="font-bold">$200/month ($2,400 annually)</span>. She applied this same analytical approach to other markets: buying winter clothing in March, purchasing textbooks after the semester rush, and timing grocery shopping around store sales cycles. Over a year, her strategic timing based on supply-demand analysis saved her approximately <span class="font-bold">$3,500</span>.</p>
+            </div>
+
+            <div class="bg-blue-50 border-l-4 border-blue-500 p-6 rounded-r-lg">
+                <h3 class="text-xl font-bold text-gray-900 mb-3">Jamal Recognizes Monopoly Pricing</h3>
+                <p class="text-gray-700 mb-3">Jamal moved to a small town where a single cable company held exclusive rights to provide internet service—a legal monopoly granted by the local government. The company charged <span class="font-bold text-red-700">$89/month</span> for basic internet service, significantly higher than the $50-60 he'd paid in his previous city with multiple providers.</p>
+                <p class="text-gray-700 mb-3">Jamal initially felt frustrated but realized this was a textbook monopoly with predictable behavior: restricted output (slower speeds in base packages) and higher prices due to lack of competition. Rather than simply accepting the situation, Jamal systematically explored alternatives.</p>
+                <p class="text-gray-700 mb-3">He discovered that 5G wireless service from a national carrier provided comparable speeds for $60/month in his area—a substitute good creating some competitive pressure. He also found that the monopoly cable provider offered a lower-tier service for $45/month to customers who called to cancel (not advertised publicly), counting on customer inertia and information asymmetry.</p>
+                <p class="text-gray-700 mb-3">Armed with this knowledge, Jamal called to cancel his $89/month service, mentioned the 5G alternative, and was immediately offered <span class="font-bold text-green-700">$50/month</span> for the same service—a 44% discount.</p>
+                <p class="text-gray-700"><span class="font-bold">Result:</span> By recognizing monopoly market structure and actively searching for substitutes or alternative pricing tiers, Jamal reduced his annual internet costs by <span class="font-bold">$468</span>. More importantly, he learned to recognize other monopolistic or oligopolistic markets and develop strategies to mitigate their pricing power.</p>
+            </div>
+        </section>
+
+        <!-- Interactive Visualization: Supply & Demand Equilibrium -->
+        <section class="bg-gradient-to-r from-green-50 to-blue-50 rounded-lg p-6 my-8 border-2 border-green-400">
+            <h2 class="text-2xl font-bold text-gray-900 mb-4">📊 Interactive Visualization: Supply & Demand in Action</h2>
+            <p class="text-gray-700 mb-4">See how supply and demand curves interact to determine equilibrium price, and what happens when demand increases:</p>
+
+            <div class="bg-white p-4 rounded-lg mb-4">
+                <label class="block text-sm font-medium text-gray-700 mb-2">Select Market Scenario:</label>
+                <select id="demandScenario" onchange="updateDemandChart()" class="w-full p-3 border border-gray-300 rounded-lg">
+                    <option value="normal">Normal Market Conditions</option>
+                    <option value="increased">Increased Demand (e.g., Holiday Season)</option>
+                    <option value="decreased">Decreased Demand (e.g., Economic Recession)</option>
+                </select>
+            </div>
+
+            <canvas id="supplyDemandChart" style="max-height: 350px;"></canvas>
+
+            <div class="grid md:grid-cols-3 gap-4 mt-6">
+                <div class="bg-blue-50 p-4 rounded border-l-4 border-blue-600">
+                    <h4 class="font-bold text-blue-900 mb-2">Normal Equilibrium</h4>
+                    <p class="text-2xl font-bold text-blue-900">$50</p>
+                    <p class="text-sm text-gray-600">100 units sold</p>
+                </div>
+                <div class="bg-green-50 p-4 rounded border-l-4 border-green-600">
+                    <h4 class="font-bold text-green-900 mb-2">High Demand</h4>
+                    <p class="text-2xl font-bold text-green-900">$65</p>
+                    <p class="text-sm text-gray-600">120 units sold</p>
+                </div>
+                <div class="bg-orange-50 p-4 rounded border-l-4 border-orange-600">
+                    <h4 class="font-bold text-orange-900 mb-2">Low Demand</h4>
+                    <p class="text-2xl font-bold text-orange-900">$40</p>
+                    <p class="text-sm text-gray-600">80 units sold</p>
+                </div>
+            </div>
+
+            <div class="mt-4 bg-white p-4 rounded-lg border border-green-200">
+                <p class="text-sm text-gray-700">
+                    <strong>💡 Key Insight:</strong> When demand increases (curve shifts right), both price and quantity rise.
+                    Understanding these dynamics helps you time purchases—buy winter coats in spring when demand is low,
+                    avoid peak shopping seasons to find better deals, and recognize when sellers have pricing power.
+                </p>
+            </div>
+        </section>
+
+        <!-- Skill Builder: Market Dynamics Simulator -->
+        <section class="bg-purple-50 rounded-lg shadow-lg p-6 mb-8">
+            <h2 class="text-3xl font-bold text-gray-900 mb-4">🎮 Skill Builder: Market Dynamics Simulator</h2>
+            <p class="text-gray-700 mb-6">Use this interactive simulator to explore how supply and demand changes affect prices and how different market structures impact consumer outcomes.</p>
+
+            <!-- Market Configuration -->
+            <div class="bg-white p-6 rounded-lg border border-gray-300 mb-6">
+                <h3 class="text-xl font-bold text-gray-900 mb-4">Market Configuration</h3>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Market Structure:</label>
+                        <select id="marketStructure" onchange="updateSimulation()" class="w-full p-3 border border-gray-300 rounded-lg">
+                            <option value="perfect_competition">Perfect Competition</option>
+                            <option value="oligopoly">Oligopoly</option>
+                            <option value="monopoly">Monopoly</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Number of Firms:</label>
+                        <input type="number" id="numFirms" value="20" min="1" max="50" onchange="updateSimulation()" class="w-full p-3 border border-gray-300 rounded-lg">
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Product Type:</label>
+                        <select id="productType" onchange="loadPreset()" class="w-full p-3 border border-gray-300 rounded-lg">
+                            <option value="smartphone">Smartphone</option>
+                            <option value="internet_service">Internet Service</option>
+                            <option value="gasoline">Gasoline (Inelastic)</option>
+                            <option value="restaurant">Restaurant Meals (Elastic)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Demand Elasticity:</label>
+                        <select id="elasticity" onchange="updateSimulation()" class="w-full p-3 border border-gray-300 rounded-lg">
+                            <option value="inelastic">Inelastic (< 1.0)</option>
+                            <option value="unit_elastic" selected>Unit Elastic (= 1.0)</option>
+                            <option value="elastic">Elastic (> 1.0)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-4 mb-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Initial Price:</label>
+                        <input type="number" id="initialPrice" value="800" class="w-full p-3 border border-gray-300 rounded-lg given-value" readonly>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Initial Quantity:</label>
+                        <input type="number" id="initialQuantity" value="100000" class="w-full p-3 border border-gray-300 rounded-lg given-value" readonly>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Production Cost:</label>
+                        <input type="number" id="productionCost" value="500" class="w-full p-3 border border-gray-300 rounded-lg given-value" readonly>
+                    </div>
+                </div>
+
+                <!-- Demand and Supply Shift Sliders -->
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Demand Shift: <span id="demandShiftValue" class="font-bold text-indigo-700">0%</span></label>
+                    <input type="range" id="demandShift" min="-50" max="50" value="0" step="5" oninput="updateSliderValue('demandShift'); updateSimulation();" class="w-full">
+                    <div class="flex justify-between text-xs text-gray-600">
+                        <span>-50% (Decrease)</span>
+                        <span>0% (No Change)</span>
+                        <span>+50% (Increase)</span>
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Supply Shift: <span id="supplyShiftValue" class="font-bold text-indigo-700">0%</span></label>
+                    <input type="range" id="supplyShift" min="-50" max="50" value="0" step="5" oninput="updateSliderValue('supplyShift'); updateSimulation();" class="w-full">
+                    <div class="flex justify-between text-xs text-gray-600">
+                        <span>-50% (Decrease)</span>
+                        <span>0% (No Change)</span>
+                        <span>+50% (Increase)</span>
+                    </div>
+                </div>
+
+                <!-- Preset Scenarios -->
+                <div class="bg-gray-50 p-4 rounded-lg">
+                    <h4 class="font-bold text-gray-800 mb-2">Quick Scenarios:</h4>
+                    <div class="flex flex-wrap gap-2">
+                        <button onclick="loadScenario('positive_review')" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">Positive Review (+20% Demand)</button>
+                        <button onclick="loadScenario('factory_fire')" class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">Factory Fire (-20% Supply)</button>
+                        <button onclick="loadScenario('recession')" class="bg-yellow-600 text-white px-4 py-2 rounded hover:bg-yellow-700">Recession (-25% Demand)</button>
+                        <button onclick="loadScenario('tech_breakthrough')" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Tech Breakthrough (+30% Supply)</button>
+                        <button onclick="resetSimulation()" class="bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-700">Reset</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Results Display -->
+            <div class="bg-white p-6 rounded-lg border border-gray-300 mb-6">
+                <h3 class="text-xl font-bold text-gray-900 mb-4">Market Outcomes</h3>
+
+                <div class="grid md:grid-cols-2 gap-6 mb-6">
+                    <!-- Chart -->
+                    <div>
+                        <h4 class="font-bold text-gray-800 mb-2">Supply & Demand Curves</h4>
+                        <canvas id="supplyDemandChart" width="400" height="300"></canvas>
+                    </div>
+
+                    <!-- Metrics -->
+                    <div>
+                        <h4 class="font-bold text-gray-800 mb-3">Equilibrium Values</h4>
+                        <div class="space-y-3">
+                            <div class="bg-gray-50 p-3 rounded-lg">
+                                <p class="text-sm text-gray-600">New Equilibrium Price:</p>
+                                <p class="text-2xl font-bold text-indigo-700">$<span id="newPrice">800</span></p>
+                                <p class="text-sm text-gray-600">Change: <span id="priceChange" class="font-bold">$0 (0%)</span></p>
+                            </div>
+                            <div class="bg-gray-50 p-3 rounded-lg">
+                                <p class="text-sm text-gray-600">New Equilibrium Quantity:</p>
+                                <p class="text-2xl font-bold text-indigo-700"><span id="newQuantity">100,000</span> units</p>
+                                <p class="text-sm text-gray-600">Change: <span id="quantityChange" class="font-bold">0 (0%)</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Surplus Analysis -->
+                <div class="grid md:grid-cols-3 gap-4">
+                    <div class="bg-blue-50 p-4 rounded-lg border border-blue-300">
+                        <h4 class="font-bold text-blue-900 mb-2">Consumer Surplus</h4>
+                        <p class="text-2xl font-bold text-blue-700">$<span id="consumerSurplus">15,000,000</span></p>
+                        <p class="text-xs text-gray-600 mt-1">Benefit to consumers</p>
+                    </div>
+                    <div class="bg-green-50 p-4 rounded-lg border border-green-300">
+                        <h4 class="font-bold text-green-900 mb-2">Producer Surplus</h4>
+                        <p class="text-2xl font-bold text-green-700">$<span id="producerSurplus">15,000,000</span></p>
+                        <p class="text-xs text-gray-600 mt-1">Benefit to producers</p>
+                    </div>
+                    <div class="bg-purple-50 p-4 rounded-lg border border-purple-300">
+                        <h4 class="font-bold text-purple-900 mb-2">Total Surplus</h4>
+                        <p class="text-2xl font-bold text-purple-700">$<span id="totalSurplus">30,000,000</span></p>
+                        <p class="text-xs text-gray-600 mt-1">Combined benefit</p>
+                    </div>
+                </div>
+
+                <!-- Deadweight Loss (if applicable) -->
+                <div id="deadweightLossSection" class="mt-4 bg-red-50 p-4 rounded-lg border border-red-300" style="display: none;">
+                    <h4 class="font-bold text-red-900 mb-2">⚠️ Deadweight Loss</h4>
+                    <p class="text-2xl font-bold text-red-700">$<span id="deadweightLoss">0</span></p>
+                    <p class="text-sm text-gray-700 mt-2">Loss of economic efficiency due to market power (monopoly/oligopoly restricts output below competitive levels)</p>
+                </div>
+
+                <!-- Market Insights -->
+                <div class="mt-6 bg-indigo-50 p-4 rounded-lg border border-indigo-300">
+                    <h4 class="font-bold text-indigo-900 mb-2">📊 Market Insights</h4>
+                    <p id="marketInsights" class="text-gray-700">Adjust the sliders or select a scenario to see how markets respond to changes in supply and demand.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Reflection Prompt -->
+        <section class="bg-yellow-50 border-l-4 border-yellow-500 p-6 rounded-r-lg mb-8">
+            <h2 class="text-2xl font-bold text-gray-900 mb-4">💭 Reflection Prompt</h2>
+            <p class="text-gray-700 mb-3">Think about three recent purchases you made or services you paid for in the past month. For each, consider:</p>
+            <ul class="list-disc list-inside space-y-2 text-gray-700 mb-4">
+                <li>Was that market highly competitive, oligopolistic, or monopolistic?</li>
+                <li>How did the market structure affect the price you paid and the choices available to you?</li>
+                <li>Were there times when understanding supply and demand patterns could have helped you get a better deal—perhaps by timing your purchase differently or recognizing whether prices were likely to rise or fall?</li>
+                <li>Going forward, how might you apply market analysis to upcoming major purchases like a car, apartment, or electronics?</li>
+            </ul>
+            <textarea id="reflection" rows="4" class="w-full p-3 border border-gray-300 rounded-lg" placeholder="Write your reflection here..."></textarea>
+            <button onclick="saveReflection()" class="mt-3 bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700">Save Reflection</button>
+        </section>
+
+        <!-- Coming Tomorrow Bridge -->
+        <section class="bg-blue-100 border-l-4 border-blue-500 p-6 rounded-r-lg">
+            <h3 class="text-xl font-bold text-gray-900 mb-3">🔍 Coming Tomorrow: Hands-On Market Analysis</h3>
+            <p class="text-gray-700 mb-3">Tomorrow in the Learning Lab, you'll put your market knowledge into action! You'll:</p>
+            <ul class="list-disc list-inside text-gray-700 space-y-1 mb-3">
+                <li>Manipulate supply and demand curves in real-time market scenarios</li>
+                <li>Compare perfect competition, oligopoly, and monopoly outcomes side-by-side</li>
+                <li>Analyze how elasticity affects price volatility and budget planning</li>
+                <li>Research actual market conditions for a purchase you're planning</li>
+                <li>Develop strategic timing plans to maximize consumer surplus on major purchases</li>
+            </ul>
+            <p class="text-gray-700 font-semibold">Get ready to turn market theory into real savings strategies!</p>
+        </section>
+
+    </div>
+
+    <script>
+        let chart = null;
+
+        function updateSliderValue(sliderId) {
+            const slider = document.getElementById(sliderId);
+            const valueSpan = document.getElementById(sliderId + 'Value');
+            valueSpan.textContent = slider.value + '%';
+        }
+
+        function loadPreset() {
+            const product = document.getElementById('productType').value;
+
+            const presets = {
+                smartphone: { price: 800, quantity: 100000, cost: 500 },
+                internet_service: { price: 50, quantity: 100000, cost: 20 },
+                gasoline: { price: 3.50, quantity: 1000000, cost: 2.50 },
+                restaurant: { price: 15, quantity: 50000, cost: 8 }
+            };
+
+            const preset = presets[product];
+            document.getElementById('initialPrice').value = preset.price;
+            document.getElementById('initialQuantity').value = preset.quantity;
+            document.getElementById('productionCost').value = preset.cost;
+
+            updateSimulation();
+        }
+
+        function loadScenario(scenario) {
+            const demandSlider = document.getElementById('demandShift');
+            const supplySlider = document.getElementById('supplyShift');
+
+            switch(scenario) {
+                case 'positive_review':
+                    demandSlider.value = 20;
+                    supplySlider.value = 0;
+                    break;
+                case 'factory_fire':
+                    demandSlider.value = 0;
+                    supplySlider.value = -20;
+                    break;
+                case 'recession':
+                    demandSlider.value = -25;
+                    supplySlider.value = 0;
+                    break;
+                case 'tech_breakthrough':
+                    demandSlider.value = 0;
+                    supplySlider.value = 30;
+                    break;
+            }
+
+            updateSliderValue('demandShift');
+            updateSliderValue('supplyShift');
+            updateSimulation();
+        }
+
+        function resetSimulation() {
+            document.getElementById('demandShift').value = 0;
+            document.getElementById('supplyShift').value = 0;
+            updateSliderValue('demandShift');
+            updateSliderValue('supplyShift');
+            updateSimulation();
+        }
+
+        function updateSimulation() {
+            const marketStructure = document.getElementById('marketStructure').value;
+            const numFirms = parseInt(document.getElementById('numFirms').value);
+            const elasticity = document.getElementById('elasticity').value;
+            const initialPrice = parseFloat(document.getElementById('initialPrice').value);
+            const initialQuantity = parseFloat(document.getElementById('initialQuantity').value);
+            const productionCost = parseFloat(document.getElementById('productionCost').value);
+            const demandShift = parseFloat(document.getElementById('demandShift').value);
+            const supplyShift = parseFloat(document.getElementById('supplyShift').value);
+
+            // Calculate elasticity factor
+            const elasticityFactor = elasticity === 'elastic' ? 1.5 : (elasticity === 'inelastic' ? 0.5 : 1.0);
+
+            // Calculate new equilibrium
+            const demandMultiplier = 1 + (demandShift / 100);
+            const supplyMultiplier = 1 + (supplyShift / 100);
+
+            // Simplified calculation for demonstration
+            let newPrice = initialPrice;
+            let newQuantity = initialQuantity;
+
+            // Demand shift effect
+            if (demandShift !== 0) {
+                newPrice = initialPrice * (1 + (demandShift / 100) / elasticityFactor);
+                newQuantity = initialQuantity * demandMultiplier;
+            }
+
+            // Supply shift effect
+            if (supplyShift !== 0) {
+                newPrice = newPrice * (1 - (supplyShift / 100) / elasticityFactor);
+                newQuantity = newQuantity * supplyMultiplier;
+            }
+
+            // Market structure adjustment
+            let priceMarkup = 1;
+            let outputRestriction = 1;
+            if (marketStructure === 'monopoly') {
+                priceMarkup = 1.35;
+                outputRestriction = 0.75;
+            } else if (marketStructure === 'oligopoly') {
+                priceMarkup = 1.15;
+                outputRestriction = 0.88;
+            }
+
+            newPrice = newPrice * priceMarkup;
+            newQuantity = newQuantity * outputRestriction;
+
+            // Calculate surplus
+            const consumerSurplus = (newQuantity * (newPrice - productionCost) * 0.5);
+            const producerSurplus = (newQuantity * (newPrice - productionCost) * 0.5);
+            const totalSurplus = consumerSurplus + producerSurplus;
+
+            // Deadweight loss for non-competitive markets
+            let deadweightLoss = 0;
+            if (marketStructure !== 'perfect_competition') {
+                deadweightLoss = totalSurplus * (marketStructure === 'monopoly' ? 0.25 : 0.12);
+            }
+
+            // Update display
+            document.getElementById('newPrice').textContent = newPrice.toFixed(2);
+            document.getElementById('newQuantity').textContent = Math.round(newQuantity).toLocaleString();
+
+            const priceChangeAmt = newPrice - initialPrice;
+            const priceChangePct = ((priceChangeAmt / initialPrice) * 100).toFixed(1);
+            document.getElementById('priceChange').textContent = `$${priceChangeAmt.toFixed(2)} (${priceChangePct}%)`;
+            document.getElementById('priceChange').className = priceChangeAmt > 0 ? 'font-bold text-red-700' : 'font-bold text-green-700';
+
+            const qtyChangeAmt = newQuantity - initialQuantity;
+            const qtyChangePct = ((qtyChangeAmt / initialQuantity) * 100).toFixed(1);
+            document.getElementById('quantityChange').textContent = `${Math.round(qtyChangeAmt).toLocaleString()} (${qtyChangePct}%)`;
+            document.getElementById('quantityChange').className = qtyChangeAmt > 0 ? 'font-bold text-green-700' : 'font-bold text-red-700';
+
+            document.getElementById('consumerSurplus').textContent = Math.round(consumerSurplus).toLocaleString();
+            document.getElementById('producerSurplus').textContent = Math.round(producerSurplus).toLocaleString();
+            document.getElementById('totalSurplus').textContent = Math.round(totalSurplus).toLocaleString();
+
+            if (marketStructure !== 'perfect_competition') {
+                document.getElementById('deadweightLossSection').style.display = 'block';
+                document.getElementById('deadweightLoss').textContent = Math.round(deadweightLoss).toLocaleString();
+            } else {
+                document.getElementById('deadweightLossSection').style.display = 'none';
+            }
+
+            // Update insights
+            let insights = '';
+            if (demandShift > 0 && supplyShift === 0) {
+                insights = `📈 Demand increased ${demandShift}% (positive reviews, income rise, etc.). Price rose ${priceChangePct}% and quantity increased ${qtyChangePct}%. Consumer surplus ${consumerSurplus > initialQuantity * 150 ? 'increased' : 'decreased'} as consumers pay more but still value the product.`;
+            } else if (supplyShift < 0 && demandShift === 0) {
+                insights = `⚠️ Supply decreased ${Math.abs(supplyShift)}% (factory fire, input cost rise, etc.). Price rose ${priceChangePct}% and quantity fell ${Math.abs(qtyChangePct)}%. Consumers lose surplus as they pay more for less.`;
+            } else if (demandShift < 0 && supplyShift === 0) {
+                insights = `📉 Demand decreased ${Math.abs(demandShift)}% (recession, preference shift, etc.). Price fell ${Math.abs(priceChangePct)}% and quantity decreased. Good buying opportunity for consumers!`;
+            } else if (supplyShift > 0 && demandShift === 0) {
+                insights = `✅ Supply increased ${supplyShift}% (tech breakthrough, new producers, etc.). Price fell ${Math.abs(priceChangePct)}% and quantity increased ${qtyChangePct}%. Consumer surplus maximized—great time to buy!`;
+            } else {
+                insights = 'Adjust the sliders to see how supply and demand shifts affect market outcomes.';
+            }
+
+            if (marketStructure === 'monopoly') {
+                insights += ` ⚠️ MONOPOLY: Single firm restricts output and charges ${((priceMarkup - 1) * 100).toFixed(0)}% above competitive price, creating deadweight loss.`;
+            } else if (marketStructure === 'oligopoly') {
+                insights += ` 📊 OLIGOPOLY: ${numFirms} firms charge ${((priceMarkup - 1) * 100).toFixed(0)}% above competitive price due to limited competition.`;
+            }
+
+            document.getElementById('marketInsights').textContent = insights;
+
+            // Update chart
+            updateChart(initialPrice, newPrice, initialQuantity, newQuantity);
+        }
+
+        function updateChart(oldPrice, newPrice, oldQty, newQty) {
+            const ctx = document.getElementById('supplyDemandChart');
+
+            if (chart) {
+                chart.destroy();
+            }
+
+            chart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['Low Q', '', 'Initial Q', '', 'High Q'],
+                    datasets: [{
+                        label: 'Demand',
+                        data: [oldPrice * 1.5, oldPrice * 1.25, oldPrice, oldPrice * 0.75, oldPrice * 0.5],
+                        borderColor: 'rgb(59, 130, 246)',
+                        backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                        tension: 0.1
+                    }, {
+                        label: 'Supply',
+                        data: [oldPrice * 0.5, oldPrice * 0.75, oldPrice, oldPrice * 1.25, oldPrice * 1.5],
+                        borderColor: 'rgb(239, 68, 68)',
+                        backgroundColor: 'rgba(239, 68, 68, 0.1)',
+                        tension: 0.1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Supply & Demand Curves'
+                        },
+                        legend: {
+                            position: 'top',
+                        }
+                    },
+                    scales: {
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Price ($)'
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Quantity'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function saveReflection() {
+            const reflection = document.getElementById('reflection').value;
+            if (reflection.trim()) {
+                alert('✅ Reflection saved! You\'ll build on these insights in tomorrow\'s Learning Lab.');
+                console.log('Reflection saved:', reflection);
+            } else {
+                alert('Please write your reflection before saving.');
+            }
+        }
+
+        // Initialize simulation on page load
+        window.onload = function() {
+            updateSimulation();
+            updateDemandChart(); // Initialize supply/demand chart
+        };
+
+        // Supply & Demand Equilibrium Chart
+        let supplyDemandChart = null;
+
+        function updateDemandChart() {
+            const scenario = document.getElementById('demandScenario').value;
+            const ctx = document.getElementById('supplyDemandChart').getContext('2d');
+
+            // Quantity range from 0 to 200
+            const quantities = [0, 20, 40, 60, 80, 100, 120, 140, 160, 180, 200];
+
+            // Supply curve: Price = 10 + 0.4 * Quantity (upward sloping)
+            const supplyPrices = quantities.map(q => 10 + 0.4 * q);
+
+            // Demand curves (downward sloping): Price = 90 - 0.4 * Quantity
+            let demandPrices;
+            let demandLabel;
+            let demandColor;
+            let equilibriumPoint;
+
+            if (scenario === 'normal') {
+                // Normal: P = 90 - 0.4Q, Equilibrium at Q=100, P=$50
+                demandPrices = quantities.map(q => 90 - 0.4 * q);
+                demandLabel = 'Demand (Normal)';
+                demandColor = '#2563EB';
+                equilibriumPoint = { x: 100, y: 50 };
+            } else if (scenario === 'increased') {
+                // Increased: P = 105 - 0.4Q, Equilibrium at Q=118.75, P=$62.50 (simplified to Q=120, P=$65)
+                demandPrices = quantities.map(q => 108 - 0.4 * q);
+                demandLabel = 'Demand (Increased)';
+                demandColor = '#10B981';
+                equilibriumPoint = { x: 122, y: 58.8 };
+            } else {
+                // Decreased: P = 74 - 0.4Q, Equilibrium at Q=80, P=$42
+                demandPrices = quantities.map(q => 74 - 0.4 * q);
+                demandLabel = 'Demand (Decreased)';
+                demandColor = '#F59E0B';
+                equilibriumPoint = { x: 80, y: 42 };
+            }
+
+            // Destroy existing chart if it exists
+            if (supplyDemandChart) {
+                supplyDemandChart.destroy();
+            }
+
+            supplyDemandChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: quantities,
+                    datasets: [
+                        {
+                            label: 'Supply',
+                            data: supplyPrices,
+                            borderColor: '#EF4444',
+                            backgroundColor: 'rgba(239, 68, 68, 0.1)',
+                            borderWidth: 3,
+                            fill: false,
+                            tension: 0,
+                            pointRadius: 0
+                        },
+                        {
+                            label: demandLabel,
+                            data: demandPrices,
+                            borderColor: demandColor,
+                            backgroundColor: 'rgba(37, 99, 235, 0.1)',
+                            borderWidth: 3,
+                            fill: false,
+                            tension: 0,
+                            pointRadius: 0
+                        },
+                        {
+                            label: 'Equilibrium',
+                            data: [{ x: equilibriumPoint.x, y: equilibriumPoint.y }],
+                            borderColor: '#8B5CF6',
+                            backgroundColor: '#8B5CF6',
+                            pointRadius: 8,
+                            pointHoverRadius: 10,
+                            showLine: false
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    interaction: {
+                        mode: 'index',
+                        intersect: false
+                    },
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Supply & Demand Curves - Market Equilibrium',
+                            font: {
+                                size: 16,
+                                weight: 'bold'
+                            }
+                        },
+                        legend: {
+                            display: true,
+                            position: 'top',
+                            labels: {
+                                usePointStyle: true,
+                                padding: 15
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                            padding: 12,
+                            callbacks: {
+                                title: function(context) {
+                                    if (context[0].datasetIndex === 2) {
+                                        return 'Equilibrium Point';
+                                    }
+                                    return 'Quantity: ' + context[0].label;
+                                },
+                                label: function(context) {
+                                    if (context.datasetIndex === 2) {
+                                        return [
+                                            'Quantity: ' + Math.round(equilibriumPoint.x) + ' units',
+                                            'Price: $' + equilibriumPoint.y.toFixed(2)
+                                        ];
+                                    }
+                                    return context.dataset.label + ': $' + context.parsed.y.toFixed(2);
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            type: 'linear',
+                            title: {
+                                display: true,
+                                text: 'Quantity (units)',
+                                font: {
+                                    size: 13,
+                                    weight: 'bold'
+                                }
+                            },
+                            min: 0,
+                            max: 200,
+                            ticks: {
+                                stepSize: 20
+                            }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Price ($)',
+                                font: {
+                                    size: 13,
+                                    weight: 'bold'
+                                }
+                            },
+                            min: 0,
+                            max: 120,
+                            ticks: {
+                                callback: function(value) {
+                                    return '$' + value;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>

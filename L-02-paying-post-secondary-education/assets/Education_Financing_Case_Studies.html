@@ -1,9 +1,25 @@
 <!DOCTYPE html>
+<!--
+PFL Academy State-Agnostic Template
+L-Chapter: L-02
+Chapter Title: Paying for Post-Secondary Education
+Oklahoma Reference: Chapter 1.2
+
+Variables used in this template:
+- {{STATE_NAME}} - Full state name (e.g., Kentucky, Georgia)
+- {{CHAPTER_NUMBER}} - State-specific chapter number (e.g., 2.1, 1.4)
+- {{CHAPTER_ID}} - L-chapter identifier (e.g., L-02)
+- {{CHAPTER_TITLE}} - Always: Paying for Post-Secondary Education
+
+This template will be processed by generate_state_html.py to create
+state-specific versions with correct chapter numbering.
+-->
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Education Financing Case Studies - Chapter 1.2: Paying for Post-Secondary Education</title>
+    <title>Education Financing Case Studies - Chapter {{CHAPTER_NUMBER}}: Paying for Post-Secondary Education</title>
     <style>
         /* Common styles for all resources */
         body {
@@ -127,7 +143,7 @@
     
     <div class="header">
         <h1>Education Financing Case Studies</h1>
-        <p><strong>Chapter 1.2:</strong> Paying for Post-Secondary Education</p>
+        <p><strong>Chapter {{CHAPTER_NUMBER}}:</strong> Paying for Post-Secondary Education</p>
     </div>
     
     <div class="introduction">
@@ -287,7 +303,7 @@
     </div>
     
     <div class="footer">
-        <p>PFL Academy © 2025 | Chapter 1.2: Paying for Post-Secondary Education</p>
+        <p>PFL Academy © 2025 | Chapter {{CHAPTER_NUMBER}}: Paying for Post-Secondary Education</p>
     </div>
 </body>
 </html>

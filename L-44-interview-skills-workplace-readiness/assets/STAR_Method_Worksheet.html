@@ -1,4 +1,20 @@
 <!DOCTYPE html>
+<!--
+PFL Academy State-Agnostic Template
+L-Chapter: L-44
+Chapter Title: Professional Development
+Oklahoma Reference: Chapter 15.4
+
+Variables used in this template:
+- {{STATE_NAME}} - Full state name (e.g., Kentucky, Georgia)
+- {{CHAPTER_NUMBER}} - State-specific chapter number (e.g., 2.1, 1.4)
+- {{CHAPTER_ID}} - L-chapter identifier (e.g., L-44)
+- {{CHAPTER_TITLE}} - Always: Professional Development
+
+This template will be processed by generate_state_html.py to create
+state-specific versions with correct chapter numbering.
+-->
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -127,7 +143,7 @@
     <div class="header">
         <!-- <img src="your-logo.png" alt="PFL Academy Logo" class="logo"> -->
         <h1>STAR Method Worksheet for Interview Preparation</h1>
-        <p>Chapter 15.4: Interview Skills and Workplace Readiness</p>
+        <p>Chapter {{CHAPTER_NUMBER}}: Interview Skills and Workplace Readiness</p>
     </div>
 
     <div class="introduction">
@@ -340,7 +356,7 @@
     </div>
 
     <div class="footer">
-        <p>PFL Academy | Chapter 15.4: Interview Skills and Workplace Readiness | STAR Method Worksheet</p>
+        <p>PFL Academy | Chapter {{CHAPTER_NUMBER}}: Interview Skills and Workplace Readiness | STAR Method Worksheet</p>
     </div>
 </body>
 </html>

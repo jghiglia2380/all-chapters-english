@@ -1,4 +1,20 @@
 <!DOCTYPE html>
+<!--
+PFL Academy State-Agnostic Template
+L-Chapter: L-14
+Chapter Title: Getting Started Saving and Investing
+Oklahoma Reference: Chapter 5.1
+
+Variables used in this template:
+- {{STATE_NAME}} - Full state name (e.g., Kentucky, Georgia)
+- {{CHAPTER_NUMBER}} - State-specific chapter number (e.g., 2.1, 1.4)
+- {{CHAPTER_ID}} - L-chapter identifier (e.g., L-14)
+- {{CHAPTER_TITLE}} - Always: Getting Started Saving and Investing
+
+This template will be processed by generate_state_html.py to create
+state-specific versions with correct chapter numbering.
+-->
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -198,7 +214,7 @@
 
     <div class="header">
         <h1>SMART Financial Goal Worksheet</h1>
-        <p class="subtitle">Chapter 5.1: Saving and Investing</p>
+        <p class="subtitle">Chapter {{CHAPTER_NUMBER}}: Saving and Investing</p>
     </div>
 
     <h2>Introduction</h2>
@@ -474,7 +490,7 @@
     </div>
 
     <footer>
-        <p>PFL Academy - Chapter 5.1: Saving and Investing</p>
+        <p>PFL Academy - Chapter {{CHAPTER_NUMBER}}: Saving and Investing</p>
         <p>© 2025 PFL Academy. For educational purposes only. Not financial advice.</p>
     </footer>
 </body>

@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-61: Contract Evaluation and Consumer Protection - Day 1</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .learning-objective { background-color: #e6f3ff; border-radius: 0.5rem; padding: 1.5rem; margin-bottom: 1rem; }
+        .discussion-prompt { background-color: #e6f0ff; border-left: 4px solid #3b82f6; padding: 1rem; margin: 1rem 0; }
+        .case-study { background-color: #f0f9ff; border-left: 4px solid #0ea5e9; padding: 1.5rem; margin: 1rem 0; }
+        .skill-builder { background-color: #f3e8ff; border-radius: 0.5rem; padding: 1.5rem; margin: 1.5rem 0; }
+        .activity-timer { background-color: #FFFBEB; border-left: 4px solid #F59E0B; padding: 1rem; margin: 1rem 0; }
+        .key-concept { background-color: #f0fdf4; border-left: 4px solid #10b981; padding: 1rem; margin: 0.5rem 0; }
+        .red-flag-box { background-color: #fee2e2; border-left: 4px solid #ef4444; padding: 1rem; margin: 1rem 0; }
+        .protection-box { background-color: #dbeafe; border-left: 4px solid #3b82f6; padding: 1rem; margin: 1rem 0; }
+        .analysis-step { background-color: #f3f4f6; border-radius: 0.5rem; padding: 1.25rem; margin: 0.75rem 0; border-left: 4px solid #6366f1; }
+        .contract-clause { background-color: #f9fafb; border: 1px solid #e5e7eb; border-radius: 0.375rem; padding: 1rem; margin: 0.5rem 0; font-family: 'Courier New', monospace; font-size: 0.9rem; }
+        .evaluation-card { border: 2px solid #e5e7eb; border-radius: 0.5rem; padding: 1.25rem; margin: 1rem 0; }
+        .evaluation-card.good { border-color: #10b981; background-color: #f0fdf4; }
+        .evaluation-card.concerning { border-color: #f59e0b; background-color: #fffbeb; }
+        .evaluation-card.bad { border-color: #ef4444; background-color: #fef2f2; }
+        .rating-badge { display: inline-block; padding: 0.375rem 0.75rem; border-radius: 0.375rem; font-size: 0.875rem; font-weight: 600; }
+        .badge-reasonable { background-color: #d1fae5; color: #065f46; }
+        .badge-concerning { background-color: #fef3c7; color: #92400e; }
+        .badge-red-flag { background-color: #fee2e2; color: #991b1b; }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Fixed Header -->
+    <header class="bg-indigo-600 text-white p-4 shadow-md fixed top-0 left-0 right-0 z-40">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <h1 class="text-2xl font-bold">PFL Academy</h1>
+            <nav class="hidden md:flex space-x-6">
+                <a href="#" class="hover:text-indigo-200">Home</a>
+                <a href="#" class="hover:text-indigo-200">Curriculum</a>
+                <a href="#" class="hover:text-indigo-200">Resources</a>
+                <a href="#" class="hover:text-indigo-200">Profile</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Spacer for fixed header -->
+    <div class="h-16"></div>
+
+    <div class="max-w-7xl mx-auto p-6 lg:grid lg:grid-cols-10 lg:gap-6">
+        <!-- Left Navigation Sidebar -->
+        <aside class="lg:col-span-2 mb-6 lg:mb-0">
+            <div class="bg-white rounded-lg shadow-md p-4 sticky top-24">
+                <h2 class="font-bold text-lg mb-4 text-gray-800">L-61: Contract Evaluation</h2>
+                <nav class="space-y-2">
+                    <a href="#introduction" class="block p-2 rounded bg-indigo-50 text-indigo-700 border-l-4 border-indigo-700">
+                        Introduction
+                    </a>
+                    <a href="#key-concepts" class="block p-2 rounded hover:bg-gray-50">
+                        Key Concepts
+                    </a>
+                    <a href="#unfair-terms" class="block p-2 rounded hover:bg-gray-50">
+                        Unfair Terms
+                    </a>
+                    <a href="#consumer-rights" class="block p-2 rounded hover:bg-gray-50">
+                        Consumer Rights
+                    </a>
+                    <a href="#red-flags" class="block p-2 rounded hover:bg-gray-50">
+                        Red Flags
+                    </a>
+                    <a href="#systematic-analysis" class="block p-2 rounded hover:bg-gray-50">
+                        Systematic Analysis
+                    </a>
+                    <a href="#examples" class="block p-2 rounded hover:bg-gray-50">
+                        Real-World Examples
+                    </a>
+                    <a href="#skill-builder" class="block p-2 rounded hover:bg-gray-50">
+                        Contract Analyzer
+                    </a>
+                </nav>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="lg:col-span-8">
+            <div class="bg-white rounded-lg shadow-md p-8">
+
+                <!-- Header -->
+                <div class="mb-8">
+                    <h1 class="text-4xl font-bold text-gray-900 mb-2">Contract Evaluation and Consumer Protection</h1>
+                    <p class="text-xl text-gray-600">Day 1: Critical Contract Analysis</p>
+                </div>
+
+                <!-- Learning Objectives -->
+                <section class="mb-8">
+                    <div class="learning-objective">
+                        <h2 class="text-2xl font-bold text-gray-900 mb-4">Learning Objectives</h2>
+                        <ul class="list-disc list-inside space-y-2 text-gray-700">
+                            <li>Analyze contracts critically to identify favorable and unfavorable terms</li>
+                            <li>Evaluate consumer rights and legal protections in various contractual situations</li>
+                            <li>Identify red flags and unfair contract terms that should raise concerns</li>
+                            <li>Apply contract evaluation strategies to real-world financial agreements</li>
+                            <li>Make informed decisions about entering, negotiating, or declining contractual agreements</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- Introduction -->
+                <section id="introduction" class="mb-8">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4">Introduction</h2>
+                    <p class="text-gray-700 mb-4">
+                        Contracts govern nearly every significant financial transaction in modern life—from renting an apartment to accepting a job, financing a car to subscribing to services. Yet most people sign contracts without fully understanding the terms they're agreeing to, often because contracts are written in complex legal language designed to protect the company, not the consumer. A single overlooked clause can cost you thousands of dollars, trap you in unfavorable terms for years, or leave you with unexpected obligations you didn't anticipate.
+                    </p>
+                    <p class="text-gray-700 mb-4">
+                        Consumer protection laws exist to prevent the most egregious abuses, but they can't protect you from contracts you voluntarily sign. Understanding how to evaluate contracts critically—identifying red flags, recognizing unfair terms, and knowing when to negotiate or walk away—is essential financial literacy. Whether you're reviewing an employment agreement, apartment lease, service contract, or loan document, the ability to analyze what you're actually committing to empowers you to make informed decisions rather than simply hoping everything works out.
+                    </p>
+                    <p class="text-gray-700">
+                        This chapter builds on your foundational contract knowledge by teaching advanced evaluation techniques. You'll learn to identify common problematic clauses, understand your legal rights as a consumer, recognize predatory contract practices, and develop systematic approaches to contract analysis. Most importantly, you'll learn that many contract terms are negotiable, despite companies presenting them as "take it or leave it"—knowing which terms to question and how to advocate for yourself can dramatically improve the agreements you enter.
+                    </p>
+                </section>
+
+                <!-- Key Concepts -->
+                <section id="key-concepts" class="mb-8">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4">Key Concepts</h2>
+
+                    <div class="key-concept">
+                        <p class="text-gray-700">
+                            <strong class="text-gray-900">Contract Evaluation:</strong> The systematic process of analyzing a contract's terms, conditions, obligations, and implications before signing to assess whether it serves your interests
+                        </p>
+                    </div>
+
+                    <div class="key-concept">
+                        <p class="text-gray-700">
+                            <strong class="text-gray-900">Unfair Contract Terms:</strong> Clauses that create significant imbalance between parties' rights and obligations, often favoring the company while limiting consumer rights or remedies
+                        </p>
+                    </div>
+
+                    <div class="key-concept">
+                        <p class="text-gray-700">
+                            <strong class="text-gray-900">Mandatory Arbitration Clause:</strong> A provision requiring disputes to be resolved through private arbitration rather than court, often limiting your ability to sue or join class action lawsuits
+                        </p>
+                    </div>
+
+                    <div class="key-concept">
+                        <p class="text-gray-700">
+                            <strong class="text-gray-900">Liquidated Damages:</strong> Pre-determined amounts you must pay if you break the contract, which can be reasonable compensation or excessive penalties depending on the amount
+                        </p>
+                    </div>
+
+                    <div class="key-concept">
+                        <p class="text-gray-700">
+                            <strong class="text-gray-900">Automatic Renewal Clause:</strong> Terms that cause subscriptions or agreements to automatically renew (often at higher rates) unless you actively cancel, sometimes with difficult cancellation procedures
+                        </p>
+                    </div>
+
+                    <div class="key-concept">
+                        <p class="text-gray-700">
+                            <strong class="text-gray-900">Warranty Disclaimer:</strong> Language that limits or eliminates the seller's responsibility for product defects, often using phrases like "as-is" or "no warranty expressed or implied"
+                        </p>
+                    </div>
+
+                    <div class="key-concept">
+                        <p class="text-gray-700">
+                            <strong class="text-gray-900">Limitation of Liability:</strong> Clauses that cap how much the company must pay if they harm you, sometimes limiting compensation to absurdly low amounts like the contract price
+                        </p>
+                    </div>
+
+                    <div class="key-concept">
+                        <p class="text-gray-700">
+                            <strong class="text-gray-900">One-Sided Modification Rights:</strong> Terms allowing the company to change the contract (including price, terms, or services) without your consent, while prohibiting you from making any changes
+                        </p>
+                    </div>
+
+                    <div class="key-concept">
+                        <p class="text-gray-700">
+                            <strong class="text-gray-900">Venue Selection Clause:</strong> Provisions requiring legal disputes to be handled in specific locations (often the company's state), making it expensive or impractical to pursue your rights
+                        </p>
+                    </div>
+
+                    <div class="key-concept">
+                        <p class="text-gray-700">
+                            <strong class="text-gray-900">Consumer Protection Laws:</strong> Federal and state regulations that prohibit deceptive practices, mandate disclosures, provide cooling-off periods, and establish rights you have regardless of contract terms
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Understanding Unfair Contract Terms -->
+                <section id="unfair-terms" class="mb-8">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4">Understanding Unfair Contract Terms</h2>
+                    <p class="text-gray-700 mb-4">
+                        Not all contract terms are created equal, and not all are enforceable even if you sign them. Certain provisions are so one-sided that courts may refuse to enforce them, deeming them "unconscionable"—so unfair that they shock the conscience. However, many unfair terms fall short of unconscionability while still being disadvantageous to consumers.
+                    </p>
+
+                    <div class="red-flag-box mb-4">
+                        <h3 class="text-lg font-bold text-red-900 mb-2">Common Categories of Unfair Terms:</h3>
+                        <ul class="list-disc list-inside text-gray-700 space-y-1">
+                            <li>Excessively high early termination fees (e.g., $500 to cancel $40/month gym membership)</li>
+                            <li>One-way modification rights (company can change terms; you're locked in)</li>
+                            <li>Overly broad waiver clauses (surrendering fundamental rights like accountability for negligence)</li>
+                        </ul>
+                    </div>
+
+                    <div class="contract-clause mb-4">
+                        <p class="text-gray-700 mb-2"><strong>Example Unfair Clause:</strong></p>
+                        <p class="text-gray-700 italic">
+                            "Carrier may change prices, services, or terms at any time with 30 days notice. Continued use constitutes acceptance."
+                        </p>
+                    </div>
+
+                    <p class="text-gray-700 mb-4">
+                        This creates asymmetry—the company can increase your bill from $50 to $75 monthly, reduce your data, or add fees, and your only recourse is canceling (often with early termination penalties). You, however, cannot propose any changes. While not illegal, this clearly favors the company over consumers.
+                    </p>
+
+                    <div class="contract-clause mb-4">
+                        <p class="text-gray-700 mb-2"><strong>Another Prevalent Unfair Term:</strong></p>
+                        <p class="text-gray-700 italic">
+                            "Company is not responsible for any loss, damage, or theft of stored items regardless of cause, including Company's negligence."
+                        </p>
+                    </div>
+
+                    <p class="text-gray-700">
+                        This attempts to shield them from responsibility even for their own failures. Many states limit the enforceability of such broad waivers, especially for negligence, but consumers rarely challenge them because they don't know their legal rights.
+                    </p>
+                </section>
+
+                <!-- Consumer Rights and Legal Protections -->
+                <section id="consumer-rights" class="mb-8">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4">Consumer Rights and Legal Protections</h2>
+                    <p class="text-gray-700 mb-4">
+                        Despite what contracts claim, you have certain rights that cannot be waived or signed away. Federal and state consumer protection laws establish baseline protections that apply regardless of contractual language. Understanding these rights helps you recognize when companies are overreaching and when contract terms may not be enforceable.
+                    </p>
+
+                    <div class="protection-box">
+                        <h3 class="text-lg font-bold text-blue-900 mb-3">Key Federal Consumer Protection Laws:</h3>
+
+                        <div class="mb-3">
+                            <h4 class="font-semibold text-gray-900">Federal Trade Commission (FTC) Act</h4>
+                            <p class="text-gray-700">Prohibits deceptive and unfair business practices. If a company advertises one thing but the contract says another, that's likely deceptive regardless of what you signed.</p>
+                        </div>
+
+                        <div class="mb-3">
+                            <h4 class="font-semibold text-gray-900">Truth in Lending Act (TILA)</h4>
+                            <p class="text-gray-700">Requires clear disclosure of credit terms—interest rates, fees, payment schedules—in standardized formats. Credit card companies cannot enforce agreements that violate TILA disclosure requirements.</p>
+                        </div>
+
+                        <div class="mb-3">
+                            <h4 class="font-semibold text-gray-900">Unconscionability Doctrines</h4>
+                            <p class="text-gray-700">Many states allow courts to invalidate contracts or clauses that are extremely unfair. Factors courts consider: "take it or leave it" presentation, hidden terms in fine print, weaker party lacked meaningful choice, terms are so one-sided they're oppressive.</p>
+                        </div>
+
+                        <div class="mb-3">
+                            <h4 class="font-semibold text-gray-900">Magnuson-Moss Warranty Act</h4>
+                            <p class="text-gray-700">Governs consumer product warranties. Companies must clearly label warranties as "full" or "limited," disclose terms in plain language, and allow consumers to review warranty terms before purchase. Prevents disclaiming implied warranties in certain situations.</p>
+                        </div>
+
+                        <div>
+                            <h4 class="font-semibold text-gray-900">Cooling-Off Periods</h4>
+                            <p class="text-gray-700">Many transactions have legally mandated time frames to cancel without penalty. Door-to-door sales have 3-day federal cooling-off period. Some states mandate periods for gym memberships, timeshares, or home improvement contracts.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Red Flags in Contract Language -->
+                <section id="red-flags" class="mb-8">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4">Red Flags in Contract Language</h2>
+                    <p class="text-gray-700 mb-4">
+                        Certain phrases and structures should immediately raise concerns when you encounter them in contracts. Learning to recognize these red flags helps you identify when additional scrutiny, negotiation, or walking away is warranted.
+                    </p>
+
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="evaluation-card bad">
+                            <h3 class="font-bold text-gray-900 mb-2">🚩 "As-Is" or "With All Faults"</h3>
+                            <p class="text-sm text-gray-700">Disclaims warranties—you accept product/service in current condition with no recourse for defects. For used cars sold "as-is," if engine fails driving off lot, you have no remedy (unless fraud involved).</p>
+                        </div>
+
+                        <div class="evaluation-card bad">
+                            <h3 class="font-bold text-gray-900 mb-2">🚩 "Non-Refundable" Deposits</h3>
+                            <p class="text-sm text-gray-700">Some are reasonable (holding rental property), others problematic. $5,000 non-refundable wedding venue deposit a year in advance, even if venue becomes unavailable, may exceed reasonable compensation.</p>
+                        </div>
+
+                        <div class="evaluation-card bad">
+                            <h3 class="font-bold text-gray-900 mb-2">🚩 Broad Indemnification</h3>
+                            <p class="text-sm text-gray-700">"Customer agrees to indemnify, defend, and hold harmless Company from any claims..." Requires YOU to pay company's legal costs if they get sued, even if company was at fault.</p>
+                        </div>
+
+                        <div class="evaluation-card bad">
+                            <h3 class="font-bold text-gray-900 mb-2">🚩 Mandatory Arbitration + Class Action Waiver</h3>
+                            <p class="text-sm text-gray-700">Prevents joining with other harmed consumers, making it economically impractical to pursue small claims (who hires lawyer for $50 dispute?).</p>
+                        </div>
+
+                        <div class="evaluation-card bad">
+                            <h3 class="font-bold text-gray-900 mb-2">🚩 Perpetual Autorenewal</h3>
+                            <p class="text-sm text-gray-700">"Agreement automatically renews for successive one-year terms unless canceled with 60 days written notice." Forgetting = locked in another year. Often with difficult cancellation procedures.</p>
+                        </div>
+
+                        <div class="evaluation-card bad">
+                            <h3 class="font-bold text-gray-900 mb-2">🚩 Unilateral Termination Rights</h3>
+                            <p class="text-sm text-gray-700">"Company may terminate anytime for any reason without notice or refund." Meanwhile, YOU must provide 30-60 days notice and pay termination fees. Completely one-sided.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Systematic Analysis Approach -->
+                <section id="systematic-analysis" class="mb-8">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4">Contract Analysis Systematic Approach</h2>
+                    <p class="text-gray-700 mb-4">
+                        Evaluating contracts systematically, rather than skimming or relying on sales assurances, protects you from unwelcome surprises. A structured approach ensures you examine critical elements before committing.
+                    </p>
+
+                    <div class="analysis-step">
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">Step 1: Identify All Parties and Their Obligations</h3>
+                        <p class="text-gray-700">Who is bound by this contract? Sometimes contracts name corporate entities that differ from the company you think you're dealing with. What is each party required to do? List YOUR obligations (pay monthly fee, maintain insurance, provide notice) and the COMPANY'S obligations (provide services, maintain equipment, respond to issues within specified timeframes).</p>
+                    </div>
+
+                    <div class="analysis-step">
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">Step 2: Understand the Financial Terms Completely</h3>
+                        <p class="text-gray-700">What is the total cost? Look beyond monthly payments to total contract cost including fees, interest, and penalties. When are payments due and what are consequences of late payment? Are prices guaranteed or can they increase? Are there hidden fees (processing, activation, convenience fees for certain payment methods)?</p>
+                    </div>
+
+                    <div class="analysis-step">
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">Step 3: Examine Termination and Modification Provisions</h3>
+                        <p class="text-gray-700">How can you exit this contract? What notice is required and what costs are involved? Can the company change terms, and if so, how and with what notice? Can you refuse changes or are you bound by the modification? What happens at end of initial term—automatic renewal?</p>
+                    </div>
+
+                    <div class="analysis-step">
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">Step 4: Analyze Risk Allocation and Liability</h3>
+                        <p class="text-gray-700">Who is responsible if things go wrong? Does the contract limit the company's liability in ways that leave you unprotected? Are you required to waive legal rights like jury trials or class actions? Does the contract require you to indemnify the company, taking on their legal risks?</p>
+                    </div>
+
+                    <div class="analysis-step">
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">Step 5: Check for Dispute Resolution Requirements</h3>
+                        <p class="text-gray-700">How are disagreements resolved? Is arbitration required, and if so, under whose rules and in what location? Are you prohibited from going to court or joining class actions? Who pays arbitration fees? Some contracts require consumers to pay thousands in arbitration fees, making the process prohibitively expensive.</p>
+                    </div>
+
+                    <div class="analysis-step">
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">Step 6: Verify Consistency with Promises Made</h3>
+                        <p class="text-gray-700">Do written contract terms match what the salesperson or advertisement promised? If there are discrepancies, the written contract usually governs unless you can prove deceptive practices. Get promises in writing as contract amendments.</p>
+                    </div>
+                </section>
+
+                <!-- Real-World Examples -->
+                <section id="examples" class="mb-8">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4">Real-World Examples</h2>
+
+                    <div class="case-study">
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Taylor's Apartment Lease Analysis</h3>
+                        <p class="text-gray-700 mb-3">
+                            Taylor, 24, was thrilled to find an affordable apartment close to her new job. The landlord pressed for immediate signing: "Three other people want this unit—sign today or it's gone." Taylor resisted the pressure and took the lease home to review carefully. She discovered several concerning clauses:
+                        </p>
+                        <ul class="list-disc list-inside text-gray-700 mb-3 space-y-1">
+                            <li>Automatic renewal requiring 90 days written notice (not email) to vacate</li>
+                            <li>Clause allowing landlord to enter "at any time for any reason" with no notice—potentially violating state law</li>
+                            <li>Provision making tenants liable for all repairs regardless of cause, even normal wear and tear</li>
+                            <li>Requirement to pay landlord's attorney fees if any dispute arose, even if Taylor was right</li>
+                        </ul>
+                        <p class="text-gray-700 mb-3">
+                            Taylor researched her state's tenant rights and discovered several clauses were likely unenforceable. She drafted a proposed amendment clarifying: 60-day notice requirement (state maximum), 24-hour notice for entry except emergencies, landlord responsibility for repairs not caused by tenant negligence, and mutual attorney fee provision.
+                        </p>
+                        <p class="text-gray-700">
+                            She presented this to the landlord, explaining she was excited about the apartment but needed these basic protections. The landlord initially resisted but ultimately agreed to all except the attorney fee change. Taylor signed the amended lease, protecting herself from thousands in potential unfair charges and preserving her legal rights. Had she signed under pressure, she could have been trapped in an unfair agreement for years.
+                        </p>
+                    </div>
+
+                    <div class="case-study">
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Marcus's Gym Membership Battle</h3>
+                        <p class="text-gray-700 mb-3">
+                            Marcus signed up for a gym membership advertised as "$20/month, cancel anytime!" What he didn't carefully read: The contract required a one-year commitment with a $200 early termination fee, and "cancel anytime" meant he could cancel after the first year without fees. The membership automatically renewed annually unless he provided written cancellation 45 days before the renewal date. Payments were automatically charged to his debit card, and the contract authorized the gym to continue charging even if he disputed charges or closed the account.
+                        </p>
+                        <p class="text-gray-700 mb-3">
+                            After four months, Marcus moved across the country for a job. He called to cancel and was shocked by the $200 termination fee. He tried to dispute the charge with his bank, but the contract he'd signed authorized the charges, so the bank sided with the gym. Frustrated, he paid the $200 fee and assumed he was done.
+                        </p>
+                        <p class="text-gray-700 mb-3">
+                            A year later, he noticed $25 monthly charges on his account for 11 months—$275 total. The gym had automatically renewed his membership because he hadn't provided 45-day written notice. When he called, they refused a refund: "The contract you signed authorized automatic renewal. We sent an email reminder 60 days before renewal." Marcus had never seen the email, which went to spam.
+                        </p>
+                        <p class="text-gray-700">
+                            Marcus filed a complaint with his state's Attorney General consumer protection division and disputed the charges as unauthorized. After three months and substantial effort, he recovered $200 of the $275, but the experience taught him an expensive lesson: promotional language often contradicts actual contract terms, automatic billing authorization clauses can be abused, and cancellation requirements buried in contracts can trap you long after you've stopped using a service. Had Marcus carefully reviewed the contract before signing, he would have seen the one-year commitment, termination fee, and renewal terms, and could have negotiated or chosen a gym with genuinely flexible cancellation.
+                        </p>
+                    </div>
+
+                    <div class="case-study">
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Jordan's Extended Warranty Evaluation</h3>
+                        <p class="text-gray-700 mb-3">
+                            Jordan purchased a laptop for $1,200 and was offered an extended warranty for $350 covering three years beyond the manufacturer's one-year warranty. The salesperson emphasized: "Laptops break all the time—this covers everything!" Jordan asked to see the warranty terms and spent 20 minutes reviewing the dense document. She discovered:
+                        </p>
+                        <ul class="list-disc list-inside text-gray-700 mb-3 space-y-1">
+                            <li>Warranty covered mechanical failures but excluded damage from "misuse"—a vague term the company defined</li>
+                            <li>Didn't cover battery degradation, cosmetic damage, or software issues</li>
+                            <li>Required $75 deductible per claim</li>
+                            <li>Excluded coverage if she didn't register within 30 days</li>
+                            <li>Manufacturer's warranty already covered first year, so paying $350 for two additional years of limited coverage</li>
+                        </ul>
+                        <p class="text-gray-700 mb-3">
+                            Jordan researched the laptop's reliability ratings (excellent) and manufacturer repair costs (screen: $300, motherboard: $500). She calculated: Extended warranty cost $350 + potential $75 deductibles per claim. Over two years, she'd need multiple major repairs to break even. If she had one major repair ($500), she'd pay $350 + $75 = $425, only saving $75. If no repairs, she'd lose $350.
+                        </p>
+                        <p class="text-gray-700">
+                            She decided to decline the warranty and instead put $150 in a savings account as a self-insurance fund for potential repairs. After three years, her laptop never needed repairs beyond routine maintenance. She saved $200 ($350 warranty cost - $150 she'd set aside and still had). Even if she'd needed a $500 repair, she'd be only slightly worse off ($500 cost vs. $425 warranty + deductible). Jordan's systematic evaluation of warranty terms and cost-benefit analysis saved her money, but more importantly, it exemplified critical contract evaluation: reading fine print, understanding exclusions, calculating true costs, and making informed decisions rather than accepting sales pressure.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Interactive Visualization: Predatory vs. Fair Lending -->
+                <section class="bg-gradient-to-r from-red-50 to-orange-50 rounded-lg p-6 my-8 border-2 border-red-400">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4">📊 Interactive Visualization: The True Cost of Predatory Lending</h2>
+                    <p class="text-gray-700 mb-6">Compare the total cost of borrowing $500 with different lending products over 6 months:</p>
+
+                    <canvas id="lendingCostChart" style="max-height: 350px;"></canvas>
+
+                    <div class="grid md:grid-cols-3 gap-4 mt-6">
+                        <div class="bg-green-50 p-4 rounded border-l-4 border-green-600">
+                            <h4 class="font-bold text-green-900 mb-2">Credit Union Loan</h4>
+                            <p class="text-sm text-gray-700 mb-1">8% APR (Fair)</p>
+                            <p class="text-2xl font-bold text-green-900 mt-2">$517</p>
+                            <p class="text-xs text-gray-600">Total repayment</p>
+                            <p class="text-xs text-green-700 mt-1">Only $17 in interest</p>
+                        </div>
+                        <div class="bg-yellow-50 p-4 rounded border-l-4 border-yellow-600">
+                            <h4 class="font-bold text-yellow-900 mb-2">Credit Card Cash Advance</h4>
+                            <p class="text-sm text-gray-700 mb-1">24% APR + $15 fee</p>
+                            <p class="text-2xl font-bold text-yellow-900 mt-2">$575</p>
+                            <p class="text-xs text-gray-600">Total repayment</p>
+                            <p class="text-xs text-yellow-700 mt-1">$75 in fees/interest</p>
+                        </div>
+                        <div class="bg-red-50 p-4 rounded border-l-4 border-red-600">
+                            <h4 class="font-bold text-red-900 mb-2">Payday Loan</h4>
+                            <p class="text-sm text-gray-700 mb-1">400% APR (Predatory!)</p>
+                            <p class="text-2xl font-bold text-red-900 mt-2">$1,125</p>
+                            <p class="text-xs text-gray-600">Total repayment</p>
+                            <p class="text-xs text-red-700 mt-1">$625 in interest!</p>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 bg-white p-4 rounded-lg border border-red-200">
+                        <p class="text-sm text-gray-700 mb-2">
+                            <strong>⚠️ Warning:</strong> Payday loans cost <strong>$1,108 more</strong> than a credit union loan for the same $500 borrowed!
+                        </p>
+                        <p class="text-sm text-gray-700">
+                            This is why contract evaluation is critical. Predatory lenders hide extreme costs in complex contract language.
+                            Always read the APR, calculate total cost, and compare alternatives before signing any loan agreement.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Reflection Prompt -->
+                <div class="discussion-prompt mb-8">
+                    <h3 class="text-lg font-bold text-gray-900 mb-2">💭 Reflection Prompt</h3>
+                    <p class="text-gray-700">
+                        Think about a contract you've signed or will sign soon—perhaps a phone plan, streaming service subscription, rental agreement, or employment contract. If you were to thoroughly evaluate it using the systematic approach from this lesson, what specific provisions would you examine most carefully? What questions would you ask before signing? What terms, if any, would you try to negotiate? Have you ever signed a contract you later regretted, and what about the contract evaluation process would have helped you avoid that situation?
+                    </p>
+                </div>
+
+                <!-- Skill Builder Activity -->
+                <section id="skill-builder" class="mb-8">
+                    <div class="skill-builder">
+                        <h2 class="text-2xl font-bold text-gray-900 mb-4">📋 Contract Analyzer Tool</h2>
+                        <div class="activity-timer mb-4">
+                            <p class="text-sm font-semibold text-gray-700">⏱️ Activity Time: 20-25 minutes</p>
+                        </div>
+                        <p class="text-gray-700 mb-4">
+                            Practice evaluating real-world contracts, identifying problematic clauses, and making informed decisions about accepting, negotiating, or declining contractual terms.
+                        </p>
+
+                        <!-- Contract Selection -->
+                        <div class="mb-4">
+                            <label class="block text-gray-900 font-semibold mb-2">Select a contract to analyze:</label>
+                            <select id="contract-selector" class="w-full border rounded px-3 py-2" onchange="loadContract()">
+                                <option value="apartment">Contract A: Apartment Lease Agreement</option>
+                                <option value="cellphone">Contract B: Cell Phone Service Agreement</option>
+                                <option value="online">Contract C: Online Service Terms of Service</option>
+                            </select>
+                        </div>
+
+                        <!-- Apartment Lease Contract -->
+                        <div id="apartment-contract" class="contract-analysis">
+                            <h3 class="text-xl font-bold text-gray-900 mb-4">Apartment Lease Agreement Analysis</h3>
+
+                            <div class="contract-clause mb-4">
+                                <p class="text-sm text-gray-600 mb-2"><strong>CLAUSE 1: EARLY TERMINATION</strong></p>
+                                <p class="text-gray-700">
+                                    "Tenant may terminate this lease prior to the end date by providing 60 days written notice and payment of early termination fee equal to three months' rent. Security deposit will be forfeited. Tenant remains responsible for rent during notice period."
+                                </p>
+                            </div>
+
+                            <div class="mb-4">
+                                <label class="block text-gray-700 font-semibold mb-2">Classify this clause:</label>
+                                <select class="w-full border rounded px-3 py-2 mb-2">
+                                    <option value="">Select rating...</option>
+                                    <option>Reasonable - Fair compensation for landlord's loss</option>
+                                    <option value="correct">Concerning - Three months' rent + forfeited deposit is excessive</option>
+                                    <option>Red Flag - Completely unacceptable and likely unenforceable</option>
+                                </select>
+                                <label class="block text-gray-700 mb-2">Calculate: If monthly rent is $1,200, what's the total cost to break lease early?</label>
+                                <input type="text" class="w-full border rounded px-3 py-2" placeholder="3 months rent + 2 months notice + security deposit = ?">
+                            </div>
+
+                            <div class="contract-clause mb-4">
+                                <p class="text-sm text-gray-600 mb-2"><strong>CLAUSE 2: LANDLORD ENTRY RIGHTS</strong></p>
+                                <p class="text-gray-700">
+                                    "Landlord reserves the right to enter the premises at any time for inspections, repairs, or showings to prospective tenants. Landlord will make reasonable efforts to provide notice when practical."
+                                </p>
+                            </div>
+
+                            <div class="mb-4">
+                                <label class="block text-gray-700 font-semibold mb-2">Classify this clause:</label>
+                                <select class="w-full border rounded px-3 py-2 mb-2">
+                                    <option value="">Select rating...</option>
+                                    <option>Reasonable - Landlord needs access for legitimate purposes</option>
+                                    <option>Concerning - "Reasonable efforts" is vague</option>
+                                    <option value="correct">Red Flag - Violates most state laws requiring 24-hour notice except emergencies</option>
+                                </select>
+                                <label class="block text-gray-700 mb-2">What would you negotiate?</label>
+                                <textarea class="w-full border rounded p-2" rows="2" placeholder="Your negotiation approach..."></textarea>
+                            </div>
+
+                            <div class="contract-clause mb-4">
+                                <p class="text-sm text-gray-600 mb-2"><strong>CLAUSE 3: AUTOMATIC RENEWAL</strong></p>
+                                <p class="text-gray-700">
+                                    "This lease automatically renews for successive 12-month terms unless Tenant provides written notice (delivered via certified mail) at least 90 days prior to lease end date. Rent may increase up to 10% upon renewal."
+                                </p>
+                            </div>
+
+                            <div class="mb-4">
+                                <label class="block text-gray-700 font-semibold mb-2">Identify the problems with this clause:</label>
+                                <div class="space-y-2">
+                                    <label class="flex items-start">
+                                        <input type="checkbox" class="mt-1 mr-2">
+                                        <span class="text-gray-700">90-day notice requirement is excessive (state maximum often 60 days)</span>
+                                    </label>
+                                    <label class="flex items-start">
+                                        <input type="checkbox" class="mt-1 mr-2">
+                                        <span class="text-gray-700">Requiring certified mail (not email or regular mail) creates unnecessary burden</span>
+                                    </label>
+                                    <label class="flex items-start">
+                                        <input type="checkbox" class="mt-1 mr-2">
+                                        <span class="text-gray-700">Forgetting to send notice 90 days early locks you into another full year</span>
+                                    </label>
+                                    <label class="flex items-start">
+                                        <input type="checkbox" class="mt-1 mr-2">
+                                        <span class="text-gray-700">10% annual rent increase is significant ($1,200 → $1,320/month = $1,440 more per year)</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="contract-clause mb-4">
+                                <p class="text-sm text-gray-600 mb-2"><strong>CLAUSE 4: REPAIRS AND MAINTENANCE</strong></p>
+                                <p class="text-gray-700">
+                                    "Tenant is responsible for all repairs and maintenance of the premises, including but not limited to: plumbing, electrical, HVAC, appliances, structural issues, and pest control. Landlord is not responsible for any repairs regardless of cause."
+                                </p>
+                            </div>
+
+                            <div class="mb-4">
+                                <label class="block text-gray-700 font-semibold mb-2">Why is this clause problematic?</label>
+                                <select class="w-full border rounded px-3 py-2">
+                                    <option value="">Select reason...</option>
+                                    <option>It's completely reasonable for tenants to handle all repairs</option>
+                                    <option value="correct">Violates implied warranty of habitability - landlord must maintain safe, livable conditions</option>
+                                    <option>Tenants should negotiate to pay for some repairs</option>
+                                </select>
+                            </div>
+
+                            <div class="p-4 bg-yellow-50 rounded">
+                                <h4 class="font-bold text-gray-900 mb-2">Overall Lease Evaluation:</h4>
+                                <label class="block text-gray-700 mb-2">Rate this lease's fairness (1-10, where 10 is very fair to tenant):</label>
+                                <input type="number" min="1" max="10" class="border rounded px-3 py-2 w-20 mb-2">
+                                <label class="block text-gray-700 mb-2">List 3 clauses you would negotiate before signing:</label>
+                                <textarea class="w-full border rounded p-2" rows="4" placeholder="1.&#10;2.&#10;3."></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Cell Phone Contract (hidden by default) -->
+                        <div id="cellphone-contract" class="contract-analysis" style="display: none;">
+                            <h3 class="text-xl font-bold text-gray-900 mb-4">Cell Phone Service Agreement Analysis</h3>
+
+                            <div class="p-4 bg-blue-50 rounded mb-4">
+                                <h4 class="font-bold text-gray-900 mb-2">Advertised Terms:</h4>
+                                <p class="text-gray-700">"Unlimited talk, text, and data for just $60/month! Free phone included!"</p>
+                            </div>
+
+                            <div class="contract-clause mb-4">
+                                <p class="text-sm text-gray-600 mb-2"><strong>ACTUAL CONTRACT FINANCIAL TERMS:</strong></p>
+                                <p class="text-gray-700 mb-1">Base service: $60/month</p>
+                                <p class="text-gray-700 mb-1">Device payment (24 months): $35/month</p>
+                                <p class="text-gray-700 mb-1">Regulatory recovery fee: $3.50/month</p>
+                                <p class="text-gray-700 mb-1">Administrative fee: $2.50/month</p>
+                                <p class="text-gray-700 mb-1">Estimated taxes/fees: $7/month</p>
+                                <p class="text-gray-700 font-semibold">Total monthly: $108</p>
+                            </div>
+
+                            <div class="mb-4">
+                                <label class="block text-gray-700 font-semibold mb-2">Total cost over 24-month contract:</label>
+                                <input type="text" class="w-full border rounded px-3 py-2" placeholder="$108 × 24 = ?">
+                                <p class="text-sm text-gray-600 mt-2">Compare to advertised "$60/month" × 24 = $1,440. Actual cost is significantly higher!</p>
+                            </div>
+
+                            <div class="contract-clause mb-4">
+                                <p class="text-sm text-gray-600 mb-2"><strong>EARLY TERMINATION CLAUSE:</strong></p>
+                                <p class="text-gray-700">
+                                    "Customer may cancel service by paying: (1) Early termination fee of $350, plus (2) Remaining device balance. Example: Cancel after 6 months = $350 ETF + (18 months × $35) = $350 + $630 = $980."
+                                </p>
+                            </div>
+
+                            <div class="contract-clause mb-4">
+                                <p class="text-sm text-gray-600 mb-2"><strong>MODIFICATION RIGHTS:</strong></p>
+                                <p class="text-gray-700">
+                                    "Carrier reserves right to modify service plans, features, pricing, or terms at any time with 30 days notice posted on website. Continued use of service after modification constitutes acceptance. Customer may cancel within 30 days of modification without early termination fee, but remains responsible for device balance."
+                                </p>
+                            </div>
+
+                            <div class="mb-4">
+                                <label class="block text-gray-700 font-semibold mb-2">Problems with this clause:</label>
+                                <div class="space-y-2">
+                                    <label class="flex items-start">
+                                        <input type="checkbox" class="mt-1 mr-2">
+                                        <span class="text-gray-700">Company can increase price from $60 to $80/month, reduce data, or change terms—you can't refuse</span>
+                                    </label>
+                                    <label class="flex items-start">
+                                        <input type="checkbox" class="mt-1 mr-2">
+                                        <span class="text-gray-700">Notice "posted on website" - easy to miss, not sent directly</span>
+                                    </label>
+                                    <label class="flex items-start">
+                                        <input type="checkbox" class="mt-1 mr-2">
+                                        <span class="text-gray-700">Even if you cancel due to their changes, you still owe full device balance ($630 after 6 months)</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="contract-clause mb-4">
+                                <p class="text-sm text-gray-600 mb-2"><strong>DISPUTE RESOLUTION:</strong></p>
+                                <p class="text-gray-700">
+                                    "Any dispute arising from this agreement must be resolved through binding arbitration administered by the American Arbitration Association. Customer waives right to jury trial and to participate in class action lawsuits. Customer is responsible for arbitration filing fees ($200) and hearing fees (up to $1,500)."
+                                </p>
+                            </div>
+
+                            <div class="mb-4">
+                                <label class="block text-gray-700 font-semibold mb-2">Why is this clause concerning?</label>
+                                <textarea class="w-full border rounded p-2" rows="3" placeholder="Explain why mandatory arbitration with class action waiver is problematic..."></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Online Service Contract (hidden by default) -->
+                        <div id="online-contract" class="contract-analysis" style="display: none;">
+                            <h3 class="text-xl font-bold text-gray-900 mb-4">Online Service Terms of Service Analysis</h3>
+
+                            <div class="contract-clause mb-4">
+                                <p class="text-sm text-gray-600 mb-2"><strong>DATA USAGE AND PRIVACY:</strong></p>
+                                <p class="text-gray-700">
+                                    "By using our service, you grant us perpetual, irrevocable, worldwide license to use, modify, distribute, and monetize any content you upload, post, or transmit through our platform. We may share your personal data, browsing history, and usage patterns with third-party partners for advertising and analytics purposes."
+                                </p>
+                            </div>
+
+                            <div class="mb-4">
+                                <label class="block text-gray-700 font-semibold mb-2">What rights are you giving up?</label>
+                                <div class="space-y-2">
+                                    <label class="flex items-start">
+                                        <input type="checkbox" class="mt-1 mr-2">
+                                        <span class="text-gray-700">Ownership and control of content you create</span>
+                                    </label>
+                                    <label class="flex items-start">
+                                        <input type="checkbox" class="mt-1 mr-2">
+                                        <span class="text-gray-700">Privacy of your personal data and browsing history</span>
+                                    </label>
+                                    <label class="flex items-start">
+                                        <input type="checkbox" class="mt-1 mr-2">
+                                        <span class="text-gray-700">Ability to revoke these rights (license is "irrevocable")</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="contract-clause mb-4">
+                                <p class="text-sm text-gray-600 mb-2"><strong>WARRANTY DISCLAIMER:</strong></p>
+                                <p class="text-gray-700">
+                                    "SERVICE PROVIDED 'AS-IS' WITHOUT WARRANTY OF ANY KIND. WE DISCLAIM ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING MERCHANTABILITY, FITNESS FOR PURPOSE, AND NON-INFRINGEMENT. WE DO NOT GUARANTEE SERVICE WILL BE UNINTERRUPTED, SECURE, OR ERROR-FREE."
+                                </p>
+                            </div>
+
+                            <div class="contract-clause mb-4">
+                                <p class="text-sm text-gray-600 mb-2"><strong>LIMITATION OF LIABILITY:</strong></p>
+                                <p class="text-gray-700">
+                                    "OUR TOTAL LIABILITY FOR ANY CLAIM SHALL NOT EXCEED THE AMOUNT YOU PAID US IN THE PAST 12 MONTHS (MINIMUM $10). WE ARE NOT LIABLE FOR ANY INDIRECT, INCIDENTAL, CONSEQUENTIAL, OR SPECIAL DAMAGES, INCLUDING LOST PROFITS, DATA LOSS, OR BUSINESS INTERRUPTION, EVEN IF WE WERE ADVISED OF THE POSSIBILITY."
+                                </p>
+                            </div>
+
+                            <div class="mb-4">
+                                <label class="block text-gray-700 font-semibold mb-2">What does this mean in practice?</label>
+                                <textarea class="w-full border rounded p-2" rows="4" placeholder="Explain the implications if: 1) Service failure causes you to lose important data, 2) Security breach exposes your personal information, 3) Service outage costs you business opportunities"></textarea>
+                            </div>
+
+                            <div class="contract-clause mb-4">
+                                <p class="text-sm text-gray-600 mb-2"><strong>MODIFICATION RIGHTS:</strong></p>
+                                <p class="text-gray-700">
+                                    "We may modify these Terms at any time by posting updated terms on our website. Changes take effect immediately upon posting. Your continued use constitutes acceptance. We are not obligated to notify you of changes."
+                                </p>
+                            </div>
+
+                            <div class="mb-4">
+                                <label class="block text-gray-700 font-semibold mb-2">Rate this clause:</label>
+                                <select class="w-full border rounded px-3 py-2">
+                                    <option value="">Select...</option>
+                                    <option>Reasonable - Companies need ability to update terms</option>
+                                    <option>Concerning - Should require notification</option>
+                                    <option value="correct">Red Flag - Changes take effect immediately without notice; completely one-sided</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Analysis Summary -->
+                        <div class="mt-6 p-4 bg-indigo-50 rounded">
+                            <h4 class="font-bold text-gray-900 mb-3">Synthesis Questions:</h4>
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="block text-gray-700 font-semibold mb-2">Which contract had the most unfair or concerning terms?</label>
+                                    <select class="w-full border rounded px-3 py-2">
+                                        <option value="">Select...</option>
+                                        <option>Apartment Lease</option>
+                                        <option>Cell Phone Service</option>
+                                        <option>Online Service Terms</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-gray-700 font-semibold mb-2">Which clauses would you prioritize negotiating?</label>
+                                    <textarea class="w-full border rounded p-2" rows="3" placeholder="List top 3 clauses across all contracts that you'd try to change..."></textarea>
+                                </div>
+                                <div>
+                                    <label class="block text-gray-700 font-semibold mb-2">In which case would you walk away rather than accept the terms?</label>
+                                    <textarea class="w-full border rounded p-2" rows="3" placeholder="Explain which contract(s) you'd decline and why..."></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Summary -->
+                <section class="mb-8">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4">Summary</h2>
+                    <p class="text-gray-700 mb-4">
+                        Contract evaluation is a critical financial skill that protects you from unfair terms, hidden costs, and loss of legal rights. Unfair contract terms—including broad liability waivers, one-sided modification rights, excessive penalties, and mandatory arbitration clauses—are common in consumer agreements, often buried in fine print. Consumer protection laws establish baseline rights you have regardless of contract terms, including protection from deceptive practices, certain non-waivable warranty rights, and in some cases, cooling-off periods allowing contract cancellation.
+                    </p>
+                    <p class="text-gray-700 mb-4">
+                        Learning to recognize red flags in contract language—phrases like "as-is," "non-refundable," "binding arbitration," "automatic renewal," and overly broad waivers—helps you identify when additional scrutiny is required. A systematic contract analysis approach ensures you examine all critical elements: parties and obligations, financial terms, termination and modification provisions, risk allocation, dispute resolution requirements, and consistency with promises made. This structured process prevents you from overlooking important details that could cost thousands of dollars or strip away legal protections.
+                    </p>
+                    <p class="text-gray-700">
+                        The implications of contract evaluation extend beyond individual transactions. When consumers routinely accept unfair terms, companies have no incentive to offer better agreements. By reading carefully, asking questions, negotiating terms, and being willing to walk away from bad deals, you create market pressure for fairer contracts while protecting your own financial interests. Remember: what a company presents as a "standard contract" or non-negotiable terms may actually be quite negotiable, especially for significant agreements like leases, employment, or major purchases. Your informed analysis and willingness to advocate for yourself can result in substantially better terms, saved money, and preserved rights. Most importantly, never let pressure tactics rush you into signing contracts you haven't thoroughly read and understood—if a deal isn't available after you've had time to review the contract carefully, it probably wasn't a good deal to begin with.
+                    </p>
+                </section>
+
+                <!-- Coming Tomorrow -->
+                <div class="bg-gradient-to-r from-indigo-500 to-purple-600 text-white rounded-lg p-6 mt-8">
+                    <h2 class="text-2xl font-bold mb-3">🎯 Coming Tomorrow: Contract Evaluation Learning Lab</h2>
+                    <p class="mb-4">Tomorrow, you'll apply contract evaluation skills through hands-on practice:</p>
+                    <ul class="space-y-2">
+                        <li class="flex items-start">
+                            <span class="mr-2">✓</span>
+                            <span>Real Contract Deep-Dive Analysis - analyze complete apartment leases, gym memberships, and service agreements</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="mr-2">✓</span>
+                            <span>Consumer Rights Application - apply protection laws to real scenarios (bait-and-switch, defective products, forced arbitration)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="mr-2">✓</span>
+                            <span>Red Flag Identification Challenge - classify liability waivers, termination clauses, and hidden costs</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="mr-2">✓</span>
+                            <span>Negotiation Strategy Workshop - develop scripts and practice role-playing contract negotiations</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="mr-2">✓</span>
+                            <span>Personal Contract Evaluation - create action plan for your own current and future contracts</span>
+                        </li>
+                    </ul>
+                    <p class="mt-4 font-semibold">Be ready to analyze, critique, and negotiate real-world contracts!</p>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Contract selection and display
+        function loadContract() {
+            const selector = document.getElementById('contract-selector');
+            const selectedValue = selector.value;
+
+            // Hide all contracts
+            document.querySelectorAll('.contract-analysis').forEach(contract => {
+                contract.style.display = 'none';
+            });
+
+            // Show selected contract
+            document.getElementById(selectedValue + '-contract').style.display = 'block';
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Auto-save to localStorage
+        document.querySelectorAll('input[type="text"], textarea, input[type="number"], select').forEach(field => {
+            const key = 'contract-eval-' + (field.id || field.placeholder || Math.random());
+
+            // Load saved value
+            const saved = localStorage.getItem(key);
+            if (saved) field.value = saved;
+
+            // Save on change
+            field.addEventListener('blur', function() {
+                if (this.value) localStorage.setItem(key, this.value);
+            });
+        });
+
+        // Checkbox persistence
+        document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+            const key = 'contract-checkbox-' + (checkbox.id || Math.random());
+
+            // Load saved state
+            const saved = localStorage.getItem(key);
+            if (saved === 'true') checkbox.checked = true;
+
+            // Save on change
+            checkbox.addEventListener('change', function() {
+                localStorage.setItem(key, this.checked);
+            });
+        });
+
+        // Predatory Lending Cost Comparison Chart
+        const lendingCtx = document.getElementById('lendingCostChart').getContext('2d');
+
+        const principal = 500; // $500 loan
+        const months = 6;
+
+        // Calculate total cost for each lending product
+        const lendingProducts = [
+            {
+                name: 'Credit Union\nLoan',
+                apr: 0.08,
+                fee: 0,
+                color: '#059669',
+                description: '8% APR personal loan'
+            },
+            {
+                name: 'Credit Card\nCash Advance',
+                apr: 0.24,
+                fee: 15,
+                color: '#F59E0B',
+                description: '24% APR + $15 fee'
+            },
+            {
+                name: 'Payday\nLoan',
+                apr: 4.00, // 400% APR
+                fee: 0,
+                color: '#DC2626',
+                description: '400% APR (predatory)'
+            }
+        ];
+
+        // Calculate total repayment for each product
+        const totalCosts = lendingProducts.map(product => {
+            const monthlyRate = product.apr / 12;
+            const interest = principal * monthlyRate * months;
+            return principal + interest + product.fee;
+        });
+
+        const interestPaid = totalCosts.map((total, i) => total - principal - lendingProducts[i].fee);
+
+        new Chart(lendingCtx, {
+            type: 'bar',
+            data: {
+                labels: lendingProducts.map(p => p.name),
+                datasets: [
+                    {
+                        label: 'Principal',
+                        data: Array(3).fill(principal),
+                        backgroundColor: '#94A3B8',
+                        stack: 'stack1'
+                    },
+                    {
+                        label: 'Interest + Fees',
+                        data: totalCosts.map((total, i) => total - principal),
+                        backgroundColor: lendingProducts.map(p => p.color),
+                        stack: 'stack1'
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Total Cost to Borrow $500 for 6 Months',
+                        font: {
+                            size: 16,
+                            weight: 'bold'
+                        }
+                    },
+                    legend: {
+                        display: true,
+                        position: 'top',
+                        labels: {
+                            usePointStyle: true,
+                            padding: 15
+                        }
+                    },
+                    tooltip: {
+                        backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                        padding: 12,
+                        callbacks: {
+                            title: function(context) {
+                                return context[0].label.replace(/\n/g, ' ');
+                            },
+                            label: function(context) {
+                                if (context.datasetIndex === 0) {
+                                    return 'Principal: $' + context.parsed.y.toLocaleString();
+                                } else {
+                                    return 'Interest + Fees: $' + context.parsed.y.toLocaleString();
+                                }
+                            },
+                            footer: function(context) {
+                                const index = context[0].dataIndex;
+                                const total = totalCosts[index];
+                                const product = lendingProducts[index];
+                                return '\nTotal Repayment: $' + Math.round(total).toLocaleString() + '\n' + product.description;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        stacked: true,
+                        title: {
+                            display: true,
+                            text: 'Lending Product',
+                            font: {
+                                size: 13,
+                                weight: 'bold'
+                            }
+                        },
+                        ticks: {
+                            font: {
+                                size: 10
+                            }
+                        }
+                    },
+                    y: {
+                        stacked: true,
+                        title: {
+                            display: true,
+                            text: 'Total Cost',
+                            font: {
+                                size: 13,
+                                weight: 'bold'
+                            }
+                        },
+                        ticks: {
+                            callback: function(value) {
+                                return '$' + (value / 1000).toFixed(1) + 'k';
+                            }
+                        },
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,9 +1,25 @@
 <!DOCTYPE html>
+<!--
+PFL Academy State-Agnostic Template
+L-Chapter: L-21
+Chapter Title: Understanding the Cost of Borrowing
+Oklahoma Reference: Chapter 7.1
+
+Variables used in this template:
+- {{STATE_NAME}} - Full state name (e.g., Kentucky, Georgia)
+- {{CHAPTER_NUMBER}} - State-specific chapter number (e.g., 2.1, 1.4)
+- {{CHAPTER_ID}} - L-chapter identifier (e.g., L-21)
+- {{CHAPTER_TITLE}} - Always: Understanding the Cost of Borrowing
+
+This template will be processed by generate_state_html.py to create
+state-specific versions with correct chapter numbering.
+-->
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>L-21 Student Activity Packet</title>
+    <title>{{STATE_NAME}} Chapter {{CHAPTER_NUMBER}}: Understanding the Cost of Borrowing - Student Activity Packet</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap');
 
@@ -367,7 +383,7 @@
     <div class="header">
         <div class="header-left">
             <h1>PFL Academy</h1>
-            <h2>Chapter 5.1: Understanding the Cost of Borrowing</h2>
+            <h2>Chapter {{CHAPTER_NUMBER}}: Understanding the Cost of Borrowing</h2>
         </div>
         <div class="header-right">
             Student Activity Packet
@@ -622,7 +638,7 @@
     <!-- FOOTER -->
     <div class="footer">
         <span>© PFL Academy | pflacademy.co</span>
-        <span>Chapter 5.1: Understanding the Cost of Borrowing</span>
+        <span>Chapter {{CHAPTER_NUMBER}}: Understanding the Cost of Borrowing</span>
     </div>
 
 </body>
