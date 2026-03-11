@@ -19,7 +19,6 @@
     "description": "A systematic framework for young adults to assess their current estate planning needs, identify priority documents, and create an action plan for protecting themselves and their families."
   },
   "state_variables": [
-    "{{STATE_NAME}}",
-    "{{STATE_ESTATE_TAX}}"
+    "{{STATE_NAME}}"
   ]
 }

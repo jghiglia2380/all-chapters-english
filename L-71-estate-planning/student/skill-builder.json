@@ -380,12 +380,11 @@
       "The cost of basic planning ($100-500) is trivial compared to probate costs (3-7% of estate)",
       "Document location matters—families can't use documents they can't find",
       "Update estate plans after: marriage, divorce, births, deaths, major asset changes",
-      "In {{STATE_NAME}}: {{STATE_ESTATE_TAX}}"
+      "Some states have estate or inheritance taxes that affect estates over $5-13 million—check your state's current thresholds"
     ]
   },
   "state_variables": [
-    "{{STATE_NAME}}",
-    "{{STATE_ESTATE_TAX}}"
+    "{{STATE_NAME}}"
   ],
   "estimated_time_minutes": 20
 }

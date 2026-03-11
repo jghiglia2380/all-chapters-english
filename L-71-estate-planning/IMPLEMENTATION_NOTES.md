@@ -154,7 +154,6 @@ When implementing HTML files, ensure:
 
 ### State Variable Integration
 - [ ] {{STATE_NAME}} appears in header
-- [ ] {{STATE_ESTATE_TAX}} used in relevant examples
 - [ ] State-specific examples (intestacy, probate costs)
 - [ ] No custom state variables created
 
@@ -216,7 +215,7 @@ Before committing:
 - [ ] Asset specifications list all 5 HTML tools
 
 ### State Variables
-- [ ] Only STATE_NAME and STATE_ESTATE_TAX used
+- [ ] Only STATE_NAME used
 - [ ] No custom state variables created
 - [ ] State variable usage is minimal and appropriate
 - [ ] Generic national examples used where state data doesn't exist
@@ -256,7 +255,7 @@ Before committing:
 - State variables used sparingly in content
 
 ### Common Pitfalls to Avoid
-- Don't create new state variables (use only STATE_NAME, STATE_ESTATE_TAX)
+- Don't create new state variables (use only STATE_NAME)
 - Don't duplicate L-68 content (tax strategies belong there)
 - Don't make HTML files too complex (follow L-70 simplicity)
 - Don't forget mobile responsiveness

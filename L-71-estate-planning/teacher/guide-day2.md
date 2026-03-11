@@ -447,7 +447,7 @@ For {{STATE_NAME}}:
 - [ ] Check if {{STATE_NAME}} has fill-in-the-blank free forms (healthcare directive, POA)
 - [ ] Research if {{STATE_NAME}} automatically revokes ex-spouse beneficiaries
 - [ ] Identify local resources: Legal aid clinics, free attorney consultations, state bar association guides
-- [ ] Review {{STATE_ESTATE_TAX}} implications for larger estate scenarios
+- [ ] Review state estate tax implications for larger estate scenarios (note: most states do not have estate taxes; those that do typically have thresholds of $5-13 million)
 
 ## Reflection & Closure (5 minutes)
 

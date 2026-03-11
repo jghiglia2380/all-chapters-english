@@ -68,11 +68,9 @@ L-71-estate-planning/
 This chapter uses the following state-specific variables for customization:
 
 - **{{STATE_NAME}}**: Student's state of residence
-- **{{STATE_ESTATE_TAX}}**: State-specific estate/inheritance tax information
 
 ### Variable Usage Examples
 - "In {{STATE_NAME}}, intestacy laws follow specific probate code formulas..."
-- "{{STATE_NAME}} estate tax information: {{STATE_ESTATE_TAX}}"
 - "Based on {{STATE_NAME}} probate procedures..."
 
 ## Key Features
@@ -239,7 +237,7 @@ Each teacher should supplement with:
 - **Version 1.0** (2025): Initial chapter creation
 - Focus on legal protection instruments
 - Distinct from L-68 tax efficiency content
-- State variable integration (STATE_NAME, STATE_ESTATE_TAX only)
+- State variable integration (STATE_NAME only)
 - Interactive HTML tools following L-70 pattern
 - Comprehensive teacher guides with state customization protocols
 
@@ -247,7 +245,7 @@ Each teacher should supplement with:
 
 For questions about this chapter or suggested improvements:
 - Content issues: Review alignment with L-68 to ensure no overlap
-- State variable questions: Ensure only STATE_NAME and STATE_ESTATE_TAX are used
+- State variable questions: Ensure only STATE_NAME is used
 - Activity modifications: Maintain 55-minute total duration per day
 - Sensitive topic concerns: Review teacher guide protocols
 

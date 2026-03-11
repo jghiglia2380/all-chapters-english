@@ -100,13 +100,12 @@ This chapter includes 5 HTML assets for the skill builder and Day 2 activities.
 
 All tools integrate these state-specific variables:
 - **{{STATE_NAME}}**: Displayed in headers and state-specific guidance
-- **{{STATE_ESTATE_TAX}}**: Estate/inheritance tax information for relevant scenarios
 
 Example usage:
 - "Based on {{STATE_NAME}} intestacy laws..."
-- "In {{STATE_NAME}}, {{STATE_ESTATE_TAX}}"
 - "{{STATE_NAME}} probate costs typically range from..."
 - "{{STATE_NAME}} recognizes these healthcare directive forms..."
+- Estate tax considerations use generic guidance: "Some states have estate or inheritance taxes that affect estates over $5-13 million"
 
 ---
 
