@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Factor Contribution Calculator | L-70 Activities</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @media print {
+            .no-print { display: none; }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 p-4">
+    <div class="container mx-auto max-w-4xl">
+        <!-- Header -->
+        <header class="bg-gradient-to-r from-emerald-600 to-teal-600 text-white rounded-lg shadow-md p-6 mb-6">
+            <h1 class="text-3xl font-bold mb-2">Your Personal Factor Contribution</h1>
+            <p class="text-emerald-100">Activity 3: Calculate how YOU contribute to the economy</p>
+        </header>
+
+        <!-- Instructions -->
+        <section class="bg-white rounded-lg shadow-md p-6 mb-6">
+            <h2 class="text-xl font-bold text-gray-900 mb-3">📋 Instructions</h2>
+            <p class="text-gray-700 mb-2">YOU are a factor of production! Calculate how you currently (or will) contribute to the economy and earn income.</p>
+            <ol class="list-decimal list-inside text-gray-700 space-y-1">
+                <li>Enter your current job or target career and hourly wage</li>
+                <li>Input hours worked per week</li>
+                <li>Check all human capital investments that apply to you</li>
+                <li>Enter current savings amount and interest rate</li>
+                <li>Calculate your total economic contribution</li>
+            </ol>
+        </section>
+
+        <!-- Input Form -->
+        <section class="bg-white rounded-lg shadow-md p-6 mb-6">
+            <div class="grid md:grid-cols-2 gap-6 mb-6">
+                <!-- Labor Contribution -->
+                <div class="bg-blue-50 p-4 rounded-lg">
+                    <h3 class="text-lg font-bold text-blue-900 mb-3">👷 Your Labor Contribution</h3>
+
+                    <div class="space-y-3">
+                        <div>
+                            <label class="block text-gray-700 font-semibold mb-1">Current or Target Job:</label>
+                            <input type="text" id="personalJob" class="w-full p-2 border border-gray-300 rounded" placeholder="e.g., Retail sales, Software engineer">
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-semibold mb-1">Hourly Wage (current or expected):</label>
+                            <div class="flex items-center">
+                                <span class="text-gray-500 mr-2">$</span>
+                                <input type="number" id="personalWage" class="flex-1 p-2 border border-gray-300 rounded" placeholder="15">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-semibold mb-1">Hours per Week:</label>
+                            <input type="number" id="personalHours" class="w-full p-2 border border-gray-300 rounded" placeholder="20">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Human Capital -->
+                <div class="bg-indigo-50 p-4 rounded-lg">
+                    <h3 class="text-lg font-bold text-indigo-900 mb-3">🎓 Your Human Capital</h3>
+
+                    <div class="space-y-2">
+                        <label class="block text-gray-700 font-semibold">Check all that apply:</label>
+                        <div class="space-y-2">
+                            <label class="flex items-center">
+                                <input type="checkbox" class="human-capital-check mr-2" data-boost="0">
+                                <span>High school diploma</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="human-capital-check mr-2" data-boost="15">
+                                <span>Some college</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="human-capital-check mr-2" data-boost="30">
+                                <span>Associate's degree</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="human-capital-check mr-2" data-boost="50">
+                                <span>Bachelor's degree (planned)</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="human-capital-check mr-2" data-boost="10">
+                                <span>Professional certifications</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="human-capital-check mr-2" data-boost="5">
+                                <span>Specialized skills training</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Capital Contribution -->
+            <div class="bg-purple-50 p-4 rounded-lg mb-4">
+                <h3 class="text-lg font-bold text-purple-900 mb-3">💰 Your Capital Contribution (Savings)</h3>
+                <p class="text-gray-700 mb-3">When you save money, you're providing capital to the economy. Banks lend your savings to businesses!</p>
+
+                <div class="grid md:grid-cols-3 gap-4">
+                    <div>
+                        <label class="block text-gray-700 font-semibold mb-1">Current Savings:</label>
+                        <div class="flex items-center">
+                            <span class="text-gray-500 mr-2">$</span>
+                            <input type="number" id="personalSavings" class="flex-1 p-2 border border-gray-300 rounded" placeholder="500">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 font-semibold mb-1">Interest Rate (APY):</label>
+                        <div class="flex items-center">
+                            <input type="number" id="savingsRate" class="flex-1 p-2 border border-gray-300 rounded" placeholder="4" step="0.1">
+                            <span class="text-gray-500 ml-2">%</span>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 font-semibold mb-1">Annual Interest Earned:</label>
+                        <div class="flex items-center">
+                            <span class="text-gray-500 mr-2">$</span>
+                            <input type="text" id="interestEarned" class="flex-1 p-2 border border-gray-300 rounded bg-gray-100" readonly placeholder="0">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button onclick="calculatePersonalContribution()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-3 rounded-lg font-semibold transition">Calculate My Factor Contribution</button>
+        </section>
+
+        <!-- Results -->
+        <div id="personalResults" class="hidden">
+            <section class="bg-gradient-to-r from-emerald-100 to-teal-100 rounded-lg p-6 mb-6">
+                <h3 class="text-xl font-bold text-emerald-900 mb-4">📊 Your Economic Contribution</h3>
+
+                <div class="grid md:grid-cols-3 gap-4 mb-4">
+                    <div class="bg-white p-4 rounded-lg text-center">
+                        <p class="text-sm text-gray-600">Weekly Labor Income</p>
+                        <p id="weeklyIncome" class="text-2xl font-bold text-blue-600">$0</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg text-center">
+                        <p class="text-sm text-gray-600">Annual Labor Income</p>
+                        <p id="annualIncome" class="text-2xl font-bold text-blue-600">$0</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg text-center">
+                        <p class="text-sm text-gray-600">Capital Income (Interest)</p>
+                        <p id="capitalIncome" class="text-2xl font-bold text-purple-600">$0</p>
+                    </div>
+                </div>
+
+                <div class="bg-white p-4 rounded-lg mb-4">
+                    <h4 class="font-bold text-gray-900 mb-2">Human Capital Boost Potential:</h4>
+                    <p id="humanCapitalMessage" class="text-gray-700"></p>
+                    <div class="mt-2 bg-gray-200 rounded-full h-4 overflow-hidden">
+                        <div id="humanCapitalBar" class="bg-gradient-to-r from-indigo-500 to-purple-500 h-full transition-all duration-500" style="width: 0%"></div>
+                    </div>
+                    <p id="projectedIncome" class="text-sm text-gray-600 mt-2"></p>
+                </div>
+
+                <div class="bg-yellow-50 border-l-4 border-yellow-500 p-4 rounded-r">
+                    <p class="font-semibold text-yellow-900">💡 Key Insight:</p>
+                    <p id="personalInsight" class="text-gray-700 mt-1"></p>
+                </div>
+            </section>
+
+            <!-- Reflection -->
+            <section class="bg-white rounded-lg shadow-md p-6">
+                <h4 class="font-bold text-gray-900 mb-3">Reflection Questions:</h4>
+                <div class="space-y-3">
+                    <div>
+                        <label class="block text-gray-700 font-semibold mb-1">1. How could you increase your human capital to earn higher wages?</label>
+                        <textarea class="w-full p-2 border border-gray-300 rounded" rows="2"></textarea>
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 font-semibold mb-1">2. What steps will you take this year to build your capital (savings)?</label>
+                        <textarea class="w-full p-2 border border-gray-300 rounded" rows="2"></textarea>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Footer -->
+        <footer class="text-center text-gray-500 text-sm mt-8 no-print">
+            <p>© 2025 PFL Academy | L-70: Factors of Production</p>
+        </footer>
+    </div>
+
+    <script>
+        function calculatePersonalContribution() {
+            const wage = parseFloat(document.getElementById('personalWage').value) || 0;
+            const hours = parseFloat(document.getElementById('personalHours').value) || 0;
+            const savings = parseFloat(document.getElementById('personalSavings').value) || 0;
+            const rate = parseFloat(document.getElementById('savingsRate').value) || 0;
+
+            const weeklyIncome = wage * hours;
+            const annualIncome = weeklyIncome * 52;
+            const interestEarned = savings * (rate / 100);
+
+            document.getElementById('interestEarned').value = interestEarned.toFixed(2);
+            document.getElementById('weeklyIncome').textContent = '$' + weeklyIncome.toLocaleString();
+            document.getElementById('annualIncome').textContent = '$' + annualIncome.toLocaleString();
+            document.getElementById('capitalIncome').textContent = '$' + interestEarned.toFixed(2);
+
+            // Human capital calculation
+            let humanCapitalBoost = 0;
+            document.querySelectorAll('.human-capital-check:checked').forEach(check => {
+                humanCapitalBoost += parseInt(check.dataset.boost);
+            });
+
+            const projectedAnnual = annualIncome * (1 + humanCapitalBoost / 100);
+            document.getElementById('humanCapitalBar').style.width = Math.min(humanCapitalBoost, 100) + '%';
+            document.getElementById('humanCapitalMessage').textContent = `Your human capital investments could increase your earning potential by ${humanCapitalBoost}%.`;
+            document.getElementById('projectedIncome').textContent = `Projected annual income with full human capital development: $${projectedAnnual.toLocaleString()}`;
+
+            // Insight
+            let insight = '';
+            if (annualIncome < 20000) {
+                insight = 'Your current labor income is modest. Consider investing in education or skills training to boost your human capital and earning potential.';
+            } else if (annualIncome < 50000) {
+                insight = 'Solid income foundation! Growing your human capital through certifications or advanced training could significantly boost your earnings.';
+            } else {
+                insight = 'Strong earning potential! Consider diversifying income sources by building capital (savings/investments) to earn interest alongside wages.';
+            }
+
+            if (savings > 0) {
+                insight += ` Your savings of $${savings.toLocaleString()} is already providing capital to the economy and earning you $${interestEarned.toFixed(2)}/year in interest.`;
+            } else {
+                insight += ' Consider starting to save even small amounts. Your savings become capital that earns you interest while helping businesses grow.';
+            }
+
+            document.getElementById('personalInsight').textContent = insight;
+            document.getElementById('personalResults').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>

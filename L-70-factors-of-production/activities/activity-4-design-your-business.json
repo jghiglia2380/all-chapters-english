@@ -1,0 +1,354 @@
+{
+  "activity_id": "L-70-activity-4",
+  "chapter": "L-70",
+  "day": 2,
+  "sequence": 4,
+  "title": "Design Your Business",
+  "type": "project_based",
+  "duration_minutes": 15,
+  "description": "Design a complete business plan that efficiently uses all four factors of production (land, labor, capital, entrepreneurship) with realistic cost estimates, revenue projections, and viability assessment for a business that could succeed in {{STATE_NAME}}.",
+  "learning_objectives": [
+    "Apply all four factors of production to design a complete business concept",
+    "Estimate realistic costs for land (rent), labor (payroll), and capital (equipment loans)",
+    "Project revenue based on pricing and sales volume assumptions",
+    "Calculate profitability and assess business viability",
+    "Understand entrepreneurial decision-making and risk-taking"
+  ],
+  "instructions": [
+    "Brainstorm a business concept that addresses a real customer need in {{STATE_NAME}}",
+    "Name your business and select a business type (retail, food, service, tech, manufacturing, other)",
+    "Identify land requirements (location type, natural resources) and estimate monthly rent",
+    "Plan labor needs (number of employees, key roles) and estimate monthly payroll",
+    "List capital requirements (equipment, vehicles, technology) and estimate monthly loan payments",
+    "Define your entrepreneurial contribution (innovation, risk, unique value proposition)",
+    "Create revenue model with pricing and sales volume estimates",
+    "Calculate total costs, revenue, and profit to assess viability",
+    "Review feedback and viability score to refine your business plan"
+  ],
+  "materials_needed": [
+    "Business Design Tool interactive form",
+    "Business planning worksheets",
+    "Cost estimation guides for different business types",
+    "Revenue projection calculator",
+    "Viability scoring rubric"
+  ],
+  "config": {
+    "tool_required": "Business Design Tool",
+    "planning_sections": {
+      "business_concept": {
+        "fields": [
+          {
+            "field": "business_name",
+            "label": "Business Name",
+            "type": "text",
+            "required": true,
+            "scoring_weight": 5,
+            "examples": ["Fresh Brew Coffee Co.", "Tech Tutors Academy", "Green Thumb Landscaping"]
+          },
+          {
+            "field": "business_type",
+            "label": "Business Type",
+            "type": "select",
+            "required": true,
+            "options": [
+              {"value": "retail", "label": "Retail Store"},
+              {"value": "food", "label": "Food & Beverage"},
+              {"value": "service", "label": "Service Business"},
+              {"value": "tech", "label": "Technology"},
+              {"value": "manufacturing", "label": "Manufacturing"},
+              {"value": "other", "label": "Other"}
+            ]
+          },
+          {
+            "field": "problem_solved",
+            "label": "What problem does your business solve?",
+            "type": "textarea",
+            "required": true,
+            "scoring_weight": 5,
+            "min_length": 20,
+            "prompt": "Describe the customer need you're addressing",
+            "examples": [
+              "Students need affordable tech repair in their neighborhood",
+              "Busy professionals want healthy grab-and-go lunch options",
+              "Homeowners need reliable lawn care without long-term contracts"
+            ]
+          }
+        ]
+      },
+      "land_factor": {
+        "icon": "🌍",
+        "color": "amber",
+        "fields": [
+          {
+            "field": "location_type",
+            "label": "Location type",
+            "type": "text",
+            "examples": ["Downtown retail space", "Home office", "Industrial park", "Mobile (food truck)"]
+          },
+          {
+            "field": "natural_resources",
+            "label": "Natural resources needed",
+            "type": "text",
+            "examples": ["Water for car wash", "Farmland for produce", "None (digital business)"]
+          },
+          {
+            "field": "monthly_rent",
+            "label": "Monthly rent estimate",
+            "type": "number",
+            "required": true,
+            "min": 0,
+            "cost_guidance": {
+              "home_based": 0,
+              "small_retail": "500-2000",
+              "downtown_retail": "2000-5000",
+              "industrial_space": "1000-3000",
+              "premium_location": "5000+"
+            }
+          }
+        ]
+      },
+      "labor_factor": {
+        "icon": "👷",
+        "color": "blue",
+        "fields": [
+          {
+            "field": "number_of_employees",
+            "label": "Number of employees",
+            "type": "number",
+            "min": 0,
+            "max": 50,
+            "note": "0 if you're doing all work yourself (solo entrepreneur)"
+          },
+          {
+            "field": "key_roles",
+            "label": "Key roles needed",
+            "type": "text",
+            "examples": ["Manager, sales associate", "Chef, servers", "Developer, designer"]
+          },
+          {
+            "field": "monthly_payroll",
+            "label": "Monthly payroll estimate",
+            "type": "number",
+            "required": true,
+            "min": 0,
+            "cost_guidance": {
+              "solo": 0,
+              "part_time_min_wage": "2000 per employee",
+              "full_time_min_wage": "2500-3000 per employee",
+              "skilled_worker": "4000-6000 per employee",
+              "professional": "5000-10000 per employee"
+            }
+          }
+        ]
+      },
+      "capital_factor": {
+        "icon": "🏭",
+        "color": "purple",
+        "fields": [
+          {
+            "field": "equipment_needed",
+            "label": "Equipment needed",
+            "type": "text",
+            "examples": ["Computers, printers", "Commercial oven, refrigerator", "Landscaping equipment, truck"]
+          },
+          {
+            "field": "total_capital_investment",
+            "label": "Total capital investment",
+            "type": "number",
+            "note": "One-time purchase cost of all equipment and vehicles",
+            "cost_guidance": {
+              "minimal": "1000-5000 (basic tools/computer)",
+              "moderate": "5000-25000 (professional equipment)",
+              "significant": "25000-100000 (vehicles, machinery)",
+              "major": "100000+ (manufacturing, specialized)"
+            }
+          },
+          {
+            "field": "monthly_loan_payment",
+            "label": "Monthly loan payment",
+            "type": "number",
+            "required": true,
+            "calculation_hint": "Rough estimate: total investment × 0.01 for 7% loan over 5-7 years",
+            "examples": {
+              "10000_investment": "~100/month",
+              "25000_investment": "~250/month",
+              "50000_investment": "~500/month"
+            }
+          }
+        ]
+      },
+      "entrepreneurship_factor": {
+        "icon": "💡",
+        "color": "emerald",
+        "fields": [
+          {
+            "field": "unique_innovation",
+            "label": "Your unique innovation",
+            "type": "text",
+            "prompt": "What makes your business different from competitors?",
+            "examples": [
+              "Only eco-friendly cleaning service in town",
+              "Custom 3D-printed products on demand",
+              "Mobile app for instant booking"
+            ]
+          },
+          {
+            "field": "risk_assessment",
+            "label": "Risk you're taking",
+            "type": "text",
+            "prompt": "What could go wrong?",
+            "examples": [
+              "Competitors might lower prices",
+              "Technology could become obsolete",
+              "Customer demand might be lower than expected"
+            ]
+          },
+          {
+            "field": "target_monthly_profit",
+            "label": "Target monthly profit",
+            "type": "number",
+            "required": true,
+            "note": "Your goal as entrepreneur - what you want to earn after all costs"
+          }
+        ]
+      },
+      "revenue_model": {
+        "icon": "💰",
+        "color": "green",
+        "fields": [
+          {
+            "field": "product_or_service",
+            "label": "What do you sell?",
+            "type": "text",
+            "examples": ["Specialty coffee drinks", "Website design services", "Handmade jewelry"]
+          },
+          {
+            "field": "average_price",
+            "label": "Average price",
+            "type": "number",
+            "required": true,
+            "min": 0,
+            "note": "Average selling price per item or service"
+          },
+          {
+            "field": "monthly_sales_volume",
+            "label": "Monthly sales volume",
+            "type": "number",
+            "required": true,
+            "min": 0,
+            "note": "How many units or services you expect to sell each month"
+          }
+        ]
+      }
+    },
+    "financial_calculations": {
+      "monthly_revenue": "average_price × monthly_sales_volume",
+      "total_monthly_costs": "monthly_rent + monthly_payroll + monthly_loan_payment",
+      "monthly_profit": "monthly_revenue - total_monthly_costs",
+      "profit_margin": "(monthly_profit ÷ monthly_revenue) × 100",
+      "break_even_sales": "total_monthly_costs ÷ average_price"
+    },
+    "viability_scoring": {
+      "max_score": 100,
+      "base_score": 50,
+      "scoring_criteria": [
+        {
+          "criterion": "profitability",
+          "points": 20,
+          "condition": "monthly_profit > 0",
+          "weight": "Critical factor"
+        },
+        {
+          "criterion": "profit_margin_10_percent",
+          "points": 10,
+          "condition": "profit_margin > 10",
+          "weight": "Strong margin"
+        },
+        {
+          "criterion": "profit_margin_20_percent",
+          "points": 10,
+          "condition": "profit_margin > 20",
+          "weight": "Excellent margin"
+        },
+        {
+          "criterion": "business_name_provided",
+          "points": 5,
+          "condition": "business_name.length > 0",
+          "weight": "Basic planning"
+        },
+        {
+          "criterion": "problem_description",
+          "points": 5,
+          "condition": "problem_solved.length > 20",
+          "weight": "Clear value proposition"
+        }
+      ],
+      "score_interpretation": {
+        "90_to_100": {
+          "rating": "Excellent",
+          "message": "Outstanding business plan with strong profit potential!",
+          "color": "emerald"
+        },
+        "75_to_89": {
+          "rating": "Good",
+          "message": "Solid business plan with reasonable profit margins.",
+          "color": "green"
+        },
+        "60_to_74": {
+          "rating": "Fair",
+          "message": "Viable business but margins are tight. Look for ways to improve.",
+          "color": "yellow"
+        },
+        "below_60": {
+          "rating": "Needs Improvement",
+          "message": "Business plan needs refinement to improve profitability.",
+          "color": "red"
+        }
+      }
+    },
+    "feedback_generation": {
+      "profitability_feedback": {
+        "loss": "⚠️ Your business would operate at a loss. Increase prices, volume, or reduce costs.",
+        "break_even": "⚡ Profit is minimal. Consider if the risk is worth this return.",
+        "low_profit": "💡 Profit is positive but could be higher. Look for efficiency improvements.",
+        "good_profit": "✅ Profitable business model! Good factor allocation."
+      },
+      "labor_feedback": {
+        "no_payroll": "💡 No payroll? Are you doing all the work yourself (your labor)?",
+        "high_labor_ratio": "👥 Labor is your biggest cost. Consider automation or efficiency improvements."
+      },
+      "capital_feedback": {
+        "no_capital": "💡 No capital costs? Make sure you've accounted for equipment loans or depreciation.",
+        "high_capital": "🏭 Significant capital investment. Ensure revenue justifies equipment costs."
+      },
+      "pricing_feedback": {
+        "low_price_high_volume": "📊 Low price, high volume strategy. Make sure you can deliver at scale.",
+        "high_price_low_volume": "💎 Premium pricing strategy. Ensure customers see value at this price point.",
+        "balanced": "⚖️ Balanced pricing and volume. Test these assumptions with market research."
+      }
+    },
+    "deliverables": [
+      "Complete business concept with clear value proposition",
+      "Detailed factor requirements for land, labor, capital, and entrepreneurship",
+      "Revenue model with pricing and volume projections",
+      "Financial analysis showing costs, revenue, profit, and viability score",
+      "Feedback on business plan strengths and areas for improvement"
+    ]
+  },
+  "group_config": {
+    "type": "individual",
+    "size": null,
+    "optional_pair_work": "Students may work in pairs to brainstorm but should complete own business plan"
+  },
+  "assessment": {
+    "type": "formative",
+    "criteria": [
+      "Identified realistic requirements for all four factors of production",
+      "Created revenue model with reasonable price and volume assumptions",
+      "Calculated profitability accurately with proper cost and revenue estimates",
+      "Demonstrated understanding of entrepreneurial risk and innovation",
+      "Developed viable business concept that could succeed in real market"
+    ]
+  },
+  "teacher_notes": "This culminating activity synthesizes the entire chapter. Students apply all four factors to design their own business, making economics tangible and personal. Encourage creativity but demand realism - costs and revenues should be researched or estimated based on actual data. Many students will design unprofitable businesses initially; this is a valuable learning experience about why entrepreneurship is risky and why careful planning matters. The viability scoring provides objective feedback. Extension: Have students pitch their businesses to the class (30 seconds each) and vote on most viable concepts. This activity often sparks genuine entrepreneurial interest - some students may actually pursue these ideas!"
+}

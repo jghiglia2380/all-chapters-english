@@ -1,0 +1,197 @@
+{
+  "activity_id": "L-70-activity-1",
+  "chapter": "L-70",
+  "day": 2,
+  "sequence": 1,
+  "title": "Factor Sorting Challenge",
+  "type": "classification",
+  "duration_minutes": 10,
+  "description": "Classify 12 different resources into the four factors of production (land, labor, capital, entrepreneurship) through an interactive drag-and-drop challenge that tests understanding of economic resource categories.",
+  "learning_objectives": [
+    "Correctly identify which resources belong to each factor of production category",
+    "Distinguish between natural resources (land), human effort (labor), tools (capital), and innovation (entrepreneurship)",
+    "Understand that some resources might appear ambiguous but have clear economic classifications",
+    "Recognize real-world examples of each factor across different industries"
+  ],
+  "instructions": [
+    "Review the 12 resource items displayed in the sorting area",
+    "Drag each resource to the correct factor of production category (Land, Labor, Capital, or Entrepreneurship)",
+    "Consider the economic definition of each factor before placing items",
+    "Click 'Check Answers' to see which classifications are correct",
+    "Review any incorrect answers and understand the proper classification"
+  ],
+  "materials_needed": [
+    "Factor Sorting Challenge interactive tool",
+    "Drag-and-drop interface with four drop zones",
+    "Immediate feedback system",
+    "Reference guide for factor definitions"
+  ],
+  "config": {
+    "tool_required": "Factor Sorting Challenge",
+    "interaction_type": "drag_and_drop",
+    "items_to_sort": [
+      {
+        "item_id": "ocean_fishing",
+        "display_text": "Ocean fishing rights",
+        "correct_factor": "land",
+        "explanation": "Fishing rights are access to a natural resource (fish in the ocean), making this a land factor"
+      },
+      {
+        "item_id": "robot_arm",
+        "display_text": "Factory robot arm",
+        "correct_factor": "capital",
+        "explanation": "Human-made equipment used in production is capital, not land"
+      },
+      {
+        "item_id": "software_dev",
+        "display_text": "Software developer",
+        "correct_factor": "labor",
+        "explanation": "Human mental effort and skills are labor, even for highly skilled workers"
+      },
+      {
+        "item_id": "elon_vision",
+        "display_text": "Elon Musk's vision",
+        "correct_factor": "entrepreneurship",
+        "explanation": "Innovation, risk-taking, and organizing other factors is entrepreneurship"
+      },
+      {
+        "item_id": "texas_oil",
+        "display_text": "Texas crude oil",
+        "correct_factor": "land",
+        "explanation": "Oil is a natural resource extracted from the earth, categorized as land"
+      },
+      {
+        "item_id": "delivery_truck",
+        "display_text": "Delivery truck",
+        "correct_factor": "capital",
+        "explanation": "Vehicles used for business production are capital equipment"
+      },
+      {
+        "item_id": "registered_nurse",
+        "display_text": "Registered nurse",
+        "correct_factor": "labor",
+        "explanation": "Skilled healthcare workers provide labor through their physical and mental effort"
+      },
+      {
+        "item_id": "food_truck_startup",
+        "display_text": "Starting a food truck",
+        "correct_factor": "entrepreneurship",
+        "explanation": "The act of starting a business involves entrepreneurial risk and organization"
+      },
+      {
+        "item_id": "sunlight_solar",
+        "display_text": "Sunlight for solar panels",
+        "correct_factor": "land",
+        "explanation": "Sunlight is a natural resource provided by nature, not created by humans"
+      },
+      {
+        "item_id": "cash_register",
+        "display_text": "Cash register system",
+        "correct_factor": "capital",
+        "explanation": "Point-of-sale systems are human-made tools used in business operations"
+      },
+      {
+        "item_id": "manager_expertise",
+        "display_text": "Manager's expertise",
+        "correct_factor": "labor",
+        "explanation": "Management skills and knowledge are human capital, a form of labor"
+      },
+      {
+        "item_id": "business_risk",
+        "display_text": "Risk of business failure",
+        "correct_factor": "entrepreneurship",
+        "explanation": "Taking on risk is a defining characteristic of entrepreneurship"
+      }
+    ],
+    "factor_categories": {
+      "land": {
+        "name": "Land",
+        "icon": "🌍",
+        "definition": "Natural resources",
+        "color": "amber",
+        "expected_items": 3
+      },
+      "labor": {
+        "name": "Labor",
+        "icon": "👷",
+        "definition": "Human effort (physical/mental)",
+        "color": "blue",
+        "expected_items": 3
+      },
+      "capital": {
+        "name": "Capital",
+        "icon": "🏭",
+        "definition": "Tools & equipment",
+        "color": "purple",
+        "expected_items": 3
+      },
+      "entrepreneurship": {
+        "name": "Entrepreneurship",
+        "icon": "💡",
+        "definition": "Innovation & risk",
+        "color": "emerald",
+        "expected_items": 3
+      }
+    },
+    "scoring": {
+      "total_items": 12,
+      "perfect_score": 12,
+      "passing_score": 9,
+      "feedback_thresholds": {
+        "perfect": {
+          "min_score": 12,
+          "message": "Perfect! You've mastered identifying factors of production.",
+          "status": "excellent"
+        },
+        "strong": {
+          "min_score": 10,
+          "message": "Great work! You understand most factor classifications.",
+          "status": "good"
+        },
+        "needs_review": {
+          "min_score": 8,
+          "message": "Good effort. Review the red items and try again.",
+          "status": "review"
+        },
+        "needs_help": {
+          "min_score": 0,
+          "message": "Review factor definitions and try again. Ask for help if needed.",
+          "status": "help"
+        }
+      }
+    },
+    "common_mistakes": [
+      {
+        "mistake": "Classifying robot as labor",
+        "correction": "Robots are capital - human-made tools. Labor requires human effort."
+      },
+      {
+        "mistake": "Classifying manager expertise as entrepreneurship",
+        "correction": "Management skills are labor (human capital). Entrepreneurship is specifically about risk-taking and organizing a business."
+      },
+      {
+        "mistake": "Classifying starting a business as capital",
+        "correction": "The act of starting a business is entrepreneurship. Capital refers to the physical equipment purchased."
+      }
+    ],
+    "deliverables": [
+      "Correctly sorted all 12 resources into proper factor categories",
+      "Understanding of why each resource belongs to its specific factor",
+      "Ability to distinguish between similar-seeming factors (labor vs entrepreneurship, land vs capital)"
+    ]
+  },
+  "group_config": {
+    "type": "individual",
+    "size": null
+  },
+  "assessment": {
+    "type": "formative",
+    "criteria": [
+      "Correctly identified all land resources (natural resources)",
+      "Correctly identified all labor resources (human effort)",
+      "Correctly identified all capital resources (human-made tools)",
+      "Correctly identified all entrepreneurship resources (innovation and risk)"
+    ]
+  },
+  "teacher_notes": "Students commonly confuse labor with entrepreneurship (both involve people) and land with capital (both can be physical). Emphasize that labor is ANY human effort, entrepreneurship is specifically organizing/risk-taking, land is NATURAL resources, and capital is HUMAN-MADE tools. The drag-and-drop immediate feedback helps reinforce correct classifications."
+}

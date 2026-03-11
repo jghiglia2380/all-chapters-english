@@ -1,0 +1,295 @@
+{
+  "activity_id": "L-70-activity-2",
+  "chapter": "L-70",
+  "day": 2,
+  "sequence": 2,
+  "title": "Business Factor Analysis",
+  "type": "financial_analysis",
+  "duration_minutes": 15,
+  "description": "Analyze how a real business combines all four factors of production by calculating factor payments (rent, wages, interest) and determining entrepreneurial profit or loss based on realistic business scenarios.",
+  "learning_objectives": [
+    "Calculate monthly factor payments for land (rent), labor (wages), and capital (interest)",
+    "Determine entrepreneurial profit by subtracting all costs from revenue",
+    "Understand profit margin as a measure of business viability",
+    "Analyze which factors cost the most for different business types",
+    "Identify strategies for improving profitability"
+  ],
+  "instructions": [
+    "Select one of four business types to analyze: Coffee Shop, Tech Startup, Family Farm, or Construction Company",
+    "Read the business description and hints about typical costs in each category",
+    "Enter estimated monthly factor payments: rent (land), wages (labor), interest (capital), and other costs",
+    "Enter estimated monthly revenue based on the business model",
+    "Calculate profit to see if the business is viable and view profit margin analysis",
+    "Answer reflection questions about which factor is most expensive and how to increase profit"
+  ],
+  "materials_needed": [
+    "Business Factor Analysis Tool",
+    "Calculator for financial projections",
+    "Business scenario descriptions with cost hints",
+    "Profit visualization chart"
+  ],
+  "config": {
+    "tool_required": "Business Factor Analysis Tool",
+    "business_scenarios": [
+      {
+        "business_id": "coffee",
+        "name": "Downtown Coffee Shop",
+        "icon": "☕",
+        "description": "A cozy coffee shop in {{STATE_NAME}}'s downtown area serving espresso drinks, pastries, and light breakfast.",
+        "hints": {
+          "land": "Retail space lease: ~$2,000-4,000/month in {{STATE_NAME}}",
+          "labor": "1 manager + 3 baristas (~8 hours/day). Consider {{STATE_MIN_WAGE}} minimum wage.",
+          "capital": "Espresso machine ($15,000), grinder ($2,000), POS system ($1,500), furniture ($5,000). Loan at 7% interest.",
+          "other": "Coffee beans, milk, pastries, utilities (~$4,000/month)",
+          "revenue": "Average ticket $8, 150 customers/day, 26 days/month"
+        },
+        "typical_answer_range": {
+          "rent": {
+            "min": 2000,
+            "max": 4000,
+            "reasonable": 3000
+          },
+          "wages": {
+            "min": 8000,
+            "max": 15000,
+            "reasonable": 12000,
+            "calculation": "Manager $3,500 + 3 baristas at $2,800 each"
+          },
+          "interest": {
+            "min": 100,
+            "max": 200,
+            "reasonable": 140,
+            "calculation": "$23,500 equipment at 7% = ~$140/month"
+          },
+          "other_costs": {
+            "min": 3000,
+            "max": 5000,
+            "reasonable": 4000
+          },
+          "revenue": {
+            "min": 25000,
+            "max": 35000,
+            "reasonable": 31200,
+            "calculation": "$8 × 150 customers × 26 days"
+          },
+          "expected_profit": 12060,
+          "expected_margin": 38.7
+        }
+      },
+      {
+        "business_id": "tech",
+        "name": "Software Startup",
+        "icon": "💻",
+        "description": "A small tech company building a mobile app for local service providers in {{STATE_NAME}}.",
+        "hints": {
+          "land": "Co-working space or small office: ~$500-2,000/month",
+          "labor": "2 developers ($70k each), 1 designer ($50k), founder (deferred). Calculate monthly.",
+          "capital": "Computers ($10,000), software licenses ($500/month), servers ($200/month). Minimal loan needed.",
+          "other": "Marketing, legal, cloud services (~$2,000/month)",
+          "revenue": "SaaS model: 500 subscribers at $30/month = target"
+        },
+        "typical_answer_range": {
+          "rent": {
+            "min": 500,
+            "max": 2000,
+            "reasonable": 1200
+          },
+          "wages": {
+            "min": 14000,
+            "max": 18000,
+            "reasonable": 15833,
+            "calculation": "($70k + $70k + $50k) ÷ 12 months"
+          },
+          "interest": {
+            "min": 0,
+            "max": 100,
+            "reasonable": 50,
+            "calculation": "Low capital needs, mostly investor-funded"
+          },
+          "other_costs": {
+            "min": 1500,
+            "max": 3000,
+            "reasonable": 2700,
+            "calculation": "Software ($500) + servers ($200) + marketing/other ($2,000)"
+          },
+          "revenue": {
+            "min": 10000,
+            "max": 20000,
+            "reasonable": 15000,
+            "calculation": "500 subscribers × $30/month"
+          },
+          "expected_profit": -4783,
+          "expected_margin": -31.9,
+          "note": "Negative profit is common for startups in growth phase"
+        }
+      },
+      {
+        "business_id": "farm",
+        "name": "Family Farm Operation",
+        "icon": "🌾",
+        "description": "A 200-acre farm in {{STATE_NAME}} growing crops and selling at farmers markets.",
+        "hints": {
+          "land": "200 acres: land value ~$5,000/acre, annual property tax ~$2,000, or rent ~$200/acre/year",
+          "labor": "Family labor (2 full-time equivalent) + seasonal workers (3 months)",
+          "capital": "Tractor ($50,000), implements ($30,000), irrigation ($20,000). Loan at 6% interest.",
+          "other": "Seeds, fertilizer, fuel, insurance (~$3,000/month average)",
+          "revenue": "Crop yield varies. Estimate $400/acre gross for mixed vegetables."
+        },
+        "typical_answer_range": {
+          "rent": {
+            "min": 0,
+            "max": 3500,
+            "reasonable": 167,
+            "calculation": "If owned: property tax $2,000/year ÷ 12. If rented: 200 acres × $200/acre ÷ 12"
+          },
+          "wages": {
+            "min": 4000,
+            "max": 10000,
+            "reasonable": 6000,
+            "calculation": "Family labor ($4,000) + seasonal help ($2,000 average)"
+          },
+          "interest": {
+            "min": 400,
+            "max": 600,
+            "reasonable": 500,
+            "calculation": "$100,000 equipment at 6% = $500/month"
+          },
+          "other_costs": {
+            "min": 2500,
+            "max": 4000,
+            "reasonable": 3000
+          },
+          "revenue": {
+            "min": 5000,
+            "max": 8000,
+            "reasonable": 6667,
+            "calculation": "200 acres × $400/acre ÷ 12 months"
+          },
+          "expected_profit": -3000,
+          "expected_margin": -45,
+          "note": "Farms often have seasonal income concentrated in harvest months"
+        }
+      },
+      {
+        "business_id": "construction",
+        "name": "Construction Company",
+        "icon": "🏗️",
+        "description": "A residential construction company in {{STATE_NAME}} building custom homes.",
+        "hints": {
+          "land": "Office/yard space: ~$3,000/month. Job sites are customer-owned.",
+          "labor": "Project manager ($60k), 5 skilled workers ($45k each), admin ($35k)",
+          "capital": "Trucks ($80,000), tools/equipment ($50,000), office equipment ($10,000). Loan at 7%.",
+          "other": "Materials vary by project, insurance, permits (~$20,000/month average)",
+          "revenue": "2-3 homes/year at $50,000 profit margin each. Monthly varies greatly."
+        },
+        "typical_answer_range": {
+          "rent": {
+            "min": 2000,
+            "max": 4000,
+            "reasonable": 3000
+          },
+          "wages": {
+            "min": 20000,
+            "max": 25000,
+            "reasonable": 22917,
+            "calculation": "($60k + $225k + $35k) ÷ 12 months"
+          },
+          "interest": {
+            "min": 700,
+            "max": 900,
+            "reasonable": 817,
+            "calculation": "$140,000 equipment at 7% = $817/month"
+          },
+          "other_costs": {
+            "min": 15000,
+            "max": 25000,
+            "reasonable": 20000
+          },
+          "revenue": {
+            "min": 40000,
+            "max": 60000,
+            "reasonable": 50000,
+            "calculation": "2.5 homes × $50k profit ÷ 12 months + other revenue"
+          },
+          "expected_profit": 3266,
+          "expected_margin": 6.5
+        }
+      }
+    ],
+    "calculation_formulas": {
+      "total_costs": "rent + wages + interest + other_costs",
+      "profit": "revenue - total_costs",
+      "profit_margin_percentage": "(profit ÷ revenue) × 100"
+    },
+    "profit_margin_interpretation": {
+      "loss": {
+        "range": "< 0%",
+        "status": "critical",
+        "message": "This business is operating at a loss. The entrepreneur would lose money each month. Consider reducing costs or increasing revenue.",
+        "color": "red"
+      },
+      "thin_margin": {
+        "range": "0% to 5%",
+        "status": "risky",
+        "message": "Thin margins! Profit is low relative to revenue. One bad month could wipe out profits.",
+        "color": "yellow"
+      },
+      "reasonable": {
+        "range": "5% to 15%",
+        "status": "acceptable",
+        "message": "Reasonable profit. This is typical for many small businesses.",
+        "color": "green"
+      },
+      "strong": {
+        "range": "15%+",
+        "status": "excellent",
+        "message": "Excellent profit margin! This business model looks very strong.",
+        "color": "emerald"
+      }
+    },
+    "reflection_questions": [
+      {
+        "question": "Which factor is most expensive for this business?",
+        "purpose": "Identify cost drivers",
+        "typical_answers": {
+          "coffee": "Labor is typically 35-40% of costs",
+          "tech": "Labor dominates at 80%+ of costs",
+          "farm": "Capital and other costs (equipment, inputs) are largest",
+          "construction": "Labor is largest, followed by materials (other)"
+        }
+      },
+      {
+        "question": "How could the entrepreneur increase profit?",
+        "purpose": "Strategic thinking about business improvement",
+        "example_answers": [
+          "Increase revenue (raise prices, increase volume, add services)",
+          "Reduce labor costs (automation, efficiency, better training)",
+          "Reduce rent (relocate, negotiate lease, share space)",
+          "Reduce capital costs (buy used equipment, lease instead of own)",
+          "Improve efficiency (reduce waste, better inventory management)"
+        ]
+      }
+    ],
+    "deliverables": [
+      "Completed factor payment calculations for chosen business",
+      "Calculated profit or loss and profit margin percentage",
+      "Visual breakdown of costs using pie chart",
+      "Analysis of which factor is most expensive",
+      "Strategies for improving profitability"
+    ]
+  },
+  "group_config": {
+    "type": "individual",
+    "size": null
+  },
+  "assessment": {
+    "type": "formative",
+    "criteria": [
+      "Correctly calculated all factor payments within reasonable ranges",
+      "Accurately determined profit by subtracting total costs from revenue",
+      "Understood profit margin interpretation and business viability",
+      "Identified cost drivers and proposed reasonable improvement strategies"
+    ]
+  },
+  "teacher_notes": "Students often underestimate labor costs and overestimate profit margins. Real businesses typically operate on 5-15% profit margins, not 50%+. The Tech Startup intentionally shows negative profit to illustrate that startups often lose money while building their customer base. Use this to discuss cash flow challenges and why entrepreneurs need capital reserves. The interactive calculator helps students see how small changes in costs or revenue dramatically impact profitability."
+}

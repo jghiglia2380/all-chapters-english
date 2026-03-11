@@ -20,31 +20,46 @@ This chapter includes 6 HTML assets for the skill builder and Day 2 activities, 
 ### 2. Factor Sorting Challenge
 - **Purpose:** Classify 12 resources into the four factors of production through drag-and-drop
 - **Format:** Interactive drag-and-drop interface
-- **HTML File:** Factor_Sorting_Challenge.html (embedded in day2.html)
+- **HTML File:** Factor_Sorting_Challenge.html (standalone in downloads/)
+- **Activity JSON:** activities/activity-1-factor-sorting-challenge.json
 - **Supports Activity:** Activity 1 - Factor Sorting Challenge
+- **Duration:** 10 minutes
 - **Resources:** Ocean fishing rights, factory robot, software developer, Elon Musk's vision, Texas crude oil, delivery truck, registered nurse, starting food truck, sunlight for solar, cash register, manager expertise, business risk
+- **Learning Objective:** Correctly identify which resources belong to land, labor, capital, and entrepreneurship
+- **Features:** Drag-and-drop interface, immediate feedback, color-coded correct/incorrect answers
 
 ### 3. Business Factor Analysis Tool
 - **Purpose:** Select a business type and calculate factor payments and profitability
 - **Format:** Interactive calculator with business scenarios
-- **HTML File:** Business_Factor_Analysis_Tool.html (embedded in day2.html)
+- **HTML File:** Business_Factor_Analysis.html (standalone in downloads/)
+- **Activity JSON:** activities/activity-2-business-factor-analysis.json
 - **Supports Activity:** Activity 2 - {{STATE_NAME}} Business Analysis
+- **Duration:** 15 minutes
 - **Business Types:** Coffee Shop, Tech Startup, Family Farm, Construction Company
-- **Features:** Input factor costs (rent, wages, interest, other), calculate profit, visualize factor breakdown with pie chart
+- **Features:** Input factor costs (rent, wages, interest, other), calculate profit, visualize factor breakdown with pie chart, profit margin interpretation
+- **Learning Objective:** Calculate factor payments and determine entrepreneurial profit or loss
 
 ### 4. Personal Factor Contribution Calculator
 - **Purpose:** Calculate personal economic contribution through labor, human capital, and savings
 - **Format:** Interactive calculator with progress visualization
-- **HTML File:** Personal_Factor_Contribution_Calculator.html (embedded in day2.html)
+- **HTML File:** Personal_Factor_Contribution_Calculator.html (standalone in downloads/)
+- **Activity JSON:** activities/activity-3-personal-factor-contribution.json
 - **Supports Activity:** Activity 3 - Personal Factor Contribution
-- **Features:** Job/wage/hours input, human capital checkboxes with boost calculation, savings interest calculator, projected income visualization
+- **Duration:** 15 minutes
+- **Features:** Job/wage/hours input, human capital checkboxes with boost calculation (0-100%), savings interest calculator, projected income visualization with progress bar
+- **Learning Objective:** Understand how personal education and savings contribute to the economy and earn income
+- **Human Capital Boosts:** High school (0%), Some college (+15%), Associate's (+30%), Bachelor's (+50%), Certifications (+10%), Skills training (+5%)
 
-### 5. Business Design Framework
+### 5. Business Design Tool
 - **Purpose:** Plan a business using all four factors of production
-- **Format:** Interactive planning form with financial projection
-- **HTML File:** Business_Design_Framework.html (embedded in day2.html)
+- **Format:** Interactive planning form with financial projection and viability scoring
+- **HTML File:** Business_Design_Tool.html (standalone in downloads/)
+- **Activity JSON:** activities/activity-4-design-your-business.json
 - **Supports Activity:** Activity 4 - Design Your {{STATE_NAME}} Business
-- **Sections:** Business concept, Land requirements, Labor requirements, Capital requirements, Entrepreneurship vision, Revenue model, Viability evaluation
+- **Duration:** 15 minutes
+- **Sections:** Business concept, Land requirements, Labor requirements, Capital requirements, Entrepreneurship vision, Revenue model, Viability evaluation (0-100 score)
+- **Features:** Step-by-step planning, automatic profit calculation, viability scoring with feedback, reflection questions
+- **Learning Objective:** Apply all four factors to design a complete, viable business concept
 
 ---
 
@@ -96,18 +111,29 @@ This chapter includes 6 HTML assets for the skill builder and Day 2 activities, 
 ## Asset File Inventory Status
 
 ### Primary Assets (in assets/ folder):
-- L-70_Student_Activity_Packet.html - TO BE CREATED
-- L-70_Teacher_Guide.html - TO BE CREATED
+- L-70_Student_Activity_Packet.html - EXISTS ✅
+- L-70_Teacher_Guide.html - EXISTS ✅
 - assets.md - EXISTS ✅
 
 ### Downloads (in assets/downloads/ folder):
-- The_Business_Builder.html - TO BE CREATED
-- Factor_Sorting_Challenge.html - TO BE CREATED
-- Business_Factor_Analysis_Tool.html - TO BE CREATED
-- Personal_Factor_Contribution_Calculator.html - TO BE CREATED
-- Business_Design_Framework.html - TO BE CREATED
-- Factors_of_Production_Reference_Sheet.html - TO BE CREATED
-- Factor_Payment_Worksheet.html - TO BE CREATED
+- Factor_Sorting_Challenge.html - EXISTS ✅
+- Business_Factor_Analysis.html - EXISTS ✅
+- Personal_Factor_Contribution_Calculator.html - EXISTS ✅
+- Business_Design_Tool.html - EXISTS ✅
+- Factors_of_Production_Reference_Sheet.html - EXISTS ✅
+- Factor_Payment_Worksheet.html - EXISTS ✅
+
+### Student Resources (in student/ folder):
+- day1.md - EXISTS ✅ (Markdown version of Day 1 content)
+- day2.md - EXISTS ✅ (Markdown version of Day 2 activities)
+- day1.html - EXISTS ✅ (Original HTML version)
+- day2.html - EXISTS ✅ (Original HTML version)
+
+### Activities Metadata (in activities/ folder):
+- activity-1-factor-sorting-challenge.json - EXISTS ✅
+- activity-2-business-factor-analysis.json - EXISTS ✅
+- activity-3-personal-factor-contribution.json - EXISTS ✅
+- activity-4-design-your-business.json - EXISTS ✅
 
 ---
 

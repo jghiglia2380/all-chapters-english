@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Factor Sorting Challenge | L-70 Activities</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .drag-item {
+            cursor: grab;
+            transition: all 0.2s ease;
+        }
+        .drag-item:active {
+            cursor: grabbing;
+        }
+        .drop-zone {
+            min-height: 60px;
+            border: 2px dashed #d1d5db;
+            transition: all 0.2s ease;
+        }
+        .drop-zone.drag-over {
+            border-color: #10b981;
+            background-color: #ecfdf5;
+        }
+        @media print {
+            .no-print { display: none; }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 p-4">
+    <div class="container mx-auto max-w-5xl">
+        <!-- Header -->
+        <header class="bg-gradient-to-r from-emerald-600 to-teal-600 text-white rounded-lg shadow-md p-6 mb-6">
+            <h1 class="text-3xl font-bold mb-2">Factor Sorting Challenge</h1>
+            <p class="text-emerald-100">Activity 1: Classify resources into the four factors of production</p>
+        </header>
+
+        <!-- Instructions -->
+        <section class="bg-white rounded-lg shadow-md p-6 mb-6">
+            <h2 class="text-xl font-bold text-gray-900 mb-3">📋 Instructions</h2>
+            <p class="text-gray-700 mb-3">Drag each resource to the correct factor of production category. Think carefully—some items might surprise you!</p>
+            <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r">
+                <p class="text-blue-900 font-semibold">Remember the four factors:</p>
+                <ul class="text-blue-800 mt-2 space-y-1">
+                    <li>🌍 <strong>Land</strong> = Natural resources (oil, water, land)</li>
+                    <li>👷 <strong>Labor</strong> = Human effort (workers, professionals)</li>
+                    <li>🏭 <strong>Capital</strong> = Human-made tools (machines, buildings)</li>
+                    <li>💡 <strong>Entrepreneurship</strong> = Innovation, risk-taking, organizing</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Sorting Activity -->
+        <section class="bg-white rounded-lg shadow-md p-6 mb-6">
+            <!-- Draggable Items -->
+            <div class="bg-gray-100 p-4 rounded-lg mb-6">
+                <h4 class="font-semibold text-gray-700 mb-3">Resources to Sort:</h4>
+                <div id="sortItems" class="flex flex-wrap gap-2">
+                    <span class="drag-item bg-white px-3 py-2 rounded-lg shadow text-sm cursor-pointer hover:bg-emerald-50" draggable="true" data-answer="land">Ocean fishing rights</span>
+                    <span class="drag-item bg-white px-3 py-2 rounded-lg shadow text-sm cursor-pointer hover:bg-emerald-50" draggable="true" data-answer="capital">Factory robot arm</span>
+                    <span class="drag-item bg-white px-3 py-2 rounded-lg shadow text-sm cursor-pointer hover:bg-emerald-50" draggable="true" data-answer="labor">Software developer</span>
+                    <span class="drag-item bg-white px-3 py-2 rounded-lg shadow text-sm cursor-pointer hover:bg-emerald-50" draggable="true" data-answer="entrepreneurship">Elon Musk's vision</span>
+                    <span class="drag-item bg-white px-3 py-2 rounded-lg shadow text-sm cursor-pointer hover:bg-emerald-50" draggable="true" data-answer="land">Texas crude oil</span>
+                    <span class="drag-item bg-white px-3 py-2 rounded-lg shadow text-sm cursor-pointer hover:bg-emerald-50" draggable="true" data-answer="capital">Delivery truck</span>
+                    <span class="drag-item bg-white px-3 py-2 rounded-lg shadow text-sm cursor-pointer hover:bg-emerald-50" draggable="true" data-answer="labor">Registered nurse</span>
+                    <span class="drag-item bg-white px-3 py-2 rounded-lg shadow text-sm cursor-pointer hover:bg-emerald-50" draggable="true" data-answer="entrepreneurship">Starting a food truck</span>
+                    <span class="drag-item bg-white px-3 py-2 rounded-lg shadow text-sm cursor-pointer hover:bg-emerald-50" draggable="true" data-answer="land">Sunlight for solar panels</span>
+                    <span class="drag-item bg-white px-3 py-2 rounded-lg shadow text-sm cursor-pointer hover:bg-emerald-50" draggable="true" data-answer="capital">Cash register system</span>
+                    <span class="drag-item bg-white px-3 py-2 rounded-lg shadow text-sm cursor-pointer hover:bg-emerald-50" draggable="true" data-answer="labor">Manager's expertise</span>
+                    <span class="drag-item bg-white px-3 py-2 rounded-lg shadow text-sm cursor-pointer hover:bg-emerald-50" draggable="true" data-answer="entrepreneurship">Risk of business failure</span>
+                </div>
+            </div>
+
+            <!-- Drop Zones -->
+            <div class="grid md:grid-cols-4 gap-4 mb-4">
+                <div class="bg-amber-50 p-4 rounded-lg">
+                    <h4 class="font-bold text-amber-900 mb-2 text-center">🌍 LAND</h4>
+                    <p class="text-xs text-amber-700 text-center mb-2">Natural resources</p>
+                    <div id="landZone" class="drop-zone rounded p-2 min-h-24" data-factor="land"></div>
+                </div>
+                <div class="bg-blue-50 p-4 rounded-lg">
+                    <h4 class="font-bold text-blue-900 mb-2 text-center">👷 LABOR</h4>
+                    <p class="text-xs text-blue-700 text-center mb-2">Human effort</p>
+                    <div id="laborZone" class="drop-zone rounded p-2 min-h-24" data-factor="labor"></div>
+                </div>
+                <div class="bg-purple-50 p-4 rounded-lg">
+                    <h4 class="font-bold text-purple-900 mb-2 text-center">🏭 CAPITAL</h4>
+                    <p class="text-xs text-purple-700 text-center mb-2">Tools & equipment</p>
+                    <div id="capitalZone" class="drop-zone rounded p-2 min-h-24" data-factor="capital"></div>
+                </div>
+                <div class="bg-emerald-50 p-4 rounded-lg">
+                    <h4 class="font-bold text-emerald-900 mb-2 text-center">💡 ENTREPRENEURSHIP</h4>
+                    <p class="text-xs text-emerald-700 text-center mb-2">Innovation & risk</p>
+                    <div id="entrepreneurshipZone" class="drop-zone rounded p-2 min-h-24" data-factor="entrepreneurship"></div>
+                </div>
+            </div>
+
+            <div class="flex gap-4 no-print">
+                <button onclick="checkSorting()" class="bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-2 rounded-lg font-semibold transition">Check Answers</button>
+                <button onclick="resetSorting()" class="bg-gray-400 hover:bg-gray-500 text-white px-6 py-2 rounded-lg font-semibold transition">Reset</button>
+            </div>
+
+            <div id="sortingResults" class="hidden mt-4 p-4 rounded-lg"></div>
+        </section>
+
+        <!-- Common Mistakes -->
+        <section class="bg-yellow-50 border-l-4 border-yellow-500 p-6 rounded-r mb-6">
+            <h3 class="font-bold text-yellow-900 mb-2">⚠️ Common Mistakes to Avoid:</h3>
+            <ul class="text-yellow-800 space-y-2">
+                <li><strong>Robot as Labor:</strong> Robots are capital (human-made tools), not labor. Labor requires human effort.</li>
+                <li><strong>Manager expertise as Entrepreneurship:</strong> Management skills are labor (human capital). Entrepreneurship is specifically about risk-taking and organizing a business.</li>
+                <li><strong>Starting a business as Capital:</strong> The act of starting a business is entrepreneurship. Capital refers to the physical equipment purchased.</li>
+            </ul>
+        </section>
+
+        <!-- Footer -->
+        <footer class="text-center text-gray-500 text-sm mt-8 no-print">
+            <p>© 2025 PFL Academy | L-70: Factors of Production</p>
+        </footer>
+    </div>
+
+    <script>
+        // Drag and Drop functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const dragItems = document.querySelectorAll('.drag-item');
+            const dropZones = document.querySelectorAll('.drop-zone');
+
+            dragItems.forEach(item => {
+                item.addEventListener('dragstart', function(e) {
+                    e.dataTransfer.setData('text/plain', e.target.outerHTML);
+                    e.dataTransfer.setData('answer', e.target.dataset.answer);
+                    setTimeout(() => e.target.style.opacity = '0.5', 0);
+                });
+                item.addEventListener('dragend', function(e) {
+                    e.target.style.opacity = '1';
+                });
+            });
+
+            dropZones.forEach(zone => {
+                zone.addEventListener('dragover', function(e) {
+                    e.preventDefault();
+                    zone.classList.add('drag-over');
+                });
+                zone.addEventListener('dragleave', function(e) {
+                    zone.classList.remove('drag-over');
+                });
+                zone.addEventListener('drop', function(e) {
+                    e.preventDefault();
+                    zone.classList.remove('drag-over');
+                    const html = e.dataTransfer.getData('text/plain');
+                    const answer = e.dataTransfer.getData('answer');
+                    const newItem = document.createElement('div');
+                    newItem.innerHTML = html;
+                    const item = newItem.firstChild;
+                    item.dataset.dropped = zone.dataset.factor;
+                    item.classList.add('mb-1');
+                    item.draggable = false;
+                    zone.appendChild(item);
+
+                    // Remove from original location
+                    const original = document.querySelector(`#sortItems .drag-item[data-answer="${answer}"]`);
+                    if (original) original.remove();
+                });
+            });
+        });
+
+        function checkSorting() {
+            const dropZones = document.querySelectorAll('.drop-zone');
+            let correct = 0;
+            let total = 0;
+
+            dropZones.forEach(zone => {
+                const items = zone.querySelectorAll('.drag-item');
+                items.forEach(item => {
+                    total++;
+                    if (item.dataset.answer === zone.dataset.factor) {
+                        item.classList.add('bg-green-200');
+                        item.classList.remove('bg-red-200');
+                        correct++;
+                    } else {
+                        item.classList.add('bg-red-200');
+                        item.classList.remove('bg-green-200');
+                    }
+                });
+            });
+
+            const resultsDiv = document.getElementById('sortingResults');
+            resultsDiv.classList.remove('hidden');
+
+            if (correct === total && total === 12) {
+                resultsDiv.className = 'mt-4 p-4 rounded-lg bg-green-100 border-l-4 border-green-500';
+                resultsDiv.innerHTML = `<p class="font-bold text-green-800">🎉 Perfect! ${correct}/${total} correct!</p><p class="text-green-700">You've mastered identifying factors of production.</p>`;
+            } else if (total > 0) {
+                resultsDiv.className = 'mt-4 p-4 rounded-lg bg-yellow-100 border-l-4 border-yellow-500';
+                resultsDiv.innerHTML = `<p class="font-bold text-yellow-800">📊 ${correct}/${total} correct.</p><p class="text-yellow-700">Review the red items and try again!</p>`;
+            } else {
+                resultsDiv.className = 'mt-4 p-4 rounded-lg bg-blue-100 border-l-4 border-blue-500';
+                resultsDiv.innerHTML = `<p class="font-bold text-blue-800">👆 Drag items to the categories above, then click Check Answers.</p>`;
+            }
+        }
+
+        function resetSorting() {
+            location.reload();
+        }
+    </script>
+</body>
+</html>

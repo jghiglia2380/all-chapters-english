@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Factor Analysis | L-70 Activities</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .factor-input:focus {
+            border-color: #10b981;
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
+        }
+        @media print {
+            .no-print { display: none; }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 p-4">
+    <div class="container mx-auto max-w-5xl">
+        <!-- Header -->
+        <header class="bg-gradient-to-r from-emerald-600 to-teal-600 text-white rounded-lg shadow-md p-6 mb-6">
+            <h1 class="text-3xl font-bold mb-2">Business Factor Analysis</h1>
+            <p class="text-emerald-100">Activity 2: Analyze how a business uses all four factors of production</p>
+        </header>
+
+        <!-- Instructions -->
+        <section class="bg-white rounded-lg shadow-md p-6 mb-6">
+            <h2 class="text-xl font-bold text-gray-900 mb-3">📋 Instructions</h2>
+            <p class="text-gray-700 mb-2">Select a business type to analyze, then calculate factor payments and determine profitability.</p>
+            <ol class="list-decimal list-inside text-gray-700 space-y-1">
+                <li>Choose a business scenario below</li>
+                <li>Read the hints about typical costs</li>
+                <li>Enter monthly factor payments: rent, wages, interest, other costs</li>
+                <li>Enter estimated monthly revenue</li>
+                <li>Calculate profit to see if the business is viable</li>
+            </ol>
+        </section>
+
+        <!-- Business Selection -->
+        <section class="bg-white rounded-lg shadow-md p-6 mb-6">
+            <h3 class="font-semibold text-gray-700 mb-3">Choose a Business to Analyze:</h3>
+            <div class="grid md:grid-cols-4 gap-3">
+                <button onclick="selectBusiness('coffee')" class="business-btn bg-white p-4 rounded-lg border-2 border-gray-200 hover:border-emerald-500 transition text-center" data-business="coffee">
+                    <span class="text-3xl">☕</span>
+                    <p class="font-semibold mt-2">Coffee Shop</p>
+                </button>
+                <button onclick="selectBusiness('tech')" class="business-btn bg-white p-4 rounded-lg border-2 border-gray-200 hover:border-emerald-500 transition text-center" data-business="tech">
+                    <span class="text-3xl">💻</span>
+                    <p class="font-semibold mt-2">Tech Startup</p>
+                </button>
+                <button onclick="selectBusiness('farm')" class="business-btn bg-white p-4 rounded-lg border-2 border-gray-200 hover:border-emerald-500 transition text-center" data-business="farm">
+                    <span class="text-3xl">🌾</span>
+                    <p class="font-semibold mt-2">Family Farm</p>
+                </button>
+                <button onclick="selectBusiness('construction')" class="business-btn bg-white p-4 rounded-lg border-2 border-gray-200 hover:border-emerald-500 transition text-center" data-business="construction">
+                    <span class="text-3xl">🏗️</span>
+                    <p class="font-semibold mt-2">Construction Co.</p>
+                </button>
+            </div>
+        </section>
+
+        <!-- Business Analysis Form -->
+        <div id="businessAnalysis" class="hidden">
+            <section class="bg-gradient-to-r from-emerald-100 to-teal-100 rounded-lg p-6 mb-6">
+                <h3 id="businessTitle" class="text-2xl font-bold text-emerald-900 mb-2">Selected Business</h3>
+                <p id="businessDescription" class="text-gray-700"></p>
+            </section>
+
+            <div class="grid md:grid-cols-2 gap-6 mb-6">
+                <!-- Factor Inputs -->
+                <div class="space-y-4">
+                    <h4 class="font-bold text-gray-900 text-lg">Factor Payments (Monthly)</h4>
+
+                    <div class="bg-amber-50 p-4 rounded-lg">
+                        <label class="block font-semibold text-amber-900 mb-1">🌍 Land (Rent)</label>
+                        <p id="landHint" class="text-sm text-gray-600 mb-2"></p>
+                        <div class="flex items-center">
+                            <span class="text-gray-500 mr-2">$</span>
+                            <input type="number" id="rentInput" class="factor-input flex-1 p-2 border border-gray-300 rounded" placeholder="0">
+                        </div>
+                    </div>
+
+                    <div class="bg-blue-50 p-4 rounded-lg">
+                        <label class="block font-semibold text-blue-900 mb-1">👷 Labor (Wages)</label>
+                        <p id="laborHint" class="text-sm text-gray-600 mb-2"></p>
+                        <div class="flex items-center">
+                            <span class="text-gray-500 mr-2">$</span>
+                            <input type="number" id="wagesInput" class="factor-input flex-1 p-2 border border-gray-300 rounded" placeholder="0">
+                        </div>
+                    </div>
+
+                    <div class="bg-purple-50 p-4 rounded-lg">
+                        <label class="block font-semibold text-purple-900 mb-1">🏭 Capital (Interest)</label>
+                        <p id="capitalHint" class="text-sm text-gray-600 mb-2"></p>
+                        <div class="flex items-center">
+                            <span class="text-gray-500 mr-2">$</span>
+                            <input type="number" id="interestInput" class="factor-input flex-1 p-2 border border-gray-300 rounded" placeholder="0">
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-100 p-4 rounded-lg">
+                        <label class="block font-semibold text-gray-900 mb-1">📦 Other Costs</label>
+                        <p class="text-sm text-gray-600 mb-2">Materials, utilities, insurance, etc.</p>
+                        <div class="flex items-center">
+                            <span class="text-gray-500 mr-2">$</span>
+                            <input type="number" id="otherCostsInput" class="factor-input flex-1 p-2 border border-gray-300 rounded" placeholder="0">
+                        </div>
+                    </div>
+
+                    <div class="bg-green-100 p-4 rounded-lg">
+                        <label class="block font-semibold text-green-900 mb-1">💰 Monthly Revenue</label>
+                        <p id="revenueHint" class="text-sm text-gray-600 mb-2"></p>
+                        <div class="flex items-center">
+                            <span class="text-gray-500 mr-2">$</span>
+                            <input type="number" id="revenueInput" class="factor-input flex-1 p-2 border border-gray-300 rounded" placeholder="0">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Results -->
+                <div>
+                    <h4 class="font-bold text-gray-900 mb-4 text-lg">Profitability Analysis</h4>
+
+                    <div class="bg-white border-2 border-gray-200 rounded-lg p-4 mb-4">
+                        <canvas id="factorChart" height="200"></canvas>
+                    </div>
+
+                    <button onclick="calculateProfit()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-3 rounded-lg font-semibold transition mb-4">Calculate Profit</button>
+
+                    <div id="profitResults" class="hidden">
+                        <div class="bg-white border-2 border-emerald-200 rounded-lg p-4 mb-4">
+                            <div class="grid grid-cols-2 gap-4 text-center">
+                                <div>
+                                    <p class="text-sm text-gray-600">Total Costs</p>
+                                    <p id="totalCosts" class="text-2xl font-bold text-red-600">$0</p>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-gray-600">💡 Entrepreneur's Profit</p>
+                                    <p id="profitAmount" class="text-2xl font-bold text-emerald-600">$0</p>
+                                </div>
+                            </div>
+                            <div class="mt-4 pt-4 border-t">
+                                <p class="text-sm text-gray-600 text-center">Profit Margin</p>
+                                <p id="profitMargin" class="text-xl font-bold text-center">0%</p>
+                            </div>
+                        </div>
+
+                        <div id="profitAnalysis" class="bg-yellow-50 border-l-4 border-yellow-500 p-4 rounded-r">
+                            <h4 class="font-bold text-yellow-900 mb-2">Analysis:</h4>
+                            <p id="profitMessage" class="text-gray-700"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reflection Questions -->
+            <section class="bg-gray-50 rounded-lg p-6">
+                <h4 class="font-bold text-gray-900 mb-3">Reflection Questions:</h4>
+                <div class="space-y-3">
+                    <div>
+                        <label class="block text-gray-700 font-semibold mb-1">Which factor is most expensive for this business?</label>
+                        <textarea class="w-full p-2 border border-gray-300 rounded" rows="2"></textarea>
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 font-semibold mb-1">How could the entrepreneur increase profit?</label>
+                        <textarea class="w-full p-2 border border-gray-300 rounded" rows="2"></textarea>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Footer -->
+        <footer class="text-center text-gray-500 text-sm mt-8 no-print">
+            <p>© 2025 PFL Academy | L-70: Factors of Production</p>
+        </footer>
+    </div>
+
+    <script>
+        const businessData = {
+            coffee: {
+                title: "☕ Downtown Coffee Shop",
+                description: "A cozy coffee shop serving espresso drinks, pastries, and light breakfast.",
+                hints: {
+                    land: "Retail space lease: ~$2,000-4,000/month",
+                    labor: "1 manager + 3 baristas (~8 hours/day). Minimum wage varies by state.",
+                    capital: "Espresso machine ($15,000), grinder ($2,000), POS system ($1,500), furniture ($5,000). Loan at 7% interest.",
+                    revenue: "Average ticket $8, 150 customers/day, 26 days/month"
+                }
+            },
+            tech: {
+                title: "💻 Software Startup",
+                description: "A small tech company building a mobile app for local service providers.",
+                hints: {
+                    land: "Co-working space or small office: ~$500-2,000/month",
+                    labor: "2 developers ($70k each), 1 designer ($50k), founder (deferred). Calculate monthly.",
+                    capital: "Computers ($10,000), software licenses ($500/month), servers ($200/month). Minimal loan needed.",
+                    revenue: "SaaS model: 500 subscribers at $30/month = target"
+                }
+            },
+            farm: {
+                title: "🌾 Family Farm Operation",
+                description: "A 200-acre farm growing crops and selling at farmers markets.",
+                hints: {
+                    land: "200 acres: land value ~$5,000/acre, annual property tax ~$2,000, or rent ~$200/acre/year",
+                    labor: "Family labor (2 full-time equivalent) + seasonal workers (3 months)",
+                    capital: "Tractor ($50,000), implements ($30,000), irrigation ($20,000). Loan at 6% interest.",
+                    revenue: "Crop yield varies. Estimate $400/acre gross for mixed vegetables."
+                }
+            },
+            construction: {
+                title: "🏗️ Construction Company",
+                description: "A residential construction company building custom homes.",
+                hints: {
+                    land: "Office/yard space: ~$3,000/month. Job sites are customer-owned.",
+                    labor: "Project manager ($60k), 5 skilled workers ($45k each), admin ($35k)",
+                    capital: "Trucks ($80,000), tools/equipment ($50,000), office equipment ($10,000). Loan at 7%.",
+                    revenue: "2-3 homes/year at $50,000 profit margin each. Monthly varies greatly."
+                }
+            }
+        };
+
+        let selectedBusiness = null;
+        let factorChart = null;
+
+        function selectBusiness(type) {
+            selectedBusiness = type;
+            const data = businessData[type];
+
+            // Update UI
+            document.querySelectorAll('.business-btn').forEach(btn => {
+                btn.classList.remove('border-emerald-500', 'bg-emerald-50');
+                btn.classList.add('border-gray-200');
+            });
+            document.querySelector(`[data-business="${type}"]`).classList.add('border-emerald-500', 'bg-emerald-50');
+
+            // Show analysis form
+            document.getElementById('businessAnalysis').classList.remove('hidden');
+            document.getElementById('businessTitle').textContent = data.title;
+            document.getElementById('businessDescription').textContent = data.description;
+            document.getElementById('landHint').textContent = data.hints.land;
+            document.getElementById('laborHint').textContent = data.hints.labor;
+            document.getElementById('capitalHint').textContent = data.hints.capital;
+            document.getElementById('revenueHint').textContent = data.hints.revenue;
+
+            // Reset inputs
+            document.getElementById('rentInput').value = '';
+            document.getElementById('wagesInput').value = '';
+            document.getElementById('interestInput').value = '';
+            document.getElementById('otherCostsInput').value = '';
+            document.getElementById('revenueInput').value = '';
+            document.getElementById('profitResults').classList.add('hidden');
+        }
+
+        function calculateProfit() {
+            const rent = parseFloat(document.getElementById('rentInput').value) || 0;
+            const wages = parseFloat(document.getElementById('wagesInput').value) || 0;
+            const interest = parseFloat(document.getElementById('interestInput').value) || 0;
+            const other = parseFloat(document.getElementById('otherCostsInput').value) || 0;
+            const revenue = parseFloat(document.getElementById('revenueInput').value) || 0;
+
+            const totalCosts = rent + wages + interest + other;
+            const profit = revenue - totalCosts;
+            const margin = revenue > 0 ? ((profit / revenue) * 100).toFixed(1) : 0;
+
+            // Update results
+            document.getElementById('totalCosts').textContent = '$' + totalCosts.toLocaleString();
+            document.getElementById('profitAmount').textContent = '$' + profit.toLocaleString();
+            document.getElementById('profitAmount').className = profit >= 0 ? 'text-2xl font-bold text-emerald-600' : 'text-2xl font-bold text-red-600';
+            document.getElementById('profitMargin').textContent = margin + '%';
+            document.getElementById('profitMargin').className = margin >= 10 ? 'text-xl font-bold text-center text-emerald-600' : margin >= 0 ? 'text-xl font-bold text-center text-yellow-600' : 'text-xl font-bold text-center text-red-600';
+
+            // Analysis message
+            let message = '';
+            if (profit < 0) {
+                message = '⚠️ This business is operating at a loss. The entrepreneur would lose $' + Math.abs(profit).toLocaleString() + ' per month. Consider reducing costs or increasing revenue.';
+            } else if (margin < 5) {
+                message = '📊 Thin margins! Profit of $' + profit.toLocaleString() + ' (' + margin + '%) is risky. One bad month could wipe out profits.';
+            } else if (margin < 15) {
+                message = '✅ Reasonable profit of $' + profit.toLocaleString() + ' (' + margin + '%). This is typical for many small businesses.';
+            } else {
+                message = '🎉 Excellent profit of $' + profit.toLocaleString() + ' (' + margin + '%)! This business model looks strong.';
+            }
+            document.getElementById('profitMessage').textContent = message;
+
+            // Update chart
+            updateFactorChart(rent, wages, interest, other, profit > 0 ? profit : 0);
+
+            document.getElementById('profitResults').classList.remove('hidden');
+        }
+
+        function updateFactorChart(rent, wages, interest, other, profit) {
+            const ctx = document.getElementById('factorChart').getContext('2d');
+
+            if (factorChart) {
+                factorChart.destroy();
+            }
+
+            factorChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Rent (Land)', 'Wages (Labor)', 'Interest (Capital)', 'Other Costs', 'Profit'],
+                    datasets: [{
+                        data: [rent, wages, interest, other, profit],
+                        backgroundColor: ['#fbbf24', '#3b82f6', '#8b5cf6', '#9ca3af', '#10b981']
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: { font: { size: 11 } }
+                        },
+                        title: {
+                            display: true,
+                            text: 'Monthly Factor Payment Breakdown',
+                            font: { size: 14, weight: 'bold' }
+                        }
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>

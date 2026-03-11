@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Design Tool | L-70 Activities</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @media print {
+            .no-print { display: none; }
+            input, textarea, select { border: none; border-bottom: 1px solid #000; }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 p-4">
+    <div class="container mx-auto max-w-5xl">
+        <!-- Header -->
+        <header class="bg-gradient-to-r from-emerald-600 to-teal-600 text-white rounded-lg shadow-md p-6 mb-6">
+            <h1 class="text-3xl font-bold mb-2">Design Your Business</h1>
+            <p class="text-emerald-100">Activity 4: Create a complete business plan using all four factors</p>
+        </header>
+
+        <!-- Instructions -->
+        <section class="bg-white rounded-lg shadow-md p-6 mb-6">
+            <h2 class="text-xl font-bold text-gray-900 mb-3">📋 Instructions</h2>
+            <p class="text-gray-700 mb-2">Design a business that efficiently uses all four factors of production with realistic estimates.</p>
+            <ol class="list-decimal list-inside text-gray-700 space-y-1">
+                <li>Name your business and select a business type</li>
+                <li>Describe the problem your business solves</li>
+                <li>Plan your requirements for each factor (land, labor, capital, entrepreneurship)</li>
+                <li>Create a revenue model with pricing and sales volume</li>
+                <li>Evaluate your business plan to see if it's viable</li>
+            </ol>
+        </section>
+
+        <!-- Business Concept -->
+        <section class="bg-gray-50 rounded-lg p-6 mb-6">
+            <h3 class="text-xl font-bold text-gray-900 mb-4">Step 1: Business Concept</h3>
+            <div class="grid md:grid-cols-2 gap-4">
+                <div>
+                    <label class="block text-gray-700 font-semibold mb-1">Business Name:</label>
+                    <input type="text" id="bizName" class="w-full p-2 border border-gray-300 rounded" placeholder="Your creative business name">
+                </div>
+                <div>
+                    <label class="block text-gray-700 font-semibold mb-1">Business Type:</label>
+                    <select id="bizType" class="w-full p-2 border border-gray-300 rounded">
+                        <option value="">Select...</option>
+                        <option value="retail">Retail Store</option>
+                        <option value="food">Food & Beverage</option>
+                        <option value="service">Service Business</option>
+                        <option value="tech">Technology</option>
+                        <option value="manufacturing">Manufacturing</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+            </div>
+            <div class="mt-3">
+                <label class="block text-gray-700 font-semibold mb-1">What problem does your business solve?</label>
+                <textarea id="bizProblem" class="w-full p-2 border border-gray-300 rounded" rows="2" placeholder="Describe the customer need you're addressing..."></textarea>
+            </div>
+        </section>
+
+        <!-- Four Factors Planning -->
+        <section class="mb-6">
+            <h3 class="text-xl font-bold text-gray-900 mb-4">Step 2: Factor Requirements</h3>
+            <div class="grid md:grid-cols-2 gap-4">
+                <!-- Land -->
+                <div class="bg-amber-50 p-4 rounded-lg">
+                    <h4 class="font-bold text-amber-900 mb-3">🌍 Land Requirements</h4>
+                    <div class="space-y-2">
+                        <div>
+                            <label class="block text-sm text-gray-700">Location type:</label>
+                            <input type="text" class="w-full p-2 border border-gray-300 rounded text-sm" placeholder="e.g., Downtown retail space, home office">
+                        </div>
+                        <div>
+                            <label class="block text-sm text-gray-700">Natural resources needed:</label>
+                            <input type="text" class="w-full p-2 border border-gray-300 rounded text-sm" placeholder="e.g., Water, raw materials">
+                        </div>
+                        <div>
+                            <label class="block text-sm text-gray-700">Monthly rent estimate:</label>
+                            <div class="flex items-center">
+                                <span class="text-gray-500 mr-1 text-sm">$</span>
+                                <input type="number" id="bizRent" class="flex-1 p-2 border border-gray-300 rounded text-sm" placeholder="0">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Labor -->
+                <div class="bg-blue-50 p-4 rounded-lg">
+                    <h4 class="font-bold text-blue-900 mb-3">👷 Labor Requirements</h4>
+                    <div class="space-y-2">
+                        <div>
+                            <label class="block text-sm text-gray-700">Number of employees:</label>
+                            <input type="number" id="bizEmployees" class="w-full p-2 border border-gray-300 rounded text-sm" placeholder="0">
+                        </div>
+                        <div>
+                            <label class="block text-sm text-gray-700">Key roles needed:</label>
+                            <input type="text" class="w-full p-2 border border-gray-300 rounded text-sm" placeholder="e.g., Manager, sales associate">
+                        </div>
+                        <div>
+                            <label class="block text-sm text-gray-700">Monthly payroll estimate:</label>
+                            <div class="flex items-center">
+                                <span class="text-gray-500 mr-1 text-sm">$</span>
+                                <input type="number" id="bizPayroll" class="flex-1 p-2 border border-gray-300 rounded text-sm" placeholder="0">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Capital -->
+                <div class="bg-purple-50 p-4 rounded-lg">
+                    <h4 class="font-bold text-purple-900 mb-3">🏭 Capital Requirements</h4>
+                    <div class="space-y-2">
+                        <div>
+                            <label class="block text-sm text-gray-700">Equipment needed:</label>
+                            <input type="text" class="w-full p-2 border border-gray-300 rounded text-sm" placeholder="e.g., Computers, machinery, vehicles">
+                        </div>
+                        <div>
+                            <label class="block text-sm text-gray-700">Total capital investment:</label>
+                            <div class="flex items-center">
+                                <span class="text-gray-500 mr-1 text-sm">$</span>
+                                <input type="number" id="bizCapital" class="flex-1 p-2 border border-gray-300 rounded text-sm" placeholder="0">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm text-gray-700">Monthly loan payment:</label>
+                            <div class="flex items-center">
+                                <span class="text-gray-500 mr-1 text-sm">$</span>
+                                <input type="number" id="bizLoan" class="flex-1 p-2 border border-gray-300 rounded text-sm" placeholder="0">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Entrepreneurship -->
+                <div class="bg-emerald-50 p-4 rounded-lg">
+                    <h4 class="font-bold text-emerald-900 mb-3">💡 Your Entrepreneurship</h4>
+                    <div class="space-y-2">
+                        <div>
+                            <label class="block text-sm text-gray-700">Your unique innovation:</label>
+                            <input type="text" class="w-full p-2 border border-gray-300 rounded text-sm" placeholder="What makes your business different?">
+                        </div>
+                        <div>
+                            <label class="block text-sm text-gray-700">Risk you're taking:</label>
+                            <input type="text" class="w-full p-2 border border-gray-300 rounded text-sm" placeholder="What could go wrong?">
+                        </div>
+                        <div>
+                            <label class="block text-sm text-gray-700">Target monthly profit:</label>
+                            <div class="flex items-center">
+                                <span class="text-gray-500 mr-1 text-sm">$</span>
+                                <input type="number" id="bizProfit" class="flex-1 p-2 border border-gray-300 rounded text-sm" placeholder="0">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Revenue Model -->
+        <section class="bg-green-50 rounded-lg p-6 mb-6">
+            <h3 class="text-xl font-bold text-green-900 mb-4">Step 3: Revenue Model</h3>
+            <div class="grid md:grid-cols-3 gap-4">
+                <div>
+                    <label class="block text-sm text-gray-700">What do you sell?</label>
+                    <input type="text" class="w-full p-2 border border-gray-300 rounded text-sm" placeholder="Products/services">
+                </div>
+                <div>
+                    <label class="block text-sm text-gray-700">Average price:</label>
+                    <div class="flex items-center">
+                        <span class="text-gray-500 mr-1 text-sm">$</span>
+                        <input type="number" id="bizPrice" class="flex-1 p-2 border border-gray-300 rounded text-sm" placeholder="0">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-sm text-gray-700">Monthly sales volume:</label>
+                    <input type="number" id="bizVolume" class="w-full p-2 border border-gray-300 rounded text-sm" placeholder="0">
+                </div>
+            </div>
+        </section>
+
+        <button onclick="evaluateBusiness()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-3 rounded-lg font-semibold transition mb-6 no-print">Evaluate My Business Plan</button>
+
+        <!-- Results -->
+        <div id="bizResults" class="hidden">
+            <section class="bg-gradient-to-r from-emerald-100 to-teal-100 rounded-lg p-6 mb-6">
+                <h3 class="text-xl font-bold text-emerald-900 mb-4">📊 Business Plan Evaluation</h3>
+
+                <div class="grid md:grid-cols-4 gap-4 mb-4">
+                    <div class="bg-white p-3 rounded text-center">
+                        <p class="text-xs text-gray-600">Monthly Revenue</p>
+                        <p id="bizRevResult" class="text-lg font-bold text-green-600">$0</p>
+                    </div>
+                    <div class="bg-white p-3 rounded text-center">
+                        <p class="text-xs text-gray-600">Total Costs</p>
+                        <p id="bizCostResult" class="text-lg font-bold text-red-600">$0</p>
+                    </div>
+                    <div class="bg-white p-3 rounded text-center">
+                        <p class="text-xs text-gray-600">Monthly Profit</p>
+                        <p id="bizProfitResult" class="text-lg font-bold text-emerald-600">$0</p>
+                    </div>
+                    <div class="bg-white p-3 rounded text-center">
+                        <p class="text-xs text-gray-600">Viability Score</p>
+                        <p id="bizScore" class="text-lg font-bold text-indigo-600">0/100</p>
+                    </div>
+                </div>
+
+                <div id="bizFeedback" class="bg-white p-4 rounded-lg"></div>
+            </section>
+
+            <!-- Reflection -->
+            <section class="bg-white rounded-lg shadow-md p-6">
+                <h4 class="font-bold text-gray-900 mb-3">Reflection:</h4>
+                <div class="space-y-3">
+                    <div>
+                        <label class="block text-gray-700 font-semibold mb-1">Is your business viable? Why or why not?</label>
+                        <textarea class="w-full p-2 border border-gray-300 rounded" rows="2"></textarea>
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 font-semibold mb-1">What changes would improve profitability?</label>
+                        <textarea class="w-full p-2 border border-gray-300 rounded" rows="2"></textarea>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Footer -->
+        <footer class="text-center text-gray-500 text-sm mt-8 no-print">
+            <p>© 2025 PFL Academy | L-70: Factors of Production</p>
+        </footer>
+    </div>
+
+    <script>
+        function evaluateBusiness() {
+            const price = parseFloat(document.getElementById('bizPrice').value) || 0;
+            const volume = parseFloat(document.getElementById('bizVolume').value) || 0;
+            const rent = parseFloat(document.getElementById('bizRent').value) || 0;
+            const payroll = parseFloat(document.getElementById('bizPayroll').value) || 0;
+            const loan = parseFloat(document.getElementById('bizLoan').value) || 0;
+
+            const revenue = price * volume;
+            const costs = rent + payroll + loan;
+            const profit = revenue - costs;
+
+            // Simple viability score
+            let score = 50;
+            if (profit > 0) score += 20;
+            if (profit > costs * 0.1) score += 10; // 10%+ margin
+            if (profit > costs * 0.2) score += 10; // 20%+ margin
+            if (document.getElementById('bizName').value) score += 5;
+            if (document.getElementById('bizProblem').value.length > 20) score += 5;
+            score = Math.min(score, 100);
+
+            document.getElementById('bizRevResult').textContent = '$' + revenue.toLocaleString();
+            document.getElementById('bizCostResult').textContent = '$' + costs.toLocaleString();
+            document.getElementById('bizProfitResult').textContent = '$' + profit.toLocaleString();
+            document.getElementById('bizProfitResult').className = profit >= 0 ? 'text-lg font-bold text-emerald-600' : 'text-lg font-bold text-red-600';
+            document.getElementById('bizScore').textContent = score + '/100';
+
+            // Feedback
+            let feedback = '<h4 class="font-bold text-gray-900 mb-2">Feedback:</h4><ul class="space-y-1 text-sm">';
+
+            if (profit < 0) {
+                feedback += '<li class="text-red-600">⚠️ Your business would operate at a loss. Increase prices, volume, or reduce costs.</li>';
+            } else if (profit < rent) {
+                feedback += '<li class="text-yellow-600">⚡ Profit is less than your rent. Consider if the risk is worth this return.</li>';
+            } else {
+                feedback += '<li class="text-green-600">✅ Profitable business model! Good factor allocation.</li>';
+            }
+
+            if (payroll === 0) {
+                feedback += '<li class="text-blue-600">💡 No payroll? Are you doing all the work yourself (your labor)?</li>';
+            }
+
+            if (loan === 0 && rent > 0) {
+                feedback += '<li class="text-purple-600">💡 No capital costs? Make sure you\'ve accounted for equipment loans or depreciation.</li>';
+            }
+
+            if (score >= 80) {
+                feedback += '<li class="text-emerald-600">🎉 Excellent viability score! Your business plan is well thought out.</li>';
+            } else if (score >= 60) {
+                feedback += '<li class="text-yellow-600">📊 Decent viability. Look for ways to improve margins.</li>';
+            } else {
+                feedback += '<li class="text-red-600">📉 Low viability score. Refine your business model.</li>';
+            }
+
+            feedback += '</ul>';
+            document.getElementById('bizFeedback').innerHTML = feedback;
+            document.getElementById('bizResults').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>

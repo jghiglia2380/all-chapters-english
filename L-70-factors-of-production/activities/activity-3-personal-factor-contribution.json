@@ -1,0 +1,269 @@
+{
+  "activity_id": "L-70-activity-3",
+  "chapter": "L-70",
+  "day": 2,
+  "sequence": 3,
+  "title": "Personal Factor Contribution",
+  "type": "self_assessment",
+  "duration_minutes": 15,
+  "description": "Calculate your personal economic contribution to the economy through labor (wages), human capital development (education), and capital provision (savings), understanding how YOU are a factor of production earning income.",
+  "learning_objectives": [
+    "Calculate current or projected labor income based on wage rates and hours worked",
+    "Understand how human capital investments increase earning potential",
+    "Calculate interest earned from savings as capital contribution to the economy",
+    "Project future income based on educational and skill development plans",
+    "Connect personal financial decisions to factors of production concepts"
+  ],
+  "instructions": [
+    "Enter your current job or target career and hourly wage (or use minimum wage as baseline)",
+    "Input hours worked per week to calculate weekly and annual labor income",
+    "Check all human capital investments that apply (education, certifications, skills)",
+    "Enter current savings amount and interest rate to calculate capital income",
+    "Click 'Calculate My Factor Contribution' to see your total economic contribution",
+    "Review projections showing how human capital development increases future earnings",
+    "Reflect on insights about maximizing your economic value"
+  ],
+  "materials_needed": [
+    "Personal Factor Contribution Calculator",
+    "Wage and salary data for common jobs",
+    "Human capital boost percentages by education level",
+    "Interest rate calculator for savings"
+  ],
+  "config": {
+    "tool_required": "Personal Factor Contribution Calculator",
+    "labor_contribution": {
+      "input_fields": [
+        {
+          "field": "job_title",
+          "label": "Current or Target Job",
+          "type": "text",
+          "examples": ["Retail sales", "Software engineer", "Healthcare worker", "Restaurant server"]
+        },
+        {
+          "field": "hourly_wage",
+          "label": "Hourly Wage (current or expected)",
+          "type": "number",
+          "min": 7.25,
+          "max": 150,
+          "default": 15,
+          "note": "Federal minimum wage is $7.25, but {{STATE_MIN_WAGE}} applies in {{STATE_NAME}}"
+        },
+        {
+          "field": "hours_per_week",
+          "label": "Hours per Week",
+          "type": "number",
+          "min": 0,
+          "max": 40,
+          "default": 20,
+          "note": "Students often work part-time (10-25 hours)"
+        }
+      ],
+      "calculations": {
+        "weekly_income": "hourly_wage × hours_per_week",
+        "annual_income": "weekly_income × 52 weeks",
+        "monthly_income": "annual_income ÷ 12"
+      },
+      "income_ranges": {
+        "part_time_minimum": {
+          "wage": 15,
+          "hours": 15,
+          "weekly": 225,
+          "annual": 11700
+        },
+        "full_time_minimum": {
+          "wage": 15,
+          "hours": 40,
+          "weekly": 600,
+          "annual": 31200
+        },
+        "skilled_part_time": {
+          "wage": 25,
+          "hours": 20,
+          "weekly": 500,
+          "annual": 26000
+        },
+        "skilled_full_time": {
+          "wage": 30,
+          "hours": 40,
+          "weekly": 1200,
+          "annual": 62400
+        }
+      }
+    },
+    "human_capital_development": {
+      "education_levels": [
+        {
+          "level": "high_school_diploma",
+          "label": "High school diploma",
+          "wage_boost_percentage": 0,
+          "baseline": true,
+          "note": "Baseline education level"
+        },
+        {
+          "level": "some_college",
+          "label": "Some college",
+          "wage_boost_percentage": 15,
+          "note": "15% higher earnings than high school only"
+        },
+        {
+          "level": "associates_degree",
+          "label": "Associate's degree",
+          "wage_boost_percentage": 30,
+          "note": "30% higher earnings than high school only"
+        },
+        {
+          "level": "bachelors_degree",
+          "label": "Bachelor's degree (planned)",
+          "wage_boost_percentage": 50,
+          "note": "84% higher earnings than high school only (using 50% for conservative estimate)"
+        },
+        {
+          "level": "professional_certification",
+          "label": "Professional certifications",
+          "wage_boost_percentage": 10,
+          "additive": true,
+          "note": "Additional boost beyond degree, stacks with education"
+        },
+        {
+          "level": "specialized_skills",
+          "label": "Specialized skills training",
+          "wage_boost_percentage": 5,
+          "additive": true,
+          "note": "Additional boost from technical skills"
+        }
+      ],
+      "human_capital_calculation": {
+        "method": "additive",
+        "formula": "Sum all checked boost percentages",
+        "max_boost": 100,
+        "note": "Multiple education/skill investments stack to increase earning potential"
+      },
+      "projected_income_formula": "current_annual_income × (1 + total_boost_percentage/100)"
+    },
+    "capital_contribution": {
+      "input_fields": [
+        {
+          "field": "current_savings",
+          "label": "Current Savings",
+          "type": "number",
+          "min": 0,
+          "default": 500,
+          "note": "Even small savings contribute capital to the economy"
+        },
+        {
+          "field": "interest_rate_apy",
+          "label": "Interest Rate (APY)",
+          "type": "number",
+          "min": 0,
+          "max": 10,
+          "step": 0.1,
+          "default": 4.0,
+          "note": "High-yield savings accounts currently ~4-5% APY"
+        }
+      ],
+      "calculations": {
+        "annual_interest_earned": "current_savings × (interest_rate_apy / 100)",
+        "monthly_interest_earned": "annual_interest_earned ÷ 12"
+      },
+      "examples": {
+        "small_saver": {
+          "savings": 500,
+          "rate": 4.0,
+          "annual_interest": 20
+        },
+        "moderate_saver": {
+          "savings": 2000,
+          "rate": 4.5,
+          "annual_interest": 90
+        },
+        "strong_saver": {
+          "savings": 10000,
+          "rate": 5.0,
+          "annual_interest": 500
+        }
+      }
+    },
+    "results_display": {
+      "labor_income_section": {
+        "weekly_income": "Display calculated weekly earnings",
+        "annual_income": "Display calculated annual earnings",
+        "visual": "Large blue number showing total labor contribution"
+      },
+      "capital_income_section": {
+        "annual_interest": "Display interest earned per year",
+        "visual": "Purple number showing capital contribution",
+        "context": "When you save, banks lend your money to businesses, making you a capital provider"
+      },
+      "human_capital_section": {
+        "boost_percentage": "Display total wage boost from education/skills",
+        "progress_bar": "Visual bar showing boost percentage (0-100%)",
+        "projected_income": "Show future income with full human capital development",
+        "comparison": "Show difference between current and projected income"
+      }
+    },
+    "insight_generation": {
+      "low_income_student": {
+        "threshold": "annual_income < $20,000",
+        "message": "Your current labor income is modest. Consider investing in education or skills training to boost your human capital and earning potential.",
+        "recommendation": "Focus on developing skills that increase your hourly wage rate"
+      },
+      "moderate_income_student": {
+        "threshold": "$20,000 ≤ annual_income < $50,000",
+        "message": "Solid income foundation! Growing your human capital through certifications or advanced training could significantly boost your earnings.",
+        "recommendation": "Look for specialized certifications in your field"
+      },
+      "high_income_potential": {
+        "threshold": "annual_income ≥ $50,000",
+        "message": "Strong earning potential! Consider diversifying income sources by building capital (savings/investments) to earn interest alongside wages.",
+        "recommendation": "Start building wealth through saving and investing"
+      },
+      "savings_message": {
+        "has_savings": "Your savings of ${amount} is already providing capital to the economy and earning you ${interest}/year in interest.",
+        "no_savings": "Consider starting to save even small amounts. Your savings become capital that earns you interest while helping businesses grow."
+      }
+    },
+    "reflection_prompts": [
+      {
+        "prompt": "Which factor of production do YOU currently provide (or will provide) to earn income?",
+        "expected_answer": "Labor - through working at a job",
+        "teaching_point": "Most people earn income primarily from labor (wages) until they build capital"
+      },
+      {
+        "prompt": "How could you increase your 'human capital' to earn higher wages?",
+        "expected_answers": [
+          "Complete college degree or certification program",
+          "Learn technical skills through training or online courses",
+          "Gain work experience in specialized field",
+          "Develop soft skills like communication and leadership"
+        ]
+      },
+      {
+        "prompt": "If you saved $10,000 and put it in a savings account earning 4% interest, which factor of production are you providing?",
+        "expected_answer": "Capital - your savings become capital that businesses borrow and use",
+        "teaching_point": "Savers are capital providers, earning interest as their factor payment"
+      }
+    ],
+    "deliverables": [
+      "Calculated current labor income (weekly and annual)",
+      "Identified human capital investments and calculated total wage boost",
+      "Calculated capital contribution from savings and interest earned",
+      "Projected future income with full human capital development",
+      "Personal plan for maximizing economic contribution and earnings"
+    ]
+  },
+  "group_config": {
+    "type": "individual",
+    "size": null
+  },
+  "assessment": {
+    "type": "formative",
+    "criteria": [
+      "Correctly calculated labor income from wage and hours inputs",
+      "Identified relevant human capital investments and understood their impact on earnings",
+      "Calculated interest earned from savings as capital contribution",
+      "Connected personal financial decisions to factors of production framework",
+      "Developed realistic plan for increasing earning potential"
+    ]
+  },
+  "teacher_notes": "This activity makes economics deeply personal. Students realize THEY are factors of production earning income. Emphasize that labor is their current primary income source, but human capital development dramatically increases labor value. Even small savings contribute capital to the economy and earn interest. The human capital boost percentages are conservative estimates - actual wage premiums can be higher. Encourage students to see education as an investment in their most valuable asset: themselves. Note that the calculator respects student privacy - no data is collected or stored."
+}
