@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-72: Understanding Health Insurance - Day 2 Learning Lab | PFL Academy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .activity-card {
+            transition: all 0.3s ease;
+        }
+        .activity-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        }
+        .progress-step {
+            transition: all 0.3s ease;
+        }
+        .progress-step.completed {
+            background-color: #10b981;
+            color: white;
+        }
+        .progress-step.active {
+            background-color: #6366f1;
+            color: white;
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white p-4 shadow-md sticky top-0 z-50">
+        <div class="container mx-auto">
+            <h1 class="text-2xl font-bold">L-72: Understanding Health Insurance in <span class="text-yellow-300">{{STATE_NAME}}</span></h1>
+            <p class="text-indigo-200">Day 2 of 2: Health Insurance Decision-Making Learning Lab</p>
+        </div>
+    </header>
+
+    <div class="container mx-auto px-4 py-8 max-w-6xl">
+
+        <!-- Day 1 Recall Banner -->
+        <section class="bg-gradient-to-r from-indigo-500 to-purple-600 text-white rounded-lg shadow-lg p-6 mb-8">
+            <div class="flex items-start">
+                <div class="text-4xl mr-4">📚</div>
+                <div>
+                    <h2 class="text-xl font-bold mb-2">Day 1 Recall: Health Insurance Fundamentals</h2>
+                    <p class="text-indigo-100">Yesterday you learned the vocabulary and structure of health insurance—premium, deductible, copay, coinsurance, plan types, and coverage sources. Today you'll apply that knowledge through four hands-on stations that simulate real health insurance decisions you'll face in the next 5-10 years.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Learning Objectives -->
+        <section class="bg-indigo-50 border-l-4 border-indigo-500 p-6 mb-8 rounded-r">
+            <h2 class="text-xl font-bold text-indigo-900 mb-3">📚 Learning Lab Objectives</h2>
+            <ul class="space-y-2 text-indigo-900">
+                <li>✓ Calculate total annual costs under different health plans for different usage scenarios</li>
+                <li>✓ Navigate the ACA marketplace subsidy system and determine eligibility</li>
+                <li>✓ Compare HDHP+HSA vs. traditional plans for different life situations</li>
+                <li>✓ Identify Special Enrollment Period triggers and understand coverage windows</li>
+            </ul>
+        </section>
+
+        <!-- Progress Tracker -->
+        <section class="bg-white rounded-lg shadow-md p-4 mb-8">
+            <div class="flex justify-between items-center">
+                <h3 class="font-bold text-gray-700">Lab Progress</h3>
+                <span id="progressText" class="text-sm text-indigo-600 font-semibold">0/4 Stations Complete</span>
+            </div>
+            <div class="flex justify-between mt-4">
+                <div class="progress-step w-12 h-12 rounded-full bg-gray-200 flex items-center justify-center font-bold" data-step="1">1</div>
+                <div class="flex-1 h-1 bg-gray-200 self-center mx-2"></div>
+                <div class="progress-step w-12 h-12 rounded-full bg-gray-200 flex items-center justify-center font-bold" data-step="2">2</div>
+                <div class="flex-1 h-1 bg-gray-200 self-center mx-2"></div>
+                <div class="progress-step w-12 h-12 rounded-full bg-gray-200 flex items-center justify-center font-bold" data-step="3">3</div>
+                <div class="flex-1 h-1 bg-gray-200 self-center mx-2"></div>
+                <div class="progress-step w-12 h-12 rounded-full bg-gray-200 flex items-center justify-center font-bold" data-step="4">4</div>
+            </div>
+            <div class="flex justify-between mt-2 text-xs text-gray-600">
+                <span class="w-12 text-center">Cost Calculator</span>
+                <span class="w-12 text-center">ACA Navigator</span>
+                <span class="w-12 text-center">HSA Decision</span>
+                <span class="w-12 text-center">Life Events</span>
+            </div>
+        </section>
+
+        <!-- Station 1: Health Plan Cost Calculator -->
+        <section class="bg-white rounded-lg shadow-md p-6 mb-8 activity-card">
+            <div class="flex items-center justify-between mb-4">
+                <h2 class="text-2xl font-bold text-gray-900">Station 1: Health Plan Cost Calculator</h2>
+                <span class="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm font-semibold">20 minutes</span>
+            </div>
+
+            <p class="text-gray-700 mb-4"><strong>Purpose:</strong> Discover that the cheapest-premium plan is not always the cheapest plan overall.</p>
+
+            <div class="bg-indigo-50 p-4 rounded-lg mb-6">
+                <h3 class="font-bold text-indigo-900 mb-3">The Three Plans:</h3>
+                <div class="grid md:grid-cols-3 gap-4">
+                    <div class="bg-white p-3 rounded border-2 border-yellow-300">
+                        <h4 class="font-bold text-yellow-900 mb-2">Plan A (Gold PPO)</h4>
+                        <ul class="text-sm text-gray-700 space-y-1">
+                            <li>• Premium: $280/month ($3,360/year)</li>
+                            <li>• Deductible: $500</li>
+                            <li>• Copay: $20</li>
+                            <li>• Coinsurance: 10% after deductible</li>
+                            <li>• OOP Max: $2,000</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-3 rounded border-2 border-gray-300">
+                        <h4 class="font-bold text-gray-900 mb-2">Plan B (Silver PPO)</h4>
+                        <ul class="text-sm text-gray-700 space-y-1">
+                            <li>• Premium: $160/month ($1,920/year)</li>
+                            <li>• Deductible: $1,500</li>
+                            <li>• Copay: $35</li>
+                            <li>• Coinsurance: 20% after deductible</li>
+                            <li>• OOP Max: $4,000</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-3 rounded border-2 border-amber-300">
+                        <h4 class="font-bold text-amber-900 mb-2">Plan C (Bronze HDHP)</h4>
+                        <ul class="text-sm text-gray-700 space-y-1">
+                            <li>• Premium: $80/month ($960/year)</li>
+                            <li>• Deductible: $3,000</li>
+                            <li>• No copays (pay full cost until deductible)</li>
+                            <li>• Coinsurance: 30% after deductible</li>
+                            <li>• OOP Max: $6,000</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-blue-50 p-4 rounded-lg mb-6">
+                <h3 class="font-bold text-blue-900 mb-3">The Three Scenarios:</h3>
+                <div class="space-y-3">
+                    <div class="bg-white p-3 rounded">
+                        <h4 class="font-semibold text-green-900">Scenario A — Healthy Year:</h4>
+                        <ul class="text-sm text-gray-700">
+                            <li>• One annual physical (preventive, covered at 100%)</li>
+                            <li>• One urgent care visit with X-ray ($350 total bill before insurance)</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-3 rounded">
+                        <h4 class="font-semibold text-yellow-900">Scenario B — Moderate Year:</h4>
+                        <ul class="text-sm text-gray-700">
+                            <li>• Four primary care visits ($150 each = $600)</li>
+                            <li>• One specialist visit ($250)</li>
+                            <li>• One MRI ($3,500)</li>
+                            <li>• One prescription refill per month ($40/month = $480)</li>
+                            <li>• <strong>Total bills before insurance: $4,830</strong></li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-3 rounded">
+                        <h4 class="font-semibold text-red-900">Scenario C — High-Need Year:</h4>
+                        <ul class="text-sm text-gray-700">
+                            <li>• Emergency appendectomy with 2-day hospital stay ($22,000)</li>
+                            <li>• Follow-up care and medications ($1,500)</li>
+                            <li>• <strong>Total bills before insurance: $23,500</strong></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white border border-gray-300 p-4 rounded-lg mb-4">
+                <h3 class="font-bold text-gray-900 mb-3">Calculation Grid:</h3>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm">
+                        <thead>
+                            <tr class="border-b-2 border-gray-300">
+                                <th class="text-left p-2">Scenario</th>
+                                <th class="text-left p-2">Plan A Total Cost</th>
+                                <th class="text-left p-2">Plan B Total Cost</th>
+                                <th class="text-left p-2">Plan C Total Cost</th>
+                                <th class="text-left p-2">Winner</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b border-gray-200">
+                                <td class="p-2 font-semibold">Healthy Year (A)</td>
+                                <td class="p-2"><input type="text" class="border border-gray-300 rounded p-1 w-24" placeholder="$____"></td>
+                                <td class="p-2"><input type="text" class="border border-gray-300 rounded p-1 w-24" placeholder="$____"></td>
+                                <td class="p-2"><input type="text" class="border border-gray-300 rounded p-1 w-24" placeholder="$____"></td>
+                                <td class="p-2"><input type="text" class="border border-gray-300 rounded p-1 w-24" placeholder="Plan __"></td>
+                            </tr>
+                            <tr class="border-b border-gray-200">
+                                <td class="p-2 font-semibold">Moderate Year (B)</td>
+                                <td class="p-2"><input type="text" class="border border-gray-300 rounded p-1 w-24" placeholder="$____"></td>
+                                <td class="p-2"><input type="text" class="border border-gray-300 rounded p-1 w-24" placeholder="$____"></td>
+                                <td class="p-2"><input type="text" class="border border-gray-300 rounded p-1 w-24" placeholder="$____"></td>
+                                <td class="p-2"><input type="text" class="border border-gray-300 rounded p-1 w-24" placeholder="Plan __"></td>
+                            </tr>
+                            <tr>
+                                <td class="p-2 font-semibold">High-Need Year (C)</td>
+                                <td class="p-2"><input type="text" class="border border-gray-300 rounded p-1 w-24" placeholder="$____"></td>
+                                <td class="p-2"><input type="text" class="border border-gray-300 rounded p-1 w-24" placeholder="$____"></td>
+                                <td class="p-2"><input type="text" class="border border-gray-300 rounded p-1 w-24" placeholder="$____"></td>
+                                <td class="p-2"><input type="text" class="border border-gray-300 rounded p-1 w-24" placeholder="Plan __"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="space-y-3">
+                <div>
+                    <label class="block text-gray-700 font-semibold mb-2">1. Which plan had the cheapest premium? Did it win in any scenarios?</label>
+                    <textarea class="w-full p-3 border border-gray-300 rounded focus:ring-2 focus:ring-indigo-500" rows="2"></textarea>
+                </div>
+                <div>
+                    <label class="block text-gray-700 font-semibold mb-2">2. Under what circumstances would you choose Plan C over Plan A?</label>
+                    <textarea class="w-full p-3 border border-gray-300 rounded focus:ring-2 focus:ring-indigo-500" rows="2"></textarea>
+                </div>
+                <div>
+                    <label class="block text-gray-700 font-semibold mb-2">3. Write a 2-sentence summary: "Plan C is the cheapest if... but Plan A is the cheapest if..."</label>
+                    <textarea class="w-full p-3 border border-gray-300 rounded focus:ring-2 focus:ring-indigo-500" rows="2"></textarea>
+                </div>
+            </div>
+
+            <button onclick="completeStation(1)" class="mt-4 bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2 rounded-lg font-semibold transition">Complete Station 1</button>
+        </section>
+
+        <!-- Station 2: ACA Marketplace Navigator -->
+        <section class="bg-white rounded-lg shadow-md p-6 mb-8 activity-card">
+            <div class="flex items-center justify-between mb-4">
+                <h2 class="text-2xl font-bold text-gray-900">Station 2: ACA Marketplace Navigator</h2>
+                <span class="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm font-semibold">20 minutes</span>
+            </div>
+
+            <p class="text-gray-700 mb-4"><strong>Purpose:</strong> Learn that lower income = larger subsidies, and understand the metal tier system.</p>
+
+            <div class="bg-green-50 p-4 rounded-lg mb-6">
+                <h3 class="font-bold text-green-900 mb-3">Key Information You Need:</h3>
+                <ul class="text-sm text-gray-700 space-y-1">
+                    <li>• <strong>2025 Federal Poverty Level (FPL):</strong> $15,060 for single adult; $20,440 for 2-person household; $30,900 for family of 4</li>
+                    <li>• <strong>Subsidy eligibility:</strong> Income between 100-400% FPL (some states extend beyond 400%)</li>
+                    <li>• <strong>Medicaid eligibility:</strong> Varies by state; in expansion states, adults up to 138% FPL may qualify</li>
+                    <li>• <strong>Metal Tiers:</strong> Bronze (~60% coverage), Silver (~70%, subsidies maximize here), Gold (~80%), Platinum (~90%)</li>
+                </ul>
+            </div>
+
+            <div class="space-y-6">
+                <!-- Person 1: Alex -->
+                <div class="bg-blue-50 p-4 rounded-lg border-2 border-blue-300">
+                    <h3 class="font-bold text-blue-900 mb-3">Person 1: Alex</h3>
+                    <p class="text-sm text-gray-700 mb-3">Single adult, age 24 | Income: $20,000/year | No employer coverage | Generally healthy, sees doctor 2-3 times/year</p>
+                    <div class="grid md:grid-cols-2 gap-3">
+                        <div class="bg-white p-3 rounded">
+                            <label class="text-sm font-semibold text-gray-700 block mb-1">What percentage of FPL is Alex at?</label>
+                            <input type="text" class="w-full border border-gray-300 rounded p-2" placeholder="____%">
+                        </div>
+                        <div class="bg-white p-3 rounded">
+                            <label class="text-sm font-semibold text-gray-700 block mb-1">Does Alex qualify for marketplace subsidies?</label>
+                            <input type="text" class="w-full border border-gray-300 rounded p-2" placeholder="Yes/No">
+                        </div>
+                        <div class="bg-white p-3 rounded">
+                            <label class="text-sm font-semibold text-gray-700 block mb-1">In a Medicaid expansion state, would Alex qualify for Medicaid?</label>
+                            <input type="text" class="w-full border border-gray-300 rounded p-2" placeholder="Yes/No">
+                        </div>
+                        <div class="bg-white p-3 rounded">
+                            <label class="text-sm font-semibold text-gray-700 block mb-1">Recommended metal tier & why:</label>
+                            <input type="text" class="w-full border border-gray-300 rounded p-2" placeholder="Bronze/Silver/Gold">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Person 2: Jordan -->
+                <div class="bg-purple-50 p-4 rounded-lg border-2 border-purple-300">
+                    <h3 class="font-bold text-purple-900 mb-3">Person 2: Jordan</h3>
+                    <p class="text-sm text-gray-700 mb-3">Single adult, age 29 | Income: $35,000/year | Employer offers coverage but employee share is $420/month (14% of income) | Has asthma, needs regular prescriptions</p>
+                    <div class="grid md:grid-cols-2 gap-3">
+                        <div class="bg-white p-3 rounded">
+                            <label class="text-sm font-semibold text-gray-700 block mb-1">What percentage of FPL is Jordan at?</label>
+                            <input type="text" class="w-full border border-gray-300 rounded p-2" placeholder="____%">
+                        </div>
+                        <div class="bg-white p-3 rounded">
+                            <label class="text-sm font-semibold text-gray-700 block mb-1">Does employer coverage count as "affordable" under ACA rules? (Hint: threshold is 9.5% of income)</label>
+                            <input type="text" class="w-full border border-gray-300 rounded p-2" placeholder="Yes/No">
+                        </div>
+                        <div class="bg-white p-3 rounded">
+                            <label class="text-sm font-semibold text-gray-700 block mb-1">Can Jordan use the marketplace instead?</label>
+                            <input type="text" class="w-full border border-gray-300 rounded p-2" placeholder="Yes/No">
+                        </div>
+                        <div class="bg-white p-3 rounded">
+                            <label class="text-sm font-semibold text-gray-700 block mb-1">Recommended metal tier & why:</label>
+                            <input type="text" class="w-full border border-gray-300 rounded p-2" placeholder="Bronze/Silver/Gold">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Person 3: Taylor -->
+                <div class="bg-green-50 p-4 rounded-lg border-2 border-green-300">
+                    <h3 class="font-bold text-green-900 mb-3">Person 3: Taylor (family of 3)</h3>
+                    <p class="text-sm text-gray-700 mb-3">Two adults + one child, ages 31, 33, 4 | Combined household income: $55,000/year | No employer coverage | Child has no ongoing health issues; adults generally healthy</p>
+                    <div class="grid md:grid-cols-2 gap-3">
+                        <div class="bg-white p-3 rounded">
+                            <label class="text-sm font-semibold text-gray-700 block mb-1">What percentage of FPL is this family at?</label>
+                            <input type="text" class="w-full border border-gray-300 rounded p-2" placeholder="____%">
+                        </div>
+                        <div class="bg-white p-3 rounded">
+                            <label class="text-sm font-semibold text-gray-700 block mb-1">Do they qualify for marketplace subsidies?</label>
+                            <input type="text" class="w-full border border-gray-300 rounded p-2" placeholder="Yes/No">
+                        </div>
+                        <div class="bg-white p-3 rounded">
+                            <label class="text-sm font-semibold text-gray-700 block mb-1">Would their child qualify for CHIP? (CHIP typically covers children in households up to 200-300% FPL)</label>
+                            <input type="text" class="w-full border border-gray-300 rounded p-2" placeholder="Yes/No">
+                        </div>
+                        <div class="bg-white p-3 rounded">
+                            <label class="text-sm font-semibold text-gray-700 block mb-1">Recommended metal tier & why:</label>
+                            <input type="text" class="w-full border border-gray-300 rounded p-2" placeholder="Bronze/Silver/Gold">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Person 4: Casey -->
+                <div class="bg-yellow-50 p-4 rounded-lg border-2 border-yellow-300">
+                    <h3 class="font-bold text-yellow-900 mb-3">Person 4: Casey</h3>
+                    <p class="text-sm text-gray-700 mb-3">Single adult, age 27 | Income: $65,000/year | Employer offers affordable coverage ($180/month for employee, $450/month for family) | Currently healthy, no dependents</p>
+                    <div class="grid md:grid-cols-2 gap-3">
+                        <div class="bg-white p-3 rounded">
+                            <label class="text-sm font-semibold text-gray-700 block mb-1">What percentage of FPL is Casey at?</label>
+                            <input type="text" class="w-full border border-gray-300 rounded p-2" placeholder="____%">
+                        </div>
+                        <div class="bg-white p-3 rounded">
+                            <label class="text-sm font-semibold text-gray-700 block mb-1">Does Casey qualify for marketplace subsidies?</label>
+                            <input type="text" class="w-full border border-gray-300 rounded p-2" placeholder="Yes/No">
+                        </div>
+                        <div class="bg-white p-3 rounded">
+                            <label class="text-sm font-semibold text-gray-700 block mb-1">Should Casey take employer coverage or shop the marketplace?</label>
+                            <input type="text" class="w-full border border-gray-300 rounded p-2" placeholder="Employer/Marketplace">
+                        </div>
+                        <div class="bg-white p-3 rounded">
+                            <label class="text-sm font-semibold text-gray-700 block mb-1">If using employer plan, recommended tier & why:</label>
+                            <input type="text" class="w-full border border-gray-300 rounded p-2" placeholder="Bronze/Silver/Gold">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-yellow-50 border-l-4 border-yellow-500 p-4 mt-6">
+                <p class="font-semibold text-yellow-900">Important Note:</p>
+                <p class="text-gray-700 text-sm">For your actual situation, visit <strong>healthcare.gov</strong> or call <strong>1-800-318-2596</strong>. Rules vary by state and change annually. This exercise teaches you the framework—always verify current information for real decisions.</p>
+            </div>
+
+            <button onclick="completeStation(2)" class="mt-4 bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2 rounded-lg font-semibold transition">Complete Station 2</button>
+        </section>
+
+        <!-- Station 3: HSA vs FSA vs Neither Decision Tool -->
+        <section class="bg-white rounded-lg shadow-md p-6 mb-8 activity-card">
+            <div class="flex items-center justify-between mb-4">
+                <h2 class="text-2xl font-bold text-gray-900">Station 3: HSA vs. FSA vs. Neither Decision Tool</h2>
+                <span class="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm font-semibold">20 minutes</span>
+            </div>
+
+            <p class="text-gray-700 mb-4"><strong>Purpose:</strong> Understand when the HDHP/HSA combination makes mathematical sense.</p>
+
+            <div class="bg-purple-50 p-4 rounded-lg mb-6">
+                <h3 class="font-bold text-purple-900 mb-3">Background on HSA vs. FSA:</h3>
+                <ul class="text-sm text-gray-700 space-y-1">
+                    <li>• <strong>HSA (Health Savings Account):</strong> Only available with HDHP. Triple tax advantage. Funds roll over indefinitely. 2025 contribution limit: $4,300 individual.</li>
+                    <li>• <strong>FSA (Flexible Spending Account):</strong> Available with any non-HDHP plan. Pre-tax contributions but use-it-or-lose-it annually. 2025 limit: $3,200.</li>
+                </ul>
+            </div>
+
+            <div class="space-y-6">
+                <!-- Profile A: Riley -->
+                <div class="bg-blue-50 p-4 rounded-lg border-2 border-blue-300">
+                    <h3 class="font-bold text-blue-900 mb-3">Profile A: Riley, Age 24</h3>
+                    <p class="text-sm text-gray-700 mb-2">Income: $38,000/year (22% tax bracket) | Health status: Generally healthy, doctor visits 2x/year, no regular medications | Savings: $2,000 emergency fund</p>
+                    <p class="text-sm font-semibold text-gray-900 mb-2">Employer offers:</p>
+                    <ul class="text-sm text-gray-700 mb-3">
+                        <li>• HDHP: $90/month premium, $2,500 deductible, HSA-eligible</li>
+                        <li>• PPO: $190/month premium, $750 deductible, FSA-eligible</li>
+                    </ul>
+                    <div class="grid md:grid-cols-2 gap-3">
+                        <div class="bg-white p-3 rounded">
+                            <label class="text-sm font-semibold text-gray-700 block mb-1">1. Calculate annual premium difference:</label>
+                            <input type="text" class="w-full border border-gray-300 rounded p-2" placeholder="$____">
+                        </div>
+                        <div class="bg-white p-3 rounded">
+                            <label class="text-sm font-semibold text-gray-700 block mb-1">2. Estimate likely out-of-pocket costs (2 visits @ $150 each):</label>
+                            <input type="text" class="w-full border border-gray-300 rounded p-2" placeholder="$____">
+                        </div>
+                        <div class="bg-white p-3 rounded">
+                            <label class="text-sm font-semibold text-gray-700 block mb-1">3. If Riley maxes HSA contribution ($4,300), tax savings at 22%:</label>
+                            <input type="text" class="w-full border border-gray-300 rounded p-2" placeholder="$____">
+                        </div>
+                        <div class="bg-white p-3 rounded">
+                            <label class="text-sm font-semibold text-gray-700 block mb-1">4. Total annual cost under HDHP (premiums + OOP - tax savings):</label>
+                            <input type="text" class="w-full border border-gray-300 rounded p-2" placeholder="$____">
+                        </div>
+                        <div class="bg-white p-3 rounded">
+                            <label class="text-sm font-semibold text-gray-700 block mb-1">5. Total annual cost under PPO (premiums + OOP):</label>
+                            <input type="text" class="w-full border border-gray-300 rounded p-2" placeholder="$____">
+                        </div>
+                        <div class="bg-white p-3 rounded">
+                            <label class="text-sm font-semibold text-gray-700 block mb-1">6. Recommendation & Why:</label>
+                            <input type="text" class="w-full border border-gray-300 rounded p-2" placeholder="HDHP/PPO">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Profile B: Morgan -->
+                <div class="bg-rose-50 p-4 rounded-lg border-2 border-rose-300">
+                    <h3 class="font-bold text-rose-900 mb-3">Profile B: Morgan, Age 28</h3>
+                    <p class="text-sm text-gray-700 mb-2">Income: $52,000/year (22% tax bracket) | Health status: Type 1 diabetes, sees endocrinologist quarterly | Medications: Insulin and testing supplies ($400/month = $4,800/year)</p>
+                    <p class="text-sm font-semibold text-gray-900 mb-2">Employer offers:</p>
+                    <ul class="text-sm text-gray-700 mb-3">
+                        <li>• HDHP: $90/month premium, $2,500 deductible, HSA-eligible</li>
+                        <li>• PPO: $190/month premium, $750 deductible, copays $30 for doctor/$10 for generics</li>
+                    </ul>
+                    <div class="grid md:grid-cols-2 gap-3">
+                        <div class="bg-white p-3 rounded">
+                            <label class="text-sm font-semibold text-gray-700 block mb-1">1. Under HDHP: Morgan hits $2,500 deductible after how many months of insulin costs?</label>
+                            <input type="text" class="w-full border border-gray-300 rounded p-2" placeholder="__ months">
+                        </div>
+                        <div class="bg-white p-3 rounded">
+                            <label class="text-sm font-semibold text-gray-700 block mb-1">2. Annual premium: HDHP vs. PPO</label>
+                            <input type="text" class="w-full border border-gray-300 rounded p-2" placeholder="$____ vs $____">
+                        </div>
+                        <div class="bg-white p-3 rounded">
+                            <label class="text-sm font-semibold text-gray-700 block mb-1">3. Estimated OOP under HDHP:</label>
+                            <input type="text" class="w-full border border-gray-300 rounded p-2" placeholder="$____">
+                        </div>
+                        <div class="bg-white p-3 rounded">
+                            <label class="text-sm font-semibold text-gray-700 block mb-1">4. Estimated OOP under PPO:</label>
+                            <input type="text" class="w-full border border-gray-300 rounded p-2" placeholder="$____">
+                        </div>
+                        <div class="bg-white p-3 rounded col-span-2">
+                            <label class="text-sm font-semibold text-gray-700 block mb-1">5. Recommendation & Why:</label>
+                            <input type="text" class="w-full border border-gray-300 rounded p-2" placeholder="HDHP/PPO and explain">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Profile C: Drew -->
+                <div class="bg-green-50 p-4 rounded-lg border-2 border-green-300">
+                    <h3 class="font-bold text-green-900 mb-3">Profile C: Drew, Age 31</h3>
+                    <p class="text-sm text-gray-700 mb-2">Income: $45,000/year (22% tax bracket) | Health status: Pregnant, first child expected in 6 months | Currently on PPO, open enrollment coming up</p>
+                    <p class="text-sm font-semibold text-gray-900 mb-2">Employer offers:</p>
+                    <ul class="text-sm text-gray-700 mb-3">
+                        <li>• HDHP: $90/month premium, $2,500 deductible, HSA-eligible</li>
+                        <li>• PPO: $190/month premium, $750 deductible, $3,000 OOP max</li>
+                    </ul>
+                    <div class="space-y-3">
+                        <div class="bg-white p-3 rounded">
+                            <label class="text-sm font-semibold text-gray-700 block mb-1">1. Pregnancy and delivery typically cost $10,000-$15,000 before insurance. Under HDHP: What happens?</label>
+                            <input type="text" class="w-full border border-gray-300 rounded p-2" placeholder="Explain deductible + coinsurance">
+                        </div>
+                        <div class="bg-white p-3 rounded">
+                            <label class="text-sm font-semibold text-gray-700 block mb-1">2. Under PPO: What happens?</label>
+                            <input type="text" class="w-full border border-gray-300 rounded p-2" placeholder="Explain deductible + OOP max">
+                        </div>
+                        <div class="bg-white p-3 rounded">
+                            <label class="text-sm font-semibold text-gray-700 block mb-1">3. Which plan results in lower total annual cost for a high-medical-use year?</label>
+                            <input type="text" class="w-full border border-gray-300 rounded p-2" placeholder="HDHP/PPO">
+                        </div>
+                        <div class="bg-white p-3 rounded">
+                            <label class="text-sm font-semibold text-gray-700 block mb-1">4. Recommendation & Why:</label>
+                            <input type="text" class="w-full border border-gray-300 rounded p-2" placeholder="Explain your choice">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-indigo-50 border-l-4 border-indigo-500 p-4 mt-6">
+                <p class="font-semibold text-indigo-900">Key Takeaway:</p>
+                <p class="text-gray-700 text-sm">HSAs are powerful wealth-building tools for healthy young people with low medical expenses. They're the wrong choice for people with high, predictable medical costs. Know your situation before choosing your plan.</p>
+            </div>
+
+            <button onclick="completeStation(3)" class="mt-4 bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2 rounded-lg font-semibold transition">Complete Station 3</button>
+        </section>
+
+        <!-- Station 4: Special Enrollment Period & Life Events -->
+        <section class="bg-white rounded-lg shadow-md p-6 mb-8 activity-card">
+            <div class="flex items-center justify-between mb-4">
+                <h2 class="text-2xl font-bold text-gray-900">Station 4: Special Enrollment Period & Life Events Checklist</h2>
+                <span class="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm font-semibold">15 minutes</span>
+            </div>
+
+            <p class="text-gray-700 mb-4"><strong>Purpose:</strong> Understand that coverage decisions are not annual—major life events create new enrollment windows, and missing those windows has real consequences.</p>
+
+            <div class="bg-white border border-gray-300 p-4 rounded-lg mb-6">
+                <h3 class="font-bold text-gray-900 mb-3">Life Events Table:</h3>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm">
+                        <thead>
+                            <tr class="border-b-2 border-gray-300">
+                                <th class="text-left p-2">Life Event</th>
+                                <th class="text-left p-2">Triggers SEP? (Yes/No)</th>
+                                <th class="text-left p-2">Window Length</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b border-gray-200">
+                                <td class="p-2">Turning 26 and losing parent's coverage</td>
+                                <td class="p-2"><input type="text" class="border border-gray-300 rounded p-1 w-20" placeholder="Yes/No"></td>
+                                <td class="p-2"><input type="text" class="border border-gray-300 rounded p-1 w-32" placeholder="__ days"></td>
+                            </tr>
+                            <tr class="border-b border-gray-200">
+                                <td class="p-2">Getting married</td>
+                                <td class="p-2"><input type="text" class="border border-gray-300 rounded p-1 w-20" placeholder="Yes/No"></td>
+                                <td class="p-2"><input type="text" class="border border-gray-300 rounded p-1 w-32" placeholder="__ days"></td>
+                            </tr>
+                            <tr class="border-b border-gray-200">
+                                <td class="p-2">Having or adopting a child</td>
+                                <td class="p-2"><input type="text" class="border border-gray-300 rounded p-1 w-20" placeholder="Yes/No"></td>
+                                <td class="p-2"><input type="text" class="border border-gray-300 rounded p-1 w-32" placeholder="__ days"></td>
+                            </tr>
+                            <tr class="border-b border-gray-200">
+                                <td class="p-2">Moving to a new state</td>
+                                <td class="p-2"><input type="text" class="border border-gray-300 rounded p-1 w-20" placeholder="Yes/No"></td>
+                                <td class="p-2"><input type="text" class="border border-gray-300 rounded p-1 w-32" placeholder="__ days"></td>
+                            </tr>
+                            <tr class="border-b border-gray-200">
+                                <td class="p-2">Losing a job and employer coverage</td>
+                                <td class="p-2"><input type="text" class="border border-gray-300 rounded p-1 w-20" placeholder="Yes/No"></td>
+                                <td class="p-2"><input type="text" class="border border-gray-300 rounded p-1 w-32" placeholder="__ days"></td>
+                            </tr>
+                            <tr class="border-b border-gray-200">
+                                <td class="p-2">Getting a raise</td>
+                                <td class="p-2"><input type="text" class="border border-gray-300 rounded p-1 w-20" placeholder="Yes/No"></td>
+                                <td class="p-2"><input type="text" class="border border-gray-300 rounded p-1 w-32" placeholder="__ days"></td>
+                            </tr>
+                            <tr class="border-b border-gray-200">
+                                <td class="p-2">Starting a new job that offers coverage</td>
+                                <td class="p-2"><input type="text" class="border border-gray-300 rounded p-1 w-20" placeholder="Yes/No"></td>
+                                <td class="p-2"><input type="text" class="border border-gray-300 rounded p-1 w-32" placeholder="__ days"></td>
+                            </tr>
+                            <tr>
+                                <td class="p-2">Voluntarily dropping coverage</td>
+                                <td class="p-2"><input type="text" class="border border-gray-300 rounded p-1 w-20" placeholder="Yes/No"></td>
+                                <td class="p-2"><input type="text" class="border border-gray-300 rounded p-1 w-32" placeholder="__ days"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Scenario Walk-Through 1 -->
+            <div class="bg-red-50 p-4 rounded-lg border-2 border-red-300 mb-4">
+                <h3 class="font-bold text-red-900 mb-3">Scenario Walk-Through 1: Sofia Turns 26</h3>
+                <p class="text-sm text-gray-700 mb-3">Sofia turns 26 on April 15. She doesn't realize this is a qualifying event. She's uninsured from April 15 onward. On June 10 she breaks her wrist skateboarding and goes to the ER.</p>
+                <div class="grid md:grid-cols-2 gap-3">
+                    <div class="bg-white p-3 rounded">
+                        <label class="text-sm font-semibold text-gray-700 block mb-1">1. When did Sofia's SEP window open?</label>
+                        <input type="text" class="w-full border border-gray-300 rounded p-2" placeholder="Date">
+                    </div>
+                    <div class="bg-white p-3 rounded">
+                        <label class="text-sm font-semibold text-gray-700 block mb-1">2. When did it close?</label>
+                        <input type="text" class="w-full border border-gray-300 rounded p-2" placeholder="Date">
+                    </div>
+                    <div class="bg-white p-3 rounded">
+                        <label class="text-sm font-semibold text-gray-700 block mb-1">3. On June 10, is Sofia still within her SEP window?</label>
+                        <input type="text" class="w-full border border-gray-300 rounded p-2" placeholder="Yes/No">
+                    </div>
+                    <div class="bg-white p-3 rounded">
+                        <label class="text-sm font-semibold text-gray-700 block mb-1">4. What would an uninsured ER visit with X-rays and a cast typically cost?</label>
+                        <input type="text" class="w-full border border-gray-300 rounded p-2" placeholder="$____-$____">
+                    </div>
+                </div>
+                <div class="bg-white p-3 rounded mt-3">
+                    <label class="text-sm font-semibold text-gray-700 block mb-2">5. If not within SEP window, what are Sofia's options? (Check all that apply)</label>
+                    <div class="space-y-1">
+                        <label class="flex items-center"><input type="checkbox" class="mr-2"> Enroll in marketplace coverage immediately</label>
+                        <label class="flex items-center"><input type="checkbox" class="mr-2"> Wait until next open enrollment (November)</label>
+                        <label class="flex items-center"><input type="checkbox" class="mr-2"> Apply for emergency Medicaid (depends on state and income)</label>
+                        <label class="flex items-center"><input type="checkbox" class="mr-2"> Negotiate a payment plan with the hospital for the uninsured bill</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scenario Walk-Through 2 -->
+            <div class="bg-blue-50 p-4 rounded-lg border-2 border-blue-300 mb-4">
+                <h3 class="font-bold text-blue-900 mb-3">Scenario Walk-Through 2: Derek Loses His Job</h3>
+                <p class="text-sm text-gray-700 mb-3">Derek loses his job on March 1. His employer coverage ends March 31. He made $48,000/year before losing the job.</p>
+                <div class="space-y-3">
+                    <div class="bg-white p-3 rounded">
+                        <label class="text-sm font-semibold text-gray-700 block mb-1">1. Derek has 60 days from March 31 to enroll in new coverage. What is his deadline?</label>
+                        <input type="text" class="w-full border border-gray-300 rounded p-2" placeholder="Date">
+                    </div>
+                    <div class="bg-white p-3 rounded">
+                        <label class="text-sm font-semibold text-gray-700 block mb-1">2. Derek's former employer offers COBRA at $580/month. Why so high?</label>
+                        <textarea class="w-full border border-gray-300 rounded p-2" rows="2" placeholder="Explain COBRA pricing"></textarea>
+                    </div>
+                    <div class="bg-white p-3 rounded">
+                        <label class="text-sm font-semibold text-gray-700 block mb-1">3. Derek checks healthcare.gov. His income for the rest of the year will be ~$0 (unemployed). Does he qualify for Medicaid?</label>
+                        <input type="text" class="w-full border border-gray-300 rounded p-2" placeholder="Depends on state - explain">
+                    </div>
+                    <div class="bg-white p-3 rounded">
+                        <label class="text-sm font-semibold text-gray-700 block mb-2">4. Which option should Derek choose?</label>
+                        <div class="space-y-1">
+                            <label class="flex items-center"><input type="radio" name="derek" class="mr-2"> COBRA at $580/month</label>
+                            <label class="flex items-center"><input type="radio" name="derek" class="mr-2"> Marketplace Silver plan with subsidy (estimated $50-$150/month depending on subsidy)</label>
+                            <label class="flex items-center"><input type="radio" name="derek" class="mr-2"> Medicaid if eligible (no premium)</label>
+                            <label class="flex items-center"><input type="radio" name="derek" class="mr-2"> Go uninsured until he finds a new job</label>
+                        </div>
+                    </div>
+                    <div class="bg-white p-3 rounded">
+                        <label class="text-sm font-semibold text-gray-700 block mb-1">5. What happens if Derek misses his 60-day window entirely?</label>
+                        <textarea class="w-full border border-gray-300 rounded p-2" rows="2" placeholder="Explain consequences"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Portfolio Deliverable -->
+            <div class="bg-indigo-50 p-4 rounded-lg">
+                <h3 class="font-bold text-indigo-900 mb-3">Portfolio Deliverable: My Coverage Timeline</h3>
+                <p class="text-sm text-gray-700 mb-3">Write a "My Coverage Timeline" listing 3 life events from this station that are likely to apply to you in the next 10 years. For each event, write what you'll need to do when it happens.</p>
+                <div class="space-y-3">
+                    <div class="bg-white p-3 rounded">
+                        <label class="text-sm font-semibold text-gray-700 block mb-1">Life Event 1:</label>
+                        <textarea class="w-full border border-gray-300 rounded p-2" rows="2" placeholder="Example: Turning 26 → 60 days before my birthday, check employer coverage options..."></textarea>
+                    </div>
+                    <div class="bg-white p-3 rounded">
+                        <label class="text-sm font-semibold text-gray-700 block mb-1">Life Event 2:</label>
+                        <textarea class="w-full border border-gray-300 rounded p-2" rows="2" placeholder="Your second likely life event and action plan"></textarea>
+                    </div>
+                    <div class="bg-white p-3 rounded">
+                        <label class="text-sm font-semibold text-gray-700 block mb-1">Life Event 3:</label>
+                        <textarea class="w-full border border-gray-300 rounded p-2" rows="2" placeholder="Your third likely life event and action plan"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <button onclick="completeStation(4)" class="mt-4 bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2 rounded-lg font-semibold transition">Complete Station 4</button>
+        </section>
+
+        <!-- Final Reflection -->
+        <section class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-bold text-gray-900 mb-4">🤔 Final Reflection</h2>
+
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-gray-700 font-semibold mb-2">What is one thing you learned today that you think most adults your age don't know about health insurance? Why does that gap exist?</label>
+                    <textarea class="w-full p-3 border border-gray-300 rounded focus:ring-2 focus:ring-indigo-500" rows="4" placeholder="Write 3-4 sentences"></textarea>
+                </div>
+            </div>
+        </section>
+
+        <!-- Summary -->
+        <section class="bg-indigo-50 border-l-4 border-indigo-500 p-6 mb-8 rounded-r">
+            <h2 class="text-xl font-bold text-indigo-900 mb-3">🎯 Learning Lab Summary</h2>
+            <div class="text-gray-800 space-y-2">
+                <p>✅ Calculated real plan costs and discovered that premiums alone don't tell the full story</p>
+                <p>✅ Navigated the marketplace subsidy system and learned that income determines what you pay</p>
+                <p>✅ Compared HDHP+HSA vs. traditional plans for different life situations—the "right" answer depends entirely on your health needs</p>
+                <p>✅ Mapped Special Enrollment Periods to understand that life events create coverage windows you can't afford to miss</p>
+            </div>
+            <div class="bg-white p-4 rounded mt-4">
+                <p class="font-semibold text-indigo-900">Key Takeaway:</p>
+                <p class="text-gray-700">The skills you practiced today—cost comparison, subsidy calculation, plan matching to health status, and SEP timeline tracking—are the exact skills you'll need when you turn 26, start a job, have a child, or experience any qualifying life event. Save your portfolio deliverables. You'll need them sooner than you think.</p>
+            </div>
+        </section>
+
+        <!-- Navigation -->
+        <div class="flex justify-between items-center">
+            <a href="day1.html" class="bg-gray-200 hover:bg-gray-300 px-6 py-3 rounded-lg font-semibold transition">← Day 1: Content</a>
+            <a href="#" class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-lg font-semibold transition">Next Lesson →</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8 mt-12">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-gray-400">© 2025 PFL Academy | L-72: Understanding Health Insurance - Learning Lab</p>
+            <p class="text-sm text-gray-500 mt-2">Financial literacy for the modern student.</p>
+        </div>
+    </footer>
+
+    <script>
+        let completedStations = new Set();
+
+        function completeStation(num) {
+            completedStations.add(num);
+            document.querySelector(`[data-step="${num}"]`).classList.add('completed');
+            document.getElementById('progressText').textContent = `${completedStations.size}/4 Stations Complete`;
+
+            // Scroll to next station
+            if (num < 4) {
+                const nextStation = document.querySelectorAll('.activity-card')[num];
+                if (nextStation) {
+                    nextStation.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set first step as active
+            document.querySelector('[data-step="1"]').classList.add('active');
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-72: Understanding Health Insurance - Student Activity Packet</title>
+    <style>
+        @media print {
+            @page {
+                margin: 0.75in;
+            }
+            body {
+                font-size: 11pt;
+            }
+            .page-break {
+                page-break-before: always;
+            }
+            .no-break {
+                page-break-inside: avoid;
+            }
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 8.5in;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #1a237e;
+            font-size: 24pt;
+            margin-bottom: 10px;
+            text-align: center;
+            border-bottom: 3px solid #1a237e;
+            padding-bottom: 10px;
+        }
+
+        h2 {
+            color: #3949ab;
+            font-size: 18pt;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #3949ab;
+            padding-bottom: 5px;
+        }
+
+        h3 {
+            color: #5c6bc0;
+            font-size: 14pt;
+            margin-top: 15px;
+            margin-bottom: 8px;
+        }
+
+        h4 {
+            color: #333;
+            font-size: 12pt;
+            margin-top: 10px;
+            margin-bottom: 5px;
+        }
+
+        .header-box {
+            border: 2px solid #1a237e;
+            padding: 15px;
+            margin-bottom: 20px;
+            background-color: #e8eaf6;
+        }
+
+        .instruction-box {
+            border: 2px solid #7986cb;
+            padding: 10px;
+            margin: 15px 0;
+            background-color: #f5f5f5;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+
+        th, td {
+            border: 1px solid #333;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #e8eaf6;
+            font-weight: bold;
+        }
+
+        .worksheet-line {
+            border-bottom: 1px solid #999;
+            min-height: 30px;
+            margin: 10px 0;
+        }
+
+        .checkbox {
+            display: inline-block;
+            width: 15px;
+            height: 15px;
+            border: 1px solid #333;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+
+        ul {
+            margin: 10px 0;
+            padding-left: 30px;
+        }
+
+        .station-box {
+            border: 3px solid #3949ab;
+            padding: 15px;
+            margin: 20px 0;
+        }
+
+        .profile-box {
+            border: 2px solid #9fa8da;
+            padding: 12px;
+            margin: 10px 0;
+            background-color: #fafafa;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Title Page -->
+    <div class="header-box">
+        <h1>L-72: Understanding Health Insurance</h1>
+        <h2 style="text-align: center; border: none; margin-top: 10px;">Day 2 Learning Lab - Student Activity Packet</h2>
+        <p style="text-align: center; font-size: 12pt; margin: 10px 0;">
+            <strong>Name:</strong> _______________________________________________
+            <strong>Date:</strong> ___________________
+        </p>
+    </div>
+
+    <!-- Station 1 -->
+    <div class="station-box no-break">
+        <h2>Station 1: Health Plan Cost Calculator</h2>
+
+        <div class="instruction-box">
+            <strong>Purpose:</strong> Discover that the cheapest-premium plan is not always the cheapest plan overall.
+        </div>
+
+        <h3>The Three Plans:</h3>
+        <table>
+            <tr>
+                <th>Feature</th>
+                <th>Plan A (Gold PPO)</th>
+                <th>Plan B (Silver PPO)</th>
+                <th>Plan C (Bronze HDHP)</th>
+            </tr>
+            <tr>
+                <td>Premium (monthly/annual)</td>
+                <td>$280/month<br>($3,360/year)</td>
+                <td>$160/month<br>($1,920/year)</td>
+                <td>$80/month<br>($960/year)</td>
+            </tr>
+            <tr>
+                <td>Deductible</td>
+                <td>$500</td>
+                <td>$1,500</td>
+                <td>$3,000</td>
+            </tr>
+            <tr>
+                <td>Copay</td>
+                <td>$20</td>
+                <td>$35</td>
+                <td>None (pay full cost until deductible)</td>
+            </tr>
+            <tr>
+                <td>Coinsurance (after deductible)</td>
+                <td>10%</td>
+                <td>20%</td>
+                <td>30%</td>
+            </tr>
+            <tr>
+                <td>Out-of-Pocket Maximum</td>
+                <td>$2,000</td>
+                <td>$4,000</td>
+                <td>$6,000</td>
+            </tr>
+        </table>
+
+        <h3>The Three Scenarios:</h3>
+        <ul>
+            <li><strong>Scenario A — Healthy Year:</strong> One annual physical (preventive, covered at 100%), one urgent care visit with X-ray ($350 total bill)</li>
+            <li><strong>Scenario B — Moderate Year:</strong> Four primary care visits ($600), one specialist visit ($250), one MRI ($3,500), prescriptions ($480). Total bills: $4,830</li>
+            <li><strong>Scenario C — High-Need Year:</strong> Emergency appendectomy with 2-day hospital stay ($22,000), follow-up care and medications ($1,500). Total bills: $23,500</li>
+        </ul>
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- Station 1 Calculation Grid -->
+    <h2>Station 1: Calculation Grid</h2>
+    <table>
+        <tr>
+            <th>Scenario</th>
+            <th>Plan A Total Cost</th>
+            <th>Plan B Total Cost</th>
+            <th>Plan C Total Cost</th>
+            <th>Winner</th>
+        </tr>
+        <tr>
+            <td>Healthy Year (A)</td>
+            <td><div class="worksheet-line"></div></td>
+            <td><div class="worksheet-line"></div></td>
+            <td><div class="worksheet-line"></div></td>
+            <td><div class="worksheet-line"></div></td>
+        </tr>
+        <tr>
+            <td>Moderate Year (B)</td>
+            <td><div class="worksheet-line"></div></td>
+            <td><div class="worksheet-line"></div></td>
+            <td><div class="worksheet-line"></div></td>
+            <td><div class="worksheet-line"></div></td>
+        </tr>
+        <tr>
+            <td>High-Need Year (C)</td>
+            <td><div class="worksheet-line"></div></td>
+            <td><div class="worksheet-line"></div></td>
+            <td><div class="worksheet-line"></div></td>
+            <td><div class="worksheet-line"></div></td>
+        </tr>
+    </table>
+
+    <h3>Reflection Questions:</h3>
+    <p><strong>1. Which plan had the cheapest premium? Did it win in any scenarios?</strong></p>
+    <div class="worksheet-line"></div>
+    <div class="worksheet-line"></div>
+
+    <p><strong>2. Under what circumstances would you choose Plan C over Plan A?</strong></p>
+    <div class="worksheet-line"></div>
+    <div class="worksheet-line"></div>
+
+    <p><strong>3. Write a 2-sentence summary: "Plan C is the cheapest if... but Plan A is the cheapest if..."</strong></p>
+    <div class="worksheet-line"></div>
+    <div class="worksheet-line"></div>
+
+    <div class="page-break"></div>
+
+    <!-- Station 2 -->
+    <div class="station-box">
+        <h2>Station 2: ACA Marketplace Navigator</h2>
+
+        <div class="instruction-box">
+            <strong>Purpose:</strong> Learn that lower income = larger subsidies, and understand the metal tier system.
+        </div>
+
+        <h3>Key Information:</h3>
+        <ul>
+            <li><strong>2025 Federal Poverty Level (FPL):</strong> $15,060 for single adult; $20,440 for 2-person household; $30,900 for family of 4</li>
+            <li><strong>Subsidy eligibility:</strong> Income between 100-400% FPL</li>
+            <li><strong>Medicaid eligibility:</strong> In expansion states, adults up to 138% FPL may qualify</li>
+            <li><strong>Metal Tiers:</strong> Bronze (~60% coverage), Silver (~70%), Gold (~80%), Platinum (~90%)</li>
+        </ul>
+    </div>
+
+    <div class="profile-box no-break">
+        <h3>Person 1: Alex</h3>
+        <p>Single adult, age 24 | Income: $20,000/year | No employer coverage | Generally healthy, sees doctor 2-3 times/year</p>
+
+        <p><strong>What percentage of FPL is Alex at?</strong> _______________________________</p>
+        <p><strong>Does Alex qualify for marketplace subsidies?</strong> _______________________________</p>
+        <p><strong>In a Medicaid expansion state, would Alex qualify for Medicaid?</strong> _______________________________</p>
+        <p><strong>Recommended metal tier & why:</strong></p>
+        <div class="worksheet-line"></div>
+        <div class="worksheet-line"></div>
+    </div>
+
+    <div class="profile-box no-break">
+        <h3>Person 2: Jordan</h3>
+        <p>Single adult, age 29 | Income: $35,000/year | Employer offers coverage but employee share is $420/month (14% of income) | Has asthma, needs regular prescriptions</p>
+
+        <p><strong>What percentage of FPL is Jordan at?</strong> _______________________________</p>
+        <p><strong>Does employer coverage count as "affordable" under ACA rules? (Hint: threshold is 9.5% of income)</strong> _______________________________</p>
+        <p><strong>Can Jordan use the marketplace instead?</strong> _______________________________</p>
+        <p><strong>Recommended metal tier & why:</strong></p>
+        <div class="worksheet-line"></div>
+        <div class="worksheet-line"></div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <div class="profile-box no-break">
+        <h3>Person 3: Taylor (family of 3)</h3>
+        <p>Two adults + one child, ages 31, 33, 4 | Combined household income: $55,000/year | No employer coverage | Child has no ongoing health issues; adults generally healthy</p>
+
+        <p><strong>What percentage of FPL is this family at?</strong> _______________________________</p>
+        <p><strong>Do they qualify for marketplace subsidies?</strong> _______________________________</p>
+        <p><strong>Would their child qualify for CHIP? (CHIP typically covers children in households up to 200-300% FPL)</strong> _______________________________</p>
+        <p><strong>Recommended metal tier & why:</strong></p>
+        <div class="worksheet-line"></div>
+        <div class="worksheet-line"></div>
+    </div>
+
+    <div class="profile-box no-break">
+        <h3>Person 4: Casey</h3>
+        <p>Single adult, age 27 | Income: $65,000/year | Employer offers affordable coverage ($180/month for employee, $450/month for family) | Currently healthy, no dependents</p>
+
+        <p><strong>What percentage of FPL is Casey at?</strong> _______________________________</p>
+        <p><strong>Does Casey qualify for marketplace subsidies?</strong> _______________________________</p>
+        <p><strong>Should Casey take employer coverage or shop the marketplace?</strong> _______________________________</p>
+        <p><strong>If using employer plan, recommended tier & why:</strong></p>
+        <div class="worksheet-line"></div>
+        <div class="worksheet-line"></div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- Station 3 -->
+    <div class="station-box">
+        <h2>Station 3: HSA vs. FSA vs. Neither Decision Tool</h2>
+
+        <div class="instruction-box">
+            <strong>Purpose:</strong> Understand when the HDHP/HSA combination makes mathematical sense.
+        </div>
+
+        <h3>Background:</h3>
+        <ul>
+            <li><strong>HSA:</strong> Only available with HDHP. Triple tax advantage. Funds roll over indefinitely. 2025 limit: $4,300 individual.</li>
+            <li><strong>FSA:</strong> Available with any non-HDHP plan. Pre-tax contributions but use-it-or-lose-it annually. 2025 limit: $3,200.</li>
+        </ul>
+    </div>
+
+    <div class="profile-box no-break">
+        <h3>Profile A: Riley, Age 24</h3>
+        <p>Income: $38,000/year (22% tax bracket) | Health status: Generally healthy, doctor visits 2x/year, no regular medications | Savings: $2,000 emergency fund</p>
+        <p><strong>Employer offers:</strong> HDHP: $90/month premium, $2,500 deductible, HSA-eligible | PPO: $190/month premium, $750 deductible, FSA-eligible</p>
+
+        <p><strong>1. Calculate annual premium difference:</strong> _______________________________</p>
+        <p><strong>2. Estimate likely out-of-pocket costs (2 visits @ $150 each):</strong> _______________________________</p>
+        <p><strong>3. If Riley maxes HSA contribution ($4,300), tax savings at 22%:</strong> _______________________________</p>
+        <p><strong>4. Total annual cost under HDHP (premiums + OOP - tax savings):</strong> _______________________________</p>
+        <p><strong>5. Total annual cost under PPO (premiums + OOP):</strong> _______________________________</p>
+        <p><strong>6. Recommendation & Why:</strong></p>
+        <div class="worksheet-line"></div>
+        <div class="worksheet-line"></div>
+    </div>
+
+    <div class="profile-box no-break">
+        <h3>Profile B: Morgan, Age 28</h3>
+        <p>Income: $52,000/year (22% tax bracket) | Health status: Type 1 diabetes, sees endocrinologist quarterly | Medications: Insulin and testing supplies ($400/month = $4,800/year)</p>
+        <p><strong>Employer offers:</strong> HDHP: $90/month premium, $2,500 deductible, HSA-eligible | PPO: $190/month premium, $750 deductible, copays $30 for doctor/$10 for generics</p>
+
+        <p><strong>1. Under HDHP: Morgan hits $2,500 deductible after how many months of insulin costs?</strong> _______________________________</p>
+        <p><strong>2. Annual premium: HDHP vs. PPO:</strong> _______________________________</p>
+        <p><strong>3. Estimated OOP under HDHP:</strong> _______________________________</p>
+        <p><strong>4. Estimated OOP under PPO:</strong> _______________________________</p>
+        <p><strong>5. Recommendation & Why:</strong></p>
+        <div class="worksheet-line"></div>
+        <div class="worksheet-line"></div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <div class="profile-box no-break">
+        <h3>Profile C: Drew, Age 31</h3>
+        <p>Income: $45,000/year (22% tax bracket) | Health status: Pregnant, first child expected in 6 months | Currently on PPO, open enrollment coming up</p>
+        <p><strong>Employer offers:</strong> HDHP: $90/month premium, $2,500 deductible, HSA-eligible | PPO: $190/month premium, $750 deductible, $3,000 OOP max</p>
+
+        <p><strong>1. Pregnancy and delivery typically cost $10,000-$15,000 before insurance. Under HDHP: What happens?</strong></p>
+        <div class="worksheet-line"></div>
+        <div class="worksheet-line"></div>
+
+        <p><strong>2. Under PPO: What happens?</strong></p>
+        <div class="worksheet-line"></div>
+        <div class="worksheet-line"></div>
+
+        <p><strong>3. Which plan results in lower total annual cost for a high-medical-use year?</strong> _______________________________</p>
+        <p><strong>4. Recommendation & Why:</strong></p>
+        <div class="worksheet-line"></div>
+        <div class="worksheet-line"></div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- Station 4 -->
+    <div class="station-box">
+        <h2>Station 4: Special Enrollment Period & Life Events Checklist</h2>
+
+        <div class="instruction-box">
+            <strong>Purpose:</strong> Understand that coverage decisions are not annual—major life events create new enrollment windows, and missing those windows has real consequences.
+        </div>
+    </div>
+
+    <h3>Life Events Table:</h3>
+    <table>
+        <tr>
+            <th>Life Event</th>
+            <th>Triggers SEP?<br>(Yes/No)</th>
+            <th>Window Length</th>
+        </tr>
+        <tr>
+            <td>Turning 26 and losing parent's coverage</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Getting married</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Having or adopting a child</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Moving to a new state</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Losing a job and employer coverage</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Getting a raise</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Starting a new job that offers coverage</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Voluntarily dropping coverage</td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+
+    <div class="no-break">
+        <h3>Scenario Walk-Through 1: Sofia Turns 26</h3>
+        <p>Sofia turns 26 on April 15. She doesn't realize this is a qualifying event. She's uninsured from April 15 onward. On June 10 she breaks her wrist skateboarding and goes to the ER.</p>
+
+        <p><strong>1. When did Sofia's SEP window open?</strong> _______________________________</p>
+        <p><strong>2. When did it close?</strong> _______________________________</p>
+        <p><strong>3. On June 10, is Sofia still within her SEP window?</strong> _______________________________</p>
+        <p><strong>4. What would an uninsured ER visit with X-rays and a cast typically cost?</strong> _______________________________</p>
+
+        <p><strong>5. If not within SEP window, what are Sofia's options? (Check all that apply)</strong></p>
+        <p><span class="checkbox"></span> Enroll in marketplace coverage immediately</p>
+        <p><span class="checkbox"></span> Wait until next open enrollment (November)</p>
+        <p><span class="checkbox"></span> Apply for emergency Medicaid (depends on state and income)</p>
+        <p><span class="checkbox"></span> Negotiate a payment plan with the hospital for the uninsured bill</p>
+    </div>
+
+    <div class="page-break"></div>
+
+    <div class="no-break">
+        <h3>Scenario Walk-Through 2: Derek Loses His Job</h3>
+        <p>Derek loses his job on March 1. His employer coverage ends March 31. He made $48,000/year before losing the job.</p>
+
+        <p><strong>1. Derek has 60 days from March 31 to enroll in new coverage. What is his deadline?</strong> _______________________________</p>
+
+        <p><strong>2. Derek's former employer offers COBRA at $580/month. Why so high?</strong></p>
+        <div class="worksheet-line"></div>
+        <div class="worksheet-line"></div>
+
+        <p><strong>3. Derek checks healthcare.gov. His income for the rest of the year will be ~$0 (unemployed). Does he qualify for Medicaid?</strong></p>
+        <div class="worksheet-line"></div>
+        <div class="worksheet-line"></div>
+
+        <p><strong>4. Which option should Derek choose?</strong></p>
+        <p><span class="checkbox"></span> COBRA at $580/month</p>
+        <p><span class="checkbox"></span> Marketplace Silver plan with subsidy (estimated $50-$150/month depending on subsidy)</p>
+        <p><span class="checkbox"></span> Medicaid if eligible (no premium)</p>
+        <p><span class="checkbox"></span> Go uninsured until he finds a new job</p>
+
+        <p><strong>5. What happens if Derek misses his 60-day window entirely?</strong></p>
+        <div class="worksheet-line"></div>
+        <div class="worksheet-line"></div>
+    </div>
+
+    <div class="no-break">
+        <h3>Portfolio Deliverable: My Coverage Timeline</h3>
+        <p>List 3 life events from this station that are likely to apply to you in the next 10 years. For each event, write what you'll need to do when it happens.</p>
+
+        <p><strong>Life Event 1:</strong></p>
+        <div class="worksheet-line"></div>
+        <div class="worksheet-line"></div>
+        <div class="worksheet-line"></div>
+
+        <p><strong>Life Event 2:</strong></p>
+        <div class="worksheet-line"></div>
+        <div class="worksheet-line"></div>
+        <div class="worksheet-line"></div>
+
+        <p><strong>Life Event 3:</strong></p>
+        <div class="worksheet-line"></div>
+        <div class="worksheet-line"></div>
+        <div class="worksheet-line"></div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- Final Reflection -->
+    <div class="station-box">
+        <h2>Final Reflection</h2>
+        <p><strong>What is one thing you learned today that you think most adults your age don't know about health insurance? Why does that gap exist?</strong></p>
+        <div class="worksheet-line"></div>
+        <div class="worksheet-line"></div>
+        <div class="worksheet-line"></div>
+        <div class="worksheet-line"></div>
+        <div class="worksheet-line"></div>
+    </div>
+
+</body>
+</html>
