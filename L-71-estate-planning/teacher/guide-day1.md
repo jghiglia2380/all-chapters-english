@@ -65,14 +65,14 @@ By the end of this lesson, students will be able to:
    - State law determines who inherits using rigid formulas
    - Rarely aligns with individual preferences
    - Court appoints administrator and guardians
-   - **STATE NOTE**: {{STATE_NAME}} intestacy laws prioritize [typical state succession order]
+   - **STATE NOTE**: Research and explain {{STATE_NAME}}'s intestacy succession order (typically: spouse first, then children, then parents, then siblings)
 
 3. **Probate**
    - Court-supervised process of validating will, paying debts, distributing assets
    - Public process (anyone can access records)
    - Costly (typically 3-7% of estate value)
    - Time-consuming (6 months to 2+ years)
-   - **STATE NOTE**: In {{STATE_NAME}}, probate costs and timelines vary by county but typically [state-specific details]
+   - **STATE NOTE**: Research {{STATE_NAME}}'s probate costs and timelines for your county (generally 3-7% of estate value, 6-18 months)
 
 4. **Trust**
    - Legal arrangement: trustee holds assets for beneficiaries
@@ -129,8 +129,8 @@ Create a comparison chart showing two paths: Death WITH Will vs. Death WITHOUT W
    - "What would a simple will have cost versus the outcome?" ($300 will vs. Emma losing everything)
 
 3. **State-Specific Application**:
-   - "In {{STATE_NAME}}, if you die without a will and have a spouse and children, here's what happens: [explain state formula]"
-   - "If you have no spouse or children: [explain next in line per state law]"
+   - "In {{STATE_NAME}}, if you die without a will and have a spouse and children, here's what happens: [research and explain your state's specific distribution formula]"
+   - "If you have no spouse or children: [explain your state's succession order—typically parents, then siblings, then extended family]"
    - "This is why planning matters—the state formula rarely matches what people actually want."
 
 4. **Guardian Designation Emphasis** (Critical for this age group):
