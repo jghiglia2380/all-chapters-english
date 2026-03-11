@@ -73,7 +73,7 @@
 - ✅ All learning objectives defined and addressed
 - ✅ All 4 Day 2 activities have complete data
 - ✅ Comprehensive teacher facilitation guides
-- ✅ State variable integration (STATE_NAME only)
+- ✅ State variable integration (STATE_NAME, STATE_ESTATE_TAX only)
 - ✅ No overlap with L-68 tax content
 - ⏳ HTML implementation pending
 - ⏳ Slide deck creation pending
@@ -82,6 +82,7 @@
 
 ### Variables Used (Correctly Limited)
 - **{{STATE_NAME}}**: Used in headers, examples, state-specific guidance
+- **{{STATE_ESTATE_TAX}}**: Used for estate/inheritance tax information
 
 ### Variables NOT Created (Per Requirements)
 - No custom state variables

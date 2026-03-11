@@ -28,6 +28,7 @@ By the end of this lesson, students will be able to:
 ## Preparation
 1. Review student-facing content thoroughly
 2. **STATE-SPECIFIC DATA** (automatically populated for {{STATE_NAME}}):
+   - {{STATE_ESTATE_TAX}}: Estate/inheritance tax information for your state
    - {{STATE_NAME}}: Your state's specific probate and intestacy laws
    - Resources: State bar association's free estate planning guides
 3. Prepare visual aids showing document relationships (will + POA + healthcare directive)
@@ -364,7 +365,7 @@ Present scenario:
 **STATE-SPECIFIC Resources:**
 - {{STATE_NAME}} intestacy law summary: [State bar association URL]
 - {{STATE_NAME}} healthcare directive form: [State health department URL]
-- {{STATE_NAME}} estate tax information: Research if your state has estate or inheritance taxes (most states do not; those that do typically have thresholds of $5-13 million)
+- {{STATE_NAME}} estate tax information: {{STATE_ESTATE_TAX}}
 - {{STATE_NAME}} probate court locations and procedures: [State court website]
 - Free legal clinics in {{STATE_NAME}}: [State-specific resources]
 
@@ -398,7 +399,7 @@ This lesson addresses death, incapacity, and family tragedy. Students may have p
 ## State-Specific Customization Checklist
 
 State-specific information for {{STATE_NAME}} (automatically populated):
-- [ ] Research if your state has estate/inheritance taxes (most states do not; those that do typically have thresholds of $5-13 million)
+- [x] Estate/inheritance tax rules: {{STATE_ESTATE_TAX}}
 - [x] Intestacy law summary for classroom discussion
 - [ ] Research typical probate costs and timelines in your county
 - [ ] Locate free healthcare directive forms from state health department
