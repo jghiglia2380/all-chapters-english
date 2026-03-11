@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<!--
+PFL Academy State-Agnostic Template
+L-Chapter: L-70
+Chapter Title: Factors of Production
+Oklahoma Reference: Chapter X.X
+
+Variables used in this template:
+- {{STATE_NAME}} - Full state name (e.g., Kentucky, Georgia)
+- {{CHAPTER_NUMBER}} - State-specific chapter number (e.g., 2.1, 1.4)
+- {{CHAPTER_ID}} - L-chapter identifier (e.g., L-70)
+- {{CHAPTER_TITLE}} - Always: Factors of Production
+
+This template will be processed by generate_state_html.py to create
+state-specific versions with correct chapter numbering.
+-->
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-70 Teacher Guide</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+        :root {
+            --primary: #059669;
+            --primary-light: #ecfdf5;
+            --primary-dark: #065f46;
+            --text-dark: #1e293b;
+            --text-medium: #475569;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --bg-light: #f8fafc;
+            --warning: #f59e0b;
+            --warning-light: #fef3c7;
+            --error: #dc2626;
+            --error-light: #fee2e2;
+            --success-light: #dcfce7;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+        @page { size: letter; margin: 0.5in; }
+        body { font-family: 'Open Sans', sans-serif; font-size: 10pt; line-height: 1.45; color: var(--text-dark); background: white; }
+
+        .header { background: var(--primary); color: white; padding: 14px 18px; border-radius: 6px; margin-bottom: 16px; }
+        .header h1 { font-size: 13pt; font-weight: 700; margin: 0; }
+        .header h2 { font-size: 10pt; font-weight: 400; margin: 3px 0 0; opacity: 0.9; }
+
+        .section-header { background: var(--primary-light); border-left: 4px solid var(--primary); padding: 7px 12px; font-size: 10pt; font-weight: 700; color: var(--primary-dark); text-transform: uppercase; letter-spacing: 0.5px; margin: 16px 0 10px; }
+
+        .overview-table { width: 100%; border-collapse: collapse; margin-bottom: 14px; }
+        .overview-table th { background: var(--bg-light); color: var(--text-light); font-size: 8pt; text-transform: uppercase; letter-spacing: 0.5px; text-align: center; padding: 6px 10px; border: 1px solid var(--border); width: 33%; }
+        .overview-table td { text-align: center; padding: 10px; border: 1px solid var(--border); font-weight: 600; color: var(--text-dark); font-size: 10pt; }
+
+        .flow-container { margin-bottom: 14px; }
+        .flow-item { display: flex; padding: 8px 0; border-bottom: 1px solid var(--border); page-break-inside: avoid; }
+        .flow-item:last-child { border-bottom: none; }
+        .flow-time { width: 65px; font-weight: 700; color: var(--primary); flex-shrink: 0; font-size: 10pt; }
+        .flow-content { flex: 1; }
+        .flow-title { font-weight: 700; color: var(--text-dark); margin-bottom: 3px; font-size: 10pt; }
+        .flow-content ul { margin: 0; padding-left: 16px; font-size: 9pt; color: var(--text-medium); }
+        .flow-content li { margin-bottom: 2px; }
+
+        .diff-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px; }
+        .diff-box { background: var(--bg-light); border: 1px solid var(--border); border-radius: 4px; padding: 10px 12px; }
+        .diff-title { font-weight: 700; color: var(--text-dark); margin-bottom: 6px; font-size: 9pt; }
+        .diff-box ul { margin: 0; padding-left: 16px; font-size: 9pt; color: var(--text-medium); }
+        .diff-box li { margin-bottom: 2px; }
+
+        .answer-key { page-break-before: always; }
+        .answer-block { margin-bottom: 12px; page-break-inside: avoid; }
+        .answer-title { font-weight: 700; color: var(--primary); font-size: 9pt; border-bottom: 1px solid #a7f3d0; padding-bottom: 3px; margin-bottom: 6px; }
+        .answer-item { margin-bottom: 5px; font-size: 9pt; color: var(--text-dark); }
+        .answer-item strong { color: var(--primary-dark); }
+
+        .calc-display { font-family: 'Courier New', monospace; background: var(--bg-light); padding: 8px 10px; border-radius: 4px; margin: 6px 0; font-size: 8.5pt; line-height: 1.5; white-space: pre-line; }
+
+        .misconception-table { width: 100%; border-collapse: collapse; font-size: 9pt; margin-top: 10px; }
+        .misconception-table th { padding: 6px 10px; text-align: left; font-weight: 600; }
+        .misconception-table th:first-child { background: var(--error-light); color: #991b1b; border: 1px solid #fca5a5; width: 40%; }
+        .misconception-table th:last-child { background: var(--success-light); color: #166534; border: 1px solid #86efac; }
+        .misconception-table td { padding: 6px 10px; border: 1px solid var(--border); vertical-align: top; color: var(--text-medium); }
+
+        .footer { margin-top: 20px; padding-top: 8px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; font-size: 8pt; color: var(--text-light); }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>PFL Academy</h1>
+        <h2>Teacher Guide: Chapter 70 — Factors of Production</h2>
+    </div>
+
+    <div class="section-header">Overview</div>
+    <table class="overview-table">
+        <tr><th>Time</th><th>Materials</th><th>Prerequisites</th></tr>
+        <tr><td>45-50 Minutes</td><td>Student Activity Packet</td><td>None (foundational economics concept)</td></tr>
+    </table>
+
+    <div class="section-header">Lesson Flow</div>
+    <div class="flow-container">
+        <div class="flow-item">
+            <div class="flow-time">5 min</div>
+            <div class="flow-content">
+                <div class="flow-title">THE CHALLENGE</div>
+                <ul>
+                    <li>Use smartphone example—emphasize global supply chain and factor coordination.</li>
+                    <li>Discussion: "What resources went into your phone? Who worked on it? What tools were used?"</li>
+                    <li>Introduce: These inputs are called the four factors of production.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="flow-item">
+            <div class="flow-time">10 min</div>
+            <div class="flow-content">
+                <div class="flow-title">CORE CONCEPTS</div>
+                <ul>
+                    <li>Explain each factor systematically: Land (natural resources), Labor (human effort), Capital (tools/equipment NOT money), Entrepreneurship (risk/innovation).</li>
+                    <li>Emphasize factor payments: Rent, Wages, Interest, Profit—every dollar of income comes from one of these.</li>
+                    <li>Quick check: "Is money a factor of production?" (Answer: No! Capital means physical tools, not cash.)</li>
+                </ul>
+            </div>
+        </div>
+        <div class="flow-item">
+            <div class="flow-time">25-30 min</div>
+            <div class="flow-content">
+                <div class="flow-title">APPLY IT</div>
+                <ul>
+                    <li><strong>Part A (8 min):</strong> Factor classification—ensure students understand Land includes intangible resources (fishing rights, sunlight), Entrepreneurship is risk/innovation not just work.</li>
+                    <li><strong>Part B (10 min):</strong> Coffee shop analysis—students calculate profit as revenue minus ALL factor costs. Emphasize profit is what's LEFT.</li>
+                    <li><strong>Part C (8 min):</strong> Personal contribution—make it real: "YOU are a factor! Your wages come from providing labor. Education increases your labor's value."</li>
+                    <li><strong>Part D (7 min):</strong> Business design—students must specify all four factors. Check that they understand every business needs all four.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="flow-item">
+            <div class="flow-time">5 min</div>
+            <div class="flow-content">
+                <div class="flow-title">CHECK YOUR UNDERSTANDING</div>
+                <ul>
+                    <li>Q2 (human capital/labor) and Q3 (entrepreneurial risk) are the key conceptual questions.</li>
+                    <li>Q4 personal reflection should produce concrete actions (e.g., "earn a certification," "take an economics course").</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-header">Differentiation</div>
+    <div class="diff-grid">
+        <div class="diff-box">
+            <div class="diff-title">Support</div>
+            <ul>
+                <li>Focus on concrete examples: Land = dirt/location, Labor = workers, Capital = machines, Entrepreneurship = business owner.</li>
+                <li>Use color-coded factor boxes to reinforce categories visually.</li>
+                <li>Provide calculation guidance: "Add rent + wages + interest + other. Then subtract from revenue."</li>
+                <li>For Part D, suggest simple businesses: lawn care, tutoring, babysitting.</li>
+            </ul>
+        </div>
+        <div class="diff-box">
+            <div class="diff-title">Extension</div>
+            <ul>
+                <li>Research factor productivity: How much revenue does each factor generate per dollar spent?</li>
+                <li>Compare factor-intensive industries: Why is tech labor-intensive while farming is land/capital-intensive?</li>
+                <li>Analyze automation: How does replacing labor with capital change factor payments?</li>
+                <li>Interview local business owner: Map their actual factor usage and costs.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="answer-key">
+        <div class="section-header">Answer Key</div>
+
+        <div class="answer-block">
+            <div class="answer-title">Part A: Factor Classification</div>
+            <div class="answer-item"><strong>1.</strong> Ocean fishing rights = <strong>L</strong> (Land—natural resource, even if intangible)</div>
+            <div class="answer-item"><strong>2.</strong> Factory robot arm = <strong>C</strong> (Capital—human-made production tool)</div>
+            <div class="answer-item"><strong>3.</strong> Software developer = <strong>LAB</strong> (Labor—human mental effort)</div>
+            <div class="answer-item"><strong>4.</strong> Business owner's vision = <strong>E</strong> (Entrepreneurship—innovation and strategic thinking)</div>
+            <div class="answer-item"><strong>5.</strong> Crude oil deposit = <strong>L</strong> (Land—natural resource)</div>
+            <div class="answer-item"><strong>6.</strong> Delivery truck = <strong>C</strong> (Capital—human-made equipment for production)</div>
+            <div class="answer-item"><strong>7.</strong> Registered nurse = <strong>LAB</strong> (Labor—human effort and skills)</div>
+            <div class="answer-item"><strong>8.</strong> Starting a food truck = <strong>E</strong> (Entrepreneurship—taking risk to start business)</div>
+            <div class="answer-item"><strong>9.</strong> Sunlight for solar panels = <strong>L</strong> (Land—natural resource/energy source)</div>
+            <div class="answer-item"><strong>10.</strong> Cash register system = <strong>C</strong> (Capital—tool used in production/sales)</div>
+            <div class="answer-item"><strong>11.</strong> Manager's expertise = <strong>LAB</strong> (Labor—unless they own the business, it's their work effort)</div>
+            <div class="answer-item"><strong>12.</strong> Risk of business failure = <strong>E</strong> (Entrepreneurship—bearing risk is the entrepreneur's defining role)</div>
+        </div>
+
+        <div class="answer-block">
+            <div class="answer-title">Part B: Business Factor Analysis</div>
+            <div class="calc-display">Total Costs = $3,000 + $12,000 + $400 + $8,000 = $23,400
+
+Entrepreneur's Profit = $31,200 - $23,400 = $7,800/month</div>
+            <div class="answer-item"><strong>Which factor costs the MOST?</strong> Labor (Wages at $12,000/month—over 50% of costs). This is typical for service businesses.</div>
+            <div class="answer-item"><strong>How could owner increase profit?</strong> Possible answers: Increase prices (if demand allows), attract more customers (increase volume), reduce waste/costs, improve labor productivity, negotiate lower rent, optimize employee scheduling.</div>
+        </div>
+
+        <div class="answer-block">
+            <div class="answer-title">Part C: Your Personal Factor Contribution</div>
+            <div class="answer-item"><strong>Example Calculation:</strong> If student works retail at $15/hour for 20 hours/week:</div>
+            <div class="calc-display">Weekly Income = $15 × 20 = $300
+Annual Labor Income = $300 × 52 = $15,600</div>
+            <div class="answer-item"><strong>Human Capital:</strong> If student plans to earn bachelor's degree (+50% boost), projected annual income = $15,600 × 1.50 = $23,400</div>
+            <div class="answer-item"><strong>Capital Income:</strong> If student has $500 savings at 4% APY: $500 × 0.04 = $20/year (illustrates why young people rely primarily on labor income—small savings generate minimal capital income initially)</div>
+        </div>
+
+        <div class="answer-block">
+            <div class="answer-title">Part D: Design Your Business</div>
+            <div class="answer-item"><strong>Evaluation Criteria:</strong> Business plan should include ALL FOUR factors with specific details. Check that students understand:</div>
+            <div class="answer-item">• <strong>Land:</strong> Specific location type and realistic rent estimate</div>
+            <div class="answer-item">• <strong>Labor:</strong> Number of employees and realistic payroll</div>
+            <div class="answer-item">• <strong>Capital:</strong> Specific equipment/tools needed and investment amount</div>
+            <div class="answer-item">• <strong>Entrepreneurship:</strong> Clear innovation/value proposition and acknowledgment of risk</div>
+            <div class="answer-item"><strong>Red Flags:</strong> Missing any factor, unrealistic numbers ($100/month rent for retail space), confusing money with capital</div>
+        </div>
+
+        <div class="answer-block">
+            <div class="answer-title">Check Your Understanding</div>
+            <div class="answer-item"><strong>1. Why capital ≠ money?</strong> Capital in economics means <em>physical productive resources</em> (machines, buildings, tools) that are used to make other goods. Money is used to BUY capital, but money itself doesn't produce anything. A factory (capital) produces goods; cash in a vault does not.</div>
+            <div class="answer-item"><strong>2.</strong> B (human capital; labor). Education is an investment in <strong>human</strong> capital—the skills/knowledge embodied in people—which increases the value and productivity of your <strong>labor</strong>.</div>
+            <div class="answer-item"><strong>3. Why profit comes last:</strong> Entrepreneurs must pay all other factors (rent, wages, interest) FIRST. Profit is what's LEFT OVER after everyone else gets paid. This means entrepreneurs bear the risk—if revenue is too low, there may be NO profit or even a loss. This risk is why profit is the entrepreneur's payment for taking chances.</div>
+            <div class="answer-item"><strong>4. Personal action (examples):</strong> "Enroll in dual-enrollment courses to start college credits," "Learn a marketable skill (coding, welding, medical certification)," "Apply for scholarships to afford college," "Get a part-time job to build work experience," "Save 10% of earnings to start building capital."</div>
+        </div>
+
+        <div class="section-header">Common Misconceptions</div>
+        <table class="misconception-table">
+            <tr><th>Misconception</th><th>Clarification</th></tr>
+            <tr><td>"Capital means money or financial resources."</td><td>In economics, capital means <strong>physical productive assets</strong> (machines, buildings, tools). Money is used to purchase capital, but cash itself is not a factor of production. When economists say "capital," they mean equipment, not dollars.</td></tr>
+            <tr><td>"Land just means dirt or farmland."</td><td>Land includes ALL natural resources: physical space (real estate locations), extracted resources (oil, minerals, timber), water, sunlight, wind, and even intangible rights (fishing rights, mineral rights). If it exists in nature before humans touch it, it's land.</td></tr>
+            <tr><td>"Entrepreneurs always earn profit."</td><td>NO—entrepreneurs earn profit ONLY if revenue exceeds all costs. If costs are higher than revenue, the entrepreneur takes a <strong>loss</strong>. Profit is the reward for successful risk-taking, but losses are the consequence of unsuccessful ventures. About 20% of businesses fail in year one.</td></tr>
+            <tr><td>"Labor only means physical work."</td><td>Labor includes BOTH physical and mental effort. A software developer's coding, a teacher's lesson planning, a nurse's patient care, and a construction worker's physical labor are ALL labor. It's any human effort applied to production.</td></tr>
+            <tr><td>"Only business owners are entrepreneurs."</td><td>While business owners are the clearest example, entrepreneurship can also include <strong>intrapreneurs</strong> (innovative employees who take risks within companies) or anyone who combines resources in new ways. The key elements are <strong>innovation, risk-taking, and organizing factors</strong>.</td></tr>
+        </table>
+    </div>
+
+    <div class="footer">
+        <span>&copy; PFL Academy | pflacademy.co</span>
+        <span>Teacher Guide: Chapter 70</span>
+    </div>
+
+</body>
+</html>

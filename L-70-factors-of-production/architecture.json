@@ -1,0 +1,20 @@
+{
+  "l_chapter": 70,
+  "title": "Factors of Production",
+  "description": "A foundational exploration of the four factors of production—land, labor, capital, and entrepreneurship—and how they combine to create economic value, with analysis of factor payments (rent, wages, interest, profit) and their role in income distribution and wealth creation.",
+  "learning_objectives": [
+    "Define and identify the four factors of production: land, labor, capital, and entrepreneurship",
+    "Explain how factor payments (rent, wages, interest, profit) compensate resource owners",
+    "Analyze how businesses combine factors of production to create value and generate income",
+    "Evaluate personal earning potential through the lens of factor contribution and human capital development",
+    "Make informed decisions about career, education, and entrepreneurship based on factor analysis"
+  ],
+  "content_density": "standard",
+  "template_format": "standard",
+  "day1_day2_connection": "complementary",
+  "skill_builder": {
+    "id": "business_builder_factor_analyzer",
+    "title": "The Business Builder",
+    "description": "An interactive tool where students balance Labor (Employees) and Capital (Robots/Machinery) to maximize production output, exploring how different factor combinations affect costs, productivity, and efficiency."
+  }
+}

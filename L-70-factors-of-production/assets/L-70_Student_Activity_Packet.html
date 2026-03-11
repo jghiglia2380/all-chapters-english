@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<!--
+PFL Academy State-Agnostic Template
+L-Chapter: L-70
+Chapter Title: Factors of Production
+Oklahoma Reference: Chapter X.X
+
+Variables used in this template:
+- {{STATE_NAME}} - Full state name (e.g., Kentucky, Georgia)
+- {{CHAPTER_NUMBER}} - State-specific chapter number (e.g., 2.1, 1.4)
+- {{CHAPTER_ID}} - L-chapter identifier (e.g., L-70)
+- {{CHAPTER_TITLE}} - Always: Factors of Production
+
+This template will be processed by generate_state_html.py to create
+state-specific versions with correct chapter numbering.
+-->
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{STATE_NAME}} Chapter {{CHAPTER_NUMBER}}: Factors of Production - Student Activity Packet</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+        :root {
+            --primary: #10b981;
+            --primary-light: #ecfdf5;
+            --accent: #f59e0b;
+            --accent-light: #fef3c7;
+            --success: #059669;
+            --text-dark: #1e293b;
+            --text-medium: #475569;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --bg-light: #f8fafc;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+        @page { size: letter; margin: 0.5in; }
+        body { font-family: 'Open Sans', sans-serif; font-size: 10.5pt; line-height: 1.5; color: var(--text-dark); background: white; }
+
+        .header { background: var(--primary); color: white; padding: 14px 18px; border-radius: 6px; margin-bottom: 18px; display: flex; justify-content: space-between; align-items: center; }
+        .header-left h1 { font-size: 13pt; font-weight: 700; margin: 0; }
+        .header-left h2 { font-size: 10pt; font-weight: 400; margin: 2px 0 0; opacity: 0.9; }
+        .header-right { font-size: 9pt; text-align: right; opacity: 0.9; }
+
+        .section-header { font-size: 11pt; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 2px solid var(--primary); padding-bottom: 4px; margin: 20px 0 12px; }
+
+        .challenge-box { background: var(--accent-light); border-left: 4px solid var(--accent); padding: 14px 16px; margin-bottom: 16px; border-radius: 0 6px 6px 0; }
+        .challenge-box p { font-style: italic; color: var(--text-dark); margin-bottom: 10px; }
+        .challenge-box .framing-question { font-weight: 600; font-style: normal; color: #92400e; }
+
+        .objectives-box { background: var(--primary-light); border: 1px solid #a7f3d0; border-radius: 6px; padding: 12px 16px; margin-bottom: 18px; }
+        .objectives-box h3 { font-size: 10pt; font-weight: 700; color: var(--primary); margin-bottom: 6px; }
+        .objectives-box ul { margin: 0; padding-left: 20px; }
+        .objectives-box li { margin-bottom: 3px; color: var(--text-medium); }
+
+        .terms-table { width: 100%; border-collapse: collapse; margin-bottom: 14px; font-size: 10pt; }
+        .terms-table th { background: var(--bg-light); text-align: left; padding: 8px 10px; border: 1px solid var(--border); font-weight: 600; color: var(--text-medium); }
+        .terms-table td { padding: 8px 10px; border: 1px solid var(--border); vertical-align: top; }
+        .terms-table td:first-child { font-weight: 600; color: var(--primary); width: 22%; }
+
+        .background-box { background: var(--bg-light); border: 1px solid var(--border); border-radius: 6px; padding: 12px 16px; margin-bottom: 18px; font-size: 10pt; color: var(--text-medium); }
+        .background-box strong { color: var(--text-dark); }
+
+        .scenario-card { background: white; border: 1px solid var(--border); border-radius: 6px; padding: 12px 14px; margin-bottom: 14px; page-break-inside: avoid; }
+        .scenario-title { font-weight: 700; color: var(--primary); margin-bottom: 6px; font-size: 10pt; }
+        .scenario-description { color: var(--text-medium); margin-bottom: 10px; font-size: 10pt; }
+
+        .response-line { display: flex; align-items: baseline; margin-bottom: 8px; }
+        .response-label { font-weight: 600; color: var(--text-dark); margin-right: 8px; white-space: nowrap; }
+        .response-blank { flex-grow: 1; border-bottom: 1px solid var(--text-light); min-height: 18px; }
+
+        .data-table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 10pt; }
+        .data-table th { background: var(--primary); color: white; padding: 8px 10px; text-align: center; font-weight: 600; font-size: 9pt; }
+        .data-table td { padding: 8px 10px; border: 1px solid var(--border); text-align: center; }
+        .data-table tr:nth-child(even) td { background: var(--bg-light); }
+
+        .question { margin-bottom: 14px; page-break-inside: avoid; }
+        .question-number { font-weight: 700; color: var(--text-dark); }
+        .question-text { color: var(--text-dark); margin-bottom: 6px; }
+        .answer-lines { margin-top: 6px; }
+        .answer-line { border-bottom: 1px solid var(--text-light); height: 22px; margin-bottom: 4px; }
+
+        .calc-box { border: 1px solid var(--border); border-radius: 4px; padding: 12px; margin: 8px 0; min-height: 60px; background: var(--bg-light); }
+        .calc-label { font-size: 9pt; color: var(--text-light); margin-bottom: 4px; }
+        .calc-answer { margin-top: 10px; font-weight: 600; }
+
+        .mc-options { margin-top: 6px; margin-left: 20px; }
+        .mc-option { display: flex; align-items: center; margin-bottom: 4px; }
+        .mc-checkbox { width: 14px; height: 14px; border: 1px solid var(--text-light); border-radius: 2px; margin-right: 8px; flex-shrink: 0; }
+
+        .hint-box { background: #f0fdf4; border-left: 3px solid var(--success); padding: 8px 12px; margin: 10px 0; font-size: 9pt; font-style: italic; color: #166534; }
+        .hint-box strong { font-style: normal; }
+
+        .part-header { font-weight: 700; font-size: 10pt; color: var(--primary); text-transform: uppercase; margin: 16px 0 10px; padding-bottom: 4px; border-bottom: 1px solid var(--border); }
+
+        .footer { margin-top: 24px; padding-top: 10px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; font-size: 9pt; color: var(--text-light); }
+
+        .factor-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 12px 0; }
+        .factor-box { border: 2px solid var(--border); border-radius: 6px; padding: 10px; text-align: center; min-height: 80px; }
+        .factor-box.land { border-color: #fbbf24; background: #fef3c7; }
+        .factor-box.labor { border-color: #3b82f6; background: #dbeafe; }
+        .factor-box.capital { border-color: #8b5cf6; background: #ede9fe; }
+        .factor-box.entrepreneurship { border-color: #10b981; background: #d1fae5; }
+        .factor-icon { font-size: 24pt; margin-bottom: 4px; }
+        .factor-title { font-weight: 700; font-size: 9pt; margin-bottom: 3px; }
+        .factor-payment { font-size: 8pt; color: var(--text-medium); }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="header-left">
+            <h1>PFL Academy</h1>
+            <h2>Chapter 70: Factors of Production</h2>
+        </div>
+        <div class="header-right">Student Activity Packet</div>
+    </div>
+
+    <div class="section-header">The Challenge</div>
+    <div class="challenge-box">
+        <p>Think about your smartphone. It didn't appear out of thin air. Creating it required resources from <strong>over 30 countries</strong>, the labor of <strong>thousands of workers</strong>, billions in factory equipment, and visionary entrepreneurs who risked everything to bring it to market. Economists organize all these inputs into four categories called the <strong>Factors of Production</strong>.</p>
+        <p class="framing-question">How can understanding these four factors help you make better decisions about your career, education, and potential to start a business—and ultimately increase your earning potential?</p>
+    </div>
+
+    <div class="objectives-box">
+        <h3>Learning Objectives</h3>
+        <ul>
+            <li>Define and identify the four factors of production: land, labor, capital, and entrepreneurship</li>
+            <li>Explain how factor payments (rent, wages, interest, profit) compensate resource owners</li>
+            <li>Analyze how businesses combine factors to create value and generate income</li>
+            <li>Evaluate your personal earning potential through factor contribution and human capital development</li>
+        </ul>
+    </div>
+
+    <div class="section-header">Core Concepts</div>
+
+    <table class="terms-table">
+        <tr><th>Factor</th><th>Definition</th><th>Payment</th></tr>
+        <tr>
+            <td>Land</td>
+            <td>All natural resources including physical space, minerals, water, forests, and anything that exists in nature before humans do anything with it.</td>
+            <td>Rent</td>
+        </tr>
+        <tr>
+            <td>Labor</td>
+            <td>All human effort—both physical and mental work applied to production. Includes everything from manual work to intellectual creativity.</td>
+            <td>Wages/Salaries</td>
+        </tr>
+        <tr>
+            <td>Capital</td>
+            <td>Human-made resources used to produce other goods and services. Includes factories, equipment, tools, and machinery. NOT money!</td>
+            <td>Interest</td>
+        </tr>
+        <tr>
+            <td>Entrepreneurship</td>
+            <td>The ability to combine land, labor, and capital in new ways to create value. Involves risk-taking, innovation, and organizing all other factors.</td>
+            <td>Profit</td>
+        </tr>
+    </table>
+
+    <div class="background-box">
+        <strong>Background:</strong> Every economy uses these four factors to produce goods and services. Understanding them helps explain <strong>income distribution</strong>—why some people earn more than others. Your income comes from providing one or more of these factors: most young people provide <strong>labor</strong> (wages), but you can eventually provide <strong>capital</strong> (interest from savings/investments) or become an <strong>entrepreneur</strong> (profit from business ownership).
+    </div>
+
+    <div class="section-header">Apply It</div>
+
+    <div class="part-header">Part A: Factor Classification</div>
+
+    <p style="margin-bottom: 10px;">For each resource below, identify which factor of production it represents. Write <strong>L</strong> (Land), <strong>LAB</strong> (Labor), <strong>C</strong> (Capital), or <strong>E</strong> (Entrepreneurship).</p>
+
+    <table style="width: 100%; border-collapse: collapse; margin-bottom: 16px;">
+        <tr>
+            <td style="padding: 6px; border: 1px solid var(--border); width: 50%;">1. Ocean fishing rights ____</td>
+            <td style="padding: 6px; border: 1px solid var(--border);">7. Registered nurse ____</td>
+        </tr>
+        <tr>
+            <td style="padding: 6px; border: 1px solid var(--border);">2. Factory robot arm ____</td>
+            <td style="padding: 6px; border: 1px solid var(--border);">8. Starting a food truck ____</td>
+        </tr>
+        <tr>
+            <td style="padding: 6px; border: 1px solid var(--border);">3. Software developer ____</td>
+            <td style="padding: 6px; border: 1px solid var(--border);">9. Sunlight for solar panels ____</td>
+        </tr>
+        <tr>
+            <td style="padding: 6px; border: 1px solid var(--border);">4. Business owner's vision ____</td>
+            <td style="padding: 6px; border: 1px solid var(--border);">10. Cash register system ____</td>
+        </tr>
+        <tr>
+            <td style="padding: 6px; border: 1px solid var(--border);">5. Crude oil deposit ____</td>
+            <td style="padding: 6px; border: 1px solid var(--border);">11. Manager's expertise ____</td>
+        </tr>
+        <tr>
+            <td style="padding: 6px; border: 1px solid var(--border);">6. Delivery truck ____</td>
+            <td style="padding: 6px; border: 1px solid var(--border);">12. Risk of business failure ____</td>
+        </tr>
+    </table>
+
+    <div class="part-header">Part B: Business Factor Analysis</div>
+
+    <div class="scenario-card">
+        <div class="scenario-title">{{STATE_NAME}} Coffee Shop Analysis</div>
+        <div class="scenario-description">A downtown coffee shop uses all four factors. Analyze its monthly factor payments and calculate the entrepreneur's profit.</div>
+
+        <table class="data-table">
+            <tr><th>Factor</th><th>Description</th><th>Monthly Payment</th></tr>
+            <tr>
+                <td style="text-align: left; font-weight: 600;">🌍 Land (Rent)</td>
+                <td style="text-align: left;">Downtown retail space, 1,200 sq ft</td>
+                <td>$3,000</td>
+            </tr>
+            <tr>
+                <td style="text-align: left; font-weight: 600;">👷 Labor (Wages)</td>
+                <td style="text-align: left;">1 manager + 3 baristas (~160 hours/week total)</td>
+                <td>$12,000</td>
+            </tr>
+            <tr>
+                <td style="text-align: left; font-weight: 600;">🏭 Capital (Interest)</td>
+                <td style="text-align: left;">Espresso machines, grinders, furniture ($50K loan @ 7%)</td>
+                <td>$400</td>
+            </tr>
+            <tr>
+                <td style="text-align: left; font-weight: 600;">📦 Other Costs</td>
+                <td style="text-align: left;">Coffee beans, milk, pastries, utilities, insurance</td>
+                <td>$8,000</td>
+            </tr>
+            <tr style="background: #f0fdf4;">
+                <td style="text-align: left; font-weight: 700;">💰 Revenue</td>
+                <td style="text-align: left;">Average ticket $8 × 150 customers/day × 26 days</td>
+                <td style="font-weight: 700;">$31,200</td>
+            </tr>
+        </table>
+
+        <div class="calc-box">
+            <div class="calc-label">Calculate total costs: Rent + Wages + Interest + Other =</div>
+            <div class="calc-answer">Total Costs: $__________</div>
+        </div>
+
+        <div class="calc-box">
+            <div class="calc-label">Calculate profit: Revenue - Total Costs =</div>
+            <div class="calc-answer">💡 Entrepreneur's Profit: $__________</div>
+        </div>
+
+        <div class="response-line">
+            <span class="response-label">Which factor costs the MOST?</span>
+            <span class="response-blank"></span>
+        </div>
+        <div class="response-line">
+            <span class="response-label">How could the owner increase profit?</span>
+            <span class="response-blank"></span>
+        </div>
+    </div>
+
+    <div class="part-header">Part C: Your Personal Factor Contribution</div>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Calculate Your Economic Contribution</div>
+        <div class="scenario-description">YOU are a factor of production! Most students provide <strong>labor</strong> now or in the future. Calculate your earning potential.</div>
+
+        <p style="font-weight: 600; margin-bottom: 8px;">1. Your Labor Income:</p>
+        <div class="response-line">
+            <span class="response-label">Current or target job:</span>
+            <span class="response-blank"></span>
+        </div>
+        <div class="response-line">
+            <span class="response-label">Hourly wage (current or expected):</span>
+            <span class="response-blank"></span>
+        </div>
+        <div class="response-line">
+            <span class="response-label">Hours per week:</span>
+            <span class="response-blank"></span>
+        </div>
+
+        <div class="calc-box">
+            <div class="calc-label">Calculate weekly income: Wage × Hours =</div>
+            <div class="calc-answer">Weekly Income: $__________</div>
+        </div>
+
+        <div class="calc-box">
+            <div class="calc-label">Calculate annual income: Weekly × 52 weeks =</div>
+            <div class="calc-answer">Annual Labor Income: $__________</div>
+        </div>
+
+        <p style="font-weight: 600; margin: 12px 0 8px;">2. Human Capital Investment:</p>
+        <p style="font-size: 9pt; margin-bottom: 8px;">Education and skills increase your labor value. Check all that apply (or will apply):</p>
+        <div style="margin-left: 20px; font-size: 9pt;">
+            <div>☐ High school diploma (baseline)</div>
+            <div>☐ Some college (+15% wage boost)</div>
+            <div>☐ Associate's degree (+30% wage boost)</div>
+            <div>☐ Bachelor's degree (+50% wage boost)</div>
+            <div>☐ Professional certifications (+10% boost)</div>
+            <div>☐ Specialized skills training (+5% boost)</div>
+        </div>
+
+        <div class="hint-box">
+            <strong>Key Insight:</strong> Investing in your human capital (education, skills, certifications) is the single most powerful way to increase your lifetime earnings. A bachelor's degree can boost wages by 50% or more compared to high school alone.
+        </div>
+
+        <p style="font-weight: 600; margin: 12px 0 8px;">3. Capital Income (from savings):</p>
+        <div class="response-line">
+            <span class="response-label">Current savings balance:</span>
+            <span class="response-blank"></span>
+        </div>
+        <div class="response-line">
+            <span class="response-label">Interest rate (APY):</span>
+            <span class="response-blank"></span>
+        </div>
+
+        <div class="calc-box">
+            <div class="calc-label">Calculate interest earned: Savings × Interest Rate =</div>
+            <div class="calc-answer">Annual Capital Income: $__________</div>
+        </div>
+    </div>
+
+    <div class="part-header">Part D: Design Your Business</div>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Your {{STATE_NAME}} Business Plan</div>
+        <div class="scenario-description">Become an entrepreneur! Design a business that uses all four factors efficiently.</div>
+
+        <div class="response-line">
+            <span class="response-label">Business Name:</span>
+            <span class="response-blank"></span>
+        </div>
+        <div class="response-line">
+            <span class="response-label">Business Type:</span>
+            <span class="response-blank"></span>
+        </div>
+        <div class="response-line">
+            <span class="response-label">Problem it solves:</span>
+            <span class="response-blank"></span>
+        </div>
+
+        <div class="factor-grid">
+            <div class="factor-box land">
+                <div class="factor-icon">🌍</div>
+                <div class="factor-title">LAND</div>
+                <div class="factor-payment">→ Rent</div>
+            </div>
+            <div class="factor-box labor">
+                <div class="factor-icon">👷</div>
+                <div class="factor-title">LABOR</div>
+                <div class="factor-payment">→ Wages</div>
+            </div>
+            <div class="factor-box capital">
+                <div class="factor-icon">🏭</div>
+                <div class="factor-title">CAPITAL</div>
+                <div class="factor-payment">→ Interest</div>
+            </div>
+            <div class="factor-box entrepreneurship">
+                <div class="factor-icon">💡</div>
+                <div class="factor-title">ENTREPRENEUR</div>
+                <div class="factor-payment">→ Profit</div>
+            </div>
+        </div>
+
+        <p style="font-weight: 600; margin: 10px 0 6px;">🌍 Land Requirements:</p>
+        <div class="response-line">
+            <span class="response-label">Location type:</span>
+            <span class="response-blank"></span>
+        </div>
+        <div class="response-line">
+            <span class="response-label">Monthly rent estimate:</span>
+            <span class="response-blank"></span>
+        </div>
+
+        <p style="font-weight: 600; margin: 10px 0 6px;">👷 Labor Requirements:</p>
+        <div class="response-line">
+            <span class="response-label">Number of employees:</span>
+            <span class="response-blank"></span>
+        </div>
+        <div class="response-line">
+            <span class="response-label">Monthly payroll estimate:</span>
+            <span class="response-blank"></span>
+        </div>
+
+        <p style="font-weight: 600; margin: 10px 0 6px;">🏭 Capital Requirements:</p>
+        <div class="response-line">
+            <span class="response-label">Equipment needed:</span>
+            <span class="response-blank"></span>
+        </div>
+        <div class="response-line">
+            <span class="response-label">Total investment:</span>
+            <span class="response-blank"></span>
+        </div>
+
+        <p style="font-weight: 600; margin: 10px 0 6px;">💡 Your Entrepreneurship:</p>
+        <div class="response-line">
+            <span class="response-label">Unique innovation:</span>
+            <span class="response-blank"></span>
+        </div>
+        <div class="response-line">
+            <span class="response-label">Target monthly profit:</span>
+            <span class="response-blank"></span>
+        </div>
+    </div>
+
+    <div class="section-header">Check Your Understanding</div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">1.</span> Why is "capital" in economics NOT the same as money?</p>
+        <div class="answer-lines"><div class="answer-line"></div><div class="answer-line"></div></div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">2.</span> A college degree is an investment in _____________ capital, which increases the value of your _____________ (factor of production).</p>
+        <div class="mc-options">
+            <div class="mc-option"><div class="mc-checkbox"></div> A. physical; entrepreneurship</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> B. human; labor</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> C. financial; capital</div>
+            <div class="mc-option"><div class="mc-checkbox"></div> D. social; land</div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">3.</span> Why does an entrepreneur earn profit only AFTER paying rent, wages, and interest? What does this reveal about entrepreneurial risk?</p>
+        <div class="answer-lines"><div class="answer-line"></div><div class="answer-line"></div><div class="answer-line"></div></div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">4.</span> <strong>Reflection:</strong> Based on your personal factor contribution analysis (Part C), what ONE action could you take in the next year to increase your future earning potential? Be specific.</p>
+        <div class="answer-lines"><div class="answer-line"></div><div class="answer-line"></div><div class="answer-line"></div></div>
+    </div>
+
+    <div class="footer">
+        <span>&copy; PFL Academy | pflacademy.co</span>
+        <span>Chapter 70: Factors of Production</span>
+    </div>
+
+</body>
+</html>
