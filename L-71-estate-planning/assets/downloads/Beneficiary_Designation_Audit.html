@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<!--
+PFL Academy Standalone Activity Tool
+L-Chapter: L-71 - Introduction to Estate Planning
+Activity: Beneficiary Designation Audit
+State-Agnostic Template - Uses {{STATE_NAME}}
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beneficiary Designation Audit - L-71</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @media print {
+            .no-print { display: none; }
+            body { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 p-4 md:p-8">
+    <div class="max-w-6xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
+        <!-- Header -->
+        <div class="bg-rose-600 text-white p-6">
+            <h1 class="text-3xl font-bold">Beneficiary Designation Audit</h1>
+            <p class="text-rose-100 mt-2">Beneficiary designations TRUMP wills—ensure yours are correct</p>
+        </div>
+
+        <!-- Key Concept -->
+        <div class="p-6 bg-rose-50 border-b border-rose-200">
+            <h2 class="text-xl font-bold text-gray-800 mb-3">Critical Principle</h2>
+            <div class="bg-white rounded-lg p-5 border-l-4 border-rose-600">
+                <p class="text-gray-800 font-semibold mb-2">Beneficiary designations override your will—they control distribution regardless of what your will says.</p>
+                <p class="text-sm text-gray-600">For most people, largest assets (retirement accounts, life insurance) pass by beneficiary designation, not will. A perfect will is worthless if your beneficiaries are wrong.</p>
+            </div>
+        </div>
+
+        <!-- Case Study Selector -->
+        <div class="p-6 bg-gray-50 border-b border-gray-200 no-print">
+            <label class="block text-sm font-semibold text-gray-700 mb-3">Analyze Common Beneficiary Mistakes:</label>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <button onclick="loadCase(1)" class="p-4 bg-white border-2 border-gray-300 rounded-lg hover:border-rose-500 hover:shadow-md transition text-left">
+                    <div class="font-bold text-gray-800">Case 1: The Forgotten Ex-Spouse</div>
+                    <div class="text-sm text-gray-600 mt-1">Never updated after divorce</div>
+                </button>
+                <button onclick="loadCase(2)" class="p-4 bg-white border-2 border-gray-300 rounded-lg hover:border-rose-500 hover:shadow-md transition text-left">
+                    <div class="font-bold text-gray-800">Case 2: Minor Children Named Directly</div>
+                    <div class="text-sm text-gray-600 mt-1">Lump sum to 18-year-old</div>
+                </button>
+                <button onclick="loadCase(3)" class="p-4 bg-white border-2 border-gray-300 rounded-lg hover:border-rose-500 hover:shadow-md transition text-left">
+                    <div class="font-bold text-gray-800">Case 3: "My Estate" as Beneficiary</div>
+                    <div class="text-sm text-gray-600 mt-1">Forced into probate</div>
+                </button>
+                <button onclick="loadCase(4)" class="p-4 bg-white border-2 border-gray-300 rounded-lg hover:border-rose-500 hover:shadow-md transition text-left">
+                    <div class="font-bold text-gray-800">Case 4: No Contingent Beneficiaries</div>
+                    <div class="text-sm text-gray-600 mt-1">Primary predeceased = probate</div>
+                </button>
+            </div>
+        </div>
+
+        <!-- Case Study Content -->
+        <div id="caseContent" class="hidden">
+            <div class="p-6 border-b border-gray-200">
+                <h2 class="text-2xl font-bold text-gray-800 mb-3" id="caseTitle"></h2>
+                <div class="bg-gray-50 rounded-lg p-5 mb-6">
+                    <h3 class="font-bold text-gray-800 mb-2">Situation:</h3>
+                    <div id="caseSituation" class="text-gray-700"></div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div class="bg-red-50 rounded-lg p-5 border border-red-200">
+                        <h3 class="font-bold text-red-800 mb-3">What Happened (The Mistake)</h3>
+                        <div id="caseOutcome" class="text-sm text-gray-700"></div>
+                    </div>
+                    <div class="bg-green-50 rounded-lg p-5 border border-green-200">
+                        <h3 class="font-bold text-green-800 mb-3">Better Approach</h3>
+                        <div id="caseBetter" class="text-sm text-gray-700"></div>
+                    </div>
+                </div>
+
+                <div class="bg-amber-50 border-l-4 border-amber-500 rounded-lg p-5 mb-6">
+                    <h3 class="font-bold text-gray-800 mb-2">Cost of This Mistake:</h3>
+                    <div id="caseCost" class="text-gray-700"></div>
+                </div>
+
+                <div class="bg-blue-50 rounded-lg p-5">
+                    <h3 class="font-bold text-gray-800 mb-2">Lesson Learned:</h3>
+                    <div id="caseLesson" class="text-gray-700"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Practice Scenarios -->
+        <div class="p-6 border-b border-gray-200">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">Practice: Proper Beneficiary Planning</h2>
+            <p class="text-gray-600 mb-6">For each life situation, determine appropriate beneficiary designations:</p>
+
+            <div class="space-y-6">
+                <!-- Practice A -->
+                <div class="bg-white border border-gray-300 rounded-lg p-5">
+                    <h3 class="font-bold text-gray-800 mb-2">Situation A: Single, Age 25, $15K in 401(k), Dating but Not Engaged</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">Primary Beneficiary:</label>
+                            <input type="text" class="w-full p-2 border border-gray-300 rounded" placeholder="Your recommendation">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">Contingent Beneficiary:</label>
+                            <input type="text" class="w-full p-2 border border-gray-300 rounded" placeholder="Your recommendation">
+                        </div>
+                    </div>
+                    <div class="mt-3 p-3 bg-gray-50 rounded text-sm text-gray-600">
+                        <strong>Recommended:</strong> Primary = Parents (or siblings); Contingent = Other family. DON'T name boyfriend/girlfriend unless engaged.
+                    </div>
+                </div>
+
+                <!-- Practice B -->
+                <div class="bg-white border border-gray-300 rounded-lg p-5">
+                    <h3 class="font-bold text-gray-800 mb-2">Situation B: Married, Ages 30/32, Two Young Children, $200K Retirement, $250K Life Insurance Each</h3>
+                    <div class="space-y-3 mt-4">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">Retirement Accounts - Primary:</label>
+                            <input type="text" class="w-full p-2 border border-gray-300 rounded" placeholder="Your recommendation">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">Retirement Accounts - Contingent:</label>
+                            <input type="text" class="w-full p-2 border border-gray-300 rounded" placeholder="Your recommendation">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">Life Insurance - Primary:</label>
+                            <input type="text" class="w-full p-2 border border-gray-300 rounded" placeholder="Your recommendation">
+                        </div>
+                    </div>
+                    <div class="mt-3 p-3 bg-gray-50 rounded text-sm text-gray-600">
+                        <strong>Recommended:</strong> Retirement Primary = Spouse (tax benefits), Contingent = TRUST for children (NOT children directly). Life Insurance Primary = TRUST for children.
+                    </div>
+                </div>
+
+                <!-- Practice C -->
+                <div class="bg-white border border-gray-300 rounded-lg p-5">
+                    <h3 class="font-bold text-gray-800 mb-2">Situation C: Recently Divorced Parent, Age 37, $180K Retirement, $500K Life Insurance, 10-Year-Old Child</h3>
+                    <div class="mb-3 p-3 bg-red-100 border border-red-300 rounded">
+                        <strong class="text-red-800">URGENT ACTION NEEDED:</strong> All beneficiaries currently list ex-spouse!
+                    </div>
+                    <div class="space-y-3 mt-4">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">Immediate Change - All Accounts Primary:</label>
+                            <input type="text" class="w-full p-2 border border-gray-300 rounded" placeholder="Your recommendation">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">Contingent Beneficiary:</label>
+                            <input type="text" class="w-full p-2 border border-gray-300 rounded" placeholder="Your recommendation">
+                        </div>
+                    </div>
+                    <div class="mt-3 p-3 bg-gray-50 rounded text-sm text-gray-600">
+                        <strong>Recommended:</strong> Primary = TRUST for child; Contingent = Child's guardian or grandparents. This is #1 priority after divorce!
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Personal Audit Checklist -->
+        <div class="p-6 border-b border-gray-200">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">Your Personal Beneficiary Audit Checklist</h2>
+
+            <div class="space-y-6">
+                <!-- Step 1 -->
+                <div class="bg-blue-50 rounded-lg p-5">
+                    <h3 class="font-bold text-gray-800 mb-3">Step 1: List ALL Accounts with Beneficiary Designations</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
+                        <div class="flex items-center"><input type="checkbox" class="w-4 h-4 mr-2"><span class="text-sm">401(k) from current employer</span></div>
+                        <div class="flex items-center"><input type="checkbox" class="w-4 h-4 mr-2"><span class="text-sm">401(k) from previous employer</span></div>
+                        <div class="flex items-center"><input type="checkbox" class="w-4 h-4 mr-2"><span class="text-sm">Traditional IRA</span></div>
+                        <div class="flex items-center"><input type="checkbox" class="w-4 h-4 mr-2"><span class="text-sm">Roth IRA</span></div>
+                        <div class="flex items-center"><input type="checkbox" class="w-4 h-4 mr-2"><span class="text-sm">Life insurance policy #1</span></div>
+                        <div class="flex items-center"><input type="checkbox" class="w-4 h-4 mr-2"><span class="text-sm">Life insurance policy #2</span></div>
+                        <div class="flex items-center"><input type="checkbox" class="w-4 h-4 mr-2"><span class="text-sm">Group life insurance (employer)</span></div>
+                        <div class="flex items-center"><input type="checkbox" class="w-4 h-4 mr-2"><span class="text-sm">Payable-on-Death bank accounts</span></div>
+                        <div class="flex items-center"><input type="checkbox" class="w-4 h-4 mr-2"><span class="text-sm">Transfer-on-Death investment accounts</span></div>
+                        <div class="flex items-center"><input type="checkbox" class="w-4 h-4 mr-2"><span class="text-sm">Health Savings Account (HSA)</span></div>
+                        <div class="flex items-center"><input type="checkbox" class="w-4 h-4 mr-2"><span class="text-sm">Annuities</span></div>
+                        <div class="flex items-center"><input type="checkbox" class="w-4 h-4 mr-2"><span class="text-sm">Other: _______________</span></div>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="bg-amber-50 rounded-lg p-5">
+                    <h3 class="font-bold text-gray-800 mb-3">Step 2: Document Current Beneficiaries</h3>
+                    <table class="w-full text-sm">
+                        <thead class="bg-gray-200">
+                            <tr>
+                                <th class="p-2 text-left">Account</th>
+                                <th class="p-2 text-left">Primary</th>
+                                <th class="p-2 text-left">Contingent</th>
+                                <th class="p-2 text-left">Last Reviewed</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white">
+                            <tr class="border-b"><td class="p-2"><input type="text" class="w-full p-1 border border-gray-300 rounded text-xs"></td><td class="p-2"><input type="text" class="w-full p-1 border border-gray-300 rounded text-xs"></td><td class="p-2"><input type="text" class="w-full p-1 border border-gray-300 rounded text-xs"></td><td class="p-2"><input type="text" class="w-full p-1 border border-gray-300 rounded text-xs"></td></tr>
+                            <tr class="border-b"><td class="p-2"><input type="text" class="w-full p-1 border border-gray-300 rounded text-xs"></td><td class="p-2"><input type="text" class="w-full p-1 border border-gray-300 rounded text-xs"></td><td class="p-2"><input type="text" class="w-full p-1 border border-gray-300 rounded text-xs"></td><td class="p-2"><input type="text" class="w-full p-1 border border-gray-300 rounded text-xs"></td></tr>
+                            <tr class="border-b"><td class="p-2"><input type="text" class="w-full p-1 border border-gray-300 rounded text-xs"></td><td class="p-2"><input type="text" class="w-full p-1 border border-gray-300 rounded text-xs"></td><td class="p-2"><input type="text" class="w-full p-1 border border-gray-300 rounded text-xs"></td><td class="p-2"><input type="text" class="w-full p-1 border border-gray-300 rounded text-xs"></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="bg-red-50 rounded-lg p-5">
+                    <h3 class="font-bold text-gray-800 mb-3">Step 3: Red Flags - Update Needed If:</h3>
+                    <div class="space-y-2">
+                        <div class="flex items-center"><input type="checkbox" class="w-4 h-4 mr-2"><span class="text-sm">Ex-spouse still listed (if divorced)</span></div>
+                        <div class="flex items-center"><input type="checkbox" class="w-4 h-4 mr-2"><span class="text-sm">Deceased person listed</span></div>
+                        <div class="flex items-center"><input type="checkbox" class="w-4 h-4 mr-2"><span class="text-sm">Minor children named directly (not via trust)</span></div>
+                        <div class="flex items-center"><input type="checkbox" class="w-4 h-4 mr-2"><span class="text-sm">"My estate" listed as beneficiary</span></div>
+                        <div class="flex items-center"><input type="checkbox" class="w-4 h-4 mr-2"><span class="text-sm">No contingent beneficiaries</span></div>
+                        <div class="flex items-center"><input type="checkbox" class="w-4 h-4 mr-2"><span class="text-sm">Outdated after marriage/birth/major life change</span></div>
+                        <div class="flex items-center"><input type="checkbox" class="w-4 h-4 mr-2"><span class="text-sm">Haven't reviewed in 3+ years</span></div>
+                    </div>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="bg-green-50 rounded-lg p-5">
+                    <h3 class="font-bold text-gray-800 mb-3">Step 4: Update Plan</h3>
+                    <div class="space-y-2">
+                        <div class="flex items-center"><input type="checkbox" class="w-4 h-4 mr-2"><span class="text-sm">Request beneficiary change forms from custodians</span></div>
+                        <div class="flex items-center"><input type="checkbox" class="w-4 h-4 mr-2"><span class="text-sm">Create trust if needed (for minor children)</span></div>
+                        <div class="flex items-center"><input type="checkbox" class="w-4 h-4 mr-2"><span class="text-sm">Complete and submit updated forms</span></div>
+                        <div class="flex items-center"><input type="checkbox" class="w-4 h-4 mr-2"><span class="text-sm">Confirm receipt and filing</span></div>
+                        <div class="flex items-center"><input type="checkbox" class="w-4 h-4 mr-2"><span class="text-sm">Keep copies with estate planning documents</span></div>
+                    </div>
+                </div>
+
+                <!-- Step 5 -->
+                <div class="bg-purple-50 rounded-lg p-5">
+                    <h3 class="font-bold text-gray-800 mb-3">Step 5: Set Annual Review Reminder</h3>
+                    <div class="text-sm text-gray-700">
+                        <p class="mb-2">Set a calendar event for <strong>January 15</strong> every year: "Annual beneficiary designation review"</p>
+                        <p><strong>Also review immediately after:</strong> Marriage, divorce, births, deaths, new job/accounts</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Best Practices -->
+        <div class="p-6 bg-gray-50">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">Beneficiary Best Practices</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="bg-white rounded-lg p-4 border border-gray-300">
+                    <h3 class="font-bold text-gray-800 mb-2">✓ DO</h3>
+                    <ul class="text-sm text-gray-700 space-y-1">
+                        <li>• Review beneficiaries annually</li>
+                        <li>• Always name contingent beneficiaries</li>
+                        <li>• Update within 30 days of life events</li>
+                        <li>• Name individuals or trusts directly</li>
+                        <li>• Use trusts for minor children</li>
+                        <li>• Name spouse for retirement accounts (tax benefits)</li>
+                        <li>• Coordinate with overall estate plan</li>
+                    </ul>
+                </div>
+                <div class="bg-white rounded-lg p-4 border border-gray-300">
+                    <h3 class="font-bold text-gray-800 mb-2">✗ DON'T</h3>
+                    <ul class="text-sm text-gray-700 space-y-1">
+                        <li>• Name minor children directly</li>
+                        <li>• Name "my estate" as beneficiary</li>
+                        <li>• Forget to update after divorce</li>
+                        <li>• Leave contingent beneficiary blank</li>
+                        <li>• Assume your will controls these accounts</li>
+                        <li>• Go more than 3 years without review</li>
+                        <li>• Name deceased people</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="p-4 bg-gray-100 text-center text-sm text-gray-600">
+            <p>&copy; PFL Academy | pflacademy.co | Chapter {{CHAPTER_NUMBER}}: Estate Planning</p>
+            <p class="mt-1 text-xs">In {{STATE_NAME}}, some states automatically revoke ex-spouse beneficiaries, but don't rely on this—update explicitly</p>
+        </div>
+    </div>
+
+    <script>
+        const cases = {
+            1: {
+                title: "Case 1: The Forgotten Ex-Spouse",
+                situation: `<strong>Michael (age 42):</strong> Divorced from Lisa 8 years ago; remarried to Rachel 5 years ago. His $400K life insurance and $180K 401(k) still list Lisa (ex-wife) as beneficiary—never updated. Dies of heart attack.`,
+                outcome: `<strong>Who Got What:</strong><br>
+                • Ex-wife Lisa: $580,000 ($400K insurance + $180K 401k)<br>
+                • Current wife Rachel: $250,000 (home only, per will)<br><br>
+                <strong>Legal Battle:</strong><br>
+                • Rachel sued arguing Michael's intent was to provide for current wife<br>
+                • Court ruling: Beneficiary designations control regardless of intent<br>
+                • Lisa receives $580K<br>
+                • Litigation cost: $45,000 (from estate)<br>
+                • Timeline: 18 months of legal battle`,
+                better: `<strong>Solution:</strong><br>
+                • Update beneficiaries IMMEDIATELY after divorce<br>
+                • Change to: Primary = Rachel (current wife); Contingent = Child or sibling<br>
+                • Takes 15 minutes to request and submit forms<br>
+                • Should be part of divorce checklist<br><br>
+                <strong>Result if updated:</strong><br>
+                • Rachel receives $580K as intended<br>
+                • No litigation<br>
+                • Wishes honored`,
+                cost: `$580,000 went to wrong person + $45,000 in litigation + 18 months of family warfare. All preventable with 15 minutes of updating beneficiary forms.`,
+                lesson: `Update beneficiaries IMMEDIATELY after divorce. Many states automatically revoke ex-spouses, but don't rely on this—update explicitly. In {{STATE_NAME}}, verify your state's law but always update manually to be certain.`
+            },
+            2: {
+                title: "Case 2: Minor Children Named Directly",
+                situation: `<strong>Amanda (age 35):</strong> Single mother of 8-year-old daughter Sophia. Has $250K life insurance and $75K 401(k). Named Sophia directly as beneficiary, intending to ensure daughter received everything. Dies unexpectedly.`,
+                outcome: `<strong>Immediate Problem:</strong> Minors cannot legally own assets.<br><br>
+                <strong>Court Action:</strong><br>
+                • Court appointed Amanda's sister as custodian under UTMA<br>
+                • Sister could only use funds for Sophia's "benefit" until age 18<br>
+                • Required annual court accountings<br>
+                • Legal fees: $3,000<br><br>
+                <strong>Age 18 Outcome:</strong><br>
+                • Sophia received $325,000 lump sum at age 18<br>
+                • Bought expensive car ($60K) within 1 week<br>
+                • Loaned money to friends ($40K never repaid)<br>
+                • Spent $100K within first year<br>
+                • Dropped out of college<br>
+                • Depleted entire inheritance by age 24`,
+                better: `<strong>Solution:</strong><br>
+                • Create testamentary trust in will OR revocable living trust<br>
+                • Name trust as beneficiary of life insurance<br>
+                • Trustee manages funds for child's benefit<br>
+                • Controlled distribution: 1/3 at 25, 1/3 at 30, 1/3 at 35<br>
+                • Or releases for specific purposes: education, health, home purchase<br><br>
+                <strong>Cost:</strong> $500-1,500 to create trust<br>
+                <strong>Benefit:</strong> Professional management + prevented $325K waste`,
+                cost: `$325,000 wasted by age 24; daughter's education compromised; mother's intent to provide security completely defeated. A $1,000 trust would have prevented this disaster.`,
+                lesson: `NEVER name minor children as direct beneficiaries. Always use a trust with terms controlling distribution. Age 18 is too young for lump-sum inheritance.`
+            },
+            3: {
+                title: "Case 3: 'My Estate' as Beneficiary",
+                situation: `<strong>Robert (age 58):</strong> Married to Susan, two adult children. Has $450K IRA and $200K life insurance. Named "My Estate" as beneficiary thinking this would allow his will to control distribution per his wishes (50% to wife, 25% each to children).`,
+                outcome: `<strong>Problem:</strong> Naming "estate" defeats the entire purpose of beneficiary designations.<br><br>
+                <strong>Consequences:</strong><br>
+                • All $650K forced through probate<br>
+                • Probate costs: $32,500 (5% of $650K)<br>
+                • Attorney fees: $18,000<br>
+                • Timeline: 14 months<br>
+                • All amounts became public record<br><br>
+                <strong>Tax Inefficiency:</strong><br>
+                • Estate as beneficiary loses "inherited IRA" tax advantages<br>
+                • IRA must be distributed within 5 years (instead of stretching over beneficiaries' lifetimes)<br>
+                • Forced Susan and children into higher tax brackets<br>
+                • Additional taxes: $135,000<br><br>
+                <strong>Total Cost:</strong> $185,500 in probate and taxes + 14-month delay`,
+                better: `<strong>Solution:</strong><br>
+                • Name individuals or trust directly as beneficiaries<br>
+                • IRA: Primary = Susan (spouse); Contingent = Children equally<br>
+                • Life insurance: Primary = Trust for children; Contingent = Children directly<br><br>
+                <strong>Result if correct:</strong><br>
+                • No probate<br>
+                • Inherited IRA tax benefits preserved<br>
+                • Immediate distribution<br>
+                • Privacy maintained<br>
+                • Saves $185,500`,
+                cost: `$185,500 in probate costs and unnecessary taxes + 14-month delay. All because he named "my estate" instead of naming beneficiaries directly.`,
+                lesson: `NEVER name "my estate" as beneficiary unless you specifically want probate. Name individuals or trust directly to avoid probate and preserve tax benefits.`
+            },
+            4: {
+                title: "Case 4: No Contingent Beneficiaries",
+                situation: `<strong>Karen (age 67):</strong> Widow (husband died 3 years earlier), two adult children. Has $320K IRA and $150K life insurance. Named mother (age 89) as primary beneficiary on all accounts but left contingent beneficiary BLANK. Mother died 6 months before Karen.`,
+                outcome: `<strong>What Happened:</strong><br>
+                • With no contingent beneficiaries and primary deceased, accounts defaulted to "estate"<br><br>
+                <strong>Consequences:</strong><br>
+                • $470K forced into probate (IRA + insurance)<br>
+                • Probate cost: $23,500<br>
+                • Timeline: 11 months<br>
+                • Eventually distributed to children per will, but after probate delay and cost<br><br>
+                <strong>Preventable Cost:</strong> $23,500 + 11-month delay—easily prevented by naming contingent beneficiaries`,
+                better: `<strong>Solution:</strong><br>
+                • ALWAYS name contingent beneficiaries: Primary = Mother; Contingent = Two children equally<br>
+                • When mother died, Karen should have updated:<br>
+                  - Primary = Children equally<br>
+                  - Contingent = Grandchildren or sibling<br><br>
+                <strong>Result if correct:</strong><br>
+                • Direct transfer to children<br>
+                • No probate<br>
+                • No delay<br>
+                • Saves $23,500`,
+                cost: `$23,500 + 11-month delay—simply for neglecting to name contingent beneficiaries. Five minutes of filling out the form would have prevented this.`,
+                lesson: `ALWAYS name contingent beneficiaries for every account. Review and update when contingents die. Without contingents, accounts default to estate and probate.`
+            }
+        };
+
+        function loadCase(id) {
+            const caseData = cases[id];
+
+            document.getElementById('caseTitle').textContent = caseData.title;
+            document.getElementById('caseSituation').innerHTML = caseData.situation;
+            document.getElementById('caseOutcome').innerHTML = caseData.outcome;
+            document.getElementById('caseBetter').innerHTML = caseData.better;
+            document.getElementById('caseCost').innerHTML = caseData.cost;
+            document.getElementById('caseLesson').innerHTML = caseData.lesson;
+
+            document.getElementById('caseContent').classList.remove('hidden');
+            document.getElementById('caseContent').scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

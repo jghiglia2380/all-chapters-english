@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<!--
+PFL Academy State-Agnostic Template
+L-Chapter: L-71
+Chapter Title: Introduction to Estate Planning
+Oklahoma Reference: Chapter X.X
+
+Variables used in this template:
+- {{STATE_NAME}} - Full state name (e.g., Kentucky, Georgia)
+- {{CHAPTER_NUMBER}} - State-specific chapter number (e.g., 2.1, 1.4)
+- {{CHAPTER_ID}} - L-chapter identifier (e.g., L-71)
+- {{CHAPTER_TITLE}} - Always: Introduction to Estate Planning
+- {{STATE_ESTATE_TAX}} - State-specific estate/inheritance tax information
+
+This template will be processed by generate_state_html.py to create
+state-specific versions with correct chapter numbering.
+-->
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-71 Teacher Guide</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+        :root {
+            --primary: #059669;
+            --primary-light: #ecfdf5;
+            --primary-dark: #065f46;
+            --text-dark: #1e293b;
+            --text-medium: #475569;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --bg-light: #f8fafc;
+            --warning: #f59e0b;
+            --warning-light: #fef3c7;
+            --error: #dc2626;
+            --error-light: #fee2e2;
+            --success-light: #dcfce7;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+        @page { size: letter; margin: 0.5in; }
+        body { font-family: 'Open Sans', sans-serif; font-size: 10pt; line-height: 1.45; color: var(--text-dark); background: white; }
+
+        .header { background: var(--primary); color: white; padding: 14px 18px; border-radius: 6px; margin-bottom: 16px; }
+        .header h1 { font-size: 13pt; font-weight: 700; margin: 0; }
+        .header h2 { font-size: 10pt; font-weight: 400; margin: 3px 0 0; opacity: 0.9; }
+
+        .section-header { background: var(--primary-light); border-left: 4px solid var(--primary); padding: 7px 12px; font-size: 10pt; font-weight: 700; color: var(--primary-dark); text-transform: uppercase; letter-spacing: 0.5px; margin: 16px 0 10px; }
+
+        .overview-table { width: 100%; border-collapse: collapse; margin-bottom: 14px; }
+        .overview-table th { background: var(--bg-light); color: var(--text-light); font-size: 8pt; text-transform: uppercase; letter-spacing: 0.5px; text-align: center; padding: 6px 10px; border: 1px solid var(--border); width: 33%; }
+        .overview-table td { text-align: center; padding: 10px; border: 1px solid var(--border); font-weight: 600; color: var(--text-dark); font-size: 10pt; }
+
+        .flow-container { margin-bottom: 14px; }
+        .flow-item { display: flex; padding: 8px 0; border-bottom: 1px solid var(--border); page-break-inside: avoid; }
+        .flow-item:last-child { border-bottom: none; }
+        .flow-time { width: 65px; font-weight: 700; color: var(--primary); flex-shrink: 0; font-size: 10pt; }
+        .flow-content { flex: 1; }
+        .flow-title { font-weight: 700; color: var(--text-dark); margin-bottom: 3px; font-size: 10pt; }
+        .flow-content ul { margin: 0; padding-left: 16px; font-size: 9pt; color: var(--text-medium); }
+        .flow-content li { margin-bottom: 2px; }
+
+        .diff-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px; }
+        .diff-box { background: var(--bg-light); border: 1px solid var(--border); border-radius: 4px; padding: 10px 12px; }
+        .diff-title { font-weight: 700; color: var(--text-dark); margin-bottom: 6px; font-size: 9pt; }
+        .diff-box ul { margin: 0; padding-left: 16px; font-size: 9pt; color: var(--text-medium); }
+        .diff-box li { margin-bottom: 2px; }
+
+        .answer-key { page-break-before: always; }
+        .answer-block { margin-bottom: 12px; page-break-inside: avoid; }
+        .answer-title { font-weight: 700; color: var(--primary); font-size: 9pt; border-bottom: 1px solid #a7f3d0; padding-bottom: 3px; margin-bottom: 6px; }
+        .answer-item { margin-bottom: 5px; font-size: 9pt; color: var(--text-dark); }
+        .answer-item strong { color: var(--primary-dark); }
+
+        .misconception-table { width: 100%; border-collapse: collapse; font-size: 9pt; margin-top: 10px; }
+        .misconception-table th { padding: 6px 10px; text-align: left; font-weight: 600; }
+        .misconception-table th:first-child { background: var(--error-light); color: #991b1b; border: 1px solid #fca5a5; width: 40%; }
+        .misconception-table th:last-child { background: var(--success-light); color: #166534; border: 1px solid #86efac; }
+        .misconception-table td { padding: 6px 10px; border: 1px solid var(--border); vertical-align: top; color: var(--text-medium); }
+
+        .footer { margin-top: 20px; padding-top: 8px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; font-size: 8pt; color: var(--text-light); }
+
+        .tip-box { background: #fef3c7; border-left: 3px solid var(--warning); padding: 8px 12px; margin: 10px 0; font-size: 9pt; }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>PFL Academy</h1>
+        <h2>Teacher Guide: Chapter {{CHAPTER_NUMBER}} — {{CHAPTER_TITLE}}</h2>
+    </div>
+
+    <div class="section-header">Overview</div>
+    <table class="overview-table">
+        <tr><th>Time</th><th>Materials</th><th>Prerequisites</th></tr>
+        <tr><td>90-100 Minutes (2 days)</td><td>Student Activity Packet, Digital Tools</td><td>None (foundational estate planning)</td></tr>
+    </table>
+
+    <p style="margin: 10px 0; font-size: 9pt; color: var(--text-medium);">This lesson introduces students to essential estate planning concepts, emphasizing that estate planning is not just for the wealthy or elderly. Students learn about wills, trusts, beneficiary designations, powers of attorney, healthcare directives, and guardianship—understanding how these protect individuals and families during incapacity and after death.</p>
+
+    <div class="section-header">Day 1: Core Concepts (45-50 minutes)</div>
+    <div class="flow-container">
+        <div class="flow-item">
+            <div class="flow-time">5 min</div>
+            <div class="flow-content">
+                <div class="flow-title">HOOK: Maya's Healthcare Crisis</div>
+                <ul>
+                    <li>Present scenario: Maya (27) critically injured, fiancé knew wishes but estranged parents made decisions, no one could access bank accounts</li>
+                    <li>Ask: "Why did this happen? What document would have prevented each problem?"</li>
+                    <li>Reveal: Estate planning is about protection and control, not just wealth</li>
+                </ul>
+            </div>
+        </div>
+        <div class="flow-item">
+            <div class="flow-time">10 min</div>
+            <div class="flow-content">
+                <div class="flow-title">KEY CONCEPTS</div>
+                <ul>
+                    <li>Define: Will (directs assets, names guardians), Intestate (state decides), Probate (court process, 3-7% cost), Trust (avoids probate), Beneficiary (trumps will)</li>
+                    <li>Power of Attorney: Financial (handles money) and Healthcare (medical decisions) protect while LIVING</li>
+                    <li>State-specific: In {{STATE_NAME}}, {{STATE_ESTATE_TAX}}</li>
+                    <li>Quick check: "True/False: Spouse gets everything if you die without a will" (False—depends on state law)</li>
+                </ul>
+            </div>
+        </div>
+        <div class="flow-item">
+            <div class="flow-time">15 min</div>
+            <div class="flow-content">
+                <div class="flow-title">WILLS vs. INTESTACY</div>
+                <ul>
+                    <li>Present Marcus's story (age 29, 4-year relationship with Emma, dies without will, parents inherit everything, Emma gets $0)</li>
+                    <li>Create comparison chart: With Will vs. Without Will (asset distribution, executor, timeline, costs, family impact)</li>
+                    <li>Emphasize guardian designation for parents: "Without designation, courts decide who raises your children"</li>
+                    <li>Discussion: "What surprised you? Why don't unmarried partners inherit?"</li>
+                </ul>
+            </div>
+        </div>
+        <div class="flow-item">
+            <div class="flow-time">10 min</div>
+            <div class="flow-content">
+                <div class="flow-title">TRUSTS & BENEFICIARIES</div>
+                <ul>
+                    <li>Trusts: Avoid probate (3-7% savings), control distribution, privacy. Revocable living trust most common ($1,500-4,000 setup)</li>
+                    <li>When needed: Parents with minor children, larger estates, complex families, special needs</li>
+                    <li>Beneficiary designations: TRUMP wills. Common mistake: Will updated, beneficiaries forgotten</li>
+                    <li>Example: John's will leaves all to wife Sarah, but 401(k) still lists ex-wife—ex gets $500K</li>
+                    <li>Best practices: Review annually, update after life changes, name contingents, never "my estate"</li>
+                </ul>
+            </div>
+        </div>
+        <div class="flow-item">
+            <div class="flow-time">10 min</div>
+            <div class="flow-content">
+                <div class="flow-title">POWERS OF ATTORNEY</div>
+                <ul>
+                    <li>Financial POA: Authorizes money management if incapacitated. Without it: conservatorship ($5,000+, takes months)</li>
+                    <li>Healthcare POA: Authorizes medical decisions. Without it: family battles, doctors won't know who decides</li>
+                    <li>Scenario: Alex (24) motorcycle accident, unconscious, partner has no legal standing, estranged father makes decisions</li>
+                    <li>Critical at 18: Parents have NO automatic authority for adults</li>
+                    <li>Cost: $200-400 for documents vs. $5,000-8,000 conservatorship</li>
+                </ul>
+            </div>
+        </div>
+        <div class="flow-item">
+            <div class="flow-time">5 min</div>
+            <div class="flow-content">
+                <div class="flow-title">WRAP-UP & HOMEWORK</div>
+                <ul>
+                    <li>Launch Estate Planning Starter Checklist (digital tool)</li>
+                    <li>Assign: Complete life stage assessment, identify priority documents, create action plan</li>
+                    <li>Preview Day 2: Hands-on scenarios applying concepts</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-header">Day 2: Application Activities (45-50 minutes)</div>
+    <div class="flow-container">
+        <div class="flow-item">
+            <div class="flow-time">5 min</div>
+            <div class="flow-content">
+                <div class="flow-title">RECAP & LAB INTRO</div>
+                <ul>
+                    <li>Quick review: What are the 4 essential documents for young adults?</li>
+                    <li>Preview activities: Will simulator, trust analysis, POA planning, beneficiary audit</li>
+                </ul>
+            </div>
+        </div>
+        <div class="flow-item">
+            <div class="flow-time">15 min</div>
+            <div class="flow-content">
+                <div class="flow-title">ACTIVITY 1: Will vs. No Will Simulation</div>
+                <ul>
+                    <li>Students analyze 3 scenarios: (A) Single 26-year-old with partner, (B) Parents with young children, (C) Divorced parent with outdated will</li>
+                    <li>For each: Compare with will vs. without will outcomes (distribution, costs, timeline, family impact)</li>
+                    <li>Calculate cost differences: Scenario B without will = $48K vs. $18K with will ($30K difference!)</li>
+                    <li>Reflection: "Which outcome surprised you most? At what life stage is will non-negotiable?"</li>
+                </ul>
+            </div>
+        </div>
+        <div class="flow-item">
+            <div class="flow-time">15 min</div>
+            <div class="flow-content">
+                <div class="flow-title">ACTIVITY 2: Trust Comparison Tool</div>
+                <ul>
+                    <li>Analyze 4 situations: (1) Young parents with life insurance, (2) Single professional $850K estate, (3) Blended family, (4) Recent grad $45K</li>
+                    <li>Evaluate: Probate cost, control needs, complexity, cost-benefit</li>
+                    <li>Key insight: Young parents need trusts MORE than wealthy singles (minor children protection)</li>
+                    <li>Situation 3 (blended family): QTIP trust ONLY way to achieve both goals (spouse support + children inherit)</li>
+                    <li>Situation 4 (recent grad): NO trust needed—simple will sufficient, healthcare directive priority</li>
+                </ul>
+            </div>
+        </div>
+        <div class="flow-item">
+            <div class="flow-time">10 min</div>
+            <div class="flow-content">
+                <div class="flow-title">ACTIVITY 3: POA & Healthcare Directive Builder</div>
+                <ul>
+                    <li>Students create personal plans: Select healthcare proxy and financial agent</li>
+                    <li>Criteria: Healthcare = trusts values, emotionally strong; Financial = responsible, financially savvy</li>
+                    <li>Compare scenarios: 28-year-old in coma (with documents: family focuses on recovery; without: $5K conservatorship, bills unpaid)</li>
+                    <li>Action plan: Obtain {{STATE_NAME}} forms, complete, have conversations, distribute copies</li>
+                    <li>Emphasize: Unmarried couples (including same-sex) have NO legal standing without these—CRITICAL</li>
+                </ul>
+            </div>
+        </div>
+        <div class="flow-item">
+            <div class="flow-time">15 min</div>
+            <div class="flow-content">
+                <div class="flow-title">ACTIVITY 4: Beneficiary Designation Audit</div>
+                <ul>
+                    <li>Case studies: (1) Forgotten ex-spouse gets $580K, (2) Minor children receive lump sum at 18 and waste it, (3) "My estate" forces probate, (4) No contingent = probate</li>
+                    <li>Calculate costs: Case 1 = $580K to wrong person + $45K litigation; Case 3 = $185,500 in probate/taxes</li>
+                    <li>Practice: Proper beneficiary planning for different life stages</li>
+                    <li>Personal audit: List all accounts, document current beneficiaries, identify red flags, create update plan</li>
+                    <li>Set annual review: January 15 every year + after life events</li>
+                </ul>
+            </div>
+        </div>
+        <div class="flow-item">
+            <div class="flow-time">5 min</div>
+            <div class="flow-content">
+                <div class="flow-title">REFLECTION & CLOSURE</div>
+                <ul>
+                    <li>"Which document is most critical for YOUR life stage?"</li>
+                    <li>"What specific action will you take in next 30 days?"</li>
+                    <li>Final message: "Estate planning isn't about being old or rich—it's about being responsible and caring. Start with healthcare directive and POA this month."</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-header">Differentiation</div>
+    <div class="diff-grid">
+        <div class="diff-box">
+            <div class="diff-title">Support</div>
+            <ul>
+                <li>Focus on the simple principle: Planning = your choice; No planning = state's choice</li>
+                <li>Provide flowchart: Will → Executor → Distribute vs. No Will → Court → State Law</li>
+                <li>Use family-friendly examples rather than technical details</li>
+                <li>For Activity 2, provide decision tree for trust determination</li>
+            </ul>
+        </div>
+        <div class="diff-box">
+            <div class="diff-title">Extension</div>
+            <ul>
+                <li>Research {{STATE_NAME}}'s specific intestacy laws and create distribution flowchart</li>
+                <li>Investigate QTIP trusts and special needs trusts in depth</li>
+                <li>Compare probate procedures in {{STATE_NAME}} vs. neighboring states</li>
+                <li>Calculate 30-year cost comparison (trust setup/maintenance vs. probate for estate growth scenarios)</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="tip-box">
+        <strong>Sensitive Topics:</strong> This lesson addresses death, incapacity, and family tragedy. Some students may have lost family members. Be sensitive, frame content around protection and care (not fear), offer alternative examples if scenarios are triggering, and partner with school counselor if students need support.
+    </div>
+
+    <div class="answer-key">
+        <div class="section-header">Answer Key</div>
+
+        <div class="answer-block">
+            <div class="answer-title">Activity 1: Will vs. No Will Comparison</div>
+            <div class="answer-item"><strong>1. Why did Emma receive nothing?</strong> Unmarried partners have NO inheritance rights under intestacy laws. Only legal spouses, children, parents, and other blood relatives inherit. A simple will naming Emma would have given her everything.</div>
+            <div class="answer-item"><strong>2. What would a will cost vs. outcome?</strong> Simple will: $300-500. Emma lost $180,000 + shared home + possessions. Cost of no planning: immeasurable.</div>
+            <div class="answer-item"><strong>3. When is will essential?</strong> Serious relationship, significant assets (>$25K), or minor children make wills essential. For parents, guardian designation is non-negotiable.</div>
+        </div>
+
+        <div class="answer-block">
+            <div class="answer-title">Activity 2: Trust Analysis</div>
+            <div class="answer-item"><strong>4. Which trust for young parents?</strong> Testamentary trust MINIMUM (necessary for children—can't name minors directly as insurance beneficiaries). Revocable living trust if want to avoid probate on all assets. Without trust, court custodian until age 18, then lump sum to teenager who likely wastes it.</div>
+            <div class="answer-item"><strong>5. What happens if lump sum at 18?</strong> See Case Study 2 in Activity 4: 18-year-old received $325K, bought expensive car, loaned money to friends, spent $100K first year, dropped out of college, depleted inheritance by age 24. Age 18 is too young for large inheritance without oversight.</div>
+        </div>
+
+        <div class="answer-block">
+            <div class="answer-title">Activity 3: POA & Healthcare Directive Planning</div>
+            <div class="answer-item"><strong>6. Treatment preferences to discuss:</strong> All checked: Life support decisions, organ donation, pain management, religious/cultural considerations. Have detailed conversation with healthcare proxy BEFORE crisis.</div>
+            <div class="answer-item"><strong>7. Cost comparison:</strong> Documents: $200-400. Conservatorship: $5,000-8,000. Net savings: $4,600-7,600 + immeasurable family harmony and avoiding financial disaster during incapacity.</div>
+        </div>
+
+        <div class="answer-block">
+            <div class="answer-title">Activity 4: Beneficiary Designation Audit</div>
+            <div class="answer-item"><strong>8. Who receives $580K?</strong> Ex-wife Jennifer receives ALL of it ($400K insurance + $180K 401k) because beneficiary forms still list her. Current wife Angela receives $0 from these accounts despite remarriage.</div>
+            <div class="answer-item"><strong>9. Why doesn't will control?</strong> Beneficiary designations TRUMP wills—they control distribution regardless of what will says. For most people, largest assets (retirement, insurance) pass by beneficiary designation, not will. A perfect will is worthless if beneficiaries are wrong.</div>
+            <div class="answer-item"><strong>10. What should Brad have done?</strong> Update beneficiaries IMMEDIATELY after divorce (within 30 days). Change to: Primary = Angela (current wife); Contingent = Child or sibling. Takes 15 minutes to request and submit forms. Should be part of divorce checklist.</div>
+        </div>
+
+        <div class="answer-block">
+            <div class="answer-title">Reflection Questions</div>
+            <div class="answer-item"><strong>11. Most critical document for your life stage:</strong> Ages 18+: Healthcare directive and financial POA (protect while LIVING). Serious relationship/assets: Basic will. Parents: Will with guardian designation. Significant assets/complexity: Trust consideration.</div>
+            <div class="answer-item"><strong>12. Action within 30 days (examples):</strong> "Obtain {{STATE_NAME}} healthcare directive form and complete it," "Have conversation with parents about their estate planning," "Review beneficiaries on my 401(k)," "Create simple will via online service," "Schedule attorney consultation for trust," "Set annual beneficiary review reminder."</div>
+        </div>
+
+        <div class="section-header">Common Misconceptions</div>
+        <table class="misconception-table">
+            <tr><th>Misconception</th><th>Clarification</th></tr>
+            <tr><td>"Estate planning is only for old people."</td><td>Incapacity from accidents/illness can happen at any age. Healthcare directives and POAs protect 25-year-olds as much as 75-year-olds. Young parents need guardianship designations immediately.</td></tr>
+            <tr><td>"If I don't have much money, I don't need estate planning."</td><td>Estate planning is about control and protection, not wealth. A $30,000 estate creates probate costs and family conflict just like a $3 million estate. Parents with modest assets still need guardianship designations.</td></tr>
+            <tr><td>"My spouse/family will automatically get everything."</td><td>Intestacy laws have formulas that often surprise people. Spouses don't always get 100%. Unmarried partners get nothing. Children from prior relationships may get portions. The law's defaults rarely match preferences.</td></tr>
+            <tr><td>"A will avoids probate."</td><td>Wills go through probate—they direct the process but don't avoid it. Only beneficiary designations, trusts, and joint ownership avoid probate.</td></tr>
+            <tr><td>"Trusts are only for rich people."</td><td>Young parents with life insurance often need trusts to protect minor children from receiving lump sums at 18. Trusts control distribution, not just avoid taxes.</td></tr>
+            <tr><td>"I can just tell my family my wishes—I don't need documents."</td><td>Without legal documents, hospitals and courts won't honor oral statements. Family members' recollections may differ. Legal documents provide enforceable authority.</td></tr>
+        </table>
+    </div>
+
+    <div class="section-header">State-Specific Resources for {{STATE_NAME}}</div>
+    <ul style="font-size: 9pt; margin: 10px 0; padding-left: 20px; color: var(--text-medium);">
+        <li>{{STATE_NAME}} intestacy law summary: [State bar association URL]</li>
+        <li>{{STATE_NAME}} healthcare directive form: [State health department URL]</li>
+        <li>{{STATE_NAME}} estate tax information: {{STATE_ESTATE_TAX}}</li>
+        <li>{{STATE_NAME}} probate court locations and procedures: [State court website]</li>
+        <li>Free legal clinics in {{STATE_NAME}}: [State-specific resources]</li>
+    </ul>
+
+    <div class="section-header">Final Notes for Teachers</div>
+    <p style="font-size: 9pt; margin: 10px 0; color: var(--text-medium);"><strong>Cultural Sensitivity:</strong> Estate planning practices and attitudes toward death vary across cultures. Some cultures have strong preferences about guardians or asset distribution. Some religions have specific end-of-life treatment requirements. Honor these perspectives while teaching the legal framework.</p>
+    <p style="font-size: 9pt; margin: 10px 0; color: var(--text-medium);"><strong>Age-Appropriate Framing:</strong> Frame content around protection and care rather than morbidity. Young adults respond well to empowerment: "These documents give YOU control rather than leaving it to courts and state laws."</p>
+    <p style="font-size: 9pt; margin: 10px 0; color: var(--text-medium);"><strong>Actionability:</strong> Emphasize actionable steps: At 18: Healthcare directive and POA. Serious relationship/assets: Basic will. When children arrive: Update will with guardians and consider trust. Annual review: Update beneficiaries.</p>
+
+    <div class="footer">
+        <span>&copy; PFL Academy | pflacademy.co</span>
+        <span>Teacher Guide: Chapter {{CHAPTER_NUMBER}}</span>
+    </div>
+
+</body>
+</html>

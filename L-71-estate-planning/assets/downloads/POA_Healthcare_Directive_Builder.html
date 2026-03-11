@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<!--
+PFL Academy Standalone Activity Tool
+L-Chapter: L-71 - Introduction to Estate Planning
+Activity: Power of Attorney & Healthcare Directive Builder
+State-Agnostic Template - Uses {{STATE_NAME}}
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POA & Healthcare Directive Builder - L-71</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @media print {
+            .no-print { display: none; }
+            body { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 p-4 md:p-8">
+    <div class="max-w-5xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
+        <!-- Header -->
+        <div class="bg-teal-600 text-white p-6">
+            <h1 class="text-3xl font-bold">Power of Attorney & Healthcare Directive Builder</h1>
+            <p class="text-teal-100 mt-2">Plan for incapacity protection—documents that protect you while LIVING</p>
+        </div>
+
+        <!-- Tab Navigation -->
+        <div class="flex border-b border-gray-200 bg-gray-50 no-print">
+            <button onclick="showTab('healthcare')" id="tabHealthcare" class="flex-1 px-6 py-4 font-semibold text-gray-600 hover:text-teal-600 border-b-2 border-transparent hover:border-teal-600 transition">
+                Healthcare Directive
+            </button>
+            <button onclick="showTab('financial')" id="tabFinancial" class="flex-1 px-6 py-4 font-semibold text-gray-600 hover:text-teal-600 border-b-2 border-transparent hover:border-teal-600 transition">
+                Financial Power of Attorney
+            </button>
+            <button onclick="showTab('scenarios')" id="tabScenarios" class="flex-1 px-6 py-4 font-semibold text-gray-600 hover:text-teal-600 border-b-2 border-transparent hover:border-teal-600 transition">
+                Scenario Comparison
+            </button>
+        </div>
+
+        <!-- Healthcare Directive Tab -->
+        <div id="healthcareTab" class="hidden">
+            <div class="p-6 border-b border-gray-200">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4">Healthcare Directive Planning</h2>
+                <p class="text-gray-600 mb-6">A healthcare directive authorizes someone to make medical decisions if you're incapacitated and documents your treatment preferences.</p>
+
+                <!-- Healthcare Proxy Selection -->
+                <div class="bg-teal-50 rounded-lg p-5 mb-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Healthcare Proxy Selection</h3>
+                    <p class="text-sm text-gray-600 mb-4">Who do you trust to make medical decisions aligned with your values?</p>
+
+                    <div class="space-y-3 mb-4">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">Primary Healthcare Proxy:</label>
+                            <input type="text" id="healthcareProxy" class="w-full p-2 border border-gray-300 rounded" placeholder="Name of person">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">Backup Healthcare Proxy:</label>
+                            <input type="text" id="healthcareBackup" class="w-full p-2 border border-gray-300 rounded" placeholder="Name of backup person">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">Why chosen:</label>
+                            <textarea id="healthcareReason" class="w-full p-2 border border-gray-300 rounded" rows="2"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded p-4 border border-teal-200">
+                        <div class="font-semibold text-gray-800 mb-2">Selection Criteria:</div>
+                        <ul class="text-sm text-gray-700 space-y-1">
+                            <li>✓ Trusts and respects your values and wishes</li>
+                            <li>✓ Emotionally strong enough to make difficult decisions</li>
+                            <li>✓ Available and willing to serve in this role</li>
+                            <li>✓ Can advocate effectively with medical professionals</li>
+                            <li>✓ Understands your religious/cultural preferences</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Treatment Preferences -->
+                <div class="bg-gray-50 rounded-lg p-5 mb-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Treatment Preferences to Document</h3>
+
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block font-semibold text-gray-700 mb-2">Life Support Preferences:</label>
+                            <textarea class="w-full p-3 border border-gray-300 rounded" rows="2" placeholder="If permanently unconscious, do you want machines keeping you alive? What quality of life would you find unacceptable?"></textarea>
+                        </div>
+                        <div>
+                            <label class="block font-semibold text-gray-700 mb-2">Organ Donation:</label>
+                            <select class="w-full p-2 border border-gray-300 rounded">
+                                <option>Yes, donate all organs</option>
+                                <option>Yes, but with exclusions</option>
+                                <option>No organ donation</option>
+                                <option>Undecided</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block font-semibold text-gray-700 mb-2">Pain Management Priority:</label>
+                            <textarea class="w-full p-3 border border-gray-300 rounded" rows="2" placeholder="Prioritize comfort over life extension? DNR preferences?"></textarea>
+                        </div>
+                        <div>
+                            <label class="block font-semibold text-gray-700 mb-2">Religious/Cultural Considerations:</label>
+                            <textarea class="w-full p-3 border border-gray-300 rounded" rows="2" placeholder="Any religious requirements or cultural practices to be honored?"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Plan -->
+                <div class="bg-blue-50 rounded-lg p-5">
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Your Action Plan</h3>
+                    <div class="space-y-2">
+                        <div class="flex items-center">
+                            <input type="checkbox" class="w-4 h-4 text-teal-600 rounded mr-3">
+                            <span class="text-gray-700">Obtain {{STATE_NAME}} healthcare directive form by: <input type="date" class="ml-2 p-1 border border-gray-300 rounded text-sm"></span>
+                        </div>
+                        <div class="flex items-center">
+                            <input type="checkbox" class="w-4 h-4 text-teal-600 rounded mr-3">
+                            <span class="text-gray-700">Complete form with preferences by: <input type="date" class="ml-2 p-1 border border-gray-300 rounded text-sm"></span>
+                        </div>
+                        <div class="flex items-center">
+                            <input type="checkbox" class="w-4 h-4 text-teal-600 rounded mr-3">
+                            <span class="text-gray-700">Have detailed conversation with healthcare proxy by: <input type="date" class="ml-2 p-1 border border-gray-300 rounded text-sm"></span>
+                        </div>
+                        <div class="flex items-center">
+                            <input type="checkbox" class="w-4 h-4 text-teal-600 rounded mr-3">
+                            <span class="text-gray-700">Distribute copies (proxy, doctor, hospital) by: <input type="date" class="ml-2 p-1 border border-gray-300 rounded text-sm"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-6 bg-teal-50">
+                <h3 class="font-bold text-gray-800 mb-2">Resources for {{STATE_NAME}}:</h3>
+                <ul class="text-sm text-gray-700 space-y-1">
+                    <li>• {{STATE_NAME}} Department of Health: Free healthcare directive forms</li>
+                    <li>• Hospital patient services: Free forms and assistance</li>
+                    <li>• Online legal services: $50-150 per document</li>
+                    <li>• Attorney consultation: $100-300 per document</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Financial POA Tab -->
+        <div id="financialTab" class="hidden">
+            <div class="p-6 border-b border-gray-200">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4">Financial Power of Attorney Planning</h2>
+                <p class="text-gray-600 mb-6">A financial POA authorizes someone to manage your finances if you're incapacitated—preventing costly conservatorship.</p>
+
+                <!-- Agent Selection -->
+                <div class="bg-amber-50 rounded-lg p-5 mb-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Financial Agent Selection</h3>
+                    <p class="text-sm text-gray-600 mb-4">Who is trustworthy, responsible, and financially capable?</p>
+
+                    <div class="space-y-3 mb-4">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">Primary Financial Agent:</label>
+                            <input type="text" id="financialAgent" class="w-full p-2 border border-gray-300 rounded" placeholder="Name of person">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">Backup Financial Agent:</label>
+                            <input type="text" id="financialBackup" class="w-full p-2 border border-gray-300 rounded" placeholder="Name of backup person">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">Why chosen:</label>
+                            <textarea id="financialReason" class="w-full p-2 border border-gray-300 rounded" rows="2"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded p-4 border border-amber-200">
+                        <div class="font-semibold text-gray-800 mb-2">Selection Criteria:</div>
+                        <ul class="text-sm text-gray-700 space-y-1">
+                            <li>✓ Financially responsible and trustworthy</li>
+                            <li>✓ Understands financial matters (banking, investments, taxes)</li>
+                            <li>✓ Detail-oriented and organized</li>
+                            <li>✓ Available to act quickly if needed</li>
+                            <li>✓ No conflicts of interest</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Scope of Authority -->
+                <div class="bg-gray-50 rounded-lg p-5 mb-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Scope of Authority</h3>
+
+                    <div class="mb-4">
+                        <label class="block font-semibold text-gray-700 mb-2">When does POA become effective?</label>
+                        <div class="space-y-2">
+                            <div class="flex items-start">
+                                <input type="radio" name="poaType" value="durable" class="mt-1 mr-3">
+                                <div>
+                                    <div class="font-semibold text-gray-800">Durable (Immediate Effect)</div>
+                                    <div class="text-sm text-gray-600">Effective immediately; remains effective during incapacity. Recommended by most attorneys.</div>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <input type="radio" name="poaType" value="springing" class="mt-1 mr-3">
+                                <div>
+                                    <div class="font-semibold text-gray-800">Springing (Upon Incapacity)</div>
+                                    <div class="text-sm text-gray-600">Only effective when doctor certifies incapacity. Can delay access when needed most.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block font-semibold text-gray-700 mb-2">Powers to Grant (check all that apply):</label>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
+                            <div class="flex items-center">
+                                <input type="checkbox" class="w-4 h-4 text-teal-600 rounded mr-2">
+                                <span class="text-sm text-gray-700">Banking (access accounts, pay bills, transfer funds)</span>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="checkbox" class="w-4 h-4 text-teal-600 rounded mr-2">
+                                <span class="text-sm text-gray-700">Investments (manage accounts, buy/sell securities)</span>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="checkbox" class="w-4 h-4 text-teal-600 rounded mr-2">
+                                <span class="text-sm text-gray-700">Real Estate (pay mortgage, maintain property)</span>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="checkbox" class="w-4 h-4 text-teal-600 rounded mr-2">
+                                <span class="text-sm text-gray-700">Taxes (file returns, communicate with IRS)</span>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="checkbox" class="w-4 h-4 text-teal-600 rounded mr-2">
+                                <span class="text-sm text-gray-700">Legal Affairs (hire attorneys, manage legal matters)</span>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="checkbox" class="w-4 h-4 text-teal-600 rounded mr-2">
+                                <span class="text-sm text-gray-700">Government Benefits (apply for benefits, manage insurance)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Plan -->
+                <div class="bg-blue-50 rounded-lg p-5">
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Your Action Plan</h3>
+                    <div class="space-y-2">
+                        <div class="flex items-center">
+                            <input type="checkbox" class="w-4 h-4 text-teal-600 rounded mr-3">
+                            <span class="text-gray-700">Obtain {{STATE_NAME}} financial POA form by: <input type="date" class="ml-2 p-1 border border-gray-300 rounded text-sm"></span>
+                        </div>
+                        <div class="flex items-center">
+                            <input type="checkbox" class="w-4 h-4 text-teal-600 rounded mr-3">
+                            <span class="text-gray-700">Complete form with scope of authority by: <input type="date" class="ml-2 p-1 border border-gray-300 rounded text-sm"></span>
+                        </div>
+                        <div class="flex items-center">
+                            <input type="checkbox" class="w-4 h-4 text-teal-600 rounded mr-3">
+                            <span class="text-gray-700">Have conversation with financial agent by: <input type="date" class="ml-2 p-1 border border-gray-300 rounded text-sm"></span>
+                        </div>
+                        <div class="flex items-center">
+                            <input type="checkbox" class="w-4 h-4 text-teal-600 rounded mr-3">
+                            <span class="text-gray-700">File copies with bank and financial institutions by: <input type="date" class="ml-2 p-1 border border-gray-300 rounded text-sm"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-6 bg-amber-50">
+                <h3 class="font-bold text-gray-800 mb-2">Resources for {{STATE_NAME}}:</h3>
+                <ul class="text-sm text-gray-700 space-y-1">
+                    <li>• {{STATE_NAME}} Bar Association: Free POA forms and instructions</li>
+                    <li>• Local banks: Often provide POA forms for account access</li>
+                    <li>• Online legal services: $50-150 per document</li>
+                    <li>• Attorney consultation: $100-300 per document</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Scenarios Tab -->
+        <div id="scenariosTab" class="hidden">
+            <div class="p-6">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4">Scenario Comparison: With vs. Without Documents</h2>
+                <p class="text-gray-600 mb-6">See the real-world impact of having or not having incapacity protection documents.</p>
+
+                <!-- Scenario 1 -->
+                <div class="bg-white border border-gray-300 rounded-lg p-6 mb-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Scenario: 28-Year-Old in Coma After Car Accident</h3>
+                    <p class="text-sm text-gray-600 mb-4">Jamie, critically injured, unconscious for 3 weeks, uncertain recovery.</p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="bg-green-50 rounded-lg p-4 border border-green-200">
+                            <h4 class="font-bold text-green-800 mb-3">✓ WITH DOCUMENTS</h4>
+                            <div class="space-y-3 text-sm text-gray-700">
+                                <div>
+                                    <div class="font-semibold">Healthcare:</div>
+                                    <div>Named healthcare proxy (partner Alex) makes decisions immediately in consultation with doctors</div>
+                                </div>
+                                <div>
+                                    <div class="font-semibold">Financial:</div>
+                                    <div>Named financial agent (Jamie's sister) pays rent, car payment, insurance from Jamie's accounts</div>
+                                </div>
+                                <div>
+                                    <div class="font-semibold">Timeline:</div>
+                                    <div>Immediate authorization; bills paid on time</div>
+                                </div>
+                                <div>
+                                    <div class="font-semibold">Cost:</div>
+                                    <div class="font-bold text-green-700">$0 (documents already in place)</div>
+                                </div>
+                                <div>
+                                    <div class="font-semibold">Family Impact:</div>
+                                    <div>Family focuses on Jamie's recovery, not legal battles; wishes honored</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-red-50 rounded-lg p-4 border border-red-200">
+                            <h4 class="font-bold text-red-800 mb-3">✗ WITHOUT DOCUMENTS</h4>
+                            <div class="space-y-3 text-sm text-gray-700">
+                                <div>
+                                    <div class="font-semibold">Healthcare:</div>
+                                    <div>Parents vs. partner argue over treatment; hospital delays while determining who can consent</div>
+                                </div>
+                                <div>
+                                    <div class="font-semibold">Financial:</div>
+                                    <div>No one can access Jamie's accounts; family must petition court for conservatorship</div>
+                                </div>
+                                <div>
+                                    <div class="font-semibold">Timeline:</div>
+                                    <div>2-3 months to get conservatorship; bills go unpaid, eviction notice received</div>
+                                </div>
+                                <div>
+                                    <div class="font-semibold">Cost:</div>
+                                    <div class="font-bold text-red-700">$5,000-8,000 in legal fees + credit damage</div>
+                                </div>
+                                <div>
+                                    <div class="font-semibold">Family Impact:</div>
+                                    <div>Family torn apart by legal conflicts; partner excluded despite relationship; financial disaster</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 bg-amber-50 border-l-4 border-amber-500 rounded p-4">
+                        <div class="font-bold text-gray-800">Net Benefit: $4,600-7,600 savings + immeasurable family harmony</div>
+                    </div>
+                </div>
+
+                <!-- Scenario 2 -->
+                <div class="bg-white border border-gray-300 rounded-lg p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Scenario: 34-Year-Old Stroke Victim, Unmarried with Partner</h3>
+                    <p class="text-sm text-gray-600 mb-4">Taylor, severe stroke, partially paralyzed, long recovery. Partner of 6 years (Morgan), not married.</p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="bg-green-50 rounded-lg p-4 border border-green-200">
+                            <h4 class="font-bold text-green-800 mb-3">✓ WITH DOCUMENTS</h4>
+                            <div class="text-sm text-gray-700 space-y-2">
+                                <div>Morgan has full legal authority despite not being married</div>
+                                <div>Morgan coordinates rehabilitation, makes decisions, manages finances</div>
+                                <div>Quick decisions support Taylor's recovery without legal obstacles</div>
+                                <div class="font-bold text-green-700">Cost: $300 (documents prepared 2 years ago)</div>
+                            </div>
+                        </div>
+
+                        <div class="bg-red-50 rounded-lg p-4 border border-red-200">
+                            <h4 class="font-bold text-red-800 mb-3">✗ WITHOUT DOCUMENTS</h4>
+                            <div class="text-sm text-gray-700 space-y-2">
+                                <div>Parents make all medical decisions; Morgan excluded from discussions</div>
+                                <div>Morgan is legal stranger despite 6-year relationship</div>
+                                <div>Can't get medical information; forbidden from visiting by parents</div>
+                                <div>Shared home at risk (can't access Taylor's portion of mortgage)</div>
+                                <div class="font-bold text-red-700">Cost: $7,000+ conservatorship + relationship destroyed</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 bg-red-100 border-l-4 border-red-500 rounded p-4">
+                        <div class="font-bold text-gray-800">KEY LESSON: For unmarried couples (including same-sex couples), these documents are CRITICAL—you have NO automatic legal standing without them</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-6 bg-teal-50">
+                <h3 class="text-xl font-bold text-gray-800 mb-3">Key Takeaways</h3>
+                <ul class="space-y-2 text-gray-700">
+                    <li class="flex items-start">
+                        <span class="text-teal-600 mr-2">•</span>
+                        <span>At age 18, parents have NO automatic authority—you need documents regardless of family relationships</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-teal-600 mr-2">•</span>
+                        <span>Unmarried couples have NO legal standing without these documents—absolutely critical</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-teal-600 mr-2">•</span>
+                        <span>Cost of documents ($200-400) is trivial compared to conservatorship ($5,000-8,000) and family conflict</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-teal-600 mr-2">•</span>
+                        <span>In {{STATE_NAME}}, specific forms and requirements apply—use state-approved documents</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="p-4 bg-gray-100 text-center text-sm text-gray-600">
+            <p>&copy; PFL Academy | pflacademy.co | Chapter {{CHAPTER_NUMBER}}: Estate Planning</p>
+        </div>
+    </div>
+
+    <script>
+        function showTab(tab) {
+            // Hide all tabs
+            document.getElementById('healthcareTab').classList.add('hidden');
+            document.getElementById('financialTab').classList.add('hidden');
+            document.getElementById('scenariosTab').classList.add('hidden');
+
+            // Reset all tab buttons
+            document.getElementById('tabHealthcare').classList.remove('border-teal-600', 'text-teal-600');
+            document.getElementById('tabFinancial').classList.remove('border-teal-600', 'text-teal-600');
+            document.getElementById('tabScenarios').classList.remove('border-teal-600', 'text-teal-600');
+
+            // Show selected tab
+            if (tab === 'healthcare') {
+                document.getElementById('healthcareTab').classList.remove('hidden');
+                document.getElementById('tabHealthcare').classList.add('border-teal-600', 'text-teal-600');
+            } else if (tab === 'financial') {
+                document.getElementById('financialTab').classList.remove('hidden');
+                document.getElementById('tabFinancial').classList.add('border-teal-600', 'text-teal-600');
+            } else if (tab === 'scenarios') {
+                document.getElementById('scenariosTab').classList.remove('hidden');
+                document.getElementById('tabScenarios').classList.add('border-teal-600', 'text-teal-600');
+            }
+        }
+
+        // Show healthcare tab by default on load
+        window.addEventListener('load', () => showTab('healthcare'));
+    </script>
+</body>
+</html>

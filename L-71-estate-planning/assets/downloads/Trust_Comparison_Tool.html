@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<!--
+PFL Academy Standalone Activity Tool
+L-Chapter: L-71 - Introduction to Estate Planning
+Activity: Trust Comparison Tool
+State-Agnostic Template - Uses {{STATE_NAME}}
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trust Comparison Tool - L-71</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @media print {
+            .no-print { display: none; }
+            body { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 p-4 md:p-8">
+    <div class="max-w-6xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
+        <!-- Header -->
+        <div class="bg-purple-600 text-white p-6">
+            <h1 class="text-3xl font-bold">Trust Comparison Tool</h1>
+            <p class="text-purple-100 mt-2">Evaluate when trusts are cost-effective versus unnecessary</p>
+        </div>
+
+        <!-- Situation Selector -->
+        <div class="p-6 bg-purple-50 border-b border-purple-200 no-print">
+            <label class="block text-sm font-semibold text-gray-700 mb-3">Select a Family Situation:</label>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <button onclick="loadSituation(1)" class="p-4 bg-white border-2 border-gray-300 rounded-lg hover:border-purple-500 hover:shadow-md transition text-left">
+                    <div class="font-bold text-gray-800">Situation 1</div>
+                    <div class="text-sm text-gray-600 mt-1">Young Couple, Life Insurance, Small Children</div>
+                    <div class="text-xs text-gray-500 mt-1">Ages 29/30 • 2 kids • $370K assets</div>
+                </button>
+                <button onclick="loadSituation(2)" class="p-4 bg-white border-2 border-gray-300 rounded-lg hover:border-purple-500 hover:shadow-md transition text-left">
+                    <div class="font-bold text-gray-800">Situation 2</div>
+                    <div class="text-sm text-gray-600 mt-1">Single Professional, No Children</div>
+                    <div class="text-xs text-gray-500 mt-1">Age 41 • Single • $850K assets</div>
+                </button>
+                <button onclick="loadSituation(3)" class="p-4 bg-white border-2 border-gray-300 rounded-lg hover:border-purple-500 hover:shadow-md transition text-left">
+                    <div class="font-bold text-gray-800">Situation 3</div>
+                    <div class="text-sm text-gray-600 mt-1">Blended Family</div>
+                    <div class="text-xs text-gray-500 mt-1">Ages 48/52 • 2nd marriage • $1.2M assets</div>
+                </button>
+                <button onclick="loadSituation(4)" class="p-4 bg-white border-2 border-gray-300 rounded-lg hover:border-purple-500 hover:shadow-md transition text-left">
+                    <div class="font-bold text-gray-800">Situation 4</div>
+                    <div class="text-sm text-gray-600 mt-1">Recent Graduate</div>
+                    <div class="text-xs text-gray-500 mt-1">Age 23 • Single • $45K assets</div>
+                </button>
+            </div>
+        </div>
+
+        <!-- Situation Content -->
+        <div id="situationContent" class="hidden">
+            <!-- Details -->
+            <div class="p-6 bg-gray-50 border-b border-gray-200">
+                <h2 class="text-2xl font-bold text-gray-800 mb-3" id="situationTitle"></h2>
+                <div id="situationDetails" class="text-gray-700"></div>
+            </div>
+
+            <!-- Analysis -->
+            <div class="p-6 border-b border-gray-200">
+                <h3 class="text-xl font-bold text-gray-800 mb-4">Analysis</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                    <div class="bg-blue-50 rounded-lg p-4 border border-blue-200">
+                        <div class="text-sm font-semibold text-blue-800 mb-2">Probate Avoidance Value</div>
+                        <div id="probateValue" class="text-gray-700"></div>
+                    </div>
+                    <div class="bg-amber-50 rounded-lg p-4 border border-amber-200">
+                        <div class="text-sm font-semibold text-amber-800 mb-2">Control Need</div>
+                        <div id="controlNeed" class="text-gray-700"></div>
+                    </div>
+                    <div class="bg-green-50 rounded-lg p-4 border border-green-200">
+                        <div class="text-sm font-semibold text-green-800 mb-2">Complexity</div>
+                        <div id="complexity" class="text-gray-700"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Trust Options -->
+            <div class="p-6 border-b border-gray-200">
+                <h3 class="text-xl font-bold text-gray-800 mb-4">Trust Options</h3>
+                <div id="trustOptions" class="space-y-4"></div>
+            </div>
+
+            <!-- Cost-Benefit Analysis -->
+            <div class="p-6 border-b border-gray-200">
+                <h3 class="text-xl font-bold text-gray-800 mb-4">Cost-Benefit Analysis</h3>
+                <div class="bg-gray-50 rounded-lg p-6">
+                    <div id="costBenefit" class="space-y-3"></div>
+                </div>
+            </div>
+
+            <!-- Recommendation -->
+            <div class="p-6 bg-purple-50">
+                <h3 class="text-xl font-bold text-gray-800 mb-3">Recommendation</h3>
+                <div id="recommendation" class="bg-white rounded-lg p-4 border-l-4 border-purple-600"></div>
+                <div id="urgency" class="mt-4 p-4 rounded-lg"></div>
+            </div>
+        </div>
+
+        <!-- Key Takeaways -->
+        <div class="p-6 bg-gray-50 border-t border-gray-200">
+            <h3 class="text-xl font-bold text-gray-800 mb-4">Key Takeaways</h3>
+            <ul class="space-y-2 text-gray-700">
+                <li class="flex items-start">
+                    <span class="text-purple-600 mr-2">•</span>
+                    <span>Trusts aren't only for the wealthy—young parents with life insurance often need them most</span>
+                </li>
+                <li class="flex items-start">
+                    <span class="text-purple-600 mr-2">•</span>
+                    <span>Blended families almost always need trusts to avoid conflict and achieve dual goals</span>
+                </li>
+                <li class="flex items-start">
+                    <span class="text-purple-600 mr-2">•</span>
+                    <span>Probate costs 3-7% of estate value; trust setup costs $1,500-$5,000 depending on complexity</span>
+                </li>
+                <li class="flex items-start">
+                    <span class="text-purple-600 mr-2">•</span>
+                    <span>For small, simple estates, trusts aren't cost-effective—simple will suffices</span>
+                </li>
+                <li class="flex items-start">
+                    <span class="text-purple-600 mr-2">•</span>
+                    <span>In {{STATE_NAME}}, probate costs and procedures vary by county but typically follow state guidelines</span>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Footer -->
+        <div class="p-4 bg-gray-100 text-center text-sm text-gray-600">
+            <p>&copy; PFL Academy | pflacademy.co | Chapter {{CHAPTER_NUMBER}}: Estate Planning</p>
+        </div>
+    </div>
+
+    <script>
+        const situations = {
+            1: {
+                title: "Situation 1: Young Couple with Life Insurance and Small Children",
+                details: {
+                    names: "Marcus and Sarah",
+                    ages: "29 and 30",
+                    children: "Two children, ages 2 and 4",
+                    assets: "$370,000 ($300K life insurance each, $40K retirement, $30K savings)"
+                },
+                probate: { rating: "Moderate", details: "Life insurance avoids probate via beneficiary, but retirement/savings don't", cost: 15000, timeline: "6-12 months" },
+                control: { rating: "CRITICAL", details: "Cannot name children directly as beneficiaries—minors can't own assets. Without trust, court custodian until 18, then lump sum to teenager." },
+                complexity: { rating: "Moderate", details: "Straightforward family but minor children require protected management" },
+                options: [
+                    {
+                        type: "Testamentary Trust (in will)",
+                        cost: { setup: 800, annual: 0, trustee: 500 },
+                        benefits: "Protects children from lump sum at 18; professional management; controlled distribution (1/3 at 25, 1/3 at 30, 1/3 at 35)"
+                    },
+                    {
+                        type: "Revocable Living Trust",
+                        cost: { setup: 3000, annual: 300, trustee: 500 },
+                        benefits: "Probate avoidance on all assets, privacy, immediate distribution, professional management for children"
+                    }
+                ],
+                recommendation: "Testamentary trust MINIMUM (necessary for children); revocable living trust if want to avoid probate on all assets",
+                costBenefit: "Testamentary trust: $800 setup prevents lump sum to minors. Revocable trust: $3K setup saves $15K probate.",
+                urgency: "CRITICAL—parents of minor children need this immediately"
+            },
+            2: {
+                title: "Situation 2: Single Professional, No Children",
+                details: {
+                    name: "Jennifer",
+                    age: "41",
+                    status: "Never married, no children",
+                    family: "Elderly parents (ages 72 and 74), one sibling",
+                    assets: "$850,000 ($450K retirement, $250K investments, $150K home equity)"
+                },
+                probate: { rating: "HIGH", details: "Estate over $850K; probate costs in {{STATE_NAME}} typically 3-7% of estate value", cost: 42500, timeline: "12-24 months" },
+                control: { rating: "Moderate", details: "Sequential distribution (parents first, then charity) possible through will but trust provides more control" },
+                complexity: { rating: "Moderate", details: "Elderly beneficiaries and charitable intent" },
+                options: [
+                    {
+                        type: "Will Only (No Trust)",
+                        cost: { setup: 800, probate: 42500, timeline: "12-24 months" },
+                        benefits: "Simple but expensive probate process; public record"
+                    },
+                    {
+                        type: "Revocable Living Trust",
+                        cost: { setup: 3000, annual: 300, "10-year": 6000 },
+                        benefits: "Probate savings $36,500; privacy; immediate distribution; no court involvement"
+                    }
+                ],
+                recommendation: "Revocable Living Trust—probate cost savings ($36,500) far exceed setup expense ($3,000)",
+                costBenefit: "Setup $3K + 10 years maintenance $3K = $6K total vs. probate $42.5K = $36.5K NET SAVINGS",
+                urgency: "High—substantial estate with elderly beneficiaries"
+            },
+            3: {
+                title: "Situation 3: Blended Family",
+                details: {
+                    names: "David and Maria",
+                    ages: "48 and 52",
+                    marriage: "Married 5 years (second marriage for both)",
+                    children: "His: 2 children (ages 20, 22) | Her: 1 child (age 17)",
+                    assets: "$1.2M combined ($600K his separate, $400K her separate, $200K marital)"
+                },
+                probate: { rating: "HIGH", details: "Large estate with complex distribution needs", cost: 50000, timeline: "Variable" },
+                control: { rating: "CRITICAL", details: "Wants to provide for current spouse during lifetime but ensure assets ultimately go to own children" },
+                complexity: { rating: "VERY HIGH", details: "Competing interests between current spouse and children from prior marriages" },
+                options: [
+                    {
+                        type: "Will Only (No Trust)",
+                        cost: { setup: 1000, risk: "High litigation risk" },
+                        benefits: "RISK: Cannot achieve both goals. Spouse receives all with no guarantee to children."
+                    },
+                    {
+                        type: "QTIP Trust",
+                        cost: { setup: 5000, annual: 800, "10-year": 13000 },
+                        benefits: "Spouse receives income for life; principal to children at spouse's death. Achieves both goals legally."
+                    }
+                ],
+                recommendation: "QTIP or similar marital trust—ONLY way to achieve both goals (spouse support + children inherit)",
+                costBenefit: "$5,000-6,000 setup prevents family warfare, litigation ($50K+), and ensures wishes honored. Priceless for family harmony.",
+                urgency: "CRITICAL—blended families without trusts almost always result in conflict"
+            },
+            4: {
+                title: "Situation 4: Recent Graduate",
+                details: {
+                    name: "Tyler",
+                    age: "23",
+                    status: "Single, no children",
+                    assets: "$45,000 ($15K car, $10K retirement, $20K savings)",
+                    debt: "$35,000 student loans"
+                },
+                probate: { rating: "LOW", details: "Small estate; probate costs minimal", cost: 2000, timeline: "4-6 months" },
+                control: { rating: "LOW", details: "Straightforward situation, no dependents, no special circumstances" },
+                complexity: { rating: "LOW", details: "No special needs beneficiaries, no complex family dynamics" },
+                options: [
+                    {
+                        type: "No Trust Needed",
+                        cost: { will: 300, trust_would_be: 3000 },
+                        benefits: "Simple will sufficient. Trust setup ($3,000) completely unjustified for $45K estate."
+                    }
+                ],
+                recommendation: "NO TRUST NEEDED—simple will sufficient. Priority: Healthcare directive and POA more important than will at this stage.",
+                costBenefit: "Trust would cost $3,000 to save $2,000 probate—makes no financial sense",
+                urgency: "Low for will; HIGH for healthcare directive and financial POA"
+            }
+        };
+
+        function loadSituation(id) {
+            const sit = situations[id];
+
+            document.getElementById('situationTitle').textContent = sit.title;
+
+            // Details
+            let detailsHTML = '<div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">';
+            for (const [key, value] of Object.entries(sit.details)) {
+                detailsHTML += `<div><span class="font-semibold capitalize">${key.replace('_', ' ')}:</span> ${value}</div>`;
+            }
+            detailsHTML += '</div>';
+            document.getElementById('situationDetails').innerHTML = detailsHTML;
+
+            // Analysis boxes
+            document.getElementById('probateValue').innerHTML = `
+                <div class="font-bold text-lg">${sit.probate.rating}</div>
+                <div class="text-sm mt-1">${sit.probate.details}</div>
+                <div class="text-xs mt-2 font-semibold">Est. Probate: $${sit.probate.cost.toLocaleString()}</div>
+            `;
+            document.getElementById('controlNeed').innerHTML = `
+                <div class="font-bold text-lg">${sit.control.rating}</div>
+                <div class="text-sm mt-1">${sit.control.details}</div>
+            `;
+            document.getElementById('complexity').innerHTML = `
+                <div class="font-bold text-lg">${sit.complexity.rating}</div>
+                <div class="text-sm mt-1">${sit.complexity.details}</div>
+            `;
+
+            // Trust options
+            let optionsHTML = '';
+            sit.options.forEach(opt => {
+                optionsHTML += `
+                    <div class="bg-white border border-gray-300 rounded-lg p-4">
+                        <div class="font-bold text-lg text-gray-800 mb-2">${opt.type}</div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
+                            <div>
+                                <div class="font-semibold text-gray-700 mb-1">Costs:</div>
+                                ${Object.entries(opt.cost).map(([k,v]) =>
+                                    `<div class="text-gray-600">${k.replace('_', ' ')}: $${typeof v === 'number' ? v.toLocaleString() : v}</div>`
+                                ).join('')}
+                            </div>
+                            <div>
+                                <div class="font-semibold text-gray-700 mb-1">Benefits:</div>
+                                <div class="text-gray-600">${opt.benefits}</div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            document.getElementById('trustOptions').innerHTML = optionsHTML;
+
+            // Cost-benefit
+            document.getElementById('costBenefit').innerHTML = `
+                <div class="text-gray-700">${sit.costBenefit}</div>
+            `;
+
+            // Recommendation
+            document.getElementById('recommendation').innerHTML = `
+                <div class="font-semibold text-lg text-gray-800">${sit.recommendation}</div>
+            `;
+
+            const urgencyColors = {
+                'CRITICAL': 'bg-red-100 border border-red-300 text-red-800',
+                'High': 'bg-amber-100 border border-amber-300 text-amber-800',
+                'Low': 'bg-green-100 border border-green-300 text-green-800'
+            };
+            const urgencyClass = Object.keys(urgencyColors).find(key => sit.urgency.includes(key)) || 'Low';
+            document.getElementById('urgency').className = `mt-4 p-4 rounded-lg ${urgencyColors[urgencyClass]}`;
+            document.getElementById('urgency').innerHTML = `<div class="font-bold">Urgency: ${sit.urgency}</div>`;
+
+            document.getElementById('situationContent').classList.remove('hidden');
+            document.getElementById('situationContent').scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

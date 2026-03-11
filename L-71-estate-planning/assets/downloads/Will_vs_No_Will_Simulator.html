@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<!--
+PFL Academy Standalone Activity Tool
+L-Chapter: L-71 - Introduction to Estate Planning
+Activity: Will vs. No Will Simulator
+State-Agnostic Template - Uses {{STATE_NAME}}
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will vs. No Will Simulator - L-71</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @media print {
+            .no-print { display: none; }
+            body { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 p-4 md:p-8">
+    <div class="max-w-6xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
+        <!-- Header -->
+        <div class="bg-indigo-600 text-white p-6">
+            <h1 class="text-3xl font-bold">Will vs. No Will Simulator</h1>
+            <p class="text-indigo-100 mt-2">See the consequences of dying with and without a will</p>
+        </div>
+
+        <!-- Scenario Selector -->
+        <div class="p-6 bg-indigo-50 border-b border-indigo-200 no-print">
+            <label class="block text-sm font-semibold text-gray-700 mb-2">Select a Scenario:</label>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <button onclick="loadScenario('a')" class="p-4 bg-white border-2 border-gray-300 rounded-lg hover:border-indigo-500 hover:shadow-md transition">
+                    <div class="font-bold text-gray-800">Scenario A</div>
+                    <div class="text-sm text-gray-600 mt-1">Single Person, Age 26</div>
+                    <div class="text-xs text-gray-500 mt-1">Serious partner, no will</div>
+                </button>
+                <button onclick="loadScenario('b')" class="p-4 bg-white border-2 border-gray-300 rounded-lg hover:border-indigo-500 hover:shadow-md transition">
+                    <div class="font-bold text-gray-800">Scenario B</div>
+                    <div class="text-sm text-gray-600 mt-1">Young Parents, Ages 30/32</div>
+                    <div class="text-xs text-gray-500 mt-1">Two children, no guardians</div>
+                </button>
+                <button onclick="loadScenario('c')" class="p-4 bg-white border-2 border-gray-300 rounded-lg hover:border-indigo-500 hover:shadow-md transition">
+                    <div class="font-bold text-gray-800">Scenario C</div>
+                    <div class="text-sm text-gray-600 mt-1">Divorced Parent, Age 38</div>
+                    <div class="text-xs text-gray-500 mt-1">Outdated will still names ex</div>
+                </button>
+            </div>
+        </div>
+
+        <!-- Scenario Content -->
+        <div id="scenarioContent" class="hidden">
+            <!-- Scenario Details -->
+            <div class="p-6 bg-gray-50 border-b border-gray-200">
+                <h2 class="text-2xl font-bold text-gray-800 mb-2" id="scenarioTitle"></h2>
+                <p class="text-gray-600" id="scenarioDescription"></p>
+                <div class="mt-4 bg-white rounded-lg p-4">
+                    <h3 class="font-bold text-gray-800 mb-2">Assets:</h3>
+                    <div id="scenarioAssets" class="text-gray-700"></div>
+                </div>
+            </div>
+
+            <!-- Comparison -->
+            <div class="p-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- With Will -->
+                    <div class="border-2 border-emerald-300 rounded-lg p-5 bg-emerald-50">
+                        <h3 class="text-xl font-bold text-emerald-700 mb-4 flex items-center">
+                            <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            WITH WILL
+                        </h3>
+                        <div id="withWill" class="space-y-4"></div>
+                    </div>
+
+                    <!-- Without Will -->
+                    <div class="border-2 border-red-300 rounded-lg p-5 bg-red-50">
+                        <h3 class="text-xl font-bold text-red-700 mb-4 flex items-center">
+                            <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
+                            </svg>
+                            WITHOUT WILL
+                        </h3>
+                        <div id="withoutWill" class="space-y-4"></div>
+                    </div>
+                </div>
+
+                <!-- Cost Comparison -->
+                <div class="mt-6 bg-gray-100 rounded-lg p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Cost Comparison</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="bg-white rounded p-4">
+                            <div class="text-sm text-gray-600">With Will Total Cost</div>
+                            <div id="withWillCost" class="text-2xl font-bold text-emerald-600"></div>
+                        </div>
+                        <div class="bg-white rounded p-4">
+                            <div class="text-sm text-gray-600">Without Will Total Cost</div>
+                            <div id="withoutWillCost" class="text-2xl font-bold text-red-600"></div>
+                        </div>
+                        <div class="bg-white rounded p-4">
+                            <div class="text-sm text-gray-600">Cost Difference</div>
+                            <div id="costDifference" class="text-2xl font-bold text-gray-800"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Family Impact -->
+                <div class="mt-6 bg-amber-50 border-l-4 border-amber-500 rounded-lg p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Family Impact</h3>
+                    <div id="familyImpact" class="text-gray-700"></div>
+                </div>
+            </div>
+
+            <!-- Analysis Questions -->
+            <div class="p-6 bg-gray-50 border-t border-gray-200">
+                <h3 class="text-xl font-bold text-gray-800 mb-4">Reflection Questions</h3>
+                <div class="space-y-4">
+                    <div class="bg-white rounded-lg p-4">
+                        <label class="block font-semibold text-gray-700 mb-2">What surprised you most about the intestacy outcome?</label>
+                        <textarea class="w-full p-3 border border-gray-300 rounded-lg" rows="3"></textarea>
+                    </div>
+                    <div class="bg-white rounded-lg p-4">
+                        <label class="block font-semibold text-gray-700 mb-2">What is the hidden cost beyond money in this scenario?</label>
+                        <textarea class="w-full p-3 border border-gray-300 rounded-lg" rows="3"></textarea>
+                    </div>
+                    <div class="bg-white rounded-lg p-4">
+                        <label class="block font-semibold text-gray-700 mb-2">At what life stage does a will become absolutely non-negotiable?</label>
+                        <textarea class="w-full p-3 border border-gray-300 rounded-lg" rows="2"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="p-4 bg-gray-100 text-center text-sm text-gray-600">
+            <p>&copy; PFL Academy | pflacademy.co | Chapter {{CHAPTER_NUMBER}}: Estate Planning</p>
+        </div>
+    </div>
+
+    <script>
+        const scenarios = {
+            a: {
+                title: "Scenario A: Single Person, Age 26",
+                description: "Alex, a young professional with a serious partner Emma (dating 3 years, planning to marry), dies suddenly without a will.",
+                assets: {
+                    total: 180000,
+                    breakdown: "Retirement 401k: $80,000<br>Investment account: $50,000<br>Car & possessions: $50,000"
+                },
+                withWill: {
+                    distribution: "All assets to Emma per will",
+                    executor: "Emma's brother (named in will)",
+                    timeline: "8 months to complete probate",
+                    costs: { probate: 7000, attorney: 3000, total: 10000 },
+                    impact: "Emma receives assets smoothly, wishes honored, minimal conflict"
+                },
+                withoutWill: {
+                    distribution: "All assets to parents per {{STATE_NAME}} intestacy law (Emma receives $0)",
+                    administrator: "Court-appointed (Alex's father)",
+                    timeline: "12-18 months to complete intestacy process",
+                    costs: { probate: 9000, attorney: 4500, court: 1500, total: 15000 },
+                    impact: "Emma evicted from shared apartment, loses all possessions, engagement ring claimed by parents, partner of 3 years gets nothing"
+                }
+            },
+            b: {
+                title: "Scenario B: Married Couple with Children",
+                description: "Jason and Lisa (ages 32 and 30) with two children (ages 2 and 4) both die in a car accident with no guardian designation.",
+                assets: {
+                    total: 450000,
+                    breakdown: "Jason's life insurance: $200,000<br>Lisa's life insurance: $200,000<br>Home equity: $50,000"
+                },
+                withWill: {
+                    distribution: "Life insurance to testamentary trust for children's benefit",
+                    executor: "Designated guardians (Lisa's brother and wife) take custody immediately",
+                    timeline: "Guardians take custody within days; trust established within 3 months",
+                    costs: { probate: 15000, trust: 3000, total: 18000 },
+                    impact: "Children stay with familiar extended family, financial security through trust, minimal disruption during trauma"
+                },
+                withoutWill: {
+                    distribution: "Life insurance in lump sum to grandmother (winner of custody battle) with no trust management",
+                    administrator: "Children temporarily in foster care while court decides custody; maternal grandmother vs. paternal aunt petition",
+                    timeline: "6 months of legal battle, children in limbo",
+                    costs: { probate: 18000, custody: 25000, therapy: 5000, total: 48000 },
+                    impact: "Children traumatized by temporary foster care and uncertainty, family relationships damaged by custody battle, no professional management of insurance proceeds"
+                }
+            },
+            c: {
+                title: "Scenario C: Recently Divorced Parent",
+                description: "Brad (age 38), divorced 2 years ago and remarried 1 year ago, dies with will created 10 years ago that still names ex-spouse Jennifer as beneficiary.",
+                assets: {
+                    total: 275000,
+                    breakdown: "Retirement accounts: $180,000<br>Home equity: $50,000<br>Savings: $45,000"
+                },
+                withWill: {
+                    distribution: "Assets to trust for child's benefit (age 10)",
+                    executor: "Brad's brother raises child; financial advisor manages trust",
+                    timeline: "4-6 months to complete",
+                    costs: { probate: 10000, trust: 2000, total: 12000 },
+                    impact: "Child financially secure, raised by designated guardian, current wife Angela receives personal items"
+                },
+                withoutWill: {
+                    distribution: "All assets to ex-wife Jennifer per old will",
+                    administrator: "Brad's brother has custody but zero financial resources; current wife Angela sues to challenge will",
+                    timeline: "18-24 months to resolve legal battle",
+                    costs: { probate: 12000, litigation: 35000, total: 47000 },
+                    impact: "Ex-wife gets $275K despite remarriage; current wife gets nothing; child's guardian has no resources; family relationships destroyed; child caught in middle of legal battle"
+                }
+            }
+        };
+
+        function loadScenario(id) {
+            const scenario = scenarios[id];
+
+            document.getElementById('scenarioTitle').textContent = scenario.title;
+            document.getElementById('scenarioDescription').textContent = scenario.description;
+            document.getElementById('scenarioAssets').innerHTML = `
+                <div class="text-lg font-bold text-gray-800">Total: $${scenario.assets.total.toLocaleString()}</div>
+                <div class="text-sm mt-2">${scenario.assets.breakdown}</div>
+            `;
+
+            // With Will
+            document.getElementById('withWill').innerHTML = `
+                <div>
+                    <div class="font-semibold text-gray-800">Asset Distribution:</div>
+                    <div class="text-sm text-gray-700">${scenario.withWill.distribution}</div>
+                </div>
+                <div>
+                    <div class="font-semibold text-gray-800">Executor/Guardian:</div>
+                    <div class="text-sm text-gray-700">${scenario.withWill.executor}</div>
+                </div>
+                <div>
+                    <div class="font-semibold text-gray-800">Timeline:</div>
+                    <div class="text-sm text-gray-700">${scenario.withWill.timeline}</div>
+                </div>
+                <div>
+                    <div class="font-semibold text-gray-800">Costs:</div>
+                    <div class="text-sm text-gray-700">
+                        ${Object.entries(scenario.withWill.costs).filter(([k,v]) => k !== 'total').map(([k,v]) =>
+                            `${k.charAt(0).toUpperCase() + k.slice(1)}: $${v.toLocaleString()}`
+                        ).join('<br>')}
+                    </div>
+                </div>
+            `;
+
+            // Without Will
+            document.getElementById('withoutWill').innerHTML = `
+                <div>
+                    <div class="font-semibold text-gray-800">Asset Distribution:</div>
+                    <div class="text-sm text-gray-700">${scenario.withoutWill.distribution}</div>
+                </div>
+                <div>
+                    <div class="font-semibold text-gray-800">Administrator/Custody:</div>
+                    <div class="text-sm text-gray-700">${scenario.withoutWill.administrator}</div>
+                </div>
+                <div>
+                    <div class="font-semibold text-gray-800">Timeline:</div>
+                    <div class="text-sm text-gray-700">${scenario.withoutWill.timeline}</div>
+                </div>
+                <div>
+                    <div class="font-semibold text-gray-800">Costs:</div>
+                    <div class="text-sm text-gray-700">
+                        ${Object.entries(scenario.withoutWill.costs).filter(([k,v]) => k !== 'total').map(([k,v]) =>
+                            `${k.charAt(0).toUpperCase() + k.slice(1)}: $${v.toLocaleString()}`
+                        ).join('<br>')}
+                    </div>
+                </div>
+            `;
+
+            // Costs
+            document.getElementById('withWillCost').textContent = '$' + scenario.withWill.costs.total.toLocaleString();
+            document.getElementById('withoutWillCost').textContent = '$' + scenario.withoutWill.costs.total.toLocaleString();
+            const diff = scenario.withoutWill.costs.total - scenario.withWill.costs.total;
+            document.getElementById('costDifference').textContent = '+$' + diff.toLocaleString();
+
+            // Family Impact
+            document.getElementById('familyImpact').innerHTML = `
+                <div class="mb-3">
+                    <div class="font-semibold text-emerald-700">With Will:</div>
+                    <div class="text-sm">${scenario.withWill.impact}</div>
+                </div>
+                <div>
+                    <div class="font-semibold text-red-700">Without Will:</div>
+                    <div class="text-sm">${scenario.withoutWill.impact}</div>
+                </div>
+            `;
+
+            document.getElementById('scenarioContent').classList.remove('hidden');
+            document.getElementById('scenarioContent').scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

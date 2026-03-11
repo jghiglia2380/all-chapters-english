@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<!--
+PFL Academy State-Agnostic Template
+L-Chapter: L-71
+Chapter Title: Introduction to Estate Planning
+Oklahoma Reference: Chapter X.X
+
+Variables used in this template:
+- {{STATE_NAME}} - Full state name (e.g., Kentucky, Georgia)
+- {{CHAPTER_NUMBER}} - State-specific chapter number (e.g., 2.1, 1.4)
+- {{CHAPTER_ID}} - L-chapter identifier (e.g., L-71)
+- {{CHAPTER_TITLE}} - Always: Introduction to Estate Planning
+- {{STATE_ESTATE_TAX}} - State-specific estate/inheritance tax information
+
+This template will be processed by generate_state_html.py to create
+state-specific versions with correct chapter numbering.
+-->
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{STATE_NAME}} Chapter {{CHAPTER_NUMBER}}: Introduction to Estate Planning - Student Activity Packet</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+        :root {
+            --primary: #10b981;
+            --primary-light: #ecfdf5;
+            --accent: #f59e0b;
+            --accent-light: #fef3c7;
+            --success: #059669;
+            --text-dark: #1e293b;
+            --text-medium: #475569;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --bg-light: #f8fafc;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+        @page { size: letter; margin: 0.5in; }
+        body { font-family: 'Open Sans', sans-serif; font-size: 10.5pt; line-height: 1.5; color: var(--text-dark); background: white; }
+
+        .header { background: var(--primary); color: white; padding: 14px 18px; border-radius: 6px; margin-bottom: 18px; display: flex; justify-content: space-between; align-items: center; }
+        .header-left h1 { font-size: 13pt; font-weight: 700; margin: 0; }
+        .header-left h2 { font-size: 10pt; font-weight: 400; margin: 2px 0 0; opacity: 0.9; }
+        .header-right { font-size: 9pt; text-align: right; opacity: 0.9; }
+
+        .section-header { font-size: 11pt; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 2px solid var(--primary); padding-bottom: 4px; margin: 20px 0 12px; }
+
+        .challenge-box { background: var(--accent-light); border-left: 4px solid var(--accent); padding: 14px 16px; margin-bottom: 16px; border-radius: 0 6px 6px 0; }
+        .challenge-box p { font-style: italic; color: var(--text-dark); margin-bottom: 10px; }
+        .challenge-box .framing-question { font-weight: 600; font-style: normal; color: #92400e; }
+
+        .objectives-box { background: var(--primary-light); border: 1px solid #a7f3d0; border-radius: 6px; padding: 12px 16px; margin-bottom: 18px; }
+        .objectives-box h3 { font-size: 10pt; font-weight: 700; color: var(--primary); margin-bottom: 6px; }
+        .objectives-box ul { margin: 0; padding-left: 20px; }
+        .objectives-box li { margin-bottom: 3px; color: var(--text-medium); }
+
+        .terms-table { width: 100%; border-collapse: collapse; margin-bottom: 14px; font-size: 10pt; }
+        .terms-table th { background: var(--bg-light); text-align: left; padding: 8px 10px; border: 1px solid var(--border); font-weight: 600; color: var(--text-medium); }
+        .terms-table td { padding: 8px 10px; border: 1px solid var(--border); vertical-align: top; }
+        .terms-table td:first-child { font-weight: 600; color: var(--primary); width: 22%; }
+
+        .background-box { background: var(--bg-light); border: 1px solid var(--border); border-radius: 6px; padding: 12px 16px; margin-bottom: 18px; font-size: 10pt; color: var(--text-medium); }
+        .background-box strong { color: var(--text-dark); }
+
+        .scenario-card { background: white; border: 1px solid var(--border); border-radius: 6px; padding: 12px 14px; margin-bottom: 14px; page-break-inside: avoid; }
+        .scenario-title { font-weight: 700; color: var(--primary); margin-bottom: 6px; font-size: 10pt; }
+        .scenario-description { color: var(--text-medium); margin-bottom: 10px; font-size: 10pt; }
+
+        .response-line { display: flex; align-items: baseline; margin-bottom: 8px; }
+        .response-label { font-weight: 600; color: var(--text-dark); margin-right: 8px; white-space: nowrap; }
+        .response-blank { flex-grow: 1; border-bottom: 1px solid var(--text-light); min-height: 18px; }
+
+        .question { margin-bottom: 14px; page-break-inside: avoid; }
+        .question-number { font-weight: 700; color: var(--text-dark); }
+        .question-text { color: var(--text-dark); margin-bottom: 6px; }
+        .answer-lines { margin-top: 6px; }
+        .answer-line { border-bottom: 1px solid var(--text-light); height: 22px; margin-bottom: 4px; }
+
+        .calc-box { border: 1px solid var(--border); border-radius: 4px; padding: 12px; margin: 8px 0; min-height: 60px; background: var(--bg-light); }
+        .calc-label { font-size: 9pt; color: var(--text-light); margin-bottom: 4px; }
+        .calc-answer { margin-top: 10px; font-weight: 600; }
+
+        .comparison-table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 9pt; }
+        .comparison-table th { background: var(--primary); color: white; padding: 8px; text-align: left; font-weight: 600; }
+        .comparison-table td { padding: 8px; border: 1px solid var(--border); vertical-align: top; }
+        .comparison-table tr:nth-child(even) td { background: var(--bg-light); }
+
+        .hint-box { background: #f0fdf4; border-left: 3px solid var(--success); padding: 8px 12px; margin: 10px 0; font-size: 9pt; font-style: italic; color: #166534; }
+        .hint-box strong { font-style: normal; }
+
+        .part-header { font-weight: 700; font-size: 10pt; color: var(--primary); text-transform: uppercase; margin: 16px 0 10px; padding-bottom: 4px; border-bottom: 1px solid var(--border); }
+
+        .footer { margin-top: 24px; padding-top: 10px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; font-size: 9pt; color: var(--text-light); }
+
+        .checklist { margin: 10px 0; }
+        .checklist-item { display: flex; align-items: baseline; margin-bottom: 6px; }
+        .checkbox { width: 14px; height: 14px; border: 1px solid var(--text-light); border-radius: 2px; margin-right: 8px; flex-shrink: 0; }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="header-left">
+            <h1>PFL Academy</h1>
+            <h2>Chapter {{CHAPTER_NUMBER}}: {{CHAPTER_TITLE}}</h2>
+        </div>
+        <div class="header-right">Student Activity Packet</div>
+    </div>
+
+    <div class="section-header">The Challenge</div>
+    <div class="challenge-box">
+        <p>Maya, 27, was critically injured in an accident. Her fiancé Jordan knew her wishes, but without a healthcare directive, Maya's estranged parents made all medical decisions—decisions contradicting what Maya would have wanted. Meanwhile, no one could access Maya's bank accounts to pay her rent because she hadn't designated a financial power of attorney.</p>
+        <p class="framing-question">How can understanding estate planning tools protect you during incapacity and ensure your wishes are honored after death—even as a young adult?</p>
+    </div>
+
+    <div class="objectives-box">
+        <h3>Learning Objectives</h3>
+        <ul>
+            <li>Define essential estate planning documents and their purposes</li>
+            <li>Explain the probate process and costs of dying without proper planning</li>
+            <li>Understand how beneficiary designations override wills</li>
+            <li>Recognize when trusts are necessary versus when simple wills suffice</li>
+            <li>Create personal action plan for obtaining incapacity protection documents</li>
+        </ul>
+    </div>
+
+    <div class="section-header">Core Concepts</div>
+
+    <table class="terms-table">
+        <tr><th>Term</th><th>Definition</th></tr>
+        <tr>
+            <td>Will</td>
+            <td>Legal document directing asset distribution after death and naming guardians for minor children. Only effective upon death.</td>
+        </tr>
+        <tr>
+            <td>Intestate</td>
+            <td>Dying without a will. State law determines who inherits using rigid formulas that rarely match personal preferences.</td>
+        </tr>
+        <tr>
+            <td>Probate</td>
+            <td>Court-supervised process of validating will, paying debts, distributing assets. Public, costly (3-7% of estate), time-consuming (6-24 months).</td>
+        </tr>
+        <tr>
+            <td>Trust</td>
+            <td>Legal arrangement where trustee holds assets for beneficiaries. Avoids probate, controls distribution timing, provides privacy.</td>
+        </tr>
+        <tr>
+            <td>Beneficiary Designation</td>
+            <td>Form naming who receives specific accounts directly (retirement, life insurance). TRUMPS wills—designations override any will provision.</td>
+        </tr>
+        <tr>
+            <td>Power of Attorney</td>
+            <td>Financial POA: authorizes someone to handle money if incapacitated. Healthcare POA: authorizes medical decisions. Durable = remains effective during incapacity.</td>
+        </tr>
+        <tr>
+            <td>Healthcare Directive</td>
+            <td>Document specifying medical treatment preferences and naming healthcare proxy. Also called Living Will or Advance Directive.</td>
+        </tr>
+        <tr>
+            <td>Guardian</td>
+            <td>Person designated in will to raise minor children if parents die or become incapacitated. Court decides if not designated.</td>
+        </tr>
+    </table>
+
+    <div class="background-box">
+        <strong>Background:</strong> Estate planning isn't only for the wealthy or elderly—it's about protection and control. Incapacity from accidents or illness can happen at any age. Healthcare directives and powers of attorney protect you while living. Wills and trusts protect your family after death. In {{STATE_NAME}}: {{STATE_ESTATE_TAX}}
+    </div>
+
+    <div class="section-header">Activity 1: Will vs. No Will Comparison</div>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Scenario: Marcus (Age 29) – No Will</div>
+        <div class="scenario-description">Marcus, a software engineer, dated Emma for 4 years and planned to marry. He had $180,000 in assets ($80K retirement, $50K investments, $50K car/possessions). He died suddenly without a will.</div>
+
+        <table class="comparison-table">
+            <tr>
+                <th style="width: 20%;">Factor</th>
+                <th style="width: 40%;">If Marcus Had a Will</th>
+                <th style="width: 40%;">Without Will (What Happened)</th>
+            </tr>
+            <tr>
+                <td><strong>Asset Distribution</strong></td>
+                <td>Emma receives all assets as designated in will</td>
+                <td>Parents receive everything per {{STATE_NAME}} intestacy law; Emma gets $0</td>
+            </tr>
+            <tr>
+                <td><strong>Executor/Administrator</strong></td>
+                <td>Person Marcus chose</td>
+                <td>Court-appointed (Marcus's father)</td>
+            </tr>
+            <tr>
+                <td><strong>Timeline</strong></td>
+                <td>8 months typical</td>
+                <td>12-18 months</td>
+            </tr>
+            <tr>
+                <td><strong>Costs</strong></td>
+                <td>~$10,000</td>
+                <td>~$15,000</td>
+            </tr>
+            <tr>
+                <td><strong>Family Impact</strong></td>
+                <td>Wishes honored, minimal conflict</td>
+                <td>Emma evicted from apartment, loses possessions, engagement ring claimed by parents</td>
+            </tr>
+        </table>
+
+        <div class="question">
+            <p class="question-text"><span class="question-number">1.</span> Why did Emma receive nothing despite their 4-year relationship?</p>
+            <div class="answer-lines"><div class="answer-line"></div><div class="answer-line"></div></div>
+        </div>
+
+        <div class="question">
+            <p class="question-text"><span class="question-number">2.</span> What would a simple will have cost versus the outcome?</p>
+            <div class="answer-lines"><div class="answer-line"></div></div>
+        </div>
+
+        <div class="question">
+            <p class="question-text"><span class="question-number">3.</span> At what life stage does a will become essential?</p>
+            <div class="answer-lines"><div class="answer-line"></div><div class="answer-line"></div></div>
+        </div>
+    </div>
+
+    <div class="section-header">Activity 2: Trust Analysis</div>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Young Parents: Marcus and Sarah (Ages 29 and 30)</div>
+        <div class="scenario-description">Two children (ages 2 and 4). Assets: $300K life insurance (each), $40K retirement, $30K savings. Total: $370,000</div>
+
+        <div class="response-line">
+            <span class="response-label">Probate avoidance value:</span>
+            <span class="response-blank"></span>
+        </div>
+        <div class="hint-box">
+            <strong>Hint:</strong> Life insurance avoids probate via beneficiary designation, but what about retirement and savings?
+        </div>
+
+        <div class="response-line">
+            <span class="response-label">Why is control CRITICAL for this family?</span>
+            <span class="response-blank"></span>
+        </div>
+        <div class="hint-box">
+            <strong>Key Question:</strong> Can they name children (ages 2 and 4) directly as life insurance beneficiaries? What happens without a trust?
+        </div>
+
+        <div class="question">
+            <p class="question-text"><span class="question-number">4.</span> Which trust option makes sense for this family and why?</p>
+            <div style="margin-left: 20px; font-size: 9pt; margin-bottom: 6px;">
+                <div>□ Testamentary Trust (in will) – Setup: $800, holds insurance proceeds for children</div>
+                <div>□ Revocable Living Trust – Setup: $3,000, avoids probate on all assets</div>
+                <div>□ No trust needed – Simple will sufficient</div>
+            </div>
+            <div class="answer-lines"><div class="answer-line"></div><div class="answer-line"></div></div>
+        </div>
+
+        <div class="question">
+            <p class="question-text"><span class="question-number">5.</span> What would happen if children received $300K lump sum at age 18 with no trust?</p>
+            <div class="answer-lines"><div class="answer-line"></div><div class="answer-line"></div></div>
+        </div>
+    </div>
+
+    <div class="section-header">Activity 3: Power of Attorney & Healthcare Directive Planning</div>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Your Personal Incapacity Protection Plan</div>
+
+        <div class="part-header">Healthcare Directive</div>
+        <div class="response-line">
+            <span class="response-label">My healthcare proxy (person to make medical decisions):</span>
+            <span class="response-blank"></span>
+        </div>
+        <div class="response-line">
+            <span class="response-label">Backup healthcare proxy:</span>
+            <span class="response-blank"></span>
+        </div>
+        <div class="response-line">
+            <span class="response-label">Why I chose this person:</span>
+            <span class="response-blank"></span>
+        </div>
+
+        <div class="question">
+            <p class="question-text"><span class="question-number">6.</span> What treatment preferences should you discuss with your healthcare proxy?</p>
+            <div class="checklist">
+                <div class="checklist-item"><div class="checkbox"></div>Life support decisions if permanently unconscious</div>
+                <div class="checklist-item"><div class="checkbox"></div>Organ donation wishes</div>
+                <div class="checklist-item"><div class="checkbox"></div>Pain management priorities</div>
+                <div class="checklist-item"><div class="checkbox"></div>Religious/cultural treatment considerations</div>
+            </div>
+        </div>
+
+        <div class="part-header">Financial Power of Attorney</div>
+        <div class="response-line">
+            <span class="response-label">My financial agent (person to handle finances if incapacitated):</span>
+            <span class="response-blank"></span>
+        </div>
+        <div class="response-line">
+            <span class="response-label">Backup financial agent:</span>
+            <span class="response-blank"></span>
+        </div>
+        <div class="response-line">
+            <span class="response-label">Why I chose this person:</span>
+            <span class="response-blank"></span>
+        </div>
+
+        <div class="question">
+            <p class="question-text"><span class="question-number">7.</span> Compare costs: Documents ($200-400) vs. Conservatorship if no documents ($5,000-8,000). What's the net benefit?</p>
+            <div class="calc-box">
+                <div class="calc-label">Calculation:</div>
+                <div class="calc-answer">Net Savings: $__________</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-header">Activity 4: Beneficiary Designation Audit</div>
+
+    <div class="scenario-card">
+        <div class="scenario-title">Case Study: Brad (Age 42) – The Forgotten Ex-Spouse</div>
+        <div class="scenario-description">Divorced from Jennifer 8 years ago; remarried to Angela 5 years ago. His $400K life insurance and $180K 401(k) still list Jennifer as beneficiary—never updated. Dies of heart attack.</div>
+
+        <div class="question">
+            <p class="question-text"><span class="question-number">8.</span> Who receives the $580,000 (life insurance + 401k)?</p>
+            <div class="answer-lines"><div class="answer-line"></div></div>
+        </div>
+
+        <div class="question">
+            <p class="question-text"><span class="question-number">9.</span> Why doesn't the will (which leaves everything to Angela) control the life insurance and 401(k)?</p>
+            <div class="answer-lines"><div class="answer-line"></div><div class="answer-line"></div></div>
+        </div>
+
+        <div class="question">
+            <p class="question-text"><span class="question-number">10.</span> What should Brad have done immediately after divorce?</p>
+            <div class="answer-lines"><div class="answer-line"></div></div>
+        </div>
+    </div>
+
+    <div class="part-header">Your Beneficiary Review Checklist</div>
+    <div class="checklist">
+        <div class="checklist-item"><div class="checkbox"></div>List all accounts with beneficiary designations (401k, IRA, life insurance, POD accounts)</div>
+        <div class="checklist-item"><div class="checkbox"></div>Document current primary and contingent beneficiaries for each</div>
+        <div class="checklist-item"><div class="checkbox"></div>Check for red flags: ex-spouse listed, minor children direct, "my estate", no contingent</div>
+        <div class="checklist-item"><div class="checkbox"></div>Update beneficiaries after: marriage, divorce, births, deaths</div>
+        <div class="checklist-item"><div class="checkbox"></div>Set annual review reminder (suggest January 15 every year)</div>
+    </div>
+
+    <div class="section-header">Reflection & Action Plan</div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">11.</span> Which estate planning document is most critical for YOUR current life stage?</p>
+        <div class="answer-lines"><div class="answer-line"></div><div class="answer-line"></div></div>
+    </div>
+
+    <div class="question">
+        <p class="question-text"><span class="question-number">12.</span> What specific action will you take within 30 days to protect yourself or your family?</p>
+        <div class="answer-lines"><div class="answer-line"></div><div class="answer-line"></div></div>
+    </div>
+
+    <div class="hint-box">
+        <strong>Key Insight:</strong> The cost of basic estate planning ($100-500) is trivial compared to the cost of no planning (3-7% of estate in probate, family conflict, unintended outcomes). Healthcare directives and financial POAs protect you while LIVING—more immediately relevant than wills for young adults.
+    </div>
+
+    <div class="footer">
+        <span>&copy; PFL Academy | pflacademy.co</span>
+        <span>Chapter {{CHAPTER_NUMBER}}: {{CHAPTER_TITLE}}</span>
+    </div>
+
+</body>
+</html>
