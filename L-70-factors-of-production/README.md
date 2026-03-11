@@ -222,10 +222,10 @@ Follows exact standardized format:
 
 **5. State Variable Integration:**
 - {{STATE_NAME}} - Optional, defaults to "your state"
-- {{STATE_MIN_WAGE}} - Optional, defaults to "$7.25 (federal minimum)"
-- {{STATE_TOP_INDUSTRIES}} - Optional, enhances local relevance
-- {{STATE_MEDIAN_INCOME}} - Optional context for labor examples
+- {{STATE_MIN_WAGE}} - Optional, defaults to "$7.25 (federal minimum)" (maps to employment.min_wage)
+- {{STATE_TOP_INDUSTRIES}} - Optional, enhances local relevance (maps to employment.major_industries)
 - All content functional WITHOUT these variables
+- Uses national averages for land values, business loan rates, and entrepreneurship examples
 
 ### Questions for Dev Team:
 
@@ -313,22 +313,22 @@ All files are in:
 
 ## State Variable Usage Guide:
 
-**Core Variables (Optional):**
+**State Variables Used (from 89-variable dataset):**
 - `{{STATE_NAME}}` - Personalizes examples ("A {{STATE_NAME}} restaurant...")
   - Default: "A local restaurant..." or "your state"
 - `{{STATE_MIN_WAGE}}` - Provides realistic wage context
+  - Maps to: `employment.min_wage` in state data
   - Default: "$7.25 (federal minimum)" or "$7.25-$15"
 - `{{STATE_TOP_INDUSTRIES}}` - Localizes industry examples
+  - Maps to: `employment.major_industries` in state data
   - Default: "retail, healthcare, technology, and hospitality"
-- `{{STATE_MEDIAN_INCOME}}` - Context for labor compensation
-  - Default: "$50,000-$65,000"
 
-**Extended Variables (Nice-to-Have):**
-- `{{STATE_FARM_LAND_VALUE}}` - Land factor example
-- `{{STATE_COMMERCIAL_RENT}}` - Commercial real estate context
-- `{{STATE_AVG_BUSINESS_LOAN_RATE}}` - Capital financing rates
-- `{{STATE_ENTREPRENEURSHIP_RANK}}` - State business climate ranking
-- `{{STATE_FAMOUS_ENTREPRENEURS}}` - Local entrepreneurship examples
+**Generic Content Strategy:**
+All other factor examples use national averages and generic examples:
+- Land values: $3,000-$12,000/acre (agricultural), $20-$80/sq ft (commercial real estate)
+- Business loan rates: 7-10% depending on creditworthiness
+- Entrepreneurship: National examples (Sara Blakely, Howard Schultz, Jeff Bezos)
+- Labor statistics: National wage premiums and human capital data
 
 **Fallback Strategy:**
 All content includes generic alternatives when state variables unavailable:
@@ -336,7 +336,7 @@ All content includes generic alternatives when state variables unavailable:
 - "The minimum wage in your area..." instead of specific wage
 - "Local industries include..." instead of state-specific list
 
-This ensures 100% functionality across all states while allowing enhanced localization where desired.
+This ensures 100% functionality across all states using only the existing 89-variable state dataset.
 
 ---
 

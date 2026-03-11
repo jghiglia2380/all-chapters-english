@@ -301,8 +301,7 @@
   "state_variables": [
     "{{STATE_NAME}}",
     "{{STATE_MIN_WAGE}}",
-    "{{STATE_AVG_BUSINESS_LOAN_RATE}}",
-    "{{STATE_COMMERCIAL_RENT}}"
+    "{{STATE_TOP_INDUSTRIES}}"
   ],
   "estimated_time_minutes": 15
 }

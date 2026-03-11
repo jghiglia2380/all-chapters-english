@@ -68,8 +68,8 @@ Every economy—whether a small {{STATE_NAME}} coffee shop or a multinational te
 - Wildlife & fish
 - Climate conditions
 
-### {{STATE_NAME}} Land Example:
-In {{STATE_NAME}}, major natural resources include {{STATE_TOP_INDUSTRY_RESOURCES}}. The average agricultural land value is approximately {{STATE_FARM_LAND_VALUE}} per acre, while commercial real estate in {{STATE_LARGEST_CITY}} averages {{STATE_COMMERCIAL_RENT}} per square foot annually.
+### Land Value Examples:
+Natural resources vary dramatically by location. Agricultural land averages $3,000-$12,000 per acre nationally, while commercial real estate in major cities ranges from $20-$80 per square foot annually. Land prices reflect both scarcity and location value.
 
 ### 💰 Payment for Land = RENT
 
@@ -113,7 +113,7 @@ When you use someone else's land or natural resources, you pay **rent**. This in
 - **2.1%** = Lower unemployment rate
 
 ### 💼 {{STATE_NAME}} Labor Market:
-{{STATE_NAME}}'s workforce includes approximately {{STATE_WORKFORCE_SIZE}} workers. Major employment sectors include {{STATE_TOP_INDUSTRIES}}. The median household income is {{STATE_MEDIAN_INCOME}}, with top-paying industries including {{STATE_HIGHEST_PAYING_INDUSTRIES}}.
+{{STATE_NAME}}'s major employment sectors include {{STATE_TOP_INDUSTRIES}}. The minimum wage is {{STATE_MIN_WAGE}} per hour. Investing in education and skills training significantly increases earning potential across all industries.
 
 ### 💰 Payment for Labor = WAGES
 Workers receive **wages** (hourly) or **salaries** (annual) for their labor. In {{STATE_NAME}}, the minimum wage is **{{STATE_MIN_WAGE}}** per hour.
@@ -169,7 +169,7 @@ Capital makes labor more productive. A worker with a backhoe moves 100x more dir
 
 When businesses borrow money to buy capital equipment, they pay **interest**. This is the "price" of using someone else's savings to purchase productive equipment.
 
-Current average business loan rate: **{{STATE_AVG_BUSINESS_LOAN_RATE}}**
+Current average business loan rates range from **7-10%** depending on creditworthiness and loan term.
 
 **💡 Personal Finance Connection:** When you save money in a bank or invest, you're providing capital for businesses to use. The interest you earn is YOUR payment for providing this factor of production!
 
@@ -187,8 +187,8 @@ Current average business loan rate: **{{STATE_AVG_BUSINESS_LOAN_RATE}}**
 3. **Organizer** - Coordinates land, labor, and capital efficiently to produce output.
 4. **Decision-Maker** - Makes choices about what to produce, how to produce, and for whom.
 
-### 🏢 {{STATE_NAME}} Entrepreneurship:
-{{STATE_NAME}} ranks {{STATE_ENTREPRENEURSHIP_RANK}} nationally for new business creation. Famous entrepreneurs from {{STATE_NAME}} include {{STATE_FAMOUS_ENTREPRENEURS}}. The state is home to approximately {{STATE_SMALL_BUSINESS_COUNT}} small businesses.
+### 🏢 Entrepreneurship in Action:
+Entrepreneurs drive innovation and job creation across America. Small businesses employ nearly half of the nation's private-sector workforce. Famous entrepreneurs like Sara Blakely (Spanx), Howard Schultz (Starbucks), and Jeff Bezos (Amazon) started with ideas and grew them into major companies by combining land, labor, and capital in innovative ways.
 
 ### 📊 Entrepreneurship Success Rates
 

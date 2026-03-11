@@ -407,10 +407,11 @@ This Learning Lab uses the following {{STATE_NAME}} variables:
 
 - **{{STATE_NAME}}**: Appears throughout all activities, especially in Activity 2 ({{STATE_NAME}} Business Analysis) and Activity 4 (Design Your {{STATE_NAME}} Business)
 - **{{STATE_MIN_WAGE}}**: Reference in Activity 3 when discussing labor wages (students can use state minimum wage as baseline)
-- **{{STATE_COMMERCIAL_RENT}}** (if available): Provide realistic rent data for Activity 2 businesses and Activity 4 business designs
-- **{{STATE_AVG_BUSINESS_LOAN_RATE}}** (if available): Reference when discussing capital financing in Activity 4
+- **{{STATE_TOP_INDUSTRIES}}**: Used to localize business examples and career pathways relevant to the state
 
 **Teaching Tips for Localization:**
+- For land/rent values: Use local market knowledge or have students research typical commercial rent in your area
+- For capital financing: Reference current business loan rates (typically 7-10%) or have students research local bank rates
 - Emphasize businesses that are prominent in {{STATE_NAME}} (e.g., agriculture in Iowa, tech in California, tourism in Florida, energy in Texas)
 - Use local wage data to make Activity 3 more realistic
 - Reference {{STATE_NAME}}'s economic strengths: natural resources, industries, workforce characteristics

@@ -223,8 +223,13 @@ Need help with implementation, content clarification, or adapting the lesson? Yo
 
 ## State-Specific Localization Notes
 This lesson uses the following {{STATE_NAME}} variables:
-- **{{STATE_MIN_WAGE}}**: Reference when discussing labor payments (wages)
-- **{{STATE_COMMERCIAL_RENT}}**: If available, use local commercial rent data for land factor examples
 - **{{STATE_NAME}}**: Emphasize local businesses and economic context throughout
+- **{{STATE_MIN_WAGE}}**: Reference when discussing labor payments (wages)
+- **{{STATE_TOP_INDUSTRIES}}**: Use to localize employment sector examples
+
+For land values, business loan rates, and entrepreneurship examples, the lesson uses national averages and generic examples. Teachers can supplement with local research:
+- Have students research typical commercial rent in your area
+- Look up current business loan rates from local banks (typically 7-10%)
+- Share examples of local entrepreneurs or businesses that use all four factors
 
 Ensure that when using the Factor Analysis Tool, students are encouraged to research and input accurate local data for {{STATE_NAME}} businesses to make the learning experience more relevant and meaningful.
