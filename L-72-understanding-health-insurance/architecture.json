@@ -1,0 +1,27 @@
+{
+  "l_chapter": 72,
+  "title": "Understanding Health Insurance",
+  "description": "A comprehensive exploration of health insurance fundamentals—cost-sharing components, plan types, coverage sources, and the critical turning-26 transition—equipping students to make informed healthcare coverage decisions and avoid medical debt.",
+  "learning_objectives": [
+    "Distinguish between key cost-sharing components of a health plan (premium, deductible, copay, coinsurance, out-of-pocket maximum)",
+    "Compare plan types (HMO, PPO, EPO, HDHP) and identify the tradeoffs of each",
+    "Explain how employer-sponsored, ACA marketplace, Medicaid/CHIP, and Medicare coverage differ",
+    "Describe what happens when a young adult turns 26 and ages off a parent's plan",
+    "Evaluate when a high-deductible plan paired with an HSA makes financial sense"
+  ],
+  "content_density": "standard",
+  "template_format": "case-study",
+  "day1_day2_connection": "extension",
+  "skill_builder": {
+    "id": "health_insurance_readiness_checklist",
+    "title": "My Health Insurance Readiness Checklist",
+    "description": "A personal readiness assessment helping students evaluate their health insurance literacy across five critical areas—from understanding coverage basics to knowing where to find individual coverage when needed."
+  },
+  "state_variables": [
+    "{{STATE_NAME}}"
+  ],
+  "texas_standards_alignment": {
+    "texas_pfl": "§113.49(c)(12)(B) — evaluate health insurance options including employer-provided and private insurance",
+    "texas_pfle": "§113.76(d)(6)(H) — evaluate health insurance coverage"
+  }
+}

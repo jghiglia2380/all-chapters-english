@@ -1,0 +1,235 @@
+{
+  "activity_id": "station_4_special_enrollment_periods",
+  "title": "Special Enrollment Period & Life Events Checklist",
+  "station_number": 4,
+  "estimated_time": "15-20 minutes",
+  "purpose": "Students learn which life events trigger coverage windows, what happens if you miss those windows, and create a personal coverage timeline for their future.",
+  "learning_objectives": [
+    "Identify which life events trigger Special Enrollment Periods (SEPs)",
+    "Determine the enrollment window length for qualifying life events",
+    "Apply SEP knowledge to real scenarios and understand consequences of missing deadlines",
+    "Create a personal coverage timeline with actionable steps"
+  ],
+  "materials_needed": [
+    "Life Events Checklist worksheet",
+    "Two scenario walk-through worksheets (Sofia and Derek)",
+    "Portfolio deliverable template: My Coverage Timeline"
+  ],
+  "key_concepts": {
+    "special_enrollment_period": "A time outside the annual open enrollment when you can sign up for health insurance due to a qualifying life event",
+    "qualifying_life_event": "A major life change that triggers a Special Enrollment Period (losing coverage, turning 26, getting married, having a baby, moving states)",
+    "enrollment_window": "The time period you have to enroll after a qualifying event (typically 60 days)",
+    "open_enrollment": "The annual period (usually November-January) when anyone can enroll in marketplace coverage regardless of life events"
+  },
+  "life_events": [
+    {
+      "event": "Turning 26 and losing parent's coverage",
+      "triggers_sep": true,
+      "window_length": "60 days from date coverage ends",
+      "notes": "One of the most common SEPs for young adults. Coverage typically ends on your 26th birthday or end of birth month (check your parent's plan documents)."
+    },
+    {
+      "event": "Getting married",
+      "triggers_sep": true,
+      "window_length": "60 days from marriage date",
+      "notes": "Allows you to add spouse to your plan, join spouse's plan, or get new coverage together."
+    },
+    {
+      "event": "Having or adopting a child",
+      "triggers_sep": true,
+      "window_length": "60 days from birth/adoption/placement",
+      "notes": "Allows you to add the child to your plan or switch to family coverage."
+    },
+    {
+      "event": "Moving to a new state",
+      "triggers_sep": true,
+      "window_length": "60 days from move date",
+      "notes": "Moving to a new ZIP code with different plan options qualifies. Moving within the same service area does not."
+    },
+    {
+      "event": "Losing a job and employer coverage",
+      "triggers_sep": true,
+      "window_length": "60 days from coverage end date",
+      "notes": "Involuntary loss of coverage (layoff, hours reduced below eligibility) qualifies. Voluntary quitting may also qualify."
+    },
+    {
+      "event": "Getting a raise",
+      "triggers_sep": false,
+      "window_length": "N/A",
+      "notes": "Income changes do NOT trigger SEPs. You can report income changes to adjust subsidies, but you can't change plans outside open enrollment."
+    },
+    {
+      "event": "Starting a new job that offers coverage",
+      "triggers_sep": true,
+      "window_length": "30-60 days depending on employer policy",
+      "notes": "Most employers have a waiting period (30-90 days) before coverage starts. Once eligible, you have a window to enroll."
+    },
+    {
+      "event": "Voluntarily dropping coverage",
+      "triggers_sep": false,
+      "window_length": "N/A",
+      "notes": "If you choose to drop your plan mid-year, you cannot re-enroll until next open enrollment unless you have another qualifying event. Don't drop coverage without a replacement plan."
+    }
+  ],
+  "scenario_1_sofia": {
+    "title": "Sofia Turns 26",
+    "setup": "Sofia turns 26 on April 15. She doesn't realize this is a qualifying event. She's uninsured from April 15 onward. On June 10 she breaks her wrist skateboarding and goes to the ER.",
+    "questions": [
+      {
+        "question": "When did Sofia's SEP window open?",
+        "answer": "April 15 (her 26th birthday / coverage end date)"
+      },
+      {
+        "question": "When did her SEP window close?",
+        "answer": "June 14 (60 days after April 15)",
+        "calculation": "April 15 + 60 days = June 14"
+      },
+      {
+        "question": "On June 10, is Sofia still within her SEP window?",
+        "answer": "Yes—she has 4 days left (June 10 to June 14)"
+      },
+      {
+        "question": "If she enrolls by June 14, when does coverage start?",
+        "answer": "July 1 (coverage typically starts the first day of the following month after enrollment)"
+      },
+      {
+        "question": "What are Sofia's options on June 10?",
+        "options": [
+          {
+            "option": "Enroll in marketplace coverage immediately",
+            "correct": true,
+            "explanation": "She still has 4 days left in her SEP window. She should enroll NOW."
+          },
+          {
+            "option": "Wait until next open enrollment (November)",
+            "correct": false,
+            "explanation": "This would leave her uninsured for 5 months. Not advisable."
+          },
+          {
+            "option": "Apply for emergency Medicaid",
+            "correct": "depends",
+            "explanation": "Depends on state and income. Worth checking, but not guaranteed."
+          },
+          {
+            "option": "Negotiate payment plan with hospital for uninsured bill",
+            "correct": "backup_plan",
+            "explanation": "If she misses the June 14 deadline, this becomes necessary. The ER visit will cost $3,500-$8,000 uninsured."
+          }
+        ]
+      },
+      {
+        "question": "What would an uninsured ER visit with X-rays and a cast typically cost?",
+        "answer": "$3,500-$8,000",
+        "note": "Actual costs vary by facility and location. Some hospitals offer uninsured discounts or charity care programs."
+      }
+    ],
+    "key_teaching_moment": "This scenario generates strong emotional reactions from students because they recognize it could happen to them. The 4-day window creates urgency. Emphasize: Sofia isn't careless—she just didn't know. That's why you're teaching this."
+  },
+  "scenario_2_derek": {
+    "title": "Derek Loses His Job",
+    "setup": "Derek loses his job on March 1. His employer coverage ends March 31. He made $48,000/year before losing the job. He now has to find new coverage.",
+    "questions": [
+      {
+        "question": "Derek has 60 days from March 31 to enroll. What is his deadline?",
+        "answer": "May 30 (60 days after March 31)",
+        "calculation": "March 31 + 60 days = May 30"
+      },
+      {
+        "question": "Derek's former employer offers COBRA at $580/month. Why is COBRA so expensive?",
+        "answer": "COBRA requires Derek to pay the full premium (what he was paying + what his employer was paying). Employers typically cover 70-80% of the premium, so Derek's cost increases 3-4x.",
+        "example": "If Derek was paying $150/month and employer was paying $430/month, full premium = $580"
+      },
+      {
+        "question": "Derek checks healthcare.gov. His income for the rest of the year will be ~$0 (unemployed). Does he qualify for Medicaid?",
+        "answer": "Depends on state. In Medicaid expansion states, he likely qualifies (0% FPL is well under 138% threshold). In non-expansion states, adults without children often don't qualify for Medicaid regardless of income.",
+        "action_required": "Derek must check his specific state's rules on healthcare.gov or by calling 1-800-318-2596"
+      },
+      {
+        "question": "Which option should Derek choose?",
+        "options": [
+          {
+            "option": "COBRA at $580/month",
+            "scenario": "If Derek needs continuous coverage for ongoing treatment with specific doctors",
+            "pros": "Same plan, same network, no disruption to care",
+            "cons": "Very expensive; not sustainable long-term without income"
+          },
+          {
+            "option": "Marketplace Silver plan with subsidy",
+            "scenario": "If Derek qualifies for subsidies based on projected annual income",
+            "pros": "Likely costs $50-$150/month with subsidies",
+            "cons": "New network, may need to change doctors",
+            "estimated_cost": "$50-$150/month depending on subsidy"
+          },
+          {
+            "option": "Medicaid if eligible",
+            "scenario": "If Derek's state expanded Medicaid and he qualifies",
+            "pros": "No premium or very low premium, minimal cost-sharing",
+            "cons": "Only available if eligible (check state rules)",
+            "estimated_cost": "$0/month"
+          },
+          {
+            "option": "Go uninsured until he finds a new job",
+            "scenario": "High risk; not recommended",
+            "pros": "No monthly premium",
+            "cons": "One ER visit or illness could cost $10,000-$50,000. Medical debt, credit damage, financial ruin.",
+            "recommendation": "DO NOT CHOOSE THIS OPTION"
+          }
+        ],
+        "best_answer": "Check Medicaid eligibility first. If eligible, enroll in Medicaid (no premium). If not eligible, compare marketplace Silver plans with subsidies vs. COBRA. In most cases, subsidized marketplace plan will be much cheaper than COBRA."
+      },
+      {
+        "question": "What happens if Derek misses his 60-day window entirely?",
+        "answer": "He cannot enroll in coverage until next open enrollment (November-January, coverage starts January 1). He would be uninsured for 6-9 months, exposed to catastrophic medical costs.",
+        "consequence": "Medical emergencies, accidents, or illnesses during this gap could result in tens of thousands of dollars in medical debt."
+      }
+    ],
+    "key_teaching_moment": "COBRA is a safety net but almost always the most expensive option. Students should understand: check Medicaid first, then marketplace with subsidies, then COBRA as last resort. The 60-day window is critical—missing it has severe consequences."
+  },
+  "portfolio_deliverable": {
+    "title": "My Coverage Timeline",
+    "instructions": "List 3 life events from this station that are likely to apply to you in the next 10 years. For each event, write what you'll need to do when it happens. Be specific—include websites, phone numbers, deadlines, and action steps.",
+    "example": {
+      "event_1": "Turning 26",
+      "action_plan": "60 days before my birthday: check if my employer offers health coverage and when I'm eligible. If no employer coverage, visit healthcare.gov and compare Silver plans with subsidies. Check Medicaid eligibility for my state. Enroll before day 60 to avoid coverage gap."
+    },
+    "student_template": [
+      {
+        "event_number": 1,
+        "life_event": "______________________________",
+        "when_it_will_happen": "______________________________",
+        "what_i_will_do": "______________________________",
+        "deadline_or_window": "______________________________",
+        "resources_needed": "______________________________"
+      },
+      {
+        "event_number": 2,
+        "life_event": "______________________________",
+        "when_it_will_happen": "______________________________",
+        "what_i_will_do": "______________________________",
+        "deadline_or_window": "______________________________",
+        "resources_needed": "______________________________"
+      },
+      {
+        "event_number": 3,
+        "life_event": "______________________________",
+        "when_it_will_happen": "______________________________",
+        "what_i_will_do": "______________________________",
+        "deadline_or_window": "______________________________",
+        "resources_needed": "______________________________"
+      }
+    ],
+    "assessment_criteria": {
+      "accuracy": "Life events correctly identified as triggering SEPs; window lengths accurate (2 points)",
+      "specificity": "Action plans include specific steps (not vague 'get insurance'): websites, phone numbers, timelines (2 points)",
+      "relevance": "Life events are realistic for student's age/situation in next 10 years (1 point)",
+      "total_points": 5
+    }
+  },
+  "final_reflection_question": "What is one thing you learned today that you think most adults your age don't know about health insurance? Why does that gap exist?",
+  "sample_reflection_answers": [
+    "Most people don't know that turning 26 triggers a 60-day SEP. The gap exists because nobody teaches this in school and people don't realize it's their responsibility to know.",
+    "I learned that missing your SEP window means you can't get coverage for months. The gap exists because the system is complicated and there's no automatic notification when your window is closing.",
+    "COBRA is way more expensive than I thought. People probably think they can just keep their employer plan after losing a job without realizing they'll pay 3-4x more."
+  ],
+  "teacher_notes": "The Sofia scenario generates the strongest emotional reaction because the 4-day window creates urgency and students can picture themselves in that situation. Use it to drive home the importance of knowing your deadlines. Derek's scenario teaches that COBRA is expensive and marketplace/Medicaid are usually better options."
+}

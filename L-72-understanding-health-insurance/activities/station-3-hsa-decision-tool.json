@@ -1,0 +1,230 @@
+{
+  "activity_id": "station_3_hsa_vs_fsa_decision_tool",
+  "title": "HSA vs. FSA vs. Neither Decision Tool",
+  "station_number": 3,
+  "estimated_time": "15-20 minutes",
+  "purpose": "Students understand when the HDHP/HSA combination makes financial sense vs. traditional PPO or FSA based on health status and medical needs.",
+  "learning_objectives": [
+    "Evaluate HDHP+HSA vs. traditional PPO based on anticipated medical expenses",
+    "Calculate tax savings from HSA contributions",
+    "Match plan type to health status (healthy vs. chronic condition vs. high-need year)"
+  ],
+  "materials_needed": [
+    "HSA Decision Tool worksheet (3 profiles)",
+    "Calculator",
+    "Understanding of HSA vs. FSA differences"
+  ],
+  "hsa_vs_fsa_comparison": {
+    "hsa": {
+      "full_name": "Health Savings Account",
+      "eligibility": "Only available with HDHP",
+      "tax_advantage": "Triple: pre-tax contributions, tax-free growth, tax-free withdrawals for medical expenses",
+      "rollover": "Funds roll over indefinitely—never expires",
+      "contribution_limit_2025_individual": 4300,
+      "contribution_limit_2025_family": 8550,
+      "best_for": "Healthy individuals with low medical expenses who want to build long-term savings"
+    },
+    "fsa": {
+      "full_name": "Flexible Spending Account",
+      "eligibility": "Available with any non-HDHP plan",
+      "tax_advantage": "Pre-tax contributions only",
+      "rollover": "Use-it-or-lose-it annually (some plans allow small carryover or grace period)",
+      "contribution_limit_2025": 3200,
+      "best_for": "People with predictable medical expenses who want to pay with pre-tax dollars"
+    }
+  },
+  "profiles": [
+    {
+      "id": "profile_a_riley",
+      "name": "Riley",
+      "age": 24,
+      "annual_income": 38000,
+      "tax_bracket": 0.22,
+      "health_status": "Generally healthy, doctor visits 2x/year, no regular medications",
+      "savings": 2000,
+      "employer_options": [
+        {
+          "plan_type": "HDHP",
+          "monthly_premium": 90,
+          "annual_premium": 1080,
+          "deductible": 2500,
+          "hsa_eligible": true
+        },
+        {
+          "plan_type": "PPO",
+          "monthly_premium": 190,
+          "annual_premium": 2280,
+          "deductible": 750,
+          "fsa_eligible": true
+        }
+      ],
+      "analysis_steps": [
+        {
+          "step": 1,
+          "task": "Calculate annual premium difference",
+          "calculation": "$2,280 (PPO) - $1,080 (HDHP) = $1,200 savings with HDHP"
+        },
+        {
+          "step": 2,
+          "task": "Estimate likely out-of-pocket costs",
+          "scenario": "2 doctor visits @ $150 each = $300",
+          "note": "Under HDHP: Pay full $300 (below deductible). Under PPO: Pay copays ($30 x 2 = $60)"
+        },
+        {
+          "step": 3,
+          "task": "Calculate HSA tax savings if Riley maxes contribution",
+          "calculation": "$4,300 contribution x 22% tax rate = $946 tax savings"
+        },
+        {
+          "step": 4,
+          "task": "Total annual cost under HDHP",
+          "calculation": "$1,080 premium + $300 OOP - $946 tax savings = $434"
+        },
+        {
+          "step": 5,
+          "task": "Total annual cost under PPO",
+          "calculation": "$2,280 premium + $60 copays = $2,340"
+        },
+        {
+          "step": 6,
+          "task": "Recommendation",
+          "answer": "HDHP + HSA",
+          "reasoning": "Riley is healthy with minimal medical needs. The HDHP saves $1,200 in premiums, and the HSA tax savings of $946 more than offsets the higher out-of-pocket costs. Total savings: ~$1,900/year. The HSA also builds tax-free savings for future medical costs or retirement."
+        }
+      ]
+    },
+    {
+      "id": "profile_b_morgan",
+      "name": "Morgan",
+      "age": 28,
+      "annual_income": 52000,
+      "tax_bracket": 0.22,
+      "health_status": "Type 1 diabetes, sees endocrinologist quarterly",
+      "medications": "Insulin and testing supplies ($400/month = $4,800/year)",
+      "employer_options": [
+        {
+          "plan_type": "HDHP",
+          "monthly_premium": 90,
+          "annual_premium": 1080,
+          "deductible": 2500,
+          "hsa_eligible": true
+        },
+        {
+          "plan_type": "PPO",
+          "monthly_premium": 190,
+          "annual_premium": 2280,
+          "deductible": 750,
+          "copay_doctor": 30,
+          "copay_prescription_generic": 10
+        }
+      ],
+      "analysis_steps": [
+        {
+          "step": 1,
+          "task": "Understand Morgan's medical costs",
+          "details": "Insulin: $400/month x 12 = $4,800/year. Endocrinologist: 4 visits/year. Labs and other care."
+        },
+        {
+          "step": 2,
+          "task": "Under HDHP: When does Morgan hit the deductible?",
+          "calculation": "$2,500 deductible / $400/month insulin = ~6-7 months",
+          "note": "Morgan pays full price for insulin for half the year, then coinsurance kicks in."
+        },
+        {
+          "step": 3,
+          "task": "Annual premium comparison",
+          "hdhp": "$1,080",
+          "ppo": "$2,280"
+        },
+        {
+          "step": 4,
+          "task": "Estimated out-of-pocket under HDHP",
+          "details": "Hits deductible ($2,500), then pays coinsurance on remaining costs. Likely approaches or hits OOP max.",
+          "estimate": "~$3,500-$5,000 total OOP"
+        },
+        {
+          "step": 5,
+          "task": "Estimated out-of-pocket under PPO",
+          "details": "Copays for endocrinologist ($30 x 4 = $120), prescription copays ($10 x 12 = $120), $750 deductible for other care.",
+          "estimate": "~$1,000-$1,500 total OOP"
+        },
+        {
+          "step": 6,
+          "task": "Total annual cost comparison",
+          "hdhp_total": "$1,080 premium + $3,500 OOP = $4,580 (even with HSA tax savings)",
+          "ppo_total": "$2,280 premium + $1,200 OOP = $3,480"
+        },
+        {
+          "step": 7,
+          "task": "Recommendation",
+          "answer": "PPO (or PPO + FSA)",
+          "reasoning": "Morgan has high, predictable medical costs. The HDHP's high deductible means paying full price for insulin for months. The PPO's copay structure provides affordable, predictable access to necessary medications and care. Adding an FSA allows Morgan to pay copays with pre-tax dollars."
+        }
+      ],
+      "key_insight": "Age doesn't determine your best plan—health status does. A 28-year-old with diabetes should choose a PPO. A 50-year-old who's healthy could choose an HDHP."
+    },
+    {
+      "id": "profile_c_drew",
+      "name": "Drew",
+      "age": 31,
+      "annual_income": 45000,
+      "tax_bracket": 0.22,
+      "health_status": "Pregnant, first child expected in 6 months",
+      "current_plan": "PPO",
+      "open_enrollment_timing": "Coming up—can switch plans",
+      "employer_options": [
+        {
+          "plan_type": "HDHP",
+          "monthly_premium": 90,
+          "annual_premium": 1080,
+          "deductible": 2500,
+          "oop_maximum": 5000,
+          "hsa_eligible": true
+        },
+        {
+          "plan_type": "PPO",
+          "monthly_premium": 190,
+          "annual_premium": 2280,
+          "deductible": 750,
+          "oop_maximum": 3000
+        }
+      ],
+      "analysis_steps": [
+        {
+          "step": 1,
+          "task": "Understand typical pregnancy/delivery costs",
+          "estimate": "$10,000-$15,000 before insurance",
+          "note": "Prenatal visits, delivery, hospital stay, newborn care"
+        },
+        {
+          "step": 2,
+          "task": "Under HDHP: What will Drew pay?",
+          "calculation": "Will hit $2,500 deductible quickly, then coinsurance until OOP max of $5,000",
+          "total_cost_hdhp": "$1,080 premium + $5,000 OOP = $6,080"
+        },
+        {
+          "step": 3,
+          "task": "Under PPO: What will Drew pay?",
+          "calculation": "Will hit $750 deductible quickly, then coinsurance until OOP max of $3,000",
+          "total_cost_ppo": "$2,280 premium + $3,000 OOP = $5,280"
+        },
+        {
+          "step": 4,
+          "task": "Which plan is cheaper in a high-medical-cost year?",
+          "answer": "PPO saves $800 ($6,080 - $5,280)",
+          "reasoning": "The PPO's lower out-of-pocket maximum outweighs the HDHP's premium savings when you know you'll have high medical costs."
+        },
+        {
+          "step": 5,
+          "task": "Recommendation",
+          "answer": "PPO",
+          "reasoning": "Drew has predictable high medical costs this year due to pregnancy and delivery. The PPO's lower OOP max ($3,000 vs. $5,000) saves money in a year with major medical events. Switch to PPO during open enrollment BEFORE delivery."
+        }
+      ],
+      "important_timing_note": "Pregnancy itself is NOT a qualifying event that allows mid-year plan changes. Drew needs to switch during open enrollment before the delivery. After the baby is born, that IS a qualifying event (60-day SEP to add the baby to the plan or change plans).",
+      "key_insight": "When you know you'll have high medical costs (pregnancy, planned surgery, chronic condition management), choose a plan with a lower out-of-pocket maximum even if the premium is higher."
+    }
+  ],
+  "key_takeaway": "HSAs are powerful wealth-building tools for healthy young people with low medical expenses. They're the wrong choice for people with high, predictable medical costs. Know your situation before choosing your plan.",
+  "teacher_notes": "Profile B (Morgan with diabetes) is the most important learning moment. Many students assume HDHP is always better for young people. This profile breaks that assumption. Emphasize: health status, not age, determines the right plan."
+}

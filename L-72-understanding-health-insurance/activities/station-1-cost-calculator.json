@@ -1,0 +1,115 @@
+{
+  "activity_id": "station_1_health_plan_cost_calculator",
+  "title": "Health Plan Cost Calculator",
+  "station_number": 1,
+  "estimated_time": "15-20 minutes",
+  "purpose": "Students discover that the cheapest-premium plan is not always the cheapest plan overall by calculating total annual costs under different usage scenarios.",
+  "learning_objectives": [
+    "Calculate total annual health insurance costs (premiums + out-of-pocket)",
+    "Apply deductible, coinsurance, and out-of-pocket maximum concepts to real scenarios",
+    "Match plan choice to anticipated health status and medical needs"
+  ],
+  "materials_needed": [
+    "Cost calculator worksheet (3x3 grid)",
+    "Calculator (or phone calculator)",
+    "Pen/pencil"
+  ],
+  "plans": [
+    {
+      "id": "plan_a_gold",
+      "name": "Plan A (Gold PPO)",
+      "monthly_premium": 280,
+      "annual_premium": 3360,
+      "deductible": 500,
+      "copay": 20,
+      "coinsurance_rate": 0.10,
+      "oop_maximum": 2000
+    },
+    {
+      "id": "plan_b_silver",
+      "name": "Plan B (Silver PPO)",
+      "monthly_premium": 160,
+      "annual_premium": 1920,
+      "deductible": 1500,
+      "copay": 35,
+      "coinsurance_rate": 0.20,
+      "oop_maximum": 4000
+    },
+    {
+      "id": "plan_c_bronze_hdhp",
+      "name": "Plan C (Bronze HDHP)",
+      "monthly_premium": 80,
+      "annual_premium": 960,
+      "deductible": 3000,
+      "copay": 0,
+      "coinsurance_rate": 0.30,
+      "oop_maximum": 6000
+    }
+  ],
+  "scenarios": [
+    {
+      "id": "scenario_a_healthy",
+      "name": "Healthy Year",
+      "description": "One annual physical (preventive, covered at 100%) + one urgent care visit with X-ray",
+      "total_medical_bills": 350,
+      "details": "Annual physical: $0 out-of-pocket (preventive care). Urgent care: $350 total bill."
+    },
+    {
+      "id": "scenario_b_moderate",
+      "name": "Moderate Year",
+      "description": "Four primary care visits, one specialist visit, one MRI, monthly prescriptions",
+      "total_medical_bills": 4830,
+      "details": "4 doctor visits ($150 each = $600), 1 specialist ($250), 1 MRI ($3,500), 12 months prescriptions ($40/month = $480). Total: $4,830."
+    },
+    {
+      "id": "scenario_c_high_need",
+      "name": "High-Need Year",
+      "description": "Emergency appendectomy with 2-day hospital stay + follow-up care",
+      "total_medical_bills": 23500,
+      "details": "Appendectomy and hospital stay ($22,000), follow-up care and medications ($1,500). Total: $23,500."
+    }
+  ],
+  "calculation_steps": [
+    "Calculate annual premium cost (monthly premium × 12)",
+    "Determine out-of-pocket costs: medical bills until deductible met (pay 100%)",
+    "Apply coinsurance to bills after deductible (pay your percentage)",
+    "Cap total out-of-pocket at the OOP maximum",
+    "Add premiums + out-of-pocket for total annual cost"
+  ],
+  "reflection_questions": [
+    {
+      "question": "Which plan had the cheapest premium? Did it win in any scenarios?",
+      "expected_insight": "Plan C (Bronze HDHP) has the cheapest premium and wins in the healthy scenario, but loses in moderate and high-need scenarios."
+    },
+    {
+      "question": "Under what circumstances would you choose Plan C over Plan A?",
+      "expected_insight": "Choose Plan C if you're young, healthy, rarely see doctors, and want to save on premiums while building HSA savings."
+    },
+    {
+      "question": "Write a 2-sentence summary comparing plans",
+      "prompt": "Plan C is the cheapest if... but Plan A is the cheapest if...",
+      "sample_answer": "Plan C is the cheapest if you stay healthy and have minimal medical expenses because the low premium saves money. Plan A is the cheapest if you have a major medical event because the low out-of-pocket maximum caps your costs."
+    }
+  ],
+  "answer_key": {
+    "scenario_a": {
+      "plan_a_total": 3710,
+      "plan_b_total": 2270,
+      "plan_c_total": 1310,
+      "winner": "Plan C"
+    },
+    "scenario_b": {
+      "plan_a_total": 5360,
+      "plan_b_total": 4086,
+      "plan_c_total": 4509,
+      "winner": "Plan B"
+    },
+    "scenario_c": {
+      "plan_a_total": 5360,
+      "plan_b_total": 5920,
+      "plan_c_total": 6960,
+      "winner": "Plan A"
+    }
+  },
+  "teacher_notes": "Common student errors: forgetting to add premiums, not capping at OOP max, copay confusion. Circulate and ask 'What did this person pay every month even before they got sick?' to catch the premium-omission error."
+}

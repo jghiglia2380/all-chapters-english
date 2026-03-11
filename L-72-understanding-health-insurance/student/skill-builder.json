@@ -1,0 +1,160 @@
+{
+  "id": "health_insurance_readiness_checklist",
+  "title": "My Health Insurance Readiness Checklist",
+  "description": "A personal readiness assessment helping students evaluate their health insurance literacy across five critical areas—from understanding coverage basics to knowing where to find individual coverage when needed.",
+  "type": "checklist_assessment",
+  "estimated_time": "10-15 minutes",
+  "portfolio_artifact": true,
+  "instructions": "For each category below, rate your current knowledge level. For any items where you select 'Need to learn more,' write one specific action you'll take to address that gap.",
+  "categories": [
+    {
+      "id": "coverage_timeline",
+      "title": "Coverage Timeline",
+      "question": "I know when I will age off my parent's plan (or if I already have my own coverage, I know my renewal date)",
+      "options": [
+        {
+          "value": "confident",
+          "label": "Confident",
+          "points": 2
+        },
+        {
+          "value": "somewhat_familiar",
+          "label": "Somewhat familiar",
+          "points": 1
+        },
+        {
+          "value": "need_to_learn",
+          "label": "Need to learn more",
+          "points": 0,
+          "requires_action_plan": true
+        }
+      ],
+      "action_prompt": "What specific step will you take to find out your coverage end date or renewal date?"
+    },
+    {
+      "id": "cost_vocabulary",
+      "title": "Cost Vocabulary",
+      "question": "I can define premium, deductible, copay, coinsurance, and out-of-pocket maximum in my own words",
+      "options": [
+        {
+          "value": "confident",
+          "label": "Confident",
+          "points": 2
+        },
+        {
+          "value": "somewhat_familiar",
+          "label": "Somewhat familiar",
+          "points": 1
+        },
+        {
+          "value": "need_to_learn",
+          "label": "Need to learn more",
+          "points": 0,
+          "requires_action_plan": true
+        }
+      ],
+      "action_prompt": "What resource will you use to review and memorize these five key terms?"
+    },
+    {
+      "id": "where_to_find_coverage",
+      "title": "Where to Find Coverage",
+      "question": "I know where I would go to find individual health coverage if I needed it today (healthcare.gov, employer HR, Medicaid office)",
+      "options": [
+        {
+          "value": "confident",
+          "label": "Confident",
+          "points": 2
+        },
+        {
+          "value": "somewhat_familiar",
+          "label": "Somewhat familiar",
+          "points": 1
+        },
+        {
+          "value": "need_to_learn",
+          "label": "Need to learn more",
+          "points": 0,
+          "requires_action_plan": true
+        }
+      ],
+      "action_prompt": "What is one specific website or phone number you'll bookmark/save for finding coverage?"
+    },
+    {
+      "id": "special_enrollment",
+      "title": "Special Enrollment",
+      "question": "I know what triggers a Special Enrollment Period and how long the window lasts",
+      "options": [
+        {
+          "value": "confident",
+          "label": "Confident",
+          "points": 2
+        },
+        {
+          "value": "somewhat_familiar",
+          "label": "Somewhat familiar",
+          "points": 1
+        },
+        {
+          "value": "need_to_learn",
+          "label": "Need to learn more",
+          "points": 0,
+          "requires_action_plan": true
+        }
+      ],
+      "action_prompt": "What life event are you most likely to experience in the next 5 years, and what will you need to do when it happens?"
+    },
+    {
+      "id": "plan_comparison",
+      "title": "Plan Comparison",
+      "question": "I can calculate roughly how much a $2,000 medical bill would cost me under two different plan types",
+      "options": [
+        {
+          "value": "confident",
+          "label": "Confident",
+          "points": 2
+        },
+        {
+          "value": "somewhat_familiar",
+          "label": "Somewhat familiar",
+          "points": 1
+        },
+        {
+          "value": "need_to_learn",
+          "label": "Need to learn more",
+          "points": 0,
+          "requires_action_plan": true
+        }
+      ],
+      "action_prompt": "What is one practice problem you'll work through to build your cost-calculation skills?"
+    }
+  ],
+  "scoring": {
+    "total_possible": 10,
+    "thresholds": {
+      "ready": {
+        "min_score": 8,
+        "message": "You're well-prepared to navigate health insurance decisions. Keep this knowledge fresh and revisit it when you turn 26 or start a new job."
+      },
+      "developing": {
+        "min_score": 5,
+        "max_score": 7,
+        "message": "You have a solid foundation, but there are a few gaps to address. Focus on the action steps you identified for 'Need to learn more' items."
+      },
+      "beginning": {
+        "max_score": 4,
+        "message": "You have important learning ahead. Prioritize your action steps and revisit this chapter's key concepts. Health insurance literacy is not optional."
+      }
+    }
+  },
+  "completion_message": "Your Health Insurance Readiness Checklist has been saved to your portfolio. Come back to it when you turn 26, start a new job, or have a major life change. The action steps you wrote today will guide you when the time comes.",
+  "save_to_portfolio": true,
+  "portfolio_title": "Health Insurance Readiness Assessment",
+  "revisit_triggers": [
+    "Approaching age 26",
+    "Starting a new job",
+    "Losing current coverage",
+    "Getting married",
+    "Having a child",
+    "Moving to a new state"
+  ]
+}

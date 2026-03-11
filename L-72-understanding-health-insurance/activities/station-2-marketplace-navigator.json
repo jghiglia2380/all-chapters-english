@@ -1,0 +1,178 @@
+{
+  "activity_id": "station_2_aca_marketplace_navigator",
+  "title": "ACA Marketplace Navigator",
+  "station_number": 2,
+  "estimated_time": "15-20 minutes",
+  "purpose": "Students learn that income determines subsidy eligibility, that Medicaid expansion varies by state, and that metal tiers represent different cost-sharing levels.",
+  "learning_objectives": [
+    "Calculate percentage of Federal Poverty Level (FPL) from income data",
+    "Determine marketplace subsidy eligibility based on income",
+    "Recommend appropriate metal tiers based on income and health status"
+  ],
+  "materials_needed": [
+    "Marketplace Navigator worksheet (4 profiles)",
+    "Calculator",
+    "Federal Poverty Level reference card (provided)"
+  ],
+  "fpl_reference_2025": {
+    "single_adult": 15060,
+    "two_person_household": 20440,
+    "family_of_three": 30900,
+    "family_of_four": 41400,
+    "subsidy_eligibility_range": "100-400% FPL",
+    "medicaid_expansion_threshold": "138% FPL (in expansion states)"
+  },
+  "metal_tiers": [
+    {
+      "tier": "Bronze",
+      "cost_sharing": "Plan pays ~60%, you pay ~40%",
+      "premium_level": "Lowest",
+      "best_for": "Healthy individuals with low medical needs"
+    },
+    {
+      "tier": "Silver",
+      "cost_sharing": "Plan pays ~70%, you pay ~30%",
+      "premium_level": "Moderate",
+      "best_for": "Most people; subsidies maximize here; cost-sharing reductions available"
+    },
+    {
+      "tier": "Gold",
+      "cost_sharing": "Plan pays ~80%, you pay ~20%",
+      "premium_level": "Higher",
+      "best_for": "People with regular medical needs or chronic conditions"
+    },
+    {
+      "tier": "Platinum",
+      "cost_sharing": "Plan pays ~90%, you pay ~10%",
+      "premium_level": "Highest",
+      "best_for": "People with very high medical needs"
+    }
+  ],
+  "profiles": [
+    {
+      "id": "profile_1_alex",
+      "name": "Alex",
+      "age": 24,
+      "household_size": 1,
+      "annual_income": 20000,
+      "employer_coverage": false,
+      "health_status": "Generally healthy, sees doctor 2-3 times/year",
+      "questions": [
+        {
+          "question": "What percentage of FPL is Alex at?",
+          "answer": "133% FPL ($20,000 / $15,060 = 1.33)",
+          "calculation": "20000 / 15060 = 1.328"
+        },
+        {
+          "question": "Does Alex qualify for marketplace subsidies?",
+          "answer": "Yes (between 100-400% FPL)"
+        },
+        {
+          "question": "In a Medicaid expansion state, would Alex qualify for Medicaid?",
+          "answer": "Yes (under 138% FPL threshold)"
+        },
+        {
+          "question": "Recommended metal tier and why?",
+          "answer": "If on Medicaid: N/A. If marketplace: Silver (best subsidy value for this income level)",
+          "reasoning": "At 133% FPL, Alex qualifies for strong subsidies and cost-sharing reductions, which are only available on Silver plans."
+        }
+      ]
+    },
+    {
+      "id": "profile_2_jordan",
+      "name": "Jordan",
+      "age": 29,
+      "household_size": 1,
+      "annual_income": 35000,
+      "employer_coverage_available": true,
+      "employer_employee_cost": 420,
+      "employer_cost_percentage": 14.4,
+      "health_status": "Has asthma, needs regular prescriptions",
+      "questions": [
+        {
+          "question": "What percentage of FPL is Jordan at?",
+          "answer": "232% FPL ($35,000 / $15,060 = 2.32)",
+          "calculation": "35000 / 15060 = 2.324"
+        },
+        {
+          "question": "Is employer coverage 'affordable' under ACA rules (threshold: 9.5% of income)?",
+          "answer": "No ($420/month = 14.4% of income, which exceeds 9.5%)"
+        },
+        {
+          "question": "Can Jordan use the marketplace instead?",
+          "answer": "Yes (employer coverage is unaffordable, so marketplace is an option)"
+        },
+        {
+          "question": "Recommended metal tier and why?",
+          "answer": "Silver or Gold",
+          "reasoning": "Jordan has asthma and regular prescription needs. A Bronze plan's high deductible would mean paying full price for medications until the deductible is met. Silver offers subsidies and better cost-sharing."
+        }
+      ]
+    },
+    {
+      "id": "profile_3_taylor_family",
+      "name": "Taylor (family of 3)",
+      "household_composition": "Two adults + one child (ages 31, 33, 4)",
+      "household_size": 3,
+      "annual_income": 55000,
+      "employer_coverage": false,
+      "health_status": "Child has no ongoing issues; adults generally healthy",
+      "questions": [
+        {
+          "question": "What percentage of FPL is this family at?",
+          "answer": "178% FPL ($55,000 / $30,900 = 1.78)",
+          "calculation": "55000 / 30900 = 1.780"
+        },
+        {
+          "question": "Do they qualify for marketplace subsidies?",
+          "answer": "Yes (between 100-400% FPL)"
+        },
+        {
+          "question": "Would their child qualify for CHIP?",
+          "answer": "Depends on state (CHIP typically covers up to 200-300% FPL; at 178% they likely qualify)",
+          "note": "State-specific—must check local CHIP thresholds"
+        },
+        {
+          "question": "Recommended metal tier and why?",
+          "answer": "Silver",
+          "reasoning": "At 178% FPL, this family qualifies for both premium tax credits and cost-sharing reductions, which maximize on Silver plans. With a child and two adults, predictable moderate healthcare needs suggest Silver is the sweet spot."
+        }
+      ]
+    },
+    {
+      "id": "profile_4_casey",
+      "name": "Casey",
+      "age": 27,
+      "household_size": 1,
+      "annual_income": 65000,
+      "employer_coverage_available": true,
+      "employer_employee_cost_single": 180,
+      "employer_employee_cost_family": 450,
+      "health_status": "Healthy, no dependents",
+      "questions": [
+        {
+          "question": "What percentage of FPL is Casey at?",
+          "answer": "432% FPL ($65,000 / $15,060 = 4.32)",
+          "calculation": "65000 / 15060 = 4.317"
+        },
+        {
+          "question": "Does Casey qualify for marketplace subsidies?",
+          "answer": "No (above 400% FPL threshold)",
+          "note": "Some states have extended subsidies above 400% FPL, but under federal ACA rules, Casey does not qualify"
+        },
+        {
+          "question": "Should Casey take employer coverage or shop the marketplace?",
+          "answer": "Employer coverage",
+          "reasoning": "$180/month employer plan is affordable (3.3% of income, well under 9.5% threshold) and will almost certainly be cheaper than an unsubsidized marketplace plan."
+        },
+        {
+          "question": "If using employer plan, recommended tier?",
+          "answer": "Depends on employer options, but likely a mid-tier plan or HDHP+HSA",
+          "reasoning": "Casey is healthy and has a good income. If employer offers an HDHP, the HSA tax savings could be significant."
+        }
+      ]
+    }
+  ],
+  "important_note": "For your actual situation, visit healthcare.gov or call 1-800-318-2596. Rules vary by state and change annually. This exercise teaches the framework—always verify current information for real decisions.",
+  "teacher_notes": "Key teaching moments: Alex's Medicaid eligibility depends on state expansion status (emphasize this variation). Jordan's employer plan is unaffordable, unlocking marketplace access. Taylor's family should check CHIP for the child. Casey earns too much for subsidies—employer plan is the clear choice."
+}
