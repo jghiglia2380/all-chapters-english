@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-70: Factors of Production - Day 2 Learning Lab | PFL Academy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .activity-card {
+            transition: all 0.3s ease;
+        }
+        .activity-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        }
+        .factor-input:focus {
+            border-color: #10b981;
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
+        }
+        .progress-step {
+            transition: all 0.3s ease;
+        }
+        .progress-step.completed {
+            background-color: #10b981;
+            color: white;
+        }
+        .progress-step.active {
+            background-color: #6366f1;
+            color: white;
+            transform: scale(1.1);
+        }
+        .drag-item {
+            cursor: grab;
+            transition: all 0.2s ease;
+        }
+        .drag-item:active {
+            cursor: grabbing;
+        }
+        .drop-zone {
+            min-height: 60px;
+            border: 2px dashed #d1d5db;
+            transition: all 0.2s ease;
+        }
+        .drop-zone.drag-over {
+            border-color: #10b981;
+            background-color: #ecfdf5;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-emerald-600 to-teal-600 text-white p-4 shadow-md sticky top-0 z-50">
+        <div class="container mx-auto">
+            <h1 class="text-2xl font-bold">L-70: Factors of Production in <span class="text-yellow-300">{{STATE_NAME}}</span></h1>
+            <p class="text-emerald-200">Day 2 of 2: Learning Lab - Applying the Building Blocks</p>
+        </div>
+    </header>
+
+    <div class="container mx-auto px-4 py-8 max-w-6xl">
+
+        <!-- Day 1 Recall Banner -->
+        <section class="bg-gradient-to-r from-emerald-500 to-teal-600 text-white rounded-lg shadow-lg p-6 mb-8">
+            <div class="flex items-start">
+                <div class="text-4xl mr-4">📚</div>
+                <div>
+                    <h2 class="text-xl font-bold mb-2">Day 1 Recall: The Four Factors</h2>
+                    <p class="text-emerald-100">Every economy uses four factors of production: <strong>Land</strong> (natural resources → rent), <strong>Labor</strong> (human effort → wages), <strong>Capital</strong> (tools/equipment → interest), and <strong>Entrepreneurship</strong> (risk/innovation → profit). Today, you'll apply these concepts to real businesses and your own life.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Learning Objectives -->
+        <section class="bg-emerald-50 border-l-4 border-emerald-500 p-6 mb-8 rounded-r">
+            <h2 class="text-xl font-bold text-emerald-900 mb-3">📚 Learning Lab Objectives</h2>
+            <ul class="space-y-2 text-emerald-900">
+                <li>✓ Analyze how {{STATE_NAME}} businesses combine factors of production</li>
+                <li>✓ Calculate factor payments and profit for a real business scenario</li>
+                <li>✓ Identify your personal factor contributions and earning potential</li>
+                <li>✓ Design a business that efficiently uses all four factors</li>
+            </ul>
+        </section>
+
+        <!-- Progress Tracker -->
+        <section class="bg-white rounded-lg shadow-md p-4 mb-8">
+            <div class="flex justify-between items-center">
+                <h3 class="font-bold text-gray-700">Lab Progress</h3>
+                <span id="progressText" class="text-sm text-emerald-600 font-semibold">0/4 Activities Complete</span>
+            </div>
+            <div class="flex justify-between mt-4">
+                <div class="progress-step w-12 h-12 rounded-full bg-gray-200 flex items-center justify-center font-bold" data-step="1">1</div>
+                <div class="flex-1 h-1 bg-gray-200 self-center mx-2"></div>
+                <div class="progress-step w-12 h-12 rounded-full bg-gray-200 flex items-center justify-center font-bold" data-step="2">2</div>
+                <div class="flex-1 h-1 bg-gray-200 self-center mx-2"></div>
+                <div class="progress-step w-12 h-12 rounded-full bg-gray-200 flex items-center justify-center font-bold" data-step="3">3</div>
+                <div class="flex-1 h-1 bg-gray-200 self-center mx-2"></div>
+                <div class="progress-step w-12 h-12 rounded-full bg-gray-200 flex items-center justify-center font-bold" data-step="4">4</div>
+            </div>
+            <div class="flex justify-between mt-2 text-xs text-gray-600">
+                <span class="w-12 text-center">Sort</span>
+                <span class="w-12 text-center">Analyze</span>
+                <span class="w-12 text-center">Personal</span>
+                <span class="w-12 text-center">Design</span>
+            </div>
+        </section>
+
+        <!-- Activity 1: Factor Sorting Challenge -->
+        <section class="bg-white rounded-lg shadow-md p-6 mb-8 activity-card">
+            <div class="flex items-center justify-between mb-4">
+                <h2 class="text-2xl font-bold text-gray-900">Activity 1: Factor Sorting Challenge</h2>
+                <span class="bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full text-sm font-semibold">10 minutes</span>
+            </div>
+
+            <p class="text-gray-700 mb-4">Drag each resource to the correct factor of production category. Think carefully—some items might surprise you!</p>
+
+            <!-- Draggable Items -->
+            <div class="bg-gray-100 p-4 rounded-lg mb-6">
+                <h4 class="font-semibold text-gray-700 mb-3">Resources to Sort:</h4>
+                <div id="sortItems" class="flex flex-wrap gap-2">
+                    <span class="drag-item bg-white px-3 py-2 rounded-lg shadow text-sm cursor-pointer hover:bg-emerald-50" draggable="true" data-answer="land">Ocean fishing rights</span>
+                    <span class="drag-item bg-white px-3 py-2 rounded-lg shadow text-sm cursor-pointer hover:bg-emerald-50" draggable="true" data-answer="capital">Factory robot arm</span>
+                    <span class="drag-item bg-white px-3 py-2 rounded-lg shadow text-sm cursor-pointer hover:bg-emerald-50" draggable="true" data-answer="labor">Software developer</span>
+                    <span class="drag-item bg-white px-3 py-2 rounded-lg shadow text-sm cursor-pointer hover:bg-emerald-50" draggable="true" data-answer="entrepreneurship">Elon Musk's vision</span>
+                    <span class="drag-item bg-white px-3 py-2 rounded-lg shadow text-sm cursor-pointer hover:bg-emerald-50" draggable="true" data-answer="land">Texas crude oil</span>
+                    <span class="drag-item bg-white px-3 py-2 rounded-lg shadow text-sm cursor-pointer hover:bg-emerald-50" draggable="true" data-answer="capital">Delivery truck</span>
+                    <span class="drag-item bg-white px-3 py-2 rounded-lg shadow text-sm cursor-pointer hover:bg-emerald-50" draggable="true" data-answer="labor">Registered nurse</span>
+                    <span class="drag-item bg-white px-3 py-2 rounded-lg shadow text-sm cursor-pointer hover:bg-emerald-50" draggable="true" data-answer="entrepreneurship">Starting a food truck</span>
+                    <span class="drag-item bg-white px-3 py-2 rounded-lg shadow text-sm cursor-pointer hover:bg-emerald-50" draggable="true" data-answer="land">Sunlight for solar panels</span>
+                    <span class="drag-item bg-white px-3 py-2 rounded-lg shadow text-sm cursor-pointer hover:bg-emerald-50" draggable="true" data-answer="capital">Cash register system</span>
+                    <span class="drag-item bg-white px-3 py-2 rounded-lg shadow text-sm cursor-pointer hover:bg-emerald-50" draggable="true" data-answer="labor">Manager's expertise</span>
+                    <span class="drag-item bg-white px-3 py-2 rounded-lg shadow text-sm cursor-pointer hover:bg-emerald-50" draggable="true" data-answer="entrepreneurship">Risk of business failure</span>
+                </div>
+            </div>
+
+            <!-- Drop Zones -->
+            <div class="grid md:grid-cols-4 gap-4 mb-4">
+                <div class="bg-amber-50 p-4 rounded-lg">
+                    <h4 class="font-bold text-amber-900 mb-2 text-center">🌍 LAND</h4>
+                    <div id="landZone" class="drop-zone rounded p-2 min-h-24" data-factor="land"></div>
+                </div>
+                <div class="bg-blue-50 p-4 rounded-lg">
+                    <h4 class="font-bold text-blue-900 mb-2 text-center">👷 LABOR</h4>
+                    <div id="laborZone" class="drop-zone rounded p-2 min-h-24" data-factor="labor"></div>
+                </div>
+                <div class="bg-purple-50 p-4 rounded-lg">
+                    <h4 class="font-bold text-purple-900 mb-2 text-center">🏭 CAPITAL</h4>
+                    <div id="capitalZone" class="drop-zone rounded p-2 min-h-24" data-factor="capital"></div>
+                </div>
+                <div class="bg-emerald-50 p-4 rounded-lg">
+                    <h4 class="font-bold text-emerald-900 mb-2 text-center">💡 ENTREPRENEURSHIP</h4>
+                    <div id="entrepreneurshipZone" class="drop-zone rounded p-2 min-h-24" data-factor="entrepreneurship"></div>
+                </div>
+            </div>
+
+            <div class="flex gap-4">
+                <button onclick="checkSorting()" class="bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-2 rounded-lg font-semibold transition">Check Answers</button>
+                <button onclick="resetSorting()" class="bg-gray-400 hover:bg-gray-500 text-white px-6 py-2 rounded-lg font-semibold transition">Reset</button>
+            </div>
+            
+            <div id="sortingResults" class="hidden mt-4 p-4 rounded-lg"></div>
+        </section>
+
+        <!-- Activity 2: {{STATE_NAME}} Business Factor Analysis -->
+        <section class="bg-white rounded-lg shadow-md p-6 mb-8 activity-card">
+            <div class="flex items-center justify-between mb-4">
+                <h2 class="text-2xl font-bold text-gray-900">Activity 2: {{STATE_NAME}} Business Analysis</h2>
+                <span class="bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full text-sm font-semibold">15 minutes</span>
+            </div>
+
+            <p class="text-gray-700 mb-4">Analyze how a {{STATE_NAME}} business uses all four factors. You'll calculate factor payments and determine profitability.</p>
+
+            <!-- Business Selection -->
+            <div class="bg-gray-100 p-4 rounded-lg mb-6">
+                <h4 class="font-semibold text-gray-700 mb-3">Choose a {{STATE_NAME}} Business to Analyze:</h4>
+                <div class="grid md:grid-cols-4 gap-3">
+                    <button onclick="selectBusiness('coffee')" class="business-btn bg-white p-4 rounded-lg border-2 border-gray-200 hover:border-emerald-500 transition text-center" data-business="coffee">
+                        <span class="text-3xl">☕</span>
+                        <p class="font-semibold mt-2">Coffee Shop</p>
+                    </button>
+                    <button onclick="selectBusiness('tech')" class="business-btn bg-white p-4 rounded-lg border-2 border-gray-200 hover:border-emerald-500 transition text-center" data-business="tech">
+                        <span class="text-3xl">💻</span>
+                        <p class="font-semibold mt-2">Tech Startup</p>
+                    </button>
+                    <button onclick="selectBusiness('farm')" class="business-btn bg-white p-4 rounded-lg border-2 border-gray-200 hover:border-emerald-500 transition text-center" data-business="farm">
+                        <span class="text-3xl">🌾</span>
+                        <p class="font-semibold mt-2">Family Farm</p>
+                    </button>
+                    <button onclick="selectBusiness('construction')" class="business-btn bg-white p-4 rounded-lg border-2 border-gray-200 hover:border-emerald-500 transition text-center" data-business="construction">
+                        <span class="text-3xl">🏗️</span>
+                        <p class="font-semibold mt-2">Construction Co.</p>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Business Analysis Form -->
+            <div id="businessAnalysis" class="hidden">
+                <div class="bg-gradient-to-r from-emerald-100 to-teal-100 p-4 rounded-lg mb-4">
+                    <h3 id="businessTitle" class="text-xl font-bold text-emerald-900">Selected Business</h3>
+                    <p id="businessDescription" class="text-gray-700"></p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6">
+                    <!-- Factor Inputs -->
+                    <div class="space-y-4">
+                        <h4 class="font-bold text-gray-900">Factor Payments (Monthly)</h4>
+                        
+                        <div class="bg-amber-50 p-4 rounded-lg">
+                            <label class="block font-semibold text-amber-900 mb-1">🌍 Land (Rent)</label>
+                            <p id="landHint" class="text-sm text-gray-600 mb-2"></p>
+                            <div class="flex items-center">
+                                <span class="text-gray-500 mr-2">$</span>
+                                <input type="number" id="rentInput" class="factor-input flex-1 p-2 border border-gray-300 rounded" placeholder="0">
+                            </div>
+                        </div>
+
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <label class="block font-semibold text-blue-900 mb-1">👷 Labor (Wages)</label>
+                            <p id="laborHint" class="text-sm text-gray-600 mb-2"></p>
+                            <div class="flex items-center">
+                                <span class="text-gray-500 mr-2">$</span>
+                                <input type="number" id="wagesInput" class="factor-input flex-1 p-2 border border-gray-300 rounded" placeholder="0">
+                            </div>
+                        </div>
+
+                        <div class="bg-purple-50 p-4 rounded-lg">
+                            <label class="block font-semibold text-purple-900 mb-1">🏭 Capital (Interest)</label>
+                            <p id="capitalHint" class="text-sm text-gray-600 mb-2"></p>
+                            <div class="flex items-center">
+                                <span class="text-gray-500 mr-2">$</span>
+                                <input type="number" id="interestInput" class="factor-input flex-1 p-2 border border-gray-300 rounded" placeholder="0">
+                            </div>
+                        </div>
+
+                        <div class="bg-gray-100 p-4 rounded-lg">
+                            <label class="block font-semibold text-gray-900 mb-1">📦 Other Costs</label>
+                            <p class="text-sm text-gray-600 mb-2">Materials, utilities, insurance, etc.</p>
+                            <div class="flex items-center">
+                                <span class="text-gray-500 mr-2">$</span>
+                                <input type="number" id="otherCostsInput" class="factor-input flex-1 p-2 border border-gray-300 rounded" placeholder="0">
+                            </div>
+                        </div>
+
+                        <div class="bg-green-100 p-4 rounded-lg">
+                            <label class="block font-semibold text-green-900 mb-1">💰 Monthly Revenue</label>
+                            <p id="revenueHint" class="text-sm text-gray-600 mb-2"></p>
+                            <div class="flex items-center">
+                                <span class="text-gray-500 mr-2">$</span>
+                                <input type="number" id="revenueInput" class="factor-input flex-1 p-2 border border-gray-300 rounded" placeholder="0">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Results -->
+                    <div>
+                        <h4 class="font-bold text-gray-900 mb-4">Profitability Analysis</h4>
+                        
+                        <div class="bg-white border-2 border-gray-200 rounded-lg p-4 mb-4">
+                            <canvas id="factorChart" height="200"></canvas>
+                        </div>
+
+                        <button onclick="calculateProfit()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-3 rounded-lg font-semibold transition mb-4">Calculate Profit</button>
+
+                        <div id="profitResults" class="hidden">
+                            <div class="bg-white border-2 border-emerald-200 rounded-lg p-4 mb-4">
+                                <div class="grid grid-cols-2 gap-4 text-center">
+                                    <div>
+                                        <p class="text-sm text-gray-600">Total Costs</p>
+                                        <p id="totalCosts" class="text-2xl font-bold text-red-600">$0</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm text-gray-600">💡 Entrepreneur's Profit</p>
+                                        <p id="profitAmount" class="text-2xl font-bold text-emerald-600">$0</p>
+                                    </div>
+                                </div>
+                                <div class="mt-4 pt-4 border-t">
+                                    <p class="text-sm text-gray-600 text-center">Profit Margin</p>
+                                    <p id="profitMargin" class="text-xl font-bold text-center">0%</p>
+                                </div>
+                            </div>
+
+                            <div id="profitAnalysis" class="bg-yellow-50 border-l-4 border-yellow-500 p-4 rounded-r">
+                                <h4 class="font-bold text-yellow-900 mb-2">Analysis:</h4>
+                                <p id="profitMessage" class="text-gray-700"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Reflection Questions for Activity 2 -->
+                <div class="mt-6 bg-gray-50 p-4 rounded-lg">
+                    <h4 class="font-bold text-gray-900 mb-3">Reflection Questions:</h4>
+                    <div class="space-y-3">
+                        <div>
+                            <label class="block text-gray-700 font-semibold mb-1">Which factor is most expensive for this business?</label>
+                            <textarea class="w-full p-2 border border-gray-300 rounded" rows="2"></textarea>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-semibold mb-1">How could the entrepreneur increase profit?</label>
+                            <textarea class="w-full p-2 border border-gray-300 rounded" rows="2"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Activity 3: Personal Factor Contribution Calculator -->
+        <section class="bg-white rounded-lg shadow-md p-6 mb-8 activity-card">
+            <div class="flex items-center justify-between mb-4">
+                <h2 class="text-2xl font-bold text-gray-900">Activity 3: Your Personal Factor Contribution</h2>
+                <span class="bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full text-sm font-semibold">15 minutes</span>
+            </div>
+
+            <p class="text-gray-700 mb-4">YOU are a factor of production! Calculate how you currently (or will) contribute to the economy and earn income.</p>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- Current/Future Labor -->
+                <div class="bg-blue-50 p-4 rounded-lg">
+                    <h3 class="text-lg font-bold text-blue-900 mb-3">👷 Your Labor Contribution</h3>
+                    
+                    <div class="space-y-3">
+                        <div>
+                            <label class="block text-gray-700 font-semibold mb-1">Current or Target Job:</label>
+                            <input type="text" id="personalJob" class="w-full p-2 border border-gray-300 rounded" placeholder="e.g., Retail sales, Software engineer">
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-semibold mb-1">Hourly Wage (current or expected):</label>
+                            <div class="flex items-center">
+                                <span class="text-gray-500 mr-2">$</span>
+                                <input type="number" id="personalWage" class="flex-1 p-2 border border-gray-300 rounded" placeholder="15">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-semibold mb-1">Hours per Week:</label>
+                            <input type="number" id="personalHours" class="w-full p-2 border border-gray-300 rounded" placeholder="20">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Human Capital Investment -->
+                <div class="bg-indigo-50 p-4 rounded-lg">
+                    <h3 class="text-lg font-bold text-indigo-900 mb-3">🎓 Your Human Capital</h3>
+                    
+                    <div class="space-y-2">
+                        <label class="block text-gray-700 font-semibold">Check all that apply:</label>
+                        <div class="space-y-2">
+                            <label class="flex items-center">
+                                <input type="checkbox" class="human-capital-check mr-2" data-boost="0">
+                                <span>High school diploma</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="human-capital-check mr-2" data-boost="15">
+                                <span>Some college</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="human-capital-check mr-2" data-boost="30">
+                                <span>Associate's degree</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="human-capital-check mr-2" data-boost="50">
+                                <span>Bachelor's degree (planned)</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="human-capital-check mr-2" data-boost="10">
+                                <span>Professional certifications</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="human-capital-check mr-2" data-boost="5">
+                                <span>Specialized skills training</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Savings as Capital -->
+            <div class="bg-purple-50 p-4 rounded-lg mt-4">
+                <h3 class="text-lg font-bold text-purple-900 mb-3">💰 Your Capital Contribution (Savings)</h3>
+                <p class="text-gray-700 mb-3">When you save money, you're providing capital to the economy. Banks lend your savings to businesses!</p>
+                
+                <div class="grid md:grid-cols-3 gap-4">
+                    <div>
+                        <label class="block text-gray-700 font-semibold mb-1">Current Savings:</label>
+                        <div class="flex items-center">
+                            <span class="text-gray-500 mr-2">$</span>
+                            <input type="number" id="personalSavings" class="flex-1 p-2 border border-gray-300 rounded" placeholder="500">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 font-semibold mb-1">Interest Rate (APY):</label>
+                        <div class="flex items-center">
+                            <input type="number" id="savingsRate" class="flex-1 p-2 border border-gray-300 rounded" placeholder="4" step="0.1">
+                            <span class="text-gray-500 ml-2">%</span>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 font-semibold mb-1">Annual Interest Earned:</label>
+                        <div class="flex items-center">
+                            <span class="text-gray-500 mr-2">$</span>
+                            <input type="text" id="interestEarned" class="flex-1 p-2 border border-gray-300 rounded bg-gray-100" readonly placeholder="0">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button onclick="calculatePersonalContribution()" class="mt-4 bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-3 rounded-lg font-semibold transition">Calculate My Factor Contribution</button>
+
+            <!-- Results -->
+            <div id="personalResults" class="hidden mt-6">
+                <div class="bg-gradient-to-r from-emerald-100 to-teal-100 p-6 rounded-lg">
+                    <h3 class="text-xl font-bold text-emerald-900 mb-4">📊 Your Economic Contribution</h3>
+                    
+                    <div class="grid md:grid-cols-3 gap-4 mb-4">
+                        <div class="bg-white p-4 rounded-lg text-center">
+                            <p class="text-sm text-gray-600">Weekly Labor Income</p>
+                            <p id="weeklyIncome" class="text-2xl font-bold text-blue-600">$0</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg text-center">
+                            <p class="text-sm text-gray-600">Annual Labor Income</p>
+                            <p id="annualIncome" class="text-2xl font-bold text-blue-600">$0</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg text-center">
+                            <p class="text-sm text-gray-600">Capital Income (Interest)</p>
+                            <p id="capitalIncome" class="text-2xl font-bold text-purple-600">$0</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-4 rounded-lg mb-4">
+                        <h4 class="font-bold text-gray-900 mb-2">Human Capital Boost Potential:</h4>
+                        <p id="humanCapitalMessage" class="text-gray-700"></p>
+                        <div class="mt-2 bg-gray-200 rounded-full h-4 overflow-hidden">
+                            <div id="humanCapitalBar" class="bg-gradient-to-r from-indigo-500 to-purple-500 h-full transition-all duration-500" style="width: 0%"></div>
+                        </div>
+                        <p id="projectedIncome" class="text-sm text-gray-600 mt-2"></p>
+                    </div>
+
+                    <div class="bg-yellow-50 border-l-4 border-yellow-500 p-4 rounded-r">
+                        <p class="font-semibold text-yellow-900">💡 Key Insight:</p>
+                        <p id="personalInsight" class="text-gray-700 mt-1"></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Activity 4: Design Your Own Business -->
+        <section class="bg-white rounded-lg shadow-md p-6 mb-8 activity-card">
+            <div class="flex items-center justify-between mb-4">
+                <h2 class="text-2xl font-bold text-gray-900">Activity 4: Design Your {{STATE_NAME}} Business</h2>
+                <span class="bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full text-sm font-semibold">15 minutes</span>
+            </div>
+
+            <p class="text-gray-700 mb-4">Now become an entrepreneur! Design a business that uses all four factors efficiently. This is your chance to think like a business owner.</p>
+
+            <div class="bg-gradient-to-r from-orange-100 to-amber-100 p-4 rounded-lg mb-6">
+                <h4 class="font-bold text-orange-900 mb-2">🎯 Your Challenge:</h4>
+                <p class="text-gray-700">Design a business that could succeed in {{STATE_NAME}}. Consider local demand, available resources, and your interests.</p>
+            </div>
+
+            <div class="space-y-6">
+                <!-- Business Concept -->
+                <div class="bg-gray-50 p-4 rounded-lg">
+                    <h4 class="font-bold text-gray-900 mb-3">Step 1: Business Concept</h4>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-gray-700 font-semibold mb-1">Business Name:</label>
+                            <input type="text" id="bizName" class="w-full p-2 border border-gray-300 rounded" placeholder="Your creative business name">
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-semibold mb-1">Business Type:</label>
+                            <select id="bizType" class="w-full p-2 border border-gray-300 rounded">
+                                <option value="">Select...</option>
+                                <option value="retail">Retail Store</option>
+                                <option value="food">Food & Beverage</option>
+                                <option value="service">Service Business</option>
+                                <option value="tech">Technology</option>
+                                <option value="manufacturing">Manufacturing</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="mt-3">
+                        <label class="block text-gray-700 font-semibold mb-1">What problem does your business solve?</label>
+                        <textarea id="bizProblem" class="w-full p-2 border border-gray-300 rounded" rows="2" placeholder="Describe the customer need you're addressing..."></textarea>
+                    </div>
+                </div>
+
+                <!-- Four Factors Planning -->
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="bg-amber-50 p-4 rounded-lg">
+                        <h4 class="font-bold text-amber-900 mb-3">🌍 Land Requirements</h4>
+                        <div class="space-y-2">
+                            <div>
+                                <label class="block text-sm text-gray-700">Location type:</label>
+                                <input type="text" class="w-full p-2 border border-gray-300 rounded text-sm" placeholder="e.g., Downtown retail space, home office">
+                            </div>
+                            <div>
+                                <label class="block text-sm text-gray-700">Natural resources needed:</label>
+                                <input type="text" class="w-full p-2 border border-gray-300 rounded text-sm" placeholder="e.g., Water, raw materials">
+                            </div>
+                            <div>
+                                <label class="block text-sm text-gray-700">Monthly rent estimate:</label>
+                                <div class="flex items-center">
+                                    <span class="text-gray-500 mr-1 text-sm">$</span>
+                                    <input type="number" id="bizRent" class="flex-1 p-2 border border-gray-300 rounded text-sm" placeholder="0">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-blue-50 p-4 rounded-lg">
+                        <h4 class="font-bold text-blue-900 mb-3">👷 Labor Requirements</h4>
+                        <div class="space-y-2">
+                            <div>
+                                <label class="block text-sm text-gray-700">Number of employees:</label>
+                                <input type="number" id="bizEmployees" class="w-full p-2 border border-gray-300 rounded text-sm" placeholder="0">
+                            </div>
+                            <div>
+                                <label class="block text-sm text-gray-700">Key roles needed:</label>
+                                <input type="text" class="w-full p-2 border border-gray-300 rounded text-sm" placeholder="e.g., Manager, sales associate">
+                            </div>
+                            <div>
+                                <label class="block text-sm text-gray-700">Monthly payroll estimate:</label>
+                                <div class="flex items-center">
+                                    <span class="text-gray-500 mr-1 text-sm">$</span>
+                                    <input type="number" id="bizPayroll" class="flex-1 p-2 border border-gray-300 rounded text-sm" placeholder="0">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-purple-50 p-4 rounded-lg">
+                        <h4 class="font-bold text-purple-900 mb-3">🏭 Capital Requirements</h4>
+                        <div class="space-y-2">
+                            <div>
+                                <label class="block text-sm text-gray-700">Equipment needed:</label>
+                                <input type="text" class="w-full p-2 border border-gray-300 rounded text-sm" placeholder="e.g., Computers, machinery, vehicles">
+                            </div>
+                            <div>
+                                <label class="block text-sm text-gray-700">Total capital investment:</label>
+                                <div class="flex items-center">
+                                    <span class="text-gray-500 mr-1 text-sm">$</span>
+                                    <input type="number" id="bizCapital" class="flex-1 p-2 border border-gray-300 rounded text-sm" placeholder="0">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-sm text-gray-700">Monthly loan payment:</label>
+                                <div class="flex items-center">
+                                    <span class="text-gray-500 mr-1 text-sm">$</span>
+                                    <input type="number" id="bizLoan" class="flex-1 p-2 border border-gray-300 rounded text-sm" placeholder="0">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-emerald-50 p-4 rounded-lg">
+                        <h4 class="font-bold text-emerald-900 mb-3">💡 Your Entrepreneurship</h4>
+                        <div class="space-y-2">
+                            <div>
+                                <label class="block text-sm text-gray-700">Your unique innovation:</label>
+                                <input type="text" class="w-full p-2 border border-gray-300 rounded text-sm" placeholder="What makes your business different?">
+                            </div>
+                            <div>
+                                <label class="block text-sm text-gray-700">Risk you're taking:</label>
+                                <input type="text" class="w-full p-2 border border-gray-300 rounded text-sm" placeholder="What could go wrong?">
+                            </div>
+                            <div>
+                                <label class="block text-sm text-gray-700">Target monthly profit:</label>
+                                <div class="flex items-center">
+                                    <span class="text-gray-500 mr-1 text-sm">$</span>
+                                    <input type="number" id="bizProfit" class="flex-1 p-2 border border-gray-300 rounded text-sm" placeholder="0">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Revenue Planning -->
+                <div class="bg-green-50 p-4 rounded-lg">
+                    <h4 class="font-bold text-green-900 mb-3">💰 Revenue Model</h4>
+                    <div class="grid md:grid-cols-3 gap-4">
+                        <div>
+                            <label class="block text-sm text-gray-700">What do you sell?</label>
+                            <input type="text" class="w-full p-2 border border-gray-300 rounded text-sm" placeholder="Products/services">
+                        </div>
+                        <div>
+                            <label class="block text-sm text-gray-700">Average price:</label>
+                            <div class="flex items-center">
+                                <span class="text-gray-500 mr-1 text-sm">$</span>
+                                <input type="number" id="bizPrice" class="flex-1 p-2 border border-gray-300 rounded text-sm" placeholder="0">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm text-gray-700">Monthly sales volume:</label>
+                            <input type="number" id="bizVolume" class="w-full p-2 border border-gray-300 rounded text-sm" placeholder="0">
+                        </div>
+                    </div>
+                </div>
+
+                <button onclick="evaluateBusiness()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-3 rounded-lg font-semibold transition">Evaluate My Business Plan</button>
+
+                <!-- Business Evaluation Results -->
+                <div id="bizResults" class="hidden">
+                    <div class="bg-gradient-to-r from-emerald-100 to-teal-100 p-6 rounded-lg">
+                        <h3 class="text-xl font-bold text-emerald-900 mb-4">📊 Business Plan Evaluation</h3>
+                        
+                        <div class="grid md:grid-cols-4 gap-4 mb-4">
+                            <div class="bg-white p-3 rounded text-center">
+                                <p class="text-xs text-gray-600">Monthly Revenue</p>
+                                <p id="bizRevResult" class="text-lg font-bold text-green-600">$0</p>
+                            </div>
+                            <div class="bg-white p-3 rounded text-center">
+                                <p class="text-xs text-gray-600">Total Costs</p>
+                                <p id="bizCostResult" class="text-lg font-bold text-red-600">$0</p>
+                            </div>
+                            <div class="bg-white p-3 rounded text-center">
+                                <p class="text-xs text-gray-600">Monthly Profit</p>
+                                <p id="bizProfitResult" class="text-lg font-bold text-emerald-600">$0</p>
+                            </div>
+                            <div class="bg-white p-3 rounded text-center">
+                                <p class="text-xs text-gray-600">Viability Score</p>
+                                <p id="bizScore" class="text-lg font-bold text-indigo-600">0/100</p>
+                            </div>
+                        </div>
+
+                        <div id="bizFeedback" class="bg-white p-4 rounded-lg">
+                            <!-- Feedback will be inserted here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final Reflection -->
+        <section class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-bold text-gray-900 mb-4">🤔 Final Reflection</h2>
+            
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-gray-700 font-semibold mb-2">1. Which factor of production do you think is most important for economic growth? Why?</label>
+                    <textarea class="w-full p-3 border border-gray-300 rounded focus:ring-2 focus:ring-emerald-500" rows="3"></textarea>
+                </div>
+                <div>
+                    <label class="block text-gray-700 font-semibold mb-2">2. How will understanding factors of production help you make better financial decisions?</label>
+                    <textarea class="w-full p-3 border border-gray-300 rounded focus:ring-2 focus:ring-emerald-500" rows="3"></textarea>
+                </div>
+                <div>
+                    <label class="block text-gray-700 font-semibold mb-2">3. Would you rather earn income primarily from labor (wages), capital (interest/dividends), or entrepreneurship (profit)? Explain.</label>
+                    <textarea class="w-full p-3 border border-gray-300 rounded focus:ring-2 focus:ring-emerald-500" rows="3"></textarea>
+                </div>
+            </div>
+        </section>
+
+        <!-- Summary -->
+        <section class="bg-emerald-50 border-l-4 border-emerald-500 p-6 mb-8 rounded-r">
+            <h2 class="text-xl font-bold text-emerald-900 mb-3">🎯 Learning Lab Summary</h2>
+            <div class="text-gray-800 space-y-2">
+                <p>✅ Sorted resources into the four factors of production</p>
+                <p>✅ Analyzed a {{STATE_NAME}} business's factor payments and profitability</p>
+                <p>✅ Calculated your personal economic contribution</p>
+                <p>✅ Designed a business using all four factors</p>
+            </div>
+            <div class="bg-white p-4 rounded mt-4">
+                <p class="font-semibold text-emerald-900">Key Takeaway:</p>
+                <p class="text-gray-700">Every dollar of income comes from one of four sources: rent (owning land), wages (providing labor), interest (providing capital), or profit (taking entrepreneurial risk). Understanding this helps you make smarter decisions about education, career, saving, and potentially starting a business.</p>
+            </div>
+        </section>
+
+        <!-- Navigation -->
+        <div class="flex justify-between items-center">
+            <a href="day1.html" class="bg-gray-200 hover:bg-gray-300 px-6 py-3 rounded-lg font-semibold transition">← Day 1: Content</a>
+            <a href="#" class="bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-3 rounded-lg font-semibold transition">Next Lesson →</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8 mt-12">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-gray-400">© 2025 PFL Academy | L-70: Factors of Production - Learning Lab</p>
+            <p class="text-sm text-gray-500 mt-2">Making economics personal and practical.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Business data for Activity 2
+        const businessData = {
+            coffee: {
+                title: "☕ Downtown Coffee Shop",
+                description: "A cozy coffee shop in {{STATE_NAME}}'s downtown area serving espresso drinks, pastries, and light breakfast.",
+                hints: {
+                    land: "Retail space lease: ~$2,000-4,000/month in {{STATE_NAME}}",
+                    labor: "1 manager + 3 baristas (~8 hours/day). Consider {{STATE_MIN_WAGE}} minimum wage.",
+                    capital: "Espresso machine ($15,000), grinder ($2,000), POS system ($1,500), furniture ($5,000). Loan at 7% interest.",
+                    revenue: "Average ticket $8, 150 customers/day, 26 days/month"
+                }
+            },
+            tech: {
+                title: "💻 Software Startup",
+                description: "A small tech company building a mobile app for local service providers in {{STATE_NAME}}.",
+                hints: {
+                    land: "Co-working space or small office: ~$500-2,000/month",
+                    labor: "2 developers ($70k each), 1 designer ($50k), founder (deferred). Calculate monthly.",
+                    capital: "Computers ($10,000), software licenses ($500/month), servers ($200/month). Minimal loan needed.",
+                    revenue: "SaaS model: 500 subscribers at $30/month = target"
+                }
+            },
+            farm: {
+                title: "🌾 Family Farm Operation",
+                description: "A 200-acre farm in {{STATE_NAME}} growing crops and selling at farmers markets.",
+                hints: {
+                    land: "200 acres: land value ~$5,000/acre, annual property tax ~$2,000, or rent ~$200/acre/year",
+                    labor: "Family labor (2 full-time equivalent) + seasonal workers (3 months)",
+                    capital: "Tractor ($50,000), implements ($30,000), irrigation ($20,000). Loan at 6% interest.",
+                    revenue: "Crop yield varies. Estimate $400/acre gross for mixed vegetables."
+                }
+            },
+            construction: {
+                title: "🏗️ Construction Company",
+                description: "A residential construction company in {{STATE_NAME}} building custom homes.",
+                hints: {
+                    land: "Office/yard space: ~$3,000/month. Job sites are customer-owned.",
+                    labor: "Project manager ($60k), 5 skilled workers ($45k each), admin ($35k)",
+                    capital: "Trucks ($80,000), tools/equipment ($50,000), office equipment ($10,000). Loan at 7%.",
+                    revenue: "2-3 homes/year at $50,000 profit margin each. Monthly varies greatly."
+                }
+            }
+        };
+
+        let selectedBusiness = null;
+        let factorChart = null;
+        let completedActivities = new Set();
+
+        // Activity 1: Drag and Drop
+        document.addEventListener('DOMContentLoaded', function() {
+            const dragItems = document.querySelectorAll('.drag-item');
+            const dropZones = document.querySelectorAll('.drop-zone');
+
+            dragItems.forEach(item => {
+                item.addEventListener('dragstart', function(e) {
+                    e.dataTransfer.setData('text/plain', e.target.outerHTML);
+                    e.dataTransfer.setData('answer', e.target.dataset.answer);
+                    setTimeout(() => e.target.style.opacity = '0.5', 0);
+                });
+                item.addEventListener('dragend', function(e) {
+                    e.target.style.opacity = '1';
+                });
+            });
+
+            dropZones.forEach(zone => {
+                zone.addEventListener('dragover', function(e) {
+                    e.preventDefault();
+                    zone.classList.add('drag-over');
+                });
+                zone.addEventListener('dragleave', function(e) {
+                    zone.classList.remove('drag-over');
+                });
+                zone.addEventListener('drop', function(e) {
+                    e.preventDefault();
+                    zone.classList.remove('drag-over');
+                    const html = e.dataTransfer.getData('text/plain');
+                    const answer = e.dataTransfer.getData('answer');
+                    const newItem = document.createElement('div');
+                    newItem.innerHTML = html;
+                    const item = newItem.firstChild;
+                    item.dataset.dropped = zone.dataset.factor;
+                    item.classList.add('mb-1');
+                    item.draggable = false;
+                    zone.appendChild(item);
+                    
+                    // Remove from original location
+                    const original = document.querySelector(`#sortItems .drag-item[data-answer="${answer}"]`);
+                    if (original) original.remove();
+                });
+            });
+        });
+
+        function checkSorting() {
+            const dropZones = document.querySelectorAll('.drop-zone');
+            let correct = 0;
+            let total = 0;
+
+            dropZones.forEach(zone => {
+                const items = zone.querySelectorAll('.drag-item');
+                items.forEach(item => {
+                    total++;
+                    if (item.dataset.answer === zone.dataset.factor) {
+                        item.classList.add('bg-green-200');
+                        item.classList.remove('bg-red-200');
+                        correct++;
+                    } else {
+                        item.classList.add('bg-red-200');
+                        item.classList.remove('bg-green-200');
+                    }
+                });
+            });
+
+            const resultsDiv = document.getElementById('sortingResults');
+            resultsDiv.classList.remove('hidden');
+            
+            if (correct === total && total === 12) {
+                resultsDiv.className = 'mt-4 p-4 rounded-lg bg-green-100 border-l-4 border-green-500';
+                resultsDiv.innerHTML = `<p class="font-bold text-green-800">🎉 Perfect! ${correct}/${total} correct!</p><p class="text-green-700">You've mastered identifying factors of production.</p>`;
+                markActivityComplete(1);
+            } else if (total > 0) {
+                resultsDiv.className = 'mt-4 p-4 rounded-lg bg-yellow-100 border-l-4 border-yellow-500';
+                resultsDiv.innerHTML = `<p class="font-bold text-yellow-800">📊 ${correct}/${total} correct.</p><p class="text-yellow-700">Review the red items and try again!</p>`;
+            }
+        }
+
+        function resetSorting() {
+            location.reload(); // Simple reset
+        }
+
+        // Activity 2: Business Selection
+        function selectBusiness(type) {
+            selectedBusiness = type;
+            const data = businessData[type];
+            
+            // Update UI
+            document.querySelectorAll('.business-btn').forEach(btn => {
+                btn.classList.remove('border-emerald-500', 'bg-emerald-50');
+                btn.classList.add('border-gray-200');
+            });
+            document.querySelector(`[data-business="${type}"]`).classList.add('border-emerald-500', 'bg-emerald-50');
+            
+            // Show analysis form
+            document.getElementById('businessAnalysis').classList.remove('hidden');
+            document.getElementById('businessTitle').textContent = data.title;
+            document.getElementById('businessDescription').textContent = data.description;
+            document.getElementById('landHint').textContent = data.hints.land;
+            document.getElementById('laborHint').textContent = data.hints.labor;
+            document.getElementById('capitalHint').textContent = data.hints.capital;
+            document.getElementById('revenueHint').textContent = data.hints.revenue;
+            
+            // Reset inputs
+            document.getElementById('rentInput').value = '';
+            document.getElementById('wagesInput').value = '';
+            document.getElementById('interestInput').value = '';
+            document.getElementById('otherCostsInput').value = '';
+            document.getElementById('revenueInput').value = '';
+            document.getElementById('profitResults').classList.add('hidden');
+        }
+
+        function calculateProfit() {
+            const rent = parseFloat(document.getElementById('rentInput').value) || 0;
+            const wages = parseFloat(document.getElementById('wagesInput').value) || 0;
+            const interest = parseFloat(document.getElementById('interestInput').value) || 0;
+            const other = parseFloat(document.getElementById('otherCostsInput').value) || 0;
+            const revenue = parseFloat(document.getElementById('revenueInput').value) || 0;
+
+            const totalCosts = rent + wages + interest + other;
+            const profit = revenue - totalCosts;
+            const margin = revenue > 0 ? ((profit / revenue) * 100).toFixed(1) : 0;
+
+            // Update results
+            document.getElementById('totalCosts').textContent = '$' + totalCosts.toLocaleString();
+            document.getElementById('profitAmount').textContent = '$' + profit.toLocaleString();
+            document.getElementById('profitAmount').className = profit >= 0 ? 'text-2xl font-bold text-emerald-600' : 'text-2xl font-bold text-red-600';
+            document.getElementById('profitMargin').textContent = margin + '%';
+            document.getElementById('profitMargin').className = margin >= 10 ? 'text-xl font-bold text-center text-emerald-600' : margin >= 0 ? 'text-xl font-bold text-center text-yellow-600' : 'text-xl font-bold text-center text-red-600';
+
+            // Analysis message
+            let message = '';
+            if (profit < 0) {
+                message = '⚠️ This business is operating at a loss. The entrepreneur would lose $' + Math.abs(profit).toLocaleString() + ' per month. Consider reducing costs or increasing revenue.';
+            } else if (margin < 5) {
+                message = '📊 Thin margins! Profit of $' + profit.toLocaleString() + ' (' + margin + '%) is risky. One bad month could wipe out profits.';
+            } else if (margin < 15) {
+                message = '✅ Reasonable profit of $' + profit.toLocaleString() + ' (' + margin + '%). This is typical for many small businesses.';
+            } else {
+                message = '🎉 Excellent profit of $' + profit.toLocaleString() + ' (' + margin + '%)! This business model looks strong.';
+            }
+            document.getElementById('profitMessage').textContent = message;
+
+            // Update chart
+            updateFactorChart(rent, wages, interest, other, profit > 0 ? profit : 0);
+
+            document.getElementById('profitResults').classList.remove('hidden');
+            markActivityComplete(2);
+        }
+
+        function updateFactorChart(rent, wages, interest, other, profit) {
+            const ctx = document.getElementById('factorChart').getContext('2d');
+            
+            if (factorChart) {
+                factorChart.destroy();
+            }
+
+            factorChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Rent (Land)', 'Wages (Labor)', 'Interest (Capital)', 'Other Costs', 'Profit'],
+                    datasets: [{
+                        data: [rent, wages, interest, other, profit],
+                        backgroundColor: ['#fbbf24', '#3b82f6', '#8b5cf6', '#9ca3af', '#10b981']
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: { font: { size: 10 } }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Activity 3: Personal Contribution
+        function calculatePersonalContribution() {
+            const wage = parseFloat(document.getElementById('personalWage').value) || 0;
+            const hours = parseFloat(document.getElementById('personalHours').value) || 0;
+            const savings = parseFloat(document.getElementById('personalSavings').value) || 0;
+            const rate = parseFloat(document.getElementById('savingsRate').value) || 0;
+
+            const weeklyIncome = wage * hours;
+            const annualIncome = weeklyIncome * 52;
+            const interestEarned = savings * (rate / 100);
+
+            document.getElementById('interestEarned').value = interestEarned.toFixed(2);
+            document.getElementById('weeklyIncome').textContent = '$' + weeklyIncome.toLocaleString();
+            document.getElementById('annualIncome').textContent = '$' + annualIncome.toLocaleString();
+            document.getElementById('capitalIncome').textContent = '$' + interestEarned.toFixed(2);
+
+            // Human capital calculation
+            let humanCapitalBoost = 0;
+            document.querySelectorAll('.human-capital-check:checked').forEach(check => {
+                humanCapitalBoost += parseInt(check.dataset.boost);
+            });
+
+            const projectedAnnual = annualIncome * (1 + humanCapitalBoost / 100);
+            document.getElementById('humanCapitalBar').style.width = Math.min(humanCapitalBoost, 100) + '%';
+            document.getElementById('humanCapitalMessage').textContent = `Your human capital investments could increase your earning potential by ${humanCapitalBoost}%.`;
+            document.getElementById('projectedIncome').textContent = `Projected annual income with full human capital development: $${projectedAnnual.toLocaleString()}`;
+
+            // Insight
+            let insight = '';
+            if (annualIncome < 20000) {
+                insight = 'Your current labor income is modest. Consider investing in education or skills training to boost your human capital and earning potential.';
+            } else if (annualIncome < 50000) {
+                insight = 'Solid income foundation! Growing your human capital through certifications or advanced training could significantly boost your earnings.';
+            } else {
+                insight = 'Strong earning potential! Consider diversifying income sources by building capital (savings/investments) to earn interest alongside wages.';
+            }
+            
+            if (savings > 0) {
+                insight += ` Your savings of $${savings.toLocaleString()} is already providing capital to the economy and earning you $${interestEarned.toFixed(2)}/year in interest.`;
+            }
+
+            document.getElementById('personalInsight').textContent = insight;
+            document.getElementById('personalResults').classList.remove('hidden');
+            markActivityComplete(3);
+        }
+
+        // Activity 4: Business Design
+        function evaluateBusiness() {
+            const price = parseFloat(document.getElementById('bizPrice').value) || 0;
+            const volume = parseFloat(document.getElementById('bizVolume').value) || 0;
+            const rent = parseFloat(document.getElementById('bizRent').value) || 0;
+            const payroll = parseFloat(document.getElementById('bizPayroll').value) || 0;
+            const loan = parseFloat(document.getElementById('bizLoan').value) || 0;
+
+            const revenue = price * volume;
+            const costs = rent + payroll + loan;
+            const profit = revenue - costs;
+            
+            // Simple viability score
+            let score = 50;
+            if (profit > 0) score += 20;
+            if (profit > costs * 0.1) score += 10; // 10%+ margin
+            if (profit > costs * 0.2) score += 10; // 20%+ margin
+            if (document.getElementById('bizName').value) score += 5;
+            if (document.getElementById('bizProblem').value.length > 20) score += 5;
+            score = Math.min(score, 100);
+
+            document.getElementById('bizRevResult').textContent = '$' + revenue.toLocaleString();
+            document.getElementById('bizCostResult').textContent = '$' + costs.toLocaleString();
+            document.getElementById('bizProfitResult').textContent = '$' + profit.toLocaleString();
+            document.getElementById('bizProfitResult').className = profit >= 0 ? 'text-lg font-bold text-emerald-600' : 'text-lg font-bold text-red-600';
+            document.getElementById('bizScore').textContent = score + '/100';
+
+            // Feedback
+            let feedback = '<h4 class="font-bold text-gray-900 mb-2">Feedback:</h4><ul class="space-y-1 text-sm">';
+            
+            if (profit < 0) {
+                feedback += '<li class="text-red-600">⚠️ Your business would operate at a loss. Increase prices, volume, or reduce costs.</li>';
+            } else if (profit < rent) {
+                feedback += '<li class="text-yellow-600">⚡ Profit is less than your rent. Consider if the risk is worth this return.</li>';
+            } else {
+                feedback += '<li class="text-green-600">✅ Profitable business model! Good factor allocation.</li>';
+            }
+
+            if (payroll === 0) {
+                feedback += '<li class="text-blue-600">💡 No payroll? Are you doing all the work yourself (your labor)?</li>';
+            }
+
+            if (loan === 0 && rent > 0) {
+                feedback += '<li class="text-purple-600">💡 No capital costs? Make sure you\'ve accounted for equipment loans or depreciation.</li>';
+            }
+
+            feedback += '</ul>';
+            document.getElementById('bizFeedback').innerHTML = feedback;
+            document.getElementById('bizResults').classList.remove('hidden');
+            markActivityComplete(4);
+        }
+
+        function markActivityComplete(num) {
+            completedActivities.add(num);
+            document.querySelector(`[data-step="${num}"]`).classList.add('completed');
+            document.getElementById('progressText').textContent = `${completedActivities.size}/4 Activities Complete`;
+        }
+    </script>
+</body>
+</html>

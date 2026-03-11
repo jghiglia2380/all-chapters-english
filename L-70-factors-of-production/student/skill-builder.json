@@ -1,0 +1,308 @@
+{
+  "skill_builder_id": "L-70-skill-builder",
+  "chapter": "L-70",
+  "title": "Factor Analysis Tool",
+  "type": "business_analyzer",
+  "description": "A systematic framework for analyzing how any business combines the four factors of production (land, labor, capital, entrepreneurship) and calculates factor payments and profitability",
+  "learning_objectives": [
+    "Identify all four factors of production in any business context",
+    "Calculate factor payments (rent, wages, interest, profit)",
+    "Analyze the relative importance of different factors to business success",
+    "Understand how efficient factor combination creates value"
+  ],
+  "config": {
+    "inputs": [
+      {
+        "id": "business_name",
+        "label": "Business Name",
+        "type": "text",
+        "default": null,
+        "required": true,
+        "help_text": "Enter the name of the business you want to analyze"
+      },
+      {
+        "id": "business_type",
+        "label": "Business Type",
+        "type": "select",
+        "options": ["Retail", "Food & Beverage", "Service", "Technology", "Manufacturing", "Agriculture", "Construction", "Other"],
+        "required": true,
+        "help_text": "Classify the business into one of these categories"
+      },
+      {
+        "id": "land_description",
+        "label": "Land/Natural Resources Used",
+        "type": "text",
+        "required": true,
+        "help_text": "Describe the physical location and any natural resources the business uses"
+      },
+      {
+        "id": "monthly_rent",
+        "label": "Monthly Rent Payment",
+        "type": "currency",
+        "default": 0,
+        "required": true,
+        "help_text": "Enter the monthly rent or lease payment for the business location"
+      },
+      {
+        "id": "labor_description",
+        "label": "Labor/Workers Employed",
+        "type": "text",
+        "required": true,
+        "help_text": "Describe the types of workers and their roles"
+      },
+      {
+        "id": "num_employees",
+        "label": "Number of Employees",
+        "type": "number",
+        "default": 1,
+        "required": true,
+        "help_text": "Total number of workers (including owner if working)"
+      },
+      {
+        "id": "monthly_wages",
+        "label": "Monthly Wages/Payroll",
+        "type": "currency",
+        "default": 0,
+        "required": true,
+        "help_text": "Total monthly payroll for all employees"
+      },
+      {
+        "id": "capital_description",
+        "label": "Capital/Equipment Used",
+        "type": "text",
+        "required": true,
+        "help_text": "Describe the major equipment, tools, and machinery the business uses"
+      },
+      {
+        "id": "capital_investment",
+        "label": "Total Capital Investment",
+        "type": "currency",
+        "default": 0,
+        "required": true,
+        "help_text": "Total value of equipment, machinery, and other capital goods"
+      },
+      {
+        "id": "monthly_interest",
+        "label": "Monthly Interest/Loan Payments",
+        "type": "currency",
+        "default": 0,
+        "required": true,
+        "help_text": "Monthly loan payments for capital equipment (interest portion)"
+      },
+      {
+        "id": "entrepreneurship_description",
+        "label": "Entrepreneurial Innovation",
+        "type": "text",
+        "required": true,
+        "help_text": "What unique vision, innovation, or risk does the entrepreneur bring?"
+      },
+      {
+        "id": "startup_risk",
+        "label": "Initial Investment at Risk",
+        "type": "currency",
+        "default": 0,
+        "required": true,
+        "help_text": "How much money did the entrepreneur risk to start this business?"
+      },
+      {
+        "id": "other_costs",
+        "label": "Other Monthly Costs",
+        "type": "currency",
+        "default": 0,
+        "required": true,
+        "help_text": "Materials, utilities, insurance, marketing, etc."
+      },
+      {
+        "id": "monthly_revenue",
+        "label": "Monthly Revenue",
+        "type": "currency",
+        "default": 0,
+        "required": true,
+        "help_text": "Total monthly sales/revenue"
+      },
+      {
+        "id": "dominant_factor",
+        "label": "Most Important Factor",
+        "type": "select",
+        "options": ["Land", "Labor", "Capital", "Entrepreneurship"],
+        "required": true,
+        "help_text": "Which factor is most critical to this business's success?"
+      },
+      {
+        "id": "dominant_factor_explanation",
+        "label": "Explain Your Choice",
+        "type": "text",
+        "required": true,
+        "help_text": "Why is this factor most important for this particular business?"
+      }
+    ],
+    "calculations": [
+      {
+        "id": "total_factor_costs",
+        "label": "Total Factor Payments",
+        "formula": "monthly_rent + monthly_wages + monthly_interest",
+        "display_format": "currency"
+      },
+      {
+        "id": "total_costs",
+        "label": "Total Monthly Costs",
+        "formula": "monthly_rent + monthly_wages + monthly_interest + other_costs",
+        "display_format": "currency"
+      },
+      {
+        "id": "monthly_profit",
+        "label": "Monthly Profit (Entrepreneurship Payment)",
+        "formula": "monthly_revenue - total_costs",
+        "display_format": "currency"
+      },
+      {
+        "id": "profit_margin",
+        "label": "Profit Margin",
+        "formula": "(monthly_profit / monthly_revenue) * 100",
+        "display_format": "percentage"
+      },
+      {
+        "id": "land_percentage",
+        "label": "Land Cost Percentage",
+        "formula": "(monthly_rent / total_costs) * 100",
+        "display_format": "percentage"
+      },
+      {
+        "id": "labor_percentage",
+        "label": "Labor Cost Percentage",
+        "formula": "(monthly_wages / total_costs) * 100",
+        "display_format": "percentage"
+      },
+      {
+        "id": "capital_percentage",
+        "label": "Capital Cost Percentage",
+        "formula": "(monthly_interest / total_costs) * 100",
+        "display_format": "percentage"
+      },
+      {
+        "id": "revenue_per_employee",
+        "label": "Revenue per Employee",
+        "formula": "monthly_revenue / num_employees",
+        "display_format": "currency"
+      }
+    ],
+    "outputs": [
+      {
+        "id": "factor_breakdown_chart",
+        "label": "Factor Payment Breakdown",
+        "type": "pie_chart",
+        "source": ["monthly_rent", "monthly_wages", "monthly_interest", "monthly_profit"]
+      },
+      {
+        "id": "profitability_assessment",
+        "label": "Profitability Assessment",
+        "type": "recommendation",
+        "source": "profit_margin"
+      },
+      {
+        "id": "factor_intensity",
+        "label": "Factor Intensity Analysis",
+        "type": "comparison",
+        "source": ["land_percentage", "labor_percentage", "capital_percentage"]
+      }
+    ],
+    "scenarios": [
+      {
+        "id": "coffee_shop",
+        "name": "Downtown Coffee Shop",
+        "description": "A cozy coffee shop in a downtown area",
+        "preset_values": {
+          "business_name": "Bean There Coffee",
+          "business_type": "Food & Beverage",
+          "monthly_rent": 3000,
+          "num_employees": 5,
+          "monthly_wages": 12000,
+          "capital_investment": 50000,
+          "monthly_interest": 400,
+          "other_costs": 8000,
+          "monthly_revenue": 30000
+        }
+      },
+      {
+        "id": "tech_startup",
+        "name": "Software Startup",
+        "description": "A small tech company building a mobile app",
+        "preset_values": {
+          "business_name": "AppVenture Tech",
+          "business_type": "Technology",
+          "monthly_rent": 1500,
+          "num_employees": 4,
+          "monthly_wages": 25000,
+          "capital_investment": 20000,
+          "monthly_interest": 200,
+          "other_costs": 3000,
+          "monthly_revenue": 35000
+        }
+      },
+      {
+        "id": "family_farm",
+        "name": "Family Farm",
+        "description": "A 200-acre family farm operation",
+        "preset_values": {
+          "business_name": "Green Acres Farm",
+          "business_type": "Agriculture",
+          "monthly_rent": 3500,
+          "num_employees": 3,
+          "monthly_wages": 8000,
+          "capital_investment": 150000,
+          "monthly_interest": 1200,
+          "other_costs": 5000,
+          "monthly_revenue": 22000
+        }
+      },
+      {
+        "id": "construction",
+        "name": "Construction Company",
+        "description": "A residential construction company",
+        "preset_values": {
+          "business_name": "BuildRight Construction",
+          "business_type": "Construction",
+          "monthly_rent": 2500,
+          "num_employees": 8,
+          "monthly_wages": 35000,
+          "capital_investment": 200000,
+          "monthly_interest": 1800,
+          "other_costs": 15000,
+          "monthly_revenue": 80000
+        }
+      }
+    ]
+  },
+  "validation_rules": [
+    {
+      "condition": "monthly_revenue must be greater than 0 for profit calculation",
+      "error_message": "Please enter monthly revenue to calculate profitability."
+    },
+    {
+      "condition": "At least one factor cost should be greater than 0",
+      "error_message": "Every business uses at least some factors of production. Enter factor costs."
+    }
+  ],
+  "feedback_messages": {
+    "profitable": "This business is profitable! The entrepreneur earns ${profit} per month as their reward for combining factors effectively and taking risks.",
+    "break_even": "This business is at break-even. The entrepreneur isn't earning profit for their risk. Consider ways to increase revenue or reduce costs.",
+    "loss": "This business is operating at a loss. The entrepreneur is losing ${loss} per month. Without changes, this business isn't sustainable.",
+    "high_labor": "This is a labor-intensive business. Success depends heavily on employee productivity and keeping turnover low.",
+    "high_capital": "This is a capital-intensive business. Efficient use of equipment and managing debt are critical to success.",
+    "high_land": "Location is critical for this business. The rent reflects the value of being in the right place.",
+    "insights": [
+      "Every business combines the same four factors—the proportions vary by industry",
+      "Profit is the entrepreneur's payment for risk-taking and coordination",
+      "A business that can't pay competitive wages won't attract good labor",
+      "Capital investment increases productivity but requires financing",
+      "Location (land) can be the difference between success and failure"
+    ]
+  },
+  "state_variables": [
+    "{{STATE_NAME}}",
+    "{{STATE_MIN_WAGE}}",
+    "{{STATE_AVG_BUSINESS_LOAN_RATE}}",
+    "{{STATE_COMMERCIAL_RENT}}"
+  ],
+  "estimated_time_minutes": 15
+}
