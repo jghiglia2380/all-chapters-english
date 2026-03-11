@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-71: Introduction to Estate Planning - Day 1 | PFL Academy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .collapsible-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        .collapsible-content.active {
+            max-height: 3000px;
+            transition: max-height 0.5s ease-in;
+        }
+        .doc-card {
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .doc-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        .doc-icon {
+            font-size: 3rem;
+            line-height: 1;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white p-4 shadow-md sticky top-0 z-50">
+        <div class="container mx-auto">
+            <h1 class="text-2xl font-bold">L-71: Introduction to Estate Planning in <span class="text-yellow-300">{{STATE_NAME}}</span></h1>
+            <p class="text-indigo-200">Day 1 of 2: Protecting Yourself and Those You Care About</p>
+        </div>
+    </header>
+
+    <div class="container mx-auto px-4 py-8 max-w-5xl">
+
+        <!-- Learning Objectives -->
+        <section class="bg-indigo-50 border-l-4 border-indigo-500 p-6 mb-8 rounded-r">
+            <h2 class="text-xl font-bold text-indigo-900 mb-3">📚 Learning Objectives</h2>
+            <ul class="space-y-2 text-indigo-900">
+                <li class="flex items-start">
+                    <span class="mr-2">✓</span>
+                    <span>Define essential estate planning documents: wills, trusts, power of attorney, and healthcare directives</span>
+                </li>
+                <li class="flex items-start">
+                    <span class="mr-2">✓</span>
+                    <span>Explain the probate process and strategies for avoiding or minimizing it</span>
+                </li>
+                <li class="flex items-start">
+                    <span class="mr-2">✓</span>
+                    <span>Compare revocable and irrevocable trusts and understand when each is appropriate</span>
+                </li>
+                <li class="flex items-start">
+                    <span class="mr-2">✓</span>
+                    <span>Analyze how beneficiary designations interact with wills and why they're critical</span>
+                </li>
+                <li class="flex items-start">
+                    <span class="mr-2">✓</span>
+                    <span>Make informed decisions about basic estate planning needs appropriate for your life stage</span>
+                </li>
+            </ul>
+        </section>
+
+        <!-- Opening Hook -->
+        <section class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-bold text-gray-900 mb-4">🚨 Opening Story: When 24 Becomes Too Late</h2>
+
+            <div class="bg-gradient-to-r from-rose-100 to-red-100 p-4 rounded-lg mb-4">
+                <p class="text-gray-800 mb-2"><strong>Sarah, age 24, was critically injured in a car accident.</strong></p>
+            </div>
+
+            <div class="space-y-4">
+                <div class="bg-red-50 border-l-4 border-red-500 p-4">
+                    <p class="text-red-900"><strong>What went wrong:</strong></p>
+                    <ul class="text-gray-700 mt-2 space-y-1">
+                        <li>• No healthcare directive → Estranged parents made medical decisions against her known wishes</li>
+                        <li>• No power of attorney → Partner couldn't access bank accounts to pay rent</li>
+                        <li>• No will → She survived, but what if she hadn't?</li>
+                        <li>• Family conflict during crisis → Relationship with partner not legally recognized</li>
+                    </ul>
+                </div>
+
+                <div class="bg-yellow-50 border-l-4 border-yellow-500 p-4">
+                    <p class="font-semibold text-yellow-900">The Truth:</p>
+                    <p class="text-gray-700">Estate planning isn't about death or taxes—it's about protecting yourself and the people you care about during the times you can't speak for yourself. Sarah's preventable nightmare cost thousands in legal fees and caused immeasurable emotional trauma. Total cost to prevent this: <strong>less than $300</strong>.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- The Big Picture -->
+        <section class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-bold text-gray-900 mb-4">🌐 The Big Picture: What Is Estate Planning?</h2>
+
+            <div class="bg-gray-100 p-4 rounded-lg mb-6">
+                <p class="text-lg text-gray-800"><strong>Estate Planning</strong> = Creating legal documents that answer five critical questions:</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-4 mb-6">
+                <div class="bg-indigo-50 p-4 rounded-lg">
+                    <h4 class="font-bold text-indigo-900">1. What happens to your assets when you die?</h4>
+                    <p class="text-sm text-gray-700 mt-2">Who receives your property, accounts, and possessions?</p>
+                </div>
+                <div class="bg-purple-50 p-4 rounded-lg">
+                    <h4 class="font-bold text-purple-900">2. Who makes financial decisions if you can't?</h4>
+                    <p class="text-sm text-gray-700 mt-2">Who pays your bills during incapacity?</p>
+                </div>
+                <div class="bg-blue-50 p-4 rounded-lg">
+                    <h4 class="font-bold text-blue-900">3. Who makes medical decisions if you're incapacitated?</h4>
+                    <p class="text-sm text-gray-700 mt-2">Who speaks for you when you can't?</p>
+                </div>
+                <div class="bg-rose-50 p-4 rounded-lg">
+                    <h4 class="font-bold text-rose-900">4. Who cares for your children?</h4>
+                    <p class="text-sm text-gray-700 mt-2">Who raises your kids if something happens to you?</p>
+                </div>
+            </div>
+
+            <div class="bg-emerald-50 p-4 rounded-lg">
+                <p class="font-semibold text-emerald-900 mb-2">🔑 Key Insight:</p>
+                <p class="text-gray-700">Estate planning is essential at <strong>any age</strong>. A 25-year-old needs healthcare directives as much as a 75-year-old—perhaps more, since younger people may face decades of care if seriously injured. Parents need guardian designations <strong>immediately</strong>, regardless of assets.</p>
+            </div>
+        </section>
+
+        <!-- Document 1: Wills -->
+        <section class="bg-white rounded-lg shadow-md mb-8">
+            <button onclick="toggleSection('wills')" class="w-full flex justify-between items-center p-6 text-left hover:bg-gray-50 transition">
+                <div class="flex items-center">
+                    <span class="text-4xl mr-4">📜</span>
+                    <div>
+                        <h2 class="text-xl font-bold text-gray-900">Document 1: Wills (Last Will and Testament)</h2>
+                        <p class="text-gray-600 text-sm mt-1">Your foundation for asset distribution and guardian designation</p>
+                    </div>
+                </div>
+                <span id="willsIcon" class="text-2xl text-indigo-600">▼</span>
+            </button>
+            <div id="wills" class="collapsible-content active px-6 pb-6">
+                <div class="border-t border-gray-200 pt-4 space-y-4">
+
+                    <div class="bg-indigo-50 p-4 rounded-lg">
+                        <h4 class="font-bold text-indigo-900 mb-2">What Is a Will?</h4>
+                        <p class="text-gray-800">A legal document stating who receives your assets, who settles your affairs (executor), and who raises your children (guardians) if you die. It only takes effect upon death.</p>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="bg-white border border-gray-200 p-4 rounded-lg">
+                            <h4 class="font-semibold text-gray-900 mb-2">✅ What Wills DO:</h4>
+                            <ul class="text-sm text-gray-700 space-y-1">
+                                <li>• Direct asset distribution (who gets what)</li>
+                                <li>• Name executor (estate manager)</li>
+                                <li>• Designate guardians for minor children</li>
+                                <li>• Create testamentary trusts for beneficiaries</li>
+                                <li>• Specify funeral preferences</li>
+                            </ul>
+                        </div>
+                        <div class="bg-white border border-gray-200 p-4 rounded-lg">
+                            <h4 class="font-semibold text-gray-900 mb-2">❌ What Wills DON'T Control:</h4>
+                            <ul class="text-sm text-gray-700 space-y-1">
+                                <li>• Retirement accounts (401k, IRA)</li>
+                                <li>• Life insurance policies</li>
+                                <li>• Payable-on-death bank accounts</li>
+                                <li>• Transfer-on-death investments</li>
+                                <li>• Property held in trust</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="bg-red-50 border-l-4 border-red-500 p-4">
+                        <h4 class="font-bold text-red-900 mb-2">⚠️ Dying Without a Will (Intestate):</h4>
+                        <p class="text-gray-700">In {{STATE_NAME}}, if you die without a will, state intestacy laws decide who gets your assets and who raises your children. Common outcomes:</p>
+                        <ul class="text-gray-700 mt-2 space-y-1">
+                            <li>• Unmarried partners receive <strong>nothing</strong>—even after decades together</li>
+                            <li>• Assets divided by rigid formulas that rarely match your wishes</li>
+                            <li>• Courts appoint guardians without knowing your preferences</li>
+                            <li>• Public process, expensive, and time-consuming (6-24 months)</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-blue-50 p-4 rounded-lg">
+                        <h4 class="font-bold text-blue-900 mb-2">💰 Will Costs:</h4>
+                        <p class="text-gray-700">Simple will: $150-800 | Online services: $100-300 | Attorney: $300-800 | Complex will with trusts: $800-2,000</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Document 2: Trusts -->
+        <section class="bg-white rounded-lg shadow-md mb-8">
+            <button onclick="toggleSection('trusts')" class="w-full flex justify-between items-center p-6 text-left hover:bg-gray-50 transition">
+                <div class="flex items-center">
+                    <span class="text-4xl mr-4">🏛️</span>
+                    <div>
+                        <h2 class="text-xl font-bold text-gray-900">Document 2: Trusts</h2>
+                        <p class="text-gray-600 text-sm mt-1">Advanced planning for probate avoidance and controlled distribution</p>
+                    </div>
+                </div>
+                <span id="trustsIcon" class="text-2xl text-indigo-600">▶</span>
+            </button>
+            <div id="trusts" class="collapsible-content px-6 pb-6">
+                <div class="border-t border-gray-200 pt-4 space-y-4">
+
+                    <div class="bg-purple-50 p-4 rounded-lg">
+                        <h4 class="font-bold text-purple-900 mb-2">What Is a Trust?</h4>
+                        <p class="text-gray-800">A legal arrangement where a trustee holds and manages assets for beneficiaries. Trusts can avoid probate, protect assets, and control distribution timing.</p>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="bg-white border border-gray-200 p-4 rounded-lg">
+                            <h4 class="font-semibold text-emerald-900 mb-2">Revocable Living Trust</h4>
+                            <p class="text-sm text-gray-700 mb-2">You can modify or cancel anytime</p>
+                            <ul class="text-sm text-gray-600 space-y-1">
+                                <li>• Avoids probate (faster, private)</li>
+                                <li>• You control assets during your life</li>
+                                <li>• No tax benefits or asset protection</li>
+                                <li>• Cost: $1,500-$4,000</li>
+                            </ul>
+                            <p class="text-sm mt-2"><strong>Best for:</strong> Avoiding probate on significant estates ($500K+)</p>
+                        </div>
+                        <div class="bg-white border border-gray-200 p-4 rounded-lg">
+                            <h4 class="font-semibold text-rose-900 mb-2">Irrevocable Trust</h4>
+                            <p class="text-sm text-gray-700 mb-2">Cannot be changed once created</p>
+                            <ul class="text-sm text-gray-600 space-y-1">
+                                <li>• Asset protection from creditors</li>
+                                <li>• Estate tax reduction (large estates)</li>
+                                <li>• Medicaid planning</li>
+                                <li>• Cost: $2,000-$5,000+</li>
+                            </ul>
+                            <p class="text-sm mt-2"><strong>Best for:</strong> Advanced planning, asset protection, tax concerns</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-yellow-50 border-l-4 border-yellow-500 p-4">
+                        <p class="font-semibold text-yellow-900">💡 Trusts Aren't Just for the Wealthy:</p>
+                        <p class="text-gray-700 mt-1">A young parent with $200,000 life insurance needs a trust to ensure funds are managed properly for minor children—not given as a lump sum to an 18-year-old. Estate size matters less than family complexity.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Document 3: Powers of Attorney -->
+        <section class="bg-white rounded-lg shadow-md mb-8">
+            <button onclick="toggleSection('poa')" class="w-full flex justify-between items-center p-6 text-left hover:bg-gray-50 transition">
+                <div class="flex items-center">
+                    <span class="text-4xl mr-4">⚖️</span>
+                    <div>
+                        <h2 class="text-xl font-bold text-gray-900">Document 3: Powers of Attorney</h2>
+                        <p class="text-gray-600 text-sm mt-1">Protection while you're living but incapacitated</p>
+                    </div>
+                </div>
+                <span id="poaIcon" class="text-2xl text-indigo-600">▶</span>
+            </button>
+            <div id="poa" class="collapsible-content px-6 pb-6">
+                <div class="border-t border-gray-200 pt-4 space-y-4">
+
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <h4 class="font-bold text-blue-900 mb-3">💼 Financial Power of Attorney</h4>
+                            <p class="text-gray-700 mb-2">Authorizes someone to handle financial matters on your behalf</p>
+                            <ul class="text-sm text-gray-600 space-y-1">
+                                <li>• Pay bills and manage accounts</li>
+                                <li>• File taxes</li>
+                                <li>• Manage investments</li>
+                                <li>• Sell property if needed</li>
+                            </ul>
+                            <p class="text-sm mt-3"><strong>Durable POA:</strong> Remains effective during incapacity (what you want)</p>
+                        </div>
+                        <div class="bg-purple-50 p-4 rounded-lg">
+                            <h4 class="font-bold text-purple-900 mb-3">🏥 Healthcare Power of Attorney</h4>
+                            <p class="text-gray-700 mb-2">Authorizes someone to make medical decisions when you can't</p>
+                            <ul class="text-sm text-gray-600 space-y-1">
+                                <li>• Medical treatment decisions</li>
+                                <li>• End-of-life care choices</li>
+                                <li>• Physician communication</li>
+                                <li>• Facility placement decisions</li>
+                            </ul>
+                            <p class="text-sm mt-3"><strong>Living Will:</strong> Specifies your treatment preferences</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-red-50 border-l-4 border-red-500 p-4">
+                        <h4 class="font-bold text-red-900 mb-2">⚠️ Without POAs:</h4>
+                        <p class="text-gray-700">If you're incapacitated without POAs, your family must petition for conservatorship—a public, expensive court process costing $3,000-$8,000 and taking months. A $200 POA document prevents this nightmare.</p>
+                    </div>
+
+                    <div class="bg-emerald-50 p-4 rounded-lg">
+                        <h4 class="font-bold text-emerald-900 mb-2">✅ Who Should You Choose?</h4>
+                        <p class="text-gray-700">Choose someone trustworthy, financially responsible (for financial POA), and willing to honor your wishes (for healthcare POA). These need not be the same person. Discuss your wishes clearly before crisis strikes.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Document 4: Beneficiary Designations -->
+        <section class="bg-white rounded-lg shadow-md mb-8">
+            <button onclick="toggleSection('beneficiaries')" class="w-full flex justify-between items-center p-6 text-left hover:bg-gray-50 transition">
+                <div class="flex items-center">
+                    <span class="text-4xl mr-4">👥</span>
+                    <div>
+                        <h2 class="text-xl font-bold text-gray-900">Document 4: Beneficiary Designations</h2>
+                        <p class="text-gray-600 text-sm mt-1">The will override that controls most wealth</p>
+                    </div>
+                </div>
+                <span id="beneficiariesIcon" class="text-2xl text-indigo-600">▶</span>
+            </button>
+            <div id="beneficiaries" class="collapsible-content px-6 pb-6">
+                <div class="border-t border-gray-200 pt-4 space-y-4">
+
+                    <div class="bg-rose-50 p-4 rounded-lg">
+                        <h4 class="font-bold text-rose-900 mb-2">CRITICAL: Beneficiaries Trump Wills</h4>
+                        <p class="text-gray-800">Beneficiary designations override your will. For many people, retirement accounts and life insurance represent the majority of wealth—these pass by beneficiary form, not will.</p>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="bg-white border border-gray-200 p-4 rounded-lg">
+                            <h4 class="font-semibold text-gray-900 mb-2">Assets with Beneficiaries:</h4>
+                            <ul class="text-sm text-gray-700 space-y-1">
+                                <li>• Retirement accounts (401k, IRA)</li>
+                                <li>• Life insurance policies</li>
+                                <li>• Annuities</li>
+                                <li>• Payable-on-death bank accounts</li>
+                                <li>• Transfer-on-death investments</li>
+                            </ul>
+                        </div>
+                        <div class="bg-white border border-gray-200 p-4 rounded-lg">
+                            <h4 class="font-semibold text-gray-900 mb-2">Primary vs. Contingent:</h4>
+                            <ul class="text-sm text-gray-700 space-y-1">
+                                <li><strong>Primary:</strong> First in line to receive assets</li>
+                                <li><strong>Contingent:</strong> Backup if primary dies before you</li>
+                                <li>• ALWAYS name contingent beneficiaries</li>
+                                <li>• Review annually and after life events</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="bg-red-50 border-l-4 border-red-500 p-4">
+                        <h4 class="font-bold text-red-900 mb-2">🚨 Common Beneficiary Mistakes:</h4>
+                        <ul class="text-gray-700 space-y-2">
+                            <li><strong>1. Never updated after divorce:</strong> Ex-spouse gets $400K life insurance despite remarriage</li>
+                            <li><strong>2. Named minor children directly:</strong> Court custodianship until 18, then lump sum to teenager</li>
+                            <li><strong>3. Named "my estate":</strong> Forces probate, defeats the purpose</li>
+                            <li><strong>4. No contingent beneficiaries:</strong> Assets go to probate if primary predeceases you</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-emerald-50 p-4 rounded-lg">
+                        <h4 class="font-bold text-emerald-900 mb-2">✅ Smart Beneficiary Planning:</h4>
+                        <ul class="text-gray-700 space-y-1">
+                            <li>• Review beneficiaries annually and after major life events (marriage, divorce, births, deaths)</li>
+                            <li>• Name trusts as beneficiaries for minor children—not children directly</li>
+                            <li>• Always name contingent beneficiaries</li>
+                            <li>• Coordinate beneficiaries with overall estate plan</li>
+                            <li>• Never name "my estate" unless you specifically want probate</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Guardianship for Parents -->
+        <section class="bg-gradient-to-r from-rose-50 to-pink-50 rounded-lg shadow-lg p-6 mb-8 border-2 border-rose-300">
+            <h2 class="text-2xl font-bold text-gray-900 mb-4">👶 For Parents: Guardian Designations (URGENT)</h2>
+
+            <div class="bg-red-100 border-l-4 border-red-600 p-4 mb-4">
+                <p class="text-red-900 font-bold">If you have minor children and no designated guardians, this is your TOP PRIORITY.</p>
+            </div>
+
+            <div class="space-y-4">
+                <div>
+                    <h4 class="font-semibold text-gray-900 mb-2">What Happens Without Guardians:</h4>
+                    <p class="text-gray-700">Courts decide who raises your children without knowing your preferences. Children may go to foster care temporarily while relatives battle for custody. The outcome may not be who you'd choose.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="bg-white p-4 rounded-lg">
+                        <h4 class="font-semibold text-gray-900 mb-2">Choosing Guardians:</h4>
+                        <ul class="text-sm text-gray-700 space-y-1">
+                            <li>• Who shares your values and parenting philosophy?</li>
+                            <li>• Who has the energy and family situation for more children?</li>
+                            <li>• Location and schools acceptable?</li>
+                            <li>• Are they willing and capable?</li>
+                            <li>• Have you discussed this with them?</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg">
+                        <h4 class="font-semibold text-gray-900 mb-2">Guardian vs. Trustee:</h4>
+                        <ul class="text-sm text-gray-700 space-y-1">
+                            <li><strong>Guardian of Person:</strong> Raises children</li>
+                            <li><strong>Guardian of Property (Trustee):</strong> Manages money</li>
+                            <li>• These can be different people</li>
+                            <li>• Prevents conflicts of interest</li>
+                            <li>• Best parent ≠ best money manager</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="bg-yellow-50 border-l-4 border-yellow-500 p-4">
+                    <p class="font-semibold text-yellow-900">💡 Action Required:</p>
+                    <p class="text-gray-700 mt-1">If you're a parent, designate guardians in your will THIS WEEK. Provide written guidance about your children's needs, preferences, and important relationships. Name alternate guardians as backups.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skill Builder -->
+        <section class="bg-gradient-to-r from-indigo-500 to-purple-600 text-white rounded-lg shadow-lg p-6 mb-8">
+            <h2 class="text-2xl font-bold mb-4">🛠️ Skill Builder: Estate Planning Starter Checklist</h2>
+            <p class="mb-4">Assess your current situation and create a prioritized action plan based on your life stage.</p>
+
+            <div class="bg-white/20 p-4 rounded-lg mb-4">
+                <h4 class="font-bold mb-2">What You'll Do:</h4>
+                <ol class="list-decimal list-inside space-y-1">
+                    <li>Complete life stage assessment (single, relationship, married, parents)</li>
+                    <li>Document current status: Do you have healthcare directive? POA? Will? Guardians named?</li>
+                    <li>Identify priority documents for your situation</li>
+                    <li>Create action plan with specific next steps and timeline</li>
+                    <li>Estimate costs for your situation ($100-$2,000 depending on complexity)</li>
+                </ol>
+            </div>
+
+            <div class="bg-white/10 p-4 rounded-lg">
+                <p class="font-semibold">Priority Levels:</p>
+                <div class="grid md:grid-cols-2 gap-2 mt-2">
+                    <span class="bg-white/20 px-3 py-1 rounded"><strong>Level 1 (Everyone):</strong> Healthcare directive & Financial POA</span>
+                    <span class="bg-white/20 px-3 py-1 rounded"><strong>Level 2 (Assets/Relationship):</strong> Basic will</span>
+                    <span class="bg-white/20 px-3 py-1 rounded"><strong>Level 3 (Parents):</strong> Guardians & trusts</span>
+                    <span class="bg-white/20 px-3 py-1 rounded"><strong>Level 4 (Complexity):</strong> Advanced trusts</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Summary -->
+        <section class="bg-indigo-50 border-l-4 border-indigo-500 p-6 mb-8 rounded-r">
+            <h2 class="text-xl font-bold text-indigo-900 mb-3">📋 Day 1 Summary</h2>
+            <div class="text-gray-800 space-y-2">
+                <p>✅ <strong>Wills</strong> = Direct assets, name guardians, designate executor</p>
+                <p>✅ <strong>Trusts</strong> = Avoid probate, control distribution, protect assets</p>
+                <p>✅ <strong>Powers of Attorney</strong> = Financial & healthcare decisions during incapacity</p>
+                <p>✅ <strong>Beneficiary Designations</strong> = Trump wills for retirement accounts & life insurance</p>
+                <p>✅ <strong>Guardian Designations</strong> = Critical for parents of minor children</p>
+            </div>
+            <div class="bg-white p-4 rounded mt-4">
+                <p class="font-semibold text-indigo-900">Coming Tomorrow in Day 2:</p>
+                <p class="text-gray-700">You'll practice with real scenarios: Will vs. No Will simulator, trust comparison tool, POA planning, and beneficiary designation audit. You'll create your personal estate planning checklist.</p>
+            </div>
+        </section>
+
+        <!-- Navigation -->
+        <div class="flex justify-between items-center">
+            <a href="#" class="bg-gray-200 hover:bg-gray-300 px-6 py-3 rounded-lg font-semibold transition">← Previous Lesson</a>
+            <a href="day2.html" class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-lg font-semibold transition">Day 2: Learning Lab →</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8 mt-12">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-gray-400">© 2025 PFL Academy | L-71: Introduction to Estate Planning</p>
+            <p class="text-sm text-gray-500 mt-2">Protecting yourself and those you care about.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Toggle section visibility
+        function toggleSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            const icon = document.getElementById(sectionId + 'Icon');
+
+            if (section.classList.contains('active')) {
+                section.classList.remove('active');
+                icon.textContent = '▶';
+            } else {
+                section.classList.add('active');
+                icon.textContent = '▼';
+            }
+        }
+
+        // Initialize - open wills section by default
+        document.addEventListener('DOMContentLoaded', function() {
+            // Wills section is already open via HTML class
+        });
+    </script>
+</body>
+</html>

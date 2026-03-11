@@ -1,0 +1,25 @@
+{
+  "l_chapter": 71,
+  "title": "Introduction to Estate Planning",
+  "description": "A foundational exploration of estate planning instruments and strategies—wills, trusts, beneficiary designations, powers of attorney, healthcare directives, and probate—equipping young adults with knowledge to protect themselves, their families, and their financial legacies.",
+  "learning_objectives": [
+    "Define essential estate planning documents: wills, trusts, power of attorney, and healthcare directives",
+    "Explain the probate process and strategies for avoiding or minimizing it",
+    "Compare revocable and irrevocable trusts and understand when each is appropriate",
+    "Analyze how beneficiary designations interact with wills and why they're critical",
+    "Evaluate guardianship designations and their importance for families with minor children",
+    "Make informed decisions about basic estate planning needs appropriate for your life stage"
+  ],
+  "content_density": "standard",
+  "template_format": "standard",
+  "day1_day2_connection": "complementary",
+  "skill_builder": {
+    "id": "estate_planning_starter_checklist",
+    "title": "Estate Planning Starter Checklist",
+    "description": "A systematic framework for young adults to assess their current estate planning needs, identify priority documents, and create an action plan for protecting themselves and their families."
+  },
+  "state_variables": [
+    "{{STATE_NAME}}",
+    "{{STATE_ESTATE_TAX}}"
+  ]
+}

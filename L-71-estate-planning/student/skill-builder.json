@@ -1,0 +1,391 @@
+{
+  "skill_builder_id": "L-71-skill-builder",
+  "chapter": "L-71",
+  "title": "Estate Planning Starter Checklist",
+  "type": "assessment_and_planning",
+  "description": "A systematic framework for young adults to assess their current estate planning needs, identify priority documents, and create an actionable plan for protecting themselves and their families through wills, trusts, powers of attorney, and healthcare directives",
+  "learning_objectives": [
+    "Assess which estate planning documents are essential for your current life stage",
+    "Document current status of wills, trusts, beneficiaries, and incapacity protection",
+    "Prioritize estate planning actions based on personal situation and risk",
+    "Create a timeline and budget for obtaining necessary documents",
+    "Identify appropriate agents, guardians, and beneficiaries for your situation"
+  ],
+  "config": {
+    "inputs": [
+      {
+        "id": "life_stage",
+        "label": "Current Life Stage",
+        "type": "select",
+        "options": [
+          "Single, no dependents",
+          "In a serious relationship (not married)",
+          "Married, no children",
+          "Married with children",
+          "Single parent",
+          "Divorced with children",
+          "Complex family (blended/special needs)"
+        ],
+        "required": true,
+        "help_text": "Select the option that best describes your current family situation"
+      },
+      {
+        "id": "age",
+        "label": "Your Age",
+        "type": "number",
+        "default": 18,
+        "required": true,
+        "help_text": "Your current age"
+      },
+      {
+        "id": "assets_total",
+        "label": "Estimated Total Assets",
+        "type": "currency",
+        "default": 0,
+        "required": true,
+        "help_text": "Combined value of retirement accounts, savings, property, vehicles, life insurance"
+      },
+      {
+        "id": "has_will",
+        "label": "Do you have a current will?",
+        "type": "boolean",
+        "default": false,
+        "required": true,
+        "help_text": "A will that reflects your current wishes and situation"
+      },
+      {
+        "id": "will_updated_date",
+        "label": "When was your will last updated?",
+        "type": "text",
+        "required": false,
+        "help_text": "Month and year of last update (if applicable)"
+      },
+      {
+        "id": "has_healthcare_directive",
+        "label": "Do you have a healthcare directive/living will?",
+        "type": "boolean",
+        "default": false,
+        "required": true,
+        "help_text": "Document specifying medical treatment preferences and naming healthcare proxy"
+      },
+      {
+        "id": "healthcare_proxy_name",
+        "label": "Healthcare Proxy/Agent Name",
+        "type": "text",
+        "required": false,
+        "help_text": "Person authorized to make medical decisions if you're incapacitated"
+      },
+      {
+        "id": "has_financial_poa",
+        "label": "Do you have a financial power of attorney?",
+        "type": "boolean",
+        "default": false,
+        "required": true,
+        "help_text": "Document authorizing someone to handle finances if you're incapacitated"
+      },
+      {
+        "id": "financial_agent_name",
+        "label": "Financial POA Agent Name",
+        "type": "text",
+        "required": false,
+        "help_text": "Person authorized to manage your finances if you're incapacitated"
+      },
+      {
+        "id": "num_children",
+        "label": "Number of Minor Children",
+        "type": "number",
+        "default": 0,
+        "required": true,
+        "help_text": "Children under 18 for whom you have parental responsibility"
+      },
+      {
+        "id": "guardians_designated",
+        "label": "Have you formally designated guardians in a will?",
+        "type": "boolean",
+        "default": false,
+        "required": false,
+        "help_text": "Legal guardians who would raise your children if you die or become incapacitated"
+      },
+      {
+        "id": "retirement_accounts",
+        "label": "Do you have retirement accounts (401k, IRA, etc.)?",
+        "type": "boolean",
+        "default": false,
+        "required": true,
+        "help_text": "Any employer or individual retirement accounts"
+      },
+      {
+        "id": "beneficiaries_reviewed",
+        "label": "When did you last review ALL beneficiary designations?",
+        "type": "select",
+        "options": [
+          "Within past year",
+          "1-3 years ago",
+          "More than 3 years ago",
+          "Never/Don't know"
+        ],
+        "required": true,
+        "help_text": "Retirement accounts, life insurance, POD/TOD accounts"
+      },
+      {
+        "id": "life_insurance_amount",
+        "label": "Total Life Insurance Coverage",
+        "type": "currency",
+        "default": 0,
+        "required": true,
+        "help_text": "Combined death benefit of all life insurance policies"
+      },
+      {
+        "id": "has_trust",
+        "label": "Do you have a trust?",
+        "type": "boolean",
+        "default": false,
+        "required": true,
+        "help_text": "Revocable living trust, testamentary trust, or other trust structure"
+      },
+      {
+        "id": "trust_type",
+        "label": "Trust Type",
+        "type": "select",
+        "options": [
+          "Revocable living trust",
+          "Testamentary trust (in will)",
+          "Irrevocable trust",
+          "Special needs trust",
+          "Other"
+        ],
+        "required": false,
+        "help_text": "Type of trust if you have one"
+      },
+      {
+        "id": "documents_location",
+        "label": "Where are original documents stored?",
+        "type": "select",
+        "options": [
+          "Fireproof safe at home",
+          "Safety deposit box",
+          "Attorney's office",
+          "With family member",
+          "Don't have originals",
+          "Don't know"
+        ],
+        "required": true,
+        "help_text": "Location of original signed documents"
+      },
+      {
+        "id": "who_knows_location",
+        "label": "Who knows where your documents are located?",
+        "type": "text",
+        "required": false,
+        "help_text": "List people who know document locations and have access if needed"
+      }
+    ],
+    "calculations": [
+      {
+        "id": "priority_score",
+        "label": "Estate Planning Priority Score",
+        "formula": "Calculate based on life_stage, age, assets_total, num_children, has_will, has_healthcare_directive, has_financial_poa",
+        "display_format": "score",
+        "help_text": "Higher score = higher urgency for estate planning"
+      },
+      {
+        "id": "estimated_probate_cost",
+        "label": "Estimated Probate Cost (if no planning)",
+        "formula": "assets_total * 0.05",
+        "display_format": "currency",
+        "help_text": "Typical probate costs 3-7% of estate; using 5% midpoint"
+      },
+      {
+        "id": "planning_cost_estimate",
+        "label": "Estimated Planning Cost",
+        "formula": "Calculate based on life_stage and has_trust",
+        "display_format": "currency",
+        "help_text": "Cost to obtain necessary documents for your situation"
+      },
+      {
+        "id": "net_benefit",
+        "label": "Net Benefit of Planning",
+        "formula": "estimated_probate_cost - planning_cost_estimate",
+        "display_format": "currency",
+        "help_text": "Financial benefit of estate planning (not counting family peace of mind)"
+      }
+    ],
+    "outputs": [
+      {
+        "id": "priority_documents",
+        "label": "Your Priority Documents",
+        "type": "ranked_list",
+        "source": "Calculate based on inputs",
+        "description": "Documents you need most urgently"
+      },
+      {
+        "id": "action_plan",
+        "label": "30-Day Action Plan",
+        "type": "checklist",
+        "source": "Calculate based on priorities",
+        "description": "Specific steps to take this month"
+      },
+      {
+        "id": "agent_selection_guide",
+        "label": "Agent Selection Guidance",
+        "type": "recommendation",
+        "source": "Based on life_stage",
+        "description": "Who to consider for healthcare proxy, financial POA, guardians"
+      },
+      {
+        "id": "beneficiary_review_checklist",
+        "label": "Beneficiary Review Checklist",
+        "type": "checklist",
+        "source": "retirement_accounts and life_insurance_amount",
+        "description": "Accounts requiring beneficiary designation review"
+      },
+      {
+        "id": "cost_comparison",
+        "label": "Cost Comparison",
+        "type": "comparison_table",
+        "source": ["planning_cost_estimate", "estimated_probate_cost", "net_benefit"],
+        "description": "Planning cost vs. potential probate cost"
+      }
+    ],
+    "priority_logic": {
+      "level_1_critical": [
+        "Healthcare directive (everyone 18+)",
+        "Financial power of attorney (everyone 18+)"
+      ],
+      "level_2_important": [
+        "Basic will (if assets > $25,000 or in serious relationship)",
+        "Guardian designation (if any minor children)"
+      ],
+      "level_3_beneficial": [
+        "Trust consideration (if minor children + life insurance OR assets > $500,000)",
+        "Beneficiary review (if any retirement accounts or life insurance)"
+      ],
+      "level_4_advanced": [
+        "Irrevocable trust (if estate tax concern or asset protection needed)",
+        "Special needs trust (if disabled dependents)"
+      ]
+    },
+    "scenarios": [
+      {
+        "id": "recent_graduate",
+        "name": "Recent Graduate (Age 23)",
+        "description": "Single, no dependents, modest assets, starting career",
+        "preset_values": {
+          "life_stage": "Single, no dependents",
+          "age": 23,
+          "assets_total": 15000,
+          "has_will": false,
+          "has_healthcare_directive": false,
+          "has_financial_poa": false,
+          "num_children": 0,
+          "retirement_accounts": true,
+          "life_insurance_amount": 50000,
+          "has_trust": false,
+          "beneficiaries_reviewed": "Never/Don't know"
+        }
+      },
+      {
+        "id": "young_parents",
+        "name": "Young Parents (Ages 30/32)",
+        "description": "Married with two young children, growing assets",
+        "preset_values": {
+          "life_stage": "Married with children",
+          "age": 30,
+          "assets_total": 250000,
+          "has_will": false,
+          "has_healthcare_directive": false,
+          "has_financial_poa": false,
+          "num_children": 2,
+          "guardians_designated": false,
+          "retirement_accounts": true,
+          "life_insurance_amount": 500000,
+          "has_trust": false,
+          "beneficiaries_reviewed": "Never/Don't know"
+        }
+      },
+      {
+        "id": "divorced_parent",
+        "name": "Divorced Parent (Age 38)",
+        "description": "Single parent, one child, need to update documents",
+        "preset_values": {
+          "life_stage": "Divorced with children",
+          "age": 38,
+          "assets_total": 180000,
+          "has_will": true,
+          "will_updated_date": "8 years ago (before divorce)",
+          "has_healthcare_directive": true,
+          "has_financial_poa": true,
+          "num_children": 1,
+          "guardians_designated": true,
+          "retirement_accounts": true,
+          "life_insurance_amount": 300000,
+          "has_trust": false,
+          "beneficiaries_reviewed": "More than 3 years ago"
+        }
+      },
+      {
+        "id": "engaged_couple",
+        "name": "Engaged Couple (Ages 27/28)",
+        "description": "Planning marriage, want to start estate planning",
+        "preset_values": {
+          "life_stage": "In a serious relationship (not married)",
+          "age": 27,
+          "assets_total": 85000,
+          "has_will": false,
+          "has_healthcare_directive": false,
+          "has_financial_poa": false,
+          "num_children": 0,
+          "retirement_accounts": true,
+          "life_insurance_amount": 150000,
+          "has_trust": false,
+          "beneficiaries_reviewed": "Within past year"
+        }
+      }
+    ]
+  },
+  "validation_rules": [
+    {
+      "condition": "If num_children > 0 and not guardians_designated",
+      "warning_message": "CRITICAL: You have minor children but no designated guardians. This should be your top priority."
+    },
+    {
+      "condition": "If age >= 18 and not has_healthcare_directive",
+      "warning_message": "IMPORTANT: At 18+, your parents have no automatic authority to make medical decisions. You need a healthcare directive."
+    },
+    {
+      "condition": "If life_insurance_amount > 0 and beneficiaries_reviewed != 'Within past year'",
+      "warning_message": "REVIEW NEEDED: Life insurance beneficiaries should be reviewed annually and after all major life events."
+    },
+    {
+      "condition": "If has_will and will_updated_date contains years ago > 3",
+      "warning_message": "UPDATE NEEDED: Wills should be reviewed every 3-5 years and after major life changes."
+    },
+    {
+      "condition": "If life_stage includes 'relationship' or 'married' and not has_will",
+      "warning_message": "IMPORTANT: Serious relationships require estate planning. Unmarried partners have no automatic inheritance rights."
+    }
+  ],
+  "feedback_messages": {
+    "well_planned": "Your estate planning is in good shape! Remember to review annually and update after major life events.",
+    "basic_complete": "You have basic protections in place. Consider adding {recommended_documents} to strengthen your plan.",
+    "critical_gaps": "You have critical estate planning gaps. Priority actions: {critical_actions}",
+    "no_planning": "You currently have no estate planning documents. Start with healthcare directive and financial POA this month.",
+    "parents_urgent": "As a parent, guardian designation is URGENT. Your children need this protection immediately.",
+    "beneficiary_review": "Your beneficiaries haven't been reviewed in {time_period}. This should be done annually.",
+    "document_storage_issue": "Your documents aren't properly stored or accessible. Create a storage plan today.",
+    "insights": [
+      "Healthcare directive and financial POA protect you while LIVING—more immediately relevant than wills for young adults",
+      "Parents need guardian designations immediately regardless of age or assets",
+      "Beneficiary designations trump wills—review all designations annually",
+      "The cost of basic planning ($100-500) is trivial compared to probate costs (3-7% of estate)",
+      "Document location matters—families can't use documents they can't find",
+      "Update estate plans after: marriage, divorce, births, deaths, major asset changes",
+      "In {{STATE_NAME}}: {{STATE_ESTATE_TAX}}"
+    ]
+  },
+  "state_variables": [
+    "{{STATE_NAME}}",
+    "{{STATE_ESTATE_TAX}}"
+  ],
+  "estimated_time_minutes": 20
+}

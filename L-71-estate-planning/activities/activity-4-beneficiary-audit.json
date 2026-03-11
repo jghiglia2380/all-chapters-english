@@ -1,0 +1,472 @@
+{
+  "activity_id": "L-71-activity-4",
+  "chapter": "L-71",
+  "activity_number": 4,
+  "title": "Beneficiary Designation Audit",
+  "type": "error_analysis_and_planning",
+  "duration_minutes": 15,
+  "learning_objectives": [
+    "Understand that beneficiary designations trump wills",
+    "Identify common beneficiary designation mistakes and their consequences",
+    "Create proper beneficiary designation strategy for different life stages",
+    "Develop annual beneficiary review checklist"
+  ],
+  "description": "Interactive audit tool analyzing four case studies of beneficiary mistakes, followed by practice creating proper designations for various life situations, and personal beneficiary audit checklist creation.",
+  "instructions": [
+    "Analyze four real-world beneficiary mistakes and their consequences",
+    "Calculate financial and family impact of each mistake",
+    "Practice proper beneficiary planning for sample situations",
+    "Create personal beneficiary audit checklist",
+    "Identify life events triggering beneficiary reviews"
+  ],
+  "core_concepts": {
+    "what_are_beneficiary_designations": {
+      "definition": "Forms used to name who receives specific accounts/assets directly upon your death, bypassing your will and probate",
+      "key_principle": "Beneficiary designations TRUMP wills—they control distribution regardless of what your will says",
+      "accounts_with_beneficiaries": [
+        "Retirement accounts (401k, 403b, 457, 401a)",
+        "Individual Retirement Accounts (Traditional IRA, Roth IRA, SEP-IRA, SIMPLE IRA)",
+        "Life insurance policies",
+        "Annuities",
+        "Payable-on-Death (POD) bank accounts",
+        "Transfer-on-Death (TOD) investment/brokerage accounts",
+        "Some states: Transfer-on-Death vehicle titles"
+      ]
+    },
+    "primary_vs_contingent": {
+      "primary_beneficiary": "First in line—receives assets if alive at your death",
+      "contingent_beneficiary": "Backup—receives assets only if primary beneficiary has died before you",
+      "critical_rule": "ALWAYS name contingent beneficiaries. Without them, assets go to your estate (probate) if primary predeceases you."
+    },
+    "why_beneficiaries_matter": {
+      "probate_avoidance": "Properly designated accounts transfer immediately without court involvement",
+      "speed": "Beneficiaries typically receive assets within weeks, not months/years",
+      "privacy": "Bypass public probate records",
+      "often_largest_assets": "For many people, retirement accounts and life insurance represent majority of wealth—these pass by beneficiary, not will"
+    }
+  },
+  "case_studies": [
+    {
+      "case_number": 1,
+      "title": "The Forgotten Ex-Spouse",
+      "person": "Michael",
+      "age_at_death": 42,
+      "situation": {
+        "marital_history": "Divorced from Lisa 8 years ago; remarried to Rachel 5 years ago",
+        "assets": {
+          "life_insurance": 400000,
+          "401k": 180000,
+          "home": 250000
+        },
+        "beneficiaries": {
+          "life_insurance": "Lisa (ex-wife) - NEVER UPDATED",
+          "401k": "Lisa (ex-wife) - NEVER UPDATED",
+          "will": "Everything to Rachel (current wife)"
+        },
+        "cause_of_death": "Heart attack at age 42"
+      },
+      "outcome": {
+        "who_got_what": {
+          "lisa_ex_wife": "$580,000 (life insurance $400K + 401k $180K)",
+          "rachel_current_wife": "$250,000 (home only, per will)"
+        },
+        "legal_battle": {
+          "rachel_sued": true,
+          "argument": "Michael intended to provide for current wife, obviously didn't mean to leave majority to ex",
+          "court_ruling": "Beneficiary designations control regardless of intent. Lisa receives $580K.",
+          "litigation_cost": "$45,000 in attorney fees (from estate)",
+          "timeline": "18 months of legal battle"
+        },
+        "family_impact": "Rachel financially devastated; Lisa received windfall she didn't expect or need; Michael's wishes completely thwarted; family relationships destroyed"
+      },
+      "lesson": "Update beneficiaries IMMEDIATELY after divorce. Many states automatically revoke ex-spouses, but don't rely on this—update explicitly.",
+      "cost_of_mistake": "$580,000 went to wrong person; $45,000 in litigation; 18 months of family warfare",
+      "prevention": "Update beneficiaries within 30 days of divorce finalization. Make it part of divorce checklist."
+    },
+    {
+      "case_number": 2,
+      "title": "Minor Children Named Directly",
+      "person": "Amanda",
+      "age_at_death": 35,
+      "situation": {
+        "family": "Single mother of 8-year-old daughter (Sophia)",
+        "assets": {
+          "life_insurance": 250000,
+          "401k": 75000
+        },
+        "beneficiaries": {
+          "life_insurance": "Sophia (age 8) - named directly",
+          "401k": "Sophia (age 8) - named directly"
+        },
+        "intent": "Wanted to ensure daughter received everything"
+      },
+      "outcome": {
+        "immediate_problem": "Minors cannot legally own assets",
+        "court_action": {
+          "custodianship": "Court appointed Amanda's sister as custodian under UTMA (Uniform Transfer to Minors Act)",
+          "restrictions": "Sister could only use funds for Sophia's 'benefit' until age 18",
+          "oversight": "Required annual court accountings and approval for major expenses",
+          "cost": "$3,000 in legal fees to establish custodianship"
+        },
+        "age_18_outcome": {
+          "what_happened": "Sophia received $325,000 lump sum at age 18 (original $325K + 10 years growth)",
+          "result": "18-year-old with no financial experience received $325,000 all at once",
+          "consequences": [
+            "Bought expensive car ($60,000) within 1 week",
+            "Loaned money to friends ($40,000 never repaid)",
+            "Spent $100,000 within first year",
+            "Dropped out of college (felt 'rich')",
+            "Depleted entire inheritance by age 24",
+            "No college degree, no remaining money"
+          ]
+        }
+      },
+      "lesson": "NEVER name minor children as direct beneficiaries. Instead, name a trust as beneficiary with terms controlling distribution (e.g., 1/3 at 25, 1/3 at 30, 1/3 at 35).",
+      "better_approach": {
+        "solution": "Create testamentary trust in will OR revocable living trust",
+        "trust_as_beneficiary": "Life insurance pays to trust",
+        "trustee_manages": "Responsible adult manages funds for child's benefit",
+        "controlled_distribution": "Release portions at maturity milestones (25, 30, 35) or for specific purposes (education, health, home purchase)",
+        "cost": "$500-1,500 to create trust",
+        "benefit": "Professional management + prevented $325,000 waste"
+      },
+      "cost_of_mistake": "$325,000 wasted; daughter's education compromised; intent completely defeated"
+    },
+    {
+      "case_number": 3,
+      "title": "My Estate as Beneficiary",
+      "person": "Robert",
+      "age_at_death": 58,
+      "situation": {
+        "family": "Married to Susan, two adult children",
+        "assets": {
+          "ira": 450000,
+          "life_insurance": 200000,
+          "other_assets": 150000
+        },
+        "beneficiaries": {
+          "ira": "My Estate - Robert thought this would follow his will",
+          "life_insurance": "My Estate - same reasoning",
+          "will": "Everything split: 50% to wife, 25% each to children"
+        },
+        "intent": "Wanted will to control distribution"
+      },
+      "outcome": {
+        "problem": "Naming 'estate' defeats the entire purpose of beneficiary designations",
+        "consequences": {
+          "probate_forced": "All $650K went through probate (IRA + insurance)",
+          "probate_costs": "$32,500 (5% of $650K)",
+          "timeline": "14 months to complete probate",
+          "public_record": "All assets, beneficiaries, and amounts became public record",
+          "tax_inefficiency": {
+            "ira_problem": "Estate as beneficiary loses 'inherited IRA' tax advantages",
+            "must_distribute": "IRA must be distributed within 5 years (instead of stretching over beneficiaries' lifetimes)",
+            "tax_acceleration": "Forced Susan and children into higher tax brackets",
+            "additional_taxes": "$135,000 in additional income taxes versus inherited IRA"
+          }
+        },
+        "total_cost": {
+          "probate_fees": 32500,
+          "attorney_fees": 18000,
+          "additional_taxes": 135000,
+          "total_loss": 185500,
+          "timeline_delay": "14 months"
+        }
+      },
+      "lesson": "NEVER name 'my estate' as beneficiary unless you specifically want probate. Name individuals or trust directly.",
+      "correct_approach": {
+        "ira": "Primary: Susan (spouse); Contingent: Children equally",
+        "life_insurance": "Primary: Trust for children; Contingent: Children directly",
+        "result": "No probate, inherited IRA tax benefits preserved, immediate distribution"
+      },
+      "cost_of_mistake": "$185,500 in probate costs and unnecessary taxes + 14-month delay"
+    },
+    {
+      "case_number": 4,
+      "title": "No Contingent Beneficiaries",
+      "person": "Karen",
+      "age_at_death": 67,
+      "situation": {
+        "family": "Widow (husband died 3 years earlier), two adult children",
+        "assets": {
+          "ira": 320000,
+          "life_insurance": 150000,
+          "home": 200000
+        },
+        "beneficiaries": {
+          "ira": "Primary: Mother (age 89); Contingent: NONE",
+          "life_insurance": "Primary: Mother (age 89); Contingent: NONE",
+          "will": "Everything to children equally"
+        },
+        "problem": "Mother died 6 months before Karen (at age 89)"
+      },
+      "outcome": {
+        "what_happened": "With no contingent beneficiaries and primary deceased, accounts defaulted to estate",
+        "consequences": {
+          "probate_forced": "$470K went through probate (IRA + insurance)",
+          "probate_cost": "$23,500",
+          "timeline": "11 months",
+          "distribution": "Eventually to children per will, but after probate delay and cost"
+        },
+        "preventable_cost": "$23,500 + 11-month delay—easily prevented by naming contingent beneficiaries"
+      },
+      "lesson": "ALWAYS name contingent beneficiaries for every account. Review and update if contingents die.",
+      "correct_approach": {
+        "always_have_backup": "Primary: Mother; Contingent: Two children equally",
+        "review_annually": "When mother died, Karen should have updated primary to children and named new contingents",
+        "result_if_correct": "Direct transfer to children, no probate, no delay"
+      },
+      "cost_of_mistake": "$23,500 + 11-month delay—simply for neglecting to name contingents"
+    }
+  ],
+  "practice_scenarios": {
+    "scenario_a": {
+      "situation": "Single, Age 25, $15K in 401(k), Dating but Not Engaged",
+      "current_status": "Never designated beneficiaries",
+      "recommendation": {
+        "primary": "Parents (or if deceased, siblings)",
+        "contingent": "Sibling(s) or close family member",
+        "rationale": "Simple situation, no dependents, standard succession. DON'T name girlfriend/boyfriend unless engaged—relationships change."
+      },
+      "when_to_update": "When engaged/married, name partner. Until then, family is appropriate."
+    },
+    "scenario_b": {
+      "situation": "Married, Ages 30/32, Two Young Children, $200K Combined Retirement, $250K Life Insurance Each",
+      "current_status": "Never updated since children born",
+      "recommendation": {
+        "retirement_accounts": {
+          "primary": "Spouse (tax benefits for spousal inherited IRA)",
+          "contingent": "TRUST for children (NOT children directly)",
+          "rationale": "Spouse-to-spouse transfer preserves tax advantages. If both die, trust protects children from lump sum at 18."
+        },
+        "life_insurance": {
+          "primary": "TRUST for children",
+          "contingent": "Guardian or grandparents (as trustees)",
+          "rationale": "Each spouse has own insurance. If both die, life insurance funds children's trust. Spouse doesn't need their own life insurance as beneficiary."
+        }
+      },
+      "critical_action": "Create testamentary trust in will OR revocable living trust to serve as beneficiary for children"
+    },
+    "scenario_c": {
+      "situation": "Recently Divorced Parent, Age 37, One Child (Age 10), $180K Retirement, $500K Life Insurance",
+      "current_status": "All beneficiaries still list ex-spouse from marriage",
+      "recommendation": {
+        "immediate_action": "URGENT—Change ALL beneficiaries from ex-spouse immediately",
+        "retirement_accounts": {
+          "primary": "TRUST for child",
+          "contingent": "Child's guardian or sibling (as backup trustee)",
+          "rationale": "Child age 10 cannot receive directly. Trust ensures management."
+        },
+        "life_insurance": {
+          "primary": "TRUST for child",
+          "contingent": "Child's guardian or parent's siblings",
+          "rationale": "Ensure child's financial security with professional management"
+        }
+      },
+      "urgency": "CRITICAL—this is the #1 priority after divorce. If died tomorrow, ex-spouse gets everything."
+    },
+    "scenario_d": {
+      "situation": "Engaged Couple, Ages 27/28, Planning Marriage in 6 Months, Each Has $50K in Various Accounts",
+      "current_status": "Beneficiaries currently list parents",
+      "recommendation": {
+        "before_marriage": "Keep parents as beneficiaries until legally married",
+        "after_marriage": {
+          "update_within": "30 days of marriage",
+          "primary": "Spouse",
+          "contingent": "Parents or siblings",
+          "rationale": "Once married, spouse should be primary. Don't name each other before marriage unless you want parents excluded entirely."
+        }
+      },
+      "timeline": "Update immediately after marriage; set calendar reminder for wedding + 30 days"
+    }
+  },
+  "beneficiary_best_practices": {
+    "general_rules": [
+      {
+        "rule": "Review annually",
+        "frequency": "Every year, same time (e.g., January, birthday, anniversary)",
+        "purpose": "Catch changes in relationships, new assets, deceased beneficiaries"
+      },
+      {
+        "rule": "Update after major life events",
+        "triggers": ["Marriage", "Divorce", "Birth/adoption", "Death of beneficiary", "Death of contingent", "Large inheritance", "New retirement account", "New life insurance policy"],
+        "timeline": "Within 30 days of life event"
+      },
+      {
+        "rule": "Always name contingent beneficiaries",
+        "reason": "If primary predeceases you and no contingent listed, assets go to estate (probate)",
+        "minimum": "Name at least one contingent for every account"
+      },
+      {
+        "rule": "Never name minor children directly",
+        "instead": "Name trust as beneficiary",
+        "exception": "Small accounts ($10K or less) may be okay via UTMA, but trust still better"
+      },
+      {
+        "rule": "Coordinate with overall estate plan",
+        "requirement": "Beneficiary designations should align with will and trust structure",
+        "common_mistake": "Will says one thing, beneficiaries say another—beneficiaries win"
+      },
+      {
+        "rule": "Spouses for retirement accounts (usually)",
+        "reason": "Spousal inherited IRA has unique tax benefits",
+        "exception": "If spouse has plenty of own resources, can name children/trust as primary"
+      },
+      {
+        "rule": "Never name 'my estate'",
+        "reason": "Forces probate, defeats purpose of beneficiary designation",
+        "only_exception": "Very rare situations where estate needs liquidity for debts/taxes"
+      },
+      {
+        "rule": "Consider per stirpes designation",
+        "definition": "If beneficiary dies before you, their share goes to their children",
+        "example": "Name 'my children, per stirpes' so if child predeceases you, grandchildren receive that child's share"
+      }
+    ],
+    "account_specific_guidance": {
+      "retirement_accounts": {
+        "spouse_primary": "Usually best for tax reasons (spousal inherited IRA benefits)",
+        "trust_for_minors": "If spouse deceased/no spouse, use trust for minor children",
+        "charity_ok": "Can name charity as contingent (or primary if no family)"
+      },
+      "life_insurance": {
+        "flexibility": "No tax advantages to specific beneficiaries (death benefits tax-free)",
+        "trust_common": "Often best to name trust for children as primary",
+        "spouse_or_trust": "Either spouse OR trust (or both as co-beneficiaries)"
+      },
+      "bank_accounts_pod": {
+        "simple_transfers": "Good for small accounts, simple distributions",
+        "multiple_beneficiaries": "Can name multiple people to split equally",
+        "immediate": "Transfers immediately upon death with death certificate"
+      }
+    }
+  },
+  "personal_beneficiary_audit_checklist": {
+    "step_1": {
+      "task": "List ALL accounts with beneficiary designations",
+      "accounts": [
+        "__ 401(k) from current employer",
+        "__ 401(k) from previous employer (if applicable)",
+        "__ Traditional IRA",
+        "__ Roth IRA",
+        "__ SEP-IRA or SIMPLE IRA (if self-employed)",
+        "__ Life insurance policy #1",
+        "__ Life insurance policy #2 (if multiple)",
+        "__ Group life insurance through employer",
+        "__ Payable-on-Death bank accounts",
+        "__ Transfer-on-Death investment accounts",
+        "__ Annuities",
+        "__ Health Savings Account (HSA)"
+      ]
+    },
+    "step_2": {
+      "task": "Document current beneficiaries for each account",
+      "template": {
+        "account": "",
+        "primary_beneficiary": "",
+        "contingent_beneficiary": "",
+        "percentage": "",
+        "last_reviewed": ""
+      }
+    },
+    "step_3": {
+      "task": "Identify accounts needing updates",
+      "red_flags": [
+        "Ex-spouse still listed (if divorced)",
+        "Deceased person listed",
+        "Minor children named directly (not via trust)",
+        "'My estate' listed as beneficiary",
+        "No contingent beneficiaries",
+        "Outdated after marriage/birth/major life change",
+        "Haven't reviewed in 3+ years"
+      ]
+    },
+    "step_4": {
+      "task": "Create update plan",
+      "actions": [
+        "Request beneficiary change forms from each account custodian",
+        "Complete forms with correct beneficiaries",
+        "Create trust if needed (for minor children beneficiaries)",
+        "Submit updated forms",
+        "Confirm receipt and filing",
+        "Keep copies with other estate planning documents"
+      ]
+    },
+    "step_5": {
+      "task": "Set annual review reminder",
+      "recommendation": "Calendar event every January 15: 'Annual beneficiary designation review'",
+      "also_review_after": "Marriage, divorce, births, deaths, new accounts"
+    }
+  },
+  "common_beneficiary_strategies": {
+    "young_singles": {
+      "age_range": "18-30, no spouse or children",
+      "typical_approach": {
+        "primary": "Parents",
+        "contingent": "Siblings",
+        "rationale": "Simple, straightforward succession"
+      }
+    },
+    "married_no_kids": {
+      "age_range": "Any age, married, no children",
+      "typical_approach": {
+        "primary": "Spouse",
+        "contingent": "Parents or siblings",
+        "rationale": "Spouse first priority, family backup"
+      }
+    },
+    "married_with_children": {
+      "age_range": "Any age, married with minor children",
+      "typical_approach": {
+        "retirement_primary": "Spouse",
+        "retirement_contingent": "TRUST for children",
+        "insurance_primary": "TRUST for children OR spouse",
+        "rationale": "Tax benefits for spouse on retirement; trust ensures child protection"
+      }
+    },
+    "single_parent": {
+      "age_range": "Any age, sole parent with minor children",
+      "typical_approach": {
+        "primary": "TRUST for children",
+        "contingent": "Guardian (as backup trustee) or parents",
+        "rationale": "Ensure professional management for children's benefit"
+      }
+    },
+    "divorced_with_children": {
+      "age_range": "Any age, divorced, children from prior marriage",
+      "typical_approach": {
+        "first_priority": "UPDATE IMMEDIATELY—remove ex-spouse",
+        "primary": "TRUST for children",
+        "contingent": "Sibling or parent (as backup trustee)",
+        "rationale": "Protect children while ensuring management"
+      }
+    },
+    "blended_family": {
+      "age_range": "Remarried, children from multiple marriages",
+      "typical_approach": {
+        "complexity": "HIGH—competing interests",
+        "solution": "Typically requires QTIP trust or separate trusts",
+        "strategy": "Provide for current spouse, ensure own children ultimately receive",
+        "professional_help": "Attorney essential for this situation"
+      }
+    }
+  },
+  "key_takeaways": [
+    "Beneficiary designations TRUMP wills—they control distribution regardless of will provisions",
+    "For most people, largest assets (retirement accounts, life insurance) pass by beneficiary, not will",
+    "Never name minor children directly—always use trust as beneficiary",
+    "Always name contingent beneficiaries—without them, assets go to estate (probate)",
+    "Update beneficiaries immediately after divorce—ex-spouses often still receive assets years later",
+    "Never name 'my estate' as beneficiary—defeats purpose and forces probate",
+    "Review beneficiaries annually and after all major life events",
+    "In {{STATE_NAME}}, some states automatically revoke ex-spouse beneficiaries, but don't rely on this—update explicitly"
+  ],
+  "state_variables": [
+    "{{STATE_NAME}}"
+  ],
+  "assessment": {
+    "case_study_analysis": "Student correctly identifies mistake, calculates cost, proposes solution for each case",
+    "practice_scenarios": "Student demonstrates proper beneficiary selection for different life stages",
+    "personal_checklist": "Student creates comprehensive personal beneficiary audit plan"
+  }
+}

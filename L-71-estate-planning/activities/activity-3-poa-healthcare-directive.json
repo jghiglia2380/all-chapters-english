@@ -1,0 +1,377 @@
+{
+  "activity_id": "L-71-activity-3",
+  "chapter": "L-71",
+  "activity_number": 3,
+  "title": "Power of Attorney & Healthcare Directive Builder",
+  "type": "personal_planning",
+  "duration_minutes": 10,
+  "learning_objectives": [
+    "Select appropriate agents for financial and healthcare decisions",
+    "Understand scenarios with versus without incapacity protection documents",
+    "Create personal action plan for obtaining these documents",
+    "Recognize that these documents protect you while LIVING"
+  ],
+  "description": "Interactive planning tool for creating personal incapacity protection strategy, including healthcare proxy selection, financial POA agent selection, and comparison of scenarios with and without documents.",
+  "instructions": [
+    "Work through healthcare directive planning framework",
+    "Select financial power of attorney agent using criteria tool",
+    "Compare scenarios showing outcomes with and without documents",
+    "Create action plan for obtaining documents in {{STATE_NAME}}",
+    "Identify conversations needed with potential agents"
+  ],
+  "planning_frameworks": {
+    "healthcare_directive": {
+      "components": [
+        {
+          "component": "Healthcare Proxy Selection",
+          "description": "Person authorized to make medical decisions if you're incapacitated",
+          "selection_criteria": [
+            "Trusts and respects your values and wishes",
+            "Emotionally strong enough to make difficult decisions (life support, treatment options)",
+            "Available and willing to serve in this role",
+            "Can advocate effectively with medical professionals",
+            "Understands your religious/cultural preferences"
+          ],
+          "potential_candidates": [
+            "Spouse or long-term partner",
+            "Parent or sibling",
+            "Adult child (if applicable)",
+            "Close friend who knows your values"
+          ],
+          "important_note": "You CAN name an unmarried partner—that's often the point of this document"
+        },
+        {
+          "component": "Treatment Preferences to Document",
+          "preferences": [
+            {
+              "category": "Life Support",
+              "questions": [
+                "If permanently unconscious, do you want machines keeping you alive?",
+                "What quality of life would you find unacceptable?",
+                "How aggressive should treatment be if recovery is unlikely?"
+              ]
+            },
+            {
+              "category": "Organ Donation",
+              "questions": [
+                "Do you want to be an organ donor?",
+                "Any organs excluded?",
+                "Donation for transplant, research, or both?"
+              ]
+            },
+            {
+              "category": "Pain Management",
+              "questions": [
+                "Prioritize comfort over life extension?",
+                "Religious views on pain medication?",
+                "DNR (Do Not Resuscitate) preferences?"
+              ]
+            },
+            {
+              "category": "Religious/Cultural",
+              "questions": [
+                "Any religious requirements for treatment?",
+                "Cultural practices that should be honored?",
+                "Spiritual advisors to be consulted?"
+              ]
+            }
+          ]
+        },
+        {
+          "component": "Documentation Plan",
+          "steps": [
+            {
+              "step": 1,
+              "action": "Obtain appropriate form for {{STATE_NAME}}",
+              "options": [
+                "State health department (often free)",
+                "Hospital patient services",
+                "State bar association",
+                "Online legal service ($50-150)",
+                "Attorney ($100-300)"
+              ]
+            },
+            {
+              "step": 2,
+              "action": "Complete form with specific preferences",
+              "requirements": [
+                "Signed and witnessed (typically 2 witnesses)",
+                "Notarized (in some states)",
+                "Copies distributed appropriately"
+              ]
+            },
+            {
+              "step": 3,
+              "action": "Distribute copies",
+              "recipients": [
+                "Healthcare proxy/agent (original)",
+                "Primary care physician",
+                "Hospital where you'd likely receive care",
+                "Family members",
+                "Keep copy with other important documents"
+              ]
+            },
+            {
+              "step": 4,
+              "action": "Have detailed conversation with healthcare proxy",
+              "topics": [
+                "Explain your values and preferences",
+                "Discuss specific scenarios (coma, terminal illness, dementia)",
+                "Share religious/spiritual beliefs affecting medical care",
+                "Clarify that they should honor YOUR wishes, not what they would want"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "financial_power_of_attorney": {
+      "components": [
+        {
+          "component": "Agent Selection",
+          "description": "Person authorized to manage financial matters if you're incapacitated",
+          "selection_criteria": [
+            "Financially responsible and trustworthy",
+            "Understands financial matters (banking, investments, taxes)",
+            "Detail-oriented and organized",
+            "Available to act quickly if needed",
+            "No conflicts of interest"
+          ],
+          "potential_candidates": [
+            "Financially savvy spouse or partner",
+            "Parent with financial expertise",
+            "Sibling with business experience",
+            "Trusted friend with financial background",
+            "Professional (attorney, financial advisor)"
+          ],
+          "considerations": [
+            "Financial POA and healthcare proxy can be different people",
+            "Choose financial skills over family obligation",
+            "Consider requiring two agents to act jointly for major decisions (added protection)",
+            "Name successor agents if first choice cannot serve"
+          ]
+        },
+        {
+          "component": "Scope of Authority",
+          "options": [
+            {
+              "type": "Durable POA (Immediate Effect)",
+              "description": "Effective immediately upon signing; remains effective during incapacity",
+              "pros": ["No delay when needed", "Agent can act immediately in emergency", "No need to prove incapacity"],
+              "cons": ["Theoretically could be misused (though legal protections exist)", "Requires high trust"],
+              "recommendation": "Preferred by most attorneys—if you trust someone enough to name them, trust them with immediate authority"
+            },
+            {
+              "type": "Springing POA (Effective Upon Incapacity)",
+              "description": "Only becomes effective when doctor certifies you're incapacitated",
+              "pros": ["No risk of use while you're capable", "Feels safer psychologically"],
+              "cons": ["Proving incapacity can be difficult and delay access", "May require multiple doctors' certifications", "Could leave bills unpaid during certification period"],
+              "recommendation": "Sounds appealing but creates practical problems—most experts recommend durable"
+            }
+          ]
+        },
+        {
+          "component": "Powers to Grant",
+          "categories": [
+            {
+              "category": "Banking",
+              "powers": ["Access accounts", "Pay bills", "Deposit checks", "Transfer funds"]
+            },
+            {
+              "category": "Investments",
+              "powers": ["Manage investment accounts", "Buy/sell securities", "Rebalance portfolio"]
+            },
+            {
+              "category": "Real Estate",
+              "powers": ["Pay mortgage", "Maintain property", "Rent/lease property", "Sell property (if needed)"]
+            },
+            {
+              "category": "Taxes",
+              "powers": ["File tax returns", "Communicate with IRS", "Pay taxes", "Receive refunds"]
+            },
+            {
+              "category": "Legal",
+              "powers": ["Hire attorneys", "Manage legal affairs", "Access safe deposit box"]
+            },
+            {
+              "category": "Government Benefits",
+              "powers": ["Apply for benefits", "Manage Social Security/Medicare", "Handle insurance claims"]
+            }
+          ],
+          "limitations_to_consider": [
+            "Some people exclude real estate sales (require separate authorization)",
+            "Some limit gift-giving to prevent abuse",
+            "Can specify dollar limits for major transactions",
+            "Can require second signature for transactions over certain amount"
+          ]
+        }
+      ]
+    }
+  },
+  "scenario_comparisons": [
+    {
+      "scenario_name": "28-Year-Old in Coma After Car Accident",
+      "person": "Jamie",
+      "age": 28,
+      "situation": "Critically injured, unconscious for 3 weeks, uncertain recovery",
+      "outcomes": {
+        "with_documents": {
+          "healthcare": {
+            "decision_maker": "Named healthcare proxy (Jamie's partner Alex) makes decisions",
+            "process": "Doctors consult with Alex about treatment options",
+            "timeline": "Immediate authorization for all necessary care",
+            "family_dynamics": "Parents understand Alex has legal authority; minimal conflict"
+          },
+          "financial": {
+            "bill_payment": "Named financial agent (Jamie's sister) pays rent, car payment, insurance from Jamie's accounts",
+            "account_access": "Immediate access to all accounts",
+            "timeline": "Bills paid on time, credit score protected",
+            "cost": "$0 (documents already in place)"
+          },
+          "family_impact": "Family focuses on Jamie's recovery, not legal battles; Jamie's wishes honored; financial stability maintained"
+        },
+        "without_documents": {
+          "healthcare": {
+            "decision_maker": "Family battles over who has authority",
+            "process": "Parents vs. partner argue about treatment decisions",
+            "timeline": "Hospital delays some treatments while determining who can consent",
+            "family_dynamics": "Estranged parents make decisions; partner has no legal standing despite 5-year relationship"
+          },
+          "financial": {
+            "bill_payment": "No one can access Jamie's accounts",
+            "account_access": "Family must petition court for conservatorship",
+            "timeline": "2-3 months to get conservatorship; bills go unpaid",
+            "cost": "$5,000-8,000 in legal fees; eviction notice received; credit damaged"
+          },
+          "family_impact": "Family torn apart by legal conflicts; partner excluded despite relationship; financial disaster compounds medical trauma; by time conservatorship granted, damage done"
+        }
+      },
+      "cost_comparison": {
+        "with_documents": "$200-400 (one-time document cost)",
+        "without_documents": "$5,000-8,000 (conservatorship) + credit damage + eviction risk + family conflict",
+        "net_benefit": "$4,600-7,600 savings + immeasurable family harmony"
+      }
+    },
+    {
+      "scenario_name": "34-Year-Old Stroke Victim, Unmarried with Partner",
+      "person": "Taylor",
+      "age": 34,
+      "situation": "Severe stroke, partially paralyzed, speech impaired, long recovery ahead",
+      "relationship": "Partner of 6 years (Morgan), not married",
+      "outcomes": {
+        "with_documents": {
+          "healthcare": "Morgan (named healthcare proxy) coordinates with doctors, makes rehabilitation decisions, ensures Taylor's preferences honored",
+          "financial": "Morgan (named financial agent) pays bills, manages investments, handles insurance claims, maintains household",
+          "legal_status": "Morgan has full legal authority despite not being married",
+          "recovery_support": "Morgan can make quick decisions to support Taylor's recovery without legal obstacles",
+          "cost": "$300 (documents prepared 2 years ago)"
+        },
+        "without_documents": {
+          "healthcare": "Taylor's parents (who disapprove of same-sex relationship) make all medical decisions; Morgan excluded from discussions",
+          "financial": "Parents petition for conservatorship; Morgan has no access despite shared household",
+          "legal_status": "Morgan is legal stranger despite 6-year relationship and shared life",
+          "recovery_support": "Morgan can't even get medical information; forbidden from visiting by parents; shared home at risk because Morgan can't access Taylor's portion of mortgage",
+          "cost": "$7,000+ conservatorship + relationship destroyed + Taylor's wishes ignored + potential loss of shared home"
+        }
+      },
+      "key_lesson": "For unmarried couples (including same-sex couples), these documents are CRITICAL—you have NO automatic legal standing without them"
+    }
+  ],
+  "personal_planning_worksheet": {
+    "healthcare_directive": {
+      "my_healthcare_proxy": {
+        "primary_choice": "",
+        "backup_choice": "",
+        "why_chosen": "",
+        "conversation_scheduled": ""
+      },
+      "my_treatment_preferences": {
+        "life_support": "",
+        "organ_donation": "",
+        "pain_management": "",
+        "religious_considerations": ""
+      },
+      "my_action_plan": {
+        "obtain_form_by": "",
+        "complete_form_by": "",
+        "have_conversation_by": "",
+        "distribute_copies_by": ""
+      }
+    },
+    "financial_poa": {
+      "my_financial_agent": {
+        "primary_choice": "",
+        "backup_choice": "",
+        "why_chosen": "",
+        "conversation_scheduled": ""
+      },
+      "scope_of_authority": {
+        "type": "Durable (immediate) or Springing (upon incapacity)",
+        "powers_granted": [],
+        "limitations": ""
+      },
+      "my_action_plan": {
+        "obtain_form_by": "",
+        "complete_form_by": "",
+        "have_conversation_by": "",
+        "file_with_bank_by": ""
+      }
+    }
+  },
+  "state_specific_resources": {
+    "{{STATE_NAME}}": {
+      "healthcare_directive_form": "Available from {{STATE_NAME}} Department of Health",
+      "financial_poa_form": "Available from {{STATE_NAME}} Bar Association",
+      "legal_requirements": "{{STATE_NAME}} requires [witnesses/notary] for these documents",
+      "free_resources": [
+        "{{STATE_NAME}} Bar Association: Free forms and instructions",
+        "{{STATE_NAME}} Department of Health: Healthcare directive forms",
+        "Local hospitals: Patient services often provide free forms and assistance",
+        "Legal aid clinics: Free assistance for qualifying individuals"
+      ],
+      "paid_options": [
+        "Online services: $50-150 per document",
+        "Attorney consultation: $100-300 per document",
+        "Complete package: $300-500 for both documents"
+      ]
+    }
+  },
+  "key_takeaways": [
+    "Healthcare directives and financial POAs protect you while LIVING—more immediately relevant than wills for young adults",
+    "At age 18, parents have NO automatic authority—you need documents regardless of family relationships",
+    "Unmarried couples (including same-sex couples) have NO legal standing without these documents—absolutely critical",
+    "Cost of documents ($200-400) is trivial compared to conservatorship ($5,000-8,000) and family conflict",
+    "Have detailed conversations with named agents BEFORE crisis—they need to know your wishes",
+    "In {{STATE_NAME}}, specific forms and requirements apply—use state-approved documents"
+  ],
+  "reflection_questions": [
+    {
+      "question": "Who would you trust to make medical decisions aligned with your values?",
+      "purpose": "Identify healthcare proxy candidate"
+    },
+    {
+      "question": "Who would you trust to manage your finances responsibly if you couldn't?",
+      "purpose": "Identify financial POA candidate"
+    },
+    {
+      "question": "What life support preferences do you have?",
+      "purpose": "Clarify treatment wishes"
+    },
+    {
+      "question": "When will you complete these documents?",
+      "purpose": "Create accountability"
+    }
+  ],
+  "action_commitments": [
+    "I will obtain healthcare directive form by [DATE]",
+    "I will complete healthcare directive by [DATE]",
+    "I will have conversation with my healthcare proxy by [DATE]",
+    "I will obtain financial POA form by [DATE]",
+    "I will complete financial POA by [DATE]",
+    "I will have conversation with my financial agent by [DATE]",
+    "I will distribute copies to appropriate parties by [DATE]"
+  ],
+  "state_variables": [
+    "{{STATE_NAME}}"
+  ]
+}

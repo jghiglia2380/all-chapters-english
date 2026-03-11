@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-71: Introduction to Estate Planning - Day 2 Learning Lab | PFL Academy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .activity-card {
+            transition: all 0.3s ease;
+        }
+        .activity-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        }
+        .progress-step {
+            transition: all 0.3s ease;
+        }
+        .progress-step.completed {
+            background-color: #10b981;
+            color: white;
+        }
+        .progress-step.active {
+            background-color: #6366f1;
+            color: white;
+            transform: scale(1.1);
+        }
+        .scenario-card {
+            border: 2px solid #e5e7eb;
+            transition: border-color 0.2s;
+        }
+        .scenario-card:hover {
+            border-color: #6366f1;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white p-4 shadow-md sticky top-0 z-50">
+        <div class="container mx-auto">
+            <h1 class="text-2xl font-bold">L-71: Introduction to Estate Planning in <span class="text-yellow-300">{{STATE_NAME}}</span></h1>
+            <p class="text-indigo-200">Day 2 of 2: Learning Lab - Applying Estate Planning Concepts</p>
+        </div>
+    </header>
+
+    <div class="container mx-auto px-4 py-8 max-w-6xl">
+
+        <!-- Day 1 Recall Banner -->
+        <section class="bg-gradient-to-r from-indigo-500 to-purple-600 text-white rounded-lg shadow-lg p-6 mb-8">
+            <div class="flex items-start">
+                <div class="text-4xl mr-4">📚</div>
+                <div>
+                    <h2 class="text-xl font-bold mb-2">Day 1 Recall: Essential Estate Planning Documents</h2>
+                    <p class="text-indigo-100">Estate planning protects you and your loved ones through five key documents: <strong>Wills</strong> (asset distribution & guardians), <strong>Trusts</strong> (probate avoidance & control), <strong>Healthcare Directives</strong> (medical decisions), <strong>Financial POAs</strong> (bill payment during incapacity), and <strong>Beneficiary Designations</strong> (which trump wills). Today, you'll apply these concepts to real scenarios.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Learning Objectives -->
+        <section class="bg-indigo-50 border-l-4 border-indigo-500 p-6 mb-8 rounded-r">
+            <h2 class="text-xl font-bold text-indigo-900 mb-3">📚 Learning Lab Objectives</h2>
+            <ul class="space-y-2 text-indigo-900">
+                <li>✓ Visualize specific consequences of dying with versus without a will</li>
+                <li>✓ Evaluate when trusts are cost-effective for different family situations</li>
+                <li>✓ Create personal plan for incapacity protection documents (POA & healthcare directive)</li>
+                <li>✓ Conduct beneficiary designation audit and identify common mistakes</li>
+            </ul>
+        </section>
+
+        <!-- Progress Tracker -->
+        <section class="bg-white rounded-lg shadow-md p-4 mb-8">
+            <div class="flex justify-between items-center">
+                <h3 class="font-bold text-gray-700">Lab Progress</h3>
+                <span id="progressText" class="text-sm text-indigo-600 font-semibold">0/4 Activities Complete</span>
+            </div>
+            <div class="flex justify-between mt-4">
+                <div class="progress-step w-12 h-12 rounded-full bg-gray-200 flex items-center justify-center font-bold" data-step="1">1</div>
+                <div class="flex-1 h-1 bg-gray-200 self-center mx-2"></div>
+                <div class="progress-step w-12 h-12 rounded-full bg-gray-200 flex items-center justify-center font-bold" data-step="2">2</div>
+                <div class="flex-1 h-1 bg-gray-200 self-center mx-2"></div>
+                <div class="progress-step w-12 h-12 rounded-full bg-gray-200 flex items-center justify-center font-bold" data-step="3">3</div>
+                <div class="flex-1 h-1 bg-gray-200 self-center mx-2"></div>
+                <div class="progress-step w-12 h-12 rounded-full bg-gray-200 flex items-center justify-center font-bold" data-step="4">4</div>
+            </div>
+            <div class="flex justify-between mt-2 text-xs text-gray-600">
+                <span class="w-12 text-center">Will vs No Will</span>
+                <span class="w-12 text-center">Trusts</span>
+                <span class="w-12 text-center">POAs</span>
+                <span class="w-12 text-center">Beneficiaries</span>
+            </div>
+        </section>
+
+        <!-- Activity 1: Will vs. No Will Simulation -->
+        <section class="bg-white rounded-lg shadow-md p-6 mb-8 activity-card">
+            <div class="flex items-center justify-between mb-4">
+                <h2 class="text-2xl font-bold text-gray-900">Activity 1: Will vs. No Will Simulation</h2>
+                <span class="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm font-semibold">15 minutes</span>
+            </div>
+
+            <p class="text-gray-700 mb-4">Experience the consequences of dying with and without a will through three realistic scenarios.</p>
+
+            <!-- Scenario Selection -->
+            <div class="grid md:grid-cols-3 gap-4 mb-6">
+                <button onclick="loadScenario('a')" class="scenario-btn bg-gradient-to-br from-blue-50 to-indigo-100 p-4 rounded-lg border-2 border-gray-200 hover:border-indigo-500 transition text-left">
+                    <div class="text-2xl mb-2">👤</div>
+                    <h4 class="font-bold text-gray-900">Scenario A</h4>
+                    <p class="text-sm text-gray-600 mt-1">Single person, age 26, serious partner, $180K assets</p>
+                </button>
+                <button onclick="loadScenario('b')" class="scenario-btn bg-gradient-to-br from-rose-50 to-pink-100 p-4 rounded-lg border-2 border-gray-200 hover:border-rose-500 transition text-left">
+                    <div class="text-2xl mb-2">👨‍👩‍👧‍👦</div>
+                    <h4 class="font-bold text-gray-900">Scenario B</h4>
+                    <p class="text-sm text-gray-600 mt-1">Married couple, ages 32/30, two kids, no guardians</p>
+                </button>
+                <button onclick="loadScenario('c')" class="scenario-btn bg-gradient-to-br from-amber-50 to-yellow-100 p-4 rounded-lg border-2 border-gray-200 hover:border-amber-500 transition text-left">
+                    <div class="text-2xl mb-2">⚠️</div>
+                    <h4 class="font-bold text-gray-900">Scenario C</h4>
+                    <p class="text-sm text-gray-600 mt-1">Divorced parent, age 38, outdated will names ex</p>
+                </button>
+            </div>
+
+            <!-- Scenario Details -->
+            <div id="scenarioDetails" class="hidden">
+                <div class="bg-gradient-to-r from-indigo-100 to-purple-100 p-4 rounded-lg mb-4">
+                    <h3 id="scenarioTitle" class="text-xl font-bold text-indigo-900"></h3>
+                    <p id="scenarioDescription" class="text-gray-700"></p>
+                </div>
+
+                <!-- Comparison Grid -->
+                <div class="grid md:grid-cols-2 gap-6 mb-4">
+                    <!-- With Will -->
+                    <div class="bg-green-50 p-4 rounded-lg border-2 border-green-300">
+                        <h4 class="text-lg font-bold text-green-900 mb-3">✅ With Proper Planning</h4>
+                        <div id="withWill" class="space-y-2 text-sm">
+                            <!-- Populated by JavaScript -->
+                        </div>
+                    </div>
+
+                    <!-- Without Will -->
+                    <div class="bg-red-50 p-4 rounded-lg border-2 border-red-300">
+                        <h4 class="text-lg font-bold text-red-900 mb-3">❌ Without Will (Intestate)</h4>
+                        <div id="withoutWill" class="space-y-2 text-sm">
+                            <!-- Populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Analysis -->
+                <div class="bg-yellow-50 border-l-4 border-yellow-500 p-4">
+                    <h4 class="font-bold text-yellow-900 mb-2">📊 Cost Analysis:</h4>
+                    <div id="costAnalysis" class="text-gray-700"></div>
+                </div>
+            </div>
+
+            <div class="mt-6 space-y-3">
+                <div>
+                    <label class="block text-gray-700 font-semibold mb-2">Reflection: Which scenario surprised you most? Why?</label>
+                    <textarea class="w-full p-3 border border-gray-300 rounded focus:ring-2 focus:ring-indigo-500" rows="3"></textarea>
+                </div>
+                <div>
+                    <label class="block text-gray-700 font-semibold mb-2">At what life stage does a will become absolutely non-negotiable?</label>
+                    <textarea class="w-full p-3 border border-gray-300 rounded focus:ring-2 focus:ring-indigo-500" rows="2"></textarea>
+                </div>
+            </div>
+
+            <button onclick="completeActivity(1)" class="mt-4 bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2 rounded-lg font-semibold transition">Complete Activity 1</button>
+        </section>
+
+        <!-- Activity 2: Trust Comparison Tool -->
+        <section class="bg-white rounded-lg shadow-md p-6 mb-8 activity-card">
+            <div class="flex items-center justify-between mb-4">
+                <h2 class="text-2xl font-bold text-gray-900">Activity 2: Trust Comparison Tool</h2>
+                <span class="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm font-semibold">15 minutes</span>
+            </div>
+
+            <p class="text-gray-700 mb-4">Analyze four family situations to determine if trusts are appropriate and cost-effective.</p>
+
+            <!-- Situation Cards -->
+            <div class="grid md:grid-cols-2 gap-4 mb-6">
+                <div class="bg-blue-50 p-4 rounded-lg border-2 border-blue-200">
+                    <h4 class="font-bold text-blue-900">Situation 1: Young Couple with Children</h4>
+                    <p class="text-sm text-gray-700 mt-2">Marcus & Sarah, ages 29/30, two children (2 & 4)</p>
+                    <p class="text-sm text-gray-600">$600K life insurance, $370K total assets</p>
+                    <div class="mt-3 bg-white p-3 rounded">
+                        <p class="text-xs font-semibold text-gray-900">Recommendation:</p>
+                        <p class="text-xs text-gray-700 mt-1"><strong>Testamentary Trust (in will)</strong> - Critical for managing life insurance for minor children. Cost: $800. Prevents lump sum to teenagers.</p>
+                    </div>
+                </div>
+
+                <div class="bg-green-50 p-4 rounded-lg border-2 border-green-200">
+                    <h4 class="font-bold text-green-900">Situation 2: Single Professional</h4>
+                    <p class="text-sm text-gray-700 mt-2">Jennifer, age 41, never married, no children</p>
+                    <p class="text-sm text-gray-600">$850K estate, elderly parents</p>
+                    <div class="mt-3 bg-white p-3 rounded">
+                        <p class="text-xs font-semibold text-gray-900">Recommendation:</p>
+                        <p class="text-xs text-gray-700 mt-1"><strong>Revocable Living Trust</strong> - Probate would cost $42.5K; trust costs $3K setup. NET SAVINGS: $36.5K plus privacy.</p>
+                    </div>
+                </div>
+
+                <div class="bg-rose-50 p-4 rounded-lg border-2 border-rose-200">
+                    <h4 class="font-bold text-rose-900">Situation 3: Blended Family</h4>
+                    <p class="text-sm text-gray-700 mt-2">David & Maria, ages 48/52, 2nd marriage for both</p>
+                    <p class="text-sm text-gray-600">$1.2M combined, children from prior marriages</p>
+                    <div class="mt-3 bg-white p-3 rounded">
+                        <p class="text-xs font-semibold text-gray-900">Recommendation:</p>
+                        <p class="text-xs text-gray-700 mt-1"><strong>QTIP Trust</strong> - CRITICAL. Only way to support spouse AND ensure children inherit. Prevents family warfare.</p>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 p-4 rounded-lg border-2 border-gray-300">
+                    <h4 class="font-bold text-gray-900">Situation 4: Recent Graduate</h4>
+                    <p class="text-sm text-gray-700 mt-2">Tyler, age 23, single, no dependents</p>
+                    <p class="text-sm text-gray-600">$45K total assets, $35K student loans</p>
+                    <div class="mt-3 bg-white p-3 rounded">
+                        <p class="text-xs font-semibold text-gray-900">Recommendation:</p>
+                        <p class="text-xs text-gray-700 mt-1"><strong>NO TRUST NEEDED</strong> - Simple will sufficient. Trust ($3K) would cost more than probate ($2K). Focus on healthcare directive.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-indigo-50 border-l-4 border-indigo-500 p-4 mb-4">
+                <h4 class="font-bold text-indigo-900 mb-2">💡 Key Insight:</h4>
+                <p class="text-gray-700">Trusts aren't only for the wealthy—family complexity often matters more than estate size. Young parents with modest assets need trusts for children; single people with $1M might not if their situation is straightforward.</p>
+            </div>
+
+            <div class="space-y-3">
+                <div>
+                    <label class="block text-gray-700 font-semibold mb-2">What surprised you about who needs trusts?</label>
+                    <textarea class="w-full p-3 border border-gray-300 rounded focus:ring-2 focus:ring-indigo-500" rows="2"></textarea>
+                </div>
+                <div>
+                    <label class="block text-gray-700 font-semibold mb-2">What life events should trigger trust consideration?</label>
+                    <textarea class="w-full p-3 border border-gray-300 rounded focus:ring-2 focus:ring-indigo-500" rows="2"></textarea>
+                </div>
+            </div>
+
+            <button onclick="completeActivity(2)" class="mt-4 bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2 rounded-lg font-semibold transition">Complete Activity 2</button>
+        </section>
+
+        <!-- Activity 3: Power of Attorney & Healthcare Directive Planning -->
+        <section class="bg-white rounded-lg shadow-md p-6 mb-8 activity-card">
+            <div class="flex items-center justify-between mb-4">
+                <h2 class="text-2xl font-bold text-gray-900">Activity 3: POA & Healthcare Directive Planning</h2>
+                <span class="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm font-semibold">10 minutes</span>
+            </div>
+
+            <p class="text-gray-700 mb-4">Create your personal plan for incapacity protection documents.</p>
+
+            <div class="grid md:grid-cols-2 gap-6 mb-6">
+                <!-- Healthcare Directive -->
+                <div class="bg-purple-50 p-4 rounded-lg">
+                    <h3 class="text-lg font-bold text-purple-900 mb-3">🏥 Healthcare Directive Planning</h3>
+                    <div class="space-y-3">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">Who do you trust for medical decisions?</label>
+                            <input type="text" class="w-full p-2 border border-gray-300 rounded" placeholder="Name of healthcare proxy">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">Backup healthcare proxy:</label>
+                            <input type="text" class="w-full p-2 border border-gray-300 rounded" placeholder="Alternate if first choice unavailable">
+                        </div>
+                        <div class="bg-white p-3 rounded">
+                            <p class="text-xs font-semibold text-gray-900 mb-1">Important Conversations:</p>
+                            <ul class="text-xs text-gray-700 space-y-1">
+                                <li>• Life support preferences</li>
+                                <li>• Organ donation wishes</li>
+                                <li>• Quality of life priorities</li>
+                                <li>• Religious/cultural considerations</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Financial POA -->
+                <div class="bg-blue-50 p-4 rounded-lg">
+                    <h3 class="text-lg font-bold text-blue-900 mb-3">💼 Financial POA Planning</h3>
+                    <div class="space-y-3">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">Who is financially trustworthy?</label>
+                            <input type="text" class="w-full p-2 border border-gray-300 rounded" placeholder="Name of financial agent">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">Backup financial agent:</label>
+                            <input type="text" class="w-full p-2 border border-gray-300 rounded" placeholder="Alternate agent">
+                        </div>
+                        <div class="bg-white p-3 rounded">
+                            <p class="text-xs font-semibold text-gray-900 mb-1">Powers to Grant:</p>
+                            <ul class="text-xs text-gray-700 space-y-1">
+                                <li>• Bill payment & banking</li>
+                                <li>• Investment management</li>
+                                <li>• Tax filing</li>
+                                <li>• Property transactions (if needed)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scenario Comparison -->
+            <div class="grid md:grid-cols-2 gap-4 mb-4">
+                <div class="bg-green-50 p-4 rounded-lg border-2 border-green-300">
+                    <h4 class="font-bold text-green-900 mb-2">✅ With POAs:</h4>
+                    <p class="text-sm text-gray-700">28-year-old in coma after car accident. Named healthcare proxy makes decisions quickly; named agent pays bills from patient's accounts. No delays, no court involvement.</p>
+                </div>
+                <div class="bg-red-50 p-4 rounded-lg border-2 border-red-300">
+                    <h4 class="font-bold text-red-900 mb-2">❌ Without POAs:</h4>
+                    <p class="text-sm text-gray-700">Family battles over treatment decisions. Conservatorship petition costs $5,000 and takes 3 months. Bills go unpaid. Rent arrears accumulate. Preventable chaos during crisis.</p>
+                </div>
+            </div>
+
+            <div class="bg-yellow-50 border-l-4 border-yellow-500 p-4">
+                <p class="font-semibold text-yellow-900">💡 Action Plan:</p>
+                <p class="text-gray-700 mt-1">These documents cost $100-300 total but prevent $3,000-8,000 conservatorship proceedings. Create within 30 days. Options: attorney ($200-400), online service ($100-200), or free state forms.</p>
+            </div>
+
+            <button onclick="completeActivity(3)" class="mt-4 bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2 rounded-lg font-semibold transition">Complete Activity 3</button>
+        </section>
+
+        <!-- Activity 4: Beneficiary Designation Audit -->
+        <section class="bg-white rounded-lg shadow-md p-6 mb-8 activity-card">
+            <div class="flex items-center justify-between mb-4">
+                <h2 class="text-2xl font-bold text-gray-900">Activity 4: Beneficiary Designation Audit</h2>
+                <span class="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm font-semibold">15 minutes</span>
+            </div>
+
+            <p class="text-gray-700 mb-4">Understand how beneficiary designations trump wills and identify common mistakes.</p>
+
+            <div class="bg-red-100 border-l-4 border-red-600 p-4 mb-6">
+                <p class="font-bold text-red-900">CRITICAL: Beneficiary designations OVERRIDE your will!</p>
+                <p class="text-red-800 mt-1">For most people, retirement accounts and life insurance represent the majority of wealth—these pass by beneficiary form, not will.</p>
+            </div>
+
+            <!-- Common Mistakes -->
+            <div class="grid md:grid-cols-2 gap-4 mb-6">
+                <div class="bg-rose-50 p-4 rounded-lg border-2 border-rose-200">
+                    <h4 class="font-bold text-rose-900 mb-2">❌ Mistake 1: Never Updated After Divorce</h4>
+                    <p class="text-sm text-gray-700">Michael (42) divorced 8 years ago, remarried 5 years ago. Never updated beneficiaries. Ex-wife gets $580K (life insurance + 401k). Current wife gets only $250K (home via will). 18-month legal battle costs $45K.</p>
+                    <p class="text-xs text-rose-800 mt-2 font-semibold">Prevention: Update within 30 days of divorce!</p>
+                </div>
+
+                <div class="bg-orange-50 p-4 rounded-lg border-2 border-orange-200">
+                    <h4 class="font-bold text-orange-900 mb-2">❌ Mistake 2: Minor Children Named Directly</h4>
+                    <p class="text-sm text-gray-700">Amanda (35) named 8-year-old directly. Court custodianship until age 18, then $325K lump sum to teenager. She depleted entire inheritance by age 24—no degree, no money.</p>
+                    <p class="text-xs text-orange-800 mt-2 font-semibold">Prevention: Name TRUST as beneficiary, not child!</p>
+                </div>
+
+                <div class="bg-yellow-50 p-4 rounded-lg border-2 border-yellow-200">
+                    <h4 class="font-bold text-yellow-900 mb-2">❌ Mistake 3: "My Estate" as Beneficiary</h4>
+                    <p class="text-sm text-gray-700">Robert (58) named "estate" thinking will would control. Forced $650K through probate. Cost: $32.5K probate fees + $135K in additional taxes. Total loss: $185K + 14-month delay.</p>
+                    <p class="text-xs text-yellow-800 mt-2 font-semibold">Prevention: Name individuals or trust directly!</p>
+                </div>
+
+                <div class="bg-amber-50 p-4 rounded-lg border-2 border-amber-200">
+                    <h4 class="font-bold text-amber-900 mb-2">❌ Mistake 4: No Contingent Beneficiaries</h4>
+                    <p class="text-sm text-gray-700">Karen (67) named only her mother (89). Mother died 6 months before Karen. No contingents listed. $470K forced into probate. Cost: $23.5K + 11-month delay—easily prevented.</p>
+                    <p class="text-xs text-amber-800 mt-2 font-semibold">Prevention: ALWAYS name contingent beneficiaries!</p>
+                </div>
+            </div>
+
+            <!-- Personal Audit Checklist -->
+            <div class="bg-indigo-50 p-4 rounded-lg mb-4">
+                <h4 class="font-bold text-indigo-900 mb-3">📋 Your Beneficiary Audit Checklist:</h4>
+                <div class="space-y-2">
+                    <label class="flex items-start">
+                        <input type="checkbox" class="mt-1 mr-2">
+                        <span class="text-sm text-gray-700">401(k) from current/previous employer(s) - Review beneficiaries</span>
+                    </label>
+                    <label class="flex items-start">
+                        <input type="checkbox" class="mt-1 mr-2">
+                        <span class="text-sm text-gray-700">IRA accounts (Traditional, Roth, SEP, SIMPLE) - Review beneficiaries</span>
+                    </label>
+                    <label class="flex items-start">
+                        <input type="checkbox" class="mt-1 mr-2">
+                        <span class="text-sm text-gray-700">Life insurance policies (personal & employer group) - Review beneficiaries</span>
+                    </label>
+                    <label class="flex items-start">
+                        <input type="checkbox" class="mt-1 mr-2">
+                        <span class="text-sm text-gray-700">Payable-on-Death (POD) bank accounts - Review beneficiaries</span>
+                    </label>
+                    <label class="flex items-start">
+                        <input type="checkbox" class="mt-1 mr-2">
+                        <span class="text-sm text-gray-700">Transfer-on-Death (TOD) investment accounts - Review beneficiaries</span>
+                    </label>
+                    <label class="flex items-start">
+                        <input type="checkbox" class="mt-1 mr-2">
+                        <span class="text-sm text-gray-700">Verify PRIMARY beneficiaries are current (not ex-spouses, deceased people)</span>
+                    </label>
+                    <label class="flex items-start">
+                        <input type="checkbox" class="mt-1 mr-2">
+                        <span class="text-sm text-gray-700">Verify CONTINGENT beneficiaries exist for all accounts</span>
+                    </label>
+                    <label class="flex items-start">
+                        <input type="checkbox" class="mt-1 mr-2">
+                        <span class="text-sm text-gray-700">Minor children named via TRUST (not directly)</span>
+                    </label>
+                    <label class="flex items-start">
+                        <input type="checkbox" class="mt-1 mr-2">
+                        <span class="text-sm text-gray-700">Set annual review reminder (every January 15)</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="bg-emerald-50 border-l-4 border-emerald-500 p-4">
+                <h4 class="font-bold text-emerald-900 mb-2">✅ Best Practices:</h4>
+                <ul class="text-gray-700 space-y-1">
+                    <li>• Review beneficiaries annually and after ALL major life events (marriage, divorce, births, deaths)</li>
+                    <li>• Spouses are usually best for retirement accounts (tax benefits)</li>
+                    <li>• Name trusts for minor children—NEVER children directly</li>
+                    <li>• Always name contingent beneficiaries (backup if primary dies first)</li>
+                    <li>• Update within 30 days of divorce—this is CRITICAL</li>
+                </ul>
+            </div>
+
+            <button onclick="completeActivity(4)" class="mt-4 bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2 rounded-lg font-semibold transition">Complete Activity 4</button>
+        </section>
+
+        <!-- Final Reflection -->
+        <section class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-bold text-gray-900 mb-4">🤔 Final Reflection</h2>
+
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-gray-700 font-semibold mb-2">1. What estate planning document is most critical for YOUR current life stage?</label>
+                    <textarea class="w-full p-3 border border-gray-300 rounded focus:ring-2 focus:ring-indigo-500" rows="3"></textarea>
+                </div>
+                <div>
+                    <label class="block text-gray-700 font-semibold mb-2">2. What specific action will you take within 30 days?</label>
+                    <textarea class="w-full p-3 border border-gray-300 rounded focus:ring-2 focus:ring-indigo-500" rows="3"></textarea>
+                </div>
+                <div>
+                    <label class="block text-gray-700 font-semibold mb-2">3. How has your understanding of estate planning changed since yesterday?</label>
+                    <textarea class="w-full p-3 border border-gray-300 rounded focus:ring-2 focus:ring-indigo-500" rows="3"></textarea>
+                </div>
+            </div>
+        </section>
+
+        <!-- Summary -->
+        <section class="bg-indigo-50 border-l-4 border-indigo-500 p-6 mb-8 rounded-r">
+            <h2 class="text-xl font-bold text-indigo-900 mb-3">🎯 Learning Lab Summary</h2>
+            <div class="text-gray-800 space-y-2">
+                <p>✅ Analyzed will vs. no will outcomes—intestacy creates preventable chaos</p>
+                <p>✅ Evaluated trust needs—complexity often matters more than estate size</p>
+                <p>✅ Created POA & healthcare directive plan—critical for everyone 18+</p>
+                <p>✅ Conducted beneficiary audit—designations trump wills</p>
+            </div>
+            <div class="bg-white p-4 rounded mt-4">
+                <p class="font-semibold text-indigo-900">Key Takeaway:</p>
+                <p class="text-gray-700">Estate planning isn't optional or only for the elderly. Healthcare directives and POAs protect you while living. Wills and beneficiaries protect your family after death. The cost of basic planning ($100-500) is trivial compared to the cost of inadequate planning (thousands in probate, family conflict, unintended outcomes). In {{STATE_NAME}}, {{STATE_ESTATE_TAX}}.</p>
+            </div>
+        </section>
+
+        <!-- Navigation -->
+        <div class="flex justify-between items-center">
+            <a href="day1.html" class="bg-gray-200 hover:bg-gray-300 px-6 py-3 rounded-lg font-semibold transition">← Day 1: Content</a>
+            <a href="#" class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-lg font-semibold transition">Next Lesson →</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8 mt-12">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-gray-400">© 2025 PFL Academy | L-71: Introduction to Estate Planning - Learning Lab</p>
+            <p class="text-sm text-gray-500 mt-2">Protecting yourself and those you care about.</p>
+        </div>
+    </footer>
+
+    <script>
+        let completedActivities = new Set();
+
+        // Scenario data for Activity 1
+        const scenarios = {
+            a: {
+                title: "Scenario A: Single Person, Age 26",
+                description: "Alex, 26, has a serious partner (Emma) for 3 years. $180K assets (401k $80K, investments $50K, car/possessions $50K). No will.",
+                withWill: {
+                    distribution: "All assets to Emma per will",
+                    executor: "Emma's brother (named in will)",
+                    timeline: "8 months to complete probate",
+                    costs: "$10,000 total (probate $7K + attorney $3K)",
+                    impact: "Emma receives assets smoothly, wishes honored, minimal conflict"
+                },
+                withoutWill: {
+                    distribution: "All assets to parents per {{STATE_NAME}} intestacy law (Emma receives $0)",
+                    administrator: "Court-appointed (Alex's father)",
+                    timeline: "12-18 months to complete intestacy process",
+                    costs: "$15,000 total (probate $9K + attorney $4.5K + court $1.5K)",
+                    impact: "Emma evicted from shared apartment, loses all possessions, engagement ring claimed by parents, partner of 3 years gets nothing"
+                },
+                costDiff: "$5,000 higher cost + Emma gets nothing"
+            },
+            b: {
+                title: "Scenario B: Married Couple with Children",
+                description: "Jason & Lisa, ages 32/30, two children (2 and 4). Both die in car accident. $450K estate (life insurance $200K each, home equity $50K). No guardians designated.",
+                withWill: {
+                    distribution: "Children immediately to designated guardians (Lisa's brother and wife)",
+                    management: "Life insurance to testamentary trust for children's benefit",
+                    timeline: "Guardians take custody within days; trust established within 3 months",
+                    costs: "$18,000 total (probate $15K + trust setup $3K)",
+                    impact: "Children stay with familiar extended family, financial security through trust, minimal disruption during trauma"
+                },
+                withoutWill: {
+                    distribution: "Children temporarily in foster care while court decides custody",
+                    battle: "Maternal grandmother vs. paternal aunt petition for custody - 6 months of legal battle",
+                    timeline: "Children in limbo for 6 months",
+                    costs: "$48,000 total (probate $18K + custody legal $25K + therapy $5K)",
+                    impact: "Children traumatized by temporary foster care and uncertainty, family relationships damaged by custody battle, life insurance in lump sum to grandmother with no trust management"
+                },
+                costDiff: "$30,000 higher cost + family trauma + NO guardian protection"
+            },
+            c: {
+                title: "Scenario C: Recently Divorced Parent",
+                description: "Brad, 38, divorced 2 years ago, remarried 1 year ago. One child (10) from first marriage. $275K assets (retirement $180K, home $50K, savings $45K). Will created 10 years ago still names ex-spouse Jennifer.",
+                withWill: {
+                    distribution: "Assets to trust for child's benefit (if updated will)",
+                    guardian: "Brad's brother raises child",
+                    trustee: "Financial advisor manages trust",
+                    timeline: "4-6 months to complete",
+                    costs: "$12,000 total (probate $10K + trust admin $2K)",
+                    impact: "Child financially secure, raised by designated guardian, current wife (Angela) receives personal items"
+                },
+                withoutWill: {
+                    distribution: "All assets to ex-wife Jennifer per outdated will",
+                    battle: "Current wife Angela sues to challenge will - 18-month battle",
+                    timeline: "18-24 months to resolve",
+                    costs: "$47,000 total (probate $12K + litigation $35K)",
+                    impact: "Ex-wife gets $275K despite remarriage; current wife gets nothing; child's guardian (Brad's brother) has no resources; family relationships destroyed; child caught in middle of legal battle"
+                },
+                costDiff: "$35,000 higher cost + ex-spouse gets everything + family warfare"
+            }
+        };
+
+        function loadScenario(scenario) {
+            const data = scenarios[scenario];
+            document.getElementById('scenarioTitle').textContent = data.title;
+            document.getElementById('scenarioDescription').textContent = data.description;
+
+            // Populate "With Will"
+            const withWillHtml = Object.entries(data.withWill).map(([key, value]) =>
+                `<div class="mb-2">
+                    <span class="font-semibold capitalize">${key.replace('_', ' ')}:</span>
+                    <span class="text-gray-700">${value}</span>
+                </div>`
+            ).join('');
+            document.getElementById('withWill').innerHTML = withWillHtml;
+
+            // Populate "Without Will"
+            const withoutWillHtml = Object.entries(data.withoutWill).map(([key, value]) =>
+                `<div class="mb-2">
+                    <span class="font-semibold capitalize">${key.replace('_', ' ')}:</span>
+                    <span class="text-gray-700">${value}</span>
+                </div>`
+            ).join('');
+            document.getElementById('withoutWill').innerHTML = withoutWillHtml;
+
+            // Cost analysis
+            document.getElementById('costAnalysis').innerHTML = `<strong>Difference:</strong> ${data.costDiff}`;
+
+            document.getElementById('scenarioDetails').classList.remove('hidden');
+        }
+
+        function completeActivity(num) {
+            completedActivities.add(num);
+            document.querySelector(`[data-step="${num}"]`).classList.add('completed');
+            document.getElementById('progressText').textContent = `${completedActivities.size}/4 Activities Complete`;
+
+            // Scroll to next activity
+            if (num < 4) {
+                const nextActivity = document.querySelectorAll('.activity-card')[num];
+                if (nextActivity) {
+                    nextActivity.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set first step as active
+            document.querySelector('[data-step="1"]').classList.add('active');
+        });
+    </script>
+</body>
+</html>
